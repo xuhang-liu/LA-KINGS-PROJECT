@@ -410,8 +410,8 @@ const ReviewCandidate = (props) => {
                             </div>
                             {props.linkedin != null && props.linkedin != "" ?
                                 <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
-                                    <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#67A3F3", marginRight: "3px" }}></i>
-                                    <a style={{ fontSize: "0.9vw", color: "#67A3F3", fontWeight: "500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                    <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#006dff", marginRight: "3px" }}></i>
+                                    <a style={{ fontSize: "0.9vw", color: "#006dff", fontWeight: "500" }} href={props.linkedin} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                                 </div> :
                                 <div style={{ display: "flex", alignItems: "center", marginTop: "1%" }}>
                                     <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
@@ -459,9 +459,9 @@ const ReviewCandidate = (props) => {
                                     <button
                                         onClick={() => { setTimeout(() => { showResumeEva() }, 200) }}
                                         className="interview-txt9 mt-3 ml-3"
-                                        style={{ color: "#67A3F3", border: "none", background: "white" }}
+                                        style={{ color: "#006dff", border: "none", background: "white" }}
                                     >
-                                        <i className="bx bx-arrow-to-right interview-txt9" style={{ color: "#67A3F3" }}></i> Resume Evaluation
+                                        <i className="bx bx-arrow-to-right interview-txt9" style={{ color: "#006dff" }}></i> Resume Evaluation
                                     </button>
                                 </div>
                             }

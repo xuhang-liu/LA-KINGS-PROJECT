@@ -221,7 +221,7 @@ export class TechFields extends Component {
         <input type="text" name="field" placeholder="What industry are you looking for?"
         style={{border:"1px solid #E6E8F6", boxSizing: 'border-box', borderRadius:"3px", width:"20rem", fontSize:"0.75rem", height:"3rem"}}>
         </input>
-        <button className="default-btn" style={{backgroundColor:"#56a3fa", marginLeft:"2%"}}>
+        <button className="default-btn" style={{backgroundColor:"#006dff", marginLeft:"2%"}}>
         <i className="bx bxs-hot"></i>
           Submit
         </button>
@@ -244,7 +244,7 @@ export class TechFields extends Component {
       <input type="text" name="field" placeholder="What industry are you looking for?"
       style={{border:"1px solid #E6E8F6", boxSizing: 'border-box', borderRadius:"3px", width:"20rem", fontSize:"0.75rem", height:"3rem"}}>
       </input>
-      <button className="default-btn" style={{backgroundColor:"#56a3fa", marginLeft:"2%"}}>
+      <button className="default-btn" style={{backgroundColor:"#006dff", marginLeft:"2%"}}>
       <i className="bx bxs-hot"></i>
         Submit
       </button>

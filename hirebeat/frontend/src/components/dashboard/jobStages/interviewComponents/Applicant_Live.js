@@ -153,7 +153,7 @@ export const Applicant_Live = (props) => {
                     </div>
                 }
                 <div className="col-5 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={(() => viewResult())}>
+                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#006dff" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
                     </button>
@@ -166,7 +166,7 @@ export const Applicant_Live = (props) => {
                     }
                 </div>}
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-2">
+                    <div className="col-2" style={{ marginLeft: "1.4rem" }}>
                         {applicants[current]?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
                         }

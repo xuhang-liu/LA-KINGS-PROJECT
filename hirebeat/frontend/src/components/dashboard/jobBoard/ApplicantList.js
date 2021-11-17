@@ -41,7 +41,7 @@ export class ApplicantList extends Component {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -253,7 +253,7 @@ export class ApplicantList extends Component {
             <React.Fragment>
                 <div className="chart-bg1 container-fluid mt-3 pt-2 pb-3">
                     <div className="interview-txt5 pl-1" style={{paddingTop: "1rem"}}>{this.props.curJob.job_details.job_title}</div>
-                    <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
+                    <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{position:"absolute", marginLeft:"0.5rem", marginTop:"0.2rem"}} className="bx bx-search bx-sm"></i>
@@ -291,7 +291,7 @@ export class ApplicantList extends Component {
                                     <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
                                 </div>
                             </div>
-                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{color: "#67A3F3", cursor: "pointer"}}><i class='bx bx-sort'></i></span></div>
+                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{color: "#006dff", cursor: "pointer"}}><i class='bx bx-sort'></i></span></div>
                         </div>
                         {/* sort by resume score descending */}
                         {this.state.isSortByScore && this.props.curJob.applicants.sort((a, b) => parseInt(b.result_rate) - parseInt(a.result_rate)).map((a, index) => {
@@ -499,7 +499,7 @@ const ApplicantRow = (props) => {
                         </div>
                     }
                 </div>
-                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
+                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
@@ -517,7 +517,7 @@ const ApplicantRow = (props) => {
                 </div>
                 {/*<div className="col-3 interview-txt9 mt-2">{props.applicant.email.length > 25 ? props.applicant.email.substring(0, 23) + "..." : props.applicant.email}</div>*/}
                 <div className="col-2 interview-txt9 mb-2"><span style={{marginLeft:"0.6rem"}}>{props.applicant.apply_date.substring(0, 10)}</span></div>
-                {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#67A3F3"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
+                {/*<div className="col-2 interview-txt9 mt-2" style={{cursor:"pointer", color: "#006dff"}} onClick={()=>{setCurrent(props.index); onView()}}>View</div>*/}
                 <div className="col-3 interview-txt9 mb-2" style={{ padding: "0rem"}}>
                     <div className="row" style={{padding: "0rem"}}>
                         {/* place holder */}

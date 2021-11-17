@@ -43,10 +43,10 @@ This files table contents are outlined below>>>>>
 /*================================================
 Default CSS
 =================================================*/
-@import url("https://fonts.googleapis.com/css?family=Avenir Next:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
 * {
-  font-family: 'Avenir Next', 'Segoe UI', 'Helvetica', sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Helvetica', sans-serif;
 }
 
 body {
@@ -55,7 +55,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 15px;
-  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
 }
 
 a {
@@ -218,7 +218,7 @@ p:last-child {
 
 .section-title h2 span {
   display: inline-block;
-  color: #56a3fa;
+  color: #006dff;
 }
 
 /* default-btn&optional-btn */
@@ -230,10 +230,10 @@ p:last-child {
   overflow: hidden;
   z-index: 1;
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 5px;
+  border-radius: 3px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -253,7 +253,7 @@ p:last-child {
   background-color: #080a3c;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 5px;
+  border-radius: 3px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -270,10 +270,10 @@ p:last-child {
   overflow: hidden;
   z-index: 1;
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 5px;
+  border-radius: 3px;
   font-weight: 600;
   font-size: 20px;
   padding-left: 25px;
@@ -356,7 +356,7 @@ p:last-child {
   background-color: transparent;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 5px;
+  border-radius: 3px;
   font-weight: 500;
   font-size: 15px;
   padding-left: 55px;
@@ -424,7 +424,7 @@ Preloader Area CSS
 .preloader-area {
   position: fixed;
   top: 0;
-  background-color: #56a3fa;
+  background-color: #006dff;
   left: 0;
   width: 100%;
   height: 100%;
@@ -728,7 +728,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item a:hover, .main-nav .navbar .navbar-nav .nav-item a:focus, .main-nav .navbar .navbar-nav .nav-item a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item a i {
@@ -749,7 +749,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item:hover a, .main-nav .navbar .navbar-nav .nav-item.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu {
@@ -769,7 +769,7 @@ Navbar Area CSS
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   margin-top: 20px;
-  border-top: 2px solid #56a3fa;
+  border-top: 2px solid #006dff;
   padding: 0;
 }
 
@@ -788,7 +788,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li:last-child a {
@@ -807,7 +807,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu {
@@ -822,7 +822,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
@@ -837,7 +837,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
@@ -852,7 +852,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
@@ -868,7 +868,7 @@ Navbar Area CSS
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
@@ -884,12 +884,12 @@ Navbar Area CSS
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
@@ -899,7 +899,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
@@ -909,7 +909,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
@@ -919,7 +919,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
@@ -929,7 +929,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
@@ -939,7 +939,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li.active a {
-  color: #56a3fa;
+  color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li:hover .dropdown-menu {
@@ -974,7 +974,7 @@ Navbar Area CSS
   position: absolute;
   bottom: -1px;
   left: 0;
-  background: #56a3fa;
+  background: #006dff;
   width: 30px;
   height: 1px;
 }
@@ -1001,7 +1001,7 @@ Navbar Area CSS
 
 .main-nav .navbar .others-options .default-btn {
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .main-nav .navbar .others-options .default-btn i {
@@ -2034,12 +2034,12 @@ Video Presentation Area CSS
 }
 
 .video-box .video-btn:hover, .video-box .video-btn:focus {
-  background-color: #56a3fa;
+  background-color: #006dff;
   color: #ffffff;
 }
 
 .video-box .video-btn:hover::after, .video-box .video-btn:hover::before, .video-box .video-btn:focus::after, .video-box .video-btn:focus::before {
-  border-color: #56a3fa;
+  border-color: #006dff;
 }
 
 .shape-map1 {
@@ -2364,7 +2364,7 @@ FunFacts Area CSS
 
 .funfact-style-two i {
   font-size: 35px;
-  color: #56a3fa;
+  color: #006dff;
   width: 70px;
   height: 70px;
   line-height: 70px;
@@ -2406,7 +2406,7 @@ FunFacts Area CSS
 }
 
 .contact-cta-box .default-btn {
-  background-color: #56a3fa;
+  background-color: #006dff;
   position: absolute;
   padding-left: 25px;
   right: 30px;
@@ -2442,7 +2442,7 @@ Features Area CSS
 }
 
 .single-features-box .icon {
-  background-color: #56a3fa;
+  background-color: #006dff;
   color: #ffffff;
   position: relative;
   z-index: 1;
@@ -2461,7 +2461,7 @@ Features Area CSS
   height: 100%;
   right: -15px;
   bottom: -15px;
-  border: 5px solid #56a3fa;
+  border: 5px solid #006dff;
   content: '';
   position: absolute;
   -webkit-transition: 0.5s;
@@ -2512,7 +2512,7 @@ Features Area CSS
   width: 85px;
   height: 85px;
   background-color: #bcd2fd;
-  color: #56a3fa;
+  color: #006dff;
   text-align: center;
   font-size: 45px;
   position: relative;
@@ -2548,7 +2548,7 @@ Features Area CSS
   right: 10px;
   top: -52px;
   z-index: -1;
-  color: #56a3fa;
+  color: #006dff;
   opacity: .06;
   font-size: 190px;
   line-height: 190px;
@@ -2567,7 +2567,7 @@ Features Area CSS
 }
 
 .features-box:hover .icon {
-  background-color: #56a3fa;
+  background-color: #006dff;
   color: #ffffff;
 }
 
@@ -2578,7 +2578,7 @@ Features Area CSS
 
 .features-box .read-more {
   margin-top: 5px;
-  color: #56a3fa;
+  color: #006dff;
   display: inline-block;
 }
 
@@ -2589,7 +2589,7 @@ Features Area CSS
 }
 
 .features-box .read-more i {
-  color: #56a3fa;
+  color: #006dff;
   width: 0;
   height: 0;
   line-height: 1;
@@ -2608,15 +2608,15 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(1) .single-features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(1) .single-features-box .icon::before {
-  border-color: #56A3FA;
+  border-color: #006dff;
 }
 
 .col-lg-4:nth-child(1) .features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ff612f;
 }
 
@@ -2625,20 +2625,20 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(1) .features-box:hover .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(3) .single-features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(3) .single-features-box .icon::before {
-  border-color: #56A3FA;
+  border-color: #006dff;
 }
 
 .col-lg-4:nth-child(3) .features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #080a3c;
 }
 
@@ -2647,20 +2647,20 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(3) .features-box:hover .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(4) .single-features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(4) .single-features-box .icon::before {
-  border-color: #56A3FA;
+  border-color: #006dff;
 }
 
 .col-lg-4:nth-child(4) .features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #fc4c86;
 }
 
@@ -2669,51 +2669,51 @@ Features Area CSS
 }
 
 .col-lg-4:nth-child(4) .features-box:hover .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(5) .single-features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(5) .single-features-box .icon::before {
-  border-color: #56A3FA;
+  border-color: #006dff;
 }
 
 .col-lg-4:nth-child(5) .features-box .icon {
-  background-color: #56A3FA;
-  color: #56A3FA;
+  background-color: #006dff;
+  color: #006dff;
 }
 
 .col-lg-4:nth-child(5) .features-box .back-icon {
-  color: #56A3FA;
+  color: #006dff;
 }
 
 .col-lg-4:nth-child(5) .features-box:hover .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ffffff;
 }
 
 .col-lg-4:nth-child(6) .single-features-box .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(6) .single-features-box .icon::before {
-  border-color: #56A3FA;
+  border-color: #006dff;
 }
 
 .col-lg-4:nth-child(6) .features-box .icon {
-  background-color: #56A3FA;
-  color: #56A3FA;
+  background-color: #006dff;
+  color: #006dff;
 }
 
 .col-lg-4:nth-child(6) .features-box .back-icon {
-  color: #56A3FA;
+  color: #006dff;
 }
 
 .col-lg-4:nth-child(6) .features-box:hover .icon {
-  background-color: #56A3FA;
+  background-color: #006dff;
   color: #ffffff;
 }
 
@@ -2795,7 +2795,7 @@ Features Area CSS
   font-size: 30px;
   text-align: center;
   border-radius: 100%;
-  background-color: #56a3fa;
+  background-color: #006dff;
   color: #fff;
   margin-bottom: 25px;
 }
@@ -3156,7 +3156,7 @@ Feedback Area CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 50%;
-  border: 1px solid #56a3fa;
+  border: 1px solid #006dff;
   position: relative;
 }
 
@@ -3182,7 +3182,7 @@ Feedback Area CSS
 }
 
 .testimonials-area {
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .testimonials-area .section-title h2 {
@@ -3391,7 +3391,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .pricing-features li i {
-  color: #56a3fa;
+  color: #006dff;
   position: absolute;
   left: 0;
   top: 3px;
@@ -3500,7 +3500,7 @@ Pricing Area CSS
 }
 
 .col-lg-4:nth-child(1) .single-pricing-table .btn-box .default-btn {
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(1) .single-pricing-table .btn-box .default-btn i {
@@ -3508,7 +3508,7 @@ Pricing Area CSS
 }
 
 .col-lg-4:nth-child(2) .single-pricing-table .btn-box .default-btn {
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(2) .single-pricing-table .btn-box .default-btn i {
@@ -3516,7 +3516,7 @@ Pricing Area CSS
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn {
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn i {
@@ -4078,7 +4078,7 @@ Blog Details Area CSS
 }
 
 .blog-details-desc .article-content .features-list li i {
-  color: #56a3fa;
+  color: #006dff;
   display: inline-block;
   font-size: 20px;
   position: absolute;
@@ -4097,7 +4097,7 @@ Blog Details Area CSS
 .blog-details-desc .article-footer .article-tags a {
   display: inline-block;
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
   padding: 4px 12px;
   border-radius: 5px;
   margin-right: 6px;
@@ -4596,7 +4596,7 @@ blockquote::after, .blockquote::after {
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: #56a3fa;
+  background-color: #006dff;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -4605,7 +4605,7 @@ blockquote::after, .blockquote::after {
 Page Title Area CSS
 =================================================*/
 .page-title-area {
-  background-color: #56a3fa;
+  background-color: #006dff;
   position: relative;
   z-index: 1;
   padding-top: 100px;
@@ -4632,7 +4632,7 @@ Page Title Area CSS
 }
 
 .page-title-area-small {
-  background-color: #56a3fa;
+  background-color: #006dff;
   position: relative;
   z-index: 1;
   padding-top: 50px;
@@ -4759,7 +4759,7 @@ Pagination Area CSS
 }
 
 .pagination-area .page-numbers.current, .pagination-area .page-numbers:hover, .pagination-area .page-numbers:focus {
-  background: #56a3fa;
+  background: #006dff;
   color: #ffffff;
   -webkit-box-shadow: 0 2px 10px 0 #d8dde6;
           box-shadow: 0 2px 10px 0 #d8dde6;
@@ -4827,7 +4827,7 @@ Sidebar Widget Area CSS
 }
 
 .widget-area .widget_search form .search-field:focus {
-  border-color: #56a3fa;
+  border-color: #006dff;
 }
 
 .widget-area .widget_search form button {
@@ -4840,7 +4840,7 @@ Sidebar Widget Area CSS
   z-index: 1;
   border: none;
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   font-size: 20px;
@@ -5537,7 +5537,7 @@ Features Area CSS
   border-radius: 30px;
   text-align: center;
   padding: 70px;
-  background-color: #56a3fa;
+  background-color: #006dff;
 }
 
 .subscribe-content h2 {
@@ -6227,7 +6227,7 @@ Footer Area CSS
   height: 30px;
   line-height: 33px;
   color: #ffffff;
-  background-color: #56a3fa;
+  background-color: #006dff;
   text-align: center;
   font-size: 17px;
   border-radius: 30px;
@@ -6256,7 +6256,7 @@ Footer Area CSS
   width: 30px;
   height: 30px;
   line-height: 33px;
-  background-color: #56a3fa;
+  background-color: #006dff;
   color: #ffffff;
   text-align: center;
   font-size: 17px;
@@ -6805,7 +6805,7 @@ SaaS Home Page CSS
 }
 
 .overview-content .number {
-  background-color: #56a3fa;
+  background-color: #006dff;
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -7041,7 +7041,7 @@ SaaS Home Page CSS
 .font-size-8{font-size:calc(1.3375rem + 1.05vw)}
 .shadow-8{box-shadow:2px 2px 4px hsla(0,0%,51%,.16)}
 .rounded-4{border-radius:10px}
-.hirebeat-blue-bg {background-color: #67a3f3}
+.hirebeat-blue-bg {background-color: #006dff}
 .text-black-2{color:#2b3940!important}a.text-black-2:focus,a.text-black-2:hover{color:#0c1012!important}
 .text-gray{color:#6b6e6f!important}a.text-gray:focus,a.text-gray:hover{color:#454748!important}
 .font-size-4{font-size:1rem;line-height:1.625;letter-spacing:-.08px}

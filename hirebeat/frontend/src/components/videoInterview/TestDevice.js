@@ -74,7 +74,7 @@ const ReadBeforeStart = (props) => {
           <div className='container mt-3 mb-3' style={{width:"69%"}}>
               <div className="row">
                   <div className="col-1 mt-2">
-                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
+                      <i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -84,7 +84,7 @@ const ReadBeforeStart = (props) => {
               </div>
               <div className="row mt-2">
                   <div className="col-1 mt-2">
-                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
+                      <i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -94,7 +94,7 @@ const ReadBeforeStart = (props) => {
               </div>
               <div className="row mt-2">
                   <div className="col-1 mt-2">
-                      <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>
+                      <i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>
                   </div>
                   <div className="col-11">
                       <p style={{fontSize:"18px"}}>
@@ -108,7 +108,7 @@ const ReadBeforeStart = (props) => {
                   <button
                       onClick={props.beginRecord}
                       className="default-btn mt-3"
-                      style={{color:"white", backgroundColor:"#56a3fa", width: "13rem"}}
+                      style={{color:"white", backgroundColor:"#006dff", width: "13rem"}}
                   >
                      <i className="bx bx-rocket"></i>Confirm and Start
                     <span></span>

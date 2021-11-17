@@ -252,7 +252,7 @@ export class Dashboard extends Component {
         <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
-          {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
+          {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
           <MediaQuery minDeviceWidth={1224}>
             <Tour
               onRequestClose={this.closeTour}

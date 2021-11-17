@@ -21,7 +21,7 @@ const CompanyBranding = (props) => {
         return (
             <React.Fragment>
                 <MediaQuery minDeviceWidth={1224}>
-                    <div className="container-fluid py-5" style={{ background: "#E8EDFC", minWidth: "1290px", fontFamily: "Avenir Next, Segoe UI" }}>
+                    <div className="container-fluid py-5" style={{ background: "#E8EDFC", minWidth: "1290px", fontFamily: "Inter, Segoe UI" }}>
                         <div style={{ marginLeft: "auto", marginRight: "auto", width: "70%", minHeight: "900px", borderRadius: "10px", background: "white", position: "relative", paddingBottom: "4rem" }}>
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                             {(props.company_logo != "" && props.company_logo != null) &&
@@ -117,7 +117,7 @@ const CompanyBranding = (props) => {
                     </div>
                 </MediaQuery>
                 <MediaQuery maxDeviceWidth={1223}>
-                    <div className="py-5" style={{ background: "#E8EDFC", fontFamily: "Avenir Next, Segoe UI" }}>
+                    <div className="py-5" style={{ background: "#E8EDFC", fontFamily: "Inter, Segoe UI" }}>
                         <div style={{ marginLeft: "auto", marginRight: "auto", width: "90%", minHeight: "700px", borderRadius: "10px", background: "white", position: "relative", paddingBottom: "3rem" }}>
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="img" />
                             {(props.company_logo != "" && props.company_logo != null) &&

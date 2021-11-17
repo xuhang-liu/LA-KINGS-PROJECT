@@ -271,21 +271,21 @@ class InterviewInfo extends Component {
                                                 Total: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length} Questions</span> | Estimate Time: <span style={{color:"#13c4a1"}}>{this.props.interview_questions.length * ((this.props.interview_position.prepare_time + this.props.interview_position.questionTime) / 60.0)} Minutes</span>
                                             </h4>
                                             <div className="interview-txt2" style={{color: "#4A6F8A"}}>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</p>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</p>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</p>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Camera</span> is <span style={{color:"#ff6b00"}}>{this.props.interview_position.camera_on ? "" : "not"}</span> needed for each interview question.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Camera</span> is <span style={{color:"#ff6b00"}}>{this.props.interview_position.camera_on ? "" : "not"}</span> needed for each interview question.</p>
                                             </div>
                                             <h3 className="interview-txt1 mt-4">Interview Tips</h3>
                                             <div className="interview-txt2" style={{color: "#4A6F8A"}}>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Ensure you are in a <span style={{color:"#ff6b00"}}>quiet, distraction-free area</span>. Avoid places with lots of echo.</p>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>If you are filming a video, make sure to film in a <span style={{color:"#ff6b00"}}>well-lit area</span>. Make <span style={{color:"#ff6b00"}}>eye contact</span> with the camera whenever possible.</p>
-                                                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Remember to <span style={{color:"#ff6b00"}}>grant access to your microphone and/or camera</span> if requested.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>Ensure you are in a <span style={{color:"#ff6b00"}}>quiet, distraction-free area</span>. Avoid places with lots of echo.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>If you are filming a video, make sure to film in a <span style={{color:"#ff6b00"}}>well-lit area</span>. Make <span style={{color:"#ff6b00"}}>eye contact</span> with the camera whenever possible.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>Remember to <span style={{color:"#ff6b00"}}>grant access to your microphone and/or camera</span> if requested.</p>
                                             </div>
                                             {this.state.selected ? <button
                                                 onClick={this.redirectToRecord}
                                                 className="default-btn mt-3"
-                                                style={{color:"white", backgroundColor:"#56a3fa", width: "12rem"}}
+                                                style={{color:"white", backgroundColor:"#006dff", width: "12rem"}}
                                             >
                                                  <i className="bx bx-rocket"></i>I'm Ready
                                                 <span></span>

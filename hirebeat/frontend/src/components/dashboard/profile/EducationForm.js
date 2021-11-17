@@ -21,7 +21,7 @@ export class EducationForm extends Component {
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
         menuPortal: provided => ({ ...provided, zIndex: 99 }),
@@ -143,7 +143,7 @@ const FormCard = (props) => {
                             <button onClick={() => {props.cancelEditEducation(); props.closeEdit()}} className="default-btn" style={{backgroundColor: "#E5E5E5", paddingLeft: "25px", color: "#090D3A"}}>Cancel</button>
                         </div>
                         <div className="col-2">
-                            <button onClick={props.addEducation} className="default-btn" style={{backgroundColor: "#67A3F3", paddingLeft: "25px"}}>Save</button>
+                            <button onClick={props.addEducation} className="default-btn" style={{backgroundColor: "#006dff", paddingLeft: "25px"}}>Save</button>
                         </div>
                     </div>
                 </div>

@@ -78,7 +78,7 @@ export var audioRecorderOptions = {
     plugins: {
         wavesurfer: {
             backend: 'WebAudio',
-            waveColor: '#56a3fa',
+            waveColor: '#006dff',
             progressColor: 'black',
             debug: true,
             cursorWidth: 1,
@@ -121,7 +121,7 @@ export var radialChartOptions = {
     title: {
       text: "Competency Map",
       style: {
-        fontFamily: "Avenir Next, Segoe UI",
+        fontFamily: "Inter, Segoe UI",
         fontStyle: "normal",
         fontWeight: "500",
         fontSize: "20px",
@@ -136,7 +136,7 @@ export var radialChartOptions = {
         style: {
           colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
-          fontFamily: "Avenir Next, Segoe UI",
+          fontFamily: "Inter, Segoe UI",
           fontStyle: "normal",
           fontWeight: "500",
           lineHeight: "7px"
@@ -151,7 +151,7 @@ export var radialChartOptions = {
         style: {
           colors: ["#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a", "#4a6f8a"],
           fontSize: "12px",
-          fontFamily: "Avenir Next, Segoe UI",
+          fontFamily: "Inter, Segoe UI",
           fontStyle: "normal",
           fontWeight: "500",
           lineHeight: "7px"

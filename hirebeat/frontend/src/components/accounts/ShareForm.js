@@ -5,7 +5,7 @@ export class ShareForm extends Component {
         return (
             <React.Fragment>
                 <form id="Candidates_Register_Desk_Step4" onSubmit={this.props.registration}>
-                      <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step4 &nbsp; <span style={{color: "#67A3F3"}}>Share with Recruiters</span></h1>
+                      <h1 className="register-title" style={{paddingTop: "0.6rem", textAlign: "left"}}>Step4 &nbsp; <span style={{color: "#006dff"}}>Share with Recruiters</span></h1>
                       <div style={{display: "flex"}}>
                           <img style={{width: "86%", height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/step4.png" alt="step flow" />
                       </div>
@@ -16,11 +16,11 @@ export class ShareForm extends Component {
                         </label>
                         <div className="register-label">
                         {this.props.open_to_hr ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Enabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setOpen_to_hr}>Enabled</button>
                         }
                         {!this.props.open_to_hr ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.props.setOpen_to_hr}>Disabled</button>
                         }
                         </div>

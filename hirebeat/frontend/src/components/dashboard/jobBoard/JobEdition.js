@@ -51,7 +51,7 @@ export class JobEdition extends Component {
             jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
             jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
             skills: [],
-            remote: this.props.jobInfo.job_location.includes("Remote") ? { value: 2, label: 'Remote' } : this.props.jobInfo.job_location.includes("Hybrid") ?{ value: 1, label: 'Hybrid' }: { value: 0, label: 'On Site' },
+            remote: this.props.jobInfo.job_location.includes("Remote") ? { value: 2, label: 'Remote' } : this.props.jobInfo.job_location.includes("Hybrid") ? { value: 1, label: 'Hybrid' } : { value: 0, label: 'On Site' },
             questionCount: this.props.jobInfo.screen_questions.length,
             questions: questions,
         }
@@ -104,10 +104,10 @@ export class JobEdition extends Component {
         control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
-            color: '#4a6f8a',
+            color: '#090d3a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
-            fontWeight: '500'
+            fontFamily: 'Inter,Segoe UI, sans-serif',
+            fontWeight: '400'
         }),
     };
     options = [
@@ -315,7 +315,7 @@ export class JobEdition extends Component {
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
                 jobLocation: "Remote",
-                jobLocation: this.state.jobLocation.includes("Hybrid")?this.state.jobLocation:(this.state.jobLocation + "| Hybrid"),
+                jobLocation: this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                 loc_req: this.state.loc_req,
                 pho_req: this.state.pho_req,
                 lin_req: this.state.lin_req,
@@ -380,7 +380,7 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: this.state.jobLocation.includes("Hybrid")?this.state.jobLocation:(this.state.jobLocation + "| Hybrid"),
+                jobLocation: this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -405,17 +405,17 @@ export class JobEdition extends Component {
             closeOnClickOutside: true,
             customUI: ({ onClose }) => {
                 return (
-                    <div className="container-fluid" style={{ fontFamily: "Avenir Next, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius: "5px" }}>
+                    <div className="container-fluid" style={{ fontFamily: "Inter, Segoe UI", margin: "auto", width: "80%", overflow: "auto", height: "80vh", backgroundColor: "#ffffff", borderRadius: "5px" }}>
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer", marginTop: "3rem" }}><i className="bx bx-x bx-md"></i></div>
                         <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                         <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={this.props.employerProfileDetail.logo_url} alt="icon" />
                         <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{this.state.jobTitle}</h1>
-                        <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3" }}>{this.props.employerProfileDetail.name}
+                        <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff" }}>{this.props.employerProfileDetail.name}
                         </h2>
                         <div className="row pl-3">
                             <div className="col-8 pl-5" style={{ paddingRight: "3.7rem" }}>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobLevel["value"]} • {this.state.jobType["value"]}</p>
-                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(this.state.remote.value == 2)?"Remote":(this.state.remote.value == 1)?(this.state.jobLocation+" | Hybrid"):this.state.jobLocation}</p>
+                                <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(this.state.remote.value == 2) ? "Remote" : (this.state.remote.value == 1) ? (this.state.jobLocation + " | Hybrid") : this.state.jobLocation}</p>
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
                                 <div>
                                     <div>
@@ -447,7 +447,7 @@ export class JobEdition extends Component {
                                     Apply Now
                                 </a>
                                 <p className="mt-5">Link to this job</p>
-                                <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3rem" }}>
+                                <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3rem" }}>
                                     <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                         <p style={{ fontSize: "0.8rem" }}>https://link-to-this-job</p>
                                     </div>
@@ -561,7 +561,7 @@ export class JobEdition extends Component {
                             type="button"
                             className="panel-button"
                             onClick={this.props.renderJobs}
-                            style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                            style={{ outline: "none", margin: "0%", padding: "0px", background: "#f3f6f9" }}
                         >
                             <div className="center-items back-to-text">
                                 <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
@@ -572,7 +572,9 @@ export class JobEdition extends Component {
                 <div className="chart-bg1 container" style={{ marginTop: "1%", paddingBottom: "4rem", paddingLeft: "1.2rem" }}>
                     <form onSubmit={this.savePosition}>
                         <div className="form-row mt-4">
-                            <h5 style={{ color: "#090d3a" }}><b>Position Details</b></h5>
+                            <div className="col-12">
+                                <label className="db-txt2" style={{ fontSize: "1rem" }}><b>Position Details</b></label>
+                            </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
@@ -632,6 +634,7 @@ export class JobEdition extends Component {
                                             <Autocomplete
                                                 className="form-control"
                                                 language="en"
+                                                style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
                                                 apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                                 onPlaceSelected={(place, inputRef, autocomplete) => {
                                                     this.handleLocation(place.formatted_address);
@@ -696,22 +699,30 @@ export class JobEdition extends Component {
                             <div className="col-12">
                                 <label className="db-txt2">
                                     EEO Statement
+                                    <span className="tool_tip ml-2">
+                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                            <div>
+                                                Use our standard statement by enabling, or put your own in the Job Description above and leave this disabled.
+                                            </div>
+                                        </p>
+                                    </span>
                                 </label>
                             </div>
                             <div className="form-group col-12">
                                 {this.state.eeo_req == 1 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Enabled</button> :
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoReq1}>Enabled</button>
                                 }
                                 {this.state.eeo_req == 0 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoReq0}>Disabled</button>
                                 }
                             </div>
                             {this.state.eeo_req == 1 &&
                                 <div className="form-group col-12">
-                                    <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem", marginBottom: "0rem" }}>The following statement will be displayed at the bottom of your job description</p>
-                                    <p className="ml-5">{this.props.profile.company_name} is an Equal Opportunity employer.We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                    <p className="ml-5 mr-5" style={{ color: "#4a6f8a", fontWeight: "600", fontSize: "1rem", marginBottom: "0rem" }}>The following statement will be displayed at the bottom of your job description:</p>
+                                    <p className="ml-5 mr-5" style={{ color: "#090d3a", fontWeight: "500", fontSize: "1rem", marginBottom: "0rem" }}>{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
                                 </div>}
                         </div>
                         <div className="form-row">
@@ -722,28 +733,31 @@ export class JobEdition extends Component {
                             </div>
                             <div className="form-group col-12">
                                 {this.state.eeo_ques_req == 1 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Enabled</button> :
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoQuesReq1}>Enabled</button>
                                 }
                                 {this.state.eeo_ques_req == 0 ?
-                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                                     <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setEeoQuesReq0}>Disabled</button>
                                 }
                             </div>
                             {this.state.eeo_ques_req == 1 &&
-                                <div className="col-12">
-                                    <p style={{ color: "#000", fontWeight: "600", fontSize: "1rem" }}>Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts</p>
+                                <div className="form-group col-12">
+                                    <p className="ml-5 mr-5" style={{ color: "#4a6f8a", fontWeight: "600", fontSize: "1rem" }}>Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts.</p>
                                 </div>}
                         </div>
                         <hr style={{ border: "1.5px solid #E8EDFC" }} />
                         <div className="form-row">
-                            <h5 style={{ color: "#090d3a" }}><b>Application Form</b></h5>
-                            <span className="tool_tip ml-2">
-                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
-                                    This will be filled out by applicants.Name, Email, and Resume are mandatory by default.
-                                </p>
-                            </span>
+                            <div className="col-12">
+                                <label className="db-txt2" style={{ fontSize: "1rem" }}><b>Application Form</b>
+                                    <span className="tool_tip ml-2">
+                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                            This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
+                                        </p>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                         {/*<div className="form-row mt-3">
                             <label className="db-txt2" style={{ marginTop: "2%" }}>
@@ -751,7 +765,7 @@ export class JobEdition extends Component {
                             </label>
                         </div>
                         <div className="form-row mt-3">
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button>
                         </div>
                         <div className="form-row mt-3">
                             <label className="db-txt2" style={{ marginTop: "2%" }}>
@@ -759,7 +773,7 @@ export class JobEdition extends Component {
                             </label>
                         </div>
                         <div className="form-row mt-3">
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button>
                         </div>
                         <div className="form-row mt-3">
                             <label className="db-txt2" style={{ marginTop: "2%" }}>
@@ -767,70 +781,92 @@ export class JobEdition extends Component {
                             </label>
                         </div>
                         <div className="form-row mt-3">
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button>
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button>
                         </div>
                         <hr style={{ border: "1.5px solid #E8EDFC" }} />*/}
                         <div className="form-row">
-                            <label className="db-txt2">
-                                Location
-                            </label>
+                            <div className="col-12">
+                                <label className="db-txt2">
+                                    Location
+                                </label>
+                            </div>
                         </div>
                         <div className="form-row" style={{ marginBottom: "1rem" }}>
-                            {this.state.loc_req == 0 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
-                            }
-                            {this.state.loc_req == 1 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq1}>Optional</button>
-                            }
-                            {this.state.loc_req == 2 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq2}>Disabled</button>
-                            }
+                            <div className="col-12">
+                                {this.state.loc_req == 0 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq0}>Required</button>
+                                }
+                                {this.state.loc_req == 1 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Optional</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq1}>Optional</button>
+                                }
+                                {this.state.loc_req == 2 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLocReq2}>Disabled</button>
+                                }
+                            </div>
                         </div>
                         <div className="form-row">
-                            <label className="db-txt2">
-                                Phone Number
-                            </label>
+                            <div className="col-12">
+                                <label className="db-txt2">
+                                    Phone Number
+                                </label>
+                            </div>
                         </div>
                         <div className="form-row" style={{ marginBottom: "1rem" }}>
-                            {this.state.pho_req == 0 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
-                            }
-                            {this.state.pho_req == 1 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq1}>Optional</button>
-                            }
-                            {this.state.pho_req == 2 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq2}>Disabled</button>
-                            }
+                            <div className="col-12">
+                                {this.state.pho_req == 0 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq0}>Required</button>
+                                }
+                                {this.state.pho_req == 1 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Optional</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq1}>Optional</button>
+                                }
+                                {this.state.pho_req == 2 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setPhoReq2}>Disabled</button>
+                                }
+                            </div>
                         </div>
                         <div className="form-row">
-                            <label className="db-txt2">
-                                LinkedIn URL
-                            </label>
+                            <div className="col-12">
+                                <label className="db-txt2">
+                                    LinkedIn URL
+                                </label>
+                            </div>
                         </div>
                         <div className="form-row" style={{ marginBottom: "1rem" }}>
-                            {this.state.lin_req == 0 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Required</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
-                            }
-                            {this.state.lin_req == 1 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Optional</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq1}>Optional</button>
-                            }
-                            {this.state.lin_req == 2 ?
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
-                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq2}>Disabled</button>
-                            }
+                            <div className="col-12">
+                                {this.state.lin_req == 0 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Required</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq0}>Required</button>
+                                }
+                                {this.state.lin_req == 1 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Optional</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq1}>Optional</button>
+                                }
+                                {this.state.lin_req == 2 ?
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
+                                    <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setLinReq2}>Disabled</button>
+                                }
+                            </div>
                         </div>
                         <div className="form-row">
-                            <label className="db-txt2">
-                                Screening Questions
-                            </label>
+                            <div className="col-12">
+                                <label className="db-txt2">
+                                    Screening Questions
+                                    <span className="tool_tip ml-2">
+                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                        <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                            <div>
+                                                Add up to three questions to determine whether an applicant meets your minimum requirements.
+                                            </div>
+                                        </p>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                         {this.state.questions.map((q, index) => {
                             let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
@@ -862,20 +898,22 @@ export class JobEdition extends Component {
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">
-                                    <h5 style={{ color: "#090d3a" }}><b>Broadcast Your Job Posting</b></h5>
+                                    <div className="col-12">
+                                        <label className="db-txt2" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></label>
+                                    </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-4">
                                         {this.state.job_post == 0 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
                                         }
                                         {this.state.job_post == 1 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Standard</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
                                         }
                                         {this.state.job_post == 2 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Premium</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
                                         }
                                     </div>
@@ -917,17 +955,17 @@ export class JobEdition extends Component {
                                 </button>
                                 <button
                                     type="button"
-                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px", paddingLeft: "25px" }}
+                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#006dff", border: "2px solid #006dff", paddingTop: "9px", paddingBottom: "8px", paddingLeft: "25px" }}
                                     onClick={() => { this.saveDraft() }}
                                 >
                                     Save Draft
                                 </button>
                                 <button
                                     type="button"
-                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#56a3fa", border: "2px solid #56a3fa", paddingTop: "9px", paddingBottom: "8px" }}
+                                    className="default-btn" style={{ marginBottom: "1.5%", marginRight: "1rem", backgroundColor: "#fff", color: "#006dff", border: "2px solid #006dff", paddingTop: "9px", paddingBottom: "8px" }}
                                     onClick={() => { this.previewJob() }}
                                 >
-                                    <i className="bx bx-show" style={{ color: "#56a3fa" }}></i>Preview
+                                    <i className="bx bx-show" style={{ color: "#006dff" }}></i>Preview
                                 </button>
                                 <button className="default-btn" type="button" style={{ paddingLeft: "25px", backgroundColor: "#fff", color: "#979797" }} onClick={this.props.renderJobs}>Cancel</button>
                             </div>

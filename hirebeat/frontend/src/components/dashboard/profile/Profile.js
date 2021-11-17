@@ -729,7 +729,7 @@ export class Profile extends Component {
                         <div className="col-7">
                             <div className="profile-bg" style={{ textAlign: "left" }}>
                                 <div style={{ padding: "2rem", paddingTop: "1rem" }}>
-                                    <h3 className="profile-h3" style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>Profile Strength: <span style={{color: "#67A3F3"}}>{this.renderProfileLevel()}</span></h3>
+                                    <h3 className="profile-h3" style={{ paddingTop: "1rem", paddingBottom: "1rem" }}>Profile Strength: <span style={{color: "#006dff"}}>{this.renderProfileLevel()}</span></h3>
                                     <div style={{paddingLeft: "0.5rem", paddingRight: "0.5rem"}}>
                                         <span className="tool_tip ml-2">
                                             <StepProgressBar
@@ -782,7 +782,7 @@ export class Profile extends Component {
                                         }
                                     </p>
                                     <p style={{ paddingLeft: "2rem", color: "#7C94B5", fontWeight: "500", fontSize: "0.85rem", marginBottom: "0.5rem" }} onClick={this.enableProfileShare}>
-                                        These can be changed at anytime. <span style={{ marginLeft: "0.5rem", cursor: "pointer", color: "#67a3f3" }}>Edit</span>
+                                        These can be changed at anytime. <span style={{ marginLeft: "0.5rem", cursor: "pointer", color: "#006dff" }}>Edit</span>
                                     </p>
                                     <MyShareModal
                                         show={this.state.isEditProfileShare}
@@ -976,7 +976,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditInfo}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.savePersonalInfo}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px"}} onClick={this.savePersonalInfo}>Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1013,7 +1013,7 @@ export class Profile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        <i class='bx-fw bx bx-mail-send' style={{color: "#67A3F3"}}></i> Email
+                                                        <i class='bx-fw bx bx-mail-send' style={{color: "#006dff"}}></i> Email
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -1025,7 +1025,7 @@ export class Profile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{display: "flex", alignItems: "center"}}>
-                                                        <i class='bx bxl-linkedin-square' style={{color: "#67A3F3"}}></i> &nbsp; LinkedIn
+                                                        <i class='bx bxl-linkedin-square' style={{color: "#006dff"}}></i> &nbsp; LinkedIn
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -1037,7 +1037,7 @@ export class Profile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
-                                                        <i class='bx bxs-network-chart' style={{ color: "#67A3F3" }}></i> &nbsp; Website
+                                                        <i class='bx bxs-network-chart' style={{ color: "#006dff" }}></i> &nbsp; Website
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -1049,7 +1049,7 @@ export class Profile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
-                                                        <i class='bx bxl-github' style={{ color: "#67A3F3" }}></i> &nbsp; Github
+                                                        <i class='bx bxl-github' style={{ color: "#006dff" }}></i> &nbsp; Github
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -1066,19 +1066,19 @@ export class Profile extends Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx-fw bx bx-mail-send' style={{color: "#67A3F3"}}></i>   Email</p>
+                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx-fw bx bx-mail-send' style={{color: "#006dff"}}></i>   Email</p>
                                                 <input id="email" className="profile-input profile-p4" style={{width: "100%"}} defaultValue={this.props.profileDetail.email}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}  >
-                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxl-linkedin-square' style={{ color: "#67A3F3" }}></i> &nbsp; LinkedIn</p>
+                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxl-linkedin-square' style={{ color: "#006dff" }}></i> &nbsp; LinkedIn</p>
                                                 <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.linkedin}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxs-network-chart' style={{ color: "#67A3F3" }}></i> &nbsp; Website</p>
+                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxs-network-chart' style={{ color: "#006dff" }}></i> &nbsp; Website</p>
                                                 <input id="website" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.website}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxl-github' style={{ color: "#67A3F3" }}></i> &nbsp; Github</p>
+                                                <p className="profile-p3" style={{margin: "0rem", display: "flex", alignItems: "center"}}><i class='bx bxl-github' style={{ color: "#006dff" }}></i> &nbsp; Github</p>
                                                 <input id="github" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.profileDetail.github}></input>
                                             </div>
                                             <div className="row" style={{marginTop: "1rem"}}>
@@ -1087,7 +1087,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditMedia}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveSocialMedia}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px"}} onClick={this.saveSocialMedia}>Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1142,7 +1142,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px", zIndex: "0"}} onClick={this.cancelEditJobPreference}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveJobPreference}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveJobPreference}>Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1204,7 +1204,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px", zIndex: "0"}} onClick={this.cancelEditSkills}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveSkills}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveSkills}>Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1254,7 +1254,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px", zIndex: "0"}} onClick={this.cancelEditLanguages}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveLanguages}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px", zIndex: "0"}} onClick={this.saveLanguages}>Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1311,7 +1311,7 @@ export class Profile extends Component {
                                                     <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.cancelEditSummary}>Cancel</button>
                                                 </div>
                                                 <div className="col-3 profile-edit">
-                                                    <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveSummary}>Save</button>
+                                                    <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px"}} onClick={this.saveSummary}>Save</button>
                                                 </div>
                                             </div>
                                         </div>

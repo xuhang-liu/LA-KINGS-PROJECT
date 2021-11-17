@@ -36,7 +36,7 @@ export class JobCard extends Component {
             ...styles,
             color: '#090d3a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '600'
         }),
     };
@@ -62,13 +62,13 @@ export class JobCard extends Component {
 
     switchJobStatus = () => {
         if (this.state.next_select.value == 0) {
-            if (this.props.job.job_details.job_location ==""  || this.props.job.job_details.job_location == null){
+            if (this.props.job.job_details.job_location == "" || this.props.job.job_details.job_location == null) {
                 return alert("Job Location is required! Please edit your job.");
-            }else if (this.props.job.job_details.job_description?.length < 12){
+            } else if (this.props.job.job_details.job_description?.length < 12) {
                 return alert("Job Description is required! Please edit your job.");
-            }else if (this.props.job.job_details.job_title ==""  || this.props.job.job_details.job_title == null){
+            } else if (this.props.job.job_details.job_title == "" || this.props.job.job_details.job_title == null) {
                 return alert("Job Title is required! Please edit your job.");
-            }else{
+            } else {
                 let data = {
                     job_id: this.props.job.job_details.id,
                     next_status: this.state.next_select.value
@@ -162,15 +162,15 @@ export class JobCard extends Component {
         } else if (this.props.job.job_details.is_closed == 1) {
             draft_select = { value: 1, text: 'Archived', icon: 'bx bxs-box', color: '#090d3a' };
         } else if (this.props.job.job_details.is_closed == 2) {
-            draft_select= { value: 2, text: 'Closed', icon: 'bx bxs-circle', color: '#090d3a' };
-            if (this.props.job.job_details.job_title.includes("External")){
+            draft_select = { value: 2, text: 'Closed', icon: 'bx bxs-circle', color: '#090d3a' };
+            if (this.props.job.job_details.job_title.includes("External")) {
                 draft_select = { value: 0, text: 'External', icon: 'bx bxs-circle', color: '#13c4a1' };
             }
         } else if (this.props.job.job_details.is_closed == 3) {
             draft_select = { value: 3, text: 'Draft', icon: 'bx bxs-circle', color: '#9cb2c2' };
         }
 
-        var options = (this.props.job.job_details.job_title.includes("External"))? ([]) : ((this.props.job.job_details.is_closed != 3) ? ([
+        var options = (this.props.job.job_details.job_title.includes("External")) ? ([]) : ((this.props.job.job_details.is_closed != 3) ? ([
             { value: 0, text: 'Published', icon: 'bx bxs-circle', color: '#13c4a1' },
             { value: 2, text: 'Closed', icon: 'bx bxs-circle', color: '#090d3a' },
             { value: 1, text: 'Archived', icon: 'bx bxs-box', color: '#090d3a' },
@@ -230,7 +230,7 @@ export class JobCard extends Component {
                     <div className="col-2 interview-txt9 mt-2">
                     </div>
                     {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) &&
-                        <div className={(this.props.job.total_records <= 0)?"col-3 interview-txt9 mt-1":"col-2 interview-txt9 mt-1"}>
+                        <div className={"col-3 interview-txt9 mt-1"}>
                             <ActionButton
                                 filter={this.props.filter}
                                 archiveJob={this.archiveJob}
@@ -245,9 +245,9 @@ export class JobCard extends Component {
                             />
                         </div>}
                     {this.props.job.job_details.is_closed != 3 &&
-                        <div className="col-3 interview-txt9 d-flex justify-content-start mt-1" style={{ display: "flex", alignItems: "center", paddingLeft: (this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) ? "1rem": "2rem" }}>
-                            <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight:(this.props.filter !== "closed")?"0.5px solid #4A6F8A":"", paddingRight:(this.props.filter !== "closed")?"2rem":"" }} href={this.props.job.job_details.job_url}>
-                                <i className="bx-fw bx bx-show"></i>Preview
+                        <div className="col-3 interview-txt9 d-flex justify-content-start mt-1" style={{ display: "flex", alignItems: "center", paddingLeft: (this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) ? "1rem" : "2rem" }}>
+                            <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (this.props.filter !== "closed") ? "0.5px solid #4A6F8A" : "", paddingRight: (this.props.filter !== "closed") ? "2rem" : "" }} href={this.props.job.job_details.job_url}>
+                                <i className="bx-fw bx bx-show"></i>View
                                 <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
                                     <div>
                                         See what your job posting page looks like.
@@ -255,7 +255,7 @@ export class JobCard extends Component {
                                 </p>
                             </a>
                             {this.props.filter !== "closed" &&
-                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", paddingLeft:"1rem" }}>
+                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1rem" }}>
                                     <i className="bx-fw bx bx-link-external"></i>Share
                                     <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
                                         <div>
@@ -269,7 +269,7 @@ export class JobCard extends Component {
                             >
                                 <div class="container py-4">
                                     <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem" }}>Share this Job</h3>
-                                    <div className="row ml-0" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #67A3F3", width: "90%", height: "3rem", left: "2rem" }}>
+                                    <div className="row ml-0" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #006dff", width: "90%", height: "3rem", left: "2rem" }}>
                                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                             <p style={{ fontSize: "0.8rem" }} onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url); this.disableShowShare() }}>{this.props.job.job_details.job_url}</p>
                                         </div>
@@ -428,8 +428,8 @@ const ActionButton = (props) => {
         <div style={{ borderRight: (props.job.job_details.is_closed != 3) ? "0.5px solid #4A6F8A" : "" }}>
             {props.job?.reviewer_type != "subr" &&
                 <div>
-                    <div className="row d-flex justify-content-start" style={{paddingLeft:"2rem"}}>
-                        <div className="profile-edit" style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (props.applicantsNum <= 0)?"0.5px solid #4A6F8A":"", paddingRight:(props.applicantsNum <= 0)?"2rem":""}}>
+                    <div className="row d-flex justify-content-start" style={{ paddingLeft: "2rem" }}>
+                        <div className="profile-edit" style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "2.5rem" }}>
                             <i className="bx bx-edit-alt"></i>
                             <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
                                 Edit
@@ -440,8 +440,8 @@ const ActionButton = (props) => {
                                 </p>
                             </span>
                         </div>
-                        {(props.applicantsNum <= 0) &&
-                            <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft:(props.applicantsNum <= 0)?"1rem":"" }}>
+                        {(props.applicantsNum <= 0) ?
+                            <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1.5rem" }}>
                                 <i className="bx bx-trash"></i>
                                 <span style={{ cursor: "pointer" }} onClick={deleteAlert} className="tool_tip">Delete
                                     <p className="tool_submenu container" style={{ width: "12rem", left: "2rem" }}>
@@ -450,7 +450,13 @@ const ActionButton = (props) => {
                                         </div>
                                     </p>
                                 </span>
-                            </div>}
+                            </div> :
+                            <div className="profile-edit" style={{ color: "#e1e9f4", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                                <i className="bx bx-trash"></i>
+                                <span style={{ cursor: "default" }}>Delete
+                                </span>
+                            </div>
+                        }
                     </div>
                 </div>}
         </div>

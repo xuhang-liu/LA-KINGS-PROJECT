@@ -17,7 +17,7 @@ export class JobTypeSelection extends Component {
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
         menuPortal: provided => ({ ...provided, zIndex: 99 }),

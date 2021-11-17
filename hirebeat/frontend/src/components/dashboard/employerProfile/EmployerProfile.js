@@ -77,10 +77,10 @@ export class EmployerProfile extends Component {
         docType: "",
         overview: (this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
             RichTextEditor.createValueFromString(this.props.employerProfileDetail.summary, 'html') : RichTextEditor.createEmptyValue(),
-        companySize: {value: this.props.employerProfileDetail.company_size, label: this.props.employerProfileDetail.company_size},
+        companySize: { value: this.props.employerProfileDetail.company_size, label: this.props.employerProfileDetail.company_size },
         location: "",
-        industry: {value: this.props.employerProfileDetail.company_type, label: this.props.employerProfileDetail.company_type},
-        src: (this.props.employerProfileDetail.logo_url==null || this.props.employerProfileDetail.logo_url == "")?"":this.props.employerProfileDetail.logo_url,
+        industry: { value: this.props.employerProfileDetail.company_type, label: this.props.employerProfileDetail.company_type },
+        src: (this.props.employerProfileDetail.logo_url == null || this.props.employerProfileDetail.logo_url == "") ? "" : this.props.employerProfileDetail.logo_url,
     }
 
     customStyles = {
@@ -89,7 +89,7 @@ export class EmployerProfile extends Component {
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     };
@@ -203,7 +203,7 @@ export class EmployerProfile extends Component {
             "website": website,
         }
         this.props.updateEmployerInfo(data);
-        if (this.state.preview != null && this.state.preview != ""){
+        if (this.state.preview != null && this.state.preview != "") {
             this.handleUpload();
         }
         setTimeout(() => { this.getUpdatedData(); this.getUpdatedData() }, 300);
@@ -290,7 +290,7 @@ export class EmployerProfile extends Component {
     }
 
     handleLocation = (location) => {
-        this.setState({location: location});
+        this.setState({ location: location });
     }
 
     alert = (title, message) => {
@@ -325,12 +325,12 @@ export class EmployerProfile extends Component {
                                         </div> :
                                         <div className="row">
                                             <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px"}}>
+                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
                                                     <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
                                                 </p>
                                             </div>
-                                            {this.props.profile.is_freetrial && 
-                                            <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate()+14) - (new Date().getDate()))>=0?parseInt((new Date(this.props.profile.datejoined).getDate()+14) - (new Date().getDate())):"0"} days</p>}
+                                            {this.props.profile.is_freetrial &&
+                                                <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
                                         </div>}
                                 </div> :
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
@@ -369,35 +369,28 @@ export class EmployerProfile extends Component {
                                             <div className="col-9">
                                                 <div className="row">
                                                     <div className="col-8">
-                                                        <h3 className="profile-h3" style={{fontSize:'1.5rem'}}>
+                                                        <h3 className="profile-h3" style={{ fontSize: '1.5rem' }}>
                                                             {this.props.companyName}
                                                             {/* (this.props.employerProfileDetail.name !== null && this.props.employerProfileDetail.name !== "") ? this.props.employerProfileDetail.name : "Company Name Here" */}
                                                         </h3>
                                                     </div>
                                                     <div className="col-4 profile-edit">
                                                         <div style={{ float: "right" }}>
-                                                            <i className="bx bx-edit-alt"></i>
-                                                            <span onClick={this.editInfo} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
+                                                            <i onClick={this.editInfo} style={{ cursor: "pointer", color: "#7e8993" }} className="bx bx-edit-alt"></i>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p className="profile-p" style={{marginTop:"-0.8rem", color:"#7e8993"}}>
+                                                <p className="profile-p" style={{ marginTop: "-0.8rem", color: "#7e8993" }}>
                                                     {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
                                                 </p>
-                                                <h3 className="profile-h3" style={{fontSize:"1rem", marginBottom:"-0.1rem"}}>Job Portal</h3>
-                                                <a className="profile-p" style={{color:"#67a3f3"}} target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <h3 className="profile-h3" style={{ fontSize: "1rem", marginBottom: "-0.1rem" }}>Job Portal</h3>
+                                                <a className="profile-p" style={{ color: "#006dff" }} target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         </div> :
                                         <div>
                                             <div className="row">
-                                                <div className="col-7">
+                                                <div className="col-12">
                                                     <h3 className="profile-h3">Information</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <span style={{ cursor: "pointer" }} onClick={this.cancelEditInfo}>Cancel</span>
-                                                        <span onClick={this.saveEmployerInfo} style={{ marginLeft: "1rem", cursor: "pointer" }}>Save</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                             {/*<div>
@@ -406,7 +399,7 @@ export class EmployerProfile extends Component {
                                             </div>*/}
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p" style={{ margin: "0rem" }}>Company Website</p>
-                                                <textarea id="website" className="profile-input profile-p" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.website}></textarea>
+                                                <textarea id="website" className="profile-input profile-p" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.website}></textarea>
                                             </div>
                                             <div>
                                                 <p className="profile-p" style={{ margin: "0rem" }}>Company Logo</p>
@@ -421,6 +414,10 @@ export class EmployerProfile extends Component {
                                                     src={this.state.src}
                                                 />
                                                 {/*<img src={this.state.preview} alt="Preview" />*/}
+                                            </div>
+                                            <div className="d-flex justify-content-end mt-3">
+                                                <button className="default-btn" onClick={this.saveEmployerInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
+                                                <button className="default-btn" onClick={this.cancelEditInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
                                             </div>
                                             <ReactS3Uploader
                                                 style={{ display: "none" }}
@@ -464,26 +461,19 @@ export class EmployerProfile extends Component {
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editSummary} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
+                                                        <i className="bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="profile-p4">
+                                            <p className="profile-p4 mt-3" style={{fontWeight:"400"}}>
                                                 {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
                                                     parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
                                             </p>
                                         </div> :
                                         <div>
                                             <div className="row">
-                                                <div className="col-7">
+                                                <div className="col-12">
                                                     <h3 className="profile-h3">Company Overview</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <span style={{ cursor: "pointer" }} onClick={this.cancelEditSummary}>Cancel</span>
-                                                        <span onClick={this.saveSummary} style={{ marginLeft: "1rem", cursor: "pointer" }}>Save</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <RichTextEditor
@@ -491,6 +481,10 @@ export class EmployerProfile extends Component {
                                                 onChange={this.onChange}
                                                 toolbarConfig={toolbarConfig}
                                             />
+                                            <div className="d-flex justify-content-end mt-3">
+                                                <button className="default-btn" onClick={this.saveSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
+                                                <button className="default-btn" onClick={this.cancelEditSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
+                                            </div>
                                         </div>
                                     }
                                 </div>
@@ -516,15 +510,14 @@ export class EmployerProfile extends Component {
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editMedia} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
+                                                        <i className="bx bx-edit-alt" onClick={this.editMedia} style={{ cursor: "pointer", color: "#7e8993" }}></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row">
+                                            <div className="row mt-2">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
-                                                        LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#67A3F3" }}></i>
+                                                        LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -536,7 +529,7 @@ export class EmployerProfile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
-                                                        Facebook <i class='bx bxl-facebook-square' style={{ color: "#67A3F3" }}></i>
+                                                        Facebook <i class='bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -548,7 +541,7 @@ export class EmployerProfile extends Component {
                                             <div className="row">
                                                 <div className="col-4">
                                                     <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
-                                                        Twitter <i class='bx bxl-twitter' style={{ color: "#67A3F3" }}></i>
+                                                        Twitter <i class='bx bxl-twitter' style={{ color: "#006dff" }}></i>
                                                     </p>
                                                 </div>
                                                 <div className="col-8">
@@ -560,27 +553,25 @@ export class EmployerProfile extends Component {
                                         </div> :
                                         <div>
                                             <div className="row">
-                                                <div className="col-7">
+                                                <div className="col-12">
                                                     <h3 className="profile-h3">Social Media</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <span style={{ cursor: "pointer" }} onClick={this.cancelEditMedia}>Cancel</span>
-                                                        <span onClick={this.saveSocialMedia} style={{ marginLeft: "1rem", cursor: "pointer" }}>Save</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
+                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Facebook <i class='bx bxl-facebook-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="facebook" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
+                                                <input id="facebook" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Twitter <i class='bx bxl-twitter' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="twitter" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
+                                                <input id="twitter" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
+                                            </div>
+                                            <div className="d-flex justify-content-end mt-3">
+                                                <button className="default-btn" onClick={this.saveSocialMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
+                                                <button className="default-btn" onClick={this.cancelEditMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
                                             </div>
                                         </div>
                                     }
@@ -607,12 +598,11 @@ export class EmployerProfile extends Component {
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt"></i>
-                                                        <span onClick={this.editBasicInfo} style={{ marginLeft: "0.5rem", cursor: "pointer" }}>Edit</span>
+                                                        <i className="bx bx-edit-alt" onClick={this.editBasicInfo} style={{ cursor: "pointer", color: "#7e8993" }}></i>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className="mt-2">
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
                                                 <p className="profile-p4">
                                                     {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
@@ -639,21 +629,15 @@ export class EmployerProfile extends Component {
                                         </div> :
                                         <div>
                                             <div className="row">
-                                                <div className="col-7">
+                                                <div className="col-12">
                                                     <h3 className="profile-h3">Basic Info</h3>
-                                                </div>
-                                                <div className="col-5 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <span style={{ cursor: "pointer" }} onClick={this.cancelEditBasicInfo}>Cancel</span>
-                                                        <span onClick={this.saveCompanyInfo} style={{ marginLeft: "1rem", cursor: "pointer" }}>Save</span>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
                                                 <Autocomplete
                                                     className="profile-input profile-p4"
-                                                    style={{width: "100%"}}
+                                                    style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", height:'2.5rem', paddingLeft:"0.5rem" }}
                                                     language="en"
                                                     apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                                     onPlaceSelected={(place, inputRef, autocomplete) => {
@@ -664,15 +648,19 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Company Size</p>
-                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={this.customStyles} placeholder={'Enter Company Size'}/>
+                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={this.customStyles} placeholder={'Enter Company Size'} />
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Industry</p>
-                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Enter Company Industry'}/>
+                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Enter Company Industry'} />
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Contact Email</p>
-                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%" }} defaultValue={this.props.employerProfileDetail.email}></input>
+                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", height:'2.5rem', paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></input>
+                                            </div>
+                                            <div className="d-flex justify-content-end mt-3">
+                                                <button className="default-btn" onClick={this.saveCompanyInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
+                                                <button className="default-btn" onClick={this.cancelEditBasicInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
                                             </div>
                                         </div>
                                     }

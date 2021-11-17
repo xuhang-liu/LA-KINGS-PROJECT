@@ -48,7 +48,7 @@ export class AudioResponseWindow extends Component {
             plugins: {
                 wavesurfer: {
                     backend: 'WebAudio',
-                    waveColor: '#56a3fa',
+                    waveColor: '#006dff',
                     progressColor: 'black',
                     debug: true,
                     cursorWidth: 1,
@@ -165,7 +165,7 @@ export class AudioResponseWindow extends Component {
                 {this.props.loaded ? (
                 <PracticeCard>
                     <h1 style={{marginTop: "2rem", fontSize: "1.22rem"}}>
-                        <span style={{color:"#67A3F3"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}</h1>
+                        <span style={{color:"#006dff"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}</h1>
                     <div style={{ marginTop: 20 }}>
                         <div
                             className="video-recorder-row"

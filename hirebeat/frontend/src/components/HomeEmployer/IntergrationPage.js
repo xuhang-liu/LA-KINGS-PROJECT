@@ -56,7 +56,7 @@ class IntergrationPage extends Component {
                     <div className="features-area pt-100 pb-70" style={{ backgroundColor: "#f4f5fd" }}>
                         <div className="container-fluid max-width-1440 ">
                             <div className="text-center">
-                                <h3 style={{ fontSize: "3rem", fontWeight: "600", color: "#67a3f3" }}>
+                                <h3 style={{ fontSize: "3rem", fontWeight: "600", color: "#006dff" }}>
                                     Our Partners
                                 </h3>
                             </div>

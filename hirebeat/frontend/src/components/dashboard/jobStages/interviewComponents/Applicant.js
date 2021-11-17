@@ -154,7 +154,7 @@ export const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-3 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={(() => viewResult())}>
+                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#006dff" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
@@ -197,9 +197,9 @@ export const Applicant = (props) => {
                         <button
                             onClick={() => viewResult()}
                             className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                            style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                         >
-                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#006dff"}}></i> View
                         </button>
                     </div>
                 </div>*/}
@@ -210,9 +210,9 @@ export const Applicant = (props) => {
                                 <button
                                     onClick={() => viewResult()}
                                     className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                                    style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                                 >
-                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#006dff"}}></i> View
                                 </button>
                             </div> :
                             <div className="interview-txt9">
@@ -225,9 +225,9 @@ export const Applicant = (props) => {
                                 <button
                                     onClick={ () => inviteAgain()}
                                     className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                                    style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                                 >
-                                    <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
+                                    <i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>
                                     Resend
                                 </button>
                             </div>}
@@ -241,24 +241,24 @@ export const Applicant = (props) => {
                             <button
                                 onClick={() => inviteAgain()}
                                 className="interview-txt9"
-                                style={{ color: "#67A3F3", border: "none", background: "white", paddingLeft: "0px" }}
+                                style={{ color: "#006dff", border: "none", background: "white", paddingLeft: "0px" }}
                             >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Resend
                             </button> :
                             <button
                                 onClick={() => inviteAgain()}
                                 className="interview-txt9"
-                                style={{ color: "#67A3F3", border: "none", background: "white", paddingLeft: "0px" }}
+                                style={{ color: "#006dff", border: "none", background: "white", paddingLeft: "0px" }}
                             >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Invite
                             </button>
                         }
                     </div>
                 }
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-2">
+                    <div className="col-2" style={{ marginLeft: "1.4rem" }}>
                         {applicants[current]?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
                         }

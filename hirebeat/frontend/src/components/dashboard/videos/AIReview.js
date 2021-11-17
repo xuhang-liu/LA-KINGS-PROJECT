@@ -306,7 +306,7 @@ const AICategoryReview = (props) => {
       <br />
       <div className="row">
         <div className="col-3 d-flex align-items-center">
-          <p style={{ fontFamily: "Avenir Next, Segoe UI",
+          <p style={{ fontFamily: "Inter, Segoe UI",
                       fontStyle: "normal",
                       fontWeight: "normal",
                       fontSize: "15px",

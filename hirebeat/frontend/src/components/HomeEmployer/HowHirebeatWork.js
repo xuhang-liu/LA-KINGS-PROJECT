@@ -34,7 +34,7 @@ class HowHirebeatWork extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <p style={{color:"#56a3fa", display:"inline-block"}}>Preparation</p>
+                                        <p style={{color:"#006dff", display:"inline-block"}}>Preparation</p>
                                         <h3>Step1: Create Interview</h3>
                                         <ul>
                                             <li>
@@ -70,7 +70,7 @@ class HowHirebeatWork extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <p style={{color:"#56a3fa", display:"inline-block"}}>Customization</p>
+                                        <p style={{color:"#006dff", display:"inline-block"}}>Customization</p>
                                         <h3>Step2: Invite at Scale </h3>
                                         <ul>
                                             <li>
@@ -106,7 +106,7 @@ class HowHirebeatWork extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <p style={{color:"#56a3fa", display:"inline-block"}}>Evaluation</p>
+                                        <p style={{color:"#006dff", display:"inline-block"}}>Evaluation</p>
                                         <h3>Step3: Assess Candidates</h3>
                                         <ul>
                                             <li>

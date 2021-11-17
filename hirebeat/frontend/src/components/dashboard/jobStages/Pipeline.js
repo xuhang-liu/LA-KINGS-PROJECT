@@ -418,7 +418,7 @@ export class Pipeline extends Component {
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={this.inviteExReviewer}
-                                        style={{ paddingLeft: "25px", width:"13rem" }}
+                                        style={{ paddingLeft: "25px", width:"13.5rem" }}
                                     >
                                         + Add Hiring Manager
                                         <span></span>
@@ -506,7 +506,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13rem" }}
+                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Resume Review")}
                                         >
                                             + Add Reviewer
@@ -595,7 +595,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13rem" }}
+                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Video Interview")}
                                         >
                                             + Add Reviewer
@@ -684,7 +684,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13rem" }}
+                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Live Interview")}
                                         >
                                             + Add Reviewer
@@ -773,7 +773,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13rem" }}
+                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Short List")}
                                         >
                                             + Add Reviewer

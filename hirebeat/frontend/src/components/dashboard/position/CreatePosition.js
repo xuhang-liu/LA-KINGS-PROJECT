@@ -159,7 +159,7 @@ export class CreatePosition extends Component{
             singleValue: styles => ({    ...styles,
                                          color: '#090D3A',
                                          fontSize: '0.9375rem',
-                                         fontFamily: 'Avenir Next',
+                                         fontFamily: 'Inter',
                                          fontWeight: '500'}),
         }
 
@@ -180,7 +180,7 @@ export class CreatePosition extends Component{
                                         iconName={"bx bx-arrow-back bx-sm"}
                                         textDisplayed={"Back"}
                                         textSize={"20px"}
-                                        textColor={"#67A3F3"}
+                                        textColor={"#006dff"}
                                         iconMargin={"3px"}
                                     />
                                 </button>
@@ -242,7 +242,7 @@ export class CreatePosition extends Component{
                                         iconName={"bx bx-arrow-back bx-sm"}
                                         textDisplayed={"Back"}
                                         textSize={"20px"}
-                                        textColor={"#67A3F3"}
+                                        textColor={"#006dff"}
                                         iconMargin={"3px"}
                                     />
                                 </button>
@@ -299,7 +299,7 @@ export class CreatePosition extends Component{
                                             placeholder="You can also type in your own question." required></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q1")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -307,7 +307,7 @@ export class CreatePosition extends Component{
                                             <textarea id="q2" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q2")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@ export class CreatePosition extends Component{
                                             <textarea id="q3" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q3")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -325,7 +325,7 @@ export class CreatePosition extends Component{
                                             <textarea id="q4" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q4")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -333,7 +333,7 @@ export class CreatePosition extends Component{
                                             <textarea id="q5" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q5")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -341,7 +341,7 @@ export class CreatePosition extends Component{
                                             <textarea id="q6" type="text" style={{width: "85%"}} className="db-question"></textarea>
                                             <div className="col-1 center-items">
                                                 <button type="button" onClick={() => this.clearQuestion("q6")} className="delete-btn">
-                                                    <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+                                                    <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
                                                 </button>
                                             </div>
                                         </div>
@@ -364,7 +364,7 @@ export class CreatePosition extends Component{
                     {/*!position_added &&
                     <form onSubmit={this.savePosition}>
                     <div className="form-row">
-                        <p className="interview-txt7"><box-icon name='message-square-error' color="#56a3fa"/> Do not ask questions that are discriminatory, illegal, or otherwise violate the HireBeat site rules.</p>
+                        <p className="interview-txt7"><box-icon name='message-square-error' color="#006dff"/> Do not ask questions that are discriminatory, illegal, or otherwise violate the HireBeat site rules.</p>
                         <div className="form-group col-10">
                                 <label style={{ fontSize: "17px", margin:"1%"}}>
                                     Question 1:

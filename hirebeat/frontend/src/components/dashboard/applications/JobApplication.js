@@ -311,7 +311,7 @@ const JobViewDetail = (props) => {
             {/* Summarize */}
             {!view &&
                 <div className="container d-flex justify-content-start chart-bg1" style={{ marginTop: "3rem", backgroundColor: "white", borderRadius:"0.5rem", zIndex:"auto" }}>
-                    <div className="col-12" style={{ fontFamily: "Avenir Next, Segoe UI" }}>
+                    <div className="col-12" style={{ fontFamily: "Inter, Segoe UI" }}>
                         <div className="mt-4">
                             <div className="row">
                                 <div className="col-7" style={{ color: "#090D3A" }}>
@@ -407,7 +407,7 @@ const JobViewDetail = (props) => {
                                             onClick={closeJob}
                                             className="sub_close"
                                         >
-                                            <i className="bx bx-box bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-box bx-sm" style={{color: "#006dff"}}></i>
                                             <p className="sub_closeText">Close</p>
                                         </button>*/}
                                             {/*props.isClosed &&
@@ -424,7 +424,7 @@ const JobViewDetail = (props) => {
                                             onClick={deleteAlert}
                                             className="sub_close"
                                         >
-                                            <i className="bx bx-trash bx-sm" style={{color: "#67A3F3"}}></i>
+                                            <i className="bx bx-trash bx-sm" style={{color: "#006dff"}}></i>
                                             <p className="sub_closeText">Delete</p>
                                         </button>*/}
                                         </div>}
@@ -650,7 +650,7 @@ const JobCard = (props) => {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -987,7 +987,7 @@ const JobCard = (props) => {
                                     className="read-more"
                                     style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500"}}
                                 >
-                                    <i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i> Preview Email
+                                    <i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i> Preview Email
                                 </button>
                             </div>
                             <div className="col-2 interview-center">
@@ -1027,7 +1027,7 @@ const JobCard = (props) => {
                             </div>
                         </div>
                         <div className="row" style={{paddingLeft: "15px", paddingRight: "15px"}}>
-                            <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                            <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                                 <label style={{position:"absolute", left:"2.5rem", marginTop:"0.25rem"}}><i className="bx bx-search bx-sm"></i></label>
                                 <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                             </div>
@@ -1296,7 +1296,7 @@ const JobCard = (props) => {
                                     {(addForm1 && !addForm2) &&
                                         <button
                                             className="default-btn interview-txt6"
-                                            style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                            style={{ paddingLeft: "25px", background: "#006dff" }}
                                             onClick={() => setAddForm2(true)}
                                         >
                                             Add 5 More
@@ -1307,7 +1307,7 @@ const JobCard = (props) => {
                                     {(addForm2 && !addForm3) &&
                                         <button
                                             className="default-btn interview-txt6"
-                                            style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                            style={{ paddingLeft: "25px", background: "#006dff" }}
                                             onClick={() => setAddForm3(true)}
                                         >
                                             Add 5 More
@@ -1318,7 +1318,7 @@ const JobCard = (props) => {
                                     {(addForm3 && !addForm4) &&
                                         <button
                                             className="default-btn interview-txt6"
-                                            style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                            style={{ paddingLeft: "25px", background: "#006dff" }}
                                             onClick={() => setAddForm4(true)}
                                         >
                                             Add 5 More
@@ -1328,7 +1328,7 @@ const JobCard = (props) => {
                                     {(addForm4 && !addForm5) &&
                                         <button
                                             className="default-btn interview-txt6"
-                                            style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                            style={{ paddingLeft: "25px", background: "#006dff" }}
                                             onClick={() => setAddForm5(true)}
                                         >
                                             Add 5 More
@@ -1342,7 +1342,7 @@ const JobCard = (props) => {
                                     <button
                                         type="button"
                                         className="default-btn interview-txt6"
-                                        style={{ paddingLeft: "25px", background: "#67A3F3" }}
+                                        style={{ paddingLeft: "25px", background: "#006dff" }}
                                         onClick={() => { setInvite(false); props.getPJobs() }}
                                     >
                                         Close
@@ -1898,7 +1898,7 @@ const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-3 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#67a3f3" }} onClick={(() => viewResult())}>
+                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#006dff" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
@@ -1941,9 +1941,9 @@ const Applicant = (props) => {
                         <button
                             onClick={() => viewResult()}
                             className="interview-txt9"
-                            style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                            style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                         >
-                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                        <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#006dff"}}></i> View
                         </button>
                     </div>
                 </div>*/}
@@ -1954,9 +1954,9 @@ const Applicant = (props) => {
                                 <button
                                     onClick={() => viewResult()}
                                     className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                                    style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                                 >
-                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#67A3F3"}}></i> View
+                                <i className="bx bx-arrow-to-right interview-txt9" style={{color: "#006dff"}}></i> View
                                 </button>
                             </div> :
                             <div className="interview-txt9">
@@ -1969,9 +1969,9 @@ const Applicant = (props) => {
                                 <button
                                     onClick={ () => inviteAgain()}
                                     className="interview-txt9"
-                                    style={{color: "#67A3F3", border: "none", background: "white", paddingLeft:"0px"}}
+                                    style={{color: "#006dff", border: "none", background: "white", paddingLeft:"0px"}}
                                 >
-                                    <i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>
+                                    <i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>
                                     Resend
                                 </button>
                             </div>}
@@ -1985,9 +1985,9 @@ const Applicant = (props) => {
                             <button
                                 onClick={() => inviteAgain()}
                                 className="interview-txt9"
-                                style={{ color: "#67A3F3", border: "none", background: "white", paddingLeft: "0px" }}
+                                style={{ color: "#006dff", border: "none", background: "white", paddingLeft: "0px" }}
                             >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#67A3F3"}}></i>*/}
+                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Resend
                             </button>
                         }
@@ -2228,10 +2228,10 @@ function previewEmail(jobTitle, companyName, expire) {
                     <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                     <div style={{ marginBottom: "2rem", paddingTop: "2rem" }}>
                         <img src="https://hirebeat-assets.s3.amazonaws.com/HireBeatLogo2.png" alt="HireBeat Logo" style={{ display: "inline-block" }}></img>
-                        <h3 style={{ display: "inline-block", color: "#56a3fa", marginLeft: "0.5rem", fontWeight: "600" }}>HireBeat</h3>
+                        <h3 style={{ display: "inline-block", color: "#006dff", marginLeft: "0.5rem", fontWeight: "600" }}>HireBeat</h3>
                     </div>
                     <div style={{ backgroundColor: "#e8edfc", borderRadius: "5px", padding: "0.6rem" }}>
-                        <h2 style={{ marginTop: "2rem", color: "#090d3a", fontWeight: "600" }}>Video Interview with <span style={{ color: "#56a3fa" }}>{companyName}</span> for <span style={{ color: "#56a3fa" }}>{jobTitle}</span></h2>
+                        <h2 style={{ marginTop: "2rem", color: "#090d3a", fontWeight: "600" }}>Video Interview with <span style={{ color: "#006dff" }}>{companyName}</span> for <span style={{ color: "#006dff" }}>{jobTitle}</span></h2>
                         <hr style={{ height: "2px", borderWidth: 0, color: "lightskyblue", backgroundColor: "lightskyblue" }} />
                         <p>Dear Candidate,</p>
                         <p style={{ marginTop: "2rem" }}>Thank you for submitting your application for the <strong style={{ color: "#090d3a" }}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>

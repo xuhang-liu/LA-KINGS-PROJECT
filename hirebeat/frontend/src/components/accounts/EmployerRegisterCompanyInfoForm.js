@@ -29,12 +29,12 @@ export class EmployerRegisterCompanyInfoForm extends Component {
         singleValue: styles => ({
             ...styles,
             fontSize: '14px',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: 'normal'
         }),
         placeholder: styles => ({
             ...styles,
-             fontFamily: "Avenir Next, Segoe UI",
+             fontFamily: "Inter, Segoe UI",
              background: "#FFFFFF",
              borderRadius: "5px",
              fontSize: "16px",
@@ -57,7 +57,7 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                                 name="companyName"
                                 onChange={this.handleInput}
                                 style={{
-                                  fontFamily: "Avenir Next, Segoe UI",
+                                  fontFamily: "Inter, Segoe UI",
                                   background: "#FFFFFF",
                                   borderRadius: "5px",
                                   paddingLeft: "1rem",

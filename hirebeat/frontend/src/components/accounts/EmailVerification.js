@@ -84,7 +84,7 @@ class EmailVerification extends Component {
                 />
                 <div className="container" style={{marginTop: "2rem"}}>
                     <div className="justify-items">
-                        <i className="bx bx-mail-send" style={{fontSize: "9.375rem", color: "#67A3F3"}}></i>
+                        <i className="bx bx-mail-send" style={{fontSize: "9.375rem", color: "#006dff"}}></i>
                     </div>
                     <p className="email-text">
                         An email has been sent to <span style={{color: "#2196F3", textDecoration: "underline"}}>{this.props.user.email} </span>
@@ -95,7 +95,7 @@ class EmailVerification extends Component {
                         <button
                             onClick={this.redirectToContact}
                             className="default-btn"
-                            style={{color:"white", backgroundColor:"#67A3F3", paddingLeft: "1.5625rem"}}
+                            style={{color:"white", backgroundColor:"#006dff", paddingLeft: "1.5625rem"}}
                         >
                             Contact Us
                             <span></span>

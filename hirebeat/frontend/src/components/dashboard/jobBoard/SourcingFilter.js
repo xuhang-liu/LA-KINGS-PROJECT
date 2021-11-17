@@ -96,12 +96,12 @@ export class SourcingFilter extends Component {
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
         placeholder: styles => ({
             ...styles,
-             fontFamily: "Avenir Next, Segoe UI",
+             fontFamily: "Inter, Segoe UI",
              color: "#4A6F8A",
              fontSize: "12px",
              fontWeight: "normal",
@@ -194,7 +194,7 @@ export class SourcingFilter extends Component {
                         <button className="default-btn" style={{background: "#E5E5E5", color: "#7D7D7D", paddingLeft: "25px", zIndex: "0"}} onClick={this.props.onHide}>Cancel</button>
                     </div>
                     <div className="profile-edit" style={{marginRight: "15px"}}>
-                        <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px", marginLeft: "1rem", zIndex: "0"}} onClick={this.handleSave}>Apply</button>
+                        <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px", marginLeft: "1rem", zIndex: "0"}} onClick={this.handleSave}>Apply</button>
                     </div>
                 </div>
             </React.Fragment>

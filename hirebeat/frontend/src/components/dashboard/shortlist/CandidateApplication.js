@@ -217,9 +217,9 @@ class CandidateApplication extends Component {
                                         <button
                                             onClick={() => { setTimeout(() => { this.showResumeEva() }, 200) }}
                                             className="interview-txt9 mt-3 ml-3"
-                                            style={{ color: "#67A3F3", border: "none", background: "white" }}
+                                            style={{ color: "#006dff", border: "none", background: "white" }}
                                         >
-                                            <i className="bx bx-arrow-to-right interview-txt9" style={{ color: "#67A3F3" }}></i> Resume Evaluation
+                                            <i className="bx bx-arrow-to-right interview-txt9" style={{ color: "#006dff" }}></i> Resume Evaluation
                                         </button>}
                                 </div>
                                 {/*<div className="row">

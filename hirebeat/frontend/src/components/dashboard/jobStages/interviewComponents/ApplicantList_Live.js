@@ -5,6 +5,10 @@ export const ApplicantList_Live = (props) => {
     return (
         <div>
             {props.applicants.map((a, index) => {
+                if (props.keyWords != "") {
+                    let name = a.name;
+                    if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
+                }
                 return (
                     <Applicant_Live
                         filter={props.filter}

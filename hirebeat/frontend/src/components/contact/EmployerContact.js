@@ -95,11 +95,11 @@ class EmployerContact extends Component {
               <div className="col-6">
                 <h3 style={{color:"#090d3a", fontWeight:"600"}}>How HireBeat get your best candidate?</h3>
                 <div className="mt-3">
-                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
+                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#006dff"}}></i> 
                     Help you determine a candidate’s potential quickly</p>
-                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
+                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#006dff"}}></i> 
                     Reduce up to 50% of the cost per hire</p>
-                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#56a3fa"}}></i> 
+                  <p><i className="bx bxs-check-circle mr-2" style={{color:"#006dff"}}></i> 
                     Decrease the time-to-offer by team collaboration</p>
                 </div>
                 <OwlCarousel

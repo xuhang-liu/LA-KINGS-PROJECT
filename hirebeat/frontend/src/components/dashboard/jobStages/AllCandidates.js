@@ -63,7 +63,7 @@ export class AllCandidates extends Component {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -223,7 +223,7 @@ export class AllCandidates extends Component {
                 {!this.state.isAddNewCandidate ?
                     <div>
                         <div className="container-fluid mt-3 pt-2 pb-3">
-                            <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
+                            <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                                 <div>
                                     <span style={{ display: "flex", alignItems: "center" }}>
                                         <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
@@ -265,7 +265,7 @@ export class AllCandidates extends Component {
                                 }
                             </div>
                             <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
-                                <div className="row interview-txt7 interview-center pl-3" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                                <div className="row interview-txt7 interview-center pl-4" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                     <div className="col-4"><span>Name</span></div>
                                     <div className="col-2">Applied On</div>
                                     <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
@@ -510,7 +510,7 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
+                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>

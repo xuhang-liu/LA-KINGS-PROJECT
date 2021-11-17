@@ -264,7 +264,7 @@ export class EmployerRegister extends Component {
           <ScrollToTopOnMount />
           <div>
           <MediaQuery minDeviceWidth={1224}>
-            <section className="signup-area min-width-1290" style={{background:"linear-gradient(90deg, #67A3F3 0%, #5269F3 100%)"}}>
+            <section className="signup-area min-width-1290" style={{background:"linear-gradient(90deg, #006dff 0%, #5269F3 100%)"}}>
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0">
                         {this.state.step === 1 ?
@@ -313,13 +313,13 @@ export class EmployerRegister extends Component {
             </section>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>
-            <section className="signup-area" style={{background:"linear-gradient(90deg, #67A3F3 0%, #5269F3 100%)"}}>
+            <section className="signup-area" style={{background:"linear-gradient(90deg, #006dff 0%, #5269F3 100%)"}}>
                 <div className="row m-0">
                     <div className="col-lg-6 col-md-12 p-0">
                         <div className="signup-content" style={{marginTop:"1rem", marginLeft:"20%"}}>
                         <div style={{marginBottom:"3rem", paddingTop:"1rem"}}>
-                          <h1 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
-                          <h3 style={{color:"#ffffff", fontFamily: "Avenir Next, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
+                          <h1 style={{color:"#ffffff", fontFamily: "Inter, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                          <h3 style={{color:"#ffffff", fontFamily: "Inter, Segoe UI", textAlign:"center"}}><b>Get started in minutes</b></h3>
                         </div>
                     <div className="signup-form" style={{minWidth:"14rem"}}>
                     <form id="Employer_Register_Mobile" onSubmit={this.onSubmit}>
@@ -332,7 +332,7 @@ export class EmployerRegister extends Component {
                             onChange={this.onChange}
                             value={companyName}
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -350,7 +350,7 @@ export class EmployerRegister extends Component {
                             onChange={this.onChange}
                             value={firstName}
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -368,7 +368,7 @@ export class EmployerRegister extends Component {
                             onChange={this.onChange}
                             value={lastName}
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -387,7 +387,7 @@ export class EmployerRegister extends Component {
                             required
                             onChange={this.onChange}
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -406,7 +406,7 @@ export class EmployerRegister extends Component {
                             placeholder="Create Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -425,7 +425,7 @@ export class EmployerRegister extends Component {
                             placeholder="Confirm Password"
                             minLength="8"
                             style={{
-                              fontFamily: "Avenir Next, Segoe UI",
+                              fontFamily: "Inter, Segoe UI",
                               background: "#FFFFFF",
                               borderRadius: "5px",
                               paddingLeft: "1rem",
@@ -490,7 +490,7 @@ export class EmployerRegister extends Component {
                       <hr className="style-four"
                           data-content=""
                           style={{
-                            fontFamily: "Avenir Next, Segoe UI",
+                            fontFamily: "Inter, Segoe UI",
                             marginBottom:"2rem",
                             marginTop:"4rem",
                           }}
@@ -500,7 +500,7 @@ export class EmployerRegister extends Component {
                     <div>
                       <div>
                         <img src={badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Avenir Next, Segoe UI", color:"#fff"}}>
+                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Inter, Segoe UI", color:"#fff"}}>
                         <a>No credit card information needed during signup. Enjoy your free trial.</a>
                         </div></div>
                     </div>

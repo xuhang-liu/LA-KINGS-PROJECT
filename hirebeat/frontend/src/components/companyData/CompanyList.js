@@ -50,7 +50,7 @@ class CompanyList extends Component {
                                         <h1 className="company-data-title">Popular</h1>
                                     </MediaQuery>
                                 </div>
-                                <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", paddingTop: "2.5%", marginBottom: '2rem' }}>
+                                <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", paddingTop: "2.5%", marginBottom: '2rem' }}>
                                     <label><i className="bx bx-search bx-sm"></i></label>
                                     <input placeholder="Search company" className="search-candidate-input" onChange={this.onSearch}></input>
                                 </div>

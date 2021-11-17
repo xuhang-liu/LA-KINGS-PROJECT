@@ -134,7 +134,7 @@ export class CareerVideoUploader extends Component {
         <BglessCardButton1
           textDisplayed={"Upgrade Now ->"}
           buttonWidth={"100%"}
-          fontFamily={"Avenir Next"}
+          fontFamily={"Inter"}
           isAudio={this.props.isAudio}
         />
         }*/}

@@ -396,7 +396,7 @@ class CompanyProfile extends Component {
                             </Link>
                         </div>
                     </OwlCarousel>
-                    <a href="/job-seekers-companydata" className="read-more" style={{color: "#56a3fa", marginLeft: "76%", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
+                    <a href="/job-seekers-companydata" className="read-more" style={{color: "#006dff", marginLeft: "76%", fontSize:"1rem", textDecoration:"none"}}>Explore our company data <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </section>
         );

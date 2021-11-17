@@ -112,8 +112,7 @@ export class Post extends Component {
                             </div>
                             <div className="col-4 profile-edit">
                                 <div style={{float: "right"}}>
-                                    <i className="bx bx-edit-alt"></i>
-                                    <span onClick={this.props.editPost} style={{marginLeft: "0.5rem", cursor:"pointer"}}>Edit</span>
+                                    <i className="bx bx-edit-alt" onClick={this.props.editPost} style={{ cursor: "pointer", color:"#7e8993" }}></i>
                                 </div>
                             </div>
                         </div>

@@ -68,10 +68,10 @@ class ApplicationVideoPanel extends Component {
     }
 
     render() {
-        var selectedColor1 = "#56a3fa";
-        var selectedColor2 = "#56a3fa";
-        var selectedColor3 = "#56a3fa";
-        var selectedColor4 = "#56a3fa";
+        var selectedColor1 = "#006dff";
+        var selectedColor2 = "#006dff";
+        var selectedColor3 = "#006dff";
+        var selectedColor4 = "#006dff";
         if (this.state.selectedSpeed == 1.0){
             selectedColor1 = "#090d3a";
         }else if (this.state.selectedSpeed == 1.5){
@@ -85,7 +85,7 @@ class ApplicationVideoPanel extends Component {
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
                 <div className="mt-3">
                     <h4>
-                        <span style={{color:"#67A3F3", fontWeight:"600"}}>Question: </span><span style={{color:"#090d3a", fontWeight:"600"}}>{this.props.question}</span>
+                        <span style={{color:"#006dff", fontWeight:"600"}}>Question: </span><span style={{color:"#090d3a", fontWeight:"600"}}>{this.props.question}</span>
                     </h4>
                 </div>
                 <div className="row">

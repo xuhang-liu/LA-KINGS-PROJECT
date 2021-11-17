@@ -394,7 +394,7 @@ const ApplyJob = (props) => {
                             {props.job?.company_logo?.length > 0 &&
                             <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />}
                             <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
-                            <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
+                            <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
                                 <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             </h2>
                             <div className="row pl-3">
@@ -1045,7 +1045,7 @@ const ApplyJob = (props) => {
                                             Apply Now
                                         </a>}
                                     <p className="mt-5">Link to this job</p>
-                                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3.7rem" }}>
+                                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3.7rem" }}>
                                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                             <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                         </div>
@@ -1111,7 +1111,7 @@ const ApplyJob = (props) => {
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                             <img style={{ width: "7rem", marginLeft: "34%", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />
                             <h1 className="mt-3" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
-                            <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67A3F3", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
+                            <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
                             <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
@@ -1128,7 +1128,7 @@ const ApplyJob = (props) => {
                                                 Apply Now
                                             </a>}
                                         <p className="mt-3">Link to this job</p>
-                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "4rem" }}>
+                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "4rem" }}>
                                             <div className="pt-2 pl-2" style={{ color: "#090D3A", fontWeight: "500", alignItems: "center" }}>
                                                 <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                             </div>

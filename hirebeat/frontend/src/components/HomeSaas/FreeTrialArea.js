@@ -18,7 +18,7 @@ class FreeTrialArea extends Component {
                         <p style={{color:"#090d3a"}}>Engage in real online interview simulation and resume optimization that is tailored to your future role.</p>
 
                         <Link to="/register">
-                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
+                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#006dff"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Get Started
                                 <span></span>
@@ -50,7 +50,7 @@ class FreeTrialArea extends Component {
                         <p style={{color:"#090d3a"}}>Engage in real online interview simulation and resume optimization that is tailored to your future role.</p>
 
                         <Link to="/register">
-                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#56a3fa"}}>
+                            <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#006dff"}}>
                                 <i className="bx bxs-hot"></i> 
                                 Get Started
                                 <span></span>

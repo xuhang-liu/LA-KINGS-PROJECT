@@ -138,7 +138,7 @@ export function VideoInterview(props) {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -149,7 +149,7 @@ export function VideoInterview(props) {
             ...styles,
             color: '#4A6F8A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -582,7 +582,7 @@ export function VideoInterview(props) {
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="mt-4 pt-3 pb-3">
+                <div className="mt-4 pb-3" style={{paddingTop:"1.3rem"}}>
                     <div className="row">
                         <div className="interview-center">
                             {/* Edit Questions */}
@@ -602,7 +602,7 @@ export function VideoInterview(props) {
                         </div>
                     </div>
                     <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
-                        <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                        <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                             <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
@@ -625,7 +625,7 @@ export function VideoInterview(props) {
                                 className="read-more"
                                 style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
                             >
-                                <i style={{ color: "#56a3fa" }} className="bx bx-bullseye pr-1"></i> Preview Email
+                                <i style={{ color: "#006dff" }} className="bx bx-bullseye pr-1"></i> Preview Email
                             </button>
                         </div>
                         {props.totalPage > 1 &&
@@ -646,7 +646,7 @@ export function VideoInterview(props) {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem" }}>
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
@@ -758,7 +758,7 @@ export function VideoInterview(props) {
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
                         <button
                             className="default-btn interview-txt6"
-                            style={{ paddingLeft: "25px", backgroundColor: "#67A3F3", paddingTop: "8px", paddingBottom: "8px" }}
+                            style={{ paddingLeft: "25px", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
                             onClick={handleInvitation}
                         >
                             Invite to Video Interview
@@ -815,8 +815,8 @@ export function VideoInterview(props) {
                 <MyModalShare2 show={showNoQuestionAlert} onHide={() => setShowNoQuestionAlert(false)}>
                     <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Video Interview Invitation</h3>
-                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
-                        <p className="interview-p">Looks like <span style={{ color: "#67A3F3" }}>you haven&apos;t set up the interview questions yet.</span></p>
+                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#006dff" }}>will receive an email invitation to record their responses.</span></p>
+                        <p className="interview-p">Looks like <span style={{ color: "#006dff" }}>you haven&apos;t set up the interview questions yet.</span></p>
                         <p className="interview-p">Would you like to continue to configure interview questions first?</p>
                         <div className="row d-flex justify-content-center">
                             <button onClick={() => { setShowQEditForm(true); setShowNoQuestionAlert(false); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
@@ -828,7 +828,7 @@ export function VideoInterview(props) {
                 <MyModalShare2 show={showInviteAlert} onHide={() => setShowInviteAlert(false)}>
                     <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Video Interview Invitation</h3>
-                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#67A3F3" }}>will receive an email invitation to record their responses.</span></p>
+                        <p className="interview-p">Please note that select candidate(s) <span style={{ color: "#006dff" }}>will receive an email invitation to record their responses.</span></p>
                         <p className="interview-p">Do you confirm to proceed and send the interview invitation?</p>
                         <div className="row d-flex justify-content-center">
                             <button onClick={() => { sendVideoInterview(); setShowInviteAlert(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
@@ -850,7 +850,7 @@ export function VideoInterview(props) {
                                 onChange={onChange1}
                                 value={rejectNotes}
                                 style={{
-                                    fontFamily: "Avenir Next, Segoe UI",
+                                    fontFamily: "Inter, Segoe UI",
                                     background: "#FFFFFF",
                                     borderRadius: "5px",
                                     paddingLeft: "1rem",
@@ -1005,10 +1005,10 @@ function previewEmail(jobTitle, companyName, expire) {
                     <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                     <div style={{ marginBottom: "2rem", paddingTop: "2rem" }}>
                         <img src="https://hirebeat-assets.s3.amazonaws.com/HireBeatLogo2.png" alt="HireBeat Logo" style={{ display: "inline-block" }}></img>
-                        <h3 style={{ display: "inline-block", color: "#56a3fa", marginLeft: "0.5rem", fontWeight: "600" }}>HireBeat</h3>
+                        <h3 style={{ display: "inline-block", color: "#006dff", marginLeft: "0.5rem", fontWeight: "600" }}>HireBeat</h3>
                     </div>
                     <div style={{ backgroundColor: "#e8edfc", borderRadius: "5px", padding: "0.6rem" }}>
-                        <h2 style={{ marginTop: "2rem", color: "#090d3a", fontWeight: "600" }}>Video Interview with <span style={{ color: "#56a3fa" }}>{companyName}</span> for <span style={{ color: "#56a3fa" }}>{jobTitle}</span></h2>
+                        <h2 style={{ marginTop: "2rem", color: "#090d3a", fontWeight: "600" }}>Video Interview with <span style={{ color: "#006dff" }}>{companyName}</span> for <span style={{ color: "#006dff" }}>{jobTitle}</span></h2>
                         <hr style={{ height: "2px", borderWidth: 0, color: "lightskyblue", backgroundColor: "lightskyblue" }} />
                         <p>Dear Candidate,</p>
                         <p style={{ marginTop: "2rem" }}>Thank you for submitting your application for the <strong style={{ color: "#090d3a" }}>{jobTitle}</strong>. We are pleased to inform you that you have passed our initial resume scanning. To move forward with your application, we would like to invite you to finish our online video interview process powered by HireBeat.</p>

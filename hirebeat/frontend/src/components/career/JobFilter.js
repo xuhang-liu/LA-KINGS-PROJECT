@@ -91,12 +91,12 @@ export class JobFilter extends Component {
             <React.Fragment>
                 <div className="row career-search1">
                     <div className="col-5 career-bg" style={{marginLeft: "5%"}} >
-                        <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-user" style={{color: "#67A3F3"}}></i></label>
+                        <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-user" style={{color: "#006dff"}}></i></label>
                         <input
                             className="form-control"
                             style={{
                                 fontSize: "1rem",
-                                fontFamily: "Avenir Next, Segoe UI",
+                                fontFamily: "Inter, Segoe UI",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",
@@ -108,12 +108,12 @@ export class JobFilter extends Component {
                         </input>
                     </div>
                     <div className="col-5 career-bg" style={{marginLeft: "2rem"}}>
-                        <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-city" style={{color: "#67A3F3"}}></i></label>
+                        <label className="career-txt1" style={{margin: "0rem"}}><i className="bx bxs-city" style={{color: "#006dff"}}></i></label>
                         <input
                             className="form-control"
                             style={{
                                 fontSize: "1rem",
-                                fontFamily: "Avenir Next, Segoe UI",
+                                fontFamily: "Inter, Segoe UI",
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",

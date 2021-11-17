@@ -8,18 +8,18 @@ export class JobList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            keyWords: "",
+            // keyWords: "",
             job_closed: { value: "All", label: 'All' },
         };
     }
 
     customStyles = {
-        control: styles => ({ ...styles, border:"none", marginTop:"-1rem" }),
+        control: styles => ({ ...styles, border:"none", marginTop:"-1rem", width:"8.8rem" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     };
@@ -36,9 +36,9 @@ export class JobList extends Component {
         this.setState({ job_closed: job_closed })
     };
 
-    onChange = (e) => {
-        this.setState({ keyWords: e.target.value });
-    };
+    // onChange = (e) => {
+    //     this.setState({ keyWords: e.target.value });
+    // };
 
     setViewTrue = () => {
         this.props.setView(true);
@@ -55,16 +55,16 @@ export class JobList extends Component {
                     <div>
                         {(!this.props.view) ?
                             <div className="chart-bg1 container-fluid mt-5 pt-3 pb-3">
-                                <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft:"1rem" }}>
+                                {/* <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft:"1rem" }}>
                                     <div style={{ position: "absolute", left: "3.2rem", marginTop: "0.4rem" }}><i className="bx bx-search bx-sm"></i></div>
                                     <div>
                                         <input placeholder="Search jobs" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                                     </div>
-                                </div>
-                                <div className="container-fluid" style={{ marginTop: "2rem" }}>
+                                </div> */}
+                                <div className="container-fluid" style={{ marginTop: "1rem" }}>
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
                                         <div className="col-2"><span style={{ marginLeft: "1.2rem" }}><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} /></span></div>
-                                        <div className="col-4 d-flex justify-content-start pl-5">Job Title</div>
+                                        <div className="col-4 d-flex justify-content-start" style={{paddingLeft:'2.2rem'}}>Job Title</div>
                                         <div className="col-2 d-flex justify-content-center">ID</div>
                                         <div className="col-2 d-flex justify-content-center">Applicants</div>
                                         <div className="col-2 d-flex justify-content-center">Created On</div>
@@ -72,38 +72,38 @@ export class JobList extends Component {
                                     {Object.keys(this.props.jobs).sort((a, b) => parseInt(b) - parseInt(a)).map((key, index) => {
                                         let job = this.props.jobs[key];
                                         let curJobKey = key;
-                                        if (this.state.keyWords != "") {
+                                        if (this.props.keyWords != "") {
                                             let jobTitle = job["job_details"].job_title;
-                                            if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                            if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
                                         }
                                         if (this.state.job_closed["value"] != "All") {
                                             switch (this.state.job_closed["value"]) {
                                                 case 0:
                                                     if (job["job_details"].is_closed != 0) return null;
-                                                    if (this.state.keyWords != "") {
+                                                    if (this.props.keyWords != "") {
                                                         let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
                                                     }
                                                     break;
                                                 case 1:
                                                     if (job["job_details"].is_closed != 1) return null;
-                                                    if (this.state.keyWords != "") {
+                                                    if (this.props.keyWords != "") {
                                                         let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
                                                     }
                                                     break;
                                                 case 2:
                                                     if (job["job_details"].is_closed != 2) return null;
-                                                    if (this.state.keyWords != "") {
+                                                    if (this.props.keyWords != "") {
                                                         let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
                                                     }
                                                     break;
                                                 case 3:
                                                     if (job["job_details"].is_closed != 3) return null;
-                                                    if (this.state.keyWords != "") {
+                                                    if (this.props.keyWords != "") {
                                                         let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
+                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
                                                     }
                                                     break;
                                                 default:

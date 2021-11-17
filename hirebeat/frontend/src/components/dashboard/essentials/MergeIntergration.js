@@ -33,14 +33,14 @@ const MergeIntergration = (props) => {
     const customStyles = {
         option: (provided, state) => ({
             ...provided,
-            color: state.isSelected ? '#ffffff' : '#56a3fa',
+            color: state.isSelected ? '#ffffff' : '#006dff',
         }),
         control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     };
@@ -255,7 +255,7 @@ const MergeIntergration = (props) => {
                                                 value={greenhouse_api}
                                                 style={{
                                                     width: "20rem",
-                                                    fontFamily: "Avenir Next, Segoe UI",
+                                                    fontFamily: "Inter, Segoe UI",
                                                     background: "#FFFFFF",
                                                     border: "0.5px solid #E5E5E5",
                                                     borderRadius: "0.5rem",

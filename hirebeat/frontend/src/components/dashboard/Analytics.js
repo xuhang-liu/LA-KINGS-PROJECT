@@ -133,7 +133,7 @@ export class Analytics extends Component {
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "1px" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
-                                    <box-icon type="solid" name="category-alt" size="sm" color="#56a3fa" style={{ marginLeft: "1rem" }}></box-icon>
+                                    <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Overview</h3>
                                     <div className="row ml-5">
                                         <box-icon type="solid" name="rectangle" size="12px" color="#e8edfc"></box-icon>
@@ -149,7 +149,7 @@ export class Analytics extends Component {
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo.interview_received}</h3>
                                             </div>
                                             <div className="col-6" style={{ marginLeft: "-3rem" }}>
-                                                <RateScore percent={Math.round(this.props.analyticsInfo.interview_received_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
+                                                <RateScore percent={Math.round(this.props.analyticsInfo.interview_received_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +160,7 @@ export class Analytics extends Component {
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo.shortlist_num}</h3>
                                             </div>
                                             <div className="col-6" style={{ marginLeft: "-3rem" }}>
-                                                <RateScore percent={Math.round(this.props.analyticsInfo.shortlist_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
+                                                <RateScore percent={Math.round(this.props.analyticsInfo.shortlist_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@ export class Analytics extends Component {
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo.hold_num}</h3>
                                             </div>
                                             <div className="col-6" style={{ marginLeft: "-3rem" }}>
-                                                <RateScore percent={Math.round(this.props.analyticsInfo.hold_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
+                                                <RateScore percent={Math.round(this.props.analyticsInfo.hold_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@ export class Analytics extends Component {
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo.reject_num}</h3>
                                             </div>
                                             <div className="col-6" style={{ marginLeft: "-3rem" }}>
-                                                <RateScore percent={Math.round(this.props.analyticsInfo.reject_num_rate)} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
+                                                <RateScore percent={Math.round(this.props.analyticsInfo.reject_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +196,7 @@ export class Analytics extends Component {
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
-                                    <box-icon type="solid" name="shopping-bags" size="sm" color="#56a3fa" style={{ marginLeft: "1rem" }}></box-icon>
+                                    <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Positions</h3>
                                 </div>
                                 <div className="row">
@@ -224,7 +224,7 @@ export class Analytics extends Component {
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "0.1rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
-                                    <box-icon type="solid" name="pie-chart" size="sm" color="#56a3fa" style={{ marginLeft: "1rem" }}></box-icon>
+                                    <box-icon type="solid" name="pie-chart" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Position chart</h3>
                                 </div>
                                 <div className="row mb-4">
@@ -249,7 +249,7 @@ export class Analytics extends Component {
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "0.1rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
-                                    <box-icon type="solid" name="user-pin" size="sm" color="#56a3fa" style={{ marginLeft: "1rem" }}></box-icon>
+                                    <box-icon type="solid" name="user-pin" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Interview Conversion</h3>
                                 </div>
                                 <div className="row mb-2">
@@ -270,13 +270,13 @@ export class Analytics extends Component {
                                                 <span className="analytics_preview" style={{ minWidth: "6rem", display: "block" }}>Number: {this.props.position_list[this.state.jobId2].total_sent}</span></p>
                                         </div>
                                         <div className="row ml-2">
-                                            <box-icon type="solid" name="rectangle" size="12px" color="#56a3fa"></box-icon>
+                                            <box-icon type="solid" name="rectangle" size="12px" color="#006dff"></box-icon>
                                             <p className="analytics_text" style={{ marginLeft: "0.5rem", display: "block" }}>Total interview received
                                                 <span className="analytics_preview" style={{ minWidth: "6rem", display: "block" }}>Number: {this.props.position_list[this.state.jobId2].total_received}</span></p>
                                         </div>
                                     </div>
                                     <div className="col-6" style={{ marginLeft: "-2rem" }}>
-                                        <RateScore percent={this.props.position_list[this.state.jobId2].conversion} bgColor={"#FFFFFF"} barColor={"#56a3fa"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={250} />
+                                        <RateScore percent={this.props.position_list[this.state.jobId2].conversion} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={250} />
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +286,7 @@ export class Analytics extends Component {
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "0.2rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
-                                    <box-icon type="solid" name="chart" size="sm" color="#56a3fa" style={{ marginLeft: "1rem" }}></box-icon>
+                                    <box-icon type="solid" name="chart" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Interview Sessions</h3>
                                 </div>
                                 <div className="row mb-2">

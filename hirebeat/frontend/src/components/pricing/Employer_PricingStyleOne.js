@@ -299,7 +299,7 @@ class Employer_PricingStyleOne extends Component {
         var linkStyle2;
         var linkStyle3;
         if (this.state.hover1) {
-            linkStyle1 = { outline: "6px solid #67A3F3", boxShadow: "0px 4px 32px 0px #518AD666", transition: "0.2s" }
+            linkStyle1 = { outline: "6px solid #006dff", boxShadow: "0px 4px 32px 0px #518AD666", transition: "0.2s" }
         }
         if (this.state.hover2) {
             linkStyle2 = { outline: "6px solid #FF6B00", boxShadow: "0px 4px 32px 0px #C3520066", transition: "0.2s" }
@@ -336,13 +336,13 @@ class Employer_PricingStyleOne extends Component {
                                 <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
                                     {/*<div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #67A3F3"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #006dff"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
                                                 <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
+                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #006dff"}}>
                                                 <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
                                                 <p style={{fontSize:"13px", color:"#F0F6FE", fontWeight:"600"}}>Billed at $0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
@@ -436,7 +436,7 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#67a3f3", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
+                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
@@ -660,13 +660,13 @@ class Employer_PricingStyleOne extends Component {
                                 <div className="row pb-5 pt-3">
                                     {/* Single pricing table 1 */}
                                     {/*<div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #67A3F3"}}>
+                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #006dff"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
                                                 <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
                                             </div>
 
-                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #67A3F3"}}>
+                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #006dff"}}>
                                                 <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
                                                 <p style={{fontSize:"13px", color:"#F0F6FE", fontWeight:"600"}}>0</p>
                                             <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
@@ -760,7 +760,7 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#67a3f3", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
+                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
@@ -1028,7 +1028,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}></p>
                                         </div>
                                         <div className="col-3 pro">
-                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#67A3F3" }}>PRO</p>
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#006dff" }}>PRO</p>
                                         </div>
                                         <div className="col-2 premium">
                                             <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#FF6B00" }}>PREMIUM</p>
@@ -1047,7 +1047,7 @@ class Employer_PricingStyleOne extends Component {
                                         <p style={{ fontWeight: "500", fontSize: "0.9rem", color: "#090d3a" }}></p>
                                     </div>
                                     <div className="col-3">
-                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#67A3F3" }}>PRO</p>
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#006dff" }}>PRO</p>
                                     </div>
                                     <div className="col-2">
                                         <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#FF6B00" }}>PREM</p>
@@ -1100,7 +1100,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in Talent Network</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1114,7 +1114,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Applicants Tracking</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1128,7 +1128,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in One-way Video Interview</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1166,7 +1166,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Talent Pool</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1222,7 +1222,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Branded Career Website</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1236,7 +1236,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Social Recruiting</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1260,7 +1260,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Resume Parsing</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1274,7 +1274,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Resume Evaluation with AI Assistance</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1288,7 +1288,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Customizable Application Form</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1344,7 +1344,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Question Bank</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1372,7 +1372,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Configurable Video Interview Response & Prep Times</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1400,7 +1400,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Assessments</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1414,7 +1414,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Interview Integration with 20+ ATS</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1452,7 +1452,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Candidate Rating & Feedback</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1466,7 +1466,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Candidate Shortlisting</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1480,7 +1480,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Real-Time Analytics</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1494,7 +1494,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO Survey and Reporting</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1522,7 +1522,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Bulk Action Candidates</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1560,7 +1560,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Email & Web Support</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1574,7 +1574,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Tutorials</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
@@ -1588,7 +1588,7 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Self-serve Onboarding</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#67a3f3" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>

@@ -177,7 +177,7 @@ class MainBanner extends Component {
                                                 </div>
                                             </div>
                                             <div style={{marginTop:"4rem"}}>
-                                            <a href="#scrolldown" style={{textDecoration:"none", color:"#cad9fc", fontFamily:"Avenir Next, Segoe UI", fontWeight:"500", fontSize:"1.2rem"}}><box-icon type="solid" name="down-arrow-alt" size="sm" color="#cad9fc"></box-icon> Scroll Down</a>
+                                            <a href="#scrolldown" style={{textDecoration:"none", color:"#cad9fc", fontFamily:"Inter, Segoe UI", fontWeight:"500", fontSize:"1.2rem"}}><box-icon type="solid" name="down-arrow-alt" size="sm" color="#cad9fc"></box-icon> Scroll Down</a>
                                             </div>
                                             {/*<a href="https://www.producthunt.com/posts/hirebeat-2?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hirebeat-2" target="_blank" rel="noreferrer">*/}
                                             {/*        <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=275315&theme=dark" alt="HireBeat - All-in-one career training platform for job seekers | Product Hunt" style={{width:'11', height:'3.5rem', paddingTop:'1rem'}}/></a>*/}

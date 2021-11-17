@@ -25,7 +25,7 @@ export class ReviewApplicationTab extends Component {
                                     <div className="row pl-5 pt-3">
                                         <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000" }}>Question {index + 1}
                                             {this.props.mustHaves[index] &&
-                                                <span style={{ marginLeft: "1rem", fontSize: "0.8rem", fontWeight: "600", color: "#67A3F3" }}>Must-have qualification</span>
+                                                <span style={{ marginLeft: "1rem", fontSize: "0.8rem", fontWeight: "600", color: "#006dff" }}>Must-have qualification</span>
                                             }
                                         </p>
                                     </div>
@@ -36,7 +36,7 @@ export class ReviewApplicationTab extends Component {
                                         <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000" }}>Answer</p>
                                     </div>
                                     <div className="row pl-5 pt-2">
-                                        <div style={{ border: "2px solid #67A3F3", boxSizing: "border-box", borderRadius: "3px", width: "8rem", paddingLeft: "1rem", display: "inline-block" }}>
+                                        <div style={{ border: "2px solid #006dff", boxSizing: "border-box", borderRadius: "3px", width: "8rem", paddingLeft: "1rem", display: "inline-block" }}>
                                             <p>{this.props.answers[index]}</p>
                                         </div>
                                         <div style={{ display: "inline-block", marginLeft: "1rem" }}>

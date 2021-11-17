@@ -709,7 +709,7 @@ export class EmployerDashboard extends Component {
                 </div>
               </MyModalUpgrade>
               <ScrollToTopOnMount />
-              {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Avenir Next"}}> */}
+              {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
               <MediaQuery minDeviceWidth={1224}>
                 <div className="row no-gutters min-width-1290">
                   <div className='col-1'>
@@ -734,8 +734,8 @@ export class EmployerDashboard extends Component {
                       />
                     </div>
                   </div>
-                  <div className='col-11' style={{ backgroundColor: "#e8edfc" }}>
-                    <div className="dashboard-main">
+                  <div className='col-11' style={{ backgroundColor: "#f3f6f9" }}>
+                    <div className="dashboard-main" style={{ backgroundColor: "#f3f6f9" }}>
                       {/* {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
                         (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
                         (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||

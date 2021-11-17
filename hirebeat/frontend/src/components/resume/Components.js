@@ -329,7 +329,7 @@ export function ResumeFooter() {
                 <h3 className="quiz-title">Want to land your dream role? </h3>
                 <p className="quiz-text">We are here to enhance your resume performance</p>
                 <Link to="/resume">
-                    <a className="default-btn" style={{color:"white", fontFamily:"Avenir Next, Segoe UI"}}>
+                    <a className="default-btn" style={{color:"white", fontFamily:"Inter, Segoe UI"}}>
                     Optimize with HireBeat
                         <span></span>
                     </a>

@@ -98,7 +98,7 @@ export class QuestionForm extends Component {
                 ...styles,
                 color: '#090D3A',
                 fontSize: '0.9375rem',
-                fontFamily: 'Avenir Next',
+                fontFamily: 'Inter',
                 fontWeight: '500'
             }),
         }
@@ -149,7 +149,7 @@ export class QuestionForm extends Component {
                                             placeholder="You can also type in your own question." required></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q1")} className="delete-btn">
-                                                <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                             </button>
                                         </div>
                                     </div>
@@ -157,7 +157,7 @@ export class QuestionForm extends Component {
                                         <textarea id="q2" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q2")} className="delete-btn">
-                                                <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                             </button>
                                         </div>
                                     </div>
@@ -165,7 +165,7 @@ export class QuestionForm extends Component {
                                         <textarea id="q3" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                         <div className="col-1 center-items">
                                             <button type="button" onClick={() => this.clearQuestion("q3")} className="delete-btn">
-                                                <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                             </button>
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@ export class QuestionForm extends Component {
                                                 <textarea id="q4" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q4")} className="delete-btn">
-                                                        <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                        <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -183,7 +183,7 @@ export class QuestionForm extends Component {
                                                 <textarea id="q5" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q5")} className="delete-btn">
-                                                        <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                        <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -191,7 +191,7 @@ export class QuestionForm extends Component {
                                                 <textarea id="q6" type="text" style={{ width: "85%" }} className="db-question"></textarea>
                                                 <div className="col-1 center-items">
                                                     <button type="button" onClick={() => this.clearQuestion("q6")} className="delete-btn">
-                                                        <i className="bx bx-trash text-30" style={{ color: '#56a3fa' }}></i>
+                                                        <i className="bx bx-trash text-30" style={{ color: '#006dff' }}></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -205,11 +205,11 @@ export class QuestionForm extends Component {
                                     </label>
                                     <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.preTime == 30 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>30s</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>30s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setPreTime(30)}>30s</button>
                                         }
                                         {this.state.preTime == 60 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>60s</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>60s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setPreTime(60)}>60s</button>
                                         }
                                     </div>
@@ -220,15 +220,15 @@ export class QuestionForm extends Component {
                                     </label>
                                     <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.resTime == 60 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>60s</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>60s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(60)}>60s</button>
                                         }
                                         {this.state.resTime == 90 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>90s</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>90s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(90)}>90s</button>
                                         }
                                         {this.state.resTime == 120 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>120s</button> :
+                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>120s</button> :
                                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setResTime(120)}>120s</button>
                                         }
                                     </div>
@@ -239,11 +239,11 @@ export class QuestionForm extends Component {
                                     </label>
                                     <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.cameraOn ?
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>ON</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #006dff"}}>ON</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(true)}>ON</button>
                                         }
                                         {!this.state.cameraOn ?
-                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #67A3F3"}}>OFF</button>:
+                                            <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#e8edfc", color:"#090d3a", border: "2px solid #006dff"}}>OFF</button>:
                                             <button type="button" className="default-btn2" style={{fontSize:"12px", backgroundColor:"#fff", color:"#090d3a", border: "2px solid #e8edfc"}} onClick={() => this.setCameraOn(false)}>OFF</button>
                                         }
                                     </div>

@@ -59,7 +59,7 @@ export function LiveInterview(props){
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -272,9 +272,9 @@ export function LiveInterview(props){
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="mt-4 pt-3 pb-3">
+                <div className="mt-4 pb-3" style={{paddingTop:"1.3rem"}}>
                     <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
-                        <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                        <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                             <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
@@ -296,8 +296,8 @@ export function LiveInterview(props){
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
-                        <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem" }}>
+                        <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
                                     <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />

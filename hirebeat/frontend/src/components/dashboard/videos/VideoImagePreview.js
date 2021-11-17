@@ -168,7 +168,7 @@ export function VideoImagePreview(props) {
         { props.isBQ &&
         <div className="col-1 pt-2">
           <button onClick={deleteAlert} className="delete-btn">
-            <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+            <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
           </button>
         </div>}
         { !props.isBQ &&
@@ -180,7 +180,7 @@ export function VideoImagePreview(props) {
         { !props.isBQ &&
         <div className="col-1 pt-2">
           <button onClick={deleteAlert} className="delete-btn">
-            <i className="bx bx-trash text-30" style={{color:'#56a3fa'}}></i>
+            <i className="bx bx-trash text-30" style={{color:'#006dff'}}></i>
           </button>
         </div>}
         {/*<div className="col-5">

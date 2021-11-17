@@ -27,7 +27,7 @@ class MoreToDiscover extends Component {
 
                             <div className="col-lg-4 col-md-4">
                                 <div className="overview-content pl-3">
-                                    <span className="number" style={{marginRight:'0.5rem'}}>01</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
+                                    <span className="number" style={{marginRight:'0.5rem'}}>01</span><p style={{color:"#006dff", display:"inline-block"}}>Interview Preparation</p>
                                     <h3>Practice/Simulate Modes</h3>
                                     <p>Choose your own set of questions and practice your customized interview</p>
                                     <ul>
@@ -58,7 +58,7 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number" style={{marginRight:'0.5rem'}}>02</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>02</span><p style={{color:"#006dff", display:"inline-block"}}>Interview Preparation</p>
                                         <h3>Behavior/Technical Questions</h3>
                                         <p>Ace your interview skills for both behavioral and technical questions with our help</p>
                                         <ul>
@@ -101,7 +101,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number" style={{marginRight:'0.5rem'}}>03</span><p style={{color:"#56a3fa", display:"inline-block"}}>Interview Preparation</p>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>03</span><p style={{color:"#006dff", display:"inline-block"}}>Interview Preparation</p>
                                         <h3>AI/Expert Feedback</h3>
                                         <p>Get comprehensive analysis on your interview performance with our AI or expert review</p>
                                         <ul>
@@ -132,7 +132,7 @@ class MoreToDiscover extends Component {
                             <div className="row align-items-center">
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number" style={{marginRight:'0.5rem'}}>04</span><p style={{color:"#56a3fa", display:"inline-block"}}>Resume Refine</p>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>04</span><p style={{color:"#006dff", display:"inline-block"}}>Resume Refine</p>
                                         <h3>Resume Optimization</h3>
                                         <p>Optimize the matching rate between resume and target job based on AI suggestions on key words</p>
                                         <ul>
@@ -176,7 +176,7 @@ class MoreToDiscover extends Component {
 
                                 <div className="col-lg-4 col-md-4">
                                     <div className="overview-content pl-3">
-                                        <span className="number" style={{marginRight:'0.5rem'}}>05</span><p style={{color:"#56a3fa", display:"inline-block"}}>Career Resources</p>
+                                        <span className="number" style={{marginRight:'0.5rem'}}>05</span><p style={{color:"#006dff", display:"inline-block"}}>Career Resources</p>
                                         <h3>Top Companies Tips</h3>
                                         <p>We provide recruitment data of popular companies to help you target your dream job</p>
                                         <ul>

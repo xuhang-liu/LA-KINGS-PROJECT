@@ -48,7 +48,7 @@ export function ResumeResult(props) {
     return (
         <>
         <div className="row">
-            <div className="col-1 pl-5" style={{color:"#67A3F3", textAlign:"right", display:"flex", alignItems:"center", cursor:"pointer"}} onClick={()=>{
+            <div className="col-1 pl-5" style={{color:"#006dff", textAlign:"right", display:"flex", alignItems:"center", cursor:"pointer"}} onClick={()=>{
                 props.onHide();
             }}>
                 <i class='bx bx-left-arrow-alt bx-sm'></i><span style={{fontSize:"1.2rem"}}>Back</span>
@@ -57,7 +57,7 @@ export function ResumeResult(props) {
             </div>
             <div className="col-1">
                 <ReactToPrint
-                trigger={() => <i style={{color:"#67A3F3", cursor:"pointer"}} className='bx bx-printer bx-sm'></i>}
+                trigger={() => <i style={{color:"#006dff", cursor:"pointer"}} className='bx bx-printer bx-sm'></i>}
                 content={() => printingRef.current}
                 />
             </div>

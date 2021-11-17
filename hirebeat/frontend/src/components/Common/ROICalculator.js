@@ -11,7 +11,7 @@ import FreeTrialArea from "../HomeEmployer/FreeTrialArea";
 
 const PrettoSlider = withStyles({
     root: {
-      color: '#67A3F3',
+      color: '#006dff',
       height: 8,
     },
     thumb: {
@@ -161,20 +161,20 @@ class ROICalculator extends Component {
                                                     <div className="row">
                                                         <div className="col-lg-7 col-md-7 col-sm-12">
                                                             <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>Your savings</h5>
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>${(moneysaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#006dff", marginBottom: "0rem"}}>${(moneysaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
                                                             <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-0.8rem"}}>per month</p>
                                                         </div>
                                                         <div className="col-lg-5 col-md-5 col-sm-12">
                                                             <h5 style={{fontWeight:"600", fontSize:"1.5rem", color:"#090d3a"}}>ROI</h5>
                                                         {roi.toFixed(0) <= 0 ?
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3"}}>---</h5> :
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem"}}>{roi.toFixed(0)}x</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#006dff"}}>---</h5> :
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#006dff", marginBottom: "0rem"}}>{roi.toFixed(0)}x</h5>
                                                         }
                                                         </div>
                                                     </div>
                                                     <div className="row">
                                                         <div className="col-lg-7 col-md-7 col-sm-12">
-                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#67a3f3", marginBottom: "0rem", marginTop: "1rem"}}>{(timesaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
+                                                            <h5 style={{fontWeight:"600", fontSize:"3rem", color:"#006dff", marginBottom: "0rem", marginTop: "1rem"}}>{(timesaving.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')).split('.')[0]}</h5>
                                                             <p style={{fontWeight:"600", fontSize:"1rem", color:"#090d3a", marginTop: "-1rem"}}>hours per month</p>
                                                         </div>
                                                     </div>

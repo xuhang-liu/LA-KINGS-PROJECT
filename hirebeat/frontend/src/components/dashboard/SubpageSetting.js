@@ -272,7 +272,7 @@ export class SubpageSetting extends Component {
                             <div>
                                 <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                     <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Name <i className="bx bx-edit-alt" style={{ cursor: "pointer", color: "#67a3f3", marginLeft: "1rem" }} onClick={() => this.switch_name_change_on()}></i></p>
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Name <i className="bx bx-edit-alt" style={{ cursor: "pointer", color: "#006dff", marginLeft: "1rem" }} onClick={() => this.switch_name_change_on()}></i></p>
                                     </div>
                                 </div>
                                 <div className="form-row">

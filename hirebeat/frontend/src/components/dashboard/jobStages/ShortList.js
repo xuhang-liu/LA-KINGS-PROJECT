@@ -115,15 +115,15 @@ const AcceptedCandidate = (props) => {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
     return (
         <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="mt-4 pt-3 pb-3">
+            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop:'1.3rem' }} className="mt-4 pb-3">
                 <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
-                    <div className="interview-txt7 interview-center" style={{ color: "#56a3fa", fontSize: "1rem" }}>
+                    <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                         <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                         <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} style={{ height: "auto" }}></input>
                     </div>
@@ -145,8 +145,8 @@ const AcceptedCandidate = (props) => {
                         </div>
                     }
                 </div>
-                <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
-                    <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
+                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem" }}>
+                    <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="ml-3 d-flex justify-content-start container-fluid row interview-txt7 interview-center">
                         <div className="col-3">Name</div>
                         {/* <div className="col-3">Video Average Score</div> */}
                         <div className="col-2">Resume Score</div>
@@ -359,7 +359,7 @@ const CandidateCard = (props) => {
                     }}
                 />
             </div>
-            <div style={{ fontFamily: "Avenir Next, Segoe UI", fontWeight: "600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
+            <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="ml-3 d-flex justify-content-start container-fluid row h-100">
                 <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
@@ -381,7 +381,7 @@ const CandidateCard = (props) => {
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {props.applicant?.num_votes > 0 &&
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
+                            <p style={{ fontWeight: "600", color: "#090D3A", paddingLeft:"1.4rem" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
                         }
                     </div>
                 }
@@ -391,7 +391,7 @@ const CandidateCard = (props) => {
                             target="_blank"
                             href={mailTo}
                             className="interview-txt9"
-                            style={{ color: "#67A3F3", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
+                            style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
                         >
                             <i className="bx-fw bx bx-mail-send"></i> Send Email
                         </a>

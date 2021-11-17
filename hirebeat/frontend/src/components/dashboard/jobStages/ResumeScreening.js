@@ -64,7 +64,7 @@ export class ResumeScreening extends Component {
             ...styles,
             color: '#090D3A',
             fontSize: '0.9375rem',
-            fontFamily: 'Avenir Next,Segoe UI, sans-serif',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
     }
@@ -409,7 +409,7 @@ export class ResumeScreening extends Component {
         return (
             <React.Fragment>
                 <div className="container-fluid mt-3 pt-2 pb-3">
-                    <div className="row interview-center" style={{ color: "#56a3fa", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
+                    <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1.3rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
@@ -434,16 +434,16 @@ export class ResumeScreening extends Component {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1rem", paddingLeft: "0px" }}>
-                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                            <div style={{ marginLeft: "2rem" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px" }}>
+                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight:"1rem" }}>
                                 {!this.props.profile.is_subreviwer &&
                                     <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: "inline" }} />
                                 }
                             </div>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
-                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#67A3F3", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
+                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#006dff", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
                             {(this.props.reviewerStageLength > 0) &&
                                 <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
                                     <div style={{ display: "inline-block" }}>
@@ -787,7 +787,7 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem" }}>
+                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem", marginRight:"1rem" }}>
                     {!props.profile.is_subreviwer &&
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
                     }
@@ -800,7 +800,7 @@ const ApplicantRow = (props) => {
                         </div>
                     */}
                 </div>
-                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#67A3F3", paddingLeft: "0.3rem" }}>
+                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
@@ -831,7 +831,7 @@ const ApplicantRow = (props) => {
                         }
                     </div>}
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-2">
+                    <div className="col-2" style={{ marginLeft: "1.4rem" }}>
                         {props.applicant?.num_votes > 0 &&
                             <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
                         }

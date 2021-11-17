@@ -12,13 +12,13 @@ export class ReceivedInterview extends Component {
         return (
             <React.Fragment>
             <div className="container d-flex justify-content-start " style={{marginTop:"2%", backgroundColor: "white", "border-radius": "0.5rem"}}>
-                <div className="col-12" style={{fontFamily: "Avenir Next, Segoe UI" }}>
+                <div className="col-12" style={{fontFamily: "Inter, Segoe UI" }}>
                     <div className="mt-4">
                         <div className="row">
                             <div className="col-2" style={{color:"#090D3A"}}>
                                 <h3>{this.props.received_interview.company_name}</h3>
                             </div>
-                            <div className="col-3" style={{color:"#56A3FA"}}>
+                            <div className="col-3" style={{color:"#006dff"}}>
                                 <h3>{this.props.received_interview.job_title}</h3>
                             </div>
                             <div className="col-4">

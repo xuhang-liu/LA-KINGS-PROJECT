@@ -21,7 +21,7 @@ class FeaturedFeature extends Component {
                                 <div className="features-inner-content">
                                     <ReactWOW animation='fadeInRight' delay='0.1s'>
                                         <div className="features-item">
-                                            <i className='bx bx-video-plus bg-13c4a1 blt-radius-0' style={{backgroundColor:"#56a3fa"}}></i>
+                                            <i className='bx bx-video-plus bg-13c4a1 blt-radius-0' style={{backgroundColor:"#006dff"}}></i>
                                             <h3>Practice</h3>
                                             {/* <p>Record yourself to answer the most common interview questions.</p> */}
                                             <p>Recording yourself answering interview questions</p>

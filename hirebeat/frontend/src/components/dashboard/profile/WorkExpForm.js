@@ -105,7 +105,7 @@ const WorkFormCard = (props) => {
                             <button onClick={() => {props.cancelEditWorkExp(); props.closeEdit()}} className="default-btn" style={{backgroundColor: "#E5E5E5", paddingLeft: "25px", color: "#090D3A"}}>Cancel</button>
                         </div>
                         <div className="col-2">
-                            <button onClick={props.addWorkExp} className="default-btn" style={{backgroundColor: "#67A3F3", paddingLeft: "25px"}}>Save</button>
+                            <button onClick={props.addWorkExp} className="default-btn" style={{backgroundColor: "#006dff", paddingLeft: "25px"}}>Save</button>
                         </div>
                     </div>
                 </div>

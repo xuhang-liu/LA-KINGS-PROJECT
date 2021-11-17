@@ -157,7 +157,7 @@ export class CareerResponseWindow extends Component {
                 {this.props.loaded ? (
                 <PracticeCard>
                     <h1 style={{marginTop: "2rem", fontSize: "1.22rem"}}>
-                        <span style={{color:"#67A3F3"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}
+                        <span style={{color:"#006dff"}}>Q{this.props.q_index+1}</span>: {this.props.questions[this.props.q_index]}
                     </h1>
                     <div style={{ marginTop: 20 }}>
                         <div

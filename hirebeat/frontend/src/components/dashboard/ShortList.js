@@ -254,7 +254,7 @@ const ShortListCard = (props) => {
     return (
         <React.Fragment>
             <div className="container d-flex justify-content-start chart-bg1" style={{ marginTop: "3rem", backgroundColor: "white", "border-radius": "0.5rem" }}>
-                <div className="col-12" style={{ fontFamily: "Avenir Next, Segoe UI" }}>
+                <div className="col-12" style={{ fontFamily: "Inter, Segoe UI" }}>
                     <div className="mt-4">
                         <div className="row">
                             <div className="col-7" style={{ color: "#090D3A" }}>
@@ -361,7 +361,7 @@ const AcceptedCandidate = (props) => {
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem" }} className="container min-width-980 mt-4 py-4 chart-bg1">
                 <h2 className="short-list-title">{jobTitle.length > 50 ? jobTitle.substring(0, 47) + "..." : jobTitle} {jobId == "" ? null : "(ID: " + jobId + ")"}</h2>
-                <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Avenir Next, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
+                <div style={{ color: "#4A6F8A", fontSize: "1rem", fontWeight: "500", fontFamily: "Inter, Segoe UI" }} className="ml-0 d-flex justify-content-start container-fluid row">
                     <div className="col-3">Name</div>
                     {/* <div className="col-3">Email</div> */}
                     {/* <div className="col-2">Recorded On</div> */}
@@ -490,7 +490,7 @@ const CandidateCard = (props) => {
             <div className="px-4">
                 <hr />
             </div>
-            <div style={{ fontFamily: "Avenir Next, Segoe UI", fontWeight: "600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
+            <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="ml-0 d-flex justify-content-start container-fluid row h-100">
                 <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
@@ -515,7 +515,7 @@ const CandidateCard = (props) => {
                             target="_blank"
                             href={mailTo}
                             className="interview-txt9"
-                            style={{ color: "#67A3F3", border: "none", background: "white", display: "inline-block", fontSize: "0.7rem" }}
+                            style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.7rem" }}
                         >
                             <i className="bx-fw bx bx-mail-send"></i> Send Email
                         </a>

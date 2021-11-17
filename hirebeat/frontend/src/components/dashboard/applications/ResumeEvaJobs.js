@@ -37,10 +37,10 @@ export class ResumeEvaJobs extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-6">
-                            <h4 className="resume-text2">Required Skills <span style={{color: "#67A3F3"}}>({this.state.matchCount}/{this.state.totalSkillsCount})</span></h4>
+                            <h4 className="resume-text2">Required Skills <span style={{color: "#006dff"}}>({this.state.matchCount}/{this.state.totalSkillsCount})</span></h4>
                         </div>
                         <div className="col-6">
-                            <h4 className="resume-text2">Transferable Skills <span style={{color: "#67A3F3"}}>({this.state.transferableSkillsCount})</span></h4>
+                            <h4 className="resume-text2">Transferable Skills <span style={{color: "#006dff"}}>({this.state.transferableSkillsCount})</span></h4>
                         </div>
                     </div>
                     <div className="row" style={{marginBottom: "2rem"}}>

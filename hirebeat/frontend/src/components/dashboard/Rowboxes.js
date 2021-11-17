@@ -88,7 +88,7 @@ class RowBoxes extends React.Component {
                                 <div className="chart-bg">
                                     <div style={{ padding: "0.6rem" }}>
                                         <div className="row" style={{ alignItems: "center" }}>
-                                            <i className="bx bxs-user-pin bx-md" style={{ color: "#67A3F3", paddingLeft: "1rem" }}></i>
+                                            <i className="bx bxs-user-pin bx-md" style={{ color: "#006dff", paddingLeft: "1rem" }}></i>
                                             <h3 className="chart-legend">Applicants</h3>
                                         </div>
                                         <ApplicationChart
@@ -102,7 +102,7 @@ class RowBoxes extends React.Component {
                                 <div className="chart-bg" style={{ marginLeft: "2rem" }}>
                                     <div style={{ padding: "0.6rem" }}>
                                         <div className="row" style={{ alignItems: "center" }}>
-                                            <i className="bx bxs-video bx-md" style={{ color: "#67A3F3", paddingLeft: "1rem" }}></i>
+                                            <i className="bx bxs-video bx-md" style={{ color: "#006dff", paddingLeft: "1rem" }}></i>
                                             <h3 className="chart-legend">Videos</h3>
                                         </div>
                                         <VideoChart dates={this.props.applicantsData["date"]} videos={this.props.applicantsData["recorded"]} height={200} width={400} />
@@ -111,10 +111,10 @@ class RowBoxes extends React.Component {
                                 <div className="chart-bg" style={{ marginLeft: "2rem" }}>
                                     <div style={{ padding: "0.6rem" }}>
                                         <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
-                                            <i className="bx bxs-pie-chart bx-md" style={{ color: "#67A3F3", paddingLeft: "1rem" }}></i>
+                                            <i className="bx bxs-pie-chart bx-md" style={{ color: "#006dff", paddingLeft: "1rem" }}></i>
                                             <h3 className="chart-legend">Recorded Rate</h3>
                                         </div>
-                                        <RateScore percent={Math.round(this.props.recorded_rate)} bgColor={"#FFFFFF"} barColor={"#67A3F3"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
+                                        <RateScore percent={Math.round(this.props.recorded_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                     </div>
                                 </div>
                             </React.Fragment>

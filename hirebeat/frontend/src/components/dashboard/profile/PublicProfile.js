@@ -93,7 +93,7 @@ export class PublicProfile extends Component {
                                                         <h3 className="profile-h3">Contact Info</h3>
                                                         <div className="row" style={{ margin: "auto", width: "60%" }}>
                                                             <div className="col-3">
-                                                                <i class='bx bxl-linkedin-square' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
+                                                                <i class='bx bxl-linkedin-square' style={{ color: "#006dff", fontSize: "50px" }}></i>
                                                             </div>
                                                             <div className="col-9">
                                                                 <p style={{ color: "#090d3a", fontWeight: "500", fontSize: "1rem" }}>LinkedIn</p>
@@ -102,7 +102,7 @@ export class PublicProfile extends Component {
                                                         </div>
                                                         <div className="row" style={{ margin: "auto", width: "60%", paddingTop: "0.5rem" }}>
                                                             <div className="col-3">
-                                                                <i class='bx bxs-network-chart' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
+                                                                <i class='bx bxs-network-chart' style={{ color: "#006dff", fontSize: "50px" }}></i>
                                                             </div>
                                                             <div className="col-9">
                                                                 <p style={{ color: "#090d3a", fontWeight: "500", fontSize: "1rem" }}>Website</p>
@@ -111,7 +111,7 @@ export class PublicProfile extends Component {
                                                         </div>
                                                         <div className="row" style={{ margin: "auto", width: "60%", paddingTop: "0.5rem" }}>
                                                             <div className="col-3">
-                                                                <i class='bx bxl-github' style={{ color: "#67A3F3", fontSize: "50px" }}></i>
+                                                                <i class='bx bxl-github' style={{ color: "#006dff", fontSize: "50px" }}></i>
                                                             </div>
                                                             <div className="col-9">
                                                                 <p style={{ color: "#090d3a", fontWeight: "500", fontSize: "1rem" }}>Github</p>

@@ -74,7 +74,7 @@ class EmailVerificationEmployerMini extends Component {
       <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
-          <section className="signup-area min-width-1290" style={{ background: "linear-gradient(90deg, #67A3F3 0%, #5269F3 100%)" }}>
+          <section className="signup-area min-width-1290" style={{ background: "linear-gradient(90deg, #006dff 0%, #5269F3 100%)" }}>
             <div className="row m-0">
               <div className="col-lg-6 col-md-12 p-0">
                 {(this.props?.profile?.is_subreviwer || this.props.profile.is_external_reviewer) ?
@@ -102,7 +102,7 @@ class EmailVerificationEmployerMini extends Component {
                       <button
                         onClick={this.redirectToContact}
                         className="default-btn"
-                        style={{ color: "#67A3F3", backgroundColor: "#ffffff", paddingLeft: "1.5625rem" }}
+                        style={{ color: "#006dff", backgroundColor: "#ffffff", paddingLeft: "1.5625rem" }}
                       >
                         Contact Us
                         <span></span>

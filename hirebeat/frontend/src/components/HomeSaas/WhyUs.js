@@ -26,7 +26,7 @@ class WhyUs extends Component {
                     onClose={() => this.setState({isOpen: false})}
                 />
 
-                <section className="features-area pt-100 pb-70      " style={{background: "#67a3f3"}}>
+                <section className="features-area pt-100 pb-70      " style={{background: "#006dff"}}>
                     <div className="container max-width-1440">
 
                         <div className="row" style={{width: "100%", margin: "auto"}}>

@@ -54,11 +54,11 @@ export class ShareProfileEdition extends Component {
                     <p className="share-p3">Make your profile publicly searchable. </p>
                     <div className="register-label">
                         {this.state.shareProfile ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Enabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setShareProfile}>Enabled</button>
                         }
                         {!this.state.shareProfile ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setShareProfile}>Disabled</button>
                         }
                     </div>
@@ -71,11 +71,11 @@ export class ShareProfileEdition extends Component {
                     <p className="share-p3">Allow employers to search for your profile and send you messages.</p>
                     <div className="register-label">
                         {this.state.openToHR ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Enabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Enabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setOpenToHR}>Enabled</button>
                         }
                         {!this.state.openToHR ?
-                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #67A3F3" }}>Disabled</button> :
+                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
                             <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={this.setOpenToHR}>Disabled</button>
                         }
                     </div>
@@ -88,7 +88,7 @@ export class ShareProfileEdition extends Component {
                 </div>
                 <div className="row" style={{marginTop: "1rem"}}>
                     <div className="col-4 profile-edit">
-                        <button className="default-btn" style={{background: "#67A3F3", paddingLeft: "25px"}} onClick={this.saveProfileSharing}>Update Status</button>
+                        <button className="default-btn" style={{background: "#006dff", paddingLeft: "25px"}} onClick={this.saveProfileSharing}>Update Status</button>
                     </div>
                     <div className="col-3 profile-edit">
                         <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.props.onHide}>Cancel</button>

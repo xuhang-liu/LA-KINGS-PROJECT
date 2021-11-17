@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import {Applicant} from "./Applicant";
+import { Applicant } from "./Applicant";
 
 export const ApplicantList = (props) => {
     return (
         <div>
             {props.applicants.map((a, index) => {
+                if (props.keyWords != "") {
+                    let name = a.name;
+                    if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
+                }
                 return (
                     <Applicant
                         filter={props.filter}

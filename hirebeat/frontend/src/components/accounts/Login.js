@@ -118,7 +118,7 @@ export class Login extends Component {
                 className="min-width-1290"
                 id="login-intro"
                 style={{
-                  background: "#56a3fa",
+                  background: "#006dff",
                   minHeight: "14rem"
                 }}>
 
@@ -135,7 +135,7 @@ export class Login extends Component {
             <MediaQuery maxDeviceWidth={1223}>
               <header id="login-intro"
                 style={{
-                  background: "#56a3fa",
+                  background: "#006dff",
                   minHeight: "8rem"
                 }}>
 
@@ -170,7 +170,7 @@ export class Login extends Component {
                           onChange={this.onChange}
                           value={username}
                           style={{
-                            fontFamily: "Avenir Next, Segoe UI",
+                            fontFamily: "Inter, Segoe UI",
                             background: "#FFFFFF",
                             border: "0.5px solid #E5E5E5",
                             borderRadius: "0.5rem",
@@ -189,7 +189,7 @@ export class Login extends Component {
                           onChange={this.onChange}
                           value={password}
                           style={{
-                            fontFamily: "Avenir Next, Segoe UI",
+                            fontFamily: "Inter, Segoe UI",
                             background: "#FFFFFF",
                             border: "0.5px solid #E5E5E5",
                             borderRadius: "0.5rem",
@@ -207,7 +207,7 @@ export class Login extends Component {
                         <a
                           href="/register"
                           className="navbar-font"
-                          style={{ textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Avenir Next, Segoe UI", fontSize: "1rem" }}
+                          style={{ textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Inter, Segoe UI", fontSize: "1rem" }}
                         >
                           Create account
                         </a>
@@ -219,7 +219,7 @@ export class Login extends Component {
                           className="navbar-font"
                           style={{
                             fontSize: "1rem",
-                            fontFamily: "Avenir Next, Segoe UI",
+                            fontFamily: "Inter, Segoe UI",
                             color: "#7D7D7D",
                             fontWeight: "300"
                           }}
@@ -250,7 +250,7 @@ export class Login extends Component {
                       style={{
                         marginTop: "4rem",
                         marginBottom: "2rem",
-                        fontFamily: "Avenir Next, Segoe UI",
+                        fontFamily: "Inter, Segoe UI",
                       }}
                     />
 

@@ -156,7 +156,7 @@ export class AudioRecorder extends Component {
                 textDisplayed={"Start Recording"}
                 buttonWidth={"20%"}
                 isAudio={this.props.isAudio ? true : false}
-                fontFamily={"Avenir Next, Segoe UI"}
+                fontFamily={"Inter, Segoe UI"}
               />
               </div>) : null}
           </div>
@@ -165,13 +165,13 @@ export class AudioRecorder extends Component {
           {
             this.props.isTesting && this.props.retry &&
               <div>
-                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i>Your answer <span style={{color:"#ff6b00"}}>will not</span> be evaluated. Replay the video to ensure that your <span style={{color:"#ff6b00"}}>microphone</span> is working.</p>
-                <p><i style={{color:"#56a3fa"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Take your time</span> to make sure everything is good before you start the interview</p>
+                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i>Your answer <span style={{color:"#ff6b00"}}>will not</span> be evaluated. Replay the video to ensure that your <span style={{color:"#ff6b00"}}>microphone</span> is working.</p>
+                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Take your time</span> to make sure everything is good before you start the interview</p>
                 <div className="row justify-content-center">
                   <button
                         onClick={this.stopMic}
                         className="default-btn mt-3"
-                        style={{color:"white", backgroundColor:"#56a3fa", paddingLeft: "25px", width: "11.5rem"}}
+                        style={{color:"white", backgroundColor:"#006dff", paddingLeft: "25px", width: "11.5rem"}}
                   >
                       Finish Recording
                   </button>
@@ -180,7 +180,7 @@ export class AudioRecorder extends Component {
                   <button
                         onClick={this.recordAgain}
                         className="default-btn mt-3"
-                        style={{color:"white", backgroundColor:"#56a3fa", width: "11.5rem"}}
+                        style={{color:"white", backgroundColor:"#006dff", width: "11.5rem"}}
                     >
                       <i className="bx bx-revision"></i>Test Again
                   </button>
@@ -200,7 +200,7 @@ export class AudioRecorder extends Component {
             !this.props.isTesting ? (
               <div style={{display: this.state.display}}>
                 <RecordDoneButton
-                  fontFamily={"Avenir Next, Segoe UI"}
+                  fontFamily={"Inter, Segoe UI"}
                   onTap={this.stopMic}
                   textDisplayed={"Finish Recording"}
                   buttonWidth={"100%"}

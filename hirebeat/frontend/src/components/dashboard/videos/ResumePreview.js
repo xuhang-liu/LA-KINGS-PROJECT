@@ -45,7 +45,7 @@ export const ResumePreview = (props) => {
         <div className="col-2 d-flex justify-content-center align-items-center pl-0 ml-0">
           { reviewed ? <OverallScore percent={props.percent} bgColor={"#FAC046"} barColor={"#FF6B00"}/> : null }
         </div>
-        <div className="col-10" style={{fontFamily: "Avenir Next, Segoe UI" }}>
+        <div className="col-10" style={{fontFamily: "Inter, Segoe UI" }}>
           <div className="mt-3">
             <h3>{props.jobTitle}</h3>
           </div>

@@ -80,16 +80,16 @@ export const CardButton = (props) => {
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
             ? ""
-            : "#56a3fa",
+            : "#006dff",
         boxShadow:
           "0px 0px 8px" +
-          (props.btnClassName == "btn btn-success" ? " #14CC75" : "#56a3fa"),
+          (props.btnClassName == "btn btn-success" ? " #14CC75" : "#006dff"),
       }}
       onClick={props.onTap}
     >
       <p
         style={{
-          fontFamily: "Avenir Next, Segoe UI",
+          fontFamily: "Inter, Segoe UI",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -122,15 +122,15 @@ export const BglessCardButton = (props) => {
         background:
           props.btnClassName && props.btnClassName != "btn btn-warning"
             ? ""
-            : "#56a3fa",
+            : "#006dff",
         boxShadow:
           "0px 0px 8px" +
-          (props.btnClassName == "btn btn-success" ? " #14CC75" : "#56a3fa"),
+          (props.btnClassName == "btn btn-success" ? " #14CC75" : "#006dff"),
       }}
       >
         <p
         style={{
-          fontFamily: "Avenir Next, Segoe UI",
+          fontFamily: "Inter, Segoe UI",
           fontStyle: "normal",
           fontWeight: "bold",
           fontSize: "1.2rem",
@@ -245,7 +245,7 @@ export const ButtonContainer = (src, onTap, textDisplayed, btnClassName) => {
           textDisplayed={textDisplayed}
           buttonWidth={"85%"}
           WebkitBorderRadius={"40px"}
-          fontFamily={"Avenir Next, Segoe UI"}
+          fontFamily={"Inter, Segoe UI"}
           btnClassName={btnClassName ?? "btn btn-warning"}
         />
       </CardRow>

@@ -85,7 +85,7 @@ const CustomerFeedback = (props) => {
     return(
         <MyModal show={props.show} onHide={props.hide}>
         <div className='container' style={{width:"60%"}}>
-          <h3 style={{color:"#56a3fa"}}>Send your Feedback</h3>
+          <h3 style={{color:"#006dff"}}>Send your Feedback</h3>
           <p>You are almost there! Before you leave, tell us about your experience! Your answer will not affect your interview evaluation.</p>
           <h3>Please rate your interview experience</h3>
           <div className="mt-3 mb-3" style={{margin:"auto"}}>
@@ -95,7 +95,7 @@ const CustomerFeedback = (props) => {
                 size={55}
                 label={false}    
                 transition={true}
-                fillColor='#56a3fa'
+                fillColor='#006dff'
                 emptyColor='gray'
             />
           </div>

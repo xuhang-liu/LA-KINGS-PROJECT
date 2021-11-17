@@ -8,7 +8,7 @@ export class ShareProfile extends Component {
             <React.Fragment>
                 <h1 className="share-h1" style={{marginBottom: "2rem"}}>Share your profile</h1>
                 <div className="d-flex justify-content-center">
-                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #67A3F3", width: "90%", height: "3rem" }}>
+                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3rem" }}>
                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                             <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(this.props.shareLink); this.props.disableShowShare() }}>{this.props.shareLink}</p>
                         </div>

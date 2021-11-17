@@ -100,7 +100,7 @@ const Pagination = (props) => {
                     if(number == props.page + 1)
                     {
                         return  <li className="page-item">
-                                        <a href="#"  style={{color:"white", backgroundColor:"#56a3fa"}} onClick={ () => { props.setPage(number-1) } } className='page-link'>
+                                        <a href="#"  style={{color:"white", backgroundColor:"#006dff"}} onClick={ () => { props.setPage(number-1) } } className='page-link'>
                                                 {number}
                                         </a>
                                 </li>
