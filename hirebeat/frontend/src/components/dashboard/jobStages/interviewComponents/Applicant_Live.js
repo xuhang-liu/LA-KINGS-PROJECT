@@ -153,7 +153,7 @@ export const Applicant_Live = (props) => {
                     </div>
                 }
                 <div className="col-5 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#006dff" }} onClick={(() => viewResult())}>
+                    <button className="title-button2" style={{ wordBreak: "break-all"}} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
                     </button>

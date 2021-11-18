@@ -3609,7 +3609,7 @@ h5 {
   font-style: normal;
   font-weight: 600;
   font-size: 0.9375rem;
-  color: #67a3fa;
+  color: #006dff;
   border: none;
   background-color: #ffffff;
 }
@@ -3638,6 +3638,10 @@ h5 {
   background: #006dff;
   box-shadow: 2px 2px 4px rgba(232, 237, 252, 0.16);
   border-radius: 5px;
+}
+
+.enable-btn:hover {
+  background: #ff6b00;
 }
 
 .disable-btn {

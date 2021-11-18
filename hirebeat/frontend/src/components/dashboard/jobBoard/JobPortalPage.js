@@ -329,65 +329,65 @@ export class JobPortalPage extends Component {
                                 {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?
                                     <div>
                                         {this.state.portalSubpage == "pipeline" ?
-                                            <p onClick={this.renderPipeline} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p> :
-                                            <p onClick={this.renderPipeline} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
+                                            <p onClick={this.renderPipeline} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p> :
+                                            <p onClick={this.renderPipeline} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
                                         }</div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
                                 }
                             </div>
                             <div className="col-2">
                                 {(this.state.reviewerStage.includes("allCandidates") || this.state.reviewerStage?.length == 0)?
                                     <div>
                                         {this.state.portalSubpage == "allCandidates" ?
-                                            <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>All Candidates</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>All Candidates</p>
                                 }
                             </div>
                             <div className="col-2">
                                 {((this.state.reviewerStage.includes("resumeScreen") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "resumeScreen" ?
-                                            <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
                                 }
                             </div>
                             <div className="col-2">
                                 {(this.state.reviewerStage.includes("videoInterview") || this.state.reviewerStage?.length == 0) ?
                                     <div>
                                         {this.state.portalSubpage == "videoInterview" ?
-                                            <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>
                                 }
                             </div>
                             <div className="col-2">
                                 {((this.state.reviewerStage.includes("liveInterview") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "liveInterview" ?
-                                            <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Live Interview</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Live Interview</p>
                                 }
                             </div>
                             <div className="col-2">
                                 {((this.state.reviewerStage.includes("shortList") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "shortList" ?
-                                            <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#7C94B5" }}>>></span></p> :
-                                            <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#ffffff" }}>>></span></p>
+                                            <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#7C94B5" }}>>></span></p> :
+                                            <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#ffffff" }}>>></span></p>
                                         }
                                     </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "1rem", cursor: "default"}}><i class='bx-fw bx bx-filter-alt'></i>Short List</p>
+                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default"}}><i class='bx-fw bx bx-filter-alt'></i>Short List</p>
                                 }
                             </div>
                         </div>

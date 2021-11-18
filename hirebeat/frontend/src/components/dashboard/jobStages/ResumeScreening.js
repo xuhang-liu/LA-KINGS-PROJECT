@@ -434,7 +434,7 @@ export class ResumeScreening extends Component {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px", boxShadow:"none" }}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
                             <div style={{ marginLeft: "2rem", marginRight:"1rem" }}>
                                 {!this.props.profile.is_subreviwer &&
@@ -804,13 +804,13 @@ const ApplicantRow = (props) => {
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div>

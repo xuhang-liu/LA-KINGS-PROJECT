@@ -145,7 +145,7 @@ const AcceptedCandidate = (props) => {
                         </div>
                     }
                 </div>
-                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem" }}>
+                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow:"none" }}>
                     <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="ml-3 d-flex justify-content-start container-fluid row interview-txt7 interview-center">
                         <div className="col-3">Name</div>
                         {/* <div className="col-3">Video Average Score</div> */}

@@ -154,7 +154,7 @@ export const Applicant = (props) => {
                     </div>
                 }
                 <div className="col-3 mb-1">
-                    <button className="title-button1" style={{ wordBreak: "break-all", color: "#006dff" }} onClick={(() => viewResult())}>
+                    <button className="title-button2" style={{ wordBreak: "break-all" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 20 ? props.name.split("(")[0].substring(0, 18) + "..." : props.name.split("(")[0]}
                     </button>
@@ -240,16 +240,14 @@ export const Applicant = (props) => {
                         {(isInvited && props.filter == "active") ?
                             <button
                                 onClick={() => inviteAgain()}
-                                className="interview-txt9"
-                                style={{ color: "#006dff", border: "none", background: "white", paddingLeft: "0px" }}
+                                className="title-button2"
                             >
                                 {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Resend
                             </button> :
                             <button
                                 onClick={() => inviteAgain()}
-                                className="interview-txt9"
-                                style={{ color: "#006dff", border: "none", background: "white", paddingLeft: "0px" }}
+                                className="title-button2"
                             >
                                 {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Invite

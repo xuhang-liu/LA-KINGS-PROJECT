@@ -646,7 +646,7 @@ export function VideoInterview(props) {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow:"none" }}>
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>

@@ -264,7 +264,7 @@ export class AllCandidates extends Component {
                                     </div>
                                 }
                             </div>
-                            <div className="container-fluid chart-bg1" style={{ marginTop: "1rem" }}>
+                            <div className="container-fluid chart-bg1" style={{ marginTop: "1rem", boxShadow:"none" }}>
                                 <div className="row interview-txt7 interview-center pl-4" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                                     <div className="col-4"><span>Name</span></div>
                                     <div className="col-2">Applied On</div>
@@ -514,13 +514,13 @@ const ApplicantRow = (props) => {
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div> :
                         <div>
                             <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="applicant-name" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
                                 {name.length > 29 ? name.substring(0, 27) + "..." : name}
                             </span>
                         </div>
