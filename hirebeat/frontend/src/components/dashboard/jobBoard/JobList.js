@@ -14,7 +14,7 @@ export class JobList extends Component {
     }
 
     customStyles = {
-        control: styles => ({ ...styles, border:"none", marginTop:"-1rem", width:"8.8rem" }),
+        control: styles => ({ ...styles, border:"none", marginTop:"-1rem", width:"10rem", paddingLeft:"1.3rem" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -63,7 +63,7 @@ export class JobList extends Component {
                                 </div> */}
                                 <div className="container-fluid" style={{ marginTop: "1rem" }}>
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                                        <div className="col-2"><span style={{ marginLeft: "1.2rem" }}><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} /></span></div>
+                                        <div className="col-2"><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} /></div>
                                         <div className="col-4 d-flex justify-content-start" style={{paddingLeft:'2.2rem'}}>Job Title</div>
                                         <div className="col-2 d-flex justify-content-center">ID</div>
                                         <div className="col-2 d-flex justify-content-center">Applicants</div>

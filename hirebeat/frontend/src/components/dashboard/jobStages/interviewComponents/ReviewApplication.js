@@ -489,11 +489,11 @@ export class ReviewApplication extends Component {
                                 {this.props.applicants[this.props.current].linkedinurl != null && this.props.applicants[this.props.current].linkedinurl != "" ?
                                     <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
                                         <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#006dff", marginRight: "3px" }}></i>
-                                        <a style={{ fontSize: "0.7vw", color: "#006dff", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                        <a style={{ fontSize: "0.9vw", color: "#006dff", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                                     </div> :
                                     <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
                                         <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                        <p style={{ fontSize: "0.7vw", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
+                                        <p style={{ fontSize: "0.9vw", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
                                     </div>
                                 }
                             </div> :
@@ -576,13 +576,13 @@ export class ReviewApplication extends Component {
                                     <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                         {(this.props.gh_current_stage_id == "" || this.props.gh_current_stage_id == null) ?
                                             <button
-                                                className="default-btn ml-2"
+                                                className="default-btn"
                                                 style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.rejectCandidates(); this.props.refresh() }) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
                                             </button> :
                                             <button
-                                                className="default-btn ml-2"
+                                                className="default-btn"
                                                 style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.openRejectNoteForm(); this.props.refresh() }) : this.jobClosedAlert}>
                                                 <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject

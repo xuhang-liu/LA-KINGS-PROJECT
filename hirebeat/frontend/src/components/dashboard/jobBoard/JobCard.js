@@ -61,6 +61,9 @@ export class JobCard extends Component {
     };
 
     switchJobStatus = () => {
+        if (this.props.job?.reviewer_type == "subr"){
+            return alert("No Permission!");
+        }
         if (this.state.next_select.value == 0) {
             if (this.props.job.job_details.job_location == "" || this.props.job.job_details.job_location == null) {
                 return alert("Job Location is required! Please edit your job.");
@@ -111,7 +114,7 @@ export class JobCard extends Component {
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
     };
 
-    deleteJob = () => {
+    deleteJobs = () => {
         let id = this.props.job.job_details.id;
         let data = {
             "id": id,
@@ -150,6 +153,22 @@ export class JobCard extends Component {
             buttons: [
                 {
                     label: 'Ok'
+                }
+            ]
+        });
+    }
+
+    deleteAlert = () => {
+        confirmAlert({
+            title: "Confirm to delete",
+            message: "Are you sure to delete this job?",
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: this.deleteJobs
+                },
+                {
+                    label: 'No'
                 }
             ]
         });
@@ -229,40 +248,54 @@ export class JobCard extends Component {
                 <div id="jobs-actions-hover" className="row interview-txt7 interview-center">
                     <div className="col-2 interview-txt9 mt-2">
                     </div>
-                    {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) &&
-                        <div className={"col-3 interview-txt9 mt-1"}>
-                            <ActionButton
-                                filter={this.props.filter}
-                                archiveJob={this.archiveJob}
-                                activateJob={this.activateJob}
-                                deleteJob={this.deleteJob}
-                                renderJobEdition={this.props.renderJobEdition}
-                                setJobInfo={this.props.setJobInfo}
-                                jobInfo={this.props.job.job_details}
-                                applicantsNum={this.props.job.total_records}
-                                curJobKey={this.props.curJobKey}
-                                job={this.props.job}
-                            />
-                        </div>}
-                    {this.props.job.job_details.is_closed != 3 &&
-                        <div className="col-3 interview-txt9 d-flex justify-content-start mt-1" style={{ display: "flex", alignItems: "center", paddingLeft: (this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) ? "1rem" : "2rem" }}>
-                            <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (this.props.filter !== "closed") ? "0.5px solid #4A6F8A" : "", paddingRight: (this.props.filter !== "closed") ? "2rem" : "" }} href={this.props.job.job_details.job_url}>
-                                <i className="bx-fw bx bx-show"></i>View
-                                <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
-                                    <div>
-                                        See what your job posting page looks like.
-                                    </div>
-                                </p>
-                            </a>
-                            {this.props.filter !== "closed" &&
-                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                    <div className="col-6 interview-txt9 mt-1">
+                        <div className="d-flex justify-content-start" style={{ display: "flex", alignItems: "center", paddingLeft: "1rem" }}>
+                            {((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr")) &&
+                                <button className="title-button2 tool_tip" onClick={() => { this.props.setJobInfo(this.props.job.job_details); this.props.renderJobEdition() }} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "1rem" }}>
+                                    <i className="bx-fw bx bx-link-external"></i>Edit
+                                    <p className="tool_submenu container" style={{ width: "10rem", left: "1rem" }}>
+                                        <div>
+                                            Edit job posting.
+                                        </div>
+                                    </p>
+                                </button>
+                            }
+                            {this.props.job.job_details.is_closed != 3 &&
+                                <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "1rem", paddingLeft: "0.5rem" }} href={this.props.job.job_details.job_url}>
+                                    <i className="bx-fw bx bx-show"></i>View
+                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr"))?"5rem":"2rem" }}>
+                                        <div>
+                                            See what your job posting page looks like.
+                                        </div>
+                                    </p>
+                                </a>
+                            }
+                            {this.props.job.job_details.is_closed != 3 &&
+                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (this.props.job?.reviewer_type != "subr") ? "0.5px solid #4A6F8A" : "", paddingRight: (this.props.job?.reviewer_type != "subr")? "1rem" : "" }}>
                                     <i className="bx-fw bx bx-link-external"></i>Share
-                                    <p className="tool_submenu container" style={{ width: "9rem", left: "3rem" }}>
+                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr"))?"10rem":"5rem" }}>
                                         <div>
                                             Get a unique link to your job posting and one-click share to social media.
                                         </div>
                                     </p>
-                                </button>}
+                                </button>
+                            }
+                            {(this.props.job?.reviewer_type != "subr") &&
+                                <div>
+                                    {(this.props.job.total_records <= 0) ?
+                                        <button className="title-button2 tool_tip" onClick={this.deleteAlert} style={{ color: "#F36F67", fontWeight: "500", fontSize: "0.9rem" }}>
+                                            <i className="bx-fw bx bx-trash"></i>Delete
+                                            <p className="tool_submenu container" style={{ width: "10rem", left: (this.props.job.job_details.is_closed != 3)?"15rem":"6rem" }}>
+                                                <div>
+                                                    You cannot recover the job posting after deleting it.
+                                                </div>
+                                            </p>
+                                        </button> :
+                                        <button className="title-button2 tool_tip" style={{ color: "#e1e9f4", fontWeight: "500", fontSize: "0.9rem", cursor:"default" }}>
+                                            <i className="bx-fw bx bx-trash"></i>Delete
+                                        </button>}
+                                </div>
+                            }
                             <MyModalShare
                                 show={this.state.showShare}
                                 onHide={() => { this.disableShowShare() }}
@@ -328,7 +361,8 @@ export class JobCard extends Component {
                                     </div>
                                 </div>
                             </MyModalShare>
-                        </div>}
+                        </div>
+                    </div>
                 </div>
                 <MyModalUpgrade
                     show={this.state.showModel1}
@@ -390,77 +424,6 @@ export class JobCard extends Component {
             </div>
         )
     }
-}
-
-const ActionButton = (props) => {
-    // const [intCanNumBo, setIntCanNumBo] = useState(false); //false means not greater than 0
-    // useEffect(() => {
-    //     const config = {
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //     };
-    //     let data = { "curJobKey": props.curJobKey };
-
-    //     axios.post("job/check-interview-candidates-num", data, config).then((res) => {
-    //         setIntCanNumBo(res.data['intCanNumBo']);
-    //     }).catch(error => {
-    //         console.log(error)
-    //     });
-    // }, [console.log("intCanNumBo"+intCanNumBo)]);
-    let filter = props.filter;
-    function deleteAlert() {
-        confirmAlert({
-            title: "Confirm to delete",
-            message: "Are you sure to delete this job?",
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => props.deleteJob()
-                },
-                {
-                    label: 'No'
-                }
-            ]
-        });
-    }
-    return (
-        <div style={{ borderRight: (props.job.job_details.is_closed != 3) ? "0.5px solid #4A6F8A" : "" }}>
-            {props.job?.reviewer_type != "subr" &&
-                <div>
-                    <div className="row d-flex justify-content-start" style={{ paddingLeft: "2rem" }}>
-                        <div className="profile-edit" style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "2.5rem" }}>
-                            <i className="bx bx-edit-alt"></i>
-                            <span className="tool_tip" style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.jobInfo); props.renderJobEdition() }}>
-                                Edit
-                                <p className="tool_submenu container" style={{ width: "9rem", left: "1rem" }}>
-                                    <div>
-                                        Edit job posting.
-                                    </div>
-                                </p>
-                            </span>
-                        </div>
-                        {(props.applicantsNum <= 0) ?
-                            <div className="profile-edit" style={{ color: "#F36F67", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1.5rem" }}>
-                                <i className="bx bx-trash"></i>
-                                <span style={{ cursor: "pointer" }} onClick={deleteAlert} className="tool_tip">Delete
-                                    <p className="tool_submenu container" style={{ width: "12rem", left: "2rem" }}>
-                                        <div>
-                                            You cannot recover the job posting after deleting it.
-                                        </div>
-                                    </p>
-                                </span>
-                            </div> :
-                            <div className="profile-edit" style={{ color: "#e1e9f4", marginLeft: "5%", fontWeight: "500", fontSize: "0.9rem", paddingLeft: "1rem" }}>
-                                <i className="bx bx-trash"></i>
-                                <span style={{ cursor: "default" }}>Delete
-                                </span>
-                            </div>
-                        }
-                    </div>
-                </div>}
-        </div>
-    );
 }
 
 export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus })(

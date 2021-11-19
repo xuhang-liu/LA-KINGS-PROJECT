@@ -582,7 +582,7 @@ export function VideoInterview(props) {
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="mt-4 pb-3" style={{paddingTop:"1.3rem"}}>
+                <div className="mt-4 pb-3" style={{paddingTop:"1.4rem"}}>
                     <div className="row">
                         <div className="interview-center">
                             {/* Edit Questions */}

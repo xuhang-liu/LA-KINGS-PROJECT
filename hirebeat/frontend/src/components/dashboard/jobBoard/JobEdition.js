@@ -930,7 +930,7 @@ export class JobEdition extends Component {
                                         }
                                         {this.state.job_post == 2 &&
                                             <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                                Premium advertising: your position will appear on: Indeed, Glassdoor, Google for Jobs, WayUp, JobRapido, ZipRecruiter and many more within 24 hours.
+                                                Premium advertising: your position will appear on ZipRecruiter and other 20+ job boards within 24 hours.
                                             </label>
                                         }
                                     </div>

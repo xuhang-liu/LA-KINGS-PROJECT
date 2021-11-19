@@ -558,15 +558,15 @@ export class EmployerProfile extends Component {
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
                                                 <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Facebook <i class='bx bxl-facebook-square' style={{ color: "#090D3A" }}></i></p>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#090D3A" }}></i></p>
                                                 <input id="facebook" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Twitter <i class='bx bxl-twitter' style={{ color: "#090D3A" }}></i></p>
+                                                <p className="profile-p3" style={{ margin: "0rem" }}>Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#090D3A" }}></i></p>
                                                 <input id="twitter" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">

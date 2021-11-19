@@ -121,7 +121,7 @@ const AcceptedCandidate = (props) => {
     }
     return (
         <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop:'1.3rem' }} className="mt-4 pb-3">
+            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop:'1.4rem' }} className="mt-4 pb-3">
                 <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                     <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                         <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>

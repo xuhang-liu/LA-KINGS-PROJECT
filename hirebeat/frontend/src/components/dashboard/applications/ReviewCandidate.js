@@ -381,7 +381,7 @@ const ReviewCandidate = (props) => {
                                         iconName={"bx bx-phone bx-sm"}
                                         textDisplayed={props.phone}
                                         textSize={"0.9vw"}
-                                        textColor={"#4A6F8A"}
+                                        textColor={"#0B3861"}
                                         iconMargin={"3px"}
                                     />
                                 </div>
@@ -392,7 +392,7 @@ const ReviewCandidate = (props) => {
                                         iconName={"bx bx-envelope bx-sm"}
                                         textDisplayed={props.email}
                                         textSize={"0.9vw"}
-                                        textColor={"#4A6F8A"}
+                                        textColor={"#0B3861"}
                                         iconMargin={"5px"}
                                     />
                                 </div>
@@ -403,7 +403,7 @@ const ReviewCandidate = (props) => {
                                         iconName={"bx bx-location-plus bx-sm"}
                                         textDisplayed={props.location}
                                         textSize={"0.9vw"}
-                                        textColor={"#4A6F8A"}
+                                        textColor={"#0B3861"}
                                         iconMargin={"3px"}
                                     />
                                 </div>

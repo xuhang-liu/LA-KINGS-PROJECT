@@ -409,7 +409,7 @@ export class ResumeScreening extends Component {
         return (
             <React.Fragment>
                 <div className="container-fluid mt-3 pt-2 pb-3">
-                    <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1.3rem" }}>
+                    <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1.4rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
                                 <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
@@ -443,7 +443,7 @@ export class ResumeScreening extends Component {
                             </div>
                             <div className="col-4"><span>Name</span></div>
                             <div className="col-2">Applied On</div>
-                            <div className="col-2">Resume Score <span onClick={this.sortByScore} style={{ color: "#006dff", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
+                            <div className="col-2 pl-4">Resume Score <span onClick={this.sortByScore} style={{ color: "#006dff", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
                             {(this.props.reviewerStageLength > 0) &&
                                 <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
                                     <div style={{ display: "inline-block" }}>
