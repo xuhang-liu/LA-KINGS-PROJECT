@@ -252,7 +252,7 @@ export class JobCard extends Component {
                         <div className="d-flex justify-content-start" style={{ display: "flex", alignItems: "center", paddingLeft: "1rem" }}>
                             {((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr")) &&
                                 <button className="title-button2 tool_tip" onClick={() => { this.props.setJobInfo(this.props.job.job_details); this.props.renderJobEdition() }} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "1rem" }}>
-                                    <i className="bx-fw bx bx-link-external"></i>Edit
+                                    <i className="bx-fw bx bx-edit-alt"></i>Edit
                                     <p className="tool_submenu container" style={{ width: "10rem", left: "1rem" }}>
                                         <div>
                                             Edit job posting.
