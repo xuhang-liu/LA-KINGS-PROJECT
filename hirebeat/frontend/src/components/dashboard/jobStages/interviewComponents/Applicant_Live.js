@@ -38,7 +38,7 @@ export const Applicant_Live = (props) => {
         // get videos and info
         props.getApplicantsVideos(applicants[props.index].email, positionId);
         props.getApplicantsInfo(applicants[props.index].email);
-        props.getResumeURL(positionId, applicants[props.index].user_id);
+        props.getResumeURL(positionId, applicants[props.index]?.apply_candidate_id);
         props.getReviewNote(positionId, applicants[props.index].email);
         props.getReviewerEvaluation(positionId, applicants[props.index].email);
         props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email, props.currentStage);
@@ -50,7 +50,7 @@ export const Applicant_Live = (props) => {
         props.updateViewStatus({ "candidate_id": applicants[index].id });
         props.getApplicantsVideos(applicants[index].email, positionId);
         props.getApplicantsInfo(applicants[index].email);
-        props.getResumeURL(positionId, applicants[index].user_id);
+        props.getResumeURL(positionId, applicants[index]?.apply_candidate_id);
         props.getReviewNote(positionId, applicants[index].email);
         props.getReviewerEvaluation(positionId, applicants[index].email);
         props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email, props.currentStage);
@@ -98,7 +98,7 @@ export const Applicant_Live = (props) => {
     };*/}
 
     const refresh = () => {
-        props.getResumeURL(positionId, applicants[props.index].user_id);
+        props.getResumeURL(positionId, applicants[props.index]?.apply_candidate_id);
         props.getApplicantsVideos(email, positionId);
         props.getApplicantsInfo(email);
     }

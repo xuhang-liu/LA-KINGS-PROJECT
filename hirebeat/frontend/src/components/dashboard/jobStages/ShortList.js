@@ -248,6 +248,8 @@ const CandidateCard = (props) => {
     const start = 0;
     const end = props.applicants.length - 1;
 
+    console.log(props.applicant);
+
     // useEffect(() => {
     //     if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
     //         setShow(true);
@@ -258,7 +260,7 @@ const CandidateCard = (props) => {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        props.getResumeURL(props.applicant.positions_id, props.applicant.user_id);
+        props.getResumeURL(props.applicant.positions_id, props.applicant?.apply_candidate_id);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email, "Short List");
@@ -269,7 +271,7 @@ const CandidateCard = (props) => {
     function getReviewPageData(index) {
         props.getApplicantsVideos(props.applicants[index].email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicants[index].email);
-        props.getResumeURL(props.applicant.positions_id, props.applicants[index].user_id);
+        props.getResumeURL(props.applicant.positions_id, props.applicants[index]?.apply_candidate_id);
         props.getReviewNote(props.applicant.positions_id, props.applicants[index].email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email, props.user.email, "Short List");
@@ -288,7 +290,7 @@ const CandidateCard = (props) => {
     const refresh = () => {
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
         props.getApplicantsInfo(props.applicant.email);
-        props.getResumeURL(props.applicant.positions_id, props.applicant.user_id);
+        props.getResumeURL(props.applicant.positions_id, props.applicant?.apply_candidate_id);
         props.getReviewNote(props.applicant.positions_id, props.applicant.email);
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email);
@@ -360,7 +362,7 @@ const CandidateCard = (props) => {
                 />
             </div>
             <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="ml-3 d-flex justify-content-start container-fluid row h-100">
-                <div className="col-3 short-list-text" onClick={() => { viewResult(); }}>
+                <div className="col-3 title-button2" onClick={() => { viewResult(); }} style={{cursor:"pointer"}}>
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
 
