@@ -394,7 +394,7 @@ export class Pipeline extends Component {
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.all_can_num}</p>
                         </div>
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -426,7 +426,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {exReviewers.length > 0 &&
-                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {(exReviewers.slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -482,7 +482,7 @@ export class Pipeline extends Component {
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
                         </div>
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -516,7 +516,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {resume_review_count > 0 &&
-                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -571,7 +571,7 @@ export class Pipeline extends Component {
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
                         </div>
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -605,7 +605,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {video_review_count > 0 &&
-                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -660,7 +660,7 @@ export class Pipeline extends Component {
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
                         </div>
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -694,7 +694,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {live_review_count > 0 &&
-                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -749,7 +749,7 @@ export class Pipeline extends Component {
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
                         </div>
-                        <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -783,7 +783,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {shortlist_review_count > 0 &&
-                            <div style={{ boxShadow: "0px 0px 20px rgba(103, 163, 243, 0.2)", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}

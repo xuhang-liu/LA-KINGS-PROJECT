@@ -741,22 +741,36 @@ def add_new_apply_candidate_from_zr(request):
 @api_view(['GET'])
 def getCompanyBrandingInfo(request, companyName):
     data = []
-    data = list(Jobs.objects.filter(is_closed=False,
+    company_logo = ""
+    summary = ""
+    video_url = ""
+    website = ""
+    location = ""
+    company_size = ""
+    company_type = ""
+    linkedin = ""
+    twitter = ""
+    facebook = ""
+    contact_email = ""
+    data = list(Jobs.objects.filter(is_closed=0,
                 company_name=companyName).values())
     employerProfileDetail = EmployerProfileDetail.objects.filter(
         name=companyName)
     for i in range(len(employerProfileDetail)):
-        company_logo = employerProfileDetail[i].logo_url
-        summary = employerProfileDetail[i].summary
-        video_url = employerProfileDetail[i].video_url
-        website = employerProfileDetail[i].website
-        location = employerProfileDetail[i].location
-        company_size = employerProfileDetail[i].company_size
-        company_type = employerProfileDetail[i].company_type
-        linkedin = employerProfileDetail[i].linkedin
-        twitter = employerProfileDetail[i].twitter
-        facebook = employerProfileDetail[i].facebook
-        contact_email = employerProfileDetail[i].email
+        user = User.objects.get(pk=employerProfileDetail[i].user_id)
+        profile = Profile.objects.get(user=user)
+        if (not profile.is_subreviwer) and (not profile.is_external_reviewer):
+            company_logo = employerProfileDetail[i].logo_url
+            summary = employerProfileDetail[i].summary
+            video_url = employerProfileDetail[i].video_url
+            website = employerProfileDetail[i].website
+            location = employerProfileDetail[i].location
+            company_size = employerProfileDetail[i].company_size
+            company_type = employerProfileDetail[i].company_type
+            linkedin = employerProfileDetail[i].linkedin
+            twitter = employerProfileDetail[i].twitter
+            facebook = employerProfileDetail[i].facebook
+            contact_email = employerProfileDetail[i].email
     return Response({
         "data": data,
         "company_logo": company_logo,

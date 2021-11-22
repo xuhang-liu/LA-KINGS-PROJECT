@@ -2832,17 +2832,19 @@ h5 {
 
 .chart-bg {
   background: #FFFFFF;
-  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
   border-radius: 3px;
   margin-top: 4rem;
+  border: 1px solid #E2EBF8;
+  box-sizing: border-box;
 }
 
 .chart-bg1 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   background: #FFFFFF;
-  box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.16);
   border-radius: 3px;
+  border: 1px solid #E2EBF8;
+  box-sizing: border-box;
 }
 
 .back-to-text {
@@ -3420,8 +3422,8 @@ h5 {
 
 .profile-bg {
   background: #FFFFFF;
-  box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.16);
   border-radius: 3px;
+  border: 1px solid #E2EBF8;
 }
 
 .profile-container {
@@ -3538,6 +3540,7 @@ h5 {
 .profile-bg2 {
   background: #E8EDFC;
   border-radius: 3px;
+  border: 1px solid #E2EBF8;
 }
 
 .profile-bg3 {
@@ -3570,7 +3573,8 @@ h5 {
 }
 
 .resume-box {
-  box-shadow: 1px 1px 2px rgba(119, 119, 119, 0.16);
+  border: 1px solid #E2EBF8;
+  box-sizing: border-box;
   padding-top: 1.3 rem;
   padding-bottom: 2 rem;
 }

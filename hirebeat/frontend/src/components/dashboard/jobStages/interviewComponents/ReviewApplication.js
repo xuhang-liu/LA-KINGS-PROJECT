@@ -435,7 +435,7 @@ export class ReviewApplication extends Component {
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
                         {!this.state.isEdit ?
-                            <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "20vh" }}>
+                            <div className="resume-box p-4" style={{ background: "white", borderRadius: "3px", width: "100%", minHeight: "20vh" }}>
                                 <div className="row mb-3" style={{ marginBottom: "2%" }}>
                                     <div className="col d-flex align-items-center">
                                         <h4
@@ -513,7 +513,7 @@ export class ReviewApplication extends Component {
                                 updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
                             />
                         }
-                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", position: "relative", minHeight: "36vh" }}>
+                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "3px", width: "100%", position: "relative", minHeight: "36vh" }}>
                             {/* <h2
                                 style={{
                                     fontWeight: "600",
@@ -563,29 +563,29 @@ export class ReviewApplication extends Component {
                                                 className="default-btn1"
                                                 style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? this.openMoveForm : this.jobClosedAlert}>
-                                                Move Stage
+                                                <i class='bx-fw bx bx-move-vertical'></i>Move Stage
                                             </button> :
                                             <button
                                                 className="default-btn1"
                                                 style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? this.openGreenhouseMoveForm : this.jobClosedAlert}>
-                                                Move Stage
+                                                <i class='bx-fw bx bx-move-vertical'></i>Move Stage
                                             </button>
                                         }
                                     </div>
                                     <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                         {(this.props.gh_current_stage_id == "" || this.props.gh_current_stage_id == null) ?
                                             <button
-                                                className="default-btn"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
+                                                className="default-btn3"
+                                                style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.rejectCandidates(); this.props.refresh() }) : this.jobClosedAlert}>
-                                                <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
+                                                <i class='bx-fw bx bxs-x-square' style={{ color: "#090D3A" }}></i>Reject
                                             </button> :
                                             <button
-                                                className="default-btn"
-                                                style={{ color: "#090D3A", backgroundColor: "#E8EDFC", width: "13vw" }}
+                                                className="default-btn3"
+                                                style={{ width: "13vw", paddingLeft: "25px" }}
                                                 onClick={this.props.filter == "active" ? (() => { this.openRejectNoteForm(); this.props.refresh() }) : this.jobClosedAlert}>
-                                                <i class='bx bx-calendar-x' style={{ color: "#090D3A" }}></i>Reject
+                                                <i class='bx-fw bx bxs-x-square' style={{ color: "#090D3A" }}></i>Reject
                                             </button>
                                         }
                                     </div>
@@ -705,7 +705,7 @@ export class ReviewApplication extends Component {
                         </div>
                     </div>
                     <div className="col-9 mt-3 pl-3 pr-2" >
-                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px" }}>
+                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "3px" }}>
                             <div>
                                 {this.props.applicants[this.props.current]?.questions?.length > 0 &&
                                     <h2

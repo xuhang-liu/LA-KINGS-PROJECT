@@ -46,62 +46,89 @@ const CompanyBranding = (props) => {
                                             </div>}
                                         <div className="card container-xl mt-3 pt-3 pb-3 ml-3">
                                             <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Jobs</h3>
-                                            {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
-                                                return (
-                                                    <div className="container-xl">
-                                                        <div className="mt-4">
-                                                            <div className="row">
-                                                                <div className="col-9" style={{ color: "#67a3fa" }}>
+                                            {props.jobs_branding?.length > 0 ?
+                                                <div>
+                                                    {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
+                                                        return (
+                                                            <div className="container-xl">
+                                                                <div className="mt-4">
                                                                     <div className="row">
-                                                                        <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
-                                                                            {j.job_title}
-                                                                        </a>
-                                                                    </div>
-                                                                    <div className="row mb-2">
-                                                                        <div className="col-12 ml-3" style={{ float: "left" }}>
-                                                                            <p style={{ color: "#95A8C3" }}>{j.job_location?.replace(",", " ")?.split(",")[0]} • {j.job_level}</p>
+                                                                        <div className="col-9" style={{ color: "#67a3fa" }}>
+                                                                            <div className="row">
+                                                                                <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
+                                                                                    {j.job_title}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div className="row mb-2">
+                                                                                <div className="col-12 ml-3" style={{ float: "left" }}>
+                                                                                    <p style={{ color: "#95A8C3" }}>{j.job_location?.replace(",", " ")?.split(",")[0]} • {j.job_level}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="col-3">
+                                                                            <div className="row">
+                                                                                <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn" style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}>Apply</a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="col-3">
-                                                                    <div className="row">
-                                                                        <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn" style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}>Apply</a>
-                                                                    </div>
-                                                                </div>
+                                                                <hr
+                                                                    style={{
+                                                                        color: "#E8EDFC",
+                                                                        backgroundColor: "#E8EDFC",
+                                                                        height: 3,
+                                                                        marginBottom: "0.5rem",
+                                                                        marginTop: "0.5rem"
+                                                                    }}
+                                                                />
                                                             </div>
-                                                        </div>
-                                                        <hr
-                                                            style={{
-                                                                color: "#E8EDFC",
-                                                                backgroundColor: "#E8EDFC",
-                                                                height: 3,
-                                                                marginBottom: "0.5rem",
-                                                                marginTop: "0.5rem"
-                                                            }}
-                                                        />
-                                                    </div>
-                                                )
-                                            })}
+                                                        )
+                                                    })}
+                                                </div> :
+                                                <div>
+                                                    <p className="px-5">Thank you for your interest, but there are no job openings available at this time.</p>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                     <div className="col-4">
                                         <div className="card container-xl mt-5 pt-3 pb-3">
                                             <h3 style={{ color: "#95A8C3", fontWeight: "700", fontSize: "1.1rem" }}>ABOUT THE COMPANY</h3>
-                                            <br />
-                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
-                                            <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                                            <br />
-                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
-                                            <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
-                                            <br />
-                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Company Size</p>
-                                            <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_size}</p>
-                                            <br />
-                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
-                                            <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
-                                            <br />
-                                            <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
-                                            <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
+                                            {props.website != "" &&
+                                                <div>
+                                                    <br />
+                                                    <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
+                                                    <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                </div>
+                                            }
+                                            {props.location != "" &&
+                                                <div>
+                                                    <br />
+                                                    <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
+                                                    <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
+                                                </div>
+                                            }
+                                            {props.company_size != "" &&
+                                                <div>
+                                                    <br />
+                                                    <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Company Size</p>
+                                                    <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_size}</p>
+                                                </div>
+                                            }
+                                            {props.company_type != "" &&
+                                                <div>
+                                                    <br />
+                                                    <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
+                                                    <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
+                                                </div>
+                                            }
+                                            {props.contact_email != "" &&
+                                                <div>
+                                                    <br />
+                                                    <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
+                                                    <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
+                                                </div>
+                                            }
                                             <br />
                                             <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                             <div className="row pl-3">
@@ -132,21 +159,41 @@ const CompanyBranding = (props) => {
                             </div>
                             <div className="container mt-3 pt-3 pb-3 ml-3 mr-5">
                                 <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>About The Company</h3>
-                                <br />
-                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
-                                <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                                <br />
-                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
-                                <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
-                                <br />
-                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Company Size</p>
-                                <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_size}</p>
-                                <br />
-                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
-                                <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
-                                <br />
-                                <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
-                                <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
+                                {props.website != "" &&
+                                    <div>
+                                        <br />
+                                        <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
+                                        <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                    </div>
+                                }
+                                {props.location != "" &&
+                                    <div>
+                                        <br />
+                                        <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Location</p>
+                                        <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.location}</p>
+                                    </div>
+                                }
+                                {props.company_size != "" &&
+                                    <div>
+                                        <br />
+                                        <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Company Size</p>
+                                        <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_size}</p>
+                                    </div>
+                                }
+                                {props.company_type != "" &&
+                                    <div>
+                                        <br />
+                                        <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Industry</p>
+                                        <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.company_type}</p>
+                                    </div>
+                                }
+                                {props.contact_email != "" &&
+                                    <div>
+                                        <br />
+                                        <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Contact Email</p>
+                                        <p style={{ color: "##090d3a", fontWeight: "500", fontSize: "0.9rem" }}>{props.contact_email}</p>
+                                    </div>
+                                }
                                 <br />
                                 <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Social Media</p>
                                 <div className="row pl-3">
@@ -164,44 +211,51 @@ const CompanyBranding = (props) => {
                                 </div>}
                             <div className="container mt-3 pt-3 pb-3 ml-3 pr-5">
                                 <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Jobs</h3>
-                                {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
-                                    return (
-                                        <div className="container-fluid">
-                                            <div className="mt-4">
-                                                <div className="row">
-                                                    <div className="col-12" style={{ color: "#67a3fa" }}>
+                                {props.jobs_branding?.length > 0 ?
+                                    <div>
+                                        {props.jobs_branding?.sort((a, b) => b.id - a.id)?.map((j, index) => {
+                                            return (
+                                                <div className="container-fluid">
+                                                    <div className="mt-4">
                                                         <div className="row">
-                                                            <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
-                                                                {j.job_title}
-                                                            </a>
+                                                            <div className="col-12" style={{ color: "#67a3fa" }}>
+                                                                <div className="row">
+                                                                    <a target="_blank" rel="noreferrer" href={j.job_url} className="title-button ml-4" style={{ float: "left", textDecoration: "none", color: "#67a3fa" }}>
+                                                                        {j.job_title}
+                                                                    </a>
+                                                                </div>
+                                                                <div className="row mb-2">
+                                                                    <div className="col-12 ml-3" style={{ float: "left" }}>
+                                                                        <p style={{ color: "#95A8C3" }}>{j.job_location?.replace(",", " ")?.split(",")[0]} • {j.job_level}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="row mb-2">
-                                                            <div className="col-12 ml-3" style={{ float: "left" }}>
-                                                                <p style={{ color: "#95A8C3" }}>{j.job_location?.replace(",", " ")?.split(",")[0]} • {j.job_level}</p>
+                                                        <div className="row">
+                                                            <div className="col-12">
+                                                                <div className="row">
+                                                                    <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn mb-2 ml-4" style={{ paddingLeft: "25px", textDecoration: "none" }}>Apply</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <hr
+                                                        style={{
+                                                            color: "#E8EDFC",
+                                                            backgroundColor: "#E8EDFC",
+                                                            height: 3,
+                                                            marginBottom: "0.5rem",
+                                                            marginTop: "0rem"
+                                                        }}
+                                                    />
                                                 </div>
-                                                <div className="row">
-                                                    <div className="col-12">
-                                                        <div className="row">
-                                                            <a target="_blank" rel="noreferrer" href={j.job_url} className="default-btn mb-2 ml-4" style={{ paddingLeft: "25px", textDecoration: "none" }}>Apply</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr
-                                                style={{
-                                                    color: "#E8EDFC",
-                                                    backgroundColor: "#E8EDFC",
-                                                    height: 3,
-                                                    marginBottom: "0.5rem",
-                                                    marginTop: "0rem"
-                                                }}
-                                            />
-                                        </div>
-                                    )
-                                })}
+                                            )
+                                        })}
+                                    </div> :
+                                    <div>
+                                        <p className="px-5">Thank you for your interest, but there are no job openings available at this time.</p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

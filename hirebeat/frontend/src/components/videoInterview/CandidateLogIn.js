@@ -149,7 +149,7 @@ export class CandidateLogin extends Component {
               <div className="card-body" style={{ marginTop: "5rem" }}>
                 <div className="row">
                   <div className="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
-                    <form method="post" onSubmit={this.onSubmit}>
+                    <form id="Video_Interviewees_Login" method="post" onSubmit={this.onSubmit}>
 
                       <div className="form-group">
                         <input

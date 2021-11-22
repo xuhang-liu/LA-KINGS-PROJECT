@@ -356,7 +356,7 @@ const ReviewCandidate = (props) => {
             <div className="row" style={{ display: "flex" }}>
                 <div className="col-3 pl-3 mt-3 pr-2">
                     {!isEdit ?
-                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "20vh" }}>
+                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "3px", width: "100%", minHeight: "20vh" }}>
                             <div className="row mb-3" style={{ marginBottom: "2%" }}>
                                 <div className="col d-flex align-items-center">
                                     <h2
@@ -438,7 +438,7 @@ const ReviewCandidate = (props) => {
                         />
                     }
                     {(props.curJob.job_details.gh_job_id == null || props.curJob.job_details.gh_job_id == "") &&
-                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "10px", width: "100%", minHeight: "30vh", position: "relative" }}>
+                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "3px", width: "100%", minHeight: "30vh", position: "relative" }}>
                             {/* <h2
                             style={{
                                 fontWeight: "600",
@@ -471,25 +471,25 @@ const ReviewCandidate = (props) => {
                                     {props.applicant.is_active &&
                                         <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button onClick={props.filter == "active" ? openMoveForm : jobClosedAlert} className="default-btn1" style={{ paddingLeft: "25px", width: "13vw" }}>
-                                                Move Stage
+                                                <i class='bx-fw bx bx-move-vertical'></i>Move Stage
                                             </button>
                                         </div>}
                                     {props.applicant.is_active ?
                                         <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 onClick={props.filter == "active" ? rejectCandidates : jobClosedAlert}
-                                                className="default-btn1"
-                                                style={{ paddingLeft: "25px", width: "13vw", background: "#E8EDFC", color: "#090D3A" }}
+                                                className="default-btn3"
+                                                style={{ paddingLeft: "25px", width: "13vw" }}
                                             >
-                                                <i class='bx-fw bx bxs-x-circle' style={{ color: "#090D3A" }}></i> Reject
+                                                <i class='bx-fw bx bxs-x-square' style={{ color: "#090D3A" }}></i> Reject
                                             </button>
                                         </div> :
                                         <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                             <button
                                                 className="default-btn1"
-                                                style={{ paddingLeft: "25px", width: "13vw", background: "#FF0000", color: "#ffffff" }}
+                                                style={{ paddingLeft: "25px", width: "13vw", backgroundColor: "#FF0000", color: "#ffffff" }}
                                             >
-                                                <i class='bx-fw bx bxs-x-circle' style={{ color: "#ffffff" }}></i> Rejected
+                                                <i class='bx-fw bx bxs-x-square' style={{ color: "#ffffff" }}></i> Rejected
                                             </button>
                                         </div>
                                     }
@@ -571,7 +571,7 @@ const ReviewCandidate = (props) => {
                             </div>
                         </div>}
                 </div>
-                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "10px", width: "73%" }}>
+                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "3px", width: "73%" }}>
                     <div>
                         {props.applicants[props.current].answers?.length > 0 &&
                             <h2
