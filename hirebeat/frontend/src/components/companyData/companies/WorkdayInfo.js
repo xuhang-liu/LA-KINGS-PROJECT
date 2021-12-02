@@ -27,7 +27,7 @@ class WorkdayInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Workday</title>
                     <meta name="Description" CONTENT="Workday is a company providing enterprise cloud applications for finance and human resources. It delivers financial management, human capital management, and analytics applications for companies, educational institutions, and government agencies. As part of its applications, Workday provides embedded analytics that captures everyday business events’ content and context, facilitating informed decision-making from wherever users work." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/workday"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/workday"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -84,7 +84,7 @@ class BlogDetailsContent15 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
+                                        url={"https://app.hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                         quote={"Top 3 Jobs You Should Apply For Finance Major"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -94,7 +94,7 @@ class BlogDetailsContent15 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
+                                           url={"https://app.hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                            title={"Top 3 Jobs You Should Apply For Finance Major"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -105,7 +105,7 @@ class BlogDetailsContent15 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
+                                            url={"https://app.hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                             title={"Top 3 Jobs You Should Apply For Finance Major"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -115,7 +115,7 @@ class BlogDetailsContent15 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
+                                            url={"https://app.hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major"}
                                             title={"Top 3 Jobs You Should Apply For Finance Major"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

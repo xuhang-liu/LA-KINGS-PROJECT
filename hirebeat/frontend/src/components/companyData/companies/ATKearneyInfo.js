@@ -27,7 +27,7 @@ class ATKearneyInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Kearney</title>
                     <meta name="Description" CONTENT="Kearney is a management consulting firm. It focuses on strategic and operational CEO-agenda issues facing businesses, governments, and institutions around the globe. Its industry specialties include aerospace and defense, automotive, chemicals, communications, media and technology, consumer products and retail, energy, financial institutions, health, industrial goods and services, infrastructure, metals and mining, private equity, public sector, transportation, and travel. Major service lines are in strategy, analytics, mergers and acquisitions, innovation, operations, technology strategy, organization and transformation, marketing and sales, procurement, and sustainability." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/kearney"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/kearney"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

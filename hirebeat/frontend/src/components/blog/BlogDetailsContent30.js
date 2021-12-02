@@ -100,7 +100,7 @@ class BlogDetailsContent30 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
+                                        url={"https://app.hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
                                         quote={"HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -110,7 +110,7 @@ class BlogDetailsContent30 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
+                                           url={"https://app.hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
                                            title={"HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -121,7 +121,7 @@ class BlogDetailsContent30 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
+                                            url={"https://app.hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
                                             title={"HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -131,7 +131,7 @@ class BlogDetailsContent30 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
+                                            url={"https://app.hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021"}
                                             title={"HireBeat Blog – 10 Impactful Ways To Update Your Resume For 2021"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

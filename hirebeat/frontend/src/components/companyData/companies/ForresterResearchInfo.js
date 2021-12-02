@@ -27,7 +27,7 @@ class ForresterResearchInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Forrester Research</title>
                     <meta name="Description" CONTENT="Forrester Research is a market research, data, and advisory company. It offers products, services, and engagement opportunities, which fall into five categories: Research, Connect (peer offerings and certifications), Analytics, Consulting, and Events." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/forrester-research"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/forrester-research"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

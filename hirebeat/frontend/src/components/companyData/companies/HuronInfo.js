@@ -27,7 +27,7 @@ class HuronInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Huron</title>
                     <meta name="Description" CONTENT="Huron Consulting Group is a global professional services firm. Huron helps clients accelerate operational, digital, and cultural transformation. The firm specializes in serving clients in the healthcare, higher education, life sciences, and commercial sectors" ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/huron"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/huron"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -64,7 +64,7 @@ class BlogDetailsContent4 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-questions-to-ask-at-career-fairs"}
+                                        url={"https://app.hirebeat.co/blog-questions-to-ask-at-career-fairs"}
                                         quote={"Questions to Ask at Career Fairs"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -74,7 +74,7 @@ class BlogDetailsContent4 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-questions-to-ask-at-career-fairs"}
+                                           url={"https://app.hirebeat.co/blog-questions-to-ask-at-career-fairs"}
                                            title={"Questions to Ask at Career Fairs"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -85,7 +85,7 @@ class BlogDetailsContent4 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-questions-to-ask-at-career-fairs"}
+                                            url={"https://app.hirebeat.co/blog-questions-to-ask-at-career-fairs"}
                                             title={"Questions to Ask at Career Fairs"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -95,7 +95,7 @@ class BlogDetailsContent4 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-questions-to-ask-at-career-fairs"}
+                                            url={"https://app.hirebeat.co/blog-questions-to-ask-at-career-fairs"}
                                             title={"Questions to Ask at Career Fairs"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

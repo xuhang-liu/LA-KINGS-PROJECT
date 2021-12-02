@@ -27,7 +27,7 @@ class MastercardInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Mastercard</title>
                     <meta name="Description" CONTENT="Mastercard is a multinational financial services corporation that provides transaction processing and other payment-related products and services. It facilitates payment transactions, including authorization, clearing, settlement, and delivery of related products and services. The company also offers value-added services, such as safety and security products, loyalty and reward programs, information and consulting services, issuer, and acquirer processing solutions, and payment and mobile gateways." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/mastercard"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/mastercard"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

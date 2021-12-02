@@ -27,7 +27,7 @@ class NTInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Northern Trust</title>
                     <meta name="Description" CONTENT="Northern Trust is a provider of wealth management, asset servicing, asset management, and banking solutions to corporations, institutions, families, and individuals. It is a financial holding company conducting business through various subsidiaries, including The Northern Trust Company (Bank). The company focuses on managing and servicing client assets through its two client-focused segments: Corporate & Institutional Services (C&IS) and Wealth Management. It also supports the C&IS and Wealth Management segments by providing a range of asset management and related services through its subsidiaries." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/northern-trust"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/northern-trust"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

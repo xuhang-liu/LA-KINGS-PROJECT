@@ -27,7 +27,7 @@ class LEKConsultingInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – L.E.K.Consulting</title>
                     <meta name="Description" CONTENT="L.E.K. Consulting is a global management consulting firm. Its core capabilities include data and analytics, digital, disruption management, marketing and sales, mergers and acquisitions, organization and performance, performance improvement, post-merger integration, private equity, strategy, transformation, and value activation. The firm serves private and public sector organizations, private equity firms, and emerging entrepreneurial businesses across a broad range of industries, such as business services, consumer products, education, energy and environment, financial services, healthcare services, industrials, life sciences, and pharma, media and entertainment, MedTech, private equity, retail, technology, and travel and transport." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/lek-consulting"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/lek-consulting"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

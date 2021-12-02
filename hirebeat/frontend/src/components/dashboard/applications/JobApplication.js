@@ -576,7 +576,7 @@ const JobCard = (props) => {
     //            let url = "";
     //            if (emails[i] != "" && names[i] != "") {
     //                //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-    //                let prefix = "https://hirebeat.co/candidate-login?";  // online
+    //                let prefix = "https://app.hirebeat.co/candidate-login?";  // online
     //                let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
     //                let encode = window.btoa(params);
     //                url = prefix + encode;
@@ -911,7 +911,7 @@ const JobCard = (props) => {
                     let url = "";
                     if (emails[i] != "" && names[i] != "") {
                         //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-                        let prefix = "https://hirebeat.co/candidate-login?";  // online
+                        let prefix = "https://app.hirebeat.co/candidate-login?";  // online
                         let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
                         let encode = window.btoa(params);
                         url = prefix + encode;
@@ -1831,7 +1831,7 @@ const Applicant = (props) => {
         // encode url
         let url = "";
         //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-        let prefix = "https://hirebeat.co/candidate-login?";  // online
+        let prefix = "https://app.hirebeat.co/candidate-login?";  // online
         let params = "email=" + email + "&" + "positionId=" + positionId;
         let encode = window.btoa(params);
         url = prefix + encode;

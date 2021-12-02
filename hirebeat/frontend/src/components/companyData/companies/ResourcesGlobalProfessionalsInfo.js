@@ -27,7 +27,7 @@ class ResourcesGlobalProfessionalsInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Resources Global Professionals</title>
                     <meta name="Description" CONTENT="Resources Global Professionals (RGP) is a multinational consulting firm. The Firm offers finance and accounting services, including process transformation and optimization, financial reporting and analysis, technical and operational accounting, merger and acquisition due diligence and integration, audit readiness, preparation and response, implementation of new accounting standards, and remediation support." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/resources-global-professionals"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/resources-global-professionals"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

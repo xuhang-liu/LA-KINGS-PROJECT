@@ -27,7 +27,7 @@ class StrategyInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Strategy</title>
                     <meta name="Description" CONTENT="Strategy& is a strategy consulting business. Its services include business strategy, customer strategy, operations strategy, organization strategy, product and service innovation, and technology strategy. Strategy& serves businesses, governments, and organizations." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/strategy"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/strategy"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

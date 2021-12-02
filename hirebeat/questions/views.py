@@ -887,7 +887,7 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
         message = get_template("questions/sub_reviewer_email.html")
     else:
         message = get_template("questions/external_reviewer_notice.html")
-    link = "https://hirebeat.co/employer_register?" + encoded_email
+    link = "https://app.hirebeat.co/employer_register?" + encoded_email
     context = {
         'link': link,
         'name': name,
@@ -1100,7 +1100,7 @@ def send_ex_reviewer_invitation(name, email, encoded_email, company_name, master
         message = get_template("questions/ex_reviewer_email.html")
     else:
         message = get_template("questions/external_reviewer_notice.html")
-    link = "https://hirebeat.co/employer_register?" + encoded_email
+    link = "https://app.hirebeat.co/employer_register?" + encoded_email
     context = {
         'link': link,
         'name': name,

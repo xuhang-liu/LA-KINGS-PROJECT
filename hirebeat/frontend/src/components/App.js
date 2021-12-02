@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {PersistGate} from 'redux-persist/lib/integration/react';
 
 import indexsaas from "./home/index-saas";
-import IndexEmployer from "./home/index-employer";
+// import IndexEmployer from "./home/index-employer";
 import EmailVerification from "./accounts/EmailVerification";
 import EmailVerificationMini from "./accounts/EmailVerificationMini";
 import EmailVerificationEmployerMini from "./accounts/EmailVerificationEmployerMini";
@@ -26,36 +26,36 @@ import Employer_pricing from "./pricing/Employer_pricing";
 import ROICalculator from "./Common/ROICalculator";
 import Payment from "./payment/Payment"
 import about from "./company/about";
-import Employerabout from "./company/employerabout";
+// import Employerabout from "./company/employerabout";
 import bloggrid from "./blog/bloggrid";
-import bloggridEmployer from "./blog/bloggridEmployer";
-import BlogDetail1_Employer from "./blog/blog-details1-employer";
-import BlogDetail2_Employer from "./blog/blog-details2-employer";
-import BlogDetail3_Employer from "./blog/blog-details3-employer";
-import BlogDetail4_Employer from "./blog/blog-details4-employer";
-import BlogDetail5_Employer from "./blog/blog-details5-employer";
-import BlogDetail6_Employer from "./blog/blog-details6-employer";
-import BlogDetail7_Employer from "./blog/blog-details7-employer";
-import BlogDetail8_Employer from "./blog/blog-details8-employer";
-import BlogDetail9_Employer from "./blog/blog-details9-employer";
-import BlogDetail10_Employer from "./blog/blog-details10-employer";
-import BlogDetail11_Employer from "./blog/blog-details11-employer";
-import BlogDetail12_Employer from "./blog/blog-details12-employer";
-import BlogDetail13_Employer from "./blog/blog-details13-employer";
-import BlogDetail14_Employer from "./blog/blog-details14-employer";
-import BlogDetail15_Employer from "./blog/blog-details15-employer";
-import BlogDetail16_Employer from "./blog/blog-details16-employer";
-import BlogDetail17_Employer from "./blog/blog-details17-employer";
-import BlogDetail18_Employer from "./blog/blog-details18-employer";
-import BlogDetail19_Employer from "./blog/blog-details19-employer";
-import BlogDetail20_Employer from "./blog/blog-details20-employer";
-import BlogDetail21_Employer from "./blog/blog-details21-employer";
-import BlogDetail22_Employer from "./blog/blog-details22-employer";
-import BlogDetail23_Employer from "./blog/blog-details23-employer";
-import BlogDetail24_Employer from "./blog/blog-details24-employer";
-import BlogDetail25_Employer from "./blog/blog-details25-employer";
-import BlogDetail26_Employer from "./blog/blog-details26-employer";
-import BlogDetail27_Employer from "./blog/blog-details27-employer";
+// import bloggridEmployer from "./blog/bloggridEmployer";
+// import BlogDetail1_Employer from "./blog/blog-details1-employer";
+// import BlogDetail2_Employer from "./blog/blog-details2-employer";
+// import BlogDetail3_Employer from "./blog/blog-details3-employer";
+// import BlogDetail4_Employer from "./blog/blog-details4-employer";
+// import BlogDetail5_Employer from "./blog/blog-details5-employer";
+// import BlogDetail6_Employer from "./blog/blog-details6-employer";
+// import BlogDetail7_Employer from "./blog/blog-details7-employer";
+// import BlogDetail8_Employer from "./blog/blog-details8-employer";
+// import BlogDetail9_Employer from "./blog/blog-details9-employer";
+// import BlogDetail10_Employer from "./blog/blog-details10-employer";
+// import BlogDetail11_Employer from "./blog/blog-details11-employer";
+// import BlogDetail12_Employer from "./blog/blog-details12-employer";
+// import BlogDetail13_Employer from "./blog/blog-details13-employer";
+// import BlogDetail14_Employer from "./blog/blog-details14-employer";
+// import BlogDetail15_Employer from "./blog/blog-details15-employer";
+// import BlogDetail16_Employer from "./blog/blog-details16-employer";
+// import BlogDetail17_Employer from "./blog/blog-details17-employer";
+// import BlogDetail18_Employer from "./blog/blog-details18-employer";
+// import BlogDetail19_Employer from "./blog/blog-details19-employer";
+// import BlogDetail20_Employer from "./blog/blog-details20-employer";
+// import BlogDetail21_Employer from "./blog/blog-details21-employer";
+// import BlogDetail22_Employer from "./blog/blog-details22-employer";
+// import BlogDetail23_Employer from "./blog/blog-details23-employer";
+// import BlogDetail24_Employer from "./blog/blog-details24-employer";
+// import BlogDetail25_Employer from "./blog/blog-details25-employer";
+// import BlogDetail26_Employer from "./blog/blog-details26-employer";
+// import BlogDetail27_Employer from "./blog/blog-details27-employer";
 import BlogDetail1 from "./blog/blog-details1";
 import BlogDetail2 from "./blog/blog-details2";
 import BlogDetail3 from "./blog/blog-details3";
@@ -224,12 +224,12 @@ import "./public/css/animate.min.css";
 import "./public/css/bootstrap.min.css";
 import "./public/css/boxicons.min.css";
 import ApplyJob from "./dashboard/jobBoard/ApplyJob";
-import ProductPage from "./HomeEmployer/ProductPage";
-import FeatureVideo from "./HomeEmployer/FeatureVideo";
+// import ProductPage from "./HomeEmployer/ProductPage";
+// import FeatureVideo from "./HomeEmployer/FeatureVideo";
 import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
-import ResumeScreening from "./HomeEmployer/ResumeScreening";
-import SolutionPage from "./HomeEmployer/SolutionPage";
-import IntergrationPage from "./HomeEmployer/IntergrationPage";
+// import ResumeScreening from "./HomeEmployer/ResumeScreening";
+// import SolutionPage from "./HomeEmployer/SolutionPage";
+// import IntergrationPage from "./HomeEmployer/IntergrationPage";
 import PublicProfile from "./dashboard/profile/PublicProfile";
 
 const alertOptions = {
@@ -318,16 +318,16 @@ class App extends Component {
                 <PrivateRoute exact path="/audio-interview" component={AudioResponseWindow}/>
                 <Route exact path="/apply-job/:companyName" component={ApplyJob} />
                 <Route exact path="/company-branding/:companyName" component={CompanyBranding} />
-                <Route exact path="/employer" component={IndexEmployer} />
+                {/* <Route exact path="/employer" component={IndexEmployer} /> */}
                 <Route exact path="/interview_Completion" component={InterviewCompletion} />
                 <Route exact path="/pricing" component={pricings} />
                 <Route exact path="/employer-pricing" component={Employer_pricing} />
                 <Route exact path="/employer-roi-calculator" component={ROICalculator} />
                 <Route exact path="/company" component={about} />
-                <Route exact path="/employer_company" component={Employerabout} />
+                {/* <Route exact path="/employer_company" component={Employerabout} /> */}
                 <Route exact path="/job-seekers-howitworks" component={Howitworks} />
                 <Route exact path="/bloghome" component={bloggrid} />
-                <Route exact path="/bloghome_employer" component={bloggridEmployer} />
+                {/* <Route exact path="/bloghome_employer" component={bloggridEmployer} />
                 <Route exact path="/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring" component={BlogDetail1_Employer} />
                 <Route exact path="/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company" component={BlogDetail2_Employer} />
                 <Route exact path="/employer_blog-writing-a-good-job-posting-that-will-attract-employees" component={BlogDetail3_Employer} />
@@ -354,7 +354,7 @@ class App extends Component {
                 <Route exact path="/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process" component={BlogDetail24_Employer} />
                 <Route exact path="/employer_blog-4-challenges-campus-recruiters-could-meet" component={BlogDetail25_Employer} />
                 <Route exact path="/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system" component={BlogDetail26_Employer} />
-                <Route exact path="/employer_blog-five-ways-applicant-tracking-systems-up" component={BlogDetail27_Employer} />
+                <Route exact path="/employer_blog-five-ways-applicant-tracking-systems-up" component={BlogDetail27_Employer} /> */}
                 <Route exact path="/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job" component={BlogDetail1} />
                 <Route exact path="/blog-video-interview-practice" component={BlogDetail2} />
                 <Route exact path="/blog-how-to-prepare-for-an-AI-interview" component={BlogDetail3} />
@@ -390,7 +390,7 @@ class App extends Component {
                 <Route exact path="/employer-login" component={EmployerLogin} />
                 <Route exact path="/employer_register" component={EmployerRegister} />
                 <Route exact path="/upload" component={MyVideoUploader} />
-                <Route exact path="/" component={IndexEmployer} />
+                <Route exact path="/" component={EmployerLogin} />
                 <Route exact path="/job-seekers" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/privacy" component={Privacy} />
@@ -503,11 +503,11 @@ class App extends Component {
                 <Route exact path="/career-details" component={SearchResult} />
                 <Route exact path="/candidate-login" component={CandidateLogin} />
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
-                <Route exact path="/employer-product" component={ProductPage} />
-                <Route exact path="/employer-feature-video" component={FeatureVideo} />
-                <Route exact path="/employer-resume-screening" component={ResumeScreening} />
-                <Route exact path="/employer-solution-page" component={SolutionPage} />
-                <Route exact path="/employer-intergration-page" component={IntergrationPage} />
+                {/* <Route exact path="/employer-product" component={ProductPage} /> */}
+                {/* <Route exact path="/employer-feature-video" component={FeatureVideo} /> */}
+                {/* <Route exact path="/employer-resume-screening" component={ResumeScreening} /> */}
+                {/* <Route exact path="/employer-solution-page" component={SolutionPage} /> */}
+                {/* <Route exact path="/employer-intergration-page" component={IntergrationPage} /> */}
                 <Route exact path="/talent-profile" component={PublicProfile} />
                 <Route component={NotFoundPage} />
               </Switch>

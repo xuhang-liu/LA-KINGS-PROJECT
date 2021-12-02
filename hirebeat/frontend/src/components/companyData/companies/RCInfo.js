@@ -27,7 +27,7 @@ class RCInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Rothschild & Co</title>
                     <meta name="Rothschild & Co is a global financial advisory group which provides M&A, strategy and financing advice, as well as investment and wealth management solutions to large institutions, families, individuals and governments. There are three business lines in the Company: Rothschild Global Advisory, Rothschild Private Wealth and Asset Management, and Rothschild Merchant Banking. Rothschild & Co invests in corporate private equity, secondaries, multi-managers funds and co-investments, direct lending, and credit management businesses." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/rothschild-co"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/rothschild-co"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

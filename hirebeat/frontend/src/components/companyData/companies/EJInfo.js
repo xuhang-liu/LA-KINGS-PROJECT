@@ -27,7 +27,7 @@ class EJInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Edward Jones</title>
                     <meta name="Description" CONTENT="Edward Jones is a financial services firm dedicated to serving the needs of individual investors. It offers individual retirement accounts and retirement saving plans, education savings options, estate planning and trust services, account services and tools, and banking services." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/edward-jones"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/edward-jones"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

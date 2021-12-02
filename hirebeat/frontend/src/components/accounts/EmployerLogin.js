@@ -236,7 +236,7 @@ export class EmployerLogin extends Component {
                             style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
                           <i className="bx bxs-hot"></i>
-                          Employer Log in
+                          Log in
                         </button>
 
                       </div>

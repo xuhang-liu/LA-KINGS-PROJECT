@@ -27,7 +27,7 @@ class MerrillLynchInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Merrill Lynch</title>
                     <meta name="Description" CONTENT="Merrill Lynch is a company providing wealth management and financial services. It offers account programs, wealth transfer and trust services, life insurance, investment advisory services, annuities, bond ladders, impact investing, retirement services, alternative investments, and other solutions." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/merrill-lynch"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/merrill-lynch"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -27,7 +27,7 @@ class KPMGInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – KPMG</title>
                     <meta name="Description" CONTENT="KPMG is a company that provides audit, tax, and advisory services. It offers accounting, auditing, regulatory and compliance, corporate recovery, forensic accounting, risk management, transaction advisory, and tax planning services. The company focuses on financial services, software, electronics, communications, media, chemicals, energy, power, transportation, food and beverage, healthcare, and other sectors." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/kpmg"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/kpmg"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

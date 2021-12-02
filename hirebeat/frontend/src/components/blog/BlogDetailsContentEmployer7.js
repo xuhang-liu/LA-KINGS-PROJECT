@@ -93,7 +93,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
+                                        url={"https://app.hirebeat.co/employer_blog-millennials-we-want-you"}
                                         quote={"Millennials? We Want You!"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -103,7 +103,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
+                                           url={"https://app.hirebeat.co/employer_blog-millennials-we-want-you"}
                                            title={"Millennials? We Want You!"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -114,7 +114,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
+                                            url={"https://app.hirebeat.co/employer_blog-millennials-we-want-you"}
                                             title={"Millennials? We Want You!"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -124,7 +124,7 @@ class BlogDetailsContentEmployer7 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-millennials-we-want-you"}
+                                            url={"https://app.hirebeat.co/employer_blog-millennials-we-want-you"}
                                             title={"Millennials? We Want You!"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

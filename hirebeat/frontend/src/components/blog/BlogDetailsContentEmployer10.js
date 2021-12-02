@@ -73,7 +73,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Want to find the right college student candidates? HireBeat could help! HireBeat is an HR software company software that aims to increase our customer’s success rate by delivering a video-based solution. To know more about us, visit <a href="/">https://hirebeat.co/</a>.
+                                    Want to find the right college student candidates? HireBeat could help! HireBeat is an HR software company software that aims to increase our customer’s success rate by delivering a video-based solution. To know more about us, visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
+                                        url={"https://app.hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                         quote={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -91,7 +91,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
+                                           url={"https://app.hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                            title={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -102,7 +102,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
+                                            url={"https://app.hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                             title={"Four Tips to Build a Successful Campus Recruiting Strategy"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -112,7 +112,7 @@ class BlogDetailsContentEmployer10 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
+                                            url={"https://app.hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy"}
                                             title={"Four Tips to Build a Successful Campus Recruiting Strategy"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

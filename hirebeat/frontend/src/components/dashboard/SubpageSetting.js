@@ -299,7 +299,7 @@ export class SubpageSetting extends Component {
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col">
-                                        <a target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                        <a target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                     </div>
                                 </div> */}
                             </div>

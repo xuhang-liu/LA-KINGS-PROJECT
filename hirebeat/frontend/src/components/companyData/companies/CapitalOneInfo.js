@@ -27,7 +27,7 @@ class CapitalOneInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Capital One</title>
                     <meta name="Description" CONTENT="Capital One Financial Corporation is a diversified financial services holding company specializing in credit cards, home loans, auto loans, and banking and savings products. Capital One operates in 3 segments: Credit Card, Consumer Banking, and Commercial Banking. The Credit Card segment consists of domestic consumer and small business card lending and international card businesses. The Consumer Banking segment consists of deposit gathering and lending activities for consumers and small businesses, and national auto lending. The Commercial Banking segment consists of our lending, deposit gathering, capital markets, and treasury management services to commercial real estate and commercial and industrial customers." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/capital-one"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/capital-one"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

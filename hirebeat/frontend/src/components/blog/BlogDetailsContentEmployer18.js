@@ -56,7 +56,7 @@ class BlogDetailsContentEmployer18 extends Component {
                                     <h3 className="mb-0">Final Words</h3>
                                     <br/>
                                     <p>
-                                    ATS is a strong tool that helps small business, so does HireBeat. HireBeat is an HR platform that provides the video interview tool to your business and saves your time. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    ATS is a strong tool that helps small business, so does HireBeat. HireBeat is an HR platform that provides the video interview tool to your business and saves your time. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ class BlogDetailsContentEmployer18 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
+                                        url={"https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
                                         quote={"How ATS works in the recruitment process"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -74,7 +74,7 @@ class BlogDetailsContentEmployer18 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
+                                           url={"https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
                                            title={"How ATS works in the recruitment process"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -85,7 +85,7 @@ class BlogDetailsContentEmployer18 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
                                             title={"How ATS works in the recruitment process"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -95,7 +95,7 @@ class BlogDetailsContentEmployer18 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process"}
                                             title={"How ATS works in the recruitment process"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

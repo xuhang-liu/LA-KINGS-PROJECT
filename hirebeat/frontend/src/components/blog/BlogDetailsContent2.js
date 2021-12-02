@@ -68,7 +68,7 @@ class BlogDetailsContent2 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-video-interview-practice"}
+                                        url={"https://app.hirebeat.co/blog-video-interview-practice"}
                                         quote={"Video interview practice"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -78,7 +78,7 @@ class BlogDetailsContent2 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-video-interview-practice"}
+                                           url={"https://app.hirebeat.co/blog-video-interview-practice"}
                                            title={"Video interview practice"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -89,7 +89,7 @@ class BlogDetailsContent2 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-video-interview-practice"}
+                                            url={"https://app.hirebeat.co/blog-video-interview-practice"}
                                             title={"Video interview practice"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -99,7 +99,7 @@ class BlogDetailsContent2 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-video-interview-practice"}
+                                            url={"https://app.hirebeat.co/blog-video-interview-practice"}
                                             title={"Video interview practice"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

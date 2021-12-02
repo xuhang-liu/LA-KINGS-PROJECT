@@ -28,7 +28,7 @@ class JLLPInfo extends Component {
                     <title>HireBeat Company Data – JLL Partners</title>
                     <meta name="Description" CONTENT="Founded in 1988, JLL Partners is among the leading private equity investment firms in the country. Since inception, we have managed a series of private equity funds aggregating approximately $4 billion in committed capital. JLL seeks to make control equity investments in middle market companies by extricating good companies from complicated situations and bad balance sheets, or by building strong companies in partnership with exceptional managers." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/jll-partners"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/jll-partners"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

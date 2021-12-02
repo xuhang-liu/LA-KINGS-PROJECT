@@ -27,7 +27,7 @@ class HoulihanLokeyInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Houlihan Lokey</title>
                     <meta name="Description" CONTENT="Houlihan Lokey is an investment bank specializing in mergers and acquisitions, capital markets, financial restructuring, valuation, and strategic consulting. It operates in 3 segments: Corporate Finance, Financial Restructuring, and Financial and Valuation Advisory. The Corporate Finance segment providers mergers, acquisitions, divestitures, and other related advisory services and financing solutions and capital-raising advisory services. The Financial Restructuring segment offers advisory services focusing on international and multi-jurisdictional restructurings. The Financial and Valuation Advisory part delivers fund, corporate valuation, transaction, real estate advisory services, portfolio valuation, transaction opinions, dispute resolution consulting, and real estate valuation offerings." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/houlihan-lokey"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/houlihan-lokey"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

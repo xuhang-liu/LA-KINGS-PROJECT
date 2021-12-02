@@ -27,7 +27,7 @@ class SSInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – State Street</title>
                     <meta name="Description" CONTENT="State Street is a financial holding company providing a range of financial products and services to institutional investors. It operates in 2 lines of business, which are Investment Servicing and Investment Management. The Investment Servicing line of business performs core custody and related functions, such as providing institutional investors with clearing, settlement, and payment services. The Investment Management line of business, through State Street Global Advisors, offers a range of investment management strategies and products for its clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/state-street"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/state-street"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

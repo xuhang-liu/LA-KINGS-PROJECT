@@ -63,7 +63,7 @@ class BlogDetailsContent8 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-keywords-to-include-on-a-resume"}
+                                        url={"https://app.hirebeat.co/blog-keywords-to-include-on-a-resume"}
                                         quote={"Keywords to Include on A Resume"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -73,7 +73,7 @@ class BlogDetailsContent8 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-keywords-to-include-on-a-resume"}
+                                           url={"https://app.hirebeat.co/blog-keywords-to-include-on-a-resume"}
                                            title={"Keywords to Include on A Resume"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -84,7 +84,7 @@ class BlogDetailsContent8 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-keywords-to-include-on-a-resume"}
+                                            url={"https://app.hirebeat.co/blog-keywords-to-include-on-a-resume"}
                                             title={"Keywords to Include on A Resume"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -94,7 +94,7 @@ class BlogDetailsContent8 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-keywords-to-include-on-a-resume"}
+                                            url={"https://app.hirebeat.co/blog-keywords-to-include-on-a-resume"}
                                             title={"Keywords to Include on A Resume"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

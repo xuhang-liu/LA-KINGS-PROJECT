@@ -78,7 +78,7 @@ def add_new_job(request):
                               loc_req=loc_req, pho_req=pho_req, lin_req=lin_req, job_post=job_post, eeo_req=eeo_req, eeo_ques_req=eeo_ques_req, skills=skills, is_closed=is_closed)
     # save job link in Job table
     encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
-    job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
+    job_url = "https://app.hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
     job.job_url = job_url
     job.save()
 
@@ -562,7 +562,7 @@ def get_zr_xml(request):
     publisher = ET.SubElement(source, 'publisher')
     # populate data to Optional Metadata Fields
     last_build_date.text = datetime.now().strftime("%c")
-    publisher_url.text = 'https://hirebeat.co/'
+    publisher_url.text = 'https://app.hirebeat.co/'
     publisher.text = 'HibreBeat'
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=1).values()
@@ -587,7 +587,7 @@ def get_zr_premium_xml(request):
     publisher = ET.SubElement(source, 'publisher')
     # populate data to Optional Metadata Fields
     last_build_date.text = datetime.now().strftime("%c")
-    publisher_url.text = 'https://hirebeat.co/'
+    publisher_url.text = 'https://app.hirebeat.co/'
     publisher.text = 'HibreBeat'
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=2).values()
@@ -1002,7 +1002,7 @@ def add_cand_from_merge(request):
                                           loc_req="1", pho_req="1", lin_req="1", job_post=0, eeo_req="1", eeo_ques_req="1", is_closed=2)
             # save job link
             encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
-            job_url = "https://hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
+            job_url = "https://app.hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
             job.job_url = job_url
             job.save()
             # Create jobs apply candidates

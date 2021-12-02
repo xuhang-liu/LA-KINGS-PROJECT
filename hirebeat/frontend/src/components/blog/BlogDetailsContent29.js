@@ -69,7 +69,7 @@ class BlogDetailsContent29 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Departing thoughts</h3>
                                     <p>
-                                    These are all the Cs that can represent your case in a better way before a hiring committee. You should also be open to new things that allow you to craft new skills. Make these experiences part of your resume and continue to update it as much as possible. HireBeat provides the resume optimization service supported by AI to help you get the job you want. To get personalized feedback now, visit <a href="/resume">https://hirebeat.co/resume</a>.
+                                    These are all the Cs that can represent your case in a better way before a hiring committee. You should also be open to new things that allow you to craft new skills. Make these experiences part of your resume and continue to update it as much as possible. HireBeat provides the resume optimization service supported by AI to help you get the job you want. To get personalized feedback now, visit <a href="/resume">https://app.hirebeat.co/resume</a>.
                                     </p>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ class BlogDetailsContent29 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
+                                        url={"https://app.hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                         quote={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -87,7 +87,7 @@ class BlogDetailsContent29 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
+                                           url={"https://app.hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                            title={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -98,7 +98,7 @@ class BlogDetailsContent29 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
+                                            url={"https://app.hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                             title={"HireBeat Blog – The 4C's That You Need for Your Resume"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -108,7 +108,7 @@ class BlogDetailsContent29 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
+                                            url={"https://app.hirebeat.co/blog-the-4c's-that-you-need-for-your-resume"}
                                             title={"HireBeat Blog – The 4C's That You Need for Your Resume"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

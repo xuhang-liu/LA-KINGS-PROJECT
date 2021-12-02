@@ -27,7 +27,7 @@ class HackettGroupInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – The Hackett Group</title>
                     <meta name="Description" CONTENT="The Hackett Group provides advisory, benchmarking, and transformation consulting services for corporations and government agencies. It offers shared offshoring and outsourcing advisory services, such as executive advisory, benchmarking, working capital management, globalization, and outsourcing, enterprise performance management, business intelligence, rapid cost reduction, organizational effectiveness, cash flow optimization, global process sourcing, return on investment from information technology investments, and performance management." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/hackett-group"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/hackett-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

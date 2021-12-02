@@ -75,7 +75,7 @@ class BlogDetailsContentEmployer4 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
+                                        url={"https://app.hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
                                         quote={"Interview Questions Every Recruiter Should Ask"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -85,7 +85,7 @@ class BlogDetailsContentEmployer4 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
+                                           url={"https://app.hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
                                            title={"Interview Questions Every Recruiter Should Ask"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -96,7 +96,7 @@ class BlogDetailsContentEmployer4 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
+                                            url={"https://app.hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
                                             title={"Interview Questions Every Recruiter Should Ask"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -106,7 +106,7 @@ class BlogDetailsContentEmployer4 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
+                                            url={"https://app.hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask"}
                                             title={"Interview Questions Every Recruiter Should Ask"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

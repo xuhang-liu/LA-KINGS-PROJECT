@@ -27,7 +27,7 @@ class KCInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – KeyCorp</title>
                     <meta name="KeyCorp is a bank-based financial services company, a holding company for KeyBank National Association. Through KeyBank and certain other subsidiaries, the company provides a range of retail and commercial banking, commercial leasing, investment management, consumer finance, student loan refinancing, commercial mortgage servicing and special servicing, and investment banking products and services. It serves individual, corporate, and institutional clients through two major business segments: Consumer Bank and Commercial Bank." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/keycorp"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/keycorp"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

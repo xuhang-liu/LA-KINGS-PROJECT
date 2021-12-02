@@ -27,7 +27,7 @@ class RFInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Regions Financial</title>
                     <meta name="Description" CONTENT="Regions Financial Corporation is a full-service provider of consumer and commercial banking, wealth management, and mortgage products and services. It operates in three segments: Corporate Bank, Consumer Bank, and Wealth Management. The Corporate Bank segment represents its commercial banking functions, including commercial and industrial, commercial real estate, and investor real estate lending. The Consumer Bank segment represents its branch network, including consumer banking products and services related to residential first mortgages, home equity lines and loans, small business loans, indirect loans, consumer credit cards and other consumer loans, as well as the corresponding deposit relationships. The Wealth Management segment offers individuals, businesses, governmental institutions, and non-profit entities a range of solutions to enable the transfer of wealth." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/regions-financial"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/regions-financial"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -85,7 +85,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                     <h3 className="mb-0">Final Words</h3>
                                     <br/>
                                     <p>
-                                    Hiring employees is not an easy task. However, paying attention to the red flags during the entire recruitment process can better equip you. HireBeat is an hr platform that helps with your recruiting process and secures the best ones for your company or business. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    Hiring employees is not an easy task. However, paying attention to the red flags during the entire recruitment process can better equip you. HireBeat is an hr platform that helps with your recruiting process and secures the best ones for your company or business. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
+                                        url={"https://app.hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                         quote={"Red Flags You Should Look Out In Candidates During The Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -103,7 +103,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
+                                           url={"https://app.hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                            title={"Red Flags You Should Look Out In Candidates During The Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -114,7 +114,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
+                                            url={"https://app.hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                             title={"Red Flags You Should Look Out In Candidates During The Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -124,7 +124,7 @@ class BlogDetailsContentEmployer16 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
+                                            url={"https://app.hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview"}
                                             title={"Red Flags You Should Look Out In Candidates During The Interview"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

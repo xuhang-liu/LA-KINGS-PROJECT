@@ -27,7 +27,7 @@ class NavigantConsultingInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Navigant Consulting</title>
                     <meta name="Description" CONTENT="Navigant Consulting provides professional services to corporate executives and senior management, corporate counsel, law firms, corporate boards, special committees, and governmental agencies worldwide. Professional service offerings include strategic, financial, operational, technology, risk management, compliance, investigative solutions, dispute resolution services, and business process management services. The business is organized in four reporting segments – Disputes, Investigations and Economics; Financial, Risk and Compliance; Healthcare; and Energy." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/navigant-consulting"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/navigant-consulting"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

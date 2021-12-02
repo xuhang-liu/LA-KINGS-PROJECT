@@ -27,7 +27,7 @@ class VanguardInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Vanguard</title>
                     <meta name="Description" CONTENT="Vanguard is an investment company. It offers a range of low-cost mutual funds, exchange-traded funds, advice, and related services to individual investors, financial professionals, corporate and institutional investors." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/vanguard"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/vanguard"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

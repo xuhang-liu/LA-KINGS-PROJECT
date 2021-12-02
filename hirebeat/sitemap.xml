@@ -1,967 +1,967 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 		<url>
-			<loc>https://hirebeat.co/</loc>
+			<loc>https://app.hirebeat.co/</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/upload</loc>
+			<loc>https://app.hirebeat.co/upload</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/component={indexemployer}/&gt;</loc>
+			<loc>https://app.hirebeat.co/component={indexemployer}/&gt;</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/job-seekers</loc>
+			<loc>https://app.hirebeat.co/job-seekers</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/payment</loc>
+			<loc>https://app.hirebeat.co/payment</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/privacy</loc>
+			<loc>https://app.hirebeat.co/privacy</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/term</loc>
+			<loc>https://app.hirebeat.co/term</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/contact</loc>
+			<loc>https://app.hirebeat.co/contact</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_contact</loc>
+			<loc>https://app.hirebeat.co/employer_contact</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/quiz</loc>
+			<loc>https://app.hirebeat.co/quiz</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/quizresult</loc>
+			<loc>https://app.hirebeat.co/quizresult</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/job-seekers-companydata</loc>
+			<loc>https://app.hirebeat.co/job-seekers-companydata</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/american-international-group</loc>
+			<loc>https://app.hirebeat.co/american-international-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/american-express</loc>
+			<loc>https://app.hirebeat.co/american-express</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bloomberg</loc>
+			<loc>https://app.hirebeat.co/bloomberg</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bny-mellon</loc>
+			<loc>https://app.hirebeat.co/bny-mellon</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blackrock</loc>
+			<loc>https://app.hirebeat.co/blackrock</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blackstone</loc>
+			<loc>https://app.hirebeat.co/blackstone</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/citi</loc>
+			<loc>https://app.hirebeat.co/citi</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/evercore</loc>
+			<loc>https://app.hirebeat.co/evercore</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/goldman-sachs</loc>
+			<loc>https://app.hirebeat.co/goldman-sachs</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jefferies-financial-group</loc>
+			<loc>https://app.hirebeat.co/jefferies-financial-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jll-partners</loc>
+			<loc>https://app.hirebeat.co/jll-partners</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jpmorgan-chase</loc>
+			<loc>https://app.hirebeat.co/jpmorgan-chase</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jane-street-capital</loc>
+			<loc>https://app.hirebeat.co/jane-street-capital</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/moodys</loc>
+			<loc>https://app.hirebeat.co/moodys</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/morgan-stanley</loc>
+			<loc>https://app.hirebeat.co/morgan-stanley</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/mufg</loc>
+			<loc>https://app.hirebeat.co/mufg</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/nasdaq</loc>
+			<loc>https://app.hirebeat.co/nasdaq</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/two-sigma</loc>
+			<loc>https://app.hirebeat.co/two-sigma</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/banco-santander</loc>
+			<loc>https://app.hirebeat.co/banco-santander</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bank-leumi</loc>
+			<loc>https://app.hirebeat.co/bank-leumi</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/citizens-financial-group</loc>
+			<loc>https://app.hirebeat.co/citizens-financial-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/edward-jones</loc>
+			<loc>https://app.hirebeat.co/edward-jones</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/fifth-third-bancorp</loc>
+			<loc>https://app.hirebeat.co/fifth-third-bancorp</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/hanmi-financial</loc>
+			<loc>https://app.hirebeat.co/hanmi-financial</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/hsbc</loc>
+			<loc>https://app.hirebeat.co/hsbc</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/julius-baer</loc>
+			<loc>https://app.hirebeat.co/julius-baer</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/keycorp</loc>
+			<loc>https://app.hirebeat.co/keycorp</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/lazard</loc>
+			<loc>https://app.hirebeat.co/lazard</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/mt-bank</loc>
+			<loc>https://app.hirebeat.co/mt-bank</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/northern-trust</loc>
+			<loc>https://app.hirebeat.co/northern-trust</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/pictet</loc>
+			<loc>https://app.hirebeat.co/pictet</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/pnc-financial-services-group</loc>
+			<loc>https://app.hirebeat.co/pnc-financial-services-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/rothschild-co</loc>
+			<loc>https://app.hirebeat.co/rothschild-co</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/regions-financial</loc>
+			<loc>https://app.hirebeat.co/regions-financial</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/raymond-james</loc>
+			<loc>https://app.hirebeat.co/raymond-james</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/state-street</loc>
+			<loc>https://app.hirebeat.co/state-street</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/wells-fargo</loc>
+			<loc>https://app.hirebeat.co/wells-fargo</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/charles-schwab</loc>
+			<loc>https://app.hirebeat.co/charles-schwab</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/fidelity-investments</loc>
+			<loc>https://app.hirebeat.co/fidelity-investments</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/vanguard</loc>
+			<loc>https://app.hirebeat.co/vanguard</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/absa-group</loc>
+			<loc>https://app.hirebeat.co/absa-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/abu-dhabi-islamic-bank</loc>
+			<loc>https://app.hirebeat.co/abu-dhabi-islamic-bank</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/amazon</loc>
+			<loc>https://app.hirebeat.co/amazon</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/facebook</loc>
+			<loc>https://app.hirebeat.co/facebook</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/skandinaviska-enskilda-banken</loc>
+			<loc>https://app.hirebeat.co/skandinaviska-enskilda-banken</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/allstate</loc>
+			<loc>https://app.hirebeat.co/allstate</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/deloitte</loc>
+			<loc>https://app.hirebeat.co/deloitte</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/deutsche-bank</loc>
+			<loc>https://app.hirebeat.co/deutsche-bank</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/ernst-young</loc>
+			<loc>https://app.hirebeat.co/ernst-young</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/merrill-lynch</loc>
+			<loc>https://app.hirebeat.co/merrill-lynch</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/hci-group</loc>
+			<loc>https://app.hirebeat.co/hci-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/kpmg</loc>
+			<loc>https://app.hirebeat.co/kpmg</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/pwc</loc>
+			<loc>https://app.hirebeat.co/pwc</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bank-of-montreal</loc>
+			<loc>https://app.hirebeat.co/bank-of-montreal</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/barclays</loc>
+			<loc>https://app.hirebeat.co/barclays</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/credit-suisse</loc>
+			<loc>https://app.hirebeat.co/credit-suisse</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/houlihan-lokey</loc>
+			<loc>https://app.hirebeat.co/houlihan-lokey</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/metlife</loc>
+			<loc>https://app.hirebeat.co/metlife</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/oliver-wyman</loc>
+			<loc>https://app.hirebeat.co/oliver-wyman</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/accenture</loc>
+			<loc>https://app.hirebeat.co/accenture</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bain</loc>
+			<loc>https://app.hirebeat.co/bain</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/boston-consulting-group</loc>
+			<loc>https://app.hirebeat.co/boston-consulting-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jobs</loc>
+			<loc>https://app.hirebeat.co/jobs</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/kearney</loc>
+			<loc>https://app.hirebeat.co/kearney</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/analysis-group</loc>
+			<loc>https://app.hirebeat.co/analysis-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/cornerstone-research</loc>
+			<loc>https://app.hirebeat.co/cornerstone-research</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/lek-consulting</loc>
+			<loc>https://app.hirebeat.co/lek-consulting</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/zs-associates</loc>
+			<loc>https://app.hirebeat.co/zs-associates</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/booz-allen-hamilton</loc>
+			<loc>https://app.hirebeat.co/booz-allen-hamilton</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/mastercard</loc>
+			<loc>https://app.hirebeat.co/mastercard</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/capital-one</loc>
+			<loc>https://app.hirebeat.co/capital-one</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/selectquote</loc>
+			<loc>https://app.hirebeat.co/selectquote</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/jacobs</loc>
+			<loc>https://app.hirebeat.co/jacobs</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/gartner</loc>
+			<loc>https://app.hirebeat.co/gartner</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/aon</loc>
+			<loc>https://app.hirebeat.co/aon</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/forrester-research</loc>
+			<loc>https://app.hirebeat.co/forrester-research</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/huron</loc>
+			<loc>https://app.hirebeat.co/huron</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/perficient</loc>
+			<loc>https://app.hirebeat.co/perficient</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/willis-towers-waston</loc>
+			<loc>https://app.hirebeat.co/willis-towers-waston</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/alvarez-marsal</loc>
+			<loc>https://app.hirebeat.co/alvarez-marsal</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/hackett-group</loc>
+			<loc>https://app.hirebeat.co/hackett-group</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/strategy</loc>
+			<loc>https://app.hirebeat.co/strategy</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/navigant-consulting</loc>
+			<loc>https://app.hirebeat.co/navigant-consulting</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/resources-global-professionals</loc>
+			<loc>https://app.hirebeat.co/resources-global-professionals</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/cra-international</loc>
+			<loc>https://app.hirebeat.co/cra-international</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/icg-international</loc>
+			<loc>https://app.hirebeat.co/icg-international</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/adp</loc>
+			<loc>https://app.hirebeat.co/adp</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/workday</loc>
+			<loc>https://app.hirebeat.co/workday</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/alight</loc>
+			<loc>https://app.hirebeat.co/alight</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/massmutual</loc>
+			<loc>https://app.hirebeat.co/massmutual</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/sun-life-financial</loc>
+			<loc>https://app.hirebeat.co/sun-life-financial</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/ui-designer</loc>
+			<loc>https://app.hirebeat.co/ui-designer</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/business-analyst</loc>
+			<loc>https://app.hirebeat.co/business-analyst</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/marketing</loc>
+			<loc>https://app.hirebeat.co/marketing</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/product-manager</loc>
+			<loc>https://app.hirebeat.co/product-manager</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/software-engineer</loc>
+			<loc>https://app.hirebeat.co/software-engineer</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/email-verification</loc>
+			<loc>https://app.hirebeat.co/email-verification</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/job-seekers-career</loc>
+			<loc>https://app.hirebeat.co/job-seekers-career</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/career-details</loc>
+			<loc>https://app.hirebeat.co/career-details</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/candidate-login</loc>
+			<loc>https://app.hirebeat.co/candidate-login</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/interview-info</loc>
+			<loc>https://app.hirebeat.co/interview-info</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/dashboard</loc>
+			<loc>https://app.hirebeat.co/dashboard</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_dashboard</loc>
+			<loc>https://app.hirebeat.co/employer_dashboard</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/resume</loc>
+			<loc>https://app.hirebeat.co/resume</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/review</loc>
+			<loc>https://app.hirebeat.co/review</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice-modes</loc>
+			<loc>https://app.hirebeat.co/practice-modes</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice-modes-practice</loc>
+			<loc>https://app.hirebeat.co/practice-modes-practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice-modes-simulate</loc>
+			<loc>https://app.hirebeat.co/practice-modes-simulate</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice/modes/retry</loc>
+			<loc>https://app.hirebeat.co/practice/modes/retry</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/techfields</loc>
+			<loc>https://app.hirebeat.co/techfields</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/techfields-practice</loc>
+			<loc>https://app.hirebeat.co/techfields-practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/practice</loc>
+			<loc>https://app.hirebeat.co/practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/video/:id</loc>
+			<loc>https://app.hirebeat.co/video/:id</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/video-interview</loc>
+			<loc>https://app.hirebeat.co/video-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/apply-job</loc>
+			<loc>https://app.hirebeat.co/apply-job</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer</loc>
+			<loc>https://app.hirebeat.co/employer</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/interview_completion</loc>
+			<loc>https://app.hirebeat.co/interview_completion</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/pricing</loc>
+			<loc>https://app.hirebeat.co/pricing</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer-pricing</loc>
+			<loc>https://app.hirebeat.co/employer-pricing</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/company</loc>
+			<loc>https://app.hirebeat.co/company</loc>
 			<changefreq>always</changefreq>
 		</url>
 
-		<url>
-			<loc>https://hirebeat.co/employer_company</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer_company</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
 		<url>
-			<loc>https://hirebeat.co/job-seekers-howitworks</loc>
+			<loc>https://app.hirebeat.co/job-seekers-howitworks</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bloghome</loc>
+			<loc>https://app.hirebeat.co/bloghome</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/bloghome_employer</loc>
+			<loc>https://app.hirebeat.co/bloghome_employer</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-does-a-one-way-interview-help-a-company-in-its-hiring</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company</loc>
+			<loc>https://app.hirebeat.co/employer_blog-benefits-of-hiring-diverse-candidates-in-your-company</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees</loc>
+			<loc>https://app.hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask</loc>
+			<loc>https://app.hirebeat.co/employer_blog-interview-questions-every-recruiter-should-ask</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-the-pandemic-sparked-a-new-way-of-interviewing</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-millennials-we-want-you</loc>
+			<loc>https://app.hirebeat.co/employer_blog-millennials-we-want-you</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews</loc>
+			<loc>https://app.hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy</loc>
+			<loc>https://app.hirebeat.co/employer_blog-four-tips-to-build-a-successful-campus-recruiting-strategy</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success</loc>
+			<loc>https://app.hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-to-write-a-termination-letter-right</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern</loc>
+			<loc>https://app.hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today</loc>
+			<loc>https://app.hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview</loc>
+			<loc>https://app.hirebeat.co/employer_blog-red-flags-you-should-look-out-in-candidates-during-the-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job</loc>
+			<loc>https://app.hirebeat.co/blog-why-video-inteview-practice-platforms-are-essential-for-landing-your-dream-job</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-video-interview-practice</loc>
+			<loc>https://app.hirebeat.co/blog-video-interview-practice</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-prepare-for-an-ai-interview</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-prepare-for-an-ai-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-questions-to-ask-at-career-fairs</loc>
+			<loc>https://app.hirebeat.co/blog-questions-to-ask-at-career-fairs</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-things-to-do-before-an-interview</loc>
+			<loc>https://app.hirebeat.co/blog-things-to-do-before-an-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them</loc>
+			<loc>https://app.hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-write-a-thank-you-email-after-a-job-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-keywords-to-include-on-a-resume</loc>
+			<loc>https://app.hirebeat.co/blog-keywords-to-include-on-a-resume</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system</loc>
+			<loc>https://app.hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-to-see-yourself-in-5-years-in-an-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength</loc>
+			<loc>https://app.hirebeat.co/blog-guidelines-on-how-to-answer-what-is-your-biggest-strength</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-answer-what-is-your-weakness-question-in-an-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about</loc>
+			<loc>https://app.hirebeat.co/blog-3-fastest-growing-jobs-you-might-not-know-about</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-why-do-you-want-to-work-here</loc>
+			<loc>https://app.hirebeat.co/blog-why-do-you-want-to-work-here</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major</loc>
+			<loc>https://app.hirebeat.co/blog-top-3-jobs-you-should-apply-for-finance-major</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress</loc>
+			<loc>https://app.hirebeat.co/blog-10-tips-to-deal-with-job-hunting-stress</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr</loc>
+			<loc>https://app.hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-acing-pandemic-job-interview-questions</loc>
+			<loc>https://app.hirebeat.co/blog-acing-pandemic-job-interview-questions</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-handle-the-question-you-donot-know</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19</loc>
+			<loc>https://app.hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-good-questions-to-ask-the-employer-at-the-end-of-the-interview</loc>
+			<loc>https://app.hirebeat.co/blog-good-questions-to-ask-the-employer-at-the-end-of-the-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview</loc>
+			<loc>https://app.hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate</loc>
+			<loc>https://app.hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/register</loc>
+			<loc>https://app.hirebeat.co/register</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/login</loc>
+			<loc>https://app.hirebeat.co/login</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer-login</loc>
+			<loc>https://app.hirebeat.co/employer-login</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_register</loc>
+			<loc>https://app.hirebeat.co/employer_register</loc>
 			<changefreq>always</changefreq>
 		</url>
 
-		<url>
-			<loc>https://hirebeat.co/employer-product</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer-product</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process</loc>
+			<loc>https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing</loc>
+			<loc>https://app.hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing</loc>
 			<changefreq>always</changefreq>
 		</url>
 
-		<url>
-			<loc>https://hirebeat.co/employer-feature-video</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer-feature-video</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
-		<url>
-			<loc>https://hirebeat.co/employer-resume-screening</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer-resume-screening</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up</loc>
+			<loc>https://app.hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system</loc>
+			<loc>https://app.hirebeat.co/employer_blog-5-things-you-need-to-know-about-applicant-tracking-system</loc>
 			<changefreq>always</changefreq>
 		</url>
 
 		<url>
-			<loc>https://hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021</loc>
+			<loc>https://app.hirebeat.co/blog-10-impactful-ways-to-update-your-resume-for-2021</loc>
 			<changefreq>always</changefreq>
 		</url>
 
-		<url>
-			<loc>https://hirebeat.co/employer-intergration-page</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer-intergration-page</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
-		<url>
-			<loc>https://hirebeat.co/employer-solution-page</loc>
+		<!-- <url>
+			<loc>https://app.hirebeat.co/employer-solution-page</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
 		<url>
-			<loc>https://hirebeat.co/talent-profile</loc>
+			<loc>https://app.hirebeat.co/talent-profile</loc>
 			<changefreq>always</changefreq>
 		</url>
 

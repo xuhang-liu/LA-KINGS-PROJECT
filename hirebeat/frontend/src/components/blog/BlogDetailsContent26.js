@@ -72,7 +72,7 @@ class BlogDetailsContent26 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Final Thoughts</h3>
                                     <p>
-                                    Standing out during the job search process can be tricky; competitiveness can quickly get to you and make you question whether you’re good enough. However, following the tips above is an excellent place to start if you want to land your dream job. HireBeat is an innovative tech company based in New York that aims to change job seekers’ lives through recruitment training. To know more about us, please visit <a href="/job-seekers">https://hirebeat.co/job-seekers</a>
+                                    Standing out during the job search process can be tricky; competitiveness can quickly get to you and make you question whether you’re good enough. However, following the tips above is an excellent place to start if you want to land your dream job. HireBeat is an innovative tech company based in New York that aims to change job seekers’ lives through recruitment training. To know more about us, please visit <a href="/job-seekers">https://app.hirebeat.co/job-seekers</a>
                                     </p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ class BlogDetailsContent26 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
+                                        url={"https://app.hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                         quote={"How to Stay Competitive in Your Job Search as a Candidate"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -90,7 +90,7 @@ class BlogDetailsContent26 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
+                                           url={"https://app.hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                            title={"How to Stay Competitive in Your Job Search as a Candidate"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -101,7 +101,7 @@ class BlogDetailsContent26 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
+                                            url={"https://app.hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                             title={"How to Stay Competitive in Your Job Search as a Candidate"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -111,7 +111,7 @@ class BlogDetailsContent26 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
+                                            url={"https://app.hirebeat.co/blog-how-to-stay-competitive-in-your-job-search-as-a-candidate"}
                                             title={"How to Stay Competitive in Your Job Search as a Candidate"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

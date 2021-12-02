@@ -27,7 +27,7 @@ class JBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Julius Baer</title>
                     <meta name="Julius Baer is the leading Swiss private banking group, with a focus on servicing and advising sophisticated private clients and a premium brand in global wealth management. Julius Baer’s total client assets amounted to CHF 385 billion at the end of 2015, including CHF 300 billion of assets under management. Bank Julius Baer & Co. Ltd., the renowned Swiss private bank with origins dating back to 1890, is the principal operating company of Julius Baer Group Ltd., whose shares are listed on the SIX Swiss Exchange (ticker symbol: BAER) and are included in the Swiss Market Index (SMI), comprising the 20 largest and most liquid Swiss stocks. Julius Baer employs a staff of over 5,000, including more than 1,200 relationship managers, and is present in over 25 countries and more than 50 locations. Headquartered in Zurich, we have offices in key locations including Dubai, Frankfurt, Geneva, Hong Kong, London, Lugano, Monaco, Montevideo, Moscow, Mumbai, Singapore and Tokyo. Our client-centric approach, our objective advice based on a unique open product platform, our very strong financial base and our entrepreneurial management culture make us the international reference in private banking. For more information visit our website at www.juliusbaer.com" ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/julius-baer"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/julius-baer"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

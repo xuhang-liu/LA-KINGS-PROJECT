@@ -68,7 +68,7 @@ class BlogDetailsContent27 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Final Thoughts</h3>
                                     <p>
-                                    Lastly, it's better to set an event on your smartphone so you can prepare everything in time. Being on time is the first positive impression that you showcase in front of the interviewers. HireBeat is an HR platform that offers video interview tools across all platforms that helps you prepare for your Zoom interview. To know more about us, please visit <a href="/job-seekers">https://hirebeat.co/job-seekers</a>.
+                                    Lastly, it's better to set an event on your smartphone so you can prepare everything in time. Being on time is the first positive impression that you showcase in front of the interviewers. HireBeat is an HR platform that offers video interview tools across all platforms that helps you prepare for your Zoom interview. To know more about us, please visit <a href="/job-seekers">https://app.hirebeat.co/job-seekers</a>.
                                     </p>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@ class BlogDetailsContent27 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
+                                        url={"https://app.hirebeat.co/blog-ace-your-zoom-job-interview"}
                                         quote={"Ace Your Zoom Job Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -86,7 +86,7 @@ class BlogDetailsContent27 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
+                                           url={"https://app.hirebeat.co/blog-ace-your-zoom-job-interview"}
                                            title={"Ace Your Zoom Job Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -97,7 +97,7 @@ class BlogDetailsContent27 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
+                                            url={"https://app.hirebeat.co/blog-ace-your-zoom-job-interview"}
                                             title={"Ace Your Zoom Job Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -107,7 +107,7 @@ class BlogDetailsContent27 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-ace-your-zoom-job-interview"}
+                                            url={"https://app.hirebeat.co/blog-ace-your-zoom-job-interview"}
                                             title={"Ace Your Zoom Job Interview"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -27,7 +27,7 @@ class DeloitteInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Deloitte</title>
                     <meta name="Description" CONTENT="Deloitte (also known as Deloitte Touche Tohmatsu) operates as a global professional services network. It offers audit and assurance, consulting, financial advisory, risk advisory, tax, and related services. The company serves the energy, financial, government, public, life sciences and healthcare, technology, media, and telecommunications industries." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/deloitte"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/deloitte"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -27,7 +27,7 @@ class CRAInternationalInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – CRA International</title>
                     <meta name="Description" CONTENT="CRA International provides economic, financial, and management consulting services, such as economic capability, analyses, and testimony in areas such as antitrust & competition, damages & valuation, financial accounting & valuation, monetary economics, forensic & cyber investigations, insurance economics, intellectual property, international arbitration, labor & employment, mergers & acquisitions, regulatory economics & compliance, securities & financial markets, and transfer pricing." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/cra-international"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/cra-international"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

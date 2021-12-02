@@ -134,7 +134,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                     Hirebeat is a revolutionary HR tool that links recruiters/hiring managers and talent with each other. The tool allows companies to shorten the screening time, automate video interviews, and also helps in evaluating candidates using AI.
                                     </p>
                                     <p>
-                                    Power your recruitment with Hirebeat's free trial. You can visit <a href="/employer-pricing">https://hirebeat.co/employer-pricing</a> to start your free trial.
+                                    Power your recruitment with Hirebeat's free trial. You can visit <a href="/employer-pricing">https://app.hirebeat.co/employer-pricing</a> to start your free trial.
                                     </p>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
+                                        url={"https://app.hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                         quote={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -152,7 +152,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
+                                           url={"https://app.hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                            title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -163,7 +163,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                             title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -173,7 +173,7 @@ class BlogDetailsContentEmployer23 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-what-is-broken-in-the-talent-acquisition-process"}
                                             title={"What’s Broken in the Talent Acquisition Process: Employers & Candidates Viewpoints"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -27,7 +27,7 @@ class WFInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Wells Fargo</title>
                     <meta name="Description" CONTENT="Wells Fargo is a banking and financial services holding company. It operates in three segments: Community Banking, Wholesale Banking, and Wealth and Investment Management. The Community Banking segment offers checking and savings accounts, credit and debit cards, and automobile, student, mortgage, home equity, and small business loans. The Wholesale Banking segment offers commercial loans and lines of credit, letters of credit, asset-based lending, equipment leasing, international trade facilities, trade financing, collection, foreign exchange, treasury management, merchant payment processing, institutional fixed-income sales, commodity and equity risk management, corporate trust fiduciary and agency, and investment banking services, as well as online/electronic products. The Wealth and Investment Management segment offers financial planning, private banking, credit, investment management, and fiduciary services, as well as retirement and trust services. The company caters to individuals, businesses, and institutions." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/wells-fargo"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/wells-fargo"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

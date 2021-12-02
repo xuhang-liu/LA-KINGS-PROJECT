@@ -27,7 +27,7 @@ class DeutscheBankInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Deutsche Bank</title>
                     <meta name="Description" CONTENT="Deutsche Bank is a financial service provider delivering commercial, investment, private, and retail banking. The сompany offers debt, foreign exchange, derivatives, commodities, money markets, repo and securitization, cash equities, research, equity prime services, loans, convertibles, advice on M&A and IPO's, trade finance, retail banking, asset management, and corporate investments." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/deutsche-bank"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/deutsche-bank"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

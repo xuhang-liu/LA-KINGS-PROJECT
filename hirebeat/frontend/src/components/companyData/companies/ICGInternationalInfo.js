@@ -27,7 +27,7 @@ class ICGInternationalInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – CRA International</title>
                     <meta name="Description" CONTENT="ICF is a consulting firm that provides professional services and technology solutions. It works across energy, environment, infrastructure, health, social programs, consumer/financial, and public safety and defense markets. The company offers services in such sectors as business process operations and optimization, data science and analytics, economic and financial analysis, enterprise technology, human capital management and training, policy and regulatory development, program management, research and evaluation, survey research." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/icg-international"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/icg-international"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

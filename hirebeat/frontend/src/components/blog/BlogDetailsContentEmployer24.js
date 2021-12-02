@@ -72,7 +72,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    The best way to fix a broken talent process is by understanding why it broke in the first place. It's important to not just understand how you got there but also where your organization wants to go and what you want it to be. HireBeat can help you streamline your talent acquisition process by providing ats tool that simplifies your talent recruiting and assessment. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    The best way to fix a broken talent process is by understanding why it broke in the first place. It's important to not just understand how you got there but also where your organization wants to go and what you want it to be. HireBeat can help you streamline your talent acquisition process by providing ats tool that simplifies your talent recruiting and assessment. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
+                                        url={"https://app.hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                         quote={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -90,7 +90,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
+                                           url={"https://app.hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                            title={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -101,7 +101,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                             title={"Three Steps to Fix Your Broken Talent Acquisition Process"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -111,7 +111,7 @@ class BlogDetailsContentEmployer24 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-three-steps-to-fix-your-broken-talent-acquisition-process"}
                                             title={"Three Steps to Fix Your Broken Talent Acquisition Process"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

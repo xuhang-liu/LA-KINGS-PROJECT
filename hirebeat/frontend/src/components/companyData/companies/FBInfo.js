@@ -27,7 +27,7 @@ class FBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Facebook</title>
                     <meta name="Description" CONTENT="Facebook is a company providing an online social networking service. It allows its users to connect with friends and family as well as make new connections. The platform provides its users with the ability to create a profile, update information, add images, send friend requests and accept requests from other users. It enables users to join and create pages related to entertainment, sports, business, finance, preferences, hobbies, culture, religion, and a number of other categories." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/facebook"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/facebook"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

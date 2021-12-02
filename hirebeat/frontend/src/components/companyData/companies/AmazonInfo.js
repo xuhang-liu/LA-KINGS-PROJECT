@@ -27,7 +27,7 @@ class AmazonInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Amazon</title>
                     <meta name="Description" CONTENT="Amazon is a company operating a marketplace for consumers, sellers, and content creators. It offers merchandise and content purchased for resale from vendors and those offered by third-party sellers. The company enables authors, musicians, filmmakers, app developers, and others to publish and sell content via its branded websites. Amazon also provides Kindle Direct Publishing, an online platform that allows independent authors and publishers to make their books available in the Kindle Store. In addition, the сompany offers co-branded credit card agreements and advertising services, serves developers and enterprises through Amazon Web Services, and manufactures and sells electronic devices. Currently, Amazon operates in three segments: North America, International, and Amazon Web Services (AWS)" ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/amazon"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/amazon"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

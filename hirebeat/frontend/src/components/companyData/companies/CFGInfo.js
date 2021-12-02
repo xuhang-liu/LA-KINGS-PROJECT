@@ -27,7 +27,7 @@ class CFGInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Citizens Financial Group</title>
                     <meta name="Description" CONTENT="Citizens Financial Group (CFG) is a retail bank holding company. The company offers a range of retail and commercial banking products and services through its banking subsidiary, Citizens Bank. It operates in two segments: Consumer Banking and Commercial Banking. The Consumer Banking segment provides retail customers and small businesses with deposit products, mortgage, home equity lending, auto financing, student loans, personal unsecured lines and loans, credit cards, business loans, wealth management, and investment services. The Commercial Banking delivers lending and leasing, deposit and treasury management services, foreign exchange, interest rate and commodity risk management solutions, as well as loan syndications, corporate finance, merger and acquisition, and debt and equity capital markets capabilities to companies and institutions." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/citizens-financial-group"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/citizens-financial-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

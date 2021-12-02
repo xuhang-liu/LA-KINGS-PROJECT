@@ -70,7 +70,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    This article helps you know better about how video interviews could help your business from four perspectives. HireBeat is an HR software company that provides you a video interview platform and simplifies your recruiting. To know more about us, please visit <a href="/">https://hirebeat.co</a>.
+                                    This article helps you know better about how video interviews could help your business from four perspectives. HireBeat is an HR software company that provides you a video interview platform and simplifies your recruiting. To know more about us, please visit <a href="/">https://app.hirebeat.co</a>.
                                     </p>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
+                                        url={"https://app.hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                         quote={"Boost Up Your ROI Using Video Interviews"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -88,7 +88,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
+                                           url={"https://app.hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                            title={"Boost Up Your ROI Using Video Interviews"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -99,7 +99,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
+                                            url={"https://app.hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                             title={"Boost Up Your ROI Using Video Interviews"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -109,7 +109,7 @@ class BlogDetailsContentEmployer9 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
+                                            url={"https://app.hirebeat.co/employer_blog-boost-up-your-roi-using-video-interviews"}
                                             title={"Boost Up Your ROI Using Video Interviews"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

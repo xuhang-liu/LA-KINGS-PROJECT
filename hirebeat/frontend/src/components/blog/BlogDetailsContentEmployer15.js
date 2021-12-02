@@ -73,7 +73,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                     <h3 className="mb-0">Final Thoughts</h3>
                                     <br/>
                                     <p>
-                                    The recruitment process is difficult and attracting qualified clients can be a challenge. By implementing the tips listed above, you can improve your job listing and increase the likelihood of getting quality candidates for the job. HireBeat is an HR software platform dedicated to the success of clients from emerging businesses and midsize companies. To know more about us, please visit <a href='/'>https://hirebeat.co/</a>.
+                                    The recruitment process is difficult and attracting qualified clients can be a challenge. By implementing the tips listed above, you can improve your job listing and increase the likelihood of getting quality candidates for the job. HireBeat is an HR software platform dedicated to the success of clients from emerging businesses and midsize companies. To know more about us, please visit <a href='/'>https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
+                                        url={"https://app.hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                         quote={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -91,7 +91,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
+                                           url={"https://app.hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                            title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -102,7 +102,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
+                                            url={"https://app.hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                             title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -112,7 +112,7 @@ class BlogDetailsContentEmployer15 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
+                                            url={"https://app.hirebeat.co/employer_blog-4-secrets-that-improve-your-linkedin-job-posting-today"}
                                             title={"4 Secrets That Improve Your LinkedIn Job Posting Today"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

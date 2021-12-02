@@ -62,7 +62,7 @@ class BlogDetailsContent6 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
+                                        url={"https://app.hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                         quote={"4 Common Interview Questions"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -72,7 +72,7 @@ class BlogDetailsContent6 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
+                                           url={"https://app.hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                            title={"4 Common Interview Questions"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -83,7 +83,7 @@ class BlogDetailsContent6 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
+                                            url={"https://app.hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                             title={"4 Common Interview Questions"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -93,7 +93,7 @@ class BlogDetailsContent6 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
+                                            url={"https://app.hirebeat.co/blog-4-common-interview-questions-and-how-to-answer-them"}
                                             title={"4 Common Interview Questions"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

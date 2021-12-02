@@ -27,7 +27,7 @@ class GartnerInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Gartner</title>
                     <meta name="Description" CONTENT="Gartner is a research and advisory company. It delivers its products and services through three segments: Research, Conferences, and Consulting. The Research segment provides insights and advice on leaders’ mission-critical priorities across different functional areas of an enterprise through reports, briefings, proprietary tools, access to its research experts, peer networking services, and membership programs. The Conferences segment offers business professionals across an organization the opportunity to learn, share, and network. The Consulting component combines research with custom analysis and on-the-ground support to help chief information officers and other senior executives driving technology-related strategic initiatives move confidently from insight to action." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/gartner"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/gartner"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

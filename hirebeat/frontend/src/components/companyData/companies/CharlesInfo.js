@@ -27,7 +27,7 @@ class CharlesInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Charles Schwab</title>
                     <meta name="Description" CONTENT="The Charles Schwab Corporation is a savings and loan holding company providing wealth management, securities brokerage, banking, asset management, custody, and financial advisory services. It operates in 2 segments: Investor Services and Advisor Services. The Investor Services segment provides retail brokerage and banking services to individual investors, and retirement plan services, as well as other corporate brokerage services, to businesses and their employees. The Advisor Services segment provides custodial, trading, banking, and support services, as well as retirement business services, to independent registered investment advisors (RIAs), independent retirement advisors, and recordkeepers." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/charles-schwab"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/charles-schwab"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

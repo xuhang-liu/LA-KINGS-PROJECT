@@ -56,7 +56,7 @@ class BlogDetailsContent9 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
+                                        url={"https://app.hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
                                         quote={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -66,7 +66,7 @@ class BlogDetailsContent9 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
+                                           url={"https://app.hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
                                            title={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -77,7 +77,7 @@ class BlogDetailsContent9 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
+                                            url={"https://app.hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
                                             title={"Tips for Getting Your Resume Past an Applicant Tracking System"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -87,7 +87,7 @@ class BlogDetailsContent9 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
+                                            url={"https://app.hirebeat.co/blog-tips-for-getting-your-resume-past-an-applicant-tracking-system"}
                                             title={"Tips for Getting Your Resume Past an Applicant Tracking System"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

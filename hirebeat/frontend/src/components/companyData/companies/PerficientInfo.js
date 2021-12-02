@@ -27,7 +27,7 @@ class PerficientInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Perficient</title>
                     <meta name="Description" CONTENT="Perficient is a company operating as a digital consultancy. Its solutions include custom applications, analytics, management consulting, commerce, portals and collaboration, content management, business integration, customer relationship management, business process management, platform implementations, enterprise data and business intelligence, enterprise performance management, enterprise mobile, cloud services, digital marketing, DevOps, and more. The company primarily serves large enterprise clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/perficient"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/perficient"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

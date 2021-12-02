@@ -1185,7 +1185,7 @@ def go_stripe_customer_portal(request):
     profile = Profile.objects.get(user=user)
     session = stripe.billing_portal.Session.create(
         customer=profile.customer_id,
-        return_url='https://hirebeat.co/employer_dashboard',
+        return_url='https://app.hirebeat.co/employer_dashboard',
     )
 
     return Response({"session_url": session.url})

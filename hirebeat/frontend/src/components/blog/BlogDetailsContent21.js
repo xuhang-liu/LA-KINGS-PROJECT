@@ -95,7 +95,7 @@ class BlogDetailsContent21 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
+                                        url={"https://app.hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                         quote={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -105,7 +105,7 @@ class BlogDetailsContent21 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
+                                           url={"https://app.hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                            title={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -116,7 +116,7 @@ class BlogDetailsContent21 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
+                                            url={"https://app.hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                             title={"4 Amazing Tips to Effectively Networking During Covid-19"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -126,7 +126,7 @@ class BlogDetailsContent21 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
+                                            url={"https://app.hirebeat.co/blog-4-amazing-tips-to-effectively-networking-during-covid-19"}
                                             title={"4 Amazing Tips to Effectively Networking During Covid-19"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

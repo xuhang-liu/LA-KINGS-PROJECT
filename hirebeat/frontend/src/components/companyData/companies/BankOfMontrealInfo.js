@@ -27,7 +27,7 @@ class BankOfMontrealInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bank of Montreal</title>
                     <meta name="Description" CONTENT="Bank of Montreal (BMO Financial Group, BMO) is a diversified financial services provider. It operates through three operating groups: Personal and Commercial Banking, BMO Wealth Management, and BMO Capital Markets. The company offers a broad range of personal and commercial banking, wealth management, global markets, and investment banking products and services to individuals, corporate, institutional, and government clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/bank-of-montreal"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/bank-of-montreal"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -27,7 +27,7 @@ class AnalysisGroupInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Analysis Group</title>
                     <meta name="Description" CONTENT="Analysis Group is an economics consulting firm. It provides economic, financial, and business strategy consulting services. The company serves law firms, corporations, and government agencies." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/analysis-group"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/analysis-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -27,7 +27,7 @@ class SelectQuoteInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – SelectQuote</title>
                     <meta name="Description" CONTENT="SelectQuote is a provider of an insurance policy comparison website. It allows consumers to compare insurance policies for complex senior health, life and auto, and home insurance policies." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/selectquote"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/selectquote"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

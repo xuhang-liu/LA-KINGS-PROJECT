@@ -27,7 +27,7 @@ class PWCInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – PwC (PricewaterhouseCoopers)</title>
                     <meta name="Description" CONTENT="PwC (PricewaterhouseCoopers) is global auditing, accounting, and assurance services for organizations and individuals. The сompany provides IFRS reporting, valuation, human resources, accounting advisory, and forensic services. It offers business compliance, internal audit, IT and project assurance, global tax, tax accounting, economics, statistics, and transfer pricing services. PwC also provides consulting services for analytics, finance, operations, risk management, benchmarking, and security." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/pwc"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/pwc"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

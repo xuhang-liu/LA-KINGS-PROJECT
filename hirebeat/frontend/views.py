@@ -226,8 +226,8 @@ def adp(request):
     return render(request, 'frontend/adp.html')
 
 
-def employerfeaturevideo(request):
-    return render(request, 'frontend/employer-feature-video.html')
+# def employerfeaturevideo(request):
+#     return render(request, 'frontend/employer-feature-video.html')
 
 
 def AIGInfo(request):
@@ -270,8 +270,8 @@ def ROICalculator(request):
     return render(request, 'frontend/ROICalculator.html')
 
 
-def employerabout(request):
-    return render(request, 'frontend/employerabout.html')
+# def employerabout(request):
+#     return render(request, 'frontend/employerabout.html')
 
 
 def CityInfo(request):
@@ -314,8 +314,8 @@ def PNCInfo(request):
     return render(request, 'frontend/PNCInfo.html')
 
 
-def IntergrationPage(request):
-    return render(request, 'frontend/IntergrationPage.html')
+# def IntergrationPage(request):
+#     return render(request, 'frontend/IntergrationPage.html')
 
 
 def EmailVerification(request):
@@ -330,8 +330,8 @@ def ECInfo(request):
     return render(request, 'frontend/ECInfo.html')
 
 
-def ProductPage(request):
-    return render(request, 'frontend/ProductPage.html')
+# def ProductPage(request):
+#     return render(request, 'frontend/ProductPage.html')
 
 
 def BBInfo(request):
@@ -418,8 +418,8 @@ def EmployerRegister(request):
     return render(request, 'frontend/EmployerRegister.html')
 
 
-def ResumeScreening(request):
-    return render(request, 'frontend/ResumeScreening.html')
+# def ResumeScreening(request):
+#     return render(request, 'frontend/ResumeScreening.html')
 
 
 def Privacy(request):
@@ -462,8 +462,8 @@ def GSInfo(request):
     return render(request, 'frontend/GSInfo.html')
 
 
-def SolutionPage(request):
-    return render(request, 'frontend/SolutionPage.html')
+# def SolutionPage(request):
+#     return render(request, 'frontend/SolutionPage.html')
 
 
 def blog17(request):

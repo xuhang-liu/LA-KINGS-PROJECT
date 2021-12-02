@@ -161,7 +161,7 @@ class BlogDetailsContentEmployer3 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
+                                        url={"https://app.hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
                                         quote={"Writing a Good Job Posting that Will Attract Employees"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -171,7 +171,7 @@ class BlogDetailsContentEmployer3 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
+                                           url={"https://app.hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
                                            title={"Writing a Good Job Posting that Will Attract Employees"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -182,7 +182,7 @@ class BlogDetailsContentEmployer3 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
+                                            url={"https://app.hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
                                             title={"Writing a Good Job Posting that Will Attract Employees"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -192,7 +192,7 @@ class BlogDetailsContentEmployer3 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
+                                            url={"https://app.hirebeat.co/employer_blog-writing-a-good-job-posting-that-will-attract-employees"}
                                             title={"Writing a Good Job Posting that Will Attract Employees"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

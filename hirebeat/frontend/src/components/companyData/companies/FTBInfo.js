@@ -27,7 +27,7 @@ class FTBInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Fifth Third Bancorp</title>
                     <meta name="Fifth Third Bancorp is a diversified financial services company. It operates four main businesses: Commercial Banking, Branch Banking, Consumer Lending, and Wealth & Asset Management. The company provides a range of financial products and services including checking, savings and money market accounts, wealth management solutions, payments and commerce solutions, insurance services, and credit products. It serves commercial, financial, retail, governmental, educational, energy, and healthcare sectors." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/fifth-third-bancorp"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/fifth-third-bancorp"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

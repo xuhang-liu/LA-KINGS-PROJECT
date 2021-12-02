@@ -27,7 +27,7 @@ class CornerstoneInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Cornerstone Research</title>
                     <meta name="Description" CONTENT="For more than twenty-five years, Cornerstone Research staff have provided economic and financial analysis in all phases of commercial litigation and regulatory proceedings. We work with a broad network of testifying experts, including prominent faculty and industry practitioners, in a unique collaboration. Our staff consultants contribute expertise in economics, finance, accounting, marketing, business acumen, familiarity with the litigation process, and a commitment to producing outstanding results. The experts with whom we work bring the specialized expertise of researchers or practitioners required to meet each assignment’s demands" ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/cornerstone-research"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/cornerstone-research"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

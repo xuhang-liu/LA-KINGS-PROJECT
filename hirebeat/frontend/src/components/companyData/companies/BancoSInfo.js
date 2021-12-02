@@ -27,7 +27,7 @@ class BancoSInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Banco Santander</title>
                     <meta name="Banco Santander, together with its subsidiaries, provides various retail and commercial banking products and services. It offers deposits, insurance, lending and operates through the following segments: Retail Banking, Santander Global Corporate Banking, and Spain Real Estate Activity. The Retail Banking segment covers all customer banking businesses, including consumer finance. The Santander Global Corporate Banking segment involves global corporate banking, investment banking, and markets worldwide including all treasuries managed globally, both trading and distribution to customers." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/banco-santander"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/banco-santander"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -100,7 +100,7 @@ class BlogDetailsContent24 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
+                                        url={"https://app.hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
                                         quote={"How to Answer the Question “What Makes You Stand Out from Other Candidates?”"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -110,7 +110,7 @@ class BlogDetailsContent24 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
+                                           url={"https://app.hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
                                            title={"How to Answer the Question “What Makes You Stand Out from Other Candidates?”"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -121,7 +121,7 @@ class BlogDetailsContent24 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
                                             title={"How to Answer the Question “What Makes You Stand Out from Other Candidates?”"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -131,7 +131,7 @@ class BlogDetailsContent24 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-question-what-makes-you-stand-out-from-other-candidates"}
                                             title={"How to Answer the Question “What Makes You Stand Out from Other Candidates?”"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

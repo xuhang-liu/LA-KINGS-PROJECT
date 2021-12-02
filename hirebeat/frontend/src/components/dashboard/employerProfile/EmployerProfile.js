@@ -384,7 +384,7 @@ export class EmployerProfile extends Component {
                                                     {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
                                                 </p>
                                                 <h3 className="profile-h3" style={{ fontSize: "1rem", marginBottom: "-0.1rem" }}>Job Portal</h3>
-                                                <a className="profile-p" style={{ color: "#006dff" }} target="_blank" href={"https://hirebeat.co/company-branding/" + this.props.profile.company_name}>https://hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <a className="profile-p" style={{ color: "#006dff" }} target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         </div> :
                                         <div>

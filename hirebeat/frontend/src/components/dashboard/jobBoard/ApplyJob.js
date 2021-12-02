@@ -395,7 +395,7 @@ const ApplyJob = (props) => {
                             <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />}
                             <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
                             <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
-                                <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             </h2>
                             <div className="row pl-3">
                                 <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
@@ -1112,7 +1112,7 @@ const ApplyJob = (props) => {
                             <img style={{ width: "7rem", marginLeft: "34%", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />
                             <h1 className="mt-3" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
                             <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
-                            <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>

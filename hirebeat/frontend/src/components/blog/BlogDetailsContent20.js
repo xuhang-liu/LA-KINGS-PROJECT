@@ -79,7 +79,7 @@ class BlogDetailsContent20 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
+                                        url={"https://app.hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                         quote={"How to Handle an Interview Question You Don't Know"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -89,7 +89,7 @@ class BlogDetailsContent20 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
+                                           url={"https://app.hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                            title={"How to Handle an Interview Question You Don't Know"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -100,7 +100,7 @@ class BlogDetailsContent20 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
+                                            url={"https://app.hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                             title={"How to Handle an Interview Question You Don't Know"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -110,7 +110,7 @@ class BlogDetailsContent20 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
+                                            url={"https://app.hirebeat.co/blog-how-to-handle-the-question-you-donot-know"}
                                             title={"How to Handle an Interview Question You Don't Know"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

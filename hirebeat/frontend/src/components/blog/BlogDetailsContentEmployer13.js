@@ -68,7 +68,7 @@ class BlogDetailsContentEmployer13 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
+                                        url={"https://app.hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
                                         quote={"How to Write A Termination Letter Right?"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -78,7 +78,7 @@ class BlogDetailsContentEmployer13 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
+                                           url={"https://app.hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
                                            title={"How to Write A Termination Letter Right?"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -89,7 +89,7 @@ class BlogDetailsContentEmployer13 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
                                             title={"How to Write A Termination Letter Right?"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -99,7 +99,7 @@ class BlogDetailsContentEmployer13 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-to-write-a-termination-letter-right"}
                                             title={"How to Write A Termination Letter Right?"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

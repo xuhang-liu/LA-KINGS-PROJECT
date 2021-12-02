@@ -53,7 +53,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                     <h3 className="mb-0">Final Words</h3>
                                     <br/>
                                     <p>
-                                    A good company will need to conduct both recruitment marketing as well as employer branding if it wishes to obtain the best possible human resources for itself. HireBeat is an HR platform that helps you find the best candidates in the most efficient way. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    A good company will need to conduct both recruitment marketing as well as employer branding if it wishes to obtain the best possible human resources for itself. HireBeat is an HR platform that helps you find the best candidates in the most efficient way. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
+                                        url={"https://app.hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                         quote={"Employer Branding vs Recruitment Marketing"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -71,7 +71,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
+                                           url={"https://app.hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                            title={"Employer Branding vs Recruitment Marketing"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -82,7 +82,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
+                                            url={"https://app.hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                             title={"Employer Branding vs Recruitment Marketing"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -92,7 +92,7 @@ class BlogDetailsContentEmployer19 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
+                                            url={"https://app.hirebeat.co/employer_blog-employer-branding-vs-recruitment-marketing"}
                                             title={"Employer Branding vs Recruitment Marketing"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

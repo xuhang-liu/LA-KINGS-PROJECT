@@ -27,7 +27,7 @@ class CreditSuisseInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Credit Suisse</title>
                     <meta name="Description" CONTENT="Credit Suisse is a company operating as a global provider of private banking and investment banking services. The company offers a range of advice and financial solutions, including structured advisory, wealth management solutions, investment advice, discretionary asset management services, and advisory services related to mergers and acquisitions. It also delivers various banking services, such as lending, payment, capital goods leasing, syndications, and structured finance, trade finance, ship, and aviation finance, securities, treasury, foreign exchange services, as well as fund solutions and fund-linked services." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/credit-suisse"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/credit-suisse"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -28,7 +28,7 @@ class TSMInfo extends Component {
                     <title>HireBeat Company Data – Two Sigma</title>
                     <meta name="Description" CONTENT="Two Sigma Investments is a hedge fund that utilizes machine learning, distributed computing, and other technologies to improve investment strategies. It primarily focuses on equities, fixed income, currencies, and credit markets. The company serves public and corporate pension plans, sovereign wealth funds, insurance companies, research institutions, educational endowments, healthcare systems, and foundations." >
                     </meta>
-                    <link rel="canonical" href="https://hirebeat.co/two-sigma"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/two-sigma"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -113,7 +113,7 @@ class BlogDetailsContent17 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
+                                        url={"https://app.hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
                                         quote={"11 Mistakes Made by The Most Interviewees According to HR"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -123,7 +123,7 @@ class BlogDetailsContent17 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
+                                           url={"https://app.hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
                                            title={"11 Mistakes Made by The Most Interviewees According to HR"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -134,7 +134,7 @@ class BlogDetailsContent17 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
+                                            url={"https://app.hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
                                             title={"11 Mistakes Made by The Most Interviewees According to HR"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -144,7 +144,7 @@ class BlogDetailsContent17 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
+                                            url={"https://app.hirebeat.co/blog-11-mistakes-made-by-the-most-interviewees-according-to-hr"}
                                             title={"11 Mistakes Made by The Most Interviewees According to HR"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

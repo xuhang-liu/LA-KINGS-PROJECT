@@ -68,7 +68,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                     <h3 className="mb-0">Final Words</h3>
                                     <br/>
                                     <p>
-                                    So, there you have it. Make sure that you design an employee assessment test as well merging all of the above or some into a specific category and streamlining the process of hiring at your place. HireBeat is an hr software platform that provides the video interview tool to your business and saves your time. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    So, there you have it. Make sure that you design an employee assessment test as well merging all of the above or some into a specific category and streamlining the process of hiring at your place. HireBeat is an hr software platform that provides the video interview tool to your business and saves your time. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
+                                        url={"https://app.hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                         quote={"Personality Assessment Tools Employers Must Know About"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -86,7 +86,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
+                                           url={"https://app.hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                            title={"Personality Assessment Tools Employers Must Know About"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -97,7 +97,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
+                                            url={"https://app.hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                             title={"Personality Assessment Tools Employers Must Know About"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -107,7 +107,7 @@ class BlogDetailsContentEmployer17 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
+                                            url={"https://app.hirebeat.co/employer_blog-personality-assessment-tools-employers-must-know-about"}
                                             title={"Personality Assessment Tools Employers Must Know About"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

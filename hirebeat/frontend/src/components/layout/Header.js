@@ -67,7 +67,7 @@ export class Header extends Component {
             <div className="row">
               <i className="bx bx-user-circle 1 bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
               <span className="header-text" style={{ cursor: 'pointer' }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                <ul className="nav_submenu" style={{ width: "8rem", marginLeft:"-1rem"}}>
+                <ul className="nav_submenu" style={{ width: "8rem", marginLeft: "-1rem" }}>
                   <li>
                     <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                       Log out
@@ -327,42 +327,42 @@ export class Header extends Component {
       <React.Fragment>
         <div className="nav-item order-xl-1 align-self-center mr-5">
           <div className="nav-link text-white navbar-font">
-          {!this.props.profile.is_subreviwer ?
-            <div className="row">
-              <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
-              <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                <ul className="nav_submenu" style={{ width: "9rem" }}>
-                  <li>
-                    <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="id-logout" to="/" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
-                      Log out
-                    </Link>
-                  </li>
-                </ul>
-              </span>
-            </div>:
-            <div className="row">
-            <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
-            <span className="header-text" style={{ cursor: 'pointer', marginRight: "2.5rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-              <ul className="nav_submenu" style={{ width: "10rem" }}>
-                <li>
-                  <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link id="id-logout" to="/" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
-                    Log out
-                  </Link>
-                </li>
-              </ul>
-            </span>
-          </div>
-          }
+            {!this.props.profile.is_subreviwer ?
+              <div className="row">
+                <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
+                <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
+                  <ul className="nav_submenu" style={{ width: "9rem" }}>
+                    <li>
+                      <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <a id="id-logout" href="https://career.hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                        Log out
+                      </a>
+                    </li>
+                  </ul>
+                </span>
+              </div> :
+              <div className="row">
+                <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
+                <span className="header-text" style={{ cursor: 'pointer', marginRight: "2.5rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
+                  <ul className="nav_submenu" style={{ width: "10rem" }}>
+                    <li>
+                      <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <a id="id-logout" href="https://career.hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                        Log out
+                      </a>
+                    </li>
+                  </ul>
+                </span>
+              </div>
+            }
           </div>
         </div>
 
@@ -373,7 +373,7 @@ export class Header extends Component {
           <ul
             className="navbar-nav ml-auto mr-5
                  text-left order-xl-0">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
                   Company <i className="bx-fw bx bx-chevron-down"></i>
@@ -384,8 +384,16 @@ export class Header extends Component {
                   </ul>
                 </span>
               </a>
-            </li>
+            </li> */}
             {!this.props.profile.is_subreviwer &&
+              <li className="nav-item ">
+                <Link className="nav-link text-white navbar-font" to="/employer-pricing">
+                  <span className="header-text" style={{ cursor: 'pointer' }}>
+                    Pricing
+                  </span>
+                </Link>
+              </li>}
+            {/* {!this.props.profile.is_subreviwer &&
               <li className="nav-item ">
                 <a className="nav-link text-white navbar-font">
                   <span className="header-text" style={{ cursor: 'pointer' }}>
@@ -396,7 +404,7 @@ export class Header extends Component {
                     </ul>
                   </span>
                 </a>
-              </li>}
+              </li>} */}
           </ul>
         </div>
       </React.Fragment>
@@ -410,8 +418,8 @@ export class Header extends Component {
         <div className="collapse navbar-collapse"
           id="navbarSupportedContent">
 
-          <ul className="navbar-nav order-xl-0
-               text-left" style={{ marginLeft: "10px" }}>
+          <ul className="navbar-nav ml-auto mr-5
+                 text-left order-xl-0">
             <li className="nav-item">
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
@@ -447,7 +455,7 @@ export class Header extends Component {
                 </span>
               </a>
             </li>
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
               <a className="nav-link text-white navbar-font">
                 <span className="header-text" style={{ cursor: 'pointer' }}>
                   Product <i className="bx-fw bx bx-chevron-down"></i>
@@ -494,7 +502,7 @@ export class Header extends Component {
                   </ul>
                 </span>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <MediaQuery minDeviceWidth={1224}>
@@ -588,8 +596,30 @@ export class Header extends Component {
                     aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                   </button>
+                  {!isAuthenticated ?
+                    <a href="https://career.hirebeat.co" className="navbar-brand mr-auto">
+                      <img
+                        src={hirebeatlogo}
+                        className="img-fluid mr-3"
+                        alt="logo"
+                        style={{
+                          width: "16%",
+                          height: "16%",
+                        }}
+                      />
+                      <img
+                        src={hirebeatlogotext}
+                        className="img-fluid mr-2"
+                        alt="logotext"
+                        style={{
+                          width: "50%",
+                          height: "100%",
+                        }}
+                      />
+                    </a>:
+                  <div>
                   {isAuthenticated && (!this.props.profile.is_employer) ?
-                    <a href="/job-seekers" className="navbar-brand mr-auto">
+                    <a href="/dashboard" className="navbar-brand mr-auto">
                       <img
                         src={hirebeatlogo}
                         className="img-fluid mr-3"
@@ -629,6 +659,8 @@ export class Header extends Component {
                         }}
                       />
                     </a>}
+                    </div>
+                    }
                   {/*</div>*/}
                   {isAuthenticated
                     ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"

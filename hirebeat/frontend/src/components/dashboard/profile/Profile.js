@@ -547,7 +547,7 @@ export class Profile extends Component {
         else {
             const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
             const encodedUserId = btoa(this.props.userId);
-            const url = "https://hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
+            const url = "https://app.hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
             //const url = "http://127.0.0.1:8000/talent-profile?" + name + "&id=" + encodedUserId;
             return window.open(url, '_blank');
         }
@@ -566,7 +566,7 @@ export class Profile extends Component {
     generateShareLink = () => {
         const name = this.props.profileDetail.f_name + "-" + this.props.profileDetail.l_name;
         const encodedUserId = btoa(this.props.userId);
-        const url = "https://hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
+        const url = "https://app.hirebeat.co/talent-profile?" + name + "&id=" + encodedUserId;
         //const url = "http://127.0.0.1:8000/talent-profile?" + name + "&id=" + encodedUserId;
         this.setState({shareLink: url});
     }

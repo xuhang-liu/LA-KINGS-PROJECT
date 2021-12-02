@@ -79,7 +79,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Google is a powerful tool, and this article should help you utilize this tool in a more efficient way. HireBeat is an HR software company that aims to simplify your recruiting process and match you with the perfect candidates. To know more about us, please visit <a href="/">https://hirebeat.co</a>.
+                                    Google is a powerful tool, and this article should help you utilize this tool in a more efficient way. HireBeat is an HR software company that aims to simplify your recruiting process and match you with the perfect candidates. To know more about us, please visit <a href="/">https://app.hirebeat.co</a>.
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
+                                        url={"https://app.hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                         quote={"How to Get Your Job Postings Noticed"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -97,7 +97,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
+                                           url={"https://app.hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                            title={"How to Get Your Job Postings Noticed"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -108,7 +108,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                             title={"How to Get Your Job Postings Noticed"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -118,7 +118,7 @@ class BlogDetailsContentEmployer8 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-to-get-your-job-postings-noticed"}
                                             title={"How to Get Your Job Postings Noticed"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -167,7 +167,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                     Are you wondering whether you have to deal with the candidate evaluation alone? Not anymore, Hirebeat's AI-enabled algorithm evaluates the candidates for you based on their recorded video interviews.
                                     </p>
                                     <p>
-                                    You can visit <a href="/employer-pricing ">https://hirebeat.co/employer-pricing</a> to start your free trial.
+                                    You can visit <a href="/employer-pricing ">https://app.hirebeat.co/employer-pricing</a> to start your free trial.
                                     </p>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
+                                        url={"https://app.hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                         quote={"4 Challenges Campus Recruiters Could Meet"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -185,7 +185,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
+                                           url={"https://app.hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                            title={"4 Challenges Campus Recruiters Could Meet"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -196,7 +196,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
+                                            url={"https://app.hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                             title={"4 Challenges Campus Recruiters Could Meet"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -206,7 +206,7 @@ class BlogDetailsContentEmployer25 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
+                                            url={"https://app.hirebeat.co/employer_blog-4-challenges-campus-recruiters-could-meet"}
                                             title={"4 Challenges Campus Recruiters Could Meet"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

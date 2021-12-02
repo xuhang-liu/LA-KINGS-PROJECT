@@ -146,7 +146,7 @@ class BlogDetailsContentEmployer21 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
+                                        url={"https://app.hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
                                         quote={"What Is Resume Screening and Why Does it Matter"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -156,7 +156,7 @@ class BlogDetailsContentEmployer21 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
+                                           url={"https://app.hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
                                            title={"What Is Resume Screening and Why Does it Matter"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -167,7 +167,7 @@ class BlogDetailsContentEmployer21 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
+                                            url={"https://app.hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
                                             title={"What Is Resume Screening and Why Does it Matter"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -177,7 +177,7 @@ class BlogDetailsContentEmployer21 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
+                                            url={"https://app.hirebeat.co/employer_blog-what-is-resume-screening-and-why-does-it-matter"}
                                             title={"What Is Resume Screening and Why Does it Matter"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

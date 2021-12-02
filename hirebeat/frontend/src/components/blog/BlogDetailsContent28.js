@@ -64,7 +64,7 @@ class BlogDetailsContent28 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Final Thoughts</h3>
                                     <p>
-                                    Finally, try to be as honest as possible and stay true to yourself. It is better to wait for a good offer rather than regretting your decision later. On your way of finding the perfect job, HireBeat provides the personized powerful tool that gets you ready for your interview. To know more about HireBeat, please visit <a href="/job-seekers">https://hirebeat.co/job-seekers</a>.
+                                    Finally, try to be as honest as possible and stay true to yourself. It is better to wait for a good offer rather than regretting your decision later. On your way of finding the perfect job, HireBeat provides the personized powerful tool that gets you ready for your interview. To know more about HireBeat, please visit <a href="/job-seekers">https://app.hirebeat.co/job-seekers</a>.
                                     </p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ class BlogDetailsContent28 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
+                                        url={"https://app.hirebeat.co/blog-wha-is-your-expected-salary"}
                                         quote={"HireBeat Blog – What Is Your Expected Salary?"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -82,7 +82,7 @@ class BlogDetailsContent28 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
+                                           url={"https://app.hirebeat.co/blog-wha-is-your-expected-salary"}
                                            title={"HireBeat Blog – What Is Your Expected Salary?"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -93,7 +93,7 @@ class BlogDetailsContent28 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
+                                            url={"https://app.hirebeat.co/blog-wha-is-your-expected-salary"}
                                             title={"HireBeat Blog – What Is Your Expected Salary?"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -103,7 +103,7 @@ class BlogDetailsContent28 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-wha-is-your-expected-salary"}
+                                            url={"https://app.hirebeat.co/blog-wha-is-your-expected-salary"}
                                             title={"HireBeat Blog – What Is Your Expected Salary?"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

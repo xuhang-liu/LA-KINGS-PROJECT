@@ -94,7 +94,7 @@ class BlogDetailsContent23 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
+                                        url={"https://app.hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
                                         quote={"Good Questions to Ask the Employer at the End of The Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -104,7 +104,7 @@ class BlogDetailsContent23 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
+                                           url={"https://app.hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
                                            title={"Good Questions to Ask the Employer at the End of The Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -115,7 +115,7 @@ class BlogDetailsContent23 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
+                                            url={"https://app.hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
                                             title={"Good Questions to Ask the Employer at the End of The Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -125,7 +125,7 @@ class BlogDetailsContent23 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
+                                            url={"https://app.hirebeat.co/blog-good-questions-to-ask-the-Employer-at-the-end-of-the-interview"}
                                             title={"Good Questions to Ask the Employer at the End of The Interview"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

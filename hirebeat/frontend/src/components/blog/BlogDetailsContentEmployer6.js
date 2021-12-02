@@ -79,7 +79,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
+                                        url={"https://app.hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                         quote={"Topic: How Gender Pronouns Change the Way We Work"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -89,7 +89,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
+                                           url={"https://app.hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                            title={"Topic: How Gender Pronouns Change the Way We Work"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -100,7 +100,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                             title={"Topic: How Gender Pronouns Change the Way We Work"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -110,7 +110,7 @@ class BlogDetailsContentEmployer6 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-gender-pronouns-change-the-way-we-work"}
                                             title={"Topic: How Gender Pronouns Change the Way We Work"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

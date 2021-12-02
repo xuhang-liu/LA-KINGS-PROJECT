@@ -52,7 +52,7 @@ export class PublicProfile extends Component {
         const meta = {
             title: 'HireBeat – Talent Profiles',
             description: 'Jobseekers Info',
-            canonical: 'https://hirebeat.co/talent-profile',
+            canonical: 'https://app.hirebeat.co/talent-profile',
             meta: {
                 charset: 'utf-8',
                 name: {

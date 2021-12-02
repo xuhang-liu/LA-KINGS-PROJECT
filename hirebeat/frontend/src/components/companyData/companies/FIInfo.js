@@ -27,7 +27,7 @@ class FIInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Fidelity Investments</title>
                     <meta name="Description" CONTENT="Fidelity Investments is a provider of financial services and investment resources. The Company manages a large family of mutual funds that provides fund distribution and investment advice services, as well as discount brokerage services, retirement services, wealth management, securities execution and clearance, life insurance, and a number of other services. It provides its services to individual investors, businesses, financial advisors, and institutions. The Company manages equity, fixed income, and balanced mutual funds. It invests in the public equity and fixed income markets." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/fidelity-investments"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/fidelity-investments"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

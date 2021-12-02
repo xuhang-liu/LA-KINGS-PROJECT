@@ -27,7 +27,7 @@ class BCGInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Boston Consulting Group</title>
                     <meta name="Description" CONTENT="Boston Consulting Group (BCG) is a global management consulting firm and advisor on business strategy. Its services cover big data and advanced analytics, change management, corporate development and finance, globalization, growth, innovation and product development, lean and manufacturing, marketing and sales, M&A and divestitures, operations, people and organization, post-merger integration, pricing, procurement, smart simplicity, strategy, sustainability, technology and digital, as well as transformation, turnaround, and restructuring." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/boston-consulting-group"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/boston-consulting-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

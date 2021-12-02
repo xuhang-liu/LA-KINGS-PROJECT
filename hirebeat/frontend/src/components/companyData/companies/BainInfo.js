@@ -27,7 +27,7 @@ class BainInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Bain & Company</title>
                     <meta name="Description" CONTENT="Bain & Company is a management consulting company providing solutions to change management, strategies, and technology. It delivers consulting services in advanced analytics, agile, changing direction, corporate finance, customer strategy and marketing, digital, information technology, mergers and acquisitions, operations, organization, performance improvement, private equity, strategy, sustainability, and transformation." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/bain"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/bain"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

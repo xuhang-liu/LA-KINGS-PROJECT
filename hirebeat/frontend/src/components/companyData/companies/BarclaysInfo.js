@@ -27,7 +27,7 @@ class BarclaysInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Barclays</title>
                     <meta name="Description" CONTENT="Barclays is a global consumer and wholesale bank that offers products and services across personal, corporate, investment banking, credit cards, and wealth management. The company provides consumers with a wide range of retail solutions, including current and savings accounts, loans, mortgages, insurance, and credit cards. Its corporate solutions include cash management solutions, digital banking services, trade solutions, financing, foreign exchange, card payments, investment banking, green financing, and overseas services." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/barclays"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/barclays"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

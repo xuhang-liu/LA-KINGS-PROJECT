@@ -27,7 +27,7 @@ class WillisTowersWastonInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Willis Towers Waston</title>
                     <meta name="Description" CONTENT="Willis Towers Watson is an advisory, broking, and solutions company. Its activities include four segments. The Human Capital and Benefits segment provides actuarial support, plan design, and administrative services for traditional pension and retirement savings plans, plan management consulting, and broking. The Corporate Risk and Broking segment provides risk advice, insurance brokerage, and consulting services in property and casualty. The Investment, Risk and Reinsurance segment offers capital markets-based products to insurance and reinsurance companies, software and technology, risk and capital management, products and pricing, financial and regulatory reporting, and capital markets and advisory services. The Benefits Delivery and Administration segment provides primary medical and ancillary benefit exchange, outsourcing services and delivers health savings and flexible spending accounts and health reimbursement arrangements." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/willis-towers-waston"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/willis-towers-waston"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

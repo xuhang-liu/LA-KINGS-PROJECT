@@ -27,7 +27,7 @@ class ZSAssociatesInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – ZS Associates</title>
                     <meta name="Description" CONTENT="ZS Associates is a company operating as a professional services firm. It offers business operations and technology, creative and design, growth and customer-centric marketing, consulting and customer insights, sales compensation, pipeline, launch strategy, people and performance, commercial strategy, transformation, and other services. The company serves financial services, healthcare, travel, transportation, telecommunications, media, energy, and other industries." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/zs-associates"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/zs-associates"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

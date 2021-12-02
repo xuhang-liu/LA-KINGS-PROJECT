@@ -27,7 +27,7 @@ class HFInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Hanmi Financial</title>
                     <meta name="Hanmi Financial is the holding company for Hanmi Bank. The Bank is a community bank conducting general business banking, with its primary market encompassing the Korean-American community, as well as other ethnic communities across the USA. Its lending activities include real estate loans (commercial property, construction and residential property), commercial and industrial loans (commercial term loans, commercial lines of credit and international), and consumer loans and small business administration (SBA) loans." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/hanmi-financial"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/hanmi-financial"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

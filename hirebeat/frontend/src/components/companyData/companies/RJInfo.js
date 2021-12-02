@@ -27,7 +27,7 @@ class RJInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Raymond James</title>
                     <meta name="Description" CONTENT="Raymond James Financial (RJF) is a financial services company providing private client group, capital markets, asset management, banking, and other services to individuals, corporations, and municipalities. It is engaged in financial services activities, including providing investment management services for retail and institutional clients, the underwriting, distribution, trading and brokerage of equity and debt securities, and the sale of mutual funds and other investment products. The company also provides corporate and retail banking services and trust services." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/raymond-james"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/raymond-james"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

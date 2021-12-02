@@ -120,7 +120,7 @@ class BlogDetailsContent19 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
+                                        url={"https://app.hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                         quote={"Acing Pandemic Job Interview Questions"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -130,7 +130,7 @@ class BlogDetailsContent19 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
+                                           url={"https://app.hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                            title={"Acing Pandemic Job Interview Questions"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -141,7 +141,7 @@ class BlogDetailsContent19 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
+                                            url={"https://app.hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                             title={"Acing Pandemic Job Interview Questions"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -151,7 +151,7 @@ class BlogDetailsContent19 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-acing-pandemic-job-interview-questions"}
+                                            url={"https://app.hirebeat.co/blog-acing-pandemic-job-interview-questions"}
                                             title={"Acing Pandemic Job Interview Questions"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

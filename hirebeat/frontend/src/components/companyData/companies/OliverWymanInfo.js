@@ -27,7 +27,7 @@ class OliverWymanInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Oliver Wyman</title>
                     <meta name="Description" CONTENT="Oliver Wyman is a company providing management consulting services. It specialized in strategy, operations, risk management, and organization transformation. The company helps clients to optimize the business, improve processes and risk profile, accelerate organizational performance. It serves the automotive, energy, healthcare, travel and leisure, and retail sectors." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/oliver-wyman"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/oliver-wyman"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

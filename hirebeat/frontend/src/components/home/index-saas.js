@@ -31,7 +31,7 @@ class IndexSaas extends Component {
     const meta = {
       title: 'HireBeat – Jobseekers',
       description: 'Jobseekers Info',
-      canonical: 'https://hirebeat.co/job-seekers',
+      canonical: 'https://app.hirebeat.co/job-seekers',
       meta: {
         charset: 'utf-8',
         name: {

@@ -27,7 +27,7 @@ class BoozeAllenHamiltonInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Booz Allen Hamilton</title>
                     <meta name="Description" CONTENT="Booz Allen Hamilton is a company providing management and technology consulting and engineering services. It develops mission-oriented solutions for specific domains, business strategies, human capital, and operations. It delivers transformational solutions in decision analytics, automation, data science, deep learning, and artificial intelligence. The company also provides analytics services, software development services, and designs, develops, and implements secure solutions and scalable systems. Booz Allen Hamilton serves the aerospace, financial services, health and life sciences, energy, and transportation industries." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/booz-allen-hamilton"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/booz-allen-hamilton"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

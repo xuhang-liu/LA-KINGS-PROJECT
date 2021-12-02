@@ -72,7 +72,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    The interview questions should aim at helping you understand the prospective intern and their willingness to learn and improve themselves. The intern should also show an interest in the job and how they will benefit the company. HireBeat is a hiring platform that provides digital video interview that aims to help companies find the best candidates. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    The interview questions should aim at helping you understand the prospective intern and their willingness to learn and improve themselves. The intern should also show an interest in the job and how they will benefit the company. HireBeat is a hiring platform that provides digital video interview that aims to help companies find the best candidates. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
+                                        url={"https://app.hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                         quote={"Five Questions You Need to Ask to Hire the Best Intern"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -90,7 +90,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
+                                           url={"https://app.hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                            title={"Five Questions You Need to Ask to Hire the Best Intern"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -101,7 +101,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
+                                            url={"https://app.hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                             title={"Five Questions You Need to Ask to Hire the Best Intern"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -111,7 +111,7 @@ class BlogDetailsContentEmployer14 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
+                                            url={"https://app.hirebeat.co/employer_blog-five-questions-you-need-to-ask-to-hire-the-best-intern"}
                                             title={"Five Questions You Need to Ask to Hire the Best Intern"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

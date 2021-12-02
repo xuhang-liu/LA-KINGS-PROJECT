@@ -27,7 +27,7 @@ class HCIGroupInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – HCI Group</title>
                     <meta name="Description" CONTENT="The Company is engaged in providing property and casualty insurance to homeowners, condominium owners, and tenants in the state of Florida through its subsidiaries. The Company operates through the property and casualty insurance operations segment. The Company's operations include Insurance Operations and Other Operations. The Company's Insurance Operations include property and casualty insurance and reinsurance. HCI's Other Operations include information technology (IT) and real estate. Through its subsidiary, the Company, Homeowners Choice Property & Casualty Insurance Company, Inc., provides property and casualty insurance. Its real estate operations consist of properties it owns, functions located at those owned properties, and investments in approximately three commercial development projects. Its IT operations are focused on developing cloud-based products or services, including Exzeo, Proplet, and Atlas Viewer." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/hci-group"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/hci-group"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

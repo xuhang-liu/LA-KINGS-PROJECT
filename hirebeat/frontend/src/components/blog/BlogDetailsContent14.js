@@ -101,7 +101,7 @@ class BlogDetailsContent14 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
+                                        url={"https://app.hirebeat.co/blog-why-do-you-want-to-work-here"}
                                         quote={"Interview Question 'Why do you want to work here?'"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -111,7 +111,7 @@ class BlogDetailsContent14 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
+                                           url={"https://app.hirebeat.co/blog-why-do-you-want-to-work-here"}
                                            title={"Interview Question 'Why do you want to work here?'"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -122,7 +122,7 @@ class BlogDetailsContent14 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
+                                            url={"https://app.hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"Interview Question 'Why do you want to work here?'"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -132,7 +132,7 @@ class BlogDetailsContent14 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-why-do-you-want-to-work-here"}
+                                            url={"https://app.hirebeat.co/blog-why-do-you-want-to-work-here"}
                                             title={"Interview Question 'Why do you want to work here?'"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

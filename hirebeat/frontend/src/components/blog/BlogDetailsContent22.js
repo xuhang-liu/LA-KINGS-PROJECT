@@ -87,7 +87,7 @@ class BlogDetailsContent22 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
+                                        url={"https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                         quote={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -97,7 +97,7 @@ class BlogDetailsContent22 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
+                                           url={"https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                            title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -108,7 +108,7 @@ class BlogDetailsContent22 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                             title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -118,7 +118,7 @@ class BlogDetailsContent22 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-question-where-do-you-see-yourself-in-5-years"}
                                             title={"How to Answer the Question: 'Where do you see yourself in 5 years?'"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['34.230.181.0','www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
+ALLOWED_HOSTS = ['34.230.181.0', '52.86.229.28', 'app.hirebeat.co', 'www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
 #ALLOWED_HOSTS = ['34.196.254.228','www.castbeat.co','castbeat.co','career.castbeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
 #ALLOWED_HOSTS = ["*"]
 

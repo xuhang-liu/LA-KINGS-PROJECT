@@ -62,7 +62,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Although some precautions you take during the hiring process might take off amid Covid-19, virtual onboarding and virtual interview will be most likely to remain because they are efficient ways of recruitment. HireBeat is an HR software company that provides virtual video interviews to your business and match you with the perfect candidates. To know more about us, please visit <a href="/">https://hirebeat.co/</a>.
+                                    Although some precautions you take during the hiring process might take off amid Covid-19, virtual onboarding and virtual interview will be most likely to remain because they are efficient ways of recruitment. HireBeat is an HR software company that provides virtual video interviews to your business and match you with the perfect candidates. To know more about us, please visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
+                                        url={"https://app.hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                         quote={"How Covid Has Changed the Recruitment Process"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -80,7 +80,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
+                                           url={"https://app.hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                            title={"How Covid Has Changed the Recruitment Process"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -91,7 +91,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                             title={"How Covid Has Changed the Recruitment Process"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -101,7 +101,7 @@ class BlogDetailsContentEmployer11 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
+                                            url={"https://app.hirebeat.co/employer_blog-how-covid-has-changed-the-recruitment-process"}
                                             title={"How Covid Has Changed the Recruitment Process"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

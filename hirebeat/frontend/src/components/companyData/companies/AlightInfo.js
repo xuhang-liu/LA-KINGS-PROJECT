@@ -27,7 +27,7 @@ class AlightInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data –Alight</title>
                     <meta name="Description" CONTENT="Alight Solutions is a cloud-based provider of integrated digital human capital and business solutions. It focuses on health, wealth, and payroll administration. The company also specializes in engagement and communications, human capital, and financial management." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/alight"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/alight"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

@@ -78,7 +78,7 @@ class BlogDetailsContent18 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
+                                        url={"https://app.hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                         quote={"How to answer the teamwork type question in an interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -88,7 +88,7 @@ class BlogDetailsContent18 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
+                                           url={"https://app.hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                            title={"How to answer the teamwork type question in an interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -99,7 +99,7 @@ class BlogDetailsContent18 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                             title={"How to answer the teamwork type question in an interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -109,7 +109,7 @@ class BlogDetailsContent18 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
+                                            url={"https://app.hirebeat.co/blog-how-to-answer-the-teamwork-type-question-in-an-interview"}
                                             title={"How to answer the teamwork type question in an interview"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

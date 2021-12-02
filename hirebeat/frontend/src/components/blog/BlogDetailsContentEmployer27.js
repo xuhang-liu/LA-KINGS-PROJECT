@@ -67,7 +67,7 @@ class BlogDetailsContentEmployer27 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
+                                        url={"https://app.hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
                                         quote={"Five ways Applicant tracking systems up"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -77,7 +77,7 @@ class BlogDetailsContentEmployer27 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
+                                           url={"https://app.hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
                                            title={"Five ways Applicant tracking systems up"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -88,7 +88,7 @@ class BlogDetailsContentEmployer27 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
+                                            url={"https://app.hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
                                             title={"Five ways Applicant tracking systems up"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -98,7 +98,7 @@ class BlogDetailsContentEmployer27 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
+                                            url={"https://app.hirebeat.co/employer_blog-five-ways-applicant-tracking-systems-up"}
                                             title={"Five ways Applicant tracking systems up"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

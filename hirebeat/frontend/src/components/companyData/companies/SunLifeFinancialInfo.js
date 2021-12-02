@@ -27,7 +27,7 @@ class SunLifeFinancialInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data –Sun Life Financial</title>
                     <meta name="Description" CONTENT="Sun Life Financial is an international financial services company providing insurance, wealth, and asset management solutions to individuals, businesses, and institutions. It offers life, health, wellness, disability, critical illness, stop-loss, and long-term care insurance. The company also provides mutual funds, segregated funds, annuities, guaranteed investment products, financial planning, retirement planning services, pooled funds, institutional portfolios, and pension funds." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/sun-life-financial"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/sun-life-financial"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

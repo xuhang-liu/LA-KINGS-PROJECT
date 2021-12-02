@@ -59,7 +59,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                     <h3 className="mb-0">Conclusion</h3>
                                     <br/>
                                     <p>
-                                    Camaraderie ensures that a team does the work better: people can work together towards a certain goal without any of them feeling bored and uninterested. Indeed, two heads are better than one, and what is a better way to ensure there happens except when there is mutual trust and understanding? HireBeat is an HR software company that aims to help you find the best candidates with the least effort. To know more about us, visit <a href="/">https://hirebeat.co/</a>.
+                                    Camaraderie ensures that a team does the work better: people can work together towards a certain goal without any of them feeling bored and uninterested. Indeed, two heads are better than one, and what is a better way to ensure there happens except when there is mutual trust and understanding? HireBeat is an HR software company that aims to help you find the best candidates with the least effort. To know more about us, visit <a href="/">https://app.hirebeat.co/</a>.
                                     </p>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
+                                        url={"https://app.hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                         quote={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -77,7 +77,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
+                                           url={"https://app.hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                            title={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -88,7 +88,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
+                                            url={"https://app.hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                             title={"Workplace Camaraderie: Your Powerful Tool For Success"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -98,7 +98,7 @@ class BlogDetailsContentEmployer12 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
+                                            url={"https://app.hirebeat.co/employer_blog-workplace-camaraderie-your-powerful-tool-for-success"}
                                             title={"Workplace Camaraderie: Your Powerful Tool For Success"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

@@ -27,7 +27,7 @@ class MassmutualInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data –Massmutual</title>
                     <meta name="Description" CONTENT="Massachusetts Mutual Life Insurance Company (MassMutual) is a mutual life insurance company. It provides financial products such as life insurance, disability income insurance, long-term care insurance, retirement/401(k) plan services, and annuities" ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/massmutual"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/massmutual"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

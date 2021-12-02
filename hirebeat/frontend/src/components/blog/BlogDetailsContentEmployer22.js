@@ -134,7 +134,7 @@ class BlogDetailsContentEmployer22 extends Component {
                                         <li><p>Hirebeat also has a talent pool of qualified candidates as it also offers tips to job seekers to win the interviews.</p></li>
                                     </ul>
                                     <p>
-                                    You can visit <a href="/employer-pricing">https://hirebeat.co/employer-pricing</a> to start your free trial.
+                                    You can visit <a href="/employer-pricing">https://app.hirebeat.co/employer-pricing</a> to start your free trial.
                                     </p>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ class BlogDetailsContentEmployer22 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
+                                        url={"https://app.hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
                                         quote={"8 Ways to Automate Recruiting Processes"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -152,7 +152,7 @@ class BlogDetailsContentEmployer22 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
+                                           url={"https://app.hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
                                            title={"8 Ways to Automate Recruiting Processes"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -163,7 +163,7 @@ class BlogDetailsContentEmployer22 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
+                                            url={"https://app.hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
                                             title={"8 Ways to Automate Recruiting Processes"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -173,7 +173,7 @@ class BlogDetailsContentEmployer22 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
+                                            url={"https://app.hirebeat.co/employer_blog-8-ways-to-automate-recruiting-processes"}
                                             title={"8 Ways to Automate Recruiting Processes"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>

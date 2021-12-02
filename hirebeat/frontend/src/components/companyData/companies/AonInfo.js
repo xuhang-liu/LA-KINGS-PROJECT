@@ -27,7 +27,7 @@ class AonInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Aon</title>
                     <meta name="Description" CONTENT="Aon is a professional services company providing a range of risk, retirement, and health solutions. It offers commercial risk solutions, including risk advisory, risk transfer, and structured solutions; reinsurance solutions, such as risk transfer, claims advocacy, and capital management solutions; retirement solutions, including actuarial, investment, and bundled retirement solutions; and health solutions, such as consulting, global benefits, and exchange solutions." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/aon"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/aon"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

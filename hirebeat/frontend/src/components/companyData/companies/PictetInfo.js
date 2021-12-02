@@ -27,7 +27,7 @@ class PictetInfo extends Component {
                     <meta charSet="utf-8" />
                     <title>HireBeat Company Data – Pictet</title>
                     <meta name="Pictet Group is a private bank and financial services company, offering wealth management, asset management, and related services. It also provides investment management and advisory, securities safekeeping and administration, and fiduciary services. The company serves private and corporate clients." ></meta>
-                    <link rel="canonical" href="https://hirebeat.co/pictet"/>
+                    <link rel="canonical" href="https://app.hirebeat.co/pictet"/>
                 </Helmet>
                 <ScrollToTopOnMount />
                 <PageTitleArea

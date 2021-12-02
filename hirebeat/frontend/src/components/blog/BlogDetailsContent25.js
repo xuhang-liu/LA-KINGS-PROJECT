@@ -69,7 +69,7 @@ class BlogDetailsContent25 extends Component {
                                     <br/>
                                     <h3 className="mb-0">Conclusion:</h3>
                                     <p>
-                                    The four fundamental questions mentioned above are of great significance and beneficial for getting prepared for your incoming job interview. HireBeat is an AI-powered platform that helps candidates get ready for the interview and to be more successful in the future. To know more about us, please visit <a href="/job-seekers">https://hirebeat.co/job-seekers</a>.
+                                    The four fundamental questions mentioned above are of great significance and beneficial for getting prepared for your incoming job interview. HireBeat is an AI-powered platform that helps candidates get ready for the interview and to be more successful in the future. To know more about us, please visit <a href="/job-seekers">https://app.hirebeat.co/job-seekers</a>.
                                     </p>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ class BlogDetailsContent25 extends Component {
                                     <ul className="social">
                                     <li>
                                     <FacebookShareButton 
-                                        url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
+                                        url={"https://app.hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                         quote={"4 Most Commonly Asked Questions in an Interview"}
                                         hashtag="#hirebeat">
                                         <a target="_blank" rel="noreferrer">
@@ -87,7 +87,7 @@ class BlogDetailsContent25 extends Component {
                                     </li>
                                     <li>
                                         <TwitterShareButton
-                                           url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
+                                           url={"https://app.hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                            title={"4 Most Commonly Asked Questions in an Interview"}
                                            via={"HireBeat"}
                                            hashtag="#hirebeat">
@@ -98,7 +98,7 @@ class BlogDetailsContent25 extends Component {
                                     </li>
                                     <li>
                                         <LinkedinShareButton
-                                            url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
+                                            url={"https://app.hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                             title={"4 Most Commonly Asked Questions in an Interview"}
                                             source={"HireBeat"}>
                                             <a target="_blank" rel="noreferrer">
@@ -108,7 +108,7 @@ class BlogDetailsContent25 extends Component {
                                     </li>
                                     <li>
                                         <WhatsappShareButton
-                                            url={"https://hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
+                                            url={"https://app.hirebeat.co/blog-4-most-commonly-asked-questions-in-an-interview"}
                                             title={"4 Most Commonly Asked Questions in an Interview"}>
                                             <a target="_blank" rel="noreferrer">
                                                 <i className="bx bxl-whatsapp"></i>
