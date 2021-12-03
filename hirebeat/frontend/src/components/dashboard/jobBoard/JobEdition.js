@@ -314,14 +314,14 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: "Remote",
                 jobLocation: this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
+                jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
                 pho_req: this.state.pho_req,
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
                 eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
+                job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 0,
@@ -388,7 +388,7 @@ export class JobEdition extends Component {
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
                 eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
+                job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 3
@@ -623,7 +623,7 @@ export class JobEdition extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="form-row">
+                        <div className={(this.state.remote.value != 2) ? "form-row" : "form-row pb-5"}>
                             <div className="form-group col-6">
                                 <div className="d-flex">
                                     {(this.state.remote.value != 2) &&
@@ -894,7 +894,7 @@ export class JobEdition extends Component {
                                 </span>
                             </div>
                         }
-                        {(this.state.remote.value == 0) &&
+                        {(this.state.remote.value == 0 || this.state.remote.value == 1) &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">

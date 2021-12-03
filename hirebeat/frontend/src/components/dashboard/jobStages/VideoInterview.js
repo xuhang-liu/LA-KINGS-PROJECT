@@ -733,6 +733,8 @@ export function VideoInterview(props) {
                                 selectedPage={selectedPage}
                                 employerProfileDetail={props.employerProfileDetail}
                                 reviewerStageLength={props.reviewerStageLength}
+                                setShowNoQuestionAlert={setShowNoQuestionAlert}
+                                questions={props.questions}
                             />
                         </div>
                     </div>

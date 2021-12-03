@@ -302,9 +302,9 @@ def get_posted_jobs(request):
                         applicant_email=applicant["email"], position_id=position_id, evaluation=1, current_stage=stage).count()
                     applicant["num_votes"] = ReviewerEvaluation.objects.filter(
                         applicant_email=applicant["email"], position_id=position_id, current_stage=stage).count()
-                # get each applicant review status
-                applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
-                    reviewer_email=user.email, applicant_email=applicant["email"]).exists()
+                    # get each applicant review status
+                    applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
+                        reviewer_email=user.email, applicant_email=applicant["email"], current_stage=stage).exists()
                 # get each applicant answers to each position screen questions
                 jobs = Jobs.objects.filter(
                     positions_id=position_id, user_id=ex_reviewers[i].master_user)

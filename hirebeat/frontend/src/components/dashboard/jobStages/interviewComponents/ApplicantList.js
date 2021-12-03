@@ -60,6 +60,8 @@ export const ApplicantList = (props) => {
                         selectedPage={props.selectedPage}
                         employerProfileDetail={props.employerProfileDetail}
                         reviewerStageLength={props.reviewerStageLength}
+                        setShowNoQuestionAlert={props.setShowNoQuestionAlert}
+                        questions={props.questions}
                     />
                 )
             })}

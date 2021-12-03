@@ -104,27 +104,32 @@ export const Applicant = (props) => {
     }
 
     function inviteAgain() {
-        // encode url
-        let url = "";
-        //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
-        let prefix = "https://app.hirebeat.co/candidate-login?";  // online
-        let params = "email=" + email + "&" + "positionId=" + positionId;
-        let encode = window.btoa(params);
-        url = prefix + encode;
+        if (props.questions.length <= 0) {
+            props.setShowNoQuestionAlert(true);
+        }
+        else {
+            // encode url
+            let url = "";
+            //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
+            let prefix = "https://app.hirebeat.co/candidate-login?";  // online
+            let params = "email=" + email + "&" + "positionId=" + positionId;
+            let encode = window.btoa(params);
+            url = prefix + encode;
 
-        let meta = {
-            company_name: companyName,
-            job_title: jobTitle,
-            email: email,
-            name: name,
-            url: url,
-            expire: 7,
-            candidate_id: candidateId,
-        };
+            let meta = {
+                company_name: companyName,
+                job_title: jobTitle,
+                email: email,
+                name: name,
+                url: url,
+                expire: 7,
+                candidate_id: candidateId,
+            };
 
-        props.resendInvitation(meta);
-        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
-        alert1();
+            props.resendInvitation(meta);
+            setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
+            alert1();
+        }
     }
 
     function hideModal() {

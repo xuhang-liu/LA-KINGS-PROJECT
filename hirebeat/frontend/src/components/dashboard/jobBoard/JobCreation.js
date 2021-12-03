@@ -323,7 +323,7 @@ export class JobCreation extends Component {
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
                 eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
+                job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 0
@@ -391,7 +391,7 @@ export class JobCreation extends Component {
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
                 eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
+                job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 3
@@ -877,7 +877,7 @@ export class JobCreation extends Component {
                                 </span>
                             </div>
                         }
-                        {this.state.remote.value == 0 &&
+                        {(this.state.remote.value == 0 || this.state.remote.value == 1)&&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">

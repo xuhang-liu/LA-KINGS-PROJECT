@@ -191,10 +191,11 @@ def get_all_jobs(request):
             applicant["num_vote_yes"] = 0
             applicant["num_votes"] = 0
             user = User.objects.get(pk=user_id)
-            reviewerEvaluation = ReviewerEvaluation.objects.filter(
-                reviewer_email=user.email, applicant_email=applicant["email"]).exists()
-            if reviewerEvaluation:
-                applicant["reviewer_review_status"] = True
+            if subpage != "":
+                reviewerEvaluation = ReviewerEvaluation.objects.filter(
+                    reviewer_email=user.email, applicant_email=applicant["email"], current_stage=subpage).exists()
+                if reviewerEvaluation:
+                    applicant["reviewer_review_status"] = True
             # get team vote rate
             if subpage != "":
                 applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
@@ -525,7 +526,6 @@ def create_zr_job_feed(job_detail):
     country = ET.SubElement(job, 'country')
     city = ET.SubElement(job, 'city')
     state = ET.SubElement(job, 'state')
-    postalcode = ET.SubElement(job, 'postalcode')
     company = ET.SubElement(job, 'company')
     date = ET.SubElement(job, 'date')
     # Candidate Delivery Fields
@@ -542,7 +542,6 @@ def create_zr_job_feed(job_detail):
     country.text = 'US'
     city.text = location[0]
     state.text = location[1]
-    postalcode.text = location[2]
     company.text = job_detail['company_name']
     date.text = job_detail['create_date'].strftime("%c")
     url.text = job_detail['job_url']
