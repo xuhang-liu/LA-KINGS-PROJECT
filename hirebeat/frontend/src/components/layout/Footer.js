@@ -20,7 +20,7 @@ class Footer extends Component {
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="single-footer-widget">
                                 <div className="logo">
-                                    <a href="/">
+                                    <a href="https://hirebeat.co">
                                     <img
                                         src={hirebeatlogo}
                                         className="img-fluid mr-3"
@@ -53,9 +53,9 @@ class Footer extends Component {
                                 {(uri.includes("employer")  || uri=="")?
                                 <ul className="services-list">
                                     <li>
-                                        <Link to="/employer_company">
+                                        <a href="https://hirebeat.co/about/">
                                             <a>About Us</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
                                         <Link to="/employer-pricing">
@@ -63,9 +63,9 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/bloghome_employer">
+                                        <a href="https://hirebeat.co/blog/">
                                             <a>Blog</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul> :
                                 <ul className="services-list">
@@ -85,9 +85,9 @@ class Footer extends Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/jobs">
+                                    <a href="https://hirebeat.co/join-us/">
                                         <a>Join Us</a>
-                                    </Link>
+                                    </a>
                                 </li>
                                 </ul>}
                             </div>
@@ -186,7 +186,7 @@ class Footer extends Component {
                         <div className="col-lg-4 col-md-6 col-sm-6">
                             <div className="single-footer-widget">
                                 <div className="logo">
-                                    <a href="/">
+                                    <a href="https://hirebeat.co">
                                     <img
                                         src={hirebeatlogo}
                                         className="img-fluid mr-3"
@@ -220,9 +220,9 @@ class Footer extends Component {
                                 {(uri.includes("employer") || uri=="")?
                                 <ul className="services-list">
                                     <li>
-                                        <Link to="/employer_company">
+                                        <a href="https://hirebeat.co/about/">
                                             <a>About Us</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
                                         <Link to="/employer-pricing">
@@ -230,9 +230,9 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/bloghome_employer">
+                                        <a href="https://hirebeat.co/blog/">
                                             <a>Blog</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul> :
                                 <ul className="services-list">
@@ -252,9 +252,9 @@ class Footer extends Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/jobs">
+                                    <a href="https://hirebeat.co/join-us/">
                                         <a>Join Us</a>
-                                    </Link>
+                                    </a>
                                 </li>
                                 </ul>}
                             </div>

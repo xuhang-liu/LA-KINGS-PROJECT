@@ -338,7 +338,7 @@ export class Header extends Component {
                       </Link>
                     </li>
                     <li>
-                      <a id="id-logout" href="https://career.hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>
@@ -355,7 +355,7 @@ export class Header extends Component {
                       </Link>
                     </li>
                     <li>
-                      <a id="id-logout" href="https://career.hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>
@@ -597,29 +597,7 @@ export class Header extends Component {
                     <span className="navbar-toggler-icon" />
                   </button>
                   {!isAuthenticated ?
-                    <a href="https://career.hirebeat.co" className="navbar-brand mr-auto">
-                      <img
-                        src={hirebeatlogo}
-                        className="img-fluid mr-3"
-                        alt="logo"
-                        style={{
-                          width: "16%",
-                          height: "16%",
-                        }}
-                      />
-                      <img
-                        src={hirebeatlogotext}
-                        className="img-fluid mr-2"
-                        alt="logotext"
-                        style={{
-                          width: "50%",
-                          height: "100%",
-                        }}
-                      />
-                    </a>:
-                  <div>
-                  {isAuthenticated && (!this.props.profile.is_employer) ?
-                    <a href="/dashboard" className="navbar-brand mr-auto">
+                    <a href="https://hirebeat.co" className="navbar-brand mr-auto">
                       <img
                         src={hirebeatlogo}
                         className="img-fluid mr-3"
@@ -639,7 +617,7 @@ export class Header extends Component {
                         }}
                       />
                     </a> :
-                    <a href="/" className="navbar-brand mr-auto">
+                    <a href="/dashboard" className="navbar-brand mr-auto">
                       <img
                         src={hirebeatlogo}
                         className="img-fluid mr-3"
@@ -658,9 +636,8 @@ export class Header extends Component {
                           height: "100%",
                         }}
                       />
-                    </a>}
-                    </div>
-                    }
+                    </a>
+                  }
                   {/*</div>*/}
                   {isAuthenticated
                     ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
@@ -700,8 +677,8 @@ export class Header extends Component {
                     aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                   </button>
-                  {isAuthenticated && (!this.props.profile.is_employer) ?
-                    <a href="/job-seekers" className="navbar-brand mr-auto">
+                  {!isAuthenticated ?
+                    <a href="https://hirebeat.co" className="navbar-brand mr-auto">
                       <img
                         src={hirebeatlogo}
                         className="img-fluid mr-3"
@@ -721,7 +698,7 @@ export class Header extends Component {
                         }}
                       />
                     </a> :
-                    <a href="/" className="navbar-brand mr-auto">
+                    <a href="/dashboard" className="navbar-brand mr-auto">
                       <img
                         src={hirebeatlogo}
                         className="img-fluid mr-3"
@@ -740,7 +717,8 @@ export class Header extends Component {
                           height: "100%",
                         }}
                       />
-                    </a>}
+                    </a>
+                  }
                   {/*</div>*/}
                   {isAuthenticated
                     ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
