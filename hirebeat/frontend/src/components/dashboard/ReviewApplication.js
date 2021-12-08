@@ -150,7 +150,7 @@ class ReviewApplication extends Component {
                                             wordBreak: "break-all",
                                         }}
                                     >
-                                        {this.props.applicants[this.props.current].name.length > 14 ?
+                                        {this.props.applicants[this.props.current].name?.length > 14 ?
                                             this.props.applicants[this.props.current].name.substring(0, 12) + "..." :
                                             this.props.applicants[this.props.current].name}
                                     </h4>

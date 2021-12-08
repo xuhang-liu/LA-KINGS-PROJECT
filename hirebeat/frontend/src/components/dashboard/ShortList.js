@@ -117,7 +117,7 @@ const mapStateToProps = (state) => ({
 export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL, addExReviewer, delExReviewer, checkUserExistence })(ShortList));
 
 function getQualifiedApplicants(applicants) {
-    let len = applicants.length;
+    let len = applicants?.length;
     let qualifiedApplicants = [];
     for (let i = 0; i < len; i++) {
         if (applicants[i].comment_status == 1) {

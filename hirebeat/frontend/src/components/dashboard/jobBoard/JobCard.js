@@ -219,16 +219,16 @@ export class JobCard extends Component {
                                 className="title-button2"
                                 onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                             >
-                                {this.props.job.job_details.job_title.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
+                                {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button> :
                             <button
                                 className="title-button2"
                             >
-                                {this.props.job.job_details.job_title.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
+                                {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button>
                         }
                     </div>
-                    <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">{this.props.job.job_details.job_id.length > 12 ? (this.props.job.job_details.job_id?.substring(0, 10) + "...") : (this.props.job.job_details.job_id)}</div>
+                    <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">{this.props.job.job_details.job_id?.length > 12 ? (this.props.job.job_details.job_id?.substring(0, 10) + "...") : (this.props.job.job_details.job_id)}</div>
                     <div className="col-2 interview-txt9 d-flex justify-content-center mt-2">
                         {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 2) ?
                             <button

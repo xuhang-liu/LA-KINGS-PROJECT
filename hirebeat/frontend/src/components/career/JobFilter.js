@@ -41,7 +41,7 @@ export class JobFilter extends Component {
         let location = where.value == "" ? this.props.location : where.value;
         // job type
         let jobTypes = document.getElementsByClassName("jobType");
-        for (let i = 0; i < jobTypes.length; i++) {
+        for (let i = 0; i < jobTypes?.length; i++) {
             if (jobTypes[i].checked == true) {
                 search += " " + jobTypes[i].value;
                 checked.push(jobTypes[i].id);
@@ -50,7 +50,7 @@ export class JobFilter extends Component {
         // post date
         let postDate = 30; // default post date is within last month
         let postDates = document.getElementsByClassName("postDate");
-        for (let i = 0; i < postDates.length; i++) {
+        for (let i = 0; i < postDates?.length; i++) {
             if (postDates[i].checked == true) {
                 postDate = Number(postDates[i].value);
                 checked.push(postDates[i].id);
@@ -60,7 +60,7 @@ export class JobFilter extends Component {
         // min salary
         let salary = 0;
         let salaries = document.getElementsByClassName("salary");
-        for (let i = 0; i < salaries.length; i++) {
+        for (let i = 0; i < salaries?.length; i++) {
             if (salaries[i].checked == true) {
                 salary = Number(salaries[i].value);
                 checked.push(salaries[i].id);

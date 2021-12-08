@@ -41,7 +41,7 @@ export class ProfileForm extends Component {
 
         // prune selected file
         input.onchange = () => {
-            let num = input.files.length;
+            let num = input.files?.length;
             // limit 10 pdfs at one time
             if (num > 1) {
                 return this.alert("Capacity Error", "Please only upload one resume");
@@ -431,13 +431,13 @@ function dataURItoBlob(dataURI) {
   var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
 
   // write the bytes of the string to an ArrayBuffer
-  var ab = new ArrayBuffer(byteString.length);
+  var ab = new ArrayBuffer(byteString?.length);
 
   // create a view into the buffer
   var ia = new Uint8Array(ab);
 
   // set the bytes of the buffer to the correct values
-  for (var i = 0; i < byteString.length; i++) {
+  for (var i = 0; i < byteString?.length; i++) {
       ia[i] = byteString.charCodeAt(i);
   }
 

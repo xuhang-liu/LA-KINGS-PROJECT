@@ -141,7 +141,7 @@ export const IconUserText1 = (props) => {
 export const renderQDes = (des) => {
     var length = 48;
     var i = 0;
-    if (des.length > length) {
+    if (des?.length > length) {
         var ans = des.substring(0, length);
         //while (des[length + i] !== " " || des[length + i] !== null) {
         // Make sure the des ends with a complete word

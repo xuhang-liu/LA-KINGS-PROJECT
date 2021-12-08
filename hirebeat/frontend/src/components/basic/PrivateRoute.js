@@ -13,7 +13,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
     setTimeout(() => setLoading(false), 222);
   }, []);
   var uri = window.location.pathname;
-  uri = uri.substring(1, uri.length);
+  uri = uri.substring(1, uri?.length);
   return (
     <React.Fragment>
     <Loader loading={loading} />
