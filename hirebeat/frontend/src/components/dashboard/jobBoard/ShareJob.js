@@ -18,10 +18,10 @@ export class ShareJob extends Component {
                 <div className="d-flex justify-content-center">
                     <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3rem" }}>
                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
-                            <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(this.props.shareLink); this.props.disableShowShare() }}>{this.props.shareLink}</p>
+                            <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(this.props.shareLink?.replaceAll(' ', '%20')); this.props.disableShowShare() }}>{this.props.shareLink}</p>
                         </div>
                         <div className="d-flex justify-content-center py-1">
-                            <button onClick={() => { copyAlert(); navigator.clipboard.writeText(this.props.shareLink); this.props.disableShowShare() }}
+                            <button onClick={() => { copyAlert(); navigator.clipboard.writeText(this.props.shareLink?.replaceAll(' ', '%20')); this.props.disableShowShare() }}
                                 className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
                                 <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
                             </button>

@@ -1047,10 +1047,10 @@ const ApplyJob = (props) => {
                                     <p className="mt-5">Link to this job</p>
                                     <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3.7rem" }}>
                                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
-                                            <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
+                                            <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                         </div>
                                         <div className="py-1">
-                                            <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}
+                                            <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
                                                 className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
                                                 <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
                                             </button>
@@ -1130,10 +1130,10 @@ const ApplyJob = (props) => {
                                         <p className="mt-3">Link to this job</p>
                                         <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "4rem" }}>
                                             <div className="pt-2 pl-2" style={{ color: "#090D3A", fontWeight: "500", alignItems: "center" }}>
-                                                <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
+                                                <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
                                             </div>
                                             <div className="py-1 mt-3 mb-1">
-                                                <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url)) }}
+                                                <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
                                                     className="default-btn pt-1" style={{ fontSize: "1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem" }}>
                                                     <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
                                                 </button>

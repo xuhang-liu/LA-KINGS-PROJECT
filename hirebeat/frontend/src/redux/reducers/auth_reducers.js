@@ -97,6 +97,11 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         isLoading: false,
       };
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem("token");
+      return {
+        ...state
+      }
     case PROFILE_LOADED:
     case PROFILE_UPDATED:
       return {

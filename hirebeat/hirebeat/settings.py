@@ -95,11 +95,19 @@ WSGI_APPLICATION = 'hirebeat.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     'USER': 'django',
+    #     'PASSWORD': os.getenv('DATABASE_SECRET_KEY'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'django',
-        'PASSWORD': os.getenv('DATABASE_SECRET_KEY'),
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'postgres',
+    'USER': 'django',
+    'PASSWORD': os.getenv('RDS_DATABASE_SECRET_KEY'),
+    'HOST': 'database-hirebeat-app.c9lge1nbo9rx.us-east-1.rds.amazonaws.com',
+    'PORT': '5432',
     }
 }
 

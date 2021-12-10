@@ -109,9 +109,9 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/employer_contact">
+                                        <a href="https://hirebeat.co/contact">
                                             <a>Contact Us</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>:
                                 <ul className="support-list">
@@ -277,9 +277,9 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/employer_contact">
+                                        <a href="https://hirebeat.co/contact">
                                             <a>Contact Us</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>:
                                 <ul className="support-list">
