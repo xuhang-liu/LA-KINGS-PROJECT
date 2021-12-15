@@ -69,7 +69,7 @@ export class Header extends Component {
               <span className="header-text" style={{ cursor: 'pointer' }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                 <ul className="nav_submenu" style={{ width: "8rem", marginLeft: "-1rem" }}>
                   <li>
-                    <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                    <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                       Log out
                     </Link>
                   </li>
@@ -338,7 +338,7 @@ export class Header extends Component {
                       </Link>
                     </li>
                     <li>
-                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>
@@ -551,7 +551,7 @@ export class Header extends Component {
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
             <Link to="/">
-              <a className="default-btn" onClick={() => { sessionStorage.clear(); this.props.logout(); }} style={{ color: "white" }}>
+              <a className="default-btn" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} style={{ color: "white" }}>
                 <i className="bx-fw bx bxs-hot"></i>Logout<span></span>
               </a>
             </Link>

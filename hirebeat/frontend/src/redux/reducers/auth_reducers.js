@@ -100,7 +100,11 @@ export default function (state = initialState, action) {
     case LOGOUT_SUCCESS:
       localStorage.removeItem("token");
       return {
-        ...state
+        ...state,
+        token: null,
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
       }
     case PROFILE_LOADED:
     case PROFILE_UPDATED:
