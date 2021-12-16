@@ -152,7 +152,7 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1JaNlFKxU1MN2zWMQTRM80px', // Replace with the ID of your price
+                price: 'price_1K7RMiKxU1MN2zWMhrZny25L', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
@@ -169,7 +169,7 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1JaNlPKxU1MN2zWMWalh2W8e', // Replace with the ID of your price
+                price: 'price_1K7RMDKxU1MN2zWM8vGbN7Kc', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
@@ -229,7 +229,7 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1IXyNWKxU1MN2zWMYYlG6Rmp', // Replace with the ID of your price
+                price: 'price_1K7REaKxU1MN2zWMcG3Oknyt', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
@@ -249,10 +249,30 @@ class Employer_PricingStyleOne extends Component {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: 'price_1JAcMmKxU1MN2zWMzUmtM0Iv', // Replace with the ID of your price
+                price: 'price_1K7RExKxU1MN2zWM87rKnRhM', // Replace with the ID of your price
                 quantity: 1,
             }],
             mode: 'subscription',
+            successUrl: 'https://app.hirebeat.co/payment',
+            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
+    handlePayAsYouGoUpgrade = () => {
+        this.handlePayAsYouGoClickUpgrade();
+    };
+    handlePayAsYouGoClickUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1K7QhOKxU1MN2zWM6f54d41L', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'payment',
             successUrl: 'https://app.hirebeat.co/payment',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
@@ -436,7 +456,56 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
+                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PAYG</h3>
+                                            </div>
+
+                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>99<sub style={{ color: "#090d3a" }}>/ job</sub>
+                                                <p style={{ fontSize: "13px", color: "#fff", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$2,028</span> <span style={{ fontWeight: "700", color: "#fff" }}>$1,512 /yr</span></p>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null ?
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>:
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
+                                            </div>
+                                            <div className="px-5 py-4">
+                                                <p>For organizations with occasional hiring needs.</p>
+                                                <div className="pt-5 pb-2">
+                                                    <p style={{ color: "#090d3a" }}>Create Unlimited Jobs</p>
+                                                    <p style={{ color: "#090d3a" }}>Only Charged When You Publish</p>
+                                                    <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
+                                                    <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table 3*/}
+                                    <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
+                                        <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
+                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
+                                        </div>
+                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
@@ -447,7 +516,7 @@ class Employer_PricingStyleOne extends Component {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -456,7 +525,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleYearProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -465,7 +534,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleYearProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -474,7 +543,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -483,7 +552,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.stripeCustomerPortal}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -492,7 +561,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -512,30 +581,31 @@ class Employer_PricingStyleOne extends Component {
                                                     <p style={{ color: "#090d3a" }}>Standard Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Single pricing table 3*/}
+                                    {/* Single pricing table 4*/}
                                     <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
-                                        <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
-                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
+                                        <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
+                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
+                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
+                                                <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup>$</sup>457<sub style={{ color: "#090d3a" }}>/ mo</sub>
-                                                <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$7,188</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$5,391 /yr</span></p>
+                                                <sup>$</sup>299<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$4,788</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$3,588 /yr</span></p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -544,7 +614,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -553,7 +623,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleYearPremiumUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -562,7 +632,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#a3c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -571,7 +641,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#a3c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -580,7 +650,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#a3c4a1" }} onClick={this.stripeCustomerPortal}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -600,55 +670,7 @@ class Employer_PricingStyleOne extends Component {
                                                     <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
-                                                    <p style={{ color: "#090d3a" }}>Integration with Major HRIS</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Single pricing table 4*/}
-                                    <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
-                                        <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
-                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
-                                        </div>
-                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
-                                            <div className="pricing-header">
-                                                <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>ENTERPRISE</h3>
-                                            </div>
-
-                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)", fontSize: "2rem" }}>
-                                                Custom
-                                                <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>Billed at $0</p>
-                                                {this.props.profile.membership == null ?
-                                                    <div style={{ marginBottom: "1.3rem", marginTop: "-0.3rem" }}>
-                                                        <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                Contact Us
-                                                                <span></span>
-                                                            </a>
-                                                        </div>
-                                                    </div> :
-                                                    <div style={{ paddingTop: "1px", paddingBottom: "2px" }}>
-                                                        <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                Contact Us
-                                                                <span></span>
-                                                            </a>
-                                                        </div>
-                                                    </div>}
-                                                {this.props.profile.membership == null &&
-                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#fff", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
-                                            </div>
-                                            <div className="px-5 py-4">
-                                                <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
-                                                <div className="pt-2 pb-2">
-                                                    <p style={{ color: "#090d3a" }}>Unlimited Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
-                                                    <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
-                                                    <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
-                                                    <p style={{ color: "#090d3a" }}>Integration with Major HRIS</p>
-                                                    <p style={{ color: "#090d3a" }}>Employee Referral</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -760,7 +782,56 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="single-pricing-table h-100" style={linkStyle1} onMouseEnter={this.toggleHover1} onMouseLeave={this.toggleHover1}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
+                                                <h3 style={{ color: "#006dff", fontWeight: "700", fontSize: "2.5rem" }}>PAYG</h3>
+                                            </div>
+
+                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>99<sub style={{ color: "#090d3a" }}>/ job</sub>
+                                                <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
+                                                <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
+                                                    {
+                                                        this.props.profile.membership == null ?
+                                                        <div className="btn-box">
+                                                            <Link to="/employer_register">
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    Start Free Trial
+                                                                    <span></span>
+                                                                </a>
+                                                            </Link>
+                                                        </div>:
+                                                        <div className="btn-box">
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
+                                                                Select Plan
+                                                                <span></span>
+                                                            </button>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                {this.props.profile.membership == null &&
+                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
+                                                }
+                                            </div>
+                                            <div className="px-5 py-4">
+                                                <p>For organizations with occasional hiring needs.</p>
+                                                <div className="pt-5 pb-2">
+                                                    <p style={{ color: "#090d3a" }}>Create Unlimited Jobs</p>
+                                                    <p style={{ color: "#090d3a" }}>Only Charged When You Publish</p>
+                                                    <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
+                                                    <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Single pricing table 3*/}
+                                    <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
+                                        <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
+                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
+                                        </div>
+                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
+                                            <div className="pricing-header">
+                                                <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PRO</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
@@ -771,7 +842,7 @@ class Employer_PricingStyleOne extends Component {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -780,7 +851,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -789,7 +860,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handleProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -798,7 +869,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -807,7 +878,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.stripeCustomerPortal}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -816,7 +887,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -836,30 +907,31 @@ class Employer_PricingStyleOne extends Component {
                                                     <p style={{ color: "#090d3a" }}>Standard Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    {/* Single pricing table 3*/}
+                                    {/* Single pricing table 4*/}
                                     <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
-                                        <div style={{ backgroundColor: "#ff6b00", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
-                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}><box-icon type='solid' name='medal' color="#ffffff" size="1rem" ></box-icon> Most popular</p>
+                                        <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
+                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
                                         </div>
-                                        <div className="single-pricing-table h-100" style={linkStyle2} onMouseEnter={this.toggleHover2} onMouseLeave={this.toggleHover2}>
+                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
                                             <div className="pricing-header">
-                                                <h3 style={{ color: "#ff6b00", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
+                                                <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>PREMIUM</h3>
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup>$</sup>599<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <sup>$</sup>399<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -868,7 +940,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -877,7 +949,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -886,7 +958,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#13c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -895,7 +967,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#ff6b00", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#13c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -904,7 +976,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#ff6b00", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn1" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.stripeCustomerPortal}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -924,55 +996,7 @@ class Employer_PricingStyleOne extends Component {
                                                     <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
-                                                    <p style={{ color: "#090d3a" }}>Integration with Major HRIS</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Single pricing table 4*/}
-                                    <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
-                                        <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>
-                                            <p style={{ color: "#ffffff", fontWeight: "600", fontSize: "1rem", paddingTop: "5px", paddingBottom: "5px" }}>Most popular</p>
-                                        </div>
-                                        <div className="single-pricing-table h-100" style={linkStyle3} onMouseEnter={this.toggleHover3} onMouseLeave={this.toggleHover3}>
-                                            <div className="pricing-header">
-                                                <h3 style={{ color: "#13c4a1", fontWeight: "700", fontSize: "2.5rem" }}>ENTERPRISE</h3>
-                                            </div>
-
-                                            <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)", fontSize: "2rem" }}>
-                                                Custom
-                                                <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
-                                                {this.props.profile.membership == null ?
-                                                    <div style={{ marginBottom: "1.3rem", marginTop: "-0.3rem" }}>
-                                                        <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                Contact Us
-                                                                <span></span>
-                                                            </a>
-                                                        </div>
-                                                    </div> :
-                                                    <div style={{ paddingTop: "1px", paddingBottom: "2px" }}>
-                                                        <div className="btn-box">
-                                                            <a href="/employer_contact" id="id-employer-select3" className="default-btn" style={{ color: "white", paddingRight: "50px", textDecoration: "none", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                Contact Us
-                                                                <span></span>
-                                                            </a>
-                                                        </div>
-                                                    </div>}
-                                                {this.props.profile.membership == null &&
-                                                    <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#fff", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
-                                            </div>
-                                            <div className="px-5 py-4">
-                                                <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
-                                                <div className="pt-2 pb-2">
-                                                    <p style={{ color: "#090d3a" }}>Unlimited Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
-                                                    <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
-                                                    <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
-                                                    <p style={{ color: "#090d3a" }}>Integration with Major HRIS</p>
-                                                    <p style={{ color: "#090d3a" }}>Employee Referral</p>
+                                                    <p style={{ color: "#090d3a" }}>Team Collaboration</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -981,7 +1005,7 @@ class Employer_PricingStyleOne extends Component {
                             </div>
                         </div>
                     </div>
-                    {this.props.profile.membership == "Regular" &&
+                    {(this.props.profile.membership == "Regular" || this.props.profile.is_freetrial) &&
                         <div className="mt-3 pb-5 pt-5" style={{ textAlign: "center", backgroundColor: "#e8edfc" }}>
                             <h2 style={{ width: "80%", fontWeight: "600", color: "#090d3a", marginBottom: "1rem" }}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
                             <input
@@ -1028,13 +1052,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}></p>
                                         </div>
                                         <div className="col-3 pro">
-                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#006dff" }}>PRO</p>
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#006dff" }}>PAYG</p>
                                         </div>
                                         <div className="col-2 premium">
-                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#FF6B00" }}>PREMIUM</p>
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#FF6B00" }}>PRO</p>
                                         </div>
                                         <div className="col-3 enterprise">
-                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#13C4A1" }}>ENTERPRISE</p>
+                                            <p style={{ fontWeight: "700", fontSize: "1.2rem", color: "#13C4A1" }}>PREMIUM</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1047,13 +1071,13 @@ class Employer_PricingStyleOne extends Component {
                                         <p style={{ fontWeight: "500", fontSize: "0.9rem", color: "#090d3a" }}></p>
                                     </div>
                                     <div className="col-3">
-                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#006dff" }}>PRO</p>
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#006dff" }}>PAYG</p>
                                     </div>
                                     <div className="col-2">
-                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#FF6B00" }}>PREM</p>
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#FF6B00" }}>PRO</p>
                                     </div>
                                     <div className="col-3">
-                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#13C4A1" }}>ENT</p>
+                                        <p style={{ fontWeight: "700", fontSize: "0.9rem", color: "#13C4A1" }}>PREM</p>
                                     </div>
                                 </div>
                             </div>
@@ -1072,10 +1096,10 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Active Job Postings</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>5</p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Purchased Unlimited</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>5</p>
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
@@ -1093,20 +1117,6 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in Talent Network</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1163,62 +1173,6 @@ class Employer_PricingStyleOne extends Component {
                                 <div className="container-fluid">
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Video Talent Pool</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Talent CRM</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Employee Referral</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Job Position Advertising</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Branded Career Website</p>
                                         </div>
                                         <div className="col-3">
@@ -1233,6 +1187,20 @@ class Employer_PricingStyleOne extends Component {
                                     </div>
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Job Position Advertising</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Social Recruiting</p>
                                         </div>
                                         <div className="col-3">
@@ -1243,6 +1211,20 @@ class Employer_PricingStyleOne extends Component {
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Employee Referral</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1333,10 +1315,10 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>3</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>6</p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>3</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>6</p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1386,13 +1368,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Configurable Video Interview Retakes</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1428,13 +1410,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Built-in Live Interviews</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1480,13 +1462,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Real-Time Analytics</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1494,27 +1476,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>EEO Survey and Reporting</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
-                                        </div>
-                                    </div>
-                                    <div className="row py-3">
-                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
-                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>External Reviewer</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>3</p>
-                                        </div>
-                                        <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
-                                        </div>
-                                        <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Unlimited</p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1536,13 +1504,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Export Candidate to HRIS integrations</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
                                         </div>
                                     </div>
                                 </div>
