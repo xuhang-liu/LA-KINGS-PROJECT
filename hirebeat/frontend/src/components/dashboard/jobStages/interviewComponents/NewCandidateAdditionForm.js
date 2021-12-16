@@ -316,7 +316,7 @@ export class NewCandidateAdditionForm extends Component {
                                     </div>
                                 </div>
                             </div>*/}
-                            <form onSubmit={this.handleUpload}>
+                            <form id="Employer-Dashboard-Events" onSubmit={this.handleUpload}>
                                 <div className="form-row">
                                     <div className="form-group col-2">
                                         <label className="candidate-txt1">

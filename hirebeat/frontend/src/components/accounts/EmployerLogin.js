@@ -156,7 +156,7 @@ export class EmployerLogin extends Component {
               ">
 
 
-                    <form onSubmit={this.onSubmit}>
+                    <form id="Employer-LoginPage-Login" onSubmit={this.onSubmit}>
 
                       <div className="form-group">
                         <input
