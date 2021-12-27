@@ -3,12 +3,13 @@ import 'boxicons';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import Select from 'react-select';
+import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 //import Switch from "react-switch";
 import parse from 'html-react-parser';
 import { SkillSet } from "./Constants";
-import { MyShareModal } from "./../DashboardComponents";
+import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
 import ScreenQuestion from "./ScreenQuestion";
@@ -55,6 +56,7 @@ export class JobCreation extends Component {
             showShare: false,
             questionCount: 0,
             questions: [],
+            showUpgradeM: false,
         }
         this.props.getjobidlist(this.props.user.id);
         this.handleChange = this.handleChange.bind(this);
@@ -63,6 +65,10 @@ export class JobCreation extends Component {
     static propTypes = {
         onChange: PropTypes.func,
     };
+
+    setHideUpgradeM = () => {
+        this.setState({ showUpgradeM: false });
+    }
 
     onFilter = (jobType) => {
         this.setState({ jobType: jobType })
@@ -233,6 +239,13 @@ export class JobCreation extends Component {
 
     savePosition = (e) => {
         e.preventDefault();
+        if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
+            return (
+                this.setState({
+                    showUpgradeM: true
+                })
+            )
+        }
         if (this.props.profile.membership == "Regular" && this.state.job_post == 2) {
             return (
                 confirmAlert({
@@ -877,7 +890,7 @@ export class JobCreation extends Component {
                                 </span>
                             </div>
                         }
-                        {(this.state.remote.value == 0 || this.state.remote.value == 1)&&
+                        {(this.state.remote.value == 0 || this.state.remote.value == 1) &&
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">
@@ -932,6 +945,23 @@ export class JobCreation extends Component {
                                 />
                             </div>
                         </MyShareModal>
+                        <MyModalUpgrade
+                            show={this.state.showUpgradeM}
+                            onHide={this.setHideUpgradeM}
+                        >
+                            <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
+                                <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
+                                <div className="row" style={{ margin: "auto", width: "80%" }}>
+                                    <div className="col-6">
+                                        <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
+                                    </div>
+                                    <div className="col-6">
+                                        <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </MyModalUpgrade>
                         <div style={{ float: "left", marginBottom: "1rem", display: "inline-block" }}>
                             <button
                                 type="submit"

@@ -3618,6 +3618,16 @@ h5 {
   background-color: #ffffff;
 }
 
+.title-button2-nohover {
+  font-family: Inter, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #006dff;
+  border: none;
+  background-color: #ffffff;
+}
+
 .title-button2:hover {
   color: #ff6b00;
 }

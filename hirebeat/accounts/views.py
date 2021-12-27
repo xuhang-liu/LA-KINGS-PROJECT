@@ -1077,7 +1077,7 @@ def check_freetrial_expire(request):
             try:
                 profile.is_freetrial = False
                 profile.candidate_limit = 25
-                profile.position_limit = 1
+                profile.position_limit = 0
                 profile.plan_interval = "Regular"
                 profile.membership = "Regular"
                 profile.save()

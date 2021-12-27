@@ -898,13 +898,14 @@ def check_free_account_active_jobs(request):
     limit = request.data['limit']
     jobs = Jobs.objects.filter(user_id=id).order_by('create_date')
     for i in range(len(jobs)-limit):
-        jobs[i].is_closed = True
-        jobs[i].save()
+        if jobs[i].is_closed != 3 and jobs[i].is_closed != 1:
+            jobs[i].is_closed = 1
+            jobs[i].save()
 
-    positions = Positions.objects.filter(user_id=id).order_by('invite_date')
-    for i in range(len(positions)-limit):
-        positions[i].is_closed = True
-        positions[i].save()
+    # positions = Positions.objects.filter(user_id=id).order_by('invite_date')
+    # for i in range(len(positions)-limit):
+    #     positions[i].is_closed = True
+    #     positions[i].save()
 
     return Response("Achive free account success", status=status.HTTP_201_CREATED)
 

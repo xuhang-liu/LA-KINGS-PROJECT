@@ -87,6 +87,9 @@ class Profile(models.Model):
     ats_api_token = models.TextField(null=True, blank=True)
     is_freetrial = models.BooleanField(default=True)
     datejoined = models.DateTimeField(auto_now_add=True)
+    payg_credit = models.IntegerField(default=0, validators=[
+        MaxValueValidator(1000)
+    ])
     def __str__(self):
         return self.user.username
 

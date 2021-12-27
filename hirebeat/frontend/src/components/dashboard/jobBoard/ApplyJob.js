@@ -388,7 +388,7 @@ const ApplyJob = (props) => {
             <MediaQuery minDeviceWidth={1224}>
                 {(props?.job?.id == "" || props?.job?.id == null) ?
                     <div><h3>Please enter a valid job url!</h3></div> :
-                    <div className="py-5" style={{ background: "#E8EDFC", minWidth: "1290px" }}>
+                    <div className="py-5" style={{ background: "#E8EDFC", minWidth: "1290px", minHeight:"100vh" }}>
                         <div style={{ marginLeft: "auto", marginRight: "auto", width: "70%", minHeight: "800px", borderRadius: "10px", background: "white", position: "relative" }}>
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                             {props.job?.company_logo?.length > 0 &&

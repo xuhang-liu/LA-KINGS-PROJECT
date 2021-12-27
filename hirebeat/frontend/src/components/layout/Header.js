@@ -355,7 +355,7 @@ export class Header extends Component {
                       </Link>
                     </li>
                     <li>
-                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); this.props.logout(); }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" href="https://hirebeat.co" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>

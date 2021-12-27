@@ -612,7 +612,7 @@ export class SubpageSetting extends Component {
                                             <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
                                             <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
                                                 <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <span>Expired</span>
+                                                    <span>Free</span>
                                                 </p>
                                             </div>
                                         </div> :

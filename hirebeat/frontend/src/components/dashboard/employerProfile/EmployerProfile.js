@@ -345,7 +345,7 @@ export class EmployerProfile extends Component {
                                         <div>
                                             <div className="row" style={{ width: "20rem" }}>
                                                 <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
-                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Expired</p>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>Free</p>
                                                 </div>
                                                 <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
                                             </div>

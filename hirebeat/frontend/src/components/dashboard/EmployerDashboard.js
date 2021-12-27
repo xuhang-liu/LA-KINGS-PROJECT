@@ -67,6 +67,7 @@ export class EmployerDashboard extends Component {
       showUpgradeM: false,
       showUpgradeM1: false,
       showUpgradeM2: false,
+      showUpgradeM3: false,
       job_back_home: false,
     }
     // store user info to sessionStorage
@@ -105,6 +106,12 @@ export class EmployerDashboard extends Component {
     });
   }
 
+  setShowUpgradeM3 = () => {
+    this.setState({
+      showUpgradeM3: true
+    });
+  }
+
   setHideUpgradeM = () => {
     this.setState({
       showUpgradeM: false
@@ -120,6 +127,12 @@ export class EmployerDashboard extends Component {
   setHideUpgradeM2 = () => {
     this.setState({
       showUpgradeM2: false
+    });
+  }
+
+  setHideUpgradeM3 = () => {
+    this.setState({
+      showUpgradeM3: false
     });
   }
 
@@ -186,8 +199,14 @@ export class EmployerDashboard extends Component {
       "id": this.props.user.id,
       "limit": this.props.profile.position_limit,
     }
-    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && (this.props.profile.plan_interval == "Pro")) {
+    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && ((this.props.profile.plan_interval == "Pro") || this.props.profile.membership == "Regular")) {
       this.props.checkFreeAccountActiveJobs(data);
+      var user = { "id": this.props.user.id };
+      this.props.loadProfile();
+      this.props.getPostedJobs(user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
+      this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
+      this.props.getQuestionList();
+      this.props.getReviewersList(user.id);
     }
     let data1 = {
       "user_id": this.props.user.id
@@ -201,11 +220,24 @@ export class EmployerDashboard extends Component {
     let user_id = { "user_id": this.props.user.id };
     axios.post("api/check_freetrial_expire", user_id, config).then((res) => {
       if (res.data.data) {
+        var data = {
+          "id": this.props.user.id,
+          "limit": this.props.profile.position_limit,
+        }
+        this.props.checkFreeAccountActiveJobs(data);
+        setTimeout(() => {         
+          this.props.getPostedJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
+          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", ""); }, 300)
         sessionStorage.setItem('subpage', "employerProfile");
         this.setState({
           subpage: "employerProfile"
         });
-        window.location.reload(false);
+        var user = { "id": this.props.user.id };
+        this.props.loadProfile();
+        this.props.loadUserFullname(user);
+        this.props.getEmployerProfileDetail(this.props.user.id);
+        this.props.getEmployerPost(this.props.user.id, 0);
+        this.setShowUpgradeM3();
       }
     }).catch(error => {
       console.log(error)
@@ -242,9 +274,9 @@ export class EmployerDashboard extends Component {
         job_back_home: true
       });
     }
-    else if (this.props.profile.membership == "Regular") {
-      this.setShowUpgradeM();
-    }
+    // else if (this.props.profile.membership == "Regular") {
+    //   this.setShowUpgradeM();
+    // }
     else if (!this.props.master_is_active) {
       this.setShowUpgradeM2();
     }
@@ -254,7 +286,7 @@ export class EmployerDashboard extends Component {
         subpage: "jobs",
       });
     }
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
 
   renderJobEdition = () => {
@@ -282,8 +314,8 @@ export class EmployerDashboard extends Component {
         subpage: "employerProfile",
       }
       )
-    } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
-      this.setShowUpgradeM();
+    // } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
+    //   this.setShowUpgradeM();
     } else {
       this.setState({
         subpage: "jobCreation",
@@ -374,17 +406,13 @@ export class EmployerDashboard extends Component {
     if (this.state.subpage == "analytics") {
       this.refreshPage();
     }
-    else if (this.props.profile.membership == "Regular") {
-      return this.setShowUpgradeM();
-    } else {
-      this.props.getAnalyticsInfo(this.props.user.id);
-      sessionStorage.setItem('subpage', "analytics");
-      setTimeout(() => {
-        this.setState({
-          subpage: "analytics",
-        });
-      }, 200)
-    }
+    this.props.getAnalyticsInfo(this.props.user.id);
+    sessionStorage.setItem('subpage', "analytics");
+    setTimeout(() => {
+      this.setState({
+        subpage: "analytics",
+      });
+    }, 200)
   };
 
   renderEmployerProfile = () => {
@@ -644,7 +672,7 @@ export class EmployerDashboard extends Component {
 
   render() {
     const meta = {
-      title: 'HireBeat – Employer Dashboard',
+      title: 'HireBeat - Employer Dashboard',
       description: 'Employer Dashboard Info',
       meta: {
         charset: 'utf-8',
@@ -704,6 +732,23 @@ export class EmployerDashboard extends Component {
                   <div className="row" style={{ margin: "auto", width: "30%" }}>
                     <div className="col-12">
                       <button onClick={this.setHideUpgradeM2} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>OK</button>
+                    </div>
+                  </div>
+                </div>
+              </MyModalUpgrade>
+              <MyModalUpgrade
+                show={this.state.showUpgradeM3}
+                onHide={this.setHideUpgradeM3}
+              >
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
+                  <p className="pt-3">Your 14-Day Free Trial has expired. Please purchase a plan to continue using HireBeat.</p>
+                  <div className="row" style={{ margin: "auto", width: "80%" }}>
+                    <div className="col-6">
+                      <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
+                    </div>
+                    <div className="col-6">
+                      <button onClick={this.setHideUpgradeM3} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
                     </div>
                   </div>
                 </div>

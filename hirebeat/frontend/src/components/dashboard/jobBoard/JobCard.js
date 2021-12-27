@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus } from "../../../redux/actions/job_actions";
 //import axios from "axios";
 import Select from 'react-select';
@@ -16,6 +16,7 @@ export class JobCard extends Component {
         showModel1: false,
         showModel2: false,
         showModel3: false,
+        showUpgradeM: false,
     }
 
     hideshowModel1 = () => {
@@ -28,6 +29,10 @@ export class JobCard extends Component {
 
     hideshowModel3 = () => {
         this.setState({ showModel3: false });
+    }
+
+    setHideUpgradeM = () => {
+        this.setState({ showUpgradeM: false });
     }
 
     customStyles = {
@@ -44,13 +49,25 @@ export class JobCard extends Component {
     onFilter = (draft_select) => {
         if (this.props.job.job_details.is_closed != draft_select.value) {
             if (draft_select.value == 0) {
-                this.setState({
-                    showModel1: true
-                });
+                if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
+                    this.setState({
+                        showUpgradeM: true
+                    });
+                }else{
+                    this.setState({
+                        showModel1: true
+                    });
+                }
             } else if (draft_select.value == 2) {
-                this.setState({
-                    showModel2: true
-                });
+                if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
+                    this.setState({
+                        showUpgradeM: true
+                    });
+                }else{
+                    this.setState({
+                        showModel2: true
+                    });
+                }
             } else if (draft_select.value == 1) {
                 this.setState({
                     showModel3: true
@@ -61,7 +78,7 @@ export class JobCard extends Component {
     };
 
     switchJobStatus = () => {
-        if (this.props.job?.reviewer_type == "subr"){
+        if (this.props.job?.reviewer_type == "subr") {
             return alert("No Permission!");
         }
         if (this.state.next_select.value == 0) {
@@ -222,7 +239,7 @@ export class JobCard extends Component {
                                 {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button> :
                             <button
-                                className="title-button2"
+                                className="title-button2-nohover"
                             >
                                 {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button>
@@ -238,7 +255,7 @@ export class JobCard extends Component {
                                 {this.props.job.total_records}
                             </button> :
                             <button
-                                className="title-button2">
+                                className="title-button2-nohover">
                                 {this.props.job.total_records}
                             </button>
                         }
@@ -263,7 +280,7 @@ export class JobCard extends Component {
                             {this.props.job.job_details.is_closed != 3 &&
                                 <a className="title-button2 tool_tip" target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "1rem", paddingLeft: "0.5rem" }} href={this.props.job.job_details.job_url}>
                                     <i className="bx-fw bx bx-show"></i>View
-                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr"))?"5rem":"2rem" }}>
+                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr")) ? "5rem" : "2rem" }}>
                                         <div>
                                             See what your job posting page looks like.
                                         </div>
@@ -271,9 +288,9 @@ export class JobCard extends Component {
                                 </a>
                             }
                             {this.props.job.job_details.is_closed != 3 &&
-                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (this.props.job?.reviewer_type != "subr") ? "0.5px solid #4A6F8A" : "", paddingRight: (this.props.job?.reviewer_type != "subr")? "1rem" : "" }}>
+                                <button className="title-button2 tool_tip" onClick={this.openShare} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: (this.props.job?.reviewer_type != "subr") ? "0.5px solid #4A6F8A" : "", paddingRight: (this.props.job?.reviewer_type != "subr") ? "1rem" : "" }}>
                                     <i className="bx-fw bx bx-link-external"></i>Share
-                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr"))?"10rem":"5rem" }}>
+                                    <p className="tool_submenu container" style={{ width: "10rem", left: ((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr")) ? "10rem" : "5rem" }}>
                                         <div>
                                             Get a unique link to your job posting and one-click share to social media.
                                         </div>
@@ -285,13 +302,13 @@ export class JobCard extends Component {
                                     {(this.props.job.total_records <= 0) ?
                                         <button className="title-button2 tool_tip" onClick={this.deleteAlert} style={{ color: "#F36F67", fontWeight: "500", fontSize: "0.9rem" }}>
                                             <i className="bx-fw bx bx-trash"></i>Delete
-                                            <p className="tool_submenu container" style={{ width: "10rem", left: (this.props.job.job_details.is_closed != 3)?"15rem":"6rem" }}>
+                                            <p className="tool_submenu container" style={{ width: "10rem", left: (this.props.job.job_details.is_closed != 3) ? "15rem" : "6rem" }}>
                                                 <div>
                                                     You cannot recover the job posting after deleting it.
                                                 </div>
                                             </p>
                                         </button> :
-                                        <button className="title-button2 tool_tip" style={{ color: "#e1e9f4", fontWeight: "500", fontSize: "0.9rem", cursor:"default" }}>
+                                        <button className="title-button2 tool_tip" style={{ color: "#e1e9f4", fontWeight: "500", fontSize: "0.9rem", cursor: "default" }}>
                                             <i className="bx-fw bx bx-trash"></i>Delete
                                         </button>}
                                 </div>
@@ -417,6 +434,23 @@ export class JobCard extends Component {
                             </div>
                             <div className="col-6">
                                 <button onClick={this.hideshowModel3} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </MyModalUpgrade>
+                <MyModalUpgrade
+                    show={this.state.showUpgradeM}
+                    onHide={this.setHideUpgradeM}
+                >
+                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
+                        <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
+                        <div className="row" style={{ margin: "auto", width: "80%" }}>
+                            <div className="col-6">
+                                <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
+                            </div>
+                            <div className="col-6">
+                                <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
                             </div>
                         </div>
                     </div>
