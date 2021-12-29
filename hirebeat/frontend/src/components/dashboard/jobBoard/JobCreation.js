@@ -239,12 +239,27 @@ export class JobCreation extends Component {
 
     savePosition = (e) => {
         e.preventDefault();
-        if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
-            return (
-                this.setState({
+        let using_credit = false;
+        if (this.props.profile.payg_credit <= 0){
+            if (this.props.profile.membership == "Regular"){
+                return this.setState({
                     showUpgradeM: true
-                })
-            )
+                });
+            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                if (this.props.profile.position_count > this.props.profile.position_limit){
+                    return this.setState({
+                        showUpgradeM: true
+                    });
+                }
+            }
+        } else if (this.props.profile.payg_credit > 0) {
+            if (this.props.profile.membership == "Regular"){
+                using_credit = true;
+            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                if (this.props.profile.position_count > this.props.profile.position_limit){
+                    using_credit = true;
+                }
+            }
         }
         if (this.props.profile.membership == "Regular" && this.state.job_post == 2) {
             return (
@@ -300,7 +315,8 @@ export class JobCreation extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
             questions: this.state.questions,
-            is_closed: 0
+            is_closed: 0,
+            using_credit: using_credit
         };
         if (this.state.remote.value == 2) {
             data = {
@@ -319,7 +335,8 @@ export class JobCreation extends Component {
                 job_post: 0,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 0
+                is_closed: 0,
+                using_credit: using_credit
             };
         }
         else if (this.state.remote.value == 1) {
@@ -339,7 +356,8 @@ export class JobCreation extends Component {
                 job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 0
+                is_closed: 0,
+                using_credit: using_credit
             };
         }
         if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
@@ -368,7 +386,8 @@ export class JobCreation extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
             questions: this.state.questions,
-            is_closed: 3
+            is_closed: 3,
+            using_credit: false
         };
         if (this.state.remote.value == 2) {
             data = {
@@ -387,7 +406,8 @@ export class JobCreation extends Component {
                 job_post: 0,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 3
+                is_closed: 3,
+                using_credit: false
             };
         }
         else if (this.state.remote.value == 1) {
@@ -407,7 +427,8 @@ export class JobCreation extends Component {
                 job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 3
+                is_closed: 3,
+                using_credit: false
             };
         }
         if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {

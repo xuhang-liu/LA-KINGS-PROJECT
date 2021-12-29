@@ -273,7 +273,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'payment',
-            successUrl: 'https://app.hirebeat.co/payment',
+            successUrl: 'https://app.hirebeat.co/paygpayment',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,

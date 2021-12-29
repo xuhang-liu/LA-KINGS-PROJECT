@@ -1200,3 +1200,13 @@ def check_if_it_reviewer(request):
         is_reviewer = True
 
     return Response({"is_reviewer": is_reviewer})
+
+@api_view(['POST'])
+def add_credit_to_user(request):
+    user_id = request.data["user_id"]
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    profile.payg_credit += 1
+    profile.save()
+
+    return Response("Add credit to user successfully", status=status.HTTP_201_CREATED)

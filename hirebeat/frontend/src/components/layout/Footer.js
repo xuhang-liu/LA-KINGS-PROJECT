@@ -99,14 +99,14 @@ class Footer extends Component {
                                 {(uri.includes("employer")  || uri=="")?
                                 <ul className="support-list">
                                     <li>
-                                        <Link to="/privacy">
+                                        <a href="https://hirebeat.co/privacy-policy">
                                             <a>Privacy Policy</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
-                                        <Link to="/term">
+                                        <a href="https://hirebeat.co/terms-conditions">
                                             <a>Terms & Conditions</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
                                         <a href="https://hirebeat.co/contact">
@@ -116,14 +116,14 @@ class Footer extends Component {
                                 </ul>:
                                 <ul className="support-list">
                                 <li>
-                                    <Link to="/privacy">
+                                    <a href="https://hirebeat.co/privacy-policy">
                                         <a>Privacy Policy</a>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
-                                    <Link to="/term">
+                                    <a href="https://hirebeat.co/terms-conditions">
                                         <a>Terms & Conditions</a>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link to="/contact">

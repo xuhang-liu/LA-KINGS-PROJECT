@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
-from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview
+from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
@@ -47,6 +47,7 @@ def add_new_job(request):
     skills = request.data['skills']
     questions = request.data["questions"]
     is_closed = request.data["is_closed"]
+    using_credit = request.data["using_credit"]
     user = User.objects.get(pk=request.data["userId"])
     company_name = ""
     company_overview = ""
@@ -54,8 +55,9 @@ def add_new_job(request):
 
     # update user profile, increase the position_count for current user
     profile = Profile.objects.get(user_id=user.id)
-    profile.position_count += 1
-    profile.save()
+    if (is_closed == 0 or is_closed == 2) and (not using_credit):
+        profile.position_count += 1
+        profile.save()
 
     # create position
     position = Positions.objects.create(
@@ -85,6 +87,12 @@ def add_new_job(request):
     # update job_id_in_jobs field
     position.job_id_in_jobs = job.id
     position.save()
+
+    # create using credit table
+    if using_credit:
+        PayGCreditToJob.objects.create(user=user, jobs=job)
+        profile.payg_credit -= 1
+        profile.save()
 
     # add job screening questions
     for question in questions:
@@ -216,6 +224,11 @@ def get_all_jobs(request):
         jobs[i]["screen_questions"] = screen_questions
         # get corresponding position information for current job
         position = Positions.objects.filter(id=positions_id).values()[0]
+        # check payg credit
+        jobs[i]["is_credited"] = False
+        payGCreditToJob = PayGCreditToJob.objects.filter(user_id=user_id, jobs_id=job_id).count()
+        if payGCreditToJob > 0:
+            jobs[i]["is_credited"] = True
         job_details = {
             "job_details": jobs[i],
             "applicants": applicants,
@@ -251,8 +264,16 @@ def update_job(request):
     skills = request.data['skills']
     questions = request.data["questions"]
     is_closed = request.data["is_closed"]
+    using_credit = request.data["using_credit"]
 
+    user = User.objects.get(pk=request.data["userId"])
+    profile = Profile.objects.get(user=user)
     job = Jobs.objects.get(id=id)
+
+    if job.is_closed == 3 and is_closed == 0 and (not using_credit):
+        profile.position_count += 1
+        profile.save()
+
     job.job_title = job_title
     job.job_id = job_id
     job.job_location = job_location
@@ -269,6 +290,11 @@ def update_job(request):
     job.is_closed = is_closed
     # save update to db
     job.save()
+
+    if using_credit:
+        PayGCreditToJob.objects.create(user=user, jobs=job)
+        profile.payg_credit -= 1
+        profile.save()
 
     # delete old screen questions
     JobQuestion.objects.filter(jobs_id=id).delete()
@@ -482,10 +508,12 @@ def delete_job(request):
     user = User.objects.get(pk=request.data["userId"])
     # update user profile
     profile = Profile.objects.get(user_id=user.id)
-    profile.position_count -= 1
-    profile.save()
     # delete job and position
     job = Jobs.objects.get(id=id)
+    payGCreditToJob = PayGCreditToJob.objects.filter(user=user, jobs=job).count()
+    if (job.is_closed == 0 or job.is_closed == 2) and payGCreditToJob <= 0:
+        profile.position_count -= 1
+        profile.save()
     position_id = job.positions_id
     Positions.objects.filter(id=position_id).delete()
     job.delete()
@@ -896,11 +924,15 @@ def send_merge_api_request(request):
 def check_free_account_active_jobs(request):
     id = request.data['id']
     limit = request.data['limit']
+    user = User.objects.get(pk=id)
+    profile = Profile.objects.get(user=user)
     jobs = Jobs.objects.filter(user_id=id).order_by('create_date')
     for i in range(len(jobs)-limit):
         if jobs[i].is_closed != 3 and jobs[i].is_closed != 1:
             jobs[i].is_closed = 1
             jobs[i].save()
+            profile.position_count -= 1
+            profile.save()
 
     # positions = Positions.objects.filter(user_id=id).order_by('invite_date')
     # for i in range(len(positions)-limit):
@@ -1306,9 +1338,36 @@ def update_applicant_basic_info(request):
 @api_view(['POST'])
 def switch_job_closed_status(request):
     job_id = request.data["job_id"]
+    user_id = request.data["user_id"]
     next_status = request.data["next_status"]
     job = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    payGCreditToJob = PayGCreditToJob.objects.filter(user_id=user_id, jobs_id=job_id).count()
+    if payGCreditToJob <= 0:
+        if next_status == 0 and (job.is_closed == 1 or job.is_closed == 3):
+            profile.position_count += 1
+            profile.save()
+        elif next_status == 2 and (job.is_closed == 1 or job.is_closed == 3):
+            profile.position_count += 1
+            profile.save()
+        elif next_status == 1 and (job.is_closed == 0 or job.is_closed == 2):
+            profile.position_count -= 1
+            profile.save()
     job.is_closed = next_status
     job.save()
 
     return Response("Update job closed status successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def assign_credit_to_job(request):
+    user_id = request.data["user_id"]
+    job_id = request.data["job_id"]
+    PayGCreditToJob.objects.create(user_id=user_id, jobs_id=job_id)
+    user = User.objects.get(pk=user_id)
+    profile = Profile.objects.get(user=user)
+    profile.payg_credit -= 1
+    profile.position_count -= 1
+    profile.save()
+
+    return Response("Assign credit to job successfully", status=status.HTTP_202_ACCEPTED)

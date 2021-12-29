@@ -237,12 +237,29 @@ export class JobEdition extends Component {
 
     savePosition = (e) => {
         e.preventDefault();
-        if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0) {
-            return (
-                this.setState({
-                    showUpgradeM: true
-                })
-            )
+        let using_credit = false;
+        if (!this.props.jobInfo.is_credited){
+            if (this.props.profile.payg_credit <= 0){
+                if (this.props.profile.membership == "Regular"){
+                    return this.setState({
+                        showUpgradeM: true
+                    });
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                    if (this.props.profile.position_count > this.props.profile.position_limit){
+                        return this.setState({
+                            showUpgradeM: true
+                        });
+                    }
+                }
+            } else if (this.props.profile.payg_credit > 0) {
+                if (this.props.profile.membership == "Regular"){
+                    using_credit = true;
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                    if (this.props.profile.position_count > this.props.profile.position_limit){
+                        using_credit = true;
+                    }
+                }
+            }
         }
         if (this.props.profile.membership == "Regular" && this.state.job_post == 2) {
             return (
@@ -299,6 +316,8 @@ export class JobEdition extends Component {
             skills: this.state.skills,
             questions: this.state.questions,
             is_closed: 0,
+            using_credit: using_credit,
+            userId: this.props.user.id,
         };
         if (this.state.remote.value == 2) {
             data = {
@@ -318,6 +337,8 @@ export class JobEdition extends Component {
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 0,
+                using_credit: using_credit,
+                userId: this.props.user.id,
             };
         }
         else if (this.state.remote.value == 1) {
@@ -338,6 +359,8 @@ export class JobEdition extends Component {
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 0,
+                using_credit: using_credit,
+                userId: this.props.user.id,
             };
         }
         this.props.updateJob(data);
@@ -363,7 +386,8 @@ export class JobEdition extends Component {
             job_post: this.state.job_post,
             skills: this.state.skills,
             questions: this.state.questions,
-            is_closed: 3
+            is_closed: 3,
+            using_credit: false,
         };
         if (this.state.remote.value == 2) {
             data = {
@@ -383,7 +407,8 @@ export class JobEdition extends Component {
                 job_post: 0,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 3
+                is_closed: 3,
+                using_credit: false
             };
         }
         else if (this.state.remote.value == 1) {
@@ -404,7 +429,8 @@ export class JobEdition extends Component {
                 job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
-                is_closed: 3
+                is_closed: 3,
+                using_credit: false
             };
         }
         this.props.updateJob(data);

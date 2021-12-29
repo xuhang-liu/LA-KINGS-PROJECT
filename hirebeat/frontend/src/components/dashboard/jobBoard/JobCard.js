@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus } from "../../../redux/actions/job_actions";
+import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus, assignCreditToJob } from "../../../redux/actions/job_actions";
+import { loadProfile } from "../../../redux/actions/auth_actions";
 //import axios from "axios";
 import Select from 'react-select';
 import { MyModalShare, MyModalUpgrade } from "../DashboardComponents";
@@ -17,6 +18,8 @@ export class JobCard extends Component {
         showModel2: false,
         showModel3: false,
         showUpgradeM: false,
+        showPublishCredit: false,
+        showCloseCredit: false,
     }
 
     hideshowModel1 = () => {
@@ -35,6 +38,14 @@ export class JobCard extends Component {
         this.setState({ showUpgradeM: false });
     }
 
+    hideshowPublishCredit = () => {
+        this.setState({ showPublishCredit: false });
+    }
+
+    hideshowCloseCredit = () => {
+        this.setState({ showCloseCredit: false });
+    }
+
     customStyles = {
         control: styles => ({ ...styles, border: "none", marginTop: "-1rem" }),
         singleValue: styles => ({
@@ -49,24 +60,100 @@ export class JobCard extends Component {
     onFilter = (draft_select) => {
         if (this.props.job.job_details.is_closed != draft_select.value) {
             if (draft_select.value == 0) {
-                if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
-                    this.setState({
-                        showUpgradeM: true
-                    });
-                }else{
+                if(this.props.job.job_details.is_credited){
                     this.setState({
                         showModel1: true
                     });
+                }else{
+                    if (this.props.profile.payg_credit <= 0){
+                        if (this.props.profile.membership == "Regular"){
+                            this.setState({
+                                showUpgradeM: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium"){
+                            this.setState({
+                                showModel1: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                                this.setState({
+                                    showUpgradeM: true
+                                });
+                            }else{
+                                this.setState({
+                                    showModel1: true
+                                });
+                            }
+                        }
+                    } else if (this.props.profile.payg_credit > 0) {
+                        if (this.props.profile.membership == "Regular"){
+                            this.setState({
+                                showPublishCredit: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium"){
+                            this.setState({
+                                showModel1: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                                this.setState({
+                                    showPublishCredit: true
+                                });
+                            }else{
+                                this.setState({
+                                    showModel1: true
+                                });
+                            }
+                        }
+                    }
                 }
             } else if (draft_select.value == 2) {
-                if (this.props.profile.membership == "Regular" && this.props.profile.payg_credit <= 0){
-                    this.setState({
-                        showUpgradeM: true
-                    });
-                }else{
+                if(this.props.job.job_details.is_credited){
                     this.setState({
                         showModel2: true
                     });
+                }else{
+                    if (this.props.profile.payg_credit <= 0){
+                        if (this.props.profile.membership == "Regular"){
+                            this.setState({
+                                showUpgradeM: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium"){
+                            this.setState({
+                                showModel2: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                                this.setState({
+                                    showUpgradeM: true
+                                });
+                            }else{
+                                this.setState({
+                                    showModel2: true
+                                });
+                            }
+                        }
+                    } else if (this.props.profile.payg_credit > 0) {
+                        if (this.props.profile.membership == "Regular"){
+                            this.setState({
+                                showCloseCredit: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium"){
+                            this.setState({
+                                showModel2: true
+                            });
+                        } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                                this.setState({
+                                    showCloseCredit: true
+                                });
+                            }else{
+                                this.setState({
+                                    showModel2: true
+                                });
+                            }
+                        }
+                    }
                 }
             } else if (draft_select.value == 1) {
                 this.setState({
@@ -81,7 +168,7 @@ export class JobCard extends Component {
         if (this.props.job?.reviewer_type == "subr") {
             return alert("No Permission!");
         }
-        if (this.state.next_select.value == 0) {
+        if (this.state.next_select.value == 0 || this.state.next_select.value == 2) {
             if (this.props.job.job_details.job_location == "" || this.props.job.job_details.job_location == null) {
                 return alert("Job Location is required! Please edit your job.");
             } else if (this.props.job.job_details.job_description?.length < 12) {
@@ -90,20 +177,30 @@ export class JobCard extends Component {
                 return alert("Job Title is required! Please edit your job.");
             } else {
                 let data = {
+                    user_id: this.props.user.id,
                     job_id: this.props.job.job_details.id,
                     next_status: this.state.next_select.value
                 }
                 this.props.switchJobClosedStatus(data);
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+                setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             }
         } else {
             let data = {
+                user_id: this.props.user.id,
                 job_id: this.props.job.job_details.id,
                 next_status: this.state.next_select.value
             }
             this.props.switchJobClosedStatus(data);
-            setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+            setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
         }
+    }
+
+    assignCreditToJob = () => {
+        let data = {
+            "user_id": this.props.user.id,
+            "job_id": this.props.job.job_details.id
+        }
+        this.props.assignCreditToJob(data);
     }
 
     openShare = () => {
@@ -443,7 +540,7 @@ export class JobCard extends Component {
                     onHide={this.setHideUpgradeM}
                 >
                     <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
-                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Upgrade Needed</h3>
                         <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
                         <div className="row" style={{ margin: "auto", width: "80%" }}>
                             <div className="col-6">
@@ -455,11 +552,51 @@ export class JobCard extends Component {
                         </div>
                     </div>
                 </MyModalUpgrade>
+                <MyModalUpgrade
+                    show={this.state.showPublishCredit}
+                    onHide={this.hideshowPublishCredit}
+                >
+                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Publish Job Post</h3>
+                        <p className="pt-3">You now have <span>{this.props.profile.payg_credit}</span> credits available. Please confirm you want to apply <b>ONE</b> credit on this specific job. This action is non-revertible.</p>
+                        <p>Once published, the unique job URL will be available on the internet and can be shared immediately.</p>
+                        <p>The job will also appear on other applicable job boards within 24 hours.</p>
+                        <div className="row">
+                            <div className="col-3" />
+                            <div className="col-3">
+                                <button onClick={() => { this.switchJobStatus(); this.assignCreditToJob(); this.hideshowPublishCredit() }} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Confirm</button>
+                            </div>
+                            <div className="col-6">
+                                <button onClick={this.hideshowPublishCredit} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </MyModalUpgrade>
+                <MyModalUpgrade
+                    show={this.state.showCloseCredit}
+                    onHide={this.hideshowCloseCredit}
+                >
+                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Close Job Position</h3>
+                        <p className="pt-3">You now have <span>{this.props.profile.payg_credit}</span> credits available. Please confirm you want to apply <b>ONE</b> credit on this specific job. This action is non-revertible.</p>
+                        <p>Closing a job position will remove it from all job boards.</p>
+                        <p>The Job URL is still public so any related links will not break. However, the Job will be displayed as "Closed" to applicants.</p>
+                        <div className="row">
+                            <div className="col-3" />
+                            <div className="col-3">
+                                <button onClick={() => { this.switchJobStatus(); this.assignCreditToJob(); this.hideshowCloseCredit() }} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Confirm</button>
+                            </div>
+                            <div className="col-6">
+                                <button onClick={this.hideshowCloseCredit} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </MyModalUpgrade>
             </div>
         )
     }
 }
 
-export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus })(
+export default withRouter(connect(null, { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiumFeedXML, switchJobClosedStatus, assignCreditToJob, loadProfile })(
     JobCard
 ));

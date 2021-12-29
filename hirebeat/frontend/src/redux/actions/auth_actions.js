@@ -58,6 +58,7 @@ import {
   GET_SOURCING_DATA,
   DELETE_PROFILE_EDUCATION,
   DELETE_PROFILE_WORK_EXP,
+  ADD_CREDIT_TO_USER,
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -923,6 +924,20 @@ export const deleteProfileWorkExp = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: DELETE_PROFILE_WORK_EXP,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const addCreditToUser = (data) => (dispatch, getState) => {
+  axios
+    .post("accounts/add-credit-to-user", data)
+    .then((res) => {
+      dispatch({
+        type: ADD_CREDIT_TO_USER,
         payload: res.data,
       });
     })

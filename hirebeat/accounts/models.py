@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from questions.models import Positions
+from jobs.models import Jobs
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
@@ -223,3 +224,9 @@ class ProfileDetailExperience(models.Model):
     start_date = models.CharField(max_length=100, null=True, blank=True)
     end_date = models.CharField(max_length=100, null=True, blank=True)
     work_description = models.TextField(null=True, blank=True)
+
+class PayGCreditToJob(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)

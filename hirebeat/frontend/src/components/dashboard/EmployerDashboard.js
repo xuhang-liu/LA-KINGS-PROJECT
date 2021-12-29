@@ -199,7 +199,7 @@ export class EmployerDashboard extends Component {
       "id": this.props.user.id,
       "limit": this.props.profile.position_limit,
     }
-    if (((this.props.profile.position_count) >= (this.props.profile.position_limit)) && ((this.props.profile.plan_interval == "Pro") || this.props.profile.membership == "Regular")) {
+    if (((this.props.profile.position_count) > (this.props.profile.position_limit)) && ((this.props.profile.plan_interval == "Pro") || this.props.profile.membership == "Regular")) {
       this.props.checkFreeAccountActiveJobs(data);
       var user = { "id": this.props.user.id };
       this.props.loadProfile();

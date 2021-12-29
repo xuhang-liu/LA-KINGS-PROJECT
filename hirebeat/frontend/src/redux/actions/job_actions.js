@@ -24,6 +24,7 @@ import {
     CHECK_IF_MASTER_ACTIVE,
     UPDATE_APPLICANT_BASIC_INFO,
     SWITCH_JOB_CLOSED_STATUS,
+    ASSIGN_CREDIT_TO_JOB,
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -371,6 +372,20 @@ export const switchJobClosedStatus = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: SWITCH_JOB_CLOSED_STATUS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const assignCreditToJob = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/assign-credit-to-job", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ASSIGN_CREDIT_TO_JOB,
         payload: res.data,
       });
     })

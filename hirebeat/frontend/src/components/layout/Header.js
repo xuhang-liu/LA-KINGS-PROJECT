@@ -385,14 +385,14 @@ export class Header extends Component {
                 </span>
               </a>
             </li> */}
-            {!this.props.profile.is_subreviwer &&
+            {/* {!this.props.profile.is_subreviwer &&
               <li className="nav-item ">
                 <Link className="nav-link text-white navbar-font" to="/employer-pricing">
                   <span className="header-text" style={{ cursor: 'pointer' }}>
                     Pricing
                   </span>
                 </Link>
-              </li>}
+              </li>} */}
             {/* {!this.props.profile.is_subreviwer &&
               <li className="nav-item ">
                 <a className="nav-link text-white navbar-font">
