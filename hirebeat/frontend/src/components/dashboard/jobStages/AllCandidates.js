@@ -28,17 +28,17 @@ export class AllCandidates extends Component {
     }
 
     onFilter = (category) => {
-        this.setState({ category: category })
+        this.setState({ category: category });
         let page = this.state.selectedPage + 1;
         let stage = this.state.stage.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "")}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, ""); this.setState({ selectedPage: 0 });}, 300);
     }
 
     filterStage = (stage) => {
         this.setState({ stage: stage });
         let page = this.state.selectedPage + 1;
         let status = this.state.category.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "")}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, ""); this.setState({ selectedPage: 0 });}, 300);
     }
     // filter selections
     options = [
@@ -190,7 +190,7 @@ export class AllCandidates extends Component {
         let selectedPage = data.selected; // 0 index based
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
-        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.props.getAllJobs(this.props.user.id, page, this.state.stage.value, this.state.category.value, "");
         window.scrollTo(0,0);
     };
 

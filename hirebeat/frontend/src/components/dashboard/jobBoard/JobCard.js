@@ -75,7 +75,7 @@ export class JobCard extends Component {
                                 showModel1: true
                             });
                         } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                            if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.job.job_details.is_closed==1 || this.props.job.job_details.is_closed==3)){
                                 this.setState({
                                     showUpgradeM: true
                                 });
@@ -95,7 +95,7 @@ export class JobCard extends Component {
                                 showModel1: true
                             });
                         } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                            if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.job.job_details.is_closed==1 || this.props.job.job_details.is_closed==3)){
                                 this.setState({
                                     showPublishCredit: true
                                 });
@@ -123,7 +123,7 @@ export class JobCard extends Component {
                                 showModel2: true
                             });
                         } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                            if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.job.job_details.is_closed==1 || this.props.job.job_details.is_closed==3)){
                                 this.setState({
                                     showUpgradeM: true
                                 });
@@ -143,7 +143,7 @@ export class JobCard extends Component {
                                 showModel2: true
                             });
                         } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                            if (this.props.profile.position_count > this.props.profile.position_limit){
+                            if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.job.job_details.is_closed==1 || this.props.job.job_details.is_closed==3)){
                                 this.setState({
                                     showCloseCredit: true
                                 });
@@ -235,7 +235,7 @@ export class JobCard extends Component {
             "userId": this.props.user.id,
         }
         this.props.deleteJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+        setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
     };
 
     activateJob = () => {

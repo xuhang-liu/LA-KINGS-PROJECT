@@ -92,8 +92,8 @@ import TechFields from "./practice/TechFields";
 import TechPracticeMode from "./practice/TechPracticeMode";
 import BehaviorQuestionMode from "./practice/BehaviorQuestionMode"
 import NotFoundPage from "./layout/NotFoundPage";
-import Privacy from "./layout/Privacy";
-import Term from "./layout/Term";
+// import Privacy from "./layout/Privacy";
+// import Term from "./layout/Term";
 import QuizHome from "./quiz/quizHome";
 import QuizResultPage from "./quiz/quizResultPage";
 import Resume from "./resume/Resume";
@@ -395,8 +395,8 @@ class App extends Component {
                 <Route exact path="/job-seekers" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/paygpayment" component={PayGPayment} />
-                <Route exact path="/privacy" component={Privacy} />
-                <Route exact path="/term" component={Term} />
+                {/* <Route exact path="/privacy" component={Privacy} /> */}
+                {/* <Route exact path="/term" component={Term} /> */}
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/employer_contact" component={EmployerContact} />
                 <Route exact path="/quiz" component={QuizHome} />

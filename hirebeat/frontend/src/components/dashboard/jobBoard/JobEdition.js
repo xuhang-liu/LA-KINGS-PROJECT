@@ -245,7 +245,7 @@ export class JobEdition extends Component {
                         showUpgradeM: true
                     });
                 } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                    if (this.props.profile.position_count > this.props.profile.position_limit){
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed==1 || this.props.jobInfo.is_closed==3)){
                         return this.setState({
                             showUpgradeM: true
                         });
@@ -255,7 +255,7 @@ export class JobEdition extends Component {
                 if (this.props.profile.membership == "Regular"){
                     using_credit = true;
                 } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                    if (this.props.profile.position_count > this.props.profile.position_limit){
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed==1 || this.props.jobInfo.is_closed==3)){
                         using_credit = true;
                     }
                 }
@@ -364,7 +364,7 @@ export class JobEdition extends Component {
             };
         }
         this.props.updateJob(data);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+        setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
         this.props.renderJobs();
     }
 

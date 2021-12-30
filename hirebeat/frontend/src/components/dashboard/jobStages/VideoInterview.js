@@ -116,6 +116,7 @@ export function VideoInterview(props) {
         let page = 1;
         let userId = props.user.id;
         props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
+        setSelectedPage(0);
     }
 
     const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
@@ -125,6 +126,7 @@ export function VideoInterview(props) {
         let page = 1;
         let userId = props.user.id;
         props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
+        setSelectedPage(0);
     }
 
     const [category4, setCategory4] = useState({ value: 'Select stage', label: 'Select stage' });
@@ -298,7 +300,7 @@ export function VideoInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Video Interview");
+        props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value);
         window.scrollTo(0,0);
     };
 

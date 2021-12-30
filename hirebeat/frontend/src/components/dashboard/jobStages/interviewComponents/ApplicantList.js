@@ -62,6 +62,9 @@ export const ApplicantList = (props) => {
                         reviewerStageLength={props.reviewerStageLength}
                         setShowNoQuestionAlert={props.setShowNoQuestionAlert}
                         questions={props.questions}
+                        category={props.category}
+                        category2={props.category2}
+                        category3={props.category3}
                     />
                 )
             })}

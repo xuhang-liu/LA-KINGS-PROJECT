@@ -511,6 +511,7 @@ export class EmployerDashboard extends Component {
           employerProfileDetail={this.props.employerProfileDetail}
           jobs={this.props.jobs}
           companyName={this.props.profile.company_name}
+          loadProfile={this.props.loadProfile}
         />;
       case "jobEdition":
         return <JobEdition
@@ -522,6 +523,7 @@ export class EmployerDashboard extends Component {
           jobInfo={this.state.jobInfo}
           getPJobs={this.getPJobs}
           employerProfileDetail={this.props.employerProfileDetail}
+          loadProfile={this.props.loadProfile}
         />;
       case "applications":
         return <ApplicationCover

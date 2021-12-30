@@ -25,15 +25,15 @@
 			<changefreq>always</changefreq>
 		</url>
 
-		<url>
+		<!-- <url>
 			<loc>https://app.hirebeat.co/privacy</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
-		<url>
+		<!-- <url>
 			<loc>https://app.hirebeat.co/term</loc>
 			<changefreq>always</changefreq>
-		</url>
+		</url> -->
 
 		<url>
 			<loc>https://app.hirebeat.co/contact</loc>
@@ -962,6 +962,11 @@
 
 		<url>
 			<loc>https://app.hirebeat.co/talent-profile</loc>
+			<changefreq>always</changefreq>
+		</url>
+
+		<url>
+			<loc>https://app.hirebeat.co/paygpayment</loc>
 			<changefreq>always</changefreq>
 		</url>
 
