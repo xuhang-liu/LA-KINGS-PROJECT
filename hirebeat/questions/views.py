@@ -458,7 +458,7 @@ def move_candidate_to_interview(request):
                     candidate = CandidatesInterview.objects.create(
                         email=emails[i], positions_id=position_id)
                     invitedCan = InvitedCandidates.objects.create(
-                        positions_id=position_id, email=emails[i], name=names[i], comment_status=0, current_stage=next_stage)
+                        positions_id=position_id, email=emails[i], name=names[i], comment_status=0, current_stage=next_stage, is_viewed=True)
                 #  apply from career page case
                 else:
                     # get resume url, phone, location, resume analysis
@@ -927,6 +927,12 @@ def update_view_status(request):
     id = request.data["candidate_id"]
     if InvitedCandidates.objects.filter(id=id).exists():
         candidate = InvitedCandidates.objects.get(id=id)
+        if Jobs.objects.filter(positions=candidate.positions).exists():
+            jobs = Jobs.objects.filter(positions=candidate.positions)[0]
+            if ApplyCandidates.objects.filter(jobs=jobs, email=candidate.email).exists():
+                applyCandidates = ApplyCandidates.objects.filter(jobs=jobs, email=candidate.email)[0]
+                applyCandidates.is_viewed = True
+                applyCandidates.save()
         candidate.is_viewed = True
         candidate.save()
         return Response("Update is_reviewed successfully", status=status.HTTP_200_OK)

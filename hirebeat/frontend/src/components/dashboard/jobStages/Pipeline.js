@@ -414,7 +414,7 @@ export class Pipeline extends Component {
                         </div>
                         <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
-                                {(this.props.profile.membership == "Premium") &&
+                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={this.inviteExReviewer}
@@ -502,7 +502,7 @@ export class Pipeline extends Component {
                         </div>
                         <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
-                                {(this.props.profile.membership == "Premium") &&
+                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
@@ -591,7 +591,7 @@ export class Pipeline extends Component {
                         </div>
                         <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
-                                {(this.props.profile.membership == "Premium") &&
+                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
@@ -680,7 +680,7 @@ export class Pipeline extends Component {
                         </div>
                         <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
-                                {(this.props.profile.membership == "Premium") &&
+                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
@@ -769,7 +769,7 @@ export class Pipeline extends Component {
                         </div>
                         <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
                             <div>
-                                {(this.props.profile.membership == "Premium") &&
+                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"

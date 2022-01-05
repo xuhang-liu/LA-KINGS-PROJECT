@@ -57,6 +57,23 @@ export const Applicant_Live = (props) => {
         setCurrent(index);
     }
 
+    function getReviewPageData1(index) {
+        props.updateViewStatus({ "candidate_id": applicants[index].id });
+        props.getApplicantsVideos(applicants[index].email, positionId);
+        props.getApplicantsInfo(applicants[index].email);
+        props.getResumeURL(positionId, applicants[index]?.apply_candidate_id);
+        props.getReviewNote(positionId, applicants[index].email);
+        props.getReviewerEvaluation(positionId, applicants[index].email);
+        props.getCurrentReviewerEvaluation(positionId, applicants[index].email, props.user.email, props.currentStage);
+    }
+
+    function getNextResult(curIndex) {
+        //sessionStorage.removeItem("showCandidateModal" + curIndex);
+        //setNext(curIndex + 1);
+        //sessionStorage.setItem(("showCandidateModal" + next), "true");
+        getReviewPageData1(curIndex + 1);
+    };
+
     function viewNextResult(curIndex) {
         //sessionStorage.removeItem("showCandidateModal" + curIndex);
         //setNext(curIndex + 1);
@@ -200,6 +217,7 @@ export const Applicant_Live = (props) => {
                 end={end}
                 viewPrevResult={viewPrevResult}
                 viewNextResult={viewNextResult}
+                getNextResult={getNextResult}
                 applicants={applicants}
                 filter={props.filter}
                 currentStage={props.currentStage}

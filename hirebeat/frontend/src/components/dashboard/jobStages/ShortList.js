@@ -278,6 +278,19 @@ const CandidateCard = (props) => {
         setCurrent(index);
     }
 
+    function getReviewPageData1(index) {
+        props.getApplicantsVideos(props.applicants[index].email, props.applicant.positions_id);
+        props.getApplicantsInfo(props.applicants[index].email);
+        props.getResumeURL(props.applicant.positions_id, props.applicants[index]?.apply_candidate_id);
+        props.getReviewNote(props.applicant.positions_id, props.applicants[index].email);
+        props.getReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email);
+        props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicants[index].email, props.user.email, "Short List");
+    }
+
+    function getNextResult(curIndex) {
+        getReviewPageData1(curIndex + 1);
+    };
+
     function viewNextResult(curIndex) {
         getReviewPageData(curIndex + 1);
     };
@@ -437,6 +450,7 @@ const CandidateCard = (props) => {
                 selectedPage={props.selectedPage}
                 viewPrevResult={viewPrevResult}
                 viewNextResult={viewNextResult}
+                getNextResult={getNextResult}
                 employerProfileDetail={props.employerProfileDetail}
             />
             <MyModal80

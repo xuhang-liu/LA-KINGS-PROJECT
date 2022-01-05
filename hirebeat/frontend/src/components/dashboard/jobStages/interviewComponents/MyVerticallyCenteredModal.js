@@ -33,6 +33,7 @@ export function MyVerticallyCenteredModal(props) {
                     end={props.end}
                     viewPrevResult={props.viewPrevResult}
                     viewNextResult={props.viewNextResult}
+                    getNextResult={props.getNextResult}
                     applicants={props.applicants}
                     hasSwitch={true}
                     filter={props.filter}

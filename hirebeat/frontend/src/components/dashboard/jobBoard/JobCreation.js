@@ -240,27 +240,7 @@ export class JobCreation extends Component {
     savePosition = (e) => {
         e.preventDefault();
         let using_credit = false;
-        if (this.props.profile.payg_credit <= 0){
-            if (this.props.profile.membership == "Regular"){
-                return this.setState({
-                    showUpgradeM: true
-                });
-            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                if (this.props.profile.position_count >= this.props.profile.position_limit){
-                    return this.setState({
-                        showUpgradeM: true
-                    });
-                }
-            }
-        } else if (this.props.profile.payg_credit > 0) {
-            if (this.props.profile.membership == "Regular"){
-                using_credit = true;
-            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                if (this.props.profile.position_count >= this.props.profile.position_limit){
-                    using_credit = true;
-                }
-            }
-        }
+        var r = true;
         if (this.props.profile.membership == "Regular" && this.state.job_post == 2) {
             return (
                 confirmAlert({
@@ -299,53 +279,36 @@ export class JobCreation extends Component {
                 })
             )
         }
-        let data = {
-            jobTitle: this.state.jobTitle,
-            jobId: this.state.jobId,
-            jobDescription: this.state.jobDescription.toString('html'),
-            jobLevel: this.state.jobLevel["value"],
-            jobLocation: this.state.jobLocation,
-            userId: this.props.user.id,
-            jobType: this.state.jobType["value"],
-            loc_req: this.state.loc_req,
-            pho_req: this.state.pho_req,
-            lin_req: this.state.lin_req,
-            eeo_req: this.state.eeo_req,
-            eeo_ques_req: this.state.eeo_ques_req,
-            job_post: this.state.job_post,
-            skills: this.state.skills,
-            questions: this.state.questions,
-            is_closed: 0,
-            using_credit: using_credit
-        };
-        if (this.state.remote.value == 2) {
-            data = {
-                jobTitle: this.state.jobTitle,
-                jobId: this.state.jobId,
-                jobDescription: this.state.jobDescription.toString('html'),
-                jobLevel: this.state.jobLevel["value"],
-                jobLocation: "Remote",
-                userId: this.props.user.id,
-                jobType: this.state.jobType["value"],
-                loc_req: this.state.loc_req,
-                pho_req: this.state.pho_req,
-                lin_req: this.state.lin_req,
-                eeo_req: this.state.eeo_req,
-                eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
-                skills: this.state.skills,
-                questions: this.state.questions,
-                is_closed: 0,
-                using_credit: using_credit
-            };
+        if (this.props.profile.payg_credit <= 0){
+            if (this.props.profile.membership == "Regular"){
+                return this.setState({
+                    showUpgradeM: true
+                });
+            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                if (this.props.profile.position_count >= this.props.profile.position_limit){
+                    return this.setState({
+                        showUpgradeM: true
+                    });
+                }
+            }
+        } else if (this.props.profile.payg_credit > 0) {
+            if (this.props.profile.membership == "Regular"){
+                using_credit = true;
+                r = confirm("You now have "+this.props.profile.payg_credit+" credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
+                if (this.props.profile.position_count >= this.props.profile.position_limit){
+                    using_credit = true;
+                    r = confirm("You now have "+this.props.profile.payg_credit+" credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+                }
+            }
         }
-        else if (this.state.remote.value == 1) {
-            data = {
+        if(r){
+            let data = {
                 jobTitle: this.state.jobTitle,
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: this.state.jobLocation + "| Hybrid",
+                jobLocation: this.state.jobLocation,
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -359,13 +322,55 @@ export class JobCreation extends Component {
                 is_closed: 0,
                 using_credit: using_credit
             };
-        }
-        if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
-            alert("Duplicate Job ID detected.");
-        } else {
-            this.props.addNewJob(data);
-            setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
-            setTimeout(() => { this.showSharePrompt() }, 300);
+            if (this.state.remote.value == 2) {
+                data = {
+                    jobTitle: this.state.jobTitle,
+                    jobId: this.state.jobId,
+                    jobDescription: this.state.jobDescription.toString('html'),
+                    jobLevel: this.state.jobLevel["value"],
+                    jobLocation: "Remote",
+                    userId: this.props.user.id,
+                    jobType: this.state.jobType["value"],
+                    loc_req: this.state.loc_req,
+                    pho_req: this.state.pho_req,
+                    lin_req: this.state.lin_req,
+                    eeo_req: this.state.eeo_req,
+                    eeo_ques_req: this.state.eeo_ques_req,
+                    job_post: 0,
+                    skills: this.state.skills,
+                    questions: this.state.questions,
+                    is_closed: 0,
+                    using_credit: using_credit
+                };
+            }
+            else if (this.state.remote.value == 1) {
+                data = {
+                    jobTitle: this.state.jobTitle,
+                    jobId: this.state.jobId,
+                    jobDescription: this.state.jobDescription.toString('html'),
+                    jobLevel: this.state.jobLevel["value"],
+                    jobLocation: this.state.jobLocation + "| Hybrid",
+                    userId: this.props.user.id,
+                    jobType: this.state.jobType["value"],
+                    loc_req: this.state.loc_req,
+                    pho_req: this.state.pho_req,
+                    lin_req: this.state.lin_req,
+                    eeo_req: this.state.eeo_req,
+                    eeo_ques_req: this.state.eeo_ques_req,
+                    job_post: this.state.job_post,
+                    skills: this.state.skills,
+                    questions: this.state.questions,
+                    is_closed: 0,
+                    using_credit: using_credit
+                };
+            }
+            if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
+                alert("Duplicate Job ID detected.");
+            } else {
+                this.props.addNewJob(data);
+                setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+                setTimeout(() => { this.showSharePrompt() }, 300);
+            }
         }
     }
 
