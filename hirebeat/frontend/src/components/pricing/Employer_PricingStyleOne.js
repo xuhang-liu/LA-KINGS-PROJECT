@@ -23,6 +23,10 @@ class Employer_PricingStyleOne extends Component {
         hover1: false,
         hover2: false,
         hover3: false,
+        anpro: 126,
+        anpre: 299,
+        mopro: 169,
+        mopre: 399,
     }
 
     componentDidMount() {
@@ -84,6 +88,21 @@ class Employer_PricingStyleOne extends Component {
     }
 
     handleInputChange = (e) => {
+        if (e.target.value == 'PH2022' || e.target.value == 'ph2022'){
+            this.setState({
+                anpro: 80,
+                anpre: 126,
+                mopro: 100,
+                mopre: 169
+            });
+        }else{
+            this.setState({
+                anpro: 126,
+                anpre: 299,
+                mopro: 169,
+                mopre: 399
+            });
+        }
         this.setState({
             [e.target.name]: e.target.value,
         });
@@ -330,6 +349,36 @@ class Employer_PricingStyleOne extends Component {
         return (
             <section className="pricing-area pt-100" id="go-to-pricing">
                 <div className="container-xl">
+                    {(this.props.profile.membership == "Regular" || this.props.profile.is_freetrial) &&
+                        <div className="mt-1 mb-3 pb-5 pt-3" style={{ textAlign: "center", backgroundColor: "#e8edfc" }}>
+                            <h2 style={{ fontWeight: "600", color: "#090d3a", marginBottom: "1rem" }}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
+                            <input
+                                className="form-control"
+                                type="text"
+                                name={"coupon_match"}
+                                placeholder={"Enter coupon code"}
+                                onChange={this.handleInputChange}
+                                style={{
+                                    backgroundColor: "#FFFFFF",
+                                    fontSize: "16px",
+                                    borderRadius: "5px",
+                                    height: "3rem",
+                                    color: "grey",
+                                    width: "30%",
+                                    display: "inline-block",
+                                    paddingLeft: "0.5rem"
+                                }}
+                            />
+                            {/* <button
+                                onClick={this.handleCounponUpgrade}
+                                type="button"
+                                className="default-btn" style={{ color: "white", display: "inline-block", marginLeft: "1rem", backgroundColor: "#ff6b00" }}
+                            >
+                                <i className="bx bxs-hot"></i>
+                                Apply
+                                <span></span>
+                            </button> */}
+                        </div>}
                     <div className="tab pricing-list-tab">
                         {/* Pricing Tab List */}
                         <ul className="tabs">
@@ -465,20 +514,20 @@ class Employer_PricingStyleOne extends Component {
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null ?
-                                                        <div className="btn-box">
-                                                            <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                    Start Free Trial
+                                                            <div className="btn-box">
+                                                                <Link to="/employer_register">
+                                                                    <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                        Start Free Trial
+                                                                        <span></span>
+                                                                    </a>
+                                                                </Link>
+                                                            </div> :
+                                                            <div className="btn-box">
+                                                                <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
+                                                                    Select Plan
                                                                     <span></span>
-                                                                </a>
-                                                            </Link>
-                                                        </div>:
-                                                        <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
-                                                                Select Plan
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
+                                                                </button>
+                                                            </div>
                                                     }
                                                 </div>
                                                 {this.props.profile.membership == null &&
@@ -509,14 +558,14 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup style={{ color: "#090d3a" }}>$</sup>126<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>{this.state.anpro}<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$2,028</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$1,512 /yr</span></p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -525,7 +574,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleYearProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.handleYearProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -534,7 +583,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleYearProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.handleYearProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -543,7 +592,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -552,7 +601,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.stripeCustomerPortal}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -561,7 +610,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -598,7 +647,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup>$</sup>299<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <sup>$</sup>{this.state.anpre}<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#818181", fontWeight: "600" }}>Billed at <span style={{ textDecoration: "line-through" }}>$4,788</span> <span style={{ fontWeight: "700", color: "#090d3a" }}>$3,588 /yr</span></p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
@@ -632,7 +681,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#a3c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#13c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -641,7 +690,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#a3c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                    <button className="default-btn" style={{ color: "white", backgroundColor: "#13c4a1", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -650,7 +699,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#a3c4a1" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#13c4a1" }} onClick={this.stripeCustomerPortal}>
                                                                         Upgrade
                                                                         <span></span>
                                                                     </button>
@@ -791,20 +840,20 @@ class Employer_PricingStyleOne extends Component {
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null ?
-                                                        <div className="btn-box">
-                                                            <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
-                                                                    Start Free Trial
+                                                            <div className="btn-box">
+                                                                <Link to="/employer_register">
+                                                                    <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }}>
+                                                                        Start Free Trial
+                                                                        <span></span>
+                                                                    </a>
+                                                                </Link>
+                                                            </div> :
+                                                            <div className="btn-box">
+                                                                <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
+                                                                    Select Plan
                                                                     <span></span>
-                                                                </a>
-                                                            </Link>
-                                                        </div>:
-                                                        <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePayAsYouGoUpgrade}>
-                                                                Select Plan
-                                                                <span></span>
-                                                            </button>
-                                                        </div>
+                                                                </button>
+                                                            </div>
                                                     }
                                                 </div>
                                                 {this.props.profile.membership == null &&
@@ -835,14 +884,14 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup style={{ color: "#090d3a" }}>$</sup>169<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <sup style={{ color: "#090d3a" }}>$</sup>{this.state.mopro}<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
                                                         this.props.profile.membership == null &&
                                                         <div className="btn-box">
                                                             <Link to="/employer_register">
-                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                <a id="id-employer-select2" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                     Start Free Trial
                                                                     <span></span>
                                                                 </a>
@@ -851,7 +900,7 @@ class Employer_PricingStyleOne extends Component {
                                                     }
                                                     {this.props.profile.is_freetrial ?
                                                         <div className="btn-box">
-                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleProUpgrade}>
+                                                            <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.handleProUpgrade}>
                                                                 Select Plan
                                                                 <span></span>
                                                             </button>
@@ -860,7 +909,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 this.props.profile.membership == "Regular" &&
                                                                 <div className="btn-box">
-                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.handleProUpgrade}>
+                                                                    <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.handleProUpgrade}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -869,7 +918,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Regular") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                         Premium Already
                                                                         <span></span>
                                                                     </button>
@@ -878,7 +927,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Premium") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }} onClick={this.stripeCustomerPortal}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }} onClick={this.stripeCustomerPortal}>
                                                                         Select Plan
                                                                         <span></span>
                                                                     </button>
@@ -887,7 +936,7 @@ class Employer_PricingStyleOne extends Component {
                                                             {
                                                                 (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") &&
                                                                 <div className="btn-box">
-                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor:"#ff6b00" }}>
+                                                                    <button className="default-btn" style={{ color: "white", paddingRight: "50px", paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#ff6b00" }}>
                                                                         Current Plan
                                                                         <span></span>
                                                                     </button>
@@ -924,7 +973,7 @@ class Employer_PricingStyleOne extends Component {
                                             </div>
 
                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                <sup>$</sup>399<sub style={{ color: "#090d3a" }}>/ mo</sub>
+                                                <sup>$</sup>{this.state.mopre}<sub style={{ color: "#090d3a" }}>/ mo</sub>
                                                 <p style={{ fontSize: "13px", color: "#ffffff", fontWeight: "600" }}>0</p>
                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                     {
@@ -1005,36 +1054,6 @@ class Employer_PricingStyleOne extends Component {
                             </div>
                         </div>
                     </div>
-                    {(this.props.profile.membership == "Regular" || this.props.profile.is_freetrial) &&
-                        <div className="mt-3 pb-5 pt-5" style={{ textAlign: "center", backgroundColor: "#e8edfc" }}>
-                            <h2 style={{ width: "80%", fontWeight: "600", color: "#090d3a", marginBottom: "1rem" }}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
-                            <input
-                                className="form-control"
-                                type="text"
-                                name={"coupon_match"}
-                                placeholder={"Enter coupon code"}
-                                onChange={this.handleInputChange}
-                                style={{
-                                    backgroundColor: "#FFFFFF",
-                                    fontSize: "16px",
-                                    borderRadius: "5px",
-                                    height: "3rem",
-                                    color: "grey",
-                                    width: "30%",
-                                    display: "inline-block",
-                                    paddingLeft: "0.5rem"
-                                }}
-                            />
-                            <button
-                                onClick={this.handleCounponUpgrade}
-                                type="button"
-                                className="default-btn" style={{ color: "white", display: "inline-block", marginLeft: "1rem", backgroundColor: "#ff6b00" }}
-                            >
-                                <i className="bx bxs-hot"></i>
-                                Apply
-                                <span></span>
-                            </button>
-                        </div>}
                     <div className="mb-5 d-flex justify-content-center">
                         <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>Talk to us ></a>
                     </div>
