@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from accounts.models import ReviewerInfo, Profile
 from questions.models import InterviewQuestions, Positions, InvitedCandidates
 from questions.models import Categorys, SubCategory
+from jobs.models import ApplyCandidates, Jobs
 from videos.models import WPVideo
 from questions.serializers import SubcategorySerializer
 # For fake ai
@@ -298,7 +299,9 @@ def add_wp_video(request):
     question_id = request.data["question_id"]
     question_desc = request.data["question_desc"]
     # get user id by email
-    user = User.objects.get(email=email)
+    user = []
+    if User.objects.filter(email=email).exists():
+        user = User.objects.filter(email=email).first()
     owner_id = user.id
 
     wp_video = WPVideo(
@@ -310,12 +313,22 @@ def add_wp_video(request):
         position_id = positions
     )
     wp_video.save()
-    invited_obj = InvitedCandidates.objects.get(email=email, positions=positions)
-    invited_obj.is_recorded = True
-    # update saved video count
-    invited_obj.video_count += 1
-    invited_obj.is_viewed = False
-    invited_obj.save()
+    invited_obj = []
+    if InvitedCandidates.objects.filter(email=email, positions_id=positions).exists():
+        invited_obj = InvitedCandidates.objects.filter(email=email, positions_id=positions).first()
+        invited_obj.is_recorded = True
+        # update saved video count
+        invited_obj.video_count += 1
+        invited_obj.is_viewed = False
+        invited_obj.save()
+    jobs = []
+    if Jobs.objects.filter(positions_id=positions).exists():
+        jobs = Jobs.objects.filter(positions_id=positions).first()
+    applyCandidates = []
+    if ApplyCandidates.objects.filter(jobs=jobs, email=email).exists():
+        applyCandidates = ApplyCandidates.objects.filter(jobs=jobs, email=email).first()
+        applyCandidates.is_viewed = False
+        applyCandidates.save()
 
     return Response("Saved data to database successfully", status=status.HTTP_200_OK)
 
