@@ -61,6 +61,11 @@ class Positions(models.Model):
     questionTime = models.IntegerField(default=120)
     prepare_time = models.IntegerField(default=30)
     camera_on = models.BooleanField(default=True)
+    livcat1 = models.CharField(max_length=50, default="First Round")
+    livcat2 = models.CharField(max_length=50, default="Second Round")
+    livcat3 = models.CharField(max_length=50, default="Third Round")
+    livcat4 = models.CharField(max_length=50, default="Fourth Round")
+    livcat5 = models.CharField(max_length=50, default="Final Round")
 
 
 class InterviewQuestions(models.Model): 
@@ -110,6 +115,7 @@ class InvitedCandidates(models.Model):
     current_stage = models.CharField(max_length=100, default="Video Interview")
     is_active = models.BooleanField(default=True)
     gh_applications_id = models.TextField(null=True, blank=True)
+    livcat = models.CharField(max_length=50, default="TBD")
 
     def __str__(self):
         return self.name + '|' + self.email

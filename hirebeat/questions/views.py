@@ -348,6 +348,8 @@ def get_posted_jobs(request):
                 position_id=position_id).values())
             exts = list(ExternalReviewers.objects.filter(
                 position_id=position_id).values())
+            # get position detail
+            position = Positions.objects.filter(id=position_id).values()[0]
             job_details = {
                 "position_id": position_id,
                 "job_id": ex_reviewers[i].position.job_id,
@@ -358,6 +360,7 @@ def get_posted_jobs(request):
                 "questions": questions,
                 "subreviewers": subs,
                 "ex_reviewers": exts,
+                "position": position,
                 "company_name": company_name,
                 "total_records": total_records,
                 "total_page": total_page,
@@ -1257,3 +1260,53 @@ def remove_reviewer_from_list(request):
     elif (type == "ext"):
         ExternalReviewers.objects.filter(r_email=r_email).delete()
     return Response("Remove Reviewer successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_live_interview_categories(request):
+    liv1 = request.data["liv1"]
+    liv2 = request.data["liv2"]
+    liv3 = request.data["liv3"]
+    liv4 = request.data["liv4"]
+    liv5 = request.data["liv5"]
+    oldliv1 = request.data["oldliv1"]
+    oldliv2 = request.data["oldliv2"]
+    oldliv3 = request.data["oldliv3"]
+    oldliv4 = request.data["oldliv4"]
+    oldliv5 = request.data["oldliv5"]
+    position_id = request.data["position_id"]
+
+    position = Positions.objects.get(pk=position_id)
+    position.livcat1 = liv1
+    position.livcat2 = liv2
+    position.livcat3 = liv3
+    position.livcat4 = liv4
+    position.livcat5 = liv5
+    position.save()
+
+    if liv1 != oldliv1:
+        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv1):
+            if i.livcat != "TBD":
+                i.livcat = liv1
+                i.save()
+    elif liv2 != oldliv2:
+        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv2):
+            if i.livcat != "TBD":
+                i.livcat = liv2
+                i.save()
+    elif liv3 != oldliv3:
+        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv3):
+            if i.livcat != "TBD":
+                i.livcat = liv3
+                i.save()
+    elif liv4 != oldliv4:
+        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv4):
+            if i.livcat != "TBD":
+                i.livcat = liv4
+                i.save()
+    elif liv5 != oldliv5:
+        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv5):
+            if i.livcat != "TBD":
+                i.livcat = liv5
+                i.save()
+
+    return Response("Update Live Interview Categories successfully", status=status.HTTP_200_OK)

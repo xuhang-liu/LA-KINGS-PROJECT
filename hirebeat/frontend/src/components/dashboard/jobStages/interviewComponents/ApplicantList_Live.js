@@ -60,6 +60,12 @@ export const ApplicantList_Live = (props) => {
                         selectedPage={props.selectedPage}
                         employerProfileDetail={props.employerProfileDetail}
                         reviewerStageLength={props.reviewerStageLength}
+                        livcat1={props.livcat1}
+                        livcat2={props.livcat2}
+                        livcat3={props.livcat3}
+                        livcat4={props.livcat4}
+                        livcat5={props.livcat5}
+                        livcat={props.applicants[index].livcat}
                     />
                 )
             })}

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { MyModal80 } from "../../DashboardComponents";
-import {ResumeEva} from "./ResumeEva";
+import { ResumeEva } from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
+import Select from 'react-select';
 
 export const Applicant_Live = (props) => {
     const [current, setCurrent] = useState(props.index);
     const [show, setShow] = useState(props.showCandidateModal);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [category1, setCategory1] = useState({ value: null, label: null });
     //const [next, setNext] = useState(null);
     //const [prev, setPrev] = useState(null);
     let applicants = props.applicants;
@@ -23,6 +25,30 @@ export const Applicant_Live = (props) => {
     const commentStatus = applicants[current].comment_status;
     const start = 0;
     const end = applicants.length - 1;
+
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#fff', border:"none" }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#979797',
+            fontSize: '0.8rem',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+    }
+
+    const options1 = [
+        { value: "TBD", label: "TBD" },
+        { value: props.livcat1, label: props.livcat1 },
+        { value: props.livcat2, label: props.livcat2 },
+        { value: props.livcat3, label: props.livcat3 },
+        { value: props.livcat4, label: props.livcat4 },
+        { value: props.livcat5, label: props.livcat5 },
+    ];
+
+    function onFilter1(category1) {
+        setCategory1(category1);
+    }
 
     // useEffect(() => {
     //     if (sessionStorage.getItem("showCandidateModal" + props.index) === "true") {
@@ -169,19 +195,19 @@ export const Applicant_Live = (props) => {
                         <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
                     </div>
                 }
-                <div className="col-5 mb-1">
-                    <button className="title-button2" style={{ wordBreak: "break-all"}} onClick={(() => viewResult())}>
+                <div className="col-3 mb-1">
+                    <button className="title-button2" style={{ wordBreak: "break-all" }} onClick={(() => viewResult())}>
                         {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                         {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
                     </button>
                 </div>
                 {(props.reviewerStageLength > 0) &&
-                <div className="col-3">
-                    {applicants[current]?.reviewer_review_status ?
-                        <p style={{fontWeight:"600", color:"#4A6F8A"}}>Reviewed</p>:
-                        <p style={{fontWeight:"600", color:"#090D3A"}}>Pending</p>
-                    }
-                </div>}
+                    <div className="col-3">
+                        {applicants[current]?.reviewer_review_status ?
+                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
+                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
+                        }
+                    </div>}
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-2" style={{ marginLeft: "1.4rem" }}>
                         {applicants[current]?.num_votes > 0 &&
@@ -189,6 +215,21 @@ export const Applicant_Live = (props) => {
                         }
                     </div>
                 }
+                {(props.reviewerStageLength == 0) &&
+                <div className="col-3" style={{marginLeft:"-1rem"}}>
+                    <Select value={category1.value!=null?category1:{value: props.livcat, label: props.livcat}} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false}/>
+                </div>}
+                {(props.reviewerStageLength == 0) &&
+                <div className="col-3" style={{marginLeft:"-1rem"}}>
+                    <a
+                        target="_blank"
+                        href={"mailto:"+applicants[current].email}
+                        className="interview-txt9"
+                        style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
+                    >
+                        <i className="bx-fw bx bx-mail-send"></i> Send Email
+                    </a>
+                </div>}
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal

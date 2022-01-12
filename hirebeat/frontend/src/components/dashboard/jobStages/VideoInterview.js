@@ -608,7 +608,7 @@ export function VideoInterview(props) {
                             <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
-                        {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                        {(props.reviewerStageLength == 0) &&
                             <div className="col-2 interview-txt7" style={{ textAlign: "right" }}>
                                 <button
                                     type="button"
@@ -664,7 +664,7 @@ export function VideoInterview(props) {
                             <div className="col-3">
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
-                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
                                 </div>
                             </div>
                             {/*<div className="col-1">Action</div>*/}
@@ -674,7 +674,7 @@ export function VideoInterview(props) {
                             {(props.reviewerStageLength > 0) &&
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
-                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
                             {(props.reviewerStageLength == 0) &&

@@ -271,13 +271,13 @@ export class AllCandidates extends Component {
                                     <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
                                         <div className="row" style={{ padding: "0rem" }}>
                                             <span className="job-status">Current Stage</span>
-                                            <Select value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
+                                            <Select isSearchable={false} value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
                                         </div>
                                     </div>
                                     <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
                                         <div className="row" style={{ padding: "0rem" }}>
                                             <span className="job-status">Status</span>
-                                            <Select value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
+                                            <Select isSearchable={false} value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
                                         </div>
                                     </div>
                                 </div>
