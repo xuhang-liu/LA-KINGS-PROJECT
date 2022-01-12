@@ -330,7 +330,11 @@ export class EmployerProfile extends Component {
                                                 </p>
                                             </div>
                                             {this.props.profile.is_freetrial &&
-                                                <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
+                                            <div style={{height:"2rem"}}>
+                                                <p className="pl-3" style={{display:"inline-block"}}>Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>
+                                                <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem", display:"inline-block" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade Now</p></Link>
+                                                </div>
+                                                }
                                         </div>}
                                 </div> :
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
