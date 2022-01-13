@@ -116,6 +116,7 @@ class InvitedCandidates(models.Model):
     is_active = models.BooleanField(default=True)
     gh_applications_id = models.TextField(null=True, blank=True)
     livcat = models.CharField(max_length=50, default="TBD")
+    shortcat = models.CharField(max_length=50, default="TBD")
 
     def __str__(self):
         return self.name + '|' + self.email

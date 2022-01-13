@@ -1288,25 +1288,45 @@ def update_live_interview_categories(request):
             if i.livcat != "TBD":
                 i.livcat = liv1
                 i.save()
-    elif liv2 != oldliv2:
+    if liv2 != oldliv2:
         for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv2):
             if i.livcat != "TBD":
                 i.livcat = liv2
                 i.save()
-    elif liv3 != oldliv3:
+    if liv3 != oldliv3:
         for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv3):
             if i.livcat != "TBD":
                 i.livcat = liv3
                 i.save()
-    elif liv4 != oldliv4:
+    if liv4 != oldliv4:
         for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv4):
             if i.livcat != "TBD":
                 i.livcat = liv4
                 i.save()
-    elif liv5 != oldliv5:
+    if liv5 != oldliv5:
         for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv5):
             if i.livcat != "TBD":
                 i.livcat = liv5
                 i.save()
 
     return Response("Update Live Interview Categories successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_live_interview_candidate_status(request):
+    candidate_id = request.data["candidate_id"]
+    category = request.data["category"]
+    invitedCandidates = InvitedCandidates.objects.get(pk=candidate_id)
+    invitedCandidates.livcat = category
+    invitedCandidates.save()
+
+    return Response("Update Live Interview Candidate Status successfully", status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def update_shortlist_candidate_offer_status(request):
+    candidate_id = request.data["candidate_id"]
+    category = request.data["category"]
+    invitedCandidates = InvitedCandidates.objects.get(pk=candidate_id)
+    invitedCandidates.shortcat = category
+    invitedCandidates.save()
+
+    return Response("Update Live Interview Candidate Status successfully", status=status.HTTP_200_OK)

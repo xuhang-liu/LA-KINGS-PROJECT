@@ -560,7 +560,7 @@ export function LiveInterview(props) {
                                     </div>
                                     {!live1Edit ?
                                         <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                            {props.livcat1}
+                                            <a onClick={() => setlive1Edit(true)}>{props.livcat1}</a>
                                             <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive1Edit(true)}><i class="bx bx-edit-alt"></i></a>
                                         </div> :
                                         <div className="col-6" style={{ textAlign: "center" }}>
@@ -574,7 +574,7 @@ export function LiveInterview(props) {
                                     </div>
                                     {!live2Edit ?
                                         <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                            {props.livcat2}
+                                            <a onClick={() => setlive2Edit(true)}>{props.livcat2}</a>
                                             <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive2Edit(true)}><i class="bx bx-edit-alt"></i></a>
                                         </div> :
                                         <div className="col-6" style={{ textAlign: "center" }}>
@@ -588,7 +588,7 @@ export function LiveInterview(props) {
                                     </div>
                                     {!live3Edit ?
                                         <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                            {props.livcat3}
+                                            <a onClick={() => setlive3Edit(true)}>{props.livcat3}</a>
                                             <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive3Edit(true)}><i class="bx bx-edit-alt"></i></a>
                                         </div> :
                                         <div className="col-6" style={{ textAlign: "center" }}>
@@ -602,7 +602,7 @@ export function LiveInterview(props) {
                                     </div>
                                     {!live4Edit ?
                                         <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                            {props.livcat4}
+                                            <a onClick={() => setlive4Edit(true)}>{props.livcat4}</a>
                                             <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive4Edit(true)}><i class="bx bx-edit-alt"></i></a>
                                         </div> :
                                         <div className="col-6" style={{ textAlign: "center" }}>
@@ -616,7 +616,7 @@ export function LiveInterview(props) {
                                     </div>
                                     {!live5Edit ?
                                         <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                            {props.livcat5}
+                                            <a onClick={() => setlive5Edit(true)}>{props.livcat5}</a>
                                             <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive5Edit(true)}><i class="bx bx-edit-alt"></i></a>
                                         </div> :
                                         <div className="col-6" style={{ textAlign: "center" }}>

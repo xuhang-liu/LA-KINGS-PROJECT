@@ -9,6 +9,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { MyVerticallyCenteredModal } from "./interviewComponents/MyVerticallyCenteredModal";
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
+import axios from "axios";
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -35,7 +36,7 @@ const ShortList = (props) => {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Short List");
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -121,7 +122,7 @@ const AcceptedCandidate = (props) => {
     }
     return (
         <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop:'1.4rem' }} className="mt-4 pb-3">
+            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
                 <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                     <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
                         <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
@@ -145,7 +146,7 @@ const AcceptedCandidate = (props) => {
                         </div>
                     }
                 </div>
-                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow:"none" }}>
+                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow: "none" }}>
                     <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="ml-3 d-flex justify-content-start container-fluid row interview-txt7 interview-center">
                         <div className="col-3">Name</div>
                         {/* <div className="col-3">Video Average Score</div> */}
@@ -170,6 +171,9 @@ const AcceptedCandidate = (props) => {
                                 </span>
                             </div>
                         }
+                        {(props.reviewerStageLength == 0) &&
+                            <div className="col-3">Offer Status</div>
+                        }
                         {(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>}
                     </div>
                     {props.theJob.applicants.map((applicant, index) => {
@@ -183,7 +187,7 @@ const AcceptedCandidate = (props) => {
                                     getPJobs={props.getPJobs}
                                     refreshPage={props.refreshPage}
                                     stars={props.stars[applicant.email]}
-                                    resume_list={Math.max(props.resume_list[applicant.email]?props.resume_list[applicant.email]:0, applicant.result_rate?applicant.result_rate:0)} // get max resume score
+                                    resume_list={Math.max(props.resume_list[applicant.email] ? props.resume_list[applicant.email] : 0, applicant.result_rate ? applicant.result_rate : 0)} // get max resume score
                                     applicant={applicant}
                                     getApplicantsVideos={props.getApplicantsVideos}
                                     getApplicantsInfo={props.getApplicantsInfo}
@@ -245,10 +249,49 @@ const CandidateCard = (props) => {
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
     const [current, setCurrent] = useState(props.current);
+    const [category1, setCategory1] = useState({ value: null, label: null });
     const start = 0;
     const end = props.applicants.length - 1;
 
-    console.log(props.applicant);
+    const customStyles = {
+        control: styles => ({ ...styles, backgroundColor: '#fff', border: "none" }),
+        singleValue: styles => ({
+            ...styles,
+            color: '#979797',
+            fontSize: '0.8rem',
+            fontFamily: 'Inter,Segoe UI, sans-serif',
+            fontWeight: '500'
+        }),
+    }
+
+    const options1 = [
+        { value: "TBD", label: "TBD" },
+        { value: "Offer to be Made", label: "Offer to be Made" },
+        { value: "Offer Extended", label: "Offer Extended" },
+        { value: "In Negotiation", label: "In Negotiation" },
+        { value: "Declined", label: "Declined" },
+    ];
+
+    function onFilter1(category1) {
+        if (props.livcat != category1) {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let data = {
+                "candidate_id": props.applicant.id,
+                "category": category1.value
+            };
+            axios.post("questions/update-shortlist-candidate-offer-status", data, config).then((res) => {
+                console.log(res.data);
+            }).catch(error => {
+                console.log(error)
+            });
+            setCategory1(category1);
+            alert2();
+        }
+    }
 
     // useEffect(() => {
     //     if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
@@ -375,7 +418,7 @@ const CandidateCard = (props) => {
                 />
             </div>
             <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="ml-3 d-flex justify-content-start container-fluid row h-100">
-                <div className="col-3 title-button2" onClick={() => { viewResult(); }} style={{cursor:"pointer"}}>
+                <div className="col-3 title-button2" onClick={() => { viewResult(); }} style={{ cursor: "pointer" }}>
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
 
@@ -396,10 +439,14 @@ const CandidateCard = (props) => {
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-2">
                         {props.applicant?.num_votes > 0 &&
-                            <p style={{ fontWeight: "600", color: "#090D3A", paddingLeft:"1.4rem" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
+                            <p style={{ fontWeight: "600", color: "#090D3A", paddingLeft: "1.4rem" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
                         }
                     </div>
                 }
+                {(props.reviewerStageLength == 0) &&
+                    <div className="col-3" style={{marginLeft:"-0.6rem"}}>
+                        <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false} />
+                    </div>}
                 {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
                     <div className="col-2">
                         <a
@@ -499,6 +546,18 @@ function deleteSuccessAlert() {
     confirmAlert({
         title: "Remove Success",
         message: "You have removed reviewer successfully.",
+        buttons: [
+            {
+                label: 'Ok'
+            }
+        ]
+    });
+};
+
+function alert2() {
+    confirmAlert({
+        title: "Interview Status",
+        message: "Updated successfully!",
         buttons: [
             {
                 label: 'Ok'

@@ -4,6 +4,7 @@ import { ResumeEva } from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
 import Select from 'react-select';
+import axios from "axios";
 
 export const Applicant_Live = (props) => {
     const [current, setCurrent] = useState(props.index);
@@ -27,7 +28,7 @@ export const Applicant_Live = (props) => {
     const end = applicants.length - 1;
 
     const customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#fff', border:"none" }),
+        control: styles => ({ ...styles, backgroundColor: '#fff', border: "none" }),
         singleValue: styles => ({
             ...styles,
             color: '#979797',
@@ -47,7 +48,24 @@ export const Applicant_Live = (props) => {
     ];
 
     function onFilter1(category1) {
-        setCategory1(category1);
+        if (props.livcat != category1) {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let data = {
+                "candidate_id": applicants[props.index].id,
+                "category": category1.value
+            };
+            axios.post("questions/update-live-interview-candidate-status", data, config).then((res) => {
+                console.log(res.data);
+            }).catch(error => {
+                console.log(error)
+            });
+            setCategory1(category1);
+            alert2();
+        }
     }
 
     // useEffect(() => {
@@ -216,20 +234,20 @@ export const Applicant_Live = (props) => {
                     </div>
                 }
                 {(props.reviewerStageLength == 0) &&
-                <div className="col-3" style={{marginLeft:"-1rem"}}>
-                    <Select value={category1.value!=null?category1:{value: props.livcat, label: props.livcat}} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false}/>
-                </div>}
+                    <div className="col-3" style={{ marginLeft: "-1.5rem" }}>
+                        <Select value={category1.value != null ? category1 : { value: props.livcat, label: props.livcat }} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false} />
+                    </div>}
                 {(props.reviewerStageLength == 0) &&
-                <div className="col-3" style={{marginLeft:"-1rem"}}>
-                    <a
-                        target="_blank"
-                        href={"mailto:"+applicants[current].email}
-                        className="interview-txt9"
-                        style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
-                    >
-                        <i className="bx-fw bx bx-mail-send"></i> Send Email
-                    </a>
-                </div>}
+                    <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                        <a
+                            target="_blank"
+                            href={"mailto:" + applicants[current].email}
+                            className="interview-txt9"
+                            style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
+                        >
+                            <i className="bx-fw bx bx-mail-send"></i> Send Email
+                        </a>
+                    </div>}
             </div>
             {/* Interview Result */}
             <MyVerticallyCenteredModal
@@ -293,6 +311,18 @@ function alert1() {
     confirmAlert({
         title: "Invitation Sent",
         message: "You resend the interview invitation successfully",
+        buttons: [
+            {
+                label: 'Ok'
+            }
+        ]
+    });
+};
+
+function alert2() {
+    confirmAlert({
+        title: "Interview Status",
+        message: "Updated successfully!",
         buttons: [
             {
                 label: 'Ok'
