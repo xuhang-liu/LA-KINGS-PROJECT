@@ -551,7 +551,7 @@ export function LiveInterview(props) {
                 >
                     <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
                         <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem", textAlign: "center" }}>Configure Interviews</h3>
-                        <p className="pt-1 interview-txt7">Customize your interview names and label candidates for easier management.</p>
+                        <p className="pt-1 interview-txt7" style={{textAlign:"center"}}>Customize your interview names and label candidates for easier management.</p>
                         <form>
                             <div className="interview-txt7">
                                 <div className="row">

@@ -323,6 +323,8 @@ export const Applicant = (props) => {
                 jobsId={props.jobsId}
                 selectedPage={props.selectedPage}
                 employerProfileDetail={props.employerProfileDetail}
+                category={props.category}
+                category3={props.category3}
             />
             <MyModal80
                 show={showResume}

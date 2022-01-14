@@ -1284,27 +1284,27 @@ def update_live_interview_categories(request):
     position.save()
 
     if liv1 != oldliv1:
-        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv1):
+        for i in InvitedCandidates.objects.filter(positions=position, livcat=oldliv1):
             if i.livcat != "TBD":
                 i.livcat = liv1
                 i.save()
     if liv2 != oldliv2:
-        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv2):
+        for i in InvitedCandidates.objects.filter(positions=position, livcat=oldliv2):
             if i.livcat != "TBD":
                 i.livcat = liv2
                 i.save()
     if liv3 != oldliv3:
-        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv3):
+        for i in InvitedCandidates.objects.filter(positions=position, livcat=oldliv3):
             if i.livcat != "TBD":
                 i.livcat = liv3
                 i.save()
     if liv4 != oldliv4:
-        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv4):
+        for i in InvitedCandidates.objects.filter(positions=position, livcat=oldliv4):
             if i.livcat != "TBD":
                 i.livcat = liv4
                 i.save()
     if liv5 != oldliv5:
-        for i in InvitedCandidates.objects.filter(positions=position, current_stage="Live Interview", livcat=oldliv5):
+        for i in InvitedCandidates.objects.filter(positions=position, livcat=oldliv5):
             if i.livcat != "TBD":
                 i.livcat = liv5
                 i.save()

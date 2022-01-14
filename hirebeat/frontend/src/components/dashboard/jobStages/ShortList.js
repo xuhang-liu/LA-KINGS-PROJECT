@@ -556,7 +556,7 @@ function deleteSuccessAlert() {
 
 function alert2() {
     confirmAlert({
-        title: "Interview Status",
+        title: "Offer Status",
         message: "Updated successfully!",
         buttons: [
             {
