@@ -195,7 +195,7 @@ export const Applicant_Live = (props) => {
         // }
         // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage, "", "", props.category4.value) }, 300);
         setShow(false);
     }
 
@@ -287,6 +287,8 @@ export const Applicant_Live = (props) => {
                 jobsId={props.jobsId}
                 selectedPage={props.selectedPage}
                 employerProfileDetail={props.employerProfileDetail}
+                category3={props.category3}
+                category4={props.category4}
             />
             <MyModal80
                 show={showResume}

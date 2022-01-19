@@ -128,12 +128,18 @@ def get_posted_jobs(request):
     stage = request.GET.get("stage", "")
     if stage == "undefined":
         stage = ""
-    video_filter = request.GET.get("filter", "")
+    video_filter = request.GET.get("video_filter", "")
     if video_filter == "undefined":
         video_filter = ""
     reviewed = request.GET.get("reviewed", "")
     if reviewed == "undefined":
         reviewed = ""
+    live_filter = request.GET.get("live_filter", "")
+    if live_filter == "undefined":
+        live_filter = ""
+    short_filter = request.GET.get("short_filter", "")
+    if short_filter == "undefined":
+        short_filter = ""
     # get user profile
     profile = Profile.objects.get(user_id=user_id)
     # get user object
@@ -169,6 +175,12 @@ def get_posted_jobs(request):
                 # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_invited=True, is_recorded=True, video_count__lte=0)
+            # filter by live interview
+            if live_filter != "" and live_filter != "All":
+                applicants = applicants.filter(livcat=live_filter)
+            # filter by shortlist interview
+            if short_filter != "" and short_filter != "All":
+                applicants = applicants.filter(shortcat=short_filter)
             # convert queryset to list， order applicants by id descending
             applicants = list(applicants.order_by('-id').values())
             # get linkedin and is_active values from ApplyCandidates model

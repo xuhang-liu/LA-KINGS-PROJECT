@@ -10,11 +10,11 @@ import MoveForm from "./interviewComponents/MoveForm";
 import axios from "axios";
 
 export function LiveInterview(props) {
-       useEffect(() => {
-           props.getPostedJobs(props.user.id, 1, "Live Interview");
-       }, [])
+    useEffect(() => {
+        props.getPostedJobs(props.user.id, 1, "Live Interview");
+    }, [])
 
-    const [expire, setExpire] = useState({ value: 7, label: '7 days' });
+    //const [expire, setExpire] = useState({ value: 7, label: '7 days' });
     const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
     const [showConfigInt, setShowConfigInt] = useState(false);
@@ -29,16 +29,18 @@ export function LiveInterview(props) {
     const [live4value, setlive4value] = useState(props.livcat4);
     const [live5value, setlive5value] = useState(props.livcat5);
 
-    function onFilter1(expire) {
-        setExpire(expire);
-    }
+    // function onFilter1(expire) {
+    //     setExpire(expire);
+    // }
 
     // filter selections
-    const options = [
-        { value: 'Uninvited', label: 'Not Invited' },
-        { value: 'Completed', label: 'Completed' },
-        { value: 'Pending', label: 'Pending' },
-        { value: 'Withdrawn', label: 'N/A' },
+    const options4 = [
+        { value: live1value, label: live1value },
+        { value: live2value, label: live2value },
+        { value: live3value, label: live3value },
+        { value: live4value, label: live4value },
+        { value: live5value, label: live5value },
+        { value: 'TBD', label: 'TBD' },
         { value: 'All', label: 'All' },
     ];
     const options3 = [
@@ -47,12 +49,12 @@ export function LiveInterview(props) {
         { value: 'All', label: 'All' },
     ];
 
-    const [category, setCategory] = useState({ value: 'All', label: 'All' });
-    function onFilter(category) {
-        setCategory(category);
+    const [category4, setCategory4] = useState({ value: 'All', label: 'All' });
+    function onFilter4(category4) {
+        setCategory4(category4);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value);
     }
 
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
@@ -60,10 +62,10 @@ export function LiveInterview(props) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", category.value, category3.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value);
     }
 
-    const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
+    // const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
 
     const customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
@@ -184,7 +186,7 @@ export function LiveInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -229,7 +231,7 @@ export function LiveInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview") }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -334,8 +336,10 @@ export function LiveInterview(props) {
                 "Content-Type": "application/json",
             },
         };
-        let data = { "liv1": live1value, "liv2": live2value, "liv3": live3value, "liv4": live4value, "liv5": live5value, "position_id":positionId,
-        "oldliv1": props.livcat1, "oldliv2": props.livcat2, "oldliv3": props.livcat3, "oldliv4": props.livcat4, "oldliv5": props.livcat5};
+        let data = {
+            "liv1": live1value, "liv2": live2value, "liv3": live3value, "liv4": live4value, "liv5": live5value, "position_id": positionId,
+            "oldliv1": props.livcat1, "oldliv2": props.livcat2, "oldliv3": props.livcat3, "oldliv4": props.livcat4, "oldliv5": props.livcat5
+        };
         axios.post("questions/update-live-interview-categories", data, config).then((res) => {
             console.log(res.data);
             setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview"); }, 300);
@@ -398,7 +402,7 @@ export function LiveInterview(props) {
                             {(props.reviewerStageLength > 0) &&
                                 <div className="row col-3">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
-                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
                             {(props.reviewerStageLength == 0) &&
@@ -415,7 +419,11 @@ export function LiveInterview(props) {
                                 </div>
                             }
                             {(props.reviewerStageLength == 0) &&
-                                <div className="col-3">Interview</div>}
+                                <div className="row col-3">
+                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Interview</div>
+                                    <Select isSearchable={false} value={category4} onChange={onFilter4} options={options4} className="select-category" styles={customStyles} />
+                                </div>
+                            }
                             {(props.reviewerStageLength == 0) &&
                                 <div className="col-3">Contact</div>}
                         </div>
@@ -430,9 +438,8 @@ export function LiveInterview(props) {
                                 resumeURL={props.resumeURL}
                                 isClosed={props.isClosed}
                                 keyWords={keyWords}
-                                category={category}
-                                category2={category2}
                                 category3={category3}
+                                category4={category4}
                                 applicants={props.applicants}
                                 getApplicantsVideos={props.getApplicantsVideos}
                                 getApplicantsInfo={props.getApplicantsInfo}
@@ -551,7 +558,7 @@ export function LiveInterview(props) {
                 >
                     <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
                         <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem", textAlign: "center" }}>Configure Interviews</h3>
-                        <p className="pt-1 interview-txt7" style={{textAlign:"center"}}>Customize your interview names and label candidates for easier management.</p>
+                        <p className="pt-1 interview-txt7" style={{ textAlign: "center" }}>Customize your interview names and label candidates for easier management.</p>
                         <form>
                             <div className="interview-txt7">
                                 <div className="row">

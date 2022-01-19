@@ -97,16 +97,33 @@ export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL,
 
 const AcceptedCandidate = (props) => {
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
+    const [category5, setCategory5] = useState({ value: 'All', label: 'All' });
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
 
-    function onFilter3(category) {
-        setCategory3(category)
+    function onFilter3(category3) {
+        setCategory3(category3)
+    }
+
+    function onFilter5(category5) {
+        setCategory5(category5)
+        let page = 1;
+        let userId = props.user.id;
+        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value);
     }
 
     const options3 = [
         { value: 'Pending', label: 'Pending' },
         { value: 'Reviewed', label: 'Reviewed' },
+        { value: 'All', label: 'All' },
+    ]
+
+    const options5 = [
+        { value: 'Offer to be Made', label: 'Offer to be Made' },
+        { value: 'Offer Extended', label: 'Offer Extended' },
+        { value: 'In Negotiation', label: 'In Negotiation' },
+        { value: 'Declined', label: 'Declined' },
+        { value: 'TBD', label: 'TBD' },
         { value: 'All', label: 'All' },
     ]
 
@@ -154,7 +171,7 @@ const AcceptedCandidate = (props) => {
                         {(props.reviewerStageLength > 0) &&
                             <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
                                 <div style={{ display: "inline-block" }}>
-                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             </div>
                         }
@@ -172,7 +189,11 @@ const AcceptedCandidate = (props) => {
                             </div>
                         }
                         {(props.reviewerStageLength == 0) &&
-                            <div className="col-3">Offer Status</div>
+                            <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Offer Status</div>
+                                <div style={{ display: "inline-block" }}>
+                                    <Select isSearchable={false} value={category5} onChange={onFilter5} options={options5} className="select-category" styles={customStyles} />
+                                </div>
+                            </div>
                         }
                         {(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>}
                     </div>
@@ -217,6 +238,8 @@ const AcceptedCandidate = (props) => {
                                     jobsId={props.jobsId}
                                     employerProfileDetail={props.employerProfileDetail}
                                     reviewerStageLength={props.reviewerStageLength}
+                                    category3={category3}
+                                    category5={category5}
                                 />
                             </div>
                         )
@@ -406,6 +429,7 @@ const CandidateCard = (props) => {
         //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
+        props.getPostedJobs(userId, page, "Short List", "", props.category3.value, "", props.category5.value);
     }
     return (
         <React.Fragment>
@@ -444,7 +468,7 @@ const CandidateCard = (props) => {
                     </div>
                 }
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{marginLeft:"-0.6rem"}}>
+                    <div className="col-3" style={{ marginLeft: "-0.6rem" }}>
                         <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false} />
                     </div>}
                 {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
@@ -499,6 +523,8 @@ const CandidateCard = (props) => {
                 viewNextResult={viewNextResult}
                 getNextResult={getNextResult}
                 employerProfileDetail={props.employerProfileDetail}
+                category3={props.category3}
+                category5={props.category5}
             />
             <MyModal80
                 show={showResume}

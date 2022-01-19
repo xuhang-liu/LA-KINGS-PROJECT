@@ -45,8 +45,10 @@ export function MyVerticallyCenteredModal(props) {
                     jobsId={props.jobsId}
                     selectedPage={props.selectedPage}
                     employerProfileDetail={props.employerProfileDetail}
-                    category={props.category}
-                    category3={props.category3}
+                    category={props?.category}
+                    category3={props?.category3}
+                    category4={props?.category4}
+                    category5={props?.category5}
                 />
             </MyFullModal1>
         </div>

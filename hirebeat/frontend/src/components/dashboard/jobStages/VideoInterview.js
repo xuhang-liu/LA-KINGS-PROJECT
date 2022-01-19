@@ -877,7 +877,7 @@ export function VideoInterview(props) {
                         <h3 className="interview-h3">Move Stage</h3>
                         <p className="interview-p">The candidate's stage status will be synchronized at Greenhouse.</p>
                         <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Move stage:</p>
-                        <Select value={category4} onChange={onFilter4} options={options4} className="select-category4" styles={customStyles1} />
+                        <Select isSearchable={false} value={category4} onChange={onFilter4} options={options4} className="select-category4" styles={customStyles1} />
                         <div className="row d-flex justify-content-center">
                             <button onClick={() => { greenhouseMoveCandidates(); setShowGreenhouseMoveForm(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
                             <button onClick={() => setShowGreenhouseMoveForm(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>

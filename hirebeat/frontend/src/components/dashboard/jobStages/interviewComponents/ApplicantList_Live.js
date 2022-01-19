@@ -66,6 +66,8 @@ export const ApplicantList_Live = (props) => {
                         livcat4={props.livcat4}
                         livcat5={props.livcat5}
                         livcat={props.applicants[index].livcat}
+                        category3={props.category3}
+                        category4={props.category4}
                     />
                 )
             })}
