@@ -4,7 +4,7 @@ import { Applicant } from "./Applicant";
 export const ApplicantList = (props) => {
     return (
         <div>
-            {props.applicants.map((a, index) => {
+            {props.applicants.sort((a, b) => (b.invite_date===null)-(a.invite_date===null) || (new Date(b.invite_date) - new Date(a.invite_date))).map((a, index) => {
                 if (props.keyWords != "") {
                     let name = a.name;
                     if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
@@ -22,7 +22,7 @@ export const ApplicantList = (props) => {
                         resumeURL={props.resumeURL}
                         isClosed={props.isClosed}
                         name={a.name}
-                        date={a.invite_date.substring(0, 10)}
+                        date={a?.invite_date?.substring(0, 10)}
                         email={a.email}
                         comment_status={a.comment_status}
                         positionId={a.positions_id}

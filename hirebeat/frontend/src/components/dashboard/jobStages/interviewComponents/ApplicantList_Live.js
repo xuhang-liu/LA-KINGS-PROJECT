@@ -22,7 +22,7 @@ export const ApplicantList_Live = (props) => {
                         resumeURL={props.resumeURL}
                         isClosed={props.isClosed}
                         name={a.name}
-                        date={a.invite_date.substring(0, 10)}
+                        date={a?.invite_date?.substring(0, 10)}
                         email={a.email}
                         comment_status={a.comment_status}
                         positionId={a.positions_id}

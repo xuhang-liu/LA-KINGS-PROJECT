@@ -469,7 +469,7 @@ const CandidateCard = (props) => {
                 }
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-3" style={{ marginLeft: "-0.6rem" }}>
-                        <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false} />
+                        <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
                     </div>}
                 {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
                     <div className="col-2">

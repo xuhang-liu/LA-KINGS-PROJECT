@@ -563,7 +563,7 @@ def resend_invitation(request):
     candidate_id = request.data["candidate_id"]
     candidate = InvitedCandidates.objects.get(id=candidate_id)
     candidate.is_invited = True
-    candidate.invite_date = timezone.now()
+    # candidate.invite_date = timezone.now()
     candidate.save()
     send_interviews(name, email, url, job_title, company_name, expire)
 

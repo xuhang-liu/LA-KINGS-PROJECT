@@ -184,7 +184,7 @@ export const Applicant = (props) => {
                 <div className="col-2">
                     {(isInvited || props.isRecorded) &&
                         <div className="interview-txt9">
-                            <p style={{ color: "#090d3a" }}>{props.date}</p>
+                            <p style={{ color: "#090d3a" }}>{props.date?props.date:""}</p>
                         </div>
                     }
                 </div>

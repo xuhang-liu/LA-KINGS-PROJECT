@@ -78,7 +78,7 @@ class InvitedCandidates(models.Model):
     positions = models.ForeignKey(Positions, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=300, null=True, blank=True)
-    invite_date = models.DateTimeField(auto_now_add=True)
+    invite_date = models.DateTimeField(null=True, blank=True)
     accept_date = models.DateTimeField(auto_now_add=True)
     comment_status = models.IntegerField(default=0)  # 1 is accept， 2 is hold, 3 is reject
     secondround_status = models.IntegerField(default=0)

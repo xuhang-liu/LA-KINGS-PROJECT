@@ -235,10 +235,10 @@ export const Applicant_Live = (props) => {
                 }
                 {(props.reviewerStageLength == 0) &&
                     <div className="col-3" style={{ marginLeft: "-1.5rem" }}>
-                        <Select value={category1.value != null ? category1 : { value: props.livcat, label: props.livcat }} onChange={onFilter1} options={options1} className="select-category" styles={customStyles} isSearchable={false} />
+                        <Select value={category1.value != null ? category1 : { value: props.livcat, label: props.livcat }} onChange={onFilter1} options={options1} className="select-category2" styles={customStyles} isSearchable={false} />
                     </div>}
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{ marginLeft: "-1rem" }}>
+                    <div className="col-3" style={{ marginLeft: "-2rem" }}>
                         <a
                             target="_blank"
                             href={"mailto:" + applicants[current].email}
