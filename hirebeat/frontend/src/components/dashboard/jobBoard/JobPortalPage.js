@@ -281,6 +281,12 @@ export class JobPortalPage extends Component {
                     getAllJobs={this.props.getAllJobs}
                     employerProfileDetail={this.props.employerProfileDetail}
                     reviewerStageLength={this.state.reviewerStage?.length}
+                    livcat1={p?.position?.livcat1}
+                    livcat2={p?.position?.livcat2}
+                    livcat3={p?.position?.livcat3}
+                    livcat4={p?.position?.livcat4}
+                    livcat5={p?.position?.livcat5}
+                    renderLiveInterview={this.renderLiveInterview}
                 />;
             case "shortList":
                 return <ShortList

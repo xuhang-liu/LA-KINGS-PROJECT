@@ -184,7 +184,7 @@ export const Applicant = (props) => {
                 <div className="col-2">
                     {(isInvited || props.isRecorded) &&
                         <div className="interview-txt9">
-                            <p style={{ color: "#090d3a" }}>{props.date}</p>
+                            <p style={{ color: "#090d3a" }}>{props.date?props.date:""}</p>
                         </div>
                     }
                 </div>
@@ -323,6 +323,8 @@ export const Applicant = (props) => {
                 jobsId={props.jobsId}
                 selectedPage={props.selectedPage}
                 employerProfileDetail={props.employerProfileDetail}
+                category={props.category}
+                category3={props.category3}
             />
             <MyModal80
                 show={showResume}

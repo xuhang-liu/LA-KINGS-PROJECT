@@ -119,7 +119,15 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.getNextResult(this.props.current) }, 300);
+        if (this.state.currentStage == "Video Interview") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+        } else if (this.state.currentStage == "Live Interview") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value); this.props.getNextResult(this.props.current) }, 300);
+        } else if (this.state.currentStage == "Short List") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value); this.props.getNextResult(this.props.current) }, 300);
+        } else {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+        }
         let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
         if (!noShowAgainMove) {
             this.enableSuccessAlert();
@@ -142,7 +150,15 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.getNextResult(this.props.current) }, 300);
+        if (this.state.currentStage == "Video Interview") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+        } else if (this.state.currentStage == "Live Interview") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value); this.props.getNextResult(this.props.current) }, 300);
+        } else if (this.state.currentStage == "Short List") {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value); this.props.getNextResult(this.props.current) }, 300);
+        } else {
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+        }
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (applicant.is_active) {
             if (!noShowAgainReject) {
@@ -400,8 +416,8 @@ export class ReviewApplication extends Component {
         }
         let data = {
             reviewer: ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0) ?
-            (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
-            (this.props.user.username),
+                (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
+                (this.props.user.username),
             comment: this.state.comment,
             applicant_email: this.props.applicants[this.props.current].email,
             position_id: this.props.positionId,
@@ -688,7 +704,7 @@ export class ReviewApplication extends Component {
                                 <div className="row mt-4 d-flex justify-content-end">
                                     <textarea
                                         className="note-border"
-                                        style={{ height: "10vw", width: "100%", marginLeft: "1rem", marginRight: "1rem", fontSize:"0.9vw" }}
+                                        style={{ height: "10vw", width: "100%", marginLeft: "1rem", marginRight: "1rem", fontSize: "0.9vw" }}
                                         type="text"
                                         value={this.state.comment}
                                         placeholder="Write your comment here"
@@ -697,7 +713,7 @@ export class ReviewApplication extends Component {
                                     <button
                                         className="default-btn"
                                         onClick={this.updateReview}
-                                        style={{fontSize:"1vw", marginTop:"0.5rem", marginRight:"1rem", paddingLeft:"25px", backgroundColor:"#ff6b00"}}
+                                        style={{ fontSize: "1vw", marginTop: "0.5rem", marginRight: "1rem", paddingLeft: "25px", backgroundColor: "#ff6b00" }}
                                     >Post
                                     </button>
                                 </div>

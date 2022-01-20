@@ -22,7 +22,7 @@ export const ApplicantList_Live = (props) => {
                         resumeURL={props.resumeURL}
                         isClosed={props.isClosed}
                         name={a.name}
-                        date={a.invite_date.substring(0, 10)}
+                        date={a?.invite_date?.substring(0, 10)}
                         email={a.email}
                         comment_status={a.comment_status}
                         positionId={a.positions_id}
@@ -60,6 +60,14 @@ export const ApplicantList_Live = (props) => {
                         selectedPage={props.selectedPage}
                         employerProfileDetail={props.employerProfileDetail}
                         reviewerStageLength={props.reviewerStageLength}
+                        livcat1={props.livcat1}
+                        livcat2={props.livcat2}
+                        livcat3={props.livcat3}
+                        livcat4={props.livcat4}
+                        livcat5={props.livcat5}
+                        livcat={props.applicants[index].livcat}
+                        category3={props.category3}
+                        category4={props.category4}
                     />
                 )
             })}

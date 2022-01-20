@@ -25,6 +25,7 @@ from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, E
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from questions.models import SubReviewers, ExternalReviewers
+from jobs.models import Jobs
 from rest_framework.response import Response
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
@@ -352,6 +353,7 @@ def get_received_interview(request):
     for i in range(len(can_int)):
         obj = can_int[i]
         position = Positions.objects.get(pk=obj.positions_id)
+        job = Jobs.objects.get(pk=position.job_id_in_jobs)
         interview_questions = InterviewQuestions.objects.filter(
             positions_id=obj.positions_id)
         iq_count = len(interview_questions)
@@ -360,7 +362,7 @@ def get_received_interview(request):
         user = User.objects.get(pk=position.user_id)
         profile = Profile.objects.get(user_id=user.id)
         company_name = profile.company_name
-        int_info = {"job_title": position.job_title, "is_recorded": obj.is_recorded, "position_id": obj.positions_id,
+        int_info = {"job_title": job.job_title, "is_recorded": obj.is_recorded, "position_id": obj.positions_id,
                     "iq_count": iq_count, "create_date": create_date, "company_name": company_name}
         received_interview.append(int_info)
 

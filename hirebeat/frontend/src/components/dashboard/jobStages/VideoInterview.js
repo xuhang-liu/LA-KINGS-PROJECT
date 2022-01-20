@@ -287,6 +287,8 @@ export function VideoInterview(props) {
                 let page = 1;
                 let userId = props.user.id;
                 setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                unSelectAllCandidates();
+                window.scrollTo(0,0);
                 inviteSuccessAlert();
             }
         }
@@ -362,7 +364,7 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -403,7 +405,7 @@ export function VideoInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -608,7 +610,7 @@ export function VideoInterview(props) {
                             <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
                             <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
                         </div>
-                        {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                        {(props.reviewerStageLength == 0) &&
                             <div className="col-2 interview-txt7" style={{ textAlign: "right" }}>
                                 <button
                                     type="button"
@@ -664,7 +666,7 @@ export function VideoInterview(props) {
                             <div className="col-3">
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
-                                    <Select value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
                                 </div>
                             </div>
                             {/*<div className="col-1">Action</div>*/}
@@ -674,7 +676,7 @@ export function VideoInterview(props) {
                             {(props.reviewerStageLength > 0) &&
                                 <div className="row">
                                     <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Status</div>
-                                    <Select value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
                                 </div>
                             }
                             {(props.reviewerStageLength == 0) &&
@@ -875,7 +877,7 @@ export function VideoInterview(props) {
                         <h3 className="interview-h3">Move Stage</h3>
                         <p className="interview-p">The candidate's stage status will be synchronized at Greenhouse.</p>
                         <p style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem" }}>Move stage:</p>
-                        <Select value={category4} onChange={onFilter4} options={options4} className="select-category4" styles={customStyles1} />
+                        <Select isSearchable={false} value={category4} onChange={onFilter4} options={options4} className="select-category4" styles={customStyles1} />
                         <div className="row d-flex justify-content-center">
                             <button onClick={() => { greenhouseMoveCandidates(); setShowGreenhouseMoveForm(false) }} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Confirm</button>
                             <button onClick={() => setShowGreenhouseMoveForm(false)} className="default-btn1" style={{ backgroundColor: "#979797", paddingLeft: "25px", float: "right", marginLeft: "2rem" }}>Cancel</button>

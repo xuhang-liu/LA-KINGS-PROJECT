@@ -319,7 +319,7 @@ export class JobCard extends Component {
                 />
                 <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginBottom: "0.5rem" }}>
                     <div className="col-2 interview-txt9 mt-2">
-                        <Select value={draft_select} onChange={this.onFilter} options={options} styles={this.customStyles} className="select-category-jobs-closed1" getOptionLabel={e => (
+                        <Select isSearchable={false} value={draft_select} onChange={this.onFilter} options={options} styles={this.customStyles} className="select-category-jobs-closed1" getOptionLabel={e => (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <i style={{ color: e.color }} class={e.icon}></i>
                                 <span style={{ marginLeft: "0.5rem" }}>{e.text}</span>
