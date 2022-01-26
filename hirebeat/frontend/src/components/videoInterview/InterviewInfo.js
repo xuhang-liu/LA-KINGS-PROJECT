@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { confirmAlert } from 'react-confirm-alert';
 import { addInterviewResume } from "../../redux/actions/resume_actions";
 import safariAlert from "./../basic/SafariAlert";
-import Modal from "react-bootstrap/Modal";
+//import Modal from "react-bootstrap/Modal";
 import TestDevice from "./TestDevice";
 import TestAudioDevice from "./TestAudioDevice";
 var ReactS3Uploader = require("react-s3-uploader");

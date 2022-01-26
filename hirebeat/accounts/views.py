@@ -256,7 +256,8 @@ def check_user_name(request):
 def get_company_name(request):
     position_id = request.query_params.get("position_id")
     position = Positions.objects.get(id=position_id)
-    job_title = position.job_title
+    job = Jobs.objects.get(pk=position.job_id_in_jobs)
+    job_title = job.job_title
     user_id = position.user_id
     profile = Profile.objects.get(user_id=user_id)
     company_name = profile.company_name
