@@ -29,6 +29,8 @@ class Jobs(models.Model):
     skills = ArrayField(models.CharField(default=0, max_length=50), blank=True, null=True)
     gh_current_stage_id = models.TextField(null=True, blank=True)
     gh_job_id = models.TextField(null=True, blank=True)
+    first_publish_date = models.DateTimeField(null=True, blank=True)
+    first_close_date = models.DateTimeField(null=True, blank=True)
 
 
 class ApplyCandidates(models.Model):

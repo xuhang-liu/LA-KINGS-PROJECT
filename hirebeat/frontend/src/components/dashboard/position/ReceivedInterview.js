@@ -7,8 +7,10 @@ export class ReceivedInterview extends Component {
         var param = "email="+this.props.user.email+"&positionId="+this.props.received_interview.position_id;
         var encodedParam = window.btoa(param);
         var url = "/candidate-login?"+encodedParam;
-        var d = this.props.received_interview.create_date;
-        d = d.split('T')[0];
+        var d = this.props.received_interview?.create_date;
+        if(d!=null && d!=""){
+            d = d.split('T')[0];
+        }
         return (
             <React.Fragment>
             <div className="container d-flex justify-content-start " style={{marginTop:"2%", backgroundColor: "white", "border-radius": "0.5rem"}}>

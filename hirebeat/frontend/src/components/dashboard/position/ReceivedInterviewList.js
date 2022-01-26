@@ -7,7 +7,7 @@ export class ReceivedInterviewList extends Component {
         return (
             <React.Fragment>
                 {this.props.loaded ?
-                    this.props.received_interview.sort((a, b) => a.create_date < b.create_date ? 1:-1).map((r) => {
+                    this.props.received_interview?.sort((a, b) => a.create_date < b.create_date ? 1:-1).map((r) => {
                       return (
                           <ReceivedInterview
                           user={this.props.user}

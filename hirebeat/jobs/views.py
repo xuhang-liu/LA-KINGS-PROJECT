@@ -82,6 +82,10 @@ def add_new_job(request):
     encode_url_id = str(base64.b64encode(bytes(str(job.id), "utf-8")), "utf-8")
     job_url = "https://app.hirebeat.co/apply-job/"+company_name+"?id="+encode_url_id
     job.job_url = job_url
+    if is_closed == 0 and job.first_publish_date == None:
+        job.first_publish_date = datetime.now()
+    if is_closed == 2 and job.first_close_date == None:
+        job.first_close_date = datetime.now()
     job.save()
 
     # update job_id_in_jobs field
@@ -1355,6 +1359,10 @@ def switch_job_closed_status(request):
             profile.position_count -= 1
             profile.save()
     job.is_closed = next_status
+    if next_status == 0 and job.first_publish_date == None:
+        job.first_publish_date = datetime.now()
+    if next_status == 2 and job.first_close_date == None:
+        job.first_close_date = datetime.now()
     job.save()
 
     return Response("Update job closed status successfully", status=status.HTTP_202_ACCEPTED)

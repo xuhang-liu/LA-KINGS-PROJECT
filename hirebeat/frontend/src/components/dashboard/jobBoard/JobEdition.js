@@ -137,7 +137,18 @@ export class JobEdition extends Component {
     ];
 
     setJobPost(type) {
-        this.setState({ job_post: type });
+        if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
+            confirmAlert({
+                title: 'Upgrade Now!',
+                message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
+                buttons: [
+                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+                    { label: 'OK' },
+                ]
+            });
+        }else{
+            this.setState({ job_post: type });
+        }
     }
 
     //    setJobPostTure = () => {

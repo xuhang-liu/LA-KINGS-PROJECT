@@ -113,7 +113,7 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        if (this.props.profile.is_freetrial && type == 2) {
+        if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
             confirmAlert({
                 title: 'Upgrade Now!',
                 message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
