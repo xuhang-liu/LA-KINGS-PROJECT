@@ -215,7 +215,7 @@ class FeatureVideo extends Component {
                                         Due to the flexible nature of the recorded interview, most <br/>
                                         candidates submit their responses within 2 days after <br/>
                                         receiving the invite, <span style={{color: "#FF6B00"}}>speeding up </span>the entire hiring process by <br/>
-                                        more than half. You can also specify the response time <br/>
+                                        more than half. You can also specify the response length <br/>
                                         allowed to each question, and shorten a 30-minute long <br/>
                                         interview by 10-fold.
                                     </p>

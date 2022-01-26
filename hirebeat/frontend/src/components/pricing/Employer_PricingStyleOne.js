@@ -88,7 +88,7 @@ class Employer_PricingStyleOne extends Component {
     }
 
     handleInputChange = (e) => {
-        if (e.target.value == 'PH2022' || e.target.value == 'ph2022') {
+        if (e.target.value == 'PH2022' || e.target.value == 'ph2022' || e.target.value == 'BL2022' || e.target.value == 'bl2022') {
             this.setState({
                 anpro: 69,
                 anpre: 164,

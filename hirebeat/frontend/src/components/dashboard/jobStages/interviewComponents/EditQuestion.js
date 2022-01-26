@@ -255,7 +255,7 @@ export class EditQuestion extends Component {
                                 </div>
                                 <div className="form-group col-5">
                                     <label className="db-txt2" style={{ margin: "2%" }}>
-                                        Response Time
+                                        Response Length
                                     </label>
                                     <div className="form-row" style={{margin: "2%"}}>
                                         {this.state.resTime == 60 ?

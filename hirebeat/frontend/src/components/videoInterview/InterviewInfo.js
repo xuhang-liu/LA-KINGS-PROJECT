@@ -273,7 +273,7 @@ class InterviewInfo extends Component {
                                             <div className="interview-txt2" style={{color: "#4A6F8A"}}>
                                                 <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><a href="/practice" style={{color:"#ff6b00"}}>Practice with our sample question</a> before the interview starts.</p>
                                                 <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.prepare_time} seconds of preparation time</span> for each interview question.</p>
-                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response time</span> for each interview question.</p>
+                                                <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>{this.props.interview_position.questionTime} seconds of  response length</span> for each interview question.</p>
                                                 <p><i style={{color:"#006dff"}} className="bx bx-bullseye pr-1"></i><span style={{color:"#ff6b00"}}>Camera</span> is <span style={{color:"#ff6b00"}}>{this.props.interview_position.camera_on ? "" : "not"}</span> needed for each interview question.</p>
                                             </div>
                                             <h3 className="interview-txt1 mt-4">Interview Tips</h3>

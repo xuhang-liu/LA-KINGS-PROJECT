@@ -287,7 +287,7 @@ export class EmbedQuestionForm extends Component {
                                 </div>
                                 <div className="form-group col-5">
                                     <label className="db-txt2" style={{ marginTop: "2%" }}>
-                                        Response Time
+                                        Response Length
                                     </label>
                                     <div className="form-row">
                                         {this.state.resTime == 60 ?
