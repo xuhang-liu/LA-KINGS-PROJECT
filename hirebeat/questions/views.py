@@ -24,6 +24,8 @@ from django.forms.models import model_to_dict
 import base64
 from itertools import chain
 import time
+from django.db.models import Q
+from datetime import date, timedelta
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -1062,16 +1064,44 @@ def get_analytics_info(request):
     }
 
     #All Jobs Analytics
+    active_jobs = 0
+    archived_jobs = 0
+    closed_jobs = 0
+    draft_jobs = 0
+    res_act_count = 0
+    vid_act_count = 0
+    liv_act_count = 0
+    sho_act_count = 0
+    job_titles = []
+    job_open_days = []
     active_jobs = Jobs.objects.filter(user_id=user_id, is_closed=0).count()
     archived_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1).count()
     closed_jobs = Jobs.objects.filter(user_id=user_id, is_closed=2).count()
     draft_jobs = Jobs.objects.filter(user_id=user_id, is_closed=3).count()
+    jobs = Jobs.objects.filter(Q(user_id=user_id, is_closed=0) | Q(user_id=user_id, is_closed=2))
+    for j in range(len(jobs)):
+        res_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Resume Review").count()
+        vid_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Video Interview").count()
+        liv_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Live Interview").count()
+        sho_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Short List").count()
+        job_titles.append(jobs[j].job_title)
+        today = date.today()
+        job_open_days.append((today-(jobs[j].first_publish_date).date()).days)
+
     alljobAnaInfo={
         "active_jobs": active_jobs,
         "archived_jobs": archived_jobs,
         "closed_jobs": closed_jobs,
-        "draft_jobs": draft_jobs
+        "draft_jobs": draft_jobs,
+        "res_act_count": res_act_count,
+        "vid_act_count": vid_act_count,
+        "liv_act_count": liv_act_count,
+        "sho_act_count": sho_act_count,
+        "job_titles": job_titles,
+        "job_open_days": job_open_days,
     }
+
+    jobs = Jobs.objects.filter(user_id=user_id, is_closed=(0 or 2)).count()
 
     return Response({
         "analyticsInfo": analyticsInfo,
