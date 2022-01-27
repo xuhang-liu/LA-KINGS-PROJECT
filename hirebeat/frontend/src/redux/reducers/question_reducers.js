@@ -26,6 +26,7 @@ const initialState = {
   curEvaluation: {},
   sub_r_list: [],
   ext_r_list: [],
+  alljobAnaInfo: {},
 };
 
 export default function (state = initialState, action) {
@@ -125,6 +126,7 @@ export default function (state = initialState, action) {
         analyticsInfo: action.payload.analyticsInfo,
         position_list: action.payload.position_list,
         interview_session: action.payload.interview_session,
+        alljobAnaInfo: action.payload.alljobAnaInfo,
       }
     case GET_REVIEW_NOTE:
       return {

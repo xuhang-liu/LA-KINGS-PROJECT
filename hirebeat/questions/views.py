@@ -956,6 +956,7 @@ def update_view_status(request):
 
 @api_view(['GET'])
 def get_analytics_info(request):
+    # Video Interview Analytics
     interview_session = {
         "date": []
     }
@@ -1059,10 +1060,24 @@ def get_analytics_info(request):
         "hold_list": hold_list,
         "reject_list": reject_list,
     }
+
+    #All Jobs Analytics
+    active_jobs = Jobs.objects.filter(user_id=user_id, is_closed=0).count()
+    archived_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1).count()
+    closed_jobs = Jobs.objects.filter(user_id=user_id, is_closed=2).count()
+    draft_jobs = Jobs.objects.filter(user_id=user_id, is_closed=3).count()
+    alljobAnaInfo={
+        "active_jobs": active_jobs,
+        "archived_jobs": archived_jobs,
+        "closed_jobs": closed_jobs,
+        "draft_jobs": draft_jobs
+    }
+
     return Response({
         "analyticsInfo": analyticsInfo,
         "position_list": position_list,
         "interview_session": interview_session,
+        "alljobAnaInfo": alljobAnaInfo
     })
 
 

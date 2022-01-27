@@ -34,7 +34,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
-import Analytics from './Analytics';
+import AnalyticsCover from './AnalyticsCover';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import DocumentMeta from 'react-document-meta';
@@ -586,7 +586,7 @@ export class EmployerDashboard extends Component {
         />;
       case "analytics":
         if (Object.keys(this.props.position_list).length > 0) {
-          return <Analytics
+          return <AnalyticsCover
             user={this.props.user}
             profile={this.props.profile}
             renderApplications={this.renderApplications}
@@ -594,6 +594,7 @@ export class EmployerDashboard extends Component {
             getAnalyticsInfo={this.props.getAnalyticsInfo}
             position_list={this.props.position_list}
             interview_session={this.props.interview_session}
+            alljobAnaInfo={this.props.alljobAnaInfo}
           />
         }
         else {
@@ -853,6 +854,7 @@ const mapStateToProps = (state) => {
     analyticsInfo: state.question_reducer.analyticsInfo,
     position_list: state.question_reducer.position_list,
     interview_session: state.question_reducer.interview_session,
+    alljobAnaInfo: state.question_reducer.alljobAnaInfo,
     employerProfileDetail: state.auth_reducer.employerProfileDetail,
     employerPost: state.auth_reducer.employerPost,
     jobs: state.job_reducer.jobs,
