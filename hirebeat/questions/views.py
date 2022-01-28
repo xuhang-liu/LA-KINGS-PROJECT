@@ -1088,6 +1088,47 @@ def get_analytics_info(request):
         today = date.today()
         job_open_days.append((today-(jobs[j].first_publish_date).date()).days)
 
+    arc_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1)
+    res_pass_rate_array = []
+    vid_pass_rate_array = []
+    liv_pass_rate_array = []
+    sho_pass_rate_array = []
+    for j in range(len(arc_jobs)):
+        total_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j]).count()
+        res_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Resume Review").count()
+        vid_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Video Interview").count()
+        liv_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Live Interview").count()
+        sho_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Short List").count()
+        if total_app_count>0:
+            res_pass_rate_array.append(round(((res_app_count+vid_app_count+liv_app_count+sho_app_count)/(total_app_count))*100))
+        else:
+            res_pass_rate_array.append(0)
+        if (res_app_count+vid_app_count+liv_app_count+sho_app_count)>0:
+            vid_pass_rate_array.append(round(((vid_app_count+liv_app_count+sho_app_count)/(res_app_count+vid_app_count+liv_app_count+sho_app_count))*100))
+        else:
+            vid_pass_rate_array.append(0)
+        if (vid_app_count+liv_app_count+sho_app_count) > 0:
+            liv_pass_rate_array.append(round(((liv_app_count+sho_app_count)/(vid_app_count+liv_app_count+sho_app_count))*100))
+        else:
+            liv_pass_rate_array.append(0)
+        if (liv_app_count+sho_app_count) > 0:
+            sho_pass_rate_array.append(round(((sho_app_count)/(liv_app_count+sho_app_count))*100))
+        else:
+            sho_pass_rate_array.append(0)
+
+    res_pass_rate = 0
+    vid_pass_rate = 0
+    liv_pass_rate = 0
+    sho_pass_rate = 0
+    if len(res_pass_rate_array)>0:
+        res_pass_rate = round(sum(res_pass_rate_array)/len(res_pass_rate_array))
+    if len(vid_pass_rate_array)>0:
+        vid_pass_rate = round(sum(vid_pass_rate_array)/len(vid_pass_rate_array))
+    if len(liv_pass_rate_array)>0:
+        liv_pass_rate = round(sum(liv_pass_rate_array)/len(liv_pass_rate_array))
+    if len(sho_pass_rate_array)>0:
+        sho_pass_rate = round(sum(sho_pass_rate_array)/len(sho_pass_rate_array))
+
     alljobAnaInfo={
         "active_jobs": active_jobs,
         "archived_jobs": archived_jobs,
@@ -1099,6 +1140,10 @@ def get_analytics_info(request):
         "sho_act_count": sho_act_count,
         "job_titles": job_titles,
         "job_open_days": job_open_days,
+        "res_pass_rate":  res_pass_rate,
+        "vid_pass_rate": vid_pass_rate,
+        "liv_pass_rate": liv_pass_rate,
+        "sho_pass_rate": sho_pass_rate,
     }
 
     jobs = Jobs.objects.filter(user_id=user_id, is_closed=(0 or 2)).count()
