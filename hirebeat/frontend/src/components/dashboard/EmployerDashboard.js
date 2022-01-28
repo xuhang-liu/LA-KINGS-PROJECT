@@ -225,9 +225,10 @@ export class EmployerDashboard extends Component {
           "limit": this.props.profile.position_limit,
         }
         this.props.checkFreeAccountActiveJobs(data);
-        setTimeout(() => {         
+        setTimeout(() => {
           this.props.getPostedJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
-          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", ""); }, 300)
+          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
+        }, 300)
         sessionStorage.setItem('subpage', "employerProfile");
         this.setState({
           subpage: "employerProfile"
@@ -314,8 +315,8 @@ export class EmployerDashboard extends Component {
         subpage: "employerProfile",
       }
       )
-    // } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
-    //   this.setShowUpgradeM();
+      // } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
+      //   this.setShowUpgradeM();
     } else {
       this.setState({
         subpage: "jobCreation",
@@ -585,21 +586,16 @@ export class EmployerDashboard extends Component {
           getEmployerProfileDetail={this.props.getEmployerProfileDetail}
         />;
       case "analytics":
-        if (Object.keys(this.props.position_list).length > 0) {
-          return <AnalyticsCover
-            user={this.props.user}
-            profile={this.props.profile}
-            renderApplications={this.renderApplications}
-            analyticsInfo={this.props.analyticsInfo}
-            getAnalyticsInfo={this.props.getAnalyticsInfo}
-            position_list={this.props.position_list}
-            interview_session={this.props.interview_session}
-            alljobAnaInfo={this.props.alljobAnaInfo}
-          />
-        }
-        else {
-          return <p>You Don't have any active position.</p>
-        };
+        return <AnalyticsCover
+          user={this.props.user}
+          profile={this.props.profile}
+          renderApplications={this.renderApplications}
+          analyticsInfo={this.props.analyticsInfo}
+          getAnalyticsInfo={this.props.getAnalyticsInfo}
+          position_list={this.props.position_list}
+          interview_session={this.props.interview_session}
+          alljobAnaInfo={this.props.alljobAnaInfo}
+        />
       case "shortlist":
         if (Object.keys(this.props.jobL).length > 0) {
           return <ShortList
