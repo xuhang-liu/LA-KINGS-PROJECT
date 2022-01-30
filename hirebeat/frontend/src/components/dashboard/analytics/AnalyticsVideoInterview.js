@@ -244,7 +244,7 @@ export class AnalyticsVideoInterview extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-5">
+                    <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "0.1rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
@@ -281,7 +281,7 @@ export class AnalyticsVideoInterview extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-7">
+                    <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem", paddingBottom: "0.2rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "2rem" }}>
@@ -299,7 +299,7 @@ export class AnalyticsVideoInterview extends Component {
                                     </div>
                                 </div>
                                 <div className="row ml-1">
-                                    <InterviewChart dates={this.props?.interview_session.date} videos={this.props?.position_list[this.state.jobId3]?.recorded} height={200} width={600} />
+                                    <InterviewChart dates={this.props?.interview_session.date} videos={this.props?.position_list[this.state.jobId3]?.recorded} height={250}/>
                                 </div>
                             </div>
                         </div>

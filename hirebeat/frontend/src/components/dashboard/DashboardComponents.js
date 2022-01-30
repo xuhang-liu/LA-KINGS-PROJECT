@@ -472,7 +472,7 @@ export const VideoChart = (props) => {
 export const InterviewChart = (props) => {
     var labelFormatter = function (value) {
         // remove decimal
-        return value.toFixed(0);
+        return value?.toFixed(0);
     };
     return (
         <Chart
@@ -525,7 +525,6 @@ export const InterviewChart = (props) => {
             ]}
             type="line"
             height={props.height}
-            width={props.width}
         />
     )
 }
