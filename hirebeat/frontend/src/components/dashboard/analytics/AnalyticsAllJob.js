@@ -153,7 +153,7 @@ export class AnalyticsAllJob extends Component {
                                     <div className="col-9" style={{ borderRight: "1px solid #090d3a " }}>
                                         {this.props.alljobAnaInfo?.job_titles.map((t, index) => {
                                             return (
-                                                <div className="pt-2">{t}</div>
+                                                <div className="pt-2">{(t?.length>46)?(t?.substring(0,44)+"..."):t}</div>
                                             )
                                         })}
                                     </div>
