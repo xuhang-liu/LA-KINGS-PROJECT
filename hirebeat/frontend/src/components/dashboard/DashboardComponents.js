@@ -413,7 +413,6 @@ export const RateScore = (props) => {
             series={options.series}
             type="radialBar"
             height={props.height}
-            width={props.width}
             key={"rate"}
         />
     );
@@ -464,7 +463,6 @@ export const VideoChart = (props) => {
             ]}
             type="line"
             height={props.height}
-            width={props.width}
         />
     )
 }
@@ -578,7 +576,6 @@ export const ApplicationChart = (props) => {
             ]}
             type="line"
             height={props.height}
-            width={props.width}
         />
     )
 }

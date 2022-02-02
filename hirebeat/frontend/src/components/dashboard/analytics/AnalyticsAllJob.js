@@ -123,7 +123,7 @@ export class AnalyticsAllJob extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row" style={{ paddingBottom: "1rem" }}>
+                <div className="row pb-3">
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>

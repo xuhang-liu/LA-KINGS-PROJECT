@@ -147,7 +147,7 @@ export class AnalyticsVideoInterview extends Component {
                                                 <p style={{ fontSize: "12px" }}>Interview received</p>
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo?.interview_received}</h3>
                                             </div>
-                                            <div className="col-6" style={{ marginLeft: "-3rem" }}>
+                                            <div className="col-6 px-2" style={{ marginLeft: "-3rem" }}>
                                                 <RateScore percent={Math.round(this.props.analyticsInfo?.interview_received_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
@@ -158,7 +158,7 @@ export class AnalyticsVideoInterview extends Component {
                                                 <p style={{ fontSize: "12px", marginLeft: "0.8rem" }}>Shortlist</p>
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo?.shortlist_num}</h3>
                                             </div>
-                                            <div className="col-6" style={{ marginLeft: "-3rem" }}>
+                                            <div className="col-6 px-2" style={{ marginLeft: "-3rem" }}>
                                                 <RateScore percent={Math.round(this.props.analyticsInfo?.shortlist_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
@@ -169,7 +169,7 @@ export class AnalyticsVideoInterview extends Component {
                                                 <p style={{ fontSize: "12px", marginLeft: "0.8rem" }}>Hold</p>
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo?.hold_num}</h3>
                                             </div>
-                                            <div className="col-6" style={{ marginLeft: "-3rem" }}>
+                                            <div className="col-6 px-2" style={{ marginLeft: "-3rem" }}>
                                                 <RateScore percent={Math.round(this.props.analyticsInfo?.hold_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
@@ -180,7 +180,7 @@ export class AnalyticsVideoInterview extends Component {
                                                 <p style={{ fontSize: "12px", marginLeft: "0.8rem" }}>Reject</p>
                                                 <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "1rem" }}>{this.props.analyticsInfo?.reject_num}</h3>
                                             </div>
-                                            <div className="col-6" style={{ marginLeft: "-3rem" }}>
+                                            <div className="col-6 px-2" style={{ marginLeft: "-3rem" }}>
                                                 <RateScore percent={Math.round(this.props.analyticsInfo?.reject_num_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                             </div>
                                         </div>
@@ -190,7 +190,7 @@ export class AnalyticsVideoInterview extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-8">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
@@ -201,7 +201,7 @@ export class AnalyticsVideoInterview extends Component {
                                 <div className="row">
                                     <div className="col-3">
                                         <p style={{ fontSize: "12px", marginLeft: "0.5rem", marginBottom: "2.5rem" }}>Position title</p>
-                                        {this.props.position_list.map((pl) => {
+                                        {this.props?.position_list?.map((pl) => {
                                             return (
                                                 <div style={{ marginTop: "1rem" }}>
                                                     <h3 className="chart-legend" style={{ marginLeft: "0.5rem" }}>{pl?.title}</h3>
@@ -211,8 +211,8 @@ export class AnalyticsVideoInterview extends Component {
                                         })}
                                     </div>
                                     <div className="col-9">
-                                        <div className="row">
-                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={100 + (this.props.position_list.length * 57)} width={500} />
+                                        <div className="row px-2">
+                                            <Chart options={this.state.chartoptions} series={this.state.chartseries} type="bar" height={100 + (this.props?.position_list?.length * 57)} />
                                         </div>
                                     </div>
                                 </div>
@@ -230,7 +230,7 @@ export class AnalyticsVideoInterview extends Component {
                                     <p style={{ fontSize: "14px", marginLeft: "2rem", paddingTop: "0.4rem" }}>Filter By</p>
                                     <div style={{ marginLeft: "1.5rem" }}>
                                         <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props?.position_list[this.state.jobId1]?.title)?.substring(0, 16)}>
-                                            {Object.keys(this.props.position_list).map((key) => {
+                                            {Object.keys(this.props?.position_list).map((key) => {
                                                 return <Dropdown.Item as="button" onClick={() => { this.selectPosition1(key) }}>{this.props?.position_list[key]?.title} {this.props?.position_list[key]?.jobid}</Dropdown.Item>
                                             })}
                                         </DropdownButton>
@@ -242,7 +242,7 @@ export class AnalyticsVideoInterview extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="row">
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
@@ -255,7 +255,7 @@ export class AnalyticsVideoInterview extends Component {
                                     <p style={{ fontSize: "14px", marginLeft: "2rem", paddingTop: "0.4rem" }}>Filter By</p>
                                     <div style={{ marginLeft: "1.5rem" }}>
                                         <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props?.position_list[this.state.jobId2]?.title)?.substring(0, 22)} >
-                                            {Object.keys(this.props.position_list).map((key) => {
+                                            {Object.keys(this.props?.position_list).map((key) => {
                                                 return <Dropdown.Item as="button" onClick={() => { this.selectPosition2(key) }}>{this.props?.position_list[key]?.title} {this.props?.position_list[key]?.jobid}</Dropdown.Item>
                                             })}
                                         </DropdownButton>
@@ -274,7 +274,7 @@ export class AnalyticsVideoInterview extends Component {
                                                 <span className="analytics_preview" style={{ minWidth: "6rem", display: "block" }}>Number: {this.props?.position_list[this.state.jobId2]?.total_received}</span></p>
                                         </div>
                                     </div>
-                                    <div className="col-6" style={{ marginLeft: "-2rem" }}>
+                                    <div className="col-6 px-2" style={{ marginLeft: "-2rem" }}>
                                         <RateScore percent={this.props?.position_list[this.state.jobId2]?.conversion} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={250} />
                                     </div>
                                 </div>
@@ -292,14 +292,14 @@ export class AnalyticsVideoInterview extends Component {
                                     <p style={{ fontSize: "14px", marginLeft: "2rem", paddingTop: "0.4rem" }}>Filter By</p>
                                     <div style={{ marginLeft: "1.5rem" }}>
                                         <DropdownButton variant="white" id="dropdown-basic" size="lg" title={(this.props?.position_list[this.state.jobId3]?.title)?.substring(0, 30)} >
-                                            {Object.keys(this.props.position_list).map((key) => {
+                                            {Object.keys(this.props?.position_list).map((key) => {
                                                 return <Dropdown.Item as="button" onClick={() => { this.selectPosition3(key) }}>{this.props?.position_list[key]?.title} {this.props?.position_list[key]?.jobid}</Dropdown.Item>
                                             })}
                                         </DropdownButton>
                                     </div>
                                 </div>
                                 <div className="row ml-1">
-                                    <InterviewChart dates={this.props?.interview_session.date} videos={this.props?.position_list[this.state.jobId3]?.recorded} height={250}/>
+                                    <InterviewChart dates={this.props?.interview_session?.date} videos={this.props?.position_list[this.state.jobId3]?.recorded} height={250}/>
                                 </div>
                             </div>
                         </div>

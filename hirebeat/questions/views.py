@@ -1021,9 +1021,13 @@ def get_analytics_info(request):
         if(len(candidates) != 0):
             position_info["conversion"] = float(
                 math.ceil(len(candidates_recorded)/len(candidates)*100))
+        else:
+            position_info["conversion"] = 0
         if(received != 0):
             position_info["rate"] = [float(math.ceil(short/received*100)), float(
                 math.ceil(hold/received*100)), float(math.ceil(reject/received*100))]
+        else:
+            position_info["rate"] = 0
         position_list.append(position_info)
         record = []
         interQ = list(InterviewQuestions.objects.filter(
