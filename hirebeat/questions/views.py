@@ -1078,11 +1078,11 @@ def get_analytics_info(request):
     sho_act_count = 0
     job_titles = []
     job_open_days = []
-    active_jobs = Jobs.objects.filter(user_id=user_id, is_closed=0).count()
-    archived_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1).count()
-    closed_jobs = Jobs.objects.filter(user_id=user_id, is_closed=2).count()
-    draft_jobs = Jobs.objects.filter(user_id=user_id, is_closed=3).count()
-    jobs = Jobs.objects.filter(Q(user_id=user_id, is_closed=0) | Q(user_id=user_id, is_closed=2))
+    active_jobs = Jobs.objects.filter(user_id=user_id, is_closed=0, gh_job_id=None).count()
+    archived_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1, gh_job_id=None).count()
+    closed_jobs = Jobs.objects.filter(user_id=user_id, is_closed=2, gh_job_id=None).count()
+    draft_jobs = Jobs.objects.filter(user_id=user_id, is_closed=3, gh_job_id=None).count()
+    jobs = Jobs.objects.filter(Q(user_id=user_id, is_closed=0, gh_job_id=None) | Q(user_id=user_id, is_closed=2, gh_job_id=None))
     for j in range(len(jobs)):
         res_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Resume Review").count()
         vid_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Video Interview").count()
@@ -1149,8 +1149,6 @@ def get_analytics_info(request):
         "liv_pass_rate": liv_pass_rate,
         "sho_pass_rate": sho_pass_rate,
     }
-
-    jobs = Jobs.objects.filter(user_id=user_id, is_closed=(0 or 2)).count()
 
     return Response({
         "analyticsInfo": analyticsInfo,

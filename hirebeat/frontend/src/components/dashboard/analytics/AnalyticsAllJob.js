@@ -9,7 +9,7 @@ export class AnalyticsAllJob extends Component {
         this.state = {
             // Jobs by status
             series1: [{
-                data: [this.props.alljobAnaInfo?.active_jobs, this.props.alljobAnaInfo?.archived_jobs, this.props.alljobAnaInfo?.closed_jobs, this.props.alljobAnaInfo?.draft_jobs],
+                data: [this.props.alljobAnaInfo?.draft_jobs, this.props.alljobAnaInfo?.active_jobs, this.props.alljobAnaInfo?.closed_jobs, this.props.alljobAnaInfo?.archived_jobs],
                 name: "Count"
             }],
             options1: {
@@ -27,7 +27,7 @@ export class AnalyticsAllJob extends Component {
                     enabled: true
                 },
                 xaxis: {
-                    categories: ['Published', 'Archived', 'Closed', 'Draft'],
+                    categories: ['Draft', 'Published', 'Closed', 'Archived'],
                 }
             },
 
@@ -58,6 +58,9 @@ export class AnalyticsAllJob extends Component {
             // Historical Pass-Through Rate
             series3: [this.props.alljobAnaInfo?.sho_pass_rate, this.props.alljobAnaInfo?.liv_pass_rate, this.props.alljobAnaInfo?.vid_pass_rate, this.props.alljobAnaInfo?.res_pass_rate],
             options3: {
+                fill: {
+                    colors: ['#01cfa6', '#09c6f3', '#249ef1', "#1e5eff"]
+                },
                 chart: {
                     height: 100,
                     type: 'radialBar',
@@ -70,6 +73,7 @@ export class AnalyticsAllJob extends Component {
                         dataLabels: {
                             name: {
                                 fontSize: '22px',
+                                color: "#090d3a"
                             },
                             value: {
                                 fontSize: '16px',
@@ -77,11 +81,11 @@ export class AnalyticsAllJob extends Component {
                             total: {
                                 show: true,
                                 label: "Total Average",
-                            }
+                            },
                         }
                     }
                 },
-                labels: ['Shortlist Average', 'Live Average', 'Video Average', 'Resume Average'],
+                labels: ['Live Interview', 'Video Interview', 'Resume Review', 'Application'],
             },
         };
     }
@@ -99,9 +103,12 @@ export class AnalyticsAllJob extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ alignItems: "center", marginBottom: "1rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Jobs by status</h3>
+                                </div>
+                                <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
+                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A summary of all jobs broken down by status.</p>
                                 </div>
                                 <div className="row pl-2">
                                     <ReactApexChart options={this.state.options1} series={this.state.series1} type="bar" height={250} width={500} />
@@ -112,9 +119,12 @@ export class AnalyticsAllJob extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ alignItems: "center", marginBottom: "1rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Active Pipeline</h3>
+                                </div>
+                                <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
+                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A summary of all active applications broken down by stage.</p>
                                 </div>
                                 <div className="row pl-2">
                                     <ReactApexChart options={this.state.options2} series={this.state.series2} type="bar" height={250} width={500} />
@@ -127,9 +137,12 @@ export class AnalyticsAllJob extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ alignItems: "center", marginBottom: "1rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="user-pin" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Historical Pass-Through Rate</h3>
+                                </div>
+                                <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
+                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>Pass-through rate is the percentage of applicants moved forward from the current stage to the next.</p>
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <ReactApexChart options={this.state.options3} series={this.state.series3} type="radialBar" height={350} />
@@ -140,9 +153,12 @@ export class AnalyticsAllJob extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ marginBottom: "2rem" }}>
+                                <div className="row" style={{ marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Active Job Duration</h3>
+                                </div>
+                                <div className="row px-4" style={{ alignItems: "center", marginBottom: "1.6rem" }}>
+                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A list of all active jobs that haven't been filled. The number of days is from when the job was first published until now.</p>
                                 </div>
                                 <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "#090d3a" }}>
                                     <div className="col-9" style={{ borderRight: "1px solid #090d3a " }}>Job Title</div>
