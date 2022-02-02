@@ -59,7 +59,7 @@ export class AnalyticsAllJob extends Component {
             series3: [this.props.alljobAnaInfo?.sho_pass_rate, this.props.alljobAnaInfo?.liv_pass_rate, this.props.alljobAnaInfo?.vid_pass_rate, this.props.alljobAnaInfo?.res_pass_rate],
             options3: {
                 fill: {
-                    colors: ['#01cfa6', '#09c6f3', '#249ef1', "#1e5eff"]
+                    colors: ['#09c6f3', '#249ef1', "#1e5eff", "#ff9e47"]
                 },
                 chart: {
                     height: 100,
