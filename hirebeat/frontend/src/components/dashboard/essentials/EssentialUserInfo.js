@@ -440,7 +440,7 @@ export class EssentialUserInfo extends Component {
                     <div className="col d-flex align-items-start">
                       <a
                         className="panel-button"
-                        href="/employer_contact"
+                        href="https://hirebeat.co/support/"
                         style={{ outline: "none", margin: "1%", padding:"0px", background: "none", textDecoration: "none" }}
                       >
                         <IconEmployerText

@@ -142,7 +142,7 @@ export class AnalyticsAllJob extends Component {
                                     <h3 className="chart-legend">Historical Pass-Through Rate</h3>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
-                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>Pass-through rate is the percentage of applicants moved forward from the current stage to the next.</p>
+                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>Pass-through rate is the percentage of applicants moved forward from the current stage to the next. Here is a summary of the pass-through rates of all archived jobs.</p>
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <ReactApexChart options={this.state.options3} series={this.state.series3} type="radialBar" height={350} />

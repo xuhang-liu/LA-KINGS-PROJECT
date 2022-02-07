@@ -66,6 +66,7 @@ export class AnalyticsCover extends Component {
                                 getAnalyticsInfo={this.props.getAnalyticsInfo}
                                 position_list={this.props.position_list}
                                 interview_session={this.props.interview_session}
+                                alljobAnaInfo={this.props.alljobAnaInfo}
                             />
                         </div>
                     </div>
