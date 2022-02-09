@@ -523,7 +523,7 @@ export const InterviewChart = (props) => {
                     name: 'Invitation Sent',
                     data: props.videos_sent,
                 }, {
-                    name: 'Interview Completed',
+                    name: 'Completed',
                     data: props.videos_comp,
                 },
                 ]}
@@ -578,10 +578,10 @@ export const InterviewChart = (props) => {
                 }}
                 series={[{
                     name: 'Invitation Sent',
-                    data: [0, 1, 2, 3, 4, 5, 6],
+                    data: props.videos_sent,
                 }, {
-                    name: 'Interview Completed',
-                    data: props.videos,
+                    name: 'Completed',
+                    data: props.videos_comp,
                 },
                 ]}
                 type="line"
