@@ -84,3 +84,8 @@ class JobQuestion(models.Model):
     answer_type = models.CharField(max_length=100, default="boolean")
     answer = models.CharField(max_length=100, default="yes")
     is_must = models.BooleanField(default=False)
+
+class ReceivedEmail(models.Model):
+    to_email = models.CharField(max_length=100, null=True, blank=True)
+    from_email = models.CharField(max_length=100, null=True, blank=True)
+    plain_text = models.TextField(null=True, blank=True)

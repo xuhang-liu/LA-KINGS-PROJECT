@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {Redirect} from "react-router-dom";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {login, exchangeToken} from "../../redux/actions/auth_actions";
+import { login, exchangeToken } from "../../redux/actions/auth_actions";
 //import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
@@ -26,10 +26,10 @@ export class EmployerLogin extends Component {
   };
 
   setLoginFail = () => {
-    this.setState({login_fail: true});
+    this.setState({ login_fail: true });
   }
   setLoginFail1 = () => {
-    this.setState({login_fail: false});
+    this.setState({ login_fail: false });
   }
 
   static propTypes = {
@@ -85,66 +85,66 @@ export class EmployerLogin extends Component {
 
   render() {
     const meta = {
-        title: 'HireBeat – Employer Login',
-        description: 'Employer Login Info',
-        meta: {
-          charset: 'utf-8',
-          name: {
-            keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
-          }
+      title: 'HireBeat – Employer Login',
+      description: 'Employer Login Info',
+      meta: {
+        charset: 'utf-8',
+        name: {
+          keywords: 'hiring tool return on investment, hiring tool roi, hr applicant tracking, roi recruitment process'
         }
+      }
     };
     if (this.props.isAuthenticated) {
       if (this.props.user.groups[0] == "reviewers") {
-        return <Redirect to="/review"/>;
+        return <Redirect to="/review" />;
       } else {
-        return <Redirect to="/dashboard"/>;
+        return <Redirect to="/dashboard" />;
       }
     }
-    const {username, password} = this.state;
+    const { username, password } = this.state;
     return (
-        <DocumentMeta {...meta}>
+      <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
 
           <div
-              className="container-fluid bg-white p-0"
+            className="container-fluid bg-white p-0"
           >
             <MediaQuery minDeviceWidth={1224}>
-            <header
-            className="min-width-1290"
-             id="login-intro"
-                    style={{
-                      background: "#006dff",
-                      minHeight: "14rem"
-                    }}>
+              <header
+                className="min-width-1290"
+                id="login-intro"
+                style={{
+                  background: "#006dff",
+                  minHeight: "14rem"
+                }}>
 
-              <div className="container"
-                   style={{paddingTop: "5rem"}}>
+                <div className="container"
+                  style={{ paddingTop: "5rem" }}>
 
-                <h1 className="display-4 text-white text-center" style={{fontSize:"3rem", fontWeight:"600"}}>
-                  Welcome back!
-                </h1>
+                  <h1 className="display-4 text-white text-center" style={{ fontSize: "3rem", fontWeight: "600" }}>
+                    Welcome back!
+                  </h1>
 
-              </div>
-            </header>
+                </div>
+              </header>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-            <header id="login-intro"
-                    style={{
-                      background: "#006dff",
-                      minHeight: "8rem"
-                    }}>
+              <header id="login-intro"
+                style={{
+                  background: "#006dff",
+                  minHeight: "8rem"
+                }}>
 
-              <div className="container"
-                   style={{paddingTop: "3rem"}}>
+                <div className="container"
+                  style={{ paddingTop: "3rem" }}>
 
-                <h1 className="display-8 text-white text-center" style={{paddingBottom:"1rem"}}>
-                  Welcome back!
-                </h1>
+                  <h1 className="display-8 text-white text-center" style={{ paddingBottom: "1rem" }}>
+                    Welcome back!
+                  </h1>
 
-              </div>
-            </header>
+                </div>
+              </header>
             </MediaQuery>
 
             <section className="card border-bottom-0 shadow-none bg-white">
@@ -160,66 +160,66 @@ export class EmployerLogin extends Component {
 
                       <div className="form-group">
                         <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            placeholder="Username"
-                            onChange={this.onChange}
-                            value={username}
-                            style={{
-                              fontFamily: "Inter, Segoe UI",
-                              background: "#FFFFFF",
-                              border: "0.5px solid #E5E5E5",
-                              borderRadius: "0.5rem",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          placeholder="Username"
+                          onChange={this.onChange}
+                          value={username}
+                          style={{
+                            fontFamily: "Inter, Segoe UI",
+                            background: "#FFFFFF",
+                            border: "0.5px solid #E5E5E5",
+                            borderRadius: "0.5rem",
+                            paddingLeft: "1rem",
+                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                          }}
+                          required />
                       </div>
 
                       <div className="form-group">
                         <input
-                            type="password"
-                            placeholder="Password"
-                            className="form-control"
-                            name="password"
-                            onChange={this.onChange}
-                            value={password}
-                            style={{
-                              fontFamily: "Inter, Segoe UI",
-                              background: "#FFFFFF",
-                              border: "0.5px solid #E5E5E5",
-                              borderRadius: "0.5rem",
-                              paddingLeft: "1rem",
-                              boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
-                            }}
-                            required/>
+                          type="password"
+                          placeholder="Password"
+                          className="form-control"
+                          name="password"
+                          onChange={this.onChange}
+                          value={password}
+                          style={{
+                            fontFamily: "Inter, Segoe UI",
+                            background: "#FFFFFF",
+                            border: "0.5px solid #E5E5E5",
+                            borderRadius: "0.5rem",
+                            paddingLeft: "1rem",
+                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                          }}
+                          required />
                       </div>
 
-                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{marginTop: "0.6rem", marginBottom:"0.6rem"}}>
-                        {this.state.login_fail && <p className="share-p4" style={{fontWeight:"600"}}>Incorrect username or password. Please try again.</p>}
+                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>
+                        {this.state.login_fail && <p className="share-p4" style={{ fontWeight: "600" }}>Incorrect username or password. Please try again.</p>}
                       </div>
 
                       <div className="d-flex flex-wrap justify-content-between align-items-center">
                         <a
-                            href="/employer_register"
-                            className="navbar-font"
-                            style={{textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Inter, Segoe UI", fontSize:"1rem"}}
+                          href="/employer_register"
+                          className="navbar-font"
+                          style={{ textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Inter, Segoe UI", fontSize: "1rem" }}
                         >
                           Create account
                         </a>
 
                         <a
-                            href="/password_reset"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="navbar-font"
-                            style={{
-                              fontSize:"1rem",
-                              fontFamily: "Inter, Segoe UI",
-                              color: "#7D7D7D",
-                              fontWeight: "300"
-                            }}
+                          href="/password_reset"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="navbar-font"
+                          style={{
+                            fontSize: "1rem",
+                            fontFamily: "Inter, Segoe UI",
+                            color: "#7D7D7D",
+                            fontWeight: "300"
+                          }}
                         >
                           Forget password?
                         </a>
@@ -227,13 +227,13 @@ export class EmployerLogin extends Component {
                       </div>
 
                       <div
-                          className="form-group"
-                          style={{paddingTop: 30, paddingBottom: 20}}
+                        className="form-group"
+                        style={{ paddingTop: 30, paddingBottom: 20 }}
                       >
                         <button
-                            type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
+                          type="submit"
+                          className="default-btn"
+                          style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold' }}
                         >
                           <i className="bx bxs-hot"></i>
                           Log in
@@ -249,7 +249,7 @@ export class EmployerLogin extends Component {
           </div>
           <Footer />
         </React.Fragment>
-        </DocumentMeta>
+      </DocumentMeta>
     );
   }
 }
@@ -260,4 +260,4 @@ const mapStateToProps = (state) => ({
   profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, {login, exchangeToken})(EmployerLogin);
+export default connect(mapStateToProps, { login, exchangeToken })(EmployerLogin);

@@ -1,7 +1,7 @@
 #from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates, JobQuestion
+from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
@@ -1379,3 +1379,11 @@ def assign_credit_to_job(request):
     profile.save()
 
     return Response("Assign credit to job successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def receive_email_from_cloudmail(request):
+    to_email = request.data["envelope"]["to"]
+    from_email = request.data["envelope"]["from"]
+    plain_text = request.data["plain"]
+    ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text)
+    return Response("Receive successfully", status=status.HTTP_202_ACCEPTED)
