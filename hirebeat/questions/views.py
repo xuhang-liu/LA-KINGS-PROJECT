@@ -1,5 +1,4 @@
 from re import T
-from turtle import position
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
     InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote, ReviewerEvaluation
