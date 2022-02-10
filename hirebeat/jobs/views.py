@@ -568,7 +568,10 @@ def create_zr_job_feed(job_detail):
     # populate content for each tag
     # job.set('id', str(job_detail['id']))
     reference_number.text = str(job_detail['id'])
-    title.text = job_detail['job_title']
+    if "| Remote" in job_detail['job_location']:
+        title.text = job_detail['job_title']+" (remote)"
+    else:
+        title.text = job_detail['job_title']
     description.text = job_detail['job_description']
     location = job_detail['job_location'].split(',')
     country.text = 'US'
