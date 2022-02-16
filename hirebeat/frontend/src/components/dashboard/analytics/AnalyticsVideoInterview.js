@@ -19,7 +19,7 @@ export class AnalyticsVideoInterview extends Component {
 
         // Response Time
         res_time_series: [{
-            name: 'Inflation',
+            name: 'Count',
             data: [this.props.analyticsInfo?.day1_count, this.props.analyticsInfo?.day2_count, this.props.analyticsInfo?.day3_count, this.props.analyticsInfo?.day4_count, this.props.analyticsInfo?.day5_count, this.props.analyticsInfo?.day6_count, this.props.analyticsInfo?.day7_count]
         }],
         res_time_options: {
@@ -108,7 +108,7 @@ export class AnalyticsVideoInterview extends Component {
                     <div className="col-12">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ marginBottom: "0.6rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Interview Question Summary</h3>
                                 </div>
@@ -117,12 +117,12 @@ export class AnalyticsVideoInterview extends Component {
                                 </div>
                                 <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "#090d3a" }}>
                                     <div className="col-3" style={{ borderRight: "1px solid #090d3a" }}>Job Title</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.5rem" }}>No. Questions</div>
-                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.5rem"}}>Preparation Time</div>
-                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.5rem" }}>Response Length</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.5rem" }}>Video/Audio</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.5rem" }}>Response Rate</div>
-                                    <div className="col-2" style={{ textAlign: 'center', fontSize:"0.5rem" }}>Average Response Time</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>No. Qs</div>
+                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem"}}>Prep Time</div>
+                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Re Length</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Video</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Re Rate</div>
+                                    <div className="col-2" style={{ textAlign: 'center', fontSize:"0.8rem" }}>Avg Re Time</div>
                                 </div>
                                 <hr />
                                 <div className="row pl-2 pb-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "500", color: "#090d3a" }}>
@@ -157,7 +157,7 @@ export class AnalyticsVideoInterview extends Component {
                                     <div className="col-1" style={{ borderRight: "1px solid #090d3a " }}>
                                         {this.props.alljobAnaInfo?.video_on?.map((t, index) => {
                                             return (
-                                                <div className="pt-2" style={{ textAlign: 'center' }}>{t?"Video":"Audio"}</div>
+                                                <div className="pt-2" style={{ textAlign: 'center' }}>{t?"On":"Off"}</div>
                                             )
                                         })}
                                     </div>
@@ -297,7 +297,7 @@ export class AnalyticsVideoInterview extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ marginBottom: "0.6rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Current Pipeline Pass-Through Rate</h3>
                                 </div>
@@ -315,7 +315,7 @@ export class AnalyticsVideoInterview extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ marginBottom: "0.6rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Historical Pipeline Pass-Through Rate</h3>
                                 </div>

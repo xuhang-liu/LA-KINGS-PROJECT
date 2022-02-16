@@ -89,3 +89,11 @@ class ReceivedEmail(models.Model):
     to_email = models.CharField(max_length=100, null=True, blank=True)
     from_email = models.CharField(max_length=100, null=True, blank=True)
     plain_text = models.TextField(null=True, blank=True)
+
+class PremiumJobList(models.Model):
+    user_email = models.CharField(max_length=100, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    create_date = models.DateTimeField(auto_now_add=True)
+    paid_date = models.DateTimeField(null=True, blank=True)
+    is_paid = models.BooleanField(default=False)

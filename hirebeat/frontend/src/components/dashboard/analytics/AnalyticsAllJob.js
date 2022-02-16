@@ -153,7 +153,7 @@ export class AnalyticsAllJob extends Component {
                     <div className="col-6">
                         <div className="chart-bg" style={{ marginTop: "2rem" }}>
                             <div style={{ padding: "0.6rem" }}>
-                                <div className="row" style={{ marginBottom: "0.6rem" }}>
+                                <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <h3 className="chart-legend">Active Job Duration</h3>
                                 </div>

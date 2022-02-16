@@ -341,7 +341,7 @@ export class JobEdition extends Component {
                     jobId: this.state.jobId,
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
-                    jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0]+ "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
+                    jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0] + "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
@@ -363,7 +363,7 @@ export class JobEdition extends Component {
                     jobId: this.state.jobId,
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
-                    jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0]+ "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
+                    jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0] + "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
@@ -412,7 +412,7 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0]+ "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
+                jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0] + "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -434,7 +434,7 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0]+ "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
+                jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0] + "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -685,6 +685,14 @@ export class JobEdition extends Component {
                                         {this.state.remote.value == 2 ?
                                             <label className="db-txt2">
                                                 Preferred Location
+                                                <span className="tool_tip ml-2">
+                                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                    <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
+                                                        <div>
+                                                            We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
+                                                        </div>
+                                                    </p>
+                                                </span>
                                             </label> :
                                             <label className="db-txt2">
                                                 Job Location

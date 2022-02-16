@@ -1029,17 +1029,17 @@ def get_analytics_info(request):
         for i in range(len(wpVideo)):
             invc = InvitedCandidates.objects.get(positions_id=wpVideo[i].position_id, email=wpVideo[i].email)
             res_time = ((wpVideo[i].created_at).date() - (invc.invite_date).date()).days
-            if res_time == 1:
+            if res_time <2:
                 day1_count += 1
-            elif res_time == 2:
+            elif res_time >= 2 and res_time <3:
                 day2_count += 1
-            elif res_time == 3:
+            elif res_time >= 3 and res_time <4:
                 day3_count += 1
-            elif res_time == 4:
+            elif res_time >= 4 and res_time <5:
                 day4_count += 1
-            elif res_time == 5:
+            elif res_time >= 5 and res_time <6:
                 day5_count += 1
-            elif res_time == 6:
+            elif res_time >= 6 and res_time <7:
                 day6_count += 1
             elif res_time >= 7:
                 day7_count += 1

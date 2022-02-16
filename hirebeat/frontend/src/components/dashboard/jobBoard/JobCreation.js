@@ -650,6 +650,14 @@ export class JobCreation extends Component {
                                         {this.state.remote.value == 2 ?
                                             <label className="db-txt2">
                                                 Preferred Location
+                                                <span className="tool_tip ml-2">
+                                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                    <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
+                                                        <div>
+                                                            We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
+                                                        </div>
+                                                    </p>
+                                                </span>
                                             </label> :
                                             <label className="db-txt2">
                                                 Job Location
