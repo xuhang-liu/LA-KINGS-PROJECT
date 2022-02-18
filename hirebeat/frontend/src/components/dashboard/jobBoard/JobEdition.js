@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Select from 'react-select';
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { loadStripe } from '@stripe/stripe-js';
 import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_actions";
 import { SkillSet } from "./Constants";
 import Autocomplete from "react-google-autocomplete";
@@ -13,6 +14,8 @@ import { MyModalUpgrade } from "./../DashboardComponents";
 //import Switch from "react-switch";
 import ScreenQuestion from "./ScreenQuestion";
 import parse from 'html-react-parser';
+
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -137,18 +140,19 @@ export class JobEdition extends Component {
     ];
 
     setJobPost(type) {
-        if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
-            confirmAlert({
-                title: 'Upgrade Now!',
-                message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
-                buttons: [
-                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-                    { label: 'OK' },
-                ]
-            });
-        } else {
-            this.setState({ job_post: type });
-        }
+        // if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
+        //     confirmAlert({
+        //         title: 'Upgrade Now!',
+        //         message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
+        //         buttons: [
+        //             { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+        //             { label: 'OK' },
+        //         ]
+        //     });
+        // } else {
+        //     this.setState({ job_post: type });
+        // }
+        this.setState({ job_post: type });
     }
 
     //    setJobPostTure = () => {
@@ -244,6 +248,23 @@ export class JobEdition extends Component {
         this.setState({
             [e.target.name]: e.target.value,
         });
+    };
+
+    handlePremiumJobUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1KUDqYKxU1MN2zWM9fkagRXl', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'payment',
+            successUrl: 'https://app.hirebeat.co/pjobpayment',
+            cancelUrl: 'https://app.hirebeat.co/pjobfail',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
     };
 
     savePosition = (e) => {
@@ -381,6 +402,9 @@ export class JobEdition extends Component {
             this.props.updateJob(data);
             setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             this.props.renderJobs();
+            if (this.props.jobInfo.job_post != 2 && this.state.job_post == 2) {
+                this.handlePremiumJobUpgrade();
+            }
         }
     }
 
@@ -970,13 +994,17 @@ export class JobEdition extends Component {
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-4">
-                                    {this.state.job_post == 0 ?
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
-                                    }
-                                    {this.state.job_post == 1 ?
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                    {this.props.jobInfo.job_post != 2 &&
+                                        <span>
+                                            {this.state.job_post == 0 ?
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
+                                            }
+                                            {this.state.job_post == 1 ?
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                            }
+                                        </span>
                                     }
                                     {this.state.job_post == 2 ?
                                         <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
@@ -991,13 +1019,29 @@ export class JobEdition extends Component {
                                     }
                                     {this.state.job_post == 1 &&
                                         <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                            Standard advertising: your position will appear on ZipRecruiter within 24 hours.
+                                            Standard advertising: your position will appear on ZipRecruiter and other 200+ job boards within 24 hours.
                                         </label>
                                     }
                                     {this.state.job_post == 2 &&
-                                        <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                            Premium advertising: your position will appear on ZipRecruiter and other 20+ job boards within 24 hours.
-                                        </label>
+                                        <div>
+                                            {this.props.jobInfo.job_post == 2 ?
+                                                <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                    Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                    <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                        Your 30-Day Premium Promotion is ACTIVE.
+                                                    </div>
+                                                </label> :
+                                                <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                    Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                    <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                        30-Day Promotion - $200
+                                                    </div>
+                                                    <div>
+                                                        You will be redirected to the payment page once you click Save to publish.
+                                                    </div>
+                                                </label>
+                                            }
+                                        </div>
                                     }
                                 </div>
                             </div>

@@ -232,6 +232,8 @@ import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 // import IntergrationPage from "./HomeEmployer/IntergrationPage";
 import PublicProfile from "./dashboard/profile/PublicProfile";
 import PayGPayment from "./payment/PayGPayment";
+import PJobFail from "./payment/PJobFail";
+import PJobPayment from "./payment/PJobPayment";
 
 const alertOptions = {
   timeout: 3000,
@@ -395,6 +397,8 @@ class App extends Component {
                 <Route exact path="/job-seekers" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/paygpayment" component={PayGPayment} />
+                <Route exact path="/pjobpayment" component={PJobPayment} />
+                <Route exact path="/pjobfail" component={PJobFail} />
                 {/* <Route exact path="/privacy" component={Privacy} /> */}
                 {/* <Route exact path="/term" component={Term} /> */}
                 <Route exact path="/contact" component={Contact} />

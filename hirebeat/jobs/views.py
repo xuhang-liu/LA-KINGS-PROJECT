@@ -1,7 +1,7 @@
 #from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail
+from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
@@ -27,7 +27,7 @@ from pprint import pprint
 import requests
 import json
 import math
-#from django.forms.models import model_to_dict
+from django.forms.models import model_to_dict
 
 
 @api_view(['POST'])
@@ -105,9 +105,13 @@ def add_new_job(request):
         is_must = True if question["isMustHave"] == "true" else False
         JobQuestion.objects.create(
             jobs=job, question=question["question"], answer_type=answer_type, answer=answer, is_must=is_must)
-    # add to zrjobs.xml
-    # if job_post:
-    #     add_zr_feed_xml(job.id)
+    
+    # Create PremiumJobList
+    if job_post == 2 and is_closed != 3:
+        PremiumJobList.objects.create(user=user, user_email=user.email, jobs=job)
+        job.job_post = 1
+        job.save()
+    
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
 
@@ -274,6 +278,14 @@ def update_job(request):
     profile = Profile.objects.get(user=user)
     job = Jobs.objects.get(id=id)
 
+    # Create PremiumJobList
+    if job_post == 2 and is_closed != 3 and job.job_post != 2:
+        PremiumJobList.objects.create(user=user, user_email=user.email, jobs=job)
+        job.job_post = 1
+        job.save()
+    else:
+        job.job_post = job_post
+
     if job.is_closed == 3 and is_closed == 0 and (not using_credit):
         profile.position_count += 1
         profile.save()
@@ -289,7 +301,6 @@ def update_job(request):
     job.lin_req = lin_req
     job.eeo_req = eeo_req
     job.eeo_ques_req = eeo_ques_req
-    job.job_post = job_post
     job.skills = skills
     job.is_closed = is_closed
     # save update to db
@@ -309,11 +320,6 @@ def update_job(request):
         is_must = True if question["isMustHave"] == "true" else False
         JobQuestion.objects.create(jobs=job, question=question["question"], answer_type=answer_type, answer=answer,
                                    is_must=is_must)
-    # delete or add to zrjobs.xml
-    # if job_post:
-    #     add_zr_feed_xml(id)
-    # else:
-    #     delete_zr_feed_xml(id)
 
     return Response("Update new job successfully", status=status.HTTP_205_RESET_CONTENT)
 
@@ -597,7 +603,7 @@ def get_zr_xml(request):
     # populate data to Optional Metadata Fields
     last_build_date.text = datetime.now().strftime("%c")
     publisher_url.text = 'https://app.hirebeat.co/'
-    publisher.text = 'HibreBeat'
+    publisher.text = 'HireBeat Inc.'
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=1).values()
     for i in range(len(job_details)):
@@ -610,7 +616,7 @@ def get_zr_xml(request):
         f.write(ET.tostring(source, encoding='utf8', method='xml'))
     return Response("zrjobs.xml is regenerated successfully", status=status.HTTP_200_OK)
 
-
+#AppCast Paid XML
 @api_view(['GET'])
 def get_zr_premium_xml(request):
     # initialize xml structure
@@ -622,7 +628,7 @@ def get_zr_premium_xml(request):
     # populate data to Optional Metadata Fields
     last_build_date.text = datetime.now().strftime("%c")
     publisher_url.text = 'https://app.hirebeat.co/'
-    publisher.text = 'HibreBeat'
+    publisher.text = 'HireBeat Inc.'
     # produce jobs dynamic here
     job_details = Jobs.objects.filter(job_post=2).values()
     for i in range(len(job_details)):
@@ -1309,8 +1315,6 @@ def greenhouse_get_interview_stages(request):
             data = {"id": res.json()[r]['id'], "name": res.json()[r]['name']}
             stages.append(data)
 
-    print(stages)
-
     return Response({
         "stages": stages
     })
@@ -1390,3 +1394,11 @@ def receive_email_from_cloudmail(request):
     plain_text = request.data["plain"]
     ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text)
     return Response("Receive successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_most_recent_job(request):
+    print(11111)
+    jobs = Jobs.objects.all().first()
+    return Response({
+        "data": model_to_dict(jobs)
+    })

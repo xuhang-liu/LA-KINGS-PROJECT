@@ -7,12 +7,15 @@ import { Link } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 //import Switch from "react-switch";
+import { loadStripe } from '@stripe/stripe-js';
 import parse from 'html-react-parser';
 import { SkillSet } from "./Constants";
 import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
 import ScreenQuestion from "./ScreenQuestion";
+
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -113,19 +116,20 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
-            confirmAlert({
-                title: 'Upgrade Now!',
-                message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
-                buttons: [
-                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-                    { label: 'OK' },
-                ]
-            });
-        }
-        else {
-            this.setState({ job_post: type });
-        }
+        // if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
+        //     confirmAlert({
+        //         title: 'Upgrade Now!',
+        //         message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
+        //         buttons: [
+        //             { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+        //             { label: 'OK' },
+        //         ]
+        //     });
+        // }
+        // else {
+        //     this.setState({ job_post: type });
+        // }
+        this.setState({ job_post: type });
     }
 
     //    setJobPostTure = () => {
@@ -236,6 +240,23 @@ export class JobCreation extends Component {
     //    handleChangeJobType = (jobType) => {
     //        this.setState({ jobType });
     //    }
+
+    handlePremiumJobUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1KUDqYKxU1MN2zWM9fkagRXl', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'payment',
+            successUrl: 'https://app.hirebeat.co/pjobpayment',
+            cancelUrl: 'https://app.hirebeat.co/pjobfail',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
 
     savePosition = (e) => {
         e.preventDefault();
@@ -370,6 +391,7 @@ export class JobCreation extends Component {
                 this.props.addNewJob(data);
                 setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
                 setTimeout(() => { this.showSharePrompt() }, 300);
+                this.handlePremiumJobUpgrade();
             }
         }
     }
@@ -958,13 +980,20 @@ export class JobCreation extends Component {
                                     }
                                     {this.state.job_post == 1 &&
                                         <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                            Standard advertising: your position will appear on ZipRecruiter within 24 hours.
+                                            Standard advertising: your position will appear on ZipRecruiter and other 200+ job boards within 24 hours.
                                         </label>
                                     }
                                     {this.state.job_post == 2 &&
                                         <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                            Premium advertising: your position will appear on ZipRecruiter and other 20+ job boards within 24 hours.
+                                            Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                            <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                30-Day Promotion - $200
+                                            </div>
+                                            <div>
+                                                You will be redirected to the payment page once you click Save to publish.
+                                            </div>
                                         </label>
+
                                     }
                                 </div>
                             </div>
