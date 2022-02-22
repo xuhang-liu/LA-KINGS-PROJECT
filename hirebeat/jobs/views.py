@@ -11,6 +11,7 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from datetime import date, timedelta
 import base64
 import time
 import boto3
@@ -580,12 +581,21 @@ def create_zr_job_feed(job_detail):
         title.text = job_detail['job_title']
     description.text = job_detail['job_description']
     location = job_detail['job_location'].split(',')
-    country.text = 'US'
-    city.text = location[0]
-    state.text = location[1]
+    if len(location) < 3:
+        country.text = location[1].strip()
+    else:
+        country.text = 'US'
+    if len(location) < 3:
+        city.text = location[0]
+    else:
+        city.text = location[0]
+    if len(location) < 3:
+        state.text = ""
+    else:
+        state.text = location[1].strip()
     company.text = job_detail['company_name']
     date.text = job_detail['create_date'].strftime("%c")
-    url.text = job_detail['job_url']
+    url.text = job_detail['job_url'].strip().replace(" ", "%20")
     job_type.text = job_detail['job_type'].lower().replace("-", "_")
     job_level = job_detail['job_level'].split(" ")
     experience.text = job_level[0].lower()
@@ -1293,7 +1303,6 @@ def greenhouse_update_invite_status(request):
             data = {"from_stage_id": str(gh_current_stage_id), "to_stage_id": str(gh_next_stage_id)}
             headers = {'Content-type': 'application/json', 'Accept': 'text/plain', 'On-Behalf-Of': str(remote_user_id)}
             res = requests.post(url, data=json.dumps(data), headers=headers, auth=(profile.ats_api_token, ''))
-            print(res.json())
     return Response("Update Greenhouse job successfully", status=status.HTTP_202_ACCEPTED)
 
 
@@ -1397,8 +1406,34 @@ def receive_email_from_cloudmail(request):
 
 @api_view(['GET'])
 def get_most_recent_job(request):
-    print(11111)
     jobs = Jobs.objects.all().first()
     return Response({
         "data": model_to_dict(jobs)
     })
+
+@api_view(['POST'])
+def premium_job_payment_suc(request):
+    premiumJobList = PremiumJobList.objects.last()
+    premiumJobList.is_paid = True
+    premiumJobList.paid_date = datetime.now()
+    premiumJobList.save()
+    jobs = premiumJobList.jobs
+    jobs.job_post = 2
+    jobs.save()
+
+    return Response("Update successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def check_premium_job_list(request):
+    user_id = request.data["id"]
+    premiumJobLists = PremiumJobList.objects.filter(user=user_id)
+    for p in range(len(premiumJobLists)):
+        pjl = premiumJobLists[p]
+        if not pjl.paid_date == None :
+            expire_date = pjl.paid_date.date()+timedelta(days=30)
+            today = date.today()
+            if(today > expire_date):
+                job = pjl.jobs
+                job.job_post = 1
+                job.save()
+    return Response("Update successfully", status=status.HTTP_202_ACCEPTED)

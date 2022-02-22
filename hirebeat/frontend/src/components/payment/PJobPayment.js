@@ -17,6 +17,17 @@ function ScrollToTopOnMount() {
 
 class PJobPayment extends Component {
     componentDidMount() {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        axios.post("jobs/premium-job-payment-suc", config).then((res) => {
+            console.log(res);
+        }).catch(error => {
+            console.log(error);
+        });
         this.renderRedirect();
     }
 
@@ -43,7 +54,7 @@ class PJobPayment extends Component {
                         <div>
                             <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                             <div className="container py-5 px-5" style={{ fontFamily: "Inter, Segoe UI", backgroundColor: "#ffffff", borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)" }}>
-                                <img src='https://hirebeat-assets.s3.amazonaws.com/Employer/pjob_payment_suc.png' alt="img" style={{ display:"block", margin:"auto", width:"50%" }}></img>
+                                <img src='https://hirebeat-assets.s3.amazonaws.com/Employer/pjob_payment_suc.png' alt="img" style={{ display: "block", margin: "auto", width: "50%" }}></img>
                                 <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}>Your Premium Job Advertising is now active!</h3>
                                 <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem" }}>Your job will appear on premium job boards within 24 hours.</h3>
                                 <div className="row ml-2 mb-5" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #006dff", width: "90%", height: "3rem" }}>
@@ -52,7 +63,7 @@ class PJobPayment extends Component {
                                     </div>
                                     <div className="py-3">
                                         <button onClick={() => { this.copyAlert(); navigator.clipboard.writeText(res.data.data.job_url?.replaceAll(' ', '%20')); }}
-                                            className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem", top:"3.4rem" }}>
+                                            className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem", top: "3.4rem" }}>
                                             <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
                                         </button>
                                     </div>

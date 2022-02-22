@@ -19,7 +19,7 @@ import {
   from "../../redux/actions/auth_actions";
 import {
   addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken,
-  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, checkIfMasterActive
+  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, checkIfMasterActive, checkPremiumJobList
 } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
@@ -195,6 +195,9 @@ export class EmployerDashboard extends Component {
     this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
+    this.props.checkPremiumJobList(user);
+    this.props.getZRFeedXML();
+    this.props.getZRPremiumFeedXML();
     var data = {
       "id": this.props.user.id,
       "limit": this.props.profile.position_limit,
@@ -876,7 +879,8 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive,
+  checkPremiumJobList
 })(
   EmployerDashboard
 );
