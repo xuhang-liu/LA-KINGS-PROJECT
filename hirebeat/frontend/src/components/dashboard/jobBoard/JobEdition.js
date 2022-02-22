@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Select from 'react-select';
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { loadStripe } from '@stripe/stripe-js';
 import { getZRFeedXML, getZRPremiumFeedXML } from "../../../redux/actions/job_actions";
 import { SkillSet } from "./Constants";
 import Autocomplete from "react-google-autocomplete";
@@ -13,6 +14,8 @@ import { MyModalUpgrade } from "./../DashboardComponents";
 //import Switch from "react-switch";
 import ScreenQuestion from "./ScreenQuestion";
 import parse from 'html-react-parser';
+
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 const toolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
@@ -137,18 +140,19 @@ export class JobEdition extends Component {
     ];
 
     setJobPost(type) {
-        if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
-            confirmAlert({
-                title: 'Upgrade Now!',
-                message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
-                buttons: [
-                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-                    { label: 'OK' },
-                ]
-            });
-        }else{
-            this.setState({ job_post: type });
-        }
+        // if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
+        //     confirmAlert({
+        //         title: 'Upgrade Now!',
+        //         message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
+        //         buttons: [
+        //             { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
+        //             { label: 'OK' },
+        //         ]
+        //     });
+        // } else {
+        //     this.setState({ job_post: type });
+        // }
+        this.setState({ job_post: type });
     }
 
     //    setJobPostTure = () => {
@@ -246,6 +250,23 @@ export class JobEdition extends Component {
         });
     };
 
+    handlePremiumJobUpgrade = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1KUDqYKxU1MN2zWM9fkagRXl', // Replace with the ID of your price
+                quantity: 1,
+            }],
+            mode: 'payment',
+            successUrl: 'https://app.hirebeat.co/pjobpayment',
+            cancelUrl: 'https://app.hirebeat.co/pjobfail',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
+
     savePosition = (e) => {
         e.preventDefault();
         let using_credit = false;
@@ -288,32 +309,32 @@ export class JobEdition extends Component {
                 })
             )
         }
-        if (!this.props.jobInfo.is_credited){
-            if (this.props.profile.payg_credit <= 0){
-                if (this.props.profile.membership == "Regular"){
+        if (!this.props.jobInfo.is_credited) {
+            if (this.props.profile.payg_credit <= 0) {
+                if (this.props.profile.membership == "Regular") {
                     return this.setState({
                         showUpgradeM: true
                     });
-                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed==1 || this.props.jobInfo.is_closed==3)){
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed == 1 || this.props.jobInfo.is_closed == 3)) {
                         return this.setState({
                             showUpgradeM: true
                         });
                     }
                 }
             } else if (this.props.profile.payg_credit > 0) {
-                if (this.props.profile.membership == "Regular"){
+                if (this.props.profile.membership == "Regular") {
                     using_credit = true;
-                    r = confirm("You now have "+this.props.profile.payg_credit+" credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
-                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro"){
-                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed==1 || this.props.jobInfo.is_closed==3)){
+                    r = confirm("You now have " + this.props.profile.payg_credit + " credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed == 1 || this.props.jobInfo.is_closed == 3)) {
                         using_credit = true;
-                        r = confirm("You now have "+this.props.profile.payg_credit+" credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+                        r = confirm("You now have " + this.props.profile.payg_credit + " credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
                     }
                 }
             }
         }
-        if(r){
+        if (r) {
             let data = {
                 id: this.props.jobInfo.id,
                 jobTitle: this.state.jobTitle,
@@ -341,14 +362,14 @@ export class JobEdition extends Component {
                     jobId: this.state.jobId,
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
-                    jobLocation: "Remote",
+                    jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0] + "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
                     lin_req: this.state.lin_req,
                     eeo_req: this.state.eeo_req,
                     eeo_ques_req: this.state.eeo_ques_req,
-                    job_post: 0,
+                    job_post: this.state.job_post,
                     skills: this.state.skills,
                     questions: this.state.questions,
                     is_closed: 0,
@@ -363,7 +384,7 @@ export class JobEdition extends Component {
                     jobId: this.state.jobId,
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
-                    jobLocation: this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
+                    jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0] + "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
@@ -381,6 +402,9 @@ export class JobEdition extends Component {
             this.props.updateJob(data);
             setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             this.props.renderJobs();
+            if (this.props.jobInfo.job_post != 2 && this.state.job_post == 2) {
+                this.handlePremiumJobUpgrade();
+            }
         }
     }
 
@@ -412,7 +436,7 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: "Remote",
+                jobLocation: this.state.jobLocation.includes("Hybrid") ? (this.state.jobLocation?.split("|")[0] + "| Remote") : this.state.jobLocation.includes("Remote") ? this.state.jobLocation : (this.state.jobLocation + "| Remote"),
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -420,7 +444,7 @@ export class JobEdition extends Component {
                 lin_req: this.state.lin_req,
                 eeo_req: this.state.eeo_req,
                 eeo_ques_req: this.state.eeo_ques_req,
-                job_post: 0,
+                job_post: this.state.job_post,
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 3,
@@ -434,7 +458,7 @@ export class JobEdition extends Component {
                 jobId: this.state.jobId,
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
-                jobLocation: this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
+                jobLocation: this.state.jobLocation.includes("Remote") ? (this.state.jobLocation?.split("|")[0] + "| Hybrid") : this.state.jobLocation.includes("Hybrid") ? this.state.jobLocation : (this.state.jobLocation + "| Hybrid"),
                 userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
@@ -678,26 +702,38 @@ export class JobEdition extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className={(this.state.remote.value != 2) ? "form-row" : "form-row pb-5"}>
+                        <div className="form-row">
                             <div className="form-group col-6">
                                 <div className="d-flex">
-                                    {(this.state.remote.value != 2) &&
-                                        <div className="form-group" style={{ width: "40%" }}>
+                                    <div className="form-group" style={{ width: "40%" }}>
+                                        {this.state.remote.value == 2 ?
+                                            <label className="db-txt2">
+                                                Preferred Location
+                                                <span className="tool_tip ml-2">
+                                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                    <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
+                                                        <div>
+                                                            We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
+                                                        </div>
+                                                    </p>
+                                                </span>
+                                            </label> :
                                             <label className="db-txt2">
                                                 Job Location
-                                            </label><span className="job-apply-char2">*</span>
-                                            <Autocomplete
-                                                className="form-control"
-                                                language="en"
-                                                style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
-                                                apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                                onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                    this.handleLocation(place.formatted_address);
-                                                }}
-                                                required="required"
-                                                defaultValue={this.state.jobLocation == "Remote" ? "" : this.state.jobLocation}
-                                            />
-                                        </div>}
+                                            </label>}
+                                        <span className="job-apply-char2">*</span>
+                                        <Autocomplete
+                                            className="form-control"
+                                            language="en"
+                                            style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
+                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                            onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                this.handleLocation(place.formatted_address);
+                                            }}
+                                            required="required"
+                                            defaultValue={this.state.jobLocation}
+                                        />
+                                    </div>
                                     {/* <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
                                         <label className="db-txt2">Remote Work?</label>
                                         <div style={{ paddingTop: "0.7rem" }}>
@@ -949,48 +985,67 @@ export class JobEdition extends Component {
                                 </span>
                             </div>
                         }
-                        {(this.state.remote.value == 0 || this.state.remote.value == 1) &&
-                            <div>
-                                <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <label className="db-txt2" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></label>
-                                    </div>
+                        <div>
+                            <hr style={{ border: "1.5px solid #E8EDFC" }} />
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <label className="db-txt2" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></label>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-4">
-                                        {this.state.job_post == 0 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
-                                        }
-                                        {this.state.job_post == 1 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
-                                        }
-                                        {this.state.job_post == 2 ?
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
-                                            <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
-                                        }
-                                    </div>
-                                    <div className="form-group col-12">
-                                        {this.state.job_post == 0 &&
-                                            <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                                Your position will be posted on HireBeat job board and your company career page.
-                                            </label>
-                                        }
-                                        {this.state.job_post == 1 &&
-                                            <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                                Standard advertising: your position will appear on ZipRecruiter within 24 hours.
-                                            </label>
-                                        }
-                                        {this.state.job_post == 2 &&
-                                            <label className="db-txt2" style={{ fontWeight: "500" }}>
-                                                Premium advertising: your position will appear on ZipRecruiter and other 20+ job boards within 24 hours.
-                                            </label>
-                                        }
-                                    </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-4">
+                                    {this.props.jobInfo.job_post != 2 &&
+                                        <span>
+                                            {this.state.job_post == 0 ?
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
+                                            }
+                                            {this.state.job_post == 1 ?
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                            }
+                                        </span>
+                                    }
+                                    {this.state.job_post == 2 ?
+                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
+                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
+                                    }
                                 </div>
-                            </div>}
+                                <div className="form-group col-12">
+                                    {this.state.job_post == 0 &&
+                                        <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                            Your position will be posted on HireBeat job board and your company career page.
+                                        </label>
+                                    }
+                                    {this.state.job_post == 1 &&
+                                        <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                            Standard advertising: your position will appear on ZipRecruiter and other 200+ job boards within 24 hours.
+                                        </label>
+                                    }
+                                    {this.state.job_post == 2 &&
+                                        <div>
+                                            {this.props.jobInfo.job_post == 2 ?
+                                                <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                    Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                    <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                        Your 30-Day Premium Promotion is ACTIVE.
+                                                    </div>
+                                                </label> :
+                                                <label className="db-txt2" style={{ fontWeight: "500" }}>
+                                                    Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                    <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                        30-Day Promotion - $200
+                                                    </div>
+                                                    <div>
+                                                        You will be redirected to the payment page once you click Save to publish.
+                                                    </div>
+                                                </label>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                         {this.props.jobInfo.is_closed != 3 ?
                             <div style={{ float: "left", marginBottom: "1rem" }}>
                                 <button

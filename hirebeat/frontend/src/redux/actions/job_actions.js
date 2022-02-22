@@ -25,6 +25,7 @@ import {
     UPDATE_APPLICANT_BASIC_INFO,
     SWITCH_JOB_CLOSED_STATUS,
     ASSIGN_CREDIT_TO_JOB,
+    CHECK_PREMIUM_JOB_LIST
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -386,6 +387,20 @@ export const assignCreditToJob = (data) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ASSIGN_CREDIT_TO_JOB,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+}
+
+export const checkPremiumJobList = (data) => (dispatch, getState) => {
+  axios
+    .post("jobs/check-premium-job-list", data, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: CHECK_PREMIUM_JOB_LIST,
         payload: res.data,
       });
     })

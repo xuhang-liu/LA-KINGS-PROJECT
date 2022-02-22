@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Chart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
 import { customBarData, customBarData2 } from "../../constants/constants";
 import MediaQuery from 'react-responsive';
 //import CountUp from "react-countup";
@@ -303,8 +304,8 @@ export const MyModalContact = (props) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton style={{ borderBottom: "1px solid #E5E5E5", paddingBottom:"0.5rem"}} >
-                <h3 className="profile-h3" style={{marginLeft:"1rem"}}>{props.contactName}</h3>
+            <Modal.Header closeButton style={{ borderBottom: "1px solid #E5E5E5", paddingBottom: "0.5rem" }} >
+                <h3 className="profile-h3" style={{ marginLeft: "1rem" }}>{props.contactName}</h3>
             </Modal.Header>
             {props.children}
         </Modal>
@@ -325,7 +326,7 @@ export const MyModalShare = (props) => {
     );
 };
 
-export const MyModalUpgrade= (props) => {
+export const MyModalUpgrade = (props) => {
     return (
         <Modal
             {...props}
@@ -413,7 +414,6 @@ export const RateScore = (props) => {
             series={options.series}
             type="radialBar"
             height={props.height}
-            width={props.width}
             key={"rate"}
         />
     );
@@ -464,7 +464,6 @@ export const VideoChart = (props) => {
             ]}
             type="line"
             height={props.height}
-            width={props.width}
         />
     )
 }
@@ -472,62 +471,125 @@ export const VideoChart = (props) => {
 export const InterviewChart = (props) => {
     var labelFormatter = function (value) {
         // remove decimal
-        return value.toFixed(0);
+        return value?.toFixed(0);
     };
-    return (
-        <Chart
-            options={{
-                chart: {
-                    type: 'line',
-                    height: 350,
-                    dropShadow: {
+    let userAgent = navigator.userAgent;
+    if (userAgent.match(/firefox|fxios/i)) {
+        return (
+            <ReactApexChart
+                options={{
+                    chart: {
+                        type: 'line',
+                        height: 350,
+                        dropShadow: {
+                            enabled: true,
+                            color: '#000',
+                            top: 18,
+                            left: 7,
+                            blur: 10,
+                            opacity: 0.2
+                        },
+                    },
+                    markers: {
+                        size: 5,
+                    },
+                    grid: {
+                        show: true,
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                    },
+                    dataLabels: {
                         enabled: true,
-                        color: '#000',
-                        top: 18,
-                        left: 7,
-                        blur: 10,
-                        opacity: 0.2
+                        enabledOnSeries: [0]
                     },
+                    labels: props.dates,
+                    xaxis: {
+                        labels: {
+                            show: true,
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            show: true,
+                            formatter: labelFormatter,
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                }}
+                series={[{
+                    name: 'Invitation Sent',
+                    data: props.videos_sent,
+                }, {
+                    name: 'Completed',
+                    data: props.videos_comp,
                 },
-                markers: {
-                    size: 5,
-                },
-                grid: {
-                    show: true,
-                },
-                stroke: {
-                    curve: 'smooth',
-                },
-                dataLabels: {
-                    enabled: true,
-                    enabledOnSeries: [0]
-                },
-                labels: props.dates,
-                xaxis: {
-                    labels: {
+                ]}
+                type="line"
+                height={props.height}
+            />
+        )
+    } else {
+        return (
+            <ReactApexChart
+                options={{
+                    chart: {
+                        type: 'line',
+                        height: 350,
+                        dropShadow: {
+                            enabled: true,
+                            color: '#000',
+                            top: 18,
+                            left: 7,
+                            blur: 10,
+                            opacity: 0.2
+                        },
+                    },
+                    markers: {
+                        size: 5,
+                    },
+                    grid: {
                         show: true,
                     },
-                },
-                yaxis: {
-                    labels: {
-                        show: true,
-                        formatter: labelFormatter,
+                    stroke: {
+                        curve: 'smooth',
                     },
+                    dataLabels: {
+                        enabled: true,
+                        enabledOnSeries: [0]
+                    },
+                    labels: props.dates,
+                    xaxis: {
+                        labels: {
+                            show: true,
+                        },
+                    },
+                    yaxis: {
+                        labels: {
+                            show: true,
+                            formatter: labelFormatter,
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                }}
+                series={[{
+                    name: 'Invitation Sent',
+                    data: props.videos_sent,
+                }, {
+                    name: 'Completed',
+                    data: props.videos_comp,
                 },
-                dataLabels: {
-                    enabled: false,
-                },
-            }}
-            series={[{
-                name: 'The number of interviews',
-                data: props.videos,
-            },
-            ]}
-            type="line"
-            height={props.height}
-            width={props.width}
-        />
-    )
+                ]}
+                type="line"
+                height={props.height}
+                width={500}
+            />
+        )
+    }
 }
 
 export const ApplicationChart = (props) => {
@@ -579,7 +641,6 @@ export const ApplicationChart = (props) => {
             ]}
             type="line"
             height={props.height}
-            width={props.width}
         />
     )
 }

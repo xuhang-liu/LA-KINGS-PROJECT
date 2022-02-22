@@ -24,6 +24,8 @@ from django.forms.models import model_to_dict
 import base64
 from itertools import chain
 import time
+from django.db.models import Q
+from datetime import date, timedelta
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -956,25 +958,23 @@ def update_view_status(request):
 
 @api_view(['GET'])
 def get_analytics_info(request):
+    # Video Interview Analytics
     interview_session = {
         "date": []
     }
     analyticsInfo = {}
     invitation_total = 0
     interview_received = 0
-    shortlist_num = 0
-    hold_num = 0
-    reject_num = 0
     interview_received_rate = 0
-    shortlist_num_rate = 0
-    hold_num_rate = 0
-    reject_num_rate = 0
     position_list = []
-    invitation_list = []
-    shortlist_list = []
-    hold_list = []
-    reject_list = []
     week = []
+    day1_count = 0
+    day2_count = 0
+    day3_count = 0
+    day4_count = 0
+    day5_count = 0
+    day6_count = 0
+    day7_count = 0
     # get the most recent week dates
     for day in range(6, -1, -1):
         # use timezone.now() to get current time since timezone is enabled
@@ -988,41 +988,23 @@ def get_analytics_info(request):
     for i in range(len(positions)):
         position_id = positions[i].id
         position_info = {}
-        position_info["title"] = positions[i].job_title
-        position_info["jobid"] = positions[i].job_id
-        position_info["is_closed"] = positions[i].is_closed
+        job = Jobs.objects.get(positions=positions[i])
+        position_info["title"] = job.job_title
+        position_info["jobid"] = job.job_id
         candidates = InvitedCandidates.objects.filter(positions_id=position_id)
         candidates_recorded = InvitedCandidates.objects.filter(
             positions_id=position_id, is_recorded=True)
-        candidates_shortlist = InvitedCandidates.objects.filter(
-            positions_id=position_id, is_recorded=True, comment_status=1)
-        candidates_hold = InvitedCandidates.objects.filter(
-            positions_id=position_id, is_recorded=True, comment_status=2)
-        candidates_reject = InvitedCandidates.objects.filter(
-            positions_id=position_id, is_recorded=True, comment_status=3)
         invitation_total += len(candidates)
         interview_received += len(candidates_recorded)
-        received = len(candidates_recorded)
-        shortlist_num += len(candidates_shortlist)
-        short = len(candidates_shortlist)
-        hold_num += len(candidates_hold)
-        hold = len(candidates_hold)
-        reject_num += len(candidates_reject)
-        reject = len(candidates_reject)
-        invitation_list.append(len(candidates))
-        shortlist_list.append(len(candidates_shortlist))
-        hold_list.append(len(candidates_hold))
-        reject_list.append(len(candidates_reject))
         position_info["total_sent"] = len(candidates)
         position_info["total_received"] = len(candidates_recorded)
         if(len(candidates) != 0):
             position_info["conversion"] = float(
                 math.ceil(len(candidates_recorded)/len(candidates)*100))
-        if(received != 0):
-            position_info["rate"] = [float(math.ceil(short/received*100)), float(
-                math.ceil(hold/received*100)), float(math.ceil(reject/received*100))]
-        position_list.append(position_info)
-        record = []
+        else:
+            position_info["conversion"] = 0
+        record_comp = []
+        record_sent =  []
         interQ = list(InterviewQuestions.objects.filter(
             positions_id=position_id).values())
         # dates loop
@@ -1036,33 +1018,180 @@ def get_analytics_info(request):
                     question_id=interviewQ["id"],
                     created_at__contains=week[j]).count()
                 count += day_recorded
-            record.append(count)
-        position_info["recorded"] = record
+            record_comp.append(count)
+            count1 = InvitedCandidates.objects.filter(positions=positions[i], is_invited=True, invite_date__contains=week[j]).count()
+            record_sent.append(count1)
+        position_info["recorded"] = record_comp
+        position_info["vidsent"] = record_sent
+        position_list.append(position_info)
+        #response time
+        wpVideo = WPVideo.objects.filter(position_id=position_id).distinct('email')
+        for i in range(len(wpVideo)):
+            invc = InvitedCandidates.objects.get(positions_id=wpVideo[i].position_id, email=wpVideo[i].email)
+            res_time = ((wpVideo[i].created_at).date() - (invc.invite_date).date()).days
+            if res_time <2:
+                day1_count += 1
+            elif res_time >= 2 and res_time <3:
+                day2_count += 1
+            elif res_time >= 3 and res_time <4:
+                day3_count += 1
+            elif res_time >= 4 and res_time <5:
+                day4_count += 1
+            elif res_time >= 5 and res_time <6:
+                day5_count += 1
+            elif res_time >= 6 and res_time <7:
+                day6_count += 1
+            elif res_time >= 7:
+                day7_count += 1
 
     if(invitation_total != 0):
         interview_received_rate = interview_received/invitation_total*100
-        shortlist_num_rate = shortlist_num/invitation_total*100
-        hold_num_rate = hold_num/invitation_total*100
-        reject_num_rate = reject_num/invitation_total*100
     analyticsInfo = {
         "invitation_total": invitation_total,
         "interview_received": interview_received,
         "interview_received_rate": interview_received_rate,
-        "shortlist_num": shortlist_num,
-        "shortlist_num_rate": shortlist_num_rate,
-        "hold_num": hold_num,
-        "hold_num_rate": hold_num_rate,
-        "reject_num": reject_num,
-        "reject_num_rate": reject_num_rate,
-        "invitation_list": invitation_list,
-        "shortlist_list": shortlist_list,
-        "hold_list": hold_list,
-        "reject_list": reject_list,
+        "day1_count": day1_count,
+        "day2_count": day2_count,
+        "day3_count": day3_count,
+        "day4_count": day4_count,
+        "day5_count": day5_count,
+        "day6_count": day6_count,
+        "day7_count": day7_count,
     }
+
+    #All Jobs Analytics
+    active_jobs = 0
+    archived_jobs = 0
+    closed_jobs = 0
+    draft_jobs = 0
+    res_act_count = 0
+    vid_act_count = 0
+    liv_act_count = 0
+    sho_act_count = 0
+    job_titles = []
+    job_open_days = []
+    no_of_ques = []
+    prep_times = []
+    resp_times = []
+    video_on = []
+    resp_rate = []
+    avg_res_time = []
+    liv_active_pass_rate_array = []
+    active_jobs = Jobs.objects.filter(user_id=user_id, is_closed=0, gh_job_id=None).count()
+    archived_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1, gh_job_id=None).count()
+    closed_jobs = Jobs.objects.filter(user_id=user_id, is_closed=2, gh_job_id=None).count()
+    draft_jobs = Jobs.objects.filter(user_id=user_id, is_closed=3, gh_job_id=None).count()
+    jobs = Jobs.objects.filter(Q(user_id=user_id, is_closed=0, gh_job_id=None) | Q(user_id=user_id, is_closed=2, gh_job_id=None))
+    for j in range(len(jobs)):
+        res_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Resume Review").count()
+        vid_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Video Interview").count()
+        liv_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Live Interview").count()
+        sho_act_count += ApplyCandidates.objects.filter(jobs=jobs[j], is_active=True, current_stage="Short List").count()
+        job_titles.append(jobs[j].job_title)
+        today = date.today()
+        job_open_days.append((today-(jobs[j].first_publish_date).date()).days)
+        no_of_ques.append(InterviewQuestions.objects.filter(positions=jobs[j].positions).count())
+        prep_times.append(jobs[j].positions.prepare_time)
+        resp_times.append(jobs[j].positions.questionTime)
+        video_on.append(jobs[j].positions.camera_on)
+        int_sent = InvitedCandidates.objects.filter(positions=jobs[j].positions, is_invited=True).count()
+        int_comp = InvitedCandidates.objects.filter(positions=jobs[j].positions, is_invited=True, is_recorded=True).count()
+        if int_sent>0:
+            resp_rate.append(round((int_comp/int_sent)*100))
+        else:
+            resp_rate.append(0)
+        wpVideo = WPVideo.objects.filter(position_id=jobs[j].positions.id).distinct('email')
+        total_res_time = 0
+        for i in range(len(wpVideo)):
+            invc = InvitedCandidates.objects.get(positions_id=wpVideo[i].position_id, email=wpVideo[i].email)
+            res_time = ((wpVideo[i].created_at).date() - (invc.invite_date).date()).days
+            total_res_time+=res_time
+        if total_res_time>0:
+            avg_res_time.append(round(total_res_time/len(wpVideo)))
+        else:
+            avg_res_time.append(0)
+        vid_app_count = ApplyCandidates.objects.filter(jobs=jobs[j], current_stage="Video Interview").count()
+        liv_app_count = ApplyCandidates.objects.filter(jobs=jobs[j], current_stage="Live Interview").count()
+        sho_app_count = ApplyCandidates.objects.filter(jobs=jobs[j], current_stage="Short List").count()
+        if (vid_app_count+liv_app_count+sho_app_count) > 0:
+            liv_active_pass_rate_array.append(round(((liv_app_count+sho_app_count)/(vid_app_count+liv_app_count+sho_app_count))*100))
+        else:
+            liv_active_pass_rate_array.append(0)
+    liv_active_pass_rate = 0
+    if len(liv_active_pass_rate_array)>0:
+        liv_active_pass_rate = round(sum(liv_active_pass_rate_array)/len(liv_active_pass_rate_array))
+
+    ## For achived jobs
+    arc_jobs = Jobs.objects.filter(user_id=user_id, is_closed=1)
+    res_pass_rate_array = []
+    vid_pass_rate_array = []
+    liv_pass_rate_array = []
+    sho_pass_rate_array = []
+    for j in range(len(arc_jobs)):
+        total_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j]).count()
+        res_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Resume Review").count()
+        vid_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Video Interview").count()
+        liv_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Live Interview").count()
+        sho_app_count = ApplyCandidates.objects.filter(jobs=arc_jobs[j], current_stage="Short List").count()
+        if total_app_count>0:
+            res_pass_rate_array.append(round(((res_app_count+vid_app_count+liv_app_count+sho_app_count)/(total_app_count))*100))
+        else:
+            res_pass_rate_array.append(0)
+        if (res_app_count+vid_app_count+liv_app_count+sho_app_count)>0:
+            vid_pass_rate_array.append(round(((vid_app_count+liv_app_count+sho_app_count)/(res_app_count+vid_app_count+liv_app_count+sho_app_count))*100))
+        else:
+            vid_pass_rate_array.append(0)
+        if (vid_app_count+liv_app_count+sho_app_count) > 0:
+            liv_pass_rate_array.append(round(((liv_app_count+sho_app_count)/(vid_app_count+liv_app_count+sho_app_count))*100))
+        else:
+            liv_pass_rate_array.append(0)
+        if (liv_app_count+sho_app_count) > 0:
+            sho_pass_rate_array.append(round(((sho_app_count)/(liv_app_count+sho_app_count))*100))
+        else:
+            sho_pass_rate_array.append(0)
+
+    res_pass_rate = 0
+    vid_pass_rate = 0
+    liv_pass_rate = 0
+    sho_pass_rate = 0
+    if len(res_pass_rate_array)>0:
+        res_pass_rate = round(sum(res_pass_rate_array)/len(res_pass_rate_array))
+    if len(vid_pass_rate_array)>0:
+        vid_pass_rate = round(sum(vid_pass_rate_array)/len(vid_pass_rate_array))
+    if len(liv_pass_rate_array)>0:
+        liv_pass_rate = round(sum(liv_pass_rate_array)/len(liv_pass_rate_array))
+    if len(sho_pass_rate_array)>0:
+        sho_pass_rate = round(sum(sho_pass_rate_array)/len(sho_pass_rate_array))
+
+    alljobAnaInfo={
+        "active_jobs": active_jobs,
+        "archived_jobs": archived_jobs,
+        "closed_jobs": closed_jobs,
+        "draft_jobs": draft_jobs,
+        "res_act_count": res_act_count,
+        "vid_act_count": vid_act_count,
+        "liv_act_count": liv_act_count,
+        "sho_act_count": sho_act_count,
+        "job_titles": job_titles,
+        "job_open_days": job_open_days,
+        "no_of_ques": no_of_ques,
+        "prep_times": prep_times,
+        "resp_times": resp_times,
+        "video_on": video_on,
+        "resp_rate": resp_rate,
+        "avg_res_time": avg_res_time,
+        "res_pass_rate":  res_pass_rate,
+        "vid_pass_rate": vid_pass_rate,
+        "liv_pass_rate": liv_pass_rate,
+        "liv_active_pass_rate": liv_active_pass_rate,
+        "sho_pass_rate": sho_pass_rate,
+    }
+
     return Response({
         "analyticsInfo": analyticsInfo,
         "position_list": position_list,
         "interview_session": interview_session,
+        "alljobAnaInfo": alljobAnaInfo
     })
 
 

@@ -19,7 +19,7 @@ import {
   from "../../redux/actions/auth_actions";
 import {
   addNewJob, getAllJobs, updateJob, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, createMergeLinkToken, retrieveMergeAccountToken,
-  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, checkIfMasterActive
+  checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, checkIfMasterActive, checkPremiumJobList
 } from "../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../redux/actions/video_actions";
 import {
@@ -34,7 +34,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import SubpageSetting from './SubpageSetting';
-import Analytics from './Analytics';
+import AnalyticsCover from './AnalyticsCover';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import DocumentMeta from 'react-document-meta';
@@ -195,6 +195,9 @@ export class EmployerDashboard extends Component {
     this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
     this.props.getQuestionList();
     this.props.getReviewersList(user.id);
+    this.props.checkPremiumJobList(user);
+    this.props.getZRFeedXML();
+    this.props.getZRPremiumFeedXML();
     var data = {
       "id": this.props.user.id,
       "limit": this.props.profile.position_limit,
@@ -225,9 +228,10 @@ export class EmployerDashboard extends Component {
           "limit": this.props.profile.position_limit,
         }
         this.props.checkFreeAccountActiveJobs(data);
-        setTimeout(() => {         
+        setTimeout(() => {
           this.props.getPostedJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
-          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", ""); }, 300)
+          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
+        }, 300)
         sessionStorage.setItem('subpage', "employerProfile");
         this.setState({
           subpage: "employerProfile"
@@ -314,8 +318,8 @@ export class EmployerDashboard extends Component {
         subpage: "employerProfile",
       }
       )
-    // } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
-    //   this.setShowUpgradeM();
+      // } else if ((this.props.profile.position_count) >= (this.props.profile.position_limit)) {
+      //   this.setShowUpgradeM();
     } else {
       this.setState({
         subpage: "jobCreation",
@@ -585,20 +589,16 @@ export class EmployerDashboard extends Component {
           getEmployerProfileDetail={this.props.getEmployerProfileDetail}
         />;
       case "analytics":
-        if (Object.keys(this.props.position_list).length > 0) {
-          return <Analytics
-            user={this.props.user}
-            profile={this.props.profile}
-            renderApplications={this.renderApplications}
-            analyticsInfo={this.props.analyticsInfo}
-            getAnalyticsInfo={this.props.getAnalyticsInfo}
-            position_list={this.props.position_list}
-            interview_session={this.props.interview_session}
-          />
-        }
-        else {
-          return <p>You Don't have any active position.</p>
-        };
+        return <AnalyticsCover
+          user={this.props.user}
+          profile={this.props.profile}
+          renderApplications={this.renderApplications}
+          analyticsInfo={this.props.analyticsInfo}
+          getAnalyticsInfo={this.props.getAnalyticsInfo}
+          position_list={this.props.position_list}
+          interview_session={this.props.interview_session}
+          alljobAnaInfo={this.props.alljobAnaInfo}
+        />
       case "shortlist":
         if (Object.keys(this.props.jobL).length > 0) {
           return <ShortList
@@ -853,6 +853,7 @@ const mapStateToProps = (state) => {
     analyticsInfo: state.question_reducer.analyticsInfo,
     position_list: state.question_reducer.position_list,
     interview_session: state.question_reducer.interview_session,
+    alljobAnaInfo: state.question_reducer.alljobAnaInfo,
     employerProfileDetail: state.auth_reducer.employerProfileDetail,
     employerPost: state.auth_reducer.employerPost,
     jobs: state.job_reducer.jobs,
@@ -878,7 +879,8 @@ export default connect(mapStateToProps, {
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
-  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive
+  getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive,
+  checkPremiumJobList
 })(
   EmployerDashboard
 );
