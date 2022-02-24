@@ -1,9 +1,16 @@
-import React, { Component } from "react";
+import React, { Component ,useEffect } from "react";
 import { connect } from "react-redux";
 import ReactPlayer from 'react-player';
 import AudioPlayer from "../../audios/AudioPlayer";
 import { updateComments, getApplicantsVideos } from "./../../../redux/actions/video_actions";
 
+function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
+    return null;
+}
 
 class ApplicationVideoPanel extends Component {
 
@@ -82,6 +89,8 @@ class ApplicationVideoPanel extends Component {
             selectedColor4 = "#090d3a";
         }
         return (
+            <>
+            <ScrollToTopOnMount/>
             <div className="mb-4 pl-0" style={{marginLeft:"-2rem"}}>
                 <div className="mt-3">
                     <h4>
@@ -172,6 +181,7 @@ class ApplicationVideoPanel extends Component {
                     }
                 </div>    
             </div>
+            </>
         );
     }
     
