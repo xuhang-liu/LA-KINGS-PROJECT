@@ -1,7 +1,15 @@
-import React, { Component } from "react";
+import React, { Component , useEffect } from "react";
 import ApplicationVideoPanel from "./ApplicationVideoPanel";
 import { connect } from "react-redux";
 import 'boxicons';
+
+function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
+    return null;
+}
 
 export class ApplicationVideo extends Component {
       constructor(props) {
@@ -21,6 +29,7 @@ export class ApplicationVideo extends Component {
 render() {
         return (
                 <React.Fragment>
+                <ScrollToTopOnMount />
                 {this.props.recordedVideoCount == 0 ?
                     <div>
                         <h3 style={{marginTop:"10%", textAlign:"center"}}>Candidate does not record any videos.</h3>

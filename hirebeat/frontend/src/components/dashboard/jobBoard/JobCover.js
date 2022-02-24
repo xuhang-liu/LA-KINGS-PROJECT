@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import JobList from "./JobList";
 import JobPortalPage from "./JobPortalPage";
 
@@ -17,6 +17,11 @@ export const JobCover = (props) => {
   const onChange = (e) => {
     setKeyWords(e.target.value);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
+  
   return (
     <div>
       {((!viewPortal) || (props.job_back_home)) ?
