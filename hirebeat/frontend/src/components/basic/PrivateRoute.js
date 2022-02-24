@@ -11,6 +11,11 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => {
       setLoading(false);
     }
     setTimeout(() => setLoading(false), 222);
+    window.addEventListener('storage', () => {
+      if (!localStorage.getItem("token")){
+        return <Redirect to="/" />;
+      }
+    });
   }, []);
   var uri = window.location.pathname;
   uri = uri.substring(1, uri?.length);
