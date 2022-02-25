@@ -338,7 +338,9 @@ export class NewCandidateAdditionForm extends Component {
                                     return(
                                         <div className="form-row">
                                             <div className="form-group col-2 align-center">
-                                                <label className="candidate-txt2">{c.resumeName}</label>
+                                                <label className="candidate-txt2">
+                                                    {c.resumeName.length > 15 ? c.resumeName.substring(0, 15) + "..." : c.resumeName}
+                                                </label>
                                             </div>
                                             <div className="form-group col-3">
                                                 <input type="text" name="name2" key={c.name} defaultValue={c.name} className="form-control candidate-name candidate-txt2" />

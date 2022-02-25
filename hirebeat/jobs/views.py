@@ -710,7 +710,7 @@ def add_new_apply_candidate_by_cv(request):
     phone = request.data['phone']
     email = request.data['email']
     location = request.data['location']
-    resume = request.data['resume']
+    resume = request.data['resume'].replace("\/", "/")
     cv_name = email.split("@")[0]
     resume_url = upload_cv_to_s3(resume, cv_name)
     linkedinurl = request.data['linkedinurl']

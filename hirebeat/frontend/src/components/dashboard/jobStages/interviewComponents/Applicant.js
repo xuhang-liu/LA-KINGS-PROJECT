@@ -260,13 +260,17 @@ export const Applicant = (props) => {
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="col-1">
                         {(isInvited && props.filter == "active") ?
-                            <button
-                                onClick={() => inviteAgain()}
-                                className="title-button2"
-                            >
+                            (props.isRecorded && props.videoCount > 0 ?
+                                null
+                                : 
+                                <button
+                                    onClick={() => inviteAgain()}
+                                    className="title-button2"
+                                >
                                 {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
                                 Resend
-                            </button> :
+                                </button>) 
+                            :
                             <button
                                 onClick={() => inviteAgain()}
                                 className="title-button2"

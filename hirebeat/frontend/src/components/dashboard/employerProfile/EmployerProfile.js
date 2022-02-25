@@ -318,10 +318,19 @@ export class EmployerProfile extends Component {
                                         <div className="row">
                                             <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
                                                 <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i>
+                                                    {this.props.profile.position_limit == 5 &&
+                                                    <span>Pro</span>}
+                                                    {this.props.profile.position_limit == 1 &&
+                                                    <span>Basic Plan</span>}
+                                                    {this.props.profile.position_limit == 10 &&
+                                                    <span>Pro Plus</span>}
+                                                    {this.props.profile.position_limit == 50 &&
+                                                    <span>Premium Lite</span>}
                                                 </p>
                                             </div>
-                                            <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>
+                                            {(this.props.profile.position_limit != 1 && this.props.profile.position_limit != 10 && this.props.profile.position_limit != 50) &&
+                                            <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>}
                                         </div> :
                                         <div className="row">
                                             <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
