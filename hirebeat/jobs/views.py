@@ -1398,10 +1398,11 @@ def assign_credit_to_job(request):
 
 @api_view(['POST'])
 def receive_email_from_cloudmail(request):
-    to_email = request.data["envelope"]["to"]
-    from_email = request.data["envelope"]["from"]
+    to_email = request.data["headers"]["to"]
+    from_email = request.data["headers"]["from"]
+    subject = request.data["headers"]["subject"]
     plain_text = request.data["plain"]
-    ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text)
+    ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject,is_received=True)
     return Response("Receive successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['GET'])

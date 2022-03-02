@@ -621,6 +621,13 @@ export class JobEdition extends Component {
     handleQFormChange = (i, key, e) => {
         let questions = [...this.state.questions];
         questions[i][key] = e.target.value;
+        if (key=="isMustHave") {
+            if (e.target.checked) {
+                questions[i][key] = "true";
+            }else{
+                questions[i][key] = "";
+            }
+        }
         this.setState({ questions: questions });
     }
 
