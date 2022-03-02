@@ -88,7 +88,11 @@ class JobQuestion(models.Model):
 class ReceivedEmail(models.Model):
     to_email = models.CharField(max_length=100, null=True, blank=True)
     from_email = models.CharField(max_length=100, null=True, blank=True)
+    subject = models.TextField(null=True, blank=True)
     plain_text = models.TextField(null=True, blank=True)
+    is_received = models.BooleanField(default=False)
+    create_date = models.DateTimeField(auto_now_add=True)
+
 
 class PremiumJobList(models.Model):
     user_email = models.CharField(max_length=100, null=True, blank=True)
