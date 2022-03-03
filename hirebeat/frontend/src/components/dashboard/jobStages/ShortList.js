@@ -136,6 +136,7 @@ const AcceptedCandidate = (props) => {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     }
     return (
         <div>
@@ -285,6 +286,7 @@ const CandidateCard = (props) => {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     }
 
     const options1 = [

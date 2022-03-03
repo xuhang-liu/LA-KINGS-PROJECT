@@ -55,6 +55,7 @@ export class JobCard extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '600'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     };
 
     onFilter = (draft_select) => {

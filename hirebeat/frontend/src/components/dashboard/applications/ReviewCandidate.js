@@ -5,6 +5,7 @@ import { ResumeEvaJobs } from "./ResumeEvaJobs";
 import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 import ApplicationVideo from "../videos/ApplicationVideo";
 import ReviewNote from "./ReviewNote";
+import EmailSending from "./EmailSending";
 import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplicationTab";
 import BasicInfoEdition from "./BasicInfoEdition";
 import { connect } from "react-redux";
@@ -22,6 +23,7 @@ const ReviewCandidate = (props) => {
     const [viewApplication, setViewApplication] = useState(props.applicants[props.current].answers?.length > 0 ? true : false);
     const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
+    const [showEmailSending, setShowEmailSending] = useState(false);
     const [isReject, setIsReject] = useState(true);
     const [isEdit, setIsEdit] = useState(false);
     const [comment, setComment] = useState("");
@@ -300,6 +302,10 @@ const ReviewCandidate = (props) => {
         setShowRejectSuccessAlert(false);
     }
 
+    const hideEmailSending = () => {
+        setShowEmailSending(false);
+    }
+
     const enableRejectSuccessAlert = (type) => {
         if (type == "Rejected") {
             setIsReject(true);
@@ -504,6 +510,15 @@ const ReviewCandidate = (props) => {
                                             </button>
                                         </div>
                                     }
+                                    <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            onClick={() => setShowEmailSending(true)}
+                                            className="default-btn4"
+                                            style={{ paddingLeft: "25px", width: "13vw" }}
+                                        >
+                                            <i class='bx-fw bx bx-envelope' style={{ color: "#090d3a" }}></i> Email
+                                        </button>
+                                    </div>
                                 </div>}
                             {(props.curJob?.reviewer_type == "subr") &&
                                 <div>
@@ -545,6 +560,15 @@ const ReviewCandidate = (props) => {
                                             </button>
                                         </div>
                                     }
+                                    <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            onClick={() => setShowEmailSending(true)}
+                                            className="default-btn4"
+                                            style={{ paddingLeft: "25px", width: "13vw" }}
+                                        >
+                                            <i class='bx-fw bx bx-envelope' style={{ color: "#090d3a" }}></i> Email
+                                        </button>
+                                    </div>
                                 </div>
                             }
                             <div>
@@ -790,6 +814,10 @@ const ReviewCandidate = (props) => {
                     </div>
                 </div>
             </AlertModal>
+            <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
+                <EmailSending
+                />
+            </MyModal80>
         </div >
     )
 

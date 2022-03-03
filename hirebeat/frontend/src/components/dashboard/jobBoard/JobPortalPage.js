@@ -329,7 +329,7 @@ export class JobPortalPage extends Component {
             <React.Fragment>
                 <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
                     <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "3px" }}><h3 className="job-title-hover-orange" onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", "") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
+                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "3px" }}><h3 className="job-title-hover-orange" onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
                         <div className="row" style={{ border: "2px solid #f3f6f9" }}>
                             <div className="col-2">
                                 {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?

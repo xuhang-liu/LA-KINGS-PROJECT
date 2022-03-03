@@ -22,6 +22,7 @@ export class JobList extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     };
 
     options = [
@@ -63,7 +64,7 @@ export class JobList extends Component {
                                 </div> */}
                                 <div className="container-fluid" style={{ marginTop: "1rem" }}>
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                                        <div className="col-2"><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} /></div>
+                                        <div className="col-2"><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} isSearchable={false}/></div>
                                         <div className="col-4 d-flex justify-content-start" style={{paddingLeft:'2.2rem'}}>Job Title</div>
                                         <div className="col-2 d-flex justify-content-center">ID</div>
                                         <div className="col-2 d-flex justify-content-center">Applicants</div>
