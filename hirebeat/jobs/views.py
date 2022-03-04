@@ -1438,3 +1438,12 @@ def check_premium_job_list(request):
                 job.job_post = 1
                 job.save()
     return Response("Update successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def send_email_from_cloudmail(request):
+    to_email = request.data["to"]
+    from_email = request.data["from"]
+    subject = request.data["subject"]
+    plain_text = request.data["plain"]
+    ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject)
+    return Response("Send successfully", status=status.HTTP_202_ACCEPTED)

@@ -274,6 +274,7 @@ export class EmployerDashboard extends Component {
 
   renderJobs = () => {
     if (this.state.subpage == "jobs") {
+      this.props.getAllJobs(this.props.user.id, 1, "", "", "");
       this.setState({
         job_back_home: true
       });

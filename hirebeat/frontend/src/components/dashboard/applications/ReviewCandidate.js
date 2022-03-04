@@ -595,7 +595,7 @@ const ReviewCandidate = (props) => {
                             </div>
                         </div>}
                 </div>
-                <div className="col-9" className="resume-box mt-3 ml-3 p-4" style={{ background: "white", borderRadius: "3px", width: "73%" }}>
+                <div className="col-9 resume-box mt-3 p-4" style={{ background: "white", borderRadius: "3px", width: "73%" }}>
                     <div>
                         {props.applicants[props.current].answers?.length > 0 &&
                             <h2
@@ -816,6 +816,12 @@ const ReviewCandidate = (props) => {
             </AlertModal>
             <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
                 <EmailSending
+                    hideEmailSending={hideEmailSending}
+                    employerProfileDetail={props.employerProfileDetail}
+                    user={props.user}
+                    profile={props.profile}
+                    email={props.email}
+                    job={props.curJob.job_details}
                 />
             </MyModal80>
         </div >
