@@ -29,6 +29,7 @@ import requests
 import json
 import math
 from django.forms.models import model_to_dict
+from django.db.models import Q
 
 
 @api_view(['POST'])
@@ -1447,3 +1448,20 @@ def send_email_from_cloudmail(request):
     plain_text = request.data["plain"]
     ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject)
     return Response("Send successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def get_single_job_details(request):
+    jobid = request.data["jobid"]
+    jobs = Jobs.objects.get(pk=jobid)
+    return Response({
+        "data": model_to_dict(jobs)
+    })
+
+@api_view(['POST'])
+def get_email_message_list(request):
+    applicantEmail = request.data["applicantEmail"]
+    companyname = request.data["companyname"]
+    receivedEmail = ReceivedEmail.objects.filter((Q(to_email__contains=applicantEmail) | Q(to_email__contains=companyname)), (Q(from_email__contains=applicantEmail) | Q(from_email__contains=companyname))).values()
+    return Response({
+        "data": receivedEmail
+    })

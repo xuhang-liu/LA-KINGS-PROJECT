@@ -21,9 +21,14 @@ const toolbarConfig = {
 
 export class EmailSending extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     state = {
-        emailTemp: { value: "1", label: '1' },
-        emailFrom: { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.job.id) + '@hirebeat.email' + '>'), label: 'Company Name' },
+        job: {},
+        emailTemp: { value: 0, label: 'Template' },
+        emailFrom: { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: 'Company Name' },
         emailVal: { value: "INSERT VARIABLE", label: 'INSERT VARIABLE' },
         emailVal1: { value: "INSERT VARIABLE", label: 'INSERT VARIABLE' },
         emailSubject: "",
@@ -33,7 +38,53 @@ export class EmailSending extends Component {
         addOnBottom: '<hr style="margin-top:4rem; border:2px solid rgba(202, 217, 252, 0.5)"/><p style="color:#d0d0d0; font-size:0.8rem">If you have got questions or want to give us some feedback, you can reply to this email and it will go straight to the hiring team responsible for this role.</p>'
     }
 
+    componentDidMount(){
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = {"jobid":this.props.jobid};
+        axios.post("jobs/get-single-job-details", data, config).then((res) => {
+            this.setState({job:res.data.data})
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+
     onFilter = (emailTemp) => {
+        if (emailTemp.value == 2){
+            this.setState({
+                emailSubject: this.props.employerProfileDetail.name + " Interview Request"
+            });
+            let newtext2 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please select a time through the Calendly link below.<br/><br/>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newrichtext2 = RichTextEditor.createValueFromString(newtext2, 'html');
+            this.onChange1(newrichtext2);
+        }
+        if (emailTemp.value == 3){
+            this.setState({
+                emailSubject: this.props.employerProfileDetail.name + " Interview Availability"
+            });
+            let newtext3 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.<br/><br/>We'll coordinate with our team and confirm a time with you.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newrichtext3 = RichTextEditor.createValueFromString(newtext3, 'html');
+            this.onChange1(newrichtext3);
+        }
+        if (emailTemp.value == 4){
+            this.setState({
+                emailSubject: this.props.employerProfileDetail.name + " Interview Confirmation"
+            });
+            let newtext4 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.<br/><br/>You're confirmed for your interview on:<br/><br/>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]<br/><br/>Let us know if you have any other questions before your interview.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newrichtext4 = RichTextEditor.createValueFromString(newtext4, 'html');
+            this.onChange1(newrichtext4);
+        }
+        if (emailTemp.value == 5){
+            this.setState({
+                emailSubject: "Your application for "+this.state.job.job_title
+            });
+            let newtext5 = "Hi " + this.props.first_name + ",<br/><br/>We have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.<br/><br/>While it might not be the right fit now, we will keep you in mind for future opportunities.<br/><br/>Thank you for considering us "+this.props.employerProfileDetail.name+" your next place of work and we wish you luck in your search.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newrichtext5 = RichTextEditor.createValueFromString(newtext5, 'html');
+            this.onChange1(newrichtext5);
+        }
         this.setState({ emailTemp: emailTemp });
     };
 
@@ -91,9 +142,9 @@ export class EmailSending extends Component {
         };
         let data = {}
         if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-            data = { "to": this.props.email, "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.job.id) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject":"No-reply: "+this.state.emailSubject };
-        }else{
-            data = { "to": this.props.email, "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.job.id) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject":this.state.emailSubject };
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject": "No-reply: " + this.state.emailSubject };
+        } else {
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject": this.state.emailSubject };
         }
         axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
             console.log(res)
@@ -136,24 +187,28 @@ export class EmailSending extends Component {
         };
 
         var options = [
-            { value: '1', label: '1' },
-            { value: '2', label: '2' },
-            { value: '3', label: '3' }
+            { value: 2, label: 'Interview Request with Calendly' },
+            { value: 3, label: 'Candidate Availability Request' },
+            { value: 4, label: 'Candidate Interview Confirmation' },
+            { value: 5, label: 'Default Rejection' },
         ]
 
         var options1 = [
-            { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.job.id) + '@hirebeat.email' + '>'), label: 'Company Name' },
+            { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: 'Company Name' },
             { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
         ]
 
         var options2 = [
-            { value: 'val 1', label: 'val 1' },
-            { value: 'val 2', label: 'val 2' },
-        ]
-
-        var options3 = [
-            { value: 'val 123', label: 'val 123' },
-            { value: 'val 456', label: 'val 456' },
+            { value: this.props.first_name + " " + this.props.last_name, label: 'Candidate Full Name' },
+            { value: this.props.first_name, label: 'Candidate First Name' },
+            { value: this.props.last_name, label: 'Candidate Last Name' },
+            { value: this.props.employerProfileDetail.name, label: 'Company Name' },
+            { value: this.props.employerProfileDetail.website, label: 'Company Website' },
+            { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
+            { value: this.state.job.job_title, label: 'Job Title' },
+            { value: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name, label: 'Sender Full Name' },
+            { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
+            { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
         ]
 
         return (
@@ -174,7 +229,7 @@ export class EmailSending extends Component {
                             <Select value={this.state.emailVal} onChange={this.onFilter2} options={options2} styles={customStyles1} isSearchable={false} />
                             <input type="text" style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSubject" value={this.state.emailSubject} onChange={this.onChange} onPointerMove={this.onKeydown}></input>
                             <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Body</h3>
-                            <Select value={this.state.emailVal1} onChange={this.onFilter3} options={options3} styles={customStyles1} isSearchable={false} />
+                            <Select value={this.state.emailVal1} onChange={this.onFilter3} options={options2} styles={customStyles1} isSearchable={false} />
                             <RichTextEditor
                                 value={this.state.emailBody}
                                 onChange={this.onChange1}

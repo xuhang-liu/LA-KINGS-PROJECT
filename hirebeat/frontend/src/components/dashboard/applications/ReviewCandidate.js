@@ -6,6 +6,7 @@ import EmbedQuestionForm from "./../jobBoard/EmbedQuestionForm"
 import ApplicationVideo from "../videos/ApplicationVideo";
 import ReviewNote from "./ReviewNote";
 import EmailSending from "./EmailSending";
+import ViewEmailMessage from "./ViewEmailMessage";
 import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplicationTab";
 import BasicInfoEdition from "./BasicInfoEdition";
 import { connect } from "react-redux";
@@ -20,6 +21,7 @@ const ReviewCandidate = (props) => {
     const [viewResume, setViewResume] = useState(props.applicants[props.current].answers?.length > 0 ? false : true);
     const [viewVideo, setviewVideo] = useState(false);
     const [viewNotes, setViewNotes] = useState(false);
+    const [viewEmail, setViewEmail] = useState(false);
     const [viewApplication, setViewApplication] = useState(props.applicants[props.current].answers?.length > 0 ? true : false);
     const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
@@ -33,6 +35,7 @@ const ReviewCandidate = (props) => {
         setviewVideo(false);
         setViewNotes(false);
         setViewApplication(false);
+        setViewEmail(false);
     }
 
     function setViewVideos() {
@@ -40,6 +43,7 @@ const ReviewCandidate = (props) => {
         setviewVideo(true);
         setViewNotes(false);
         setViewApplication(false);
+        setViewEmail(false);
     }
 
     function setViewNotess() {
@@ -47,6 +51,7 @@ const ReviewCandidate = (props) => {
         setviewVideo(false);
         setViewNotes(true);
         setViewApplication(false);
+        setViewEmail(false);
     }
 
     function setViewApplications() {
@@ -54,6 +59,15 @@ const ReviewCandidate = (props) => {
         setviewVideo(false);
         setViewNotes(false);
         setViewApplication(true);
+        setViewEmail(false);
+    }
+
+    function setViewEmails() {
+        setViewResume(false);
+        setviewVideo(false);
+        setViewNotes(false);
+        setViewApplication(false);
+        setViewEmail(true);
     }
 
     function openMoveForm() {
@@ -625,6 +639,12 @@ const ReviewCandidate = (props) => {
                         >
                             Evaluation Notes
                         </h2>
+                        <h2
+                            className={viewEmail ? "head-btn-selected" : "head-btn-unselected"}
+                            onClick={() => { setViewEmails() }}
+                        >
+                            Message
+                        </h2>
                     </div>
                     {viewApplication &&
                         <ReviewApplicationTab
@@ -683,6 +703,13 @@ const ReviewCandidate = (props) => {
                             currentStage={props.currentStage}
                             reviewerType={props.curJob?.reviewer_type}
                             user={props.user}
+                        />
+                    }
+                    {viewEmail &&
+                        <ViewEmailMessage
+                            applicantEmail={props.applicant.email}
+                            employerProfileDetail={props.employerProfileDetail}
+                            jobid={props.curJob.job_details.id}
                         />
                     }
                 </div>
@@ -821,7 +848,9 @@ const ReviewCandidate = (props) => {
                     user={props.user}
                     profile={props.profile}
                     email={props.email}
-                    job={props.curJob.job_details}
+                    jobid={props.curJob.job_details.id}
+                    first_name={props.first_name}
+                    last_name={props.last_name}
                 />
             </MyModal80>
         </div >
