@@ -142,9 +142,9 @@ export class EmailSending extends Component {
         };
         let data = {}
         if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject": "No-reply: " + this.state.emailSubject };
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("html"), "subject": "No-reply: " + this.state.emailSubject };
         } else {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("markdown"), "subject": this.state.emailSubject };
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("html"), "subject": this.state.emailSubject };
         }
         axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
             console.log(res)
