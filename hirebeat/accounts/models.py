@@ -230,3 +230,10 @@ class PayGCreditToJob(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    
+class RedeemCode(models.Model): 
+    code = models.CharField(max_length=100, null=True, blank=True)
+    plan = models.CharField(max_length=100, null=True, blank=True)
+    is_redeemed = models.BooleanField(default=False)
+    dateredeemed = models.DateTimeField(null=True)
+    
