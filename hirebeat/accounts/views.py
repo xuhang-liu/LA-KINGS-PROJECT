@@ -21,7 +21,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience
+from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience, RedeemCode
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from questions.models import SubReviewers, ExternalReviewers
@@ -1213,3 +1213,53 @@ def add_credit_to_user(request):
     profile.save()
 
     return Response("Add credit to user successfully", status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def check_code(request):
+    code = request.data['code']
+    redeemrow= RedeemCode.objects.filter(code=code).first()
+    
+    try:
+        if redeemrow is not None:
+            if redeemrow.is_redeemed == True:
+                return Response({"error": "Code was already redeemed, please try another code!"})
+            else:
+                users = Profile.objects.filter(user_id=request.data["id"]) 
+                user = users[0]
+                redeemrow.is_redeemed = True
+                redeemrow.dateredeemed = date.today()
+                redeemrow.save()
+                plan = redeemrow.plan
+                # Employer plans
+                if plan == 'Basic':
+                    user.membership = 'Premium'
+                    user.plan_interval = 'Pro'
+                    user.position_limit = 1
+                elif plan == 'Pro':
+                    user.membership = 'Premium'
+                    user.plan_interval = 'Pro'
+                    user.position_limit = 5
+                elif plan == 'Pro Plus':
+                    user.membership = 'Premium'
+                    user.plan_interval = 'Pro'
+                    user.position_limit = 10
+                elif plan == 'Premium Lite':
+                    user.membership = 'Premium'
+                    user.plan_interval = 'Pro'
+                    user.position_limit = 50
+                elif plan == 'Premium Ultimate':
+                    user.membership = 'Premium'
+                    user.plan_interval = "Premium"
+                    user.position_limit = 1000
+                # job seeker plan
+                elif plan == "Life Bundle":
+                    user.membership = 'Premium'
+                    user.plan_interval = "Premium"
+                    user.position_limit = 1000
+                user.save()
+                return Response({"msg" : "Add a redeem code!", "plan": user.plan_interval})
+        else:
+            return Response({"error" : "Invalid Code. Please try again!"})
+    except ObjectDoesNotExist:
+        return Response({"error" : redeemrow})
