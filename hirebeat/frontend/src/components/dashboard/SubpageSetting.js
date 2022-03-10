@@ -6,6 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import axios from "axios";
+import { MessageClient } from "cloudmailin";
 
 export class SubpageSetting extends Component {
     state = {
@@ -17,6 +18,10 @@ export class SubpageSetting extends Component {
         confirmPassword: "",
         company_name: "",
         change_name_switch: false,
+        code: "",
+        codeMsg: "",
+        codeErr: "",
+        codePlan: ""
     };
 
     componentDidMount() {
@@ -25,6 +30,10 @@ export class SubpageSetting extends Component {
             location: this.props.profile.location,
             company_name: this.props.profile.company_name,
         });
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.codeMsgDisappear);
     }
 
     stripeCustomerPortal = () => {
@@ -105,6 +114,48 @@ export class SubpageSetting extends Component {
             // user email /go to database user social auth. Matching function. filter(same user id.) question view.(objects.filter)
         }
 
+    }
+
+    codeCheck = (event) => {
+        event.preventDefault();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+        let user_code = { "id": this.props.user.id, "code": this.state.code };
+        this.setState({
+            codeErr: "",
+            codeMsg: ""
+        })
+        axios.post("api/check_code", user_code, config).then(res => {
+            let result = res.data
+            if (result["error"] != null) {
+                this.setState({ codeErr: result["error"] })
+            }
+            else if (result["msg"] != null) {
+                this.setState({ codeMsg: result["msg"] })
+                if (result["plan"] != null) {
+                    this.setState({ codePlan: result["plan"] })
+                    this.props.updateProfile({
+                        user: this.props.user.id,
+                        id: this.props.profile.id,
+                        plan_interval: this.state.codePlan
+                    });
+                    if (this.props.profile.membership == "Premium" && (!this.props.profile.is_freetrial)) {
+                        const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
+                        client.sendMessage({
+                            to: ["xuhang.liu@hirebeat.co"],
+                            from: "HireBeat_Team@hirebeat.email",
+                            plain: this.props.user.email+" redeem a code.",
+                            subject: "HireBeat System notification"
+                        });
+                    }
+                }
+                this.codeMsgDisappear = setTimeout(() => this.setState({ codeMsg: "" }), 4000)
+            }
+
+        }).catch(error => console.log(error))
     }
 
     sendEmail(e) {
@@ -589,6 +640,9 @@ export class SubpageSetting extends Component {
                                         <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
                                 </div>
                             </div>
+
+                            {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><i className="bx bxs-check-circle" style={{ color: "green" }}></i><span className="ml-2" style={{ color: "#000", fontWeight: "bolder" }}>{this.state.codeMsg}</span></div> : null}
+
                             <div className="form-row">
                                 <div className="form-group col">
                                     {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null && this.props.profile.customer_id != "none") && (!this.props.profile.is_freetrial)) &&
@@ -598,6 +652,31 @@ export class SubpageSetting extends Component {
                                     }
                                 </div>
                             </div>
+                            <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
+                                <div className="form-row" style={{ marginTop: "1%" }}>
+                                    <div className="form-group col">
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="code"
+                                            value={this.state.code}
+                                            onChange={this.handleInputChange}
+                                            placeholder="Enter promo code"
+                                            required="required"
+                                        />
+
+                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                                    </div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                >
+                                    Apply
+                                </button>
+                            </form>
                         </div>
                     </div>}
                 {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
@@ -651,6 +730,32 @@ export class SubpageSetting extends Component {
                                     >
                                         Upgrade Plan
                                     </a>}
+                            </form>
+
+                            <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
+                                <div className="form-row" style={{ marginTop: "1%" }}>
+                                    <div className="form-group col">
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="code"
+                                            value={this.state.code}
+                                            onChange={this.handleInputChange}
+                                            placeholder="Enter promo code"
+                                            required="required"
+                                        />
+
+                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                                    </div>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                >
+                                    Apply
+                                </button>
                             </form>
                         </div>
                     </div>}
