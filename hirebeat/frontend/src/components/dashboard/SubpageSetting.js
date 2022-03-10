@@ -145,7 +145,7 @@ export class SubpageSetting extends Component {
                     if (this.props.profile.membership == "Premium" && (!this.props.profile.is_freetrial)) {
                         const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
                         client.sendMessage({
-                            to: ["xuhang.liu@hirebeat.co"],
+                            to: "xuhang.liu@hirebeat.co",
                             from: "HireBeat_Team@hirebeat.email",
                             plain: this.props.user.email+" redeem a code.",
                             subject: "HireBeat System notification"
@@ -156,6 +156,7 @@ export class SubpageSetting extends Component {
             }
 
         }).catch(error => console.log(error))
+        this.setState({code:""})
     }
 
     sendEmail(e) {
