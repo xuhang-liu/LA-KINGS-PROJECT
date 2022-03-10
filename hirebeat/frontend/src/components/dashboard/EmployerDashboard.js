@@ -14,7 +14,7 @@ import {
   updateProfile, loadProfile, loadUserFullname, getReceivedInterview, getRecordStatus, subreviewerUpdateComment,
   getEmployerProfileDetail, updateEmployerInfo, updateEmployerSocialMedia, updateEmployerBasicInfo, updateEmployerVideo,
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, updateEmployerLogo, checkUserExistence,
-  getSourcingData
+  getSourcingData, logout
 }
   from "../../redux/actions/auth_actions";
 import {
@@ -45,6 +45,7 @@ import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
 import Footer from "../layout/Footer";
 import axios from "axios";
+import IdleTimer from 'react-idle-timer'
 //import ReviewCandidate from "./applications/ReviewCandidate";
 
 function ScrollToTopOnMount() {
@@ -73,6 +74,11 @@ export class EmployerDashboard extends Component {
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
     sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
+
+    this.idleTimer = null
+    this.handleOnAction = this.handleOnAction.bind(this)
+    this.handleOnActive = this.handleOnActive.bind(this)
+    this.handleOnIdle = this.handleOnIdle.bind(this)
   }
 
   static propTypes = {
@@ -673,6 +679,22 @@ export class EmployerDashboard extends Component {
     }
   };
 
+  handleOnAction (event) {
+    console.log('user did something', event)
+  }
+
+  handleOnActive (event) {
+    console.log('user is active', event)
+    console.log('time remaining', this.idleTimer.getRemainingTime())
+  }
+
+  handleOnIdle (event) {
+    console.log('user is idle', event)
+    console.log('last active', this.idleTimer.getLastActiveTime())
+    sessionStorage.clear();
+    setTimeout(() => { this.props.logout() }, 300)
+  }
+
   render() {
     const meta = {
       title: 'HireBeat - Employer Dashboard',
@@ -688,6 +710,14 @@ export class EmployerDashboard extends Component {
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
+          <IdleTimer
+            ref={ref => { this.idleTimer = ref }}
+            timeout={1000 * 60 * 30}
+            onActive={this.handleOnActive}
+            onIdle={this.handleOnIdle}
+            onAction={this.handleOnAction}
+            debounce={250}
+          />
           {this.props.employerDetailLoaded ?
             <div>
               <MyModalUpgrade
@@ -881,7 +911,7 @@ export default connect(mapStateToProps, {
   updateEmployerSummary, getEmployerPost, addEmployerPost, updateEmployerPost, deleteEmployerPost, addNewJob, getAllJobs,
   updateJob, updateEmployerLogo, getjobidlist, getZRFeedXML, getZRPremiumFeedXML, checkUserExistence, getReviewNote, getReviewerEvaluation, getReviewersList, removeReviewerFromList,
   getCurrentReviewerEvaluation, createMergeLinkToken, retrieveMergeAccountToken, checkFreeAccountActiveJobs, sendMergeApiRequest, addCandFromMerge, getSourcingData, checkIfMasterActive,
-  checkPremiumJobList
+  checkPremiumJobList, logout
 })(
   EmployerDashboard
 );
