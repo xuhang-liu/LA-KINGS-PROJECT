@@ -1256,7 +1256,10 @@ def check_code(request):
                 elif plan == "Life Bundle":
                     user.membership = 'Premium'
                     user.plan_interval = "Premium"
-                    user.position_limit = 1000
+                    user.feedback_limit = 1000
+                    user.save_limit = 1000
+                    user.save_resume_limit = 1000
+                user.is_freetrial = False
                 user.save()
                 return Response({"msg" : "Add a redeem code!", "plan": user.plan_interval})
         else:

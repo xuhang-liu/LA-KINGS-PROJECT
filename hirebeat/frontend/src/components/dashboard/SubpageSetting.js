@@ -6,6 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import axios from "axios";
+import { MessageClient } from "cloudmailin";
 
 export class SubpageSetting extends Component {
     state = {
@@ -30,10 +31,10 @@ export class SubpageSetting extends Component {
             company_name: this.props.profile.company_name,
         });
     }
-      
+
     componentWillUnmount() {
         clearTimeout(this.codeMsgDisappear);
-      }
+    }
 
     stripeCustomerPortal = () => {
         let config = {
@@ -115,36 +116,45 @@ export class SubpageSetting extends Component {
 
     }
 
-    codeCheck = (event) =>{
+    codeCheck = (event) => {
         event.preventDefault();
         const config = {
             headers: {
                 "Content-Type": "application/json",
             }
         };
-        let user_code ={"id": this.props.user.id, "code": this.state.code};
+        let user_code = { "id": this.props.user.id, "code": this.state.code };
         this.setState({
             codeErr: "",
             codeMsg: ""
         })
-        axios.post("api/check_code", user_code, config).then(res =>{
+        axios.post("api/check_code", user_code, config).then(res => {
             let result = res.data
-            if (result["error"] != null){
-                this.setState({codeErr: result["error"]})
+            if (result["error"] != null) {
+                this.setState({ codeErr: result["error"] })
             }
-            else if (result["msg"] != null){
-                this.setState({codeMsg: result["msg"]})
-                if (result["plan"] != null){
-                    this.setState({codePlan: result["plan"]})
+            else if (result["msg"] != null) {
+                this.setState({ codeMsg: result["msg"] })
+                if (result["plan"] != null) {
+                    this.setState({ codePlan: result["plan"] })
                     this.props.updateProfile({
                         user: this.props.user.id,
                         id: this.props.profile.id,
                         plan_interval: this.state.codePlan
-                    })
+                    });
+                    if (this.props.profile.membership == "Premium" && (!this.props.profile.is_freetrial)) {
+                        const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
+                        client.sendMessage({
+                            to: ["xuhang.liu@hirebeat.co"],
+                            from: "HireBeat_Team@hirebeat.email",
+                            plain: this.props.user.email+" redeem a code.",
+                            subject: "HireBeat System notification"
+                        });
+                    }
                 }
-                this.codeMsgDisappear = setTimeout(()=> this.setState({codeMsg: ""}), 4000)
+                this.codeMsgDisappear = setTimeout(() => this.setState({ codeMsg: "" }), 4000)
             }
-            
+
         }).catch(error => console.log(error))
     }
 
@@ -631,8 +641,8 @@ export class SubpageSetting extends Component {
                                 </div>
                             </div>
 
-                            {this.state.codeMsg.length != 0 ? <div style={{border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign:"middle"}}><i className="bx bxs-check-circle" style={{color: "green"}}></i><span className="ml-2" style={{color: "#000", fontWeight: "bolder"}}>{this.state.codeMsg}</span></div> : null}
-                            
+                            {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><i className="bx bxs-check-circle" style={{ color: "green" }}></i><span className="ml-2" style={{ color: "#000", fontWeight: "bolder" }}>{this.state.codeMsg}</span></div> : null}
+
                             <div className="form-row">
                                 <div className="form-group col">
                                     {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null && this.props.profile.customer_id != "none") && (!this.props.profile.is_freetrial)) &&
@@ -656,7 +666,7 @@ export class SubpageSetting extends Component {
                                             required="required"
                                         />
 
-                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{color:'#FB0000'}}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
                                     </div>
                                 </div>
                                 <button
@@ -736,7 +746,7 @@ export class SubpageSetting extends Component {
                                             required="required"
                                         />
 
-                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{color:'#FB0000'}}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
                                     </div>
                                 </div>
                                 <button
