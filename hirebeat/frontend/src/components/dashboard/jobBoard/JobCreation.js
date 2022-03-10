@@ -391,7 +391,9 @@ export class JobCreation extends Component {
                 this.props.addNewJob(data);
                 setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
                 setTimeout(() => { this.showSharePrompt() }, 300);
-                this.handlePremiumJobUpgrade();
+                if (this.state.job_post == 2) {
+                    this.handlePremiumJobUpgrade();
+                }
             }
         }
     }
@@ -583,10 +585,10 @@ export class JobCreation extends Component {
     handleQFormChange = (i, key, e) => {
         let questions = [...this.state.questions];
         questions[i][key] = e.target.value;
-        if (key=="isMustHave") {
+        if (key == "isMustHave") {
             if (e.target.checked) {
                 questions[i][key] = "true";
-            }else{
+            } else {
                 questions[i][key] = "";
             }
         }
