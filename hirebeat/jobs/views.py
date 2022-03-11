@@ -1408,7 +1408,7 @@ def receive_email_from_cloudmail(request):
 
 @api_view(['GET'])
 def get_most_recent_job(request):
-    jobs = Jobs.objects.all().first()
+    jobs = Jobs.objects.all().last()
     return Response({
         "data": model_to_dict(jobs)
     })
