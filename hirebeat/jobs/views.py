@@ -1403,6 +1403,10 @@ def receive_email_from_cloudmail(request):
     from_email = request.data["headers"]["from"]
     subject = request.data["headers"]["subject"]
     plain_text = request.data["plain"]
+    if "_" in plain_text:
+        plain_text = plain_text.split("_")[0]
+    if "-" in plain_text:
+        plain_text = plain_text.split("-")[0]
     ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject,is_received=True)
     return Response("Receive successfully", status=status.HTTP_202_ACCEPTED)
 
