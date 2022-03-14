@@ -66,6 +66,7 @@ export class AllCandidates extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     }
 
     onChange = (e) => {

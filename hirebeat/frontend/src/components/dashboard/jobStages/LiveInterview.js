@@ -76,6 +76,7 @@ export function LiveInterview(props) {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     }
 
     const [keyWords, setkeyWords] = useState("");

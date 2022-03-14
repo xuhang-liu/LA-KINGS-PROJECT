@@ -12,7 +12,7 @@ import MediaQuery from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 var ReactS3Uploader = require("react-s3-uploader");
 import RichTextEditor from 'react-rte';
-import Select from 'react-select';
+// import Select from 'react-select';
 import Autocomplete from "react-google-autocomplete";
 import ApplyQuestion from "./ApplyQuestion";
 

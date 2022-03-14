@@ -4108,6 +4108,18 @@ max-width: 110px;
   border-radius: 5px;
 }
 
+.text-editor3 {
+  font-family: Inter, Segoe UI;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  color: #090D3A;
+  border: 2px solid #67A3F3;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
 .tech-field-txt {
   font-family: Poppins;
   font-style: normal;

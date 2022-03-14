@@ -6,7 +6,7 @@ from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_a
     add_cand_from_merge, check_interview_candidates_num, get_pipeline_analytics, add_new_apply_candidate_by_cv, \
     check_id_master_active, check_subreviewer_currentstage, greenhouse_api_test, greenhouse_update_invite_status, greenhouse_get_interview_stages, \
     update_applicant_basic_info, switch_job_closed_status, assign_credit_to_job, receive_email_from_cloudmail, get_most_recent_job, \
-    premium_job_payment_suc, check_premium_job_list
+    premium_job_payment_suc, check_premium_job_list, send_email_from_cloudmail, get_single_job_details, get_email_message_list
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -44,5 +44,8 @@ urlpatterns = [
     path('jobs/receive-email-from-cloudmail', receive_email_from_cloudmail),
     path('jobs/get-most-recent-job', get_most_recent_job),
     path('jobs/premium-job-payment-suc', premium_job_payment_suc),
-    path('jobs/check-premium-job-list', check_premium_job_list)
+    path('jobs/check-premium-job-list', check_premium_job_list),
+    path('jobs/send-email-from-cloudmail', send_email_from_cloudmail),
+    path('jobs/get-single-job-details', get_single_job_details),
+    path("jobs/get-email-message-list", get_email_message_list)
 ]

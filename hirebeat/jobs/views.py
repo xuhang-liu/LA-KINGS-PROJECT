@@ -29,6 +29,7 @@ import requests
 import json
 import math
 from django.forms.models import model_to_dict
+from django.db.models import Q
 
 
 @api_view(['POST'])
@@ -1401,7 +1402,7 @@ def receive_email_from_cloudmail(request):
     to_email = request.data["headers"]["to"]
     from_email = request.data["headers"]["from"]
     subject = request.data["headers"]["subject"]
-    plain_text = request.data["plain"]
+    plain_text = request.data["reply_plain"]
     ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject,is_received=True)
     return Response("Receive successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -1438,3 +1439,29 @@ def check_premium_job_list(request):
                 job.job_post = 1
                 job.save()
     return Response("Update successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def send_email_from_cloudmail(request):
+    to_email = request.data["to"]
+    from_email = request.data["from"]
+    subject = request.data["subject"]
+    plain_text = request.data["plain"]
+    ReceivedEmail.objects.create(to_email=to_email,from_email=from_email,plain_text=plain_text,subject=subject)
+    return Response("Send successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def get_single_job_details(request):
+    jobid = request.data["jobid"]
+    jobs = Jobs.objects.get(pk=jobid)
+    return Response({
+        "data": model_to_dict(jobs)
+    })
+
+@api_view(['POST'])
+def get_email_message_list(request):
+    applicantEmail = request.data["applicantEmail"]
+    companyname = request.data["companyname"]
+    receivedEmail = ReceivedEmail.objects.filter((Q(to_email__contains=applicantEmail) | Q(to_email__contains=companyname)), (Q(from_email__contains=applicantEmail) | Q(from_email__contains=companyname))).values()
+    return Response({
+        "data": receivedEmail
+    })

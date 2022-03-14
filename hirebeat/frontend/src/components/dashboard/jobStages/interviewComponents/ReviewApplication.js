@@ -9,7 +9,9 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./ReviewNote";
 import MoveForm from "./MoveForm";
 import ReviewApplicationTab from "./ReviewApplicationTab";
-import { MyModalShare2 } from "../../DashboardComponents";
+import ViewEmailMessage from "../../applications/ViewEmailMessage";
+import { MyModalShare2, MyModal80 } from "../../DashboardComponents";
+import EmailSending from "../../applications/EmailSending";
 import axios from "axios";
 import Select from 'react-select';
 import BasicInfoEdition from "./BasicInfoEdition";
@@ -23,12 +25,14 @@ export class ReviewApplication extends Component {
             viewResume: hasExtraQuestions ? false : true,
             viewVideo: false,
             viewNotes: false,
+            viewEmail: false,
             viewApplication: hasExtraQuestions ? true : false,
             showMoveForm: false,
             currentStage: this.props.currentStage,
             nextStage: "",
             showMoveSuccessAlert: false,
             showRejectSuccessAlert: false,
+            showEmailSending: false,
             isReject: true,
             showRejectNote: false,
             rejectNotes: null,
@@ -66,6 +70,7 @@ export class ReviewApplication extends Component {
             viewVideo: false,
             viewNotes: false,
             viewApplication: false,
+            viewEmail: false,
         })
     }
 
@@ -75,6 +80,7 @@ export class ReviewApplication extends Component {
             viewVideo: true,
             viewNotes: false,
             viewApplication: false,
+            viewEmail: false,
         })
     }
 
@@ -84,6 +90,7 @@ export class ReviewApplication extends Component {
             viewVideo: false,
             viewNotes: true,
             viewApplication: false,
+            viewEmail: false,
         })
     }
 
@@ -93,6 +100,17 @@ export class ReviewApplication extends Component {
             viewVideo: false,
             viewNotes: false,
             viewApplication: true,
+            viewEmail: false,
+        })
+    }
+
+    setViewEmails = () => {
+        this.setState({
+            viewResume: false,
+            viewVideo: false,
+            viewNotes: false,
+            viewApplication: false,
+            viewEmail: true,
         })
     }
 
@@ -366,6 +384,10 @@ export class ReviewApplication extends Component {
         this.setState({ showRejectSuccessAlert: false });
     }
 
+    hideEmailSending = () => {
+        this.setState({ showEmailSending: false });
+    }
+
     enableRejectSuccessAlert = (type) => {
         if (type == "Rejected") {
             this.setState({ showRejectSuccessAlert: true, isReject: true });
@@ -604,6 +626,15 @@ export class ReviewApplication extends Component {
                                                 <i class='bx-fw bx bxs-x-square' style={{ color: "#090D3A" }}></i>Reject
                                             </button>
                                         }
+                                        <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                            <button
+                                                onClick={() => this.setState({ showEmailSending: true })}
+                                                className="default-btn4"
+                                                style={{ paddingLeft: "25px", width: "13vw" }}
+                                            >
+                                                <i class='bx-fw bx bx-envelope' style={{ color: "#090d3a" }}></i> Email
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             }
@@ -698,6 +729,15 @@ export class ReviewApplication extends Component {
                                             </button>
                                         </div>
                                     }
+                                    <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                        <button
+                                            onClick={() => this.setState({ showEmailSending: true })}
+                                            className="default-btn4"
+                                            style={{ paddingLeft: "25px", width: "13vw" }}
+                                        >
+                                            <i class='bx-fw bx bx-envelope' style={{ color: "#090d3a" }}></i> Email
+                                        </button>
+                                    </div>
                                 </div>
                             }
                             <div>
@@ -750,6 +790,12 @@ export class ReviewApplication extends Component {
                                     onClick={() => { this.setViewNotes() }}
                                 >
                                     Evaluation Notes
+                                </h2>
+                                <h2
+                                    className={this.state.viewEmail ? "head-btn-selected" : "head-btn-unselected"}
+                                    onClick={() => { this.setViewEmails() }}
+                                >
+                                    Message
                                 </h2>
                             </div>
                             {this.state.viewApplication &&
@@ -817,6 +863,13 @@ export class ReviewApplication extends Component {
                                     user={this.props.user}
                                 />
                             }
+                            {this.state.viewEmail &&
+                                <ViewEmailMessage
+                                    applicantEmail={this.props.applicants[this.props.current].email}
+                                    employerProfileDetail={this.props.employerProfileDetail}
+                                    jobid={this.props.jobsId}
+                                />
+                            }
                         </div>
                     </div>
                 </div>
@@ -870,6 +923,18 @@ export class ReviewApplication extends Component {
                         </div>
                     </div>
                 </AlertModal>
+                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={this.hideEmailSending}
+                        employerProfileDetail={this.props.employerProfileDetail}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        email={this.props.applicants[this.props.current].email}
+                        jobid={this.props.jobsId}
+                        first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
+                        last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
+                    />
+                </MyModal80>
             </div>
         )
     };
