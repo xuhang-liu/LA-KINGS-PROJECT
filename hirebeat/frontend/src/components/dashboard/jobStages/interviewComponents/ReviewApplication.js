@@ -9,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReviewNote from "./ReviewNote";
 import MoveForm from "./MoveForm";
 import ReviewApplicationTab from "./ReviewApplicationTab";
+import ViewEmailMessage from "../../applications/ViewEmailMessage";
 import { MyModalShare2, MyModal80 } from "../../DashboardComponents";
 import EmailSending from "../../applications/EmailSending";
 import axios from "axios";
@@ -863,7 +864,11 @@ export class ReviewApplication extends Component {
                                 />
                             }
                             {this.state.viewEmail &&
-                                <p>1231231</p>
+                                <ViewEmailMessage
+                                    applicantEmail={this.props.applicants[this.props.current].email}
+                                    employerProfileDetail={this.props.employerProfileDetail}
+                                    jobid={this.props.jobsId}
+                                />
                             }
                         </div>
                     </div>

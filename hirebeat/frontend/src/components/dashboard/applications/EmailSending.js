@@ -57,7 +57,7 @@ export class EmailSending extends Component {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Request"
             });
-            let newtext2 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please select a time through the Calendly link below.<br/><br/>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newtext2 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please select a time through the Calendly link below.<br/><br/><b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b><br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
             let newrichtext2 = RichTextEditor.createValueFromString(newtext2, 'html');
             this.onChange1(newrichtext2);
         }
@@ -65,7 +65,7 @@ export class EmailSending extends Component {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Availability"
             });
-            let newtext3 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.<br/><br/>We'll coordinate with our team and confirm a time with you.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newtext3 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.<br/><br/><b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b><br/><br/>We'll coordinate with our team and confirm a time with you.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
             let newrichtext3 = RichTextEditor.createValueFromString(newtext3, 'html');
             this.onChange1(newrichtext3);
         }
@@ -73,7 +73,7 @@ export class EmailSending extends Component {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Confirmation"
             });
-            let newtext4 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.<br/><br/>You're confirmed for your interview on:<br/><br/>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]<br/><br/>Let us know if you have any other questions before your interview.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
+            let newtext4 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.<br/><br/>You're confirmed for your interview on:<br/><br/><b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b><br/><br/>Let us know if you have any other questions before your interview.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
             let newrichtext4 = RichTextEditor.createValueFromString(newtext4, 'html');
             this.onChange1(newrichtext4);
         }
@@ -84,6 +84,14 @@ export class EmailSending extends Component {
             let newtext5 = "Hi " + this.props.first_name + ",<br/><br/>We have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.<br/><br/>While it might not be the right fit now, we will keep you in mind for future opportunities.<br/><br/>Thank you for considering us "+this.props.employerProfileDetail.name+" your next place of work and we wish you luck in your search.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
             let newrichtext5 = RichTextEditor.createValueFromString(newtext5, 'html');
             this.onChange1(newrichtext5);
+        }
+        if (emailTemp.value == 0){
+            this.setState({
+                emailSubject: ""
+            });
+            let newtext0 = "";
+            let newrichtext0 = RichTextEditor.createValueFromString(newtext0, 'html');
+            this.onChange1(newrichtext0);
         }
         this.setState({ emailTemp: emailTemp });
     };
@@ -191,6 +199,7 @@ export class EmailSending extends Component {
             { value: 3, label: 'Candidate Availability Request' },
             { value: 4, label: 'Candidate Interview Confirmation' },
             { value: 5, label: 'Default Rejection' },
+            { value: 0, label: 'No Selection' },
         ]
 
         var options1 = [
