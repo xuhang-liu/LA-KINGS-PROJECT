@@ -27,7 +27,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['34.230.181.0', '52.86.229.28', 'app.hirebeat.co', 'www.hirebeat.co','hirebeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1", "xlstage.hirebeat.co"]
+ALLOWED_HOSTS = ['34.230.181.0', '52.86.229.28', 'app.hirebeat.co', 'www.hirebeat.co', 'hirebeat.co',
+                 'localhost', "169.254.169.254", "[::ffff:a9fe:a9fe]", "127.0.0.1", "xlstage.hirebeat.co"]
 #ALLOWED_HOSTS = ['34.196.254.228','www.castbeat.co','castbeat.co','career.castbeat.co','localhost',"169.254.169.254","[::ffff:a9fe:a9fe]","127.0.0.1"]
 #ALLOWED_HOSTS = ["*"]
 
@@ -54,7 +55,8 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':('knox.auth.TokenAuthentication',) # , is required otherwise viewed as a string
+    # , is required otherwise viewed as a string
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
 }
 
 MIDDLEWARE = [
@@ -67,7 +69,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django_seo_js.middleware.EscapedFragmentMiddleware',  # If you're using #!
-    'django_seo_js.middleware.UserAgentMiddleware',  # If you want to detect by user agent
+    # If you want to detect by user agent
+    'django_seo_js.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'hirebeat.urls'
@@ -164,45 +167,51 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # List all credientials here
-SOCIAL_AUTH_FACEBOOK_KEY=os.getenv("SOCIAL_AUTH_FACEBOOK_KEY")
-SOCIAL_AUTH_FACEBOOK_SECRET=os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET")
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv("SOCIAL_AUTH_FACEBOOK_KEY")
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET")
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY=os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv(
+    "SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [...]
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY=os.getenv("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY")
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET=os.getenv("SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET")
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY")
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = os.getenv(
+    "SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET")
 
 SOCIAL_AUTH_PIPELINE = (
-  'social_core.pipeline.social_auth.social_details',
-  'social_core.pipeline.social_auth.social_uid',
-  'social_core.pipeline.social_auth.auth_allowed',
-  'social_core.pipeline.social_auth.social_user',
-  'social_core.pipeline.user.get_username',
-  'social_core.pipeline.social_auth.associate_by_email',
-  'social_core.pipeline.user.create_user',
-  'social_core.pipeline.social_auth.associate_user',
-  'social_core.pipeline.social_auth.load_extra_data',
-  'social_core.pipeline.user.user_details',
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
 )
+
+REST_KNOX = {
+    'TOKEN_TTL': None,  # default time 10h
+}
 
 ### smtp configuration ###
 
-#EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
-EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST="smtp.gmail.com"
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=os.getenv("HIREBEAT_GMAIL")
-EMAIL_HOST_PASSWORD=os.getenv("HIREBEAT_GMAIL_PASSWORD")
+# EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("HIREBEAT_GMAIL")
+EMAIL_HOST_PASSWORD = os.getenv("HIREBEAT_GMAIL_PASSWORD")
 
-### djangostripe
+# djangostripe
 
 #STRIPE_TEST_PUBLIC_KEY ='pk_test_51H4wpRKxU1MN2zWMpM0uKcYl4zZGDIecT8lKilLjKPax7kNxgGrXJEYsAGwQOSTAXOSM8CZC8DlnotePGf6l6KUY00F0TbxnIQ'
 #STRIPE_TEST_SECRET_KEY = 'sk_test_51H4wpRKxU1MN2zWMSFbyyFroEGjV9yOCh7wtZj6A15FyJJHjTGuiLGfL6pmYpR9CpbjouDYpWaCqRJBvG0hLOljC00fSxnuMxT'
-#STRIPE_LIVE_MODE = False  # Change to True in production
+# STRIPE_LIVE_MODE = False  # Change to True in production
 #DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
 ### STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", "<your publishable key>")
 ### STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "<your secret key>")

@@ -17,6 +17,7 @@ import axios from "axios";
 export class JobPortalPage extends Component {
     constructor(props) {
         super(props);
+        window.scrollTo(0, 0);
         this.state = {
             portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
             reviewerStage: []
