@@ -188,10 +188,6 @@ SOCIAL_AUTH_PIPELINE = (
   'social_core.pipeline.user.user_details',
 )
 
-REST_KNOX = {
-    'TOKEN_TTL': None,  # will create tokens that never expire
-}
-
 ### smtp configuration ###
 
 #EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
