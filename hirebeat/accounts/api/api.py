@@ -124,7 +124,6 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             profile.is_subreviwer = True
             profile.company_name = subReviewer[0].company_name
             profile.is_freetrial = False
-            EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"])
             for s in range(len(subReviewer)):
                 subReviewer[s].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 subReviewer[s].save()
@@ -133,13 +132,13 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             profile.is_external_reviewer = True
             profile.company_name = ex_reviewer[0].company_name
             profile.is_freetrial = False
-            EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"])
             for e in range(len(ex_reviewer)):
                 ex_reviewer[e].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 ex_reviewer[e].save()
         profile.plan_interval = "Premium"
         profile.membership = "Premium"
         profile.save()
+        EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"])
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
