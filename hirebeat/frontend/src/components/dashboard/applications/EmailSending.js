@@ -28,12 +28,12 @@ export class EmailSending extends Component {
     state = {
         job: {},
         emailTemp: { value: 0, label: 'Template' },
-        emailFrom: { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: 'Company Name' },
+        emailFrom: { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: this.props.employerProfileDetail?.name },
         emailVal: { value: "INSERT VARIABLE", label: 'INSERT VARIABLE' },
         emailVal1: { value: "INSERT VARIABLE", label: 'INSERT VARIABLE' },
         emailSubject: "",
         cursorPosition1: 0,
-        emailBody: RichTextEditor.createEmptyValue(),
+        emailBody: "",
         cursorPosition2: 0,
         addOnBottom: '<hr style="margin-top:4rem; border:2px solid rgba(202, 217, 252, 0.5)"/><p style="color:#d0d0d0; font-size:0.8rem">If you have got questions or want to give us some feedback, you can reply to this email and it will go straight to the hiring team responsible for this role.</p>'
     }
@@ -57,41 +57,46 @@ export class EmailSending extends Component {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Request"
             });
-            let newtext2 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please select a time through the Calendly link below.<br/><br/><b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b><br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
-            let newrichtext2 = RichTextEditor.createValueFromString(newtext2, 'html');
-            this.onChange1(newrichtext2);
+            let newtext2 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please select a time through the Calendly link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailBody: newtext2
+            });
         }
         if (emailTemp.value == 3){
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Availability"
             });
-            let newtext3 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.<br/><br/>To help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.<br/><br/><b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b><br/><br/>We'll coordinate with our team and confirm a time with you.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
-            let newrichtext3 = RichTextEditor.createValueFromString(newtext3, 'html');
-            this.onChange1(newrichtext3);
+            let newtext3 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nWe'll coordinate with our team and confirm a time with you.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailBody: newtext3
+            });
         }
         if (emailTemp.value == 4){
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Confirmation"
             });
-            let newtext4 = "Hi " + this.props.first_name + ",<br/><br/>Thanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.<br/><br/>You're confirmed for your interview on:<br/><br/><b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b><br/><br/>Let us know if you have any other questions before your interview.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
-            let newrichtext4 = RichTextEditor.createValueFromString(newtext4, 'html');
-            this.onChange1(newrichtext4);
+            let newtext4 = "Hi " + this.props.first_name + ",\n\nThanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.\n\nYou're confirmed for your interview on:\n\n<b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b>\n\nLet us know if you have any other questions before your interview.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailBody: newtext4
+            });
         }
         if (emailTemp.value == 5){
             this.setState({
                 emailSubject: "Your application for "+this.state.job.job_title
             });
-            let newtext5 = "Hi " + this.props.first_name + ",<br/><br/>We have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.<br/><br/>While it might not be the right fit now, we will keep you in mind for future opportunities.<br/><br/>Thank you for considering us "+this.props.employerProfileDetail.name+" your next place of work and we wish you luck in your search.<br/><br/>Regards,<br/><br/>" + this.props.employerProfileDetail.f_name;
-            let newrichtext5 = RichTextEditor.createValueFromString(newtext5, 'html');
-            this.onChange1(newrichtext5);
+            let newtext5 = "Hi " + this.props.first_name + ",\n\nWe have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.\n\nWhile it might not be the right fit now, we will keep you in mind for future opportunities.\n\nThank you for considering us "+this.props.employerProfileDetail.name+" your next place of work and we wish you luck in your search.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailBody: newtext5
+            });
         }
         if (emailTemp.value == 0){
             this.setState({
                 emailSubject: ""
             });
             let newtext0 = "";
-            let newrichtext0 = RichTextEditor.createValueFromString(newtext0, 'html');
-            this.onChange1(newrichtext0);
+            this.setState({
+                emailBody: newtext0
+            });
         }
         this.setState({ emailTemp: emailTemp });
     };
@@ -113,10 +118,10 @@ export class EmailSending extends Component {
     };
 
     onFilter3 = (emailVal1) => {
-        let converttext = this.state.emailBody.toString("markdown");
-        let newtext = converttext + emailVal1.value;
-        let newrichtext = RichTextEditor.createValueFromString(newtext, 'html');
-        this.onChange1(newrichtext);
+        let textBeforeCursorPosition = this.state.emailBody.substring(0, this.state.cursorPosition2)
+        let textAfterCursorPosition = this.state.emailBody.substring(this.state.cursorPosition2, this.state.emailBody.length)
+        let newBody = textBeforeCursorPosition + emailVal1.value + textAfterCursorPosition
+        this.setState({ emailBody: newBody });
     };
 
     onChange = (e) => {
@@ -125,8 +130,10 @@ export class EmailSending extends Component {
         });
     };
 
-    onChange1 = (emailBody) => {
-        this.setState({ emailBody });
+    onChange1 = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
     };
 
     onKeydown = (e) => {
@@ -135,12 +142,18 @@ export class EmailSending extends Component {
         })
     };
 
+    onKeydown1 = (e) => {
+        this.setState({
+            cursorPosition2: e.target.selectionStart
+        })
+    };
+
     sendEmail = () => {
         const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
         client.sendMessage({
             to: this.props.email,
             from: this.state.emailFrom.value,
-            html: this.state.emailBody.toString("html") + this.state.addOnBottom,
+            html: (this.props.employerProfileDetail.logo_url==""||this.props.employerProfileDetail.logo_url==null)?"":('<div><img style="text-align: center; max-width: 6rem; margin-bottom: 1rem;" src="'+this.props.employerProfileDetail.logo_url+'" alt="logo"/></div>') + this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
             subject: this.state.emailSubject
         });
         const config = {
@@ -203,7 +216,7 @@ export class EmailSending extends Component {
         ]
 
         var options1 = [
-            { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: 'Company Name' },
+            { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: this.props.employerProfileDetail?.name },
             { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
         ]
 
@@ -239,12 +252,7 @@ export class EmailSending extends Component {
                             <input type="text" style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSubject" value={this.state.emailSubject} onChange={this.onChange} onPointerMove={this.onKeydown}></input>
                             <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Body</h3>
                             <Select value={this.state.emailVal1} onChange={this.onFilter3} options={options2} styles={customStyles1} isSearchable={false} />
-                            <RichTextEditor
-                                value={this.state.emailBody}
-                                onChange={this.onChange1}
-                                toolbarConfig={toolbarConfig}
-                                className="text-editor3"
-                            />
+                            <textarea style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '14rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailBody" value={this.state.emailBody} onChange={this.onChange1} onPointerMove={this.onKeydown1}>{this.state.emailBody}</textarea>
                         </div>
 
                         {/*Right */}
@@ -260,7 +268,7 @@ export class EmailSending extends Component {
                                 </div>
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>
                                     <div>
-                                        {parse('' + this.state.emailBody.toString("html") + this.state.addOnBottom + '')}
+                                        {parse("" + this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom + "")}
                                     </div>
                                 </div>
                             </div>

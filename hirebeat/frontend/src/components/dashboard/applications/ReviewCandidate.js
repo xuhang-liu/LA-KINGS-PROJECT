@@ -710,6 +710,8 @@ const ReviewCandidate = (props) => {
                             applicantEmail={props.applicant.email}
                             employerProfileDetail={props.employerProfileDetail}
                             jobid={props.curJob.job_details.id}
+                            first_name={props.first_name}
+                            last_name={props.last_name}
                         />
                     }
                 </div>

@@ -680,12 +680,12 @@ export class EmployerDashboard extends Component {
   };
 
   handleOnAction (event) {
-    console.log('user did something', event)
+    // console.log('user did something', event)
   }
 
   handleOnActive (event) {
-    console.log('user is active', event)
-    console.log('time remaining', this.idleTimer.getRemainingTime())
+    // console.log('user is active', event)
+    // console.log('time remaining', this.idleTimer.getRemainingTime())
   }
 
   handleOnIdle (event) {

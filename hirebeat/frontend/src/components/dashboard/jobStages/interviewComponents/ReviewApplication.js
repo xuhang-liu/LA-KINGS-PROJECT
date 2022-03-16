@@ -868,6 +868,8 @@ export class ReviewApplication extends Component {
                                     applicantEmail={this.props.applicants[this.props.current].email}
                                     employerProfileDetail={this.props.employerProfileDetail}
                                     jobid={this.props.jobsId}
+                                    first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
+                                    last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
                                 />
                             }
                         </div>

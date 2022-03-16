@@ -65,7 +65,7 @@ export class ViewEmailMessage extends Component {
                                             <div className="col-5" />
                                             <div className="col-7">
                                                 <div className="d-flex justify-content-end">
-                                                    <h3 className="profile-h3" style={{ fontSize: "1rem" }}>{eml?.from_email?.split("<")[0]}</h3>
+                                                    <h3 className="profile-h3" style={{ fontSize: "1rem" }}>{this.props.first_name+" "+this.props.last_name}</h3>
                                                     <i className='bx-fw bx bxs-user-circle bx-md' style={{ color: "#ff6b00" }}></i>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
