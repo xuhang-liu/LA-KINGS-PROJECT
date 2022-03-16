@@ -153,7 +153,7 @@ export class EmailSending extends Component {
         client.sendMessage({
             to: this.props.email,
             from: this.state.emailFrom.value,
-            html: (this.props.employerProfileDetail.logo_url==""||this.props.employerProfileDetail.logo_url==null)?"":('<div><img style="text-align: center; max-width: 6rem; margin-bottom: 1rem;" src="'+this.props.employerProfileDetail.logo_url+'" alt="logo"/></div>') + this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
+            html: this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
             subject: this.state.emailSubject
         });
         const config = {
@@ -163,9 +163,9 @@ export class EmailSending extends Component {
         };
         let data = {}
         if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("html"), "subject": "No-reply: " + this.state.emailSubject };
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
         } else {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.toString("html"), "subject": this.state.emailSubject };
+            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
         }
         axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
             console.log(res)
@@ -259,11 +259,7 @@ export class EmailSending extends Component {
                         <div className="col-7" style={{ backgroundColor: "rgba(232, 237, 252, 0.2)", borderRadius: "4px" }}>
                             <h3 className="profile-h3 pl-4" style={{ fontSize: "1rem", paddingTop: "3rem" }}>Email Preview</h3>
                             <div style={{ backgroundColor: "#fff", border: "2px solid #E8EDFC", borderRadius: "4px", margin: "1.6rem" }}>
-                                <div className="d-flex justify-content-center" style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
-                                    {(this.props.employerProfileDetail.logo_url != "" && this.props.employerProfileDetail.logo_url != null) &&
-                                        <img style={{ maxWidth: "6rem" }} src={this.props.employerProfileDetail.logo_url} alt="logo"></img>}
-                                </div>
-                                <div className="d-flex justify-content-center">
+                                <div className="d-flex justify-content-center px-5 py-4" style={{ paddingTop: "2rem" }}>
                                     <h3 className="profile-h3" style={{ fontSize: "1.4rem", fontWeight: "600" }}>{this.state.emailSubject}</h3>
                                 </div>
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>

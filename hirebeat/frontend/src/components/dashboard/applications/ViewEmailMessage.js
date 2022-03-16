@@ -69,7 +69,7 @@ export class ViewEmailMessage extends Component {
                                                     <i className='bx-fw bx bxs-user-circle bx-md' style={{ color: "#ff6b00" }}></i>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
-                                                    <div className="p-3" style={{ borderRadius: "0px 21px 21px 21px", backgroundColor: "#F5F5F5", width:"41rem" }}>
+                                                    <div className="p-3" style={{ borderRadius: "21px 0px 21px 21px", backgroundColor: "#F5F5F5", width:"41rem" }}>
                                                         <h3 className="profile-h3" style={{ fontSize: "0.9rem", marginBottom: "1rem" }}>Subject: {eml?.subject}</h3>
                                                         <h3 className="profile-p" style={{ fontSize: "0.9rem" }}>{parse(""+eml?.plain_text+"")}</h3>
                                                     </div>
