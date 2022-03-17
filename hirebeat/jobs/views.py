@@ -582,18 +582,25 @@ def create_zr_job_feed(job_detail):
         title.text = job_detail['job_title']
     description.text = job_detail['job_description']
     location = job_detail['job_location'].split(',')
-    if len(location) < 3:
-        country.text = location[1].strip()
+    if len(location) > 0:
+        if len(location) < 3:
+            country.text = location[1].strip()
+            if "|" in location[1].strip():
+                country.text = location[1].strip().split("|")[0]
+        else:
+            country.text = 'US'
+        if len(location) < 3:
+            city.text = location[0]
+        else:
+            city.text = location[0]
+        if len(location) < 3:
+            state.text = ""
+        else:
+            state.text = location[1].strip()
     else:
         country.text = 'US'
-    if len(location) < 3:
-        city.text = location[0]
-    else:
-        city.text = location[0]
-    if len(location) < 3:
-        state.text = ""
-    else:
-        state.text = location[1].strip()
+        city.text = "New York"
+        state.text = "NY"
     company.text = job_detail['company_name']
     date.text = job_detail['create_date'].strftime("%c")
     url.text = job_detail['job_url'].strip().replace(" ", "%20")
