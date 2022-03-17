@@ -1,5 +1,4 @@
 #from django.shortcuts import render
-from asyncio.windows_events import NULL
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList
