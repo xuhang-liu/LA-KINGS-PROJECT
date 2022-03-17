@@ -1404,6 +1404,7 @@ def receive_email_from_cloudmail(request):
     subject = request.data["headers"]["subject"]
     plain_text = request.data["reply_plain"]
     if len(plain_text) < 2:
+        plain_text = request.data["plain"]
         if "___" in plain_text:
             plain_text = plain_text.split("___")[0]
         if "---" in plain_text:
