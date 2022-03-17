@@ -1,4 +1,5 @@
 #from django.shortcuts import render
+from asyncio.windows_events import NULL
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList
@@ -1402,10 +1403,8 @@ def receive_email_from_cloudmail(request):
     to_email = request.data["headers"]["to"]
     from_email = request.data["headers"]["from"]
     subject = request.data["headers"]["subject"]
-    plain_text = ""
-    try:
-        plain_text = request.data["reply_plain"]
-    except ObjectDoesNotExist:
+    plain_text = request.data["reply_plain"]
+    if plain_text is None:
         plain_text = request.data["plain"]
         if "__" in plain_text:
             plain_text = plain_text.split("__")[0]
