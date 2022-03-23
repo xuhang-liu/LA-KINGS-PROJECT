@@ -400,7 +400,7 @@ const ApplyJob = (props) => {
                             <div className="row pl-3">
                                 <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
                                     <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div>
@@ -436,7 +436,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     {!Applied &&
                                         <div>
-                                            {(props.profile.is_employer || props?.job?.id == "" || props?.job?.id == null) ?
+                                            {(props?.job?.id == "" || props?.job?.id == null) ?
                                                 <div>
                                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
                                                         <button id="apply-now" className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>
@@ -458,7 +458,7 @@ const ApplyJob = (props) => {
                                             }
                                         </div>
                                     }
-                                    {(Applied && !props.auth.isAuthenticated) &&
+                                    {(Applied) &&
                                         <form id="Candidates_Apply_Job_Desk_No_Login" onSubmit={applySubmit}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
@@ -746,7 +746,7 @@ const ApplyJob = (props) => {
                                             </div>
                                         </form>
                                     }
-                                    {(Applied && props.auth.isAuthenticated) &&
+                                    {/* {(Applied && props.auth.isAuthenticated) &&
                                         <form id="Candidates_Apply_Job_Desk_With_Login" onSubmit={applySubmit1}>
                                             <div>
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
@@ -835,7 +835,6 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
                                                             <div>
@@ -855,7 +854,6 @@ const ApplyJob = (props) => {
                                                             })}
                                                         </div>
                                                     }
-                                                    {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
@@ -1017,7 +1015,7 @@ const ApplyJob = (props) => {
                                                 </button>
                                             </div>
                                         </form>
-                                    }
+                                    } */}
                                     <ReactS3Uploader
                                         style={{ display: "none" }}
                                         id="uploadFile"
@@ -1116,7 +1114,7 @@ const ApplyJob = (props) => {
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[0]} {(job_id == null || job_id == "") ? "" : props.job.job_location?.split(",")[1]}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
                                     <p className="mt-4" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div className="mt-2">
@@ -1214,7 +1212,7 @@ const ApplyJob = (props) => {
                                     </div>
                                     {!Applied &&
                                         <div className="mt-3">
-                                            {(props.profile.is_employer || props?.job?.id == "" || props?.job?.id == null) ?
+                                            {(props?.job?.id == "" || props?.job?.id == null) ?
                                                 <div>
                                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
                                                         <button id="apply-now" className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>
@@ -1236,7 +1234,7 @@ const ApplyJob = (props) => {
                                             }
                                         </div>
                                     }
-                                    {(Applied && !props.auth.isAuthenticated) &&
+                                    {(Applied) &&
                                         <form id="Candidates_Apply_Job_Mobile_No_Login" onSubmit={applySubmit}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
@@ -1525,7 +1523,7 @@ const ApplyJob = (props) => {
                                             </div>
                                         </form>
                                     }
-                                    {(Applied && props.auth.isAuthenticated) &&
+                                    {/* {(Applied && props.auth.isAuthenticated) &&
                                         <form id="Candidates_Apply_Job_Mobile_With_Login" onSubmit={applySubmit1}>
                                             <div className="mt-3">
                                                 <div className="px-5 pt-3 light-blue-border" style={{ marginBottom: "6rem" }}>
@@ -1614,7 +1612,6 @@ const ApplyJob = (props) => {
                                                             </div>
                                                         ) : <span className="ml-3 my-auto" style={{ color: "#ff0000" }}>Support .pdf only</span>
                                                     }
-                                                    {/* Additional Questions */}
                                                     {props.job?.questions?.length > 0 &&
                                                         <div className="form-group">
                                                             <div>
@@ -1634,7 +1631,6 @@ const ApplyJob = (props) => {
                                                             })}
                                                         </div>
                                                     }
-                                                    {/*  EEO Survey */}
                                                     {props.job.eeo_ques_req == "1" &&
                                                         <div class="form-group">
                                                             <h3 className="job-apply-char1">Help us be an equal opportunity employer</h3>
@@ -1798,7 +1794,7 @@ const ApplyJob = (props) => {
                                                 </button>
                                             </div>
                                         </form>
-                                    }
+                                    } */}
                                     <ReactS3Uploader
                                         style={{ display: "none" }}
                                         id="uploadFile"
