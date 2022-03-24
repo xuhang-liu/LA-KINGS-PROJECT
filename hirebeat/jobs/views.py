@@ -572,6 +572,78 @@ def create_zr_job_feed(job_detail):
     url = ET.SubElement(job, 'url')
     job_type = ET.SubElement(job, 'jobtype')
     experience = ET.SubElement(job, 'experience')
+    interview_json = ET.SubElement(job, 'interview_json')
+
+    # populate content for each tag
+    # job.set('id', str(job_detail['id']))
+    reference_number.text = str(job_detail['id'])
+    if "| Remote" in job_detail['job_location']:
+        title.text = job_detail['job_title']+" (remote)"
+    else:
+        title.text = job_detail['job_title']
+    description.text = job_detail['job_description']
+    location = job_detail['job_location'].split(',')
+    if len(location) > 0:
+        if len(location) < 3:
+            country.text = location[1].strip()
+            if "|" in location[1].strip():
+                country.text = location[1].strip().split("|")[0]
+        else:
+            country.text = 'US'
+        if len(location) < 3:
+            city.text = location[0]
+        else:
+            city.text = location[0]
+        if len(location) < 3:
+            state.text = ""
+        else:
+            state.text = location[1].strip()
+    else:
+        country.text = 'US'
+        city.text = "New York"
+        state.text = "NY"
+    company.text = job_detail['company_name']
+    date.text = job_detail['create_date'].strftime("%c")
+    url.text = job_detail['job_url'].strip().replace(" ", "%20")
+    job_type.text = job_detail['job_type'].lower().replace("-", "_")
+    job_level = job_detail['job_level'].split(" ")
+    experience.text = job_level[0].lower()
+    jobQuestions = JobQuestion.objects.filter(jobs_id=job_detail['id'])
+    interview_json_text = []
+    for j in range(len(jobQuestions)):
+        jobQuestion = jobQuestions[j]
+        if jobQuestion.answer_type == 'boolean':
+            interview_json_text.append({"id": str(jobQuestion.id),
+                                        "type": "select",
+                                        "question": str(jobQuestion.question),
+                                        "options": [{"value": "yes", "label": "Yes"},{"value": "no", "label": "No"}],
+                                        "required": jobQuestion.is_must})
+        else:
+            interview_json_text.append({"id": str(jobQuestion.id), 
+                                        "type": "text",
+                                        "format": "integer",
+                                        "question": str(jobQuestion.question),
+                                        "min": "0",
+                                        "max": "100",
+                                        "required": jobQuestion.is_must})
+    interview_json.text = json.dumps(interview_json_text)
+    return job
+
+def create_zr_job_feed1(job_detail):
+    # Required Metadata Fields
+    job = ET.Element('job')
+    reference_number = ET.SubElement(job, 'referencenumber')
+    title = ET.SubElement(job, 'title')
+    description = ET.SubElement(job, 'description')
+    country = ET.SubElement(job, 'country')
+    city = ET.SubElement(job, 'city')
+    state = ET.SubElement(job, 'state')
+    company = ET.SubElement(job, 'company')
+    date = ET.SubElement(job, 'date')
+    # Candidate Delivery Fields
+    url = ET.SubElement(job, 'url')
+    job_type = ET.SubElement(job, 'jobtype')
+    experience = ET.SubElement(job, 'experience')
 
     # populate content for each tag
     # job.set('id', str(job_detail['id']))
@@ -652,7 +724,7 @@ def get_zr_premium_xml(request):
     for i in range(len(job_details)):
         # job description has min length of 25 and job is not closed
         if len(job_details[i]['job_description']) > 25 and job_details[i]['is_closed'] == 0:
-            job = create_zr_job_feed(job_details[i])
+            job = create_zr_job_feed1(job_details[i])
             source.append(job)
     # save xml file
     with open("zrpremiumjobs.xml", "wb") as f:

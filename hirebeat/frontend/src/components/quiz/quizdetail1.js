@@ -107,7 +107,7 @@ class Quizdetail1 extends Component {
                                 I have read and agree to the 
                                 <a  target="_blank"
                                 rel="noreferrer"
-                                href="https://app.hirebeat.co/term"
+                                href="https://hirebeat.co/terms-conditions"
                                 className="active d-flex"
                                 style={{
                                 textDecoration: "underline",
