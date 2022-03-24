@@ -711,7 +711,7 @@ const ApplyJob = (props) => {
                                                             <a
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                href="/term"
+                                                                href="https://hirebeat.co/terms-conditions"
                                                                 className="active d-flex ml-2"
                                                                 style={{
                                                                     textDecoration: "underline",
@@ -998,7 +998,7 @@ const ApplyJob = (props) => {
                                                             <a
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                href="/term"
+                                                                href="https://hirebeat.co/terms-conditions"
                                                                 className="active d-flex ml-2"
                                                                 style={{
                                                                     textDecoration: "underline",
@@ -1496,7 +1496,7 @@ const ApplyJob = (props) => {
                                                         <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                         <label style={{ color: "#B0B0B0" }} class="form-check-label" for="gridCheck1">
                                                             I have read and agreed to the
-                                                            <a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                            <a style={{ color: "#ff612f" }} href="https://hirebeat.co/terms-conditions" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1785,7 +1785,7 @@ const ApplyJob = (props) => {
                                                         <input class="form-check-input" type="checkbox" id="gridCheck1" required />
                                                         <label style={{ color: "#B0B0B0" }} class="form-check-label" for="gridCheck1">
                                                             I have read and agreed to the
-                                                            <a style={{ color: "#ff612f" }} href="/term" target="_blank" rel="noreferrer"> Terms & Conditions</a>
+                                                            <a style={{ color: "#ff612f" }} href="https://hirebeat.co/terms-conditions" target="_blank" rel="noreferrer"> Terms & Conditions</a>
                                                         </label>
                                                     </div>
                                                 </div>

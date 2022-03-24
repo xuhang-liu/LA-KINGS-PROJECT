@@ -322,7 +322,7 @@ export class CandidateLogin extends Component {
                     >
                       <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
                       I have read and agree to the
-                      <a href="/term"
+                      <a href="https://hirebeat.co/terms-conditions"
                         className="active d-flex ml-2"
                         style={{
                           textDecoration: "underline",

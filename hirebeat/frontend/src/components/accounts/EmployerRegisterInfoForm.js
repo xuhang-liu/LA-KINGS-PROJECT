@@ -139,7 +139,7 @@ export class EmployerRegisterInfoForm extends Component {
                         <a
                           target="_blank"
                           rel="noreferrer"
-                          href="/term"
+                          href="https://hirebeat.co/terms-conditions"
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",

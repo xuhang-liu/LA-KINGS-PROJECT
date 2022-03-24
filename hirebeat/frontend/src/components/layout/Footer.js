@@ -272,9 +272,9 @@ class Footer extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/term">
+                                        <a href="https://hirebeat.co/terms-conditions">
                                             <a>Terms & Conditions</a>
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
                                         <a href="https://hirebeat.co/contact">
@@ -289,9 +289,9 @@ class Footer extends Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/term">
+                                    <a href="https://hirebeat.co/terms-conditions">
                                         <a>Terms & Conditions</a>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li>
                                     <Link to="/contact">
