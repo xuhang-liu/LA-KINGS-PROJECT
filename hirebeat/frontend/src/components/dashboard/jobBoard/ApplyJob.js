@@ -394,15 +394,15 @@ const ApplyJob = (props) => {
                             {props.job?.company_logo?.length > 0 &&
                             <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />}
                             <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
-                            <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
-                                <a style={{ textDecoration: "none", color: "#7C94B5", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67a3f3" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
+                                <a style={{ textDecoration: "none", color: "#5874b4", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             </h2>
                             <div className="row pl-3">
                                 <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
-                                    <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
+                                    <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div>
                                         <div>
                                             <h2 className="mb-2 jd-title">Company Overview</h2>
@@ -578,19 +578,19 @@ const ApplyJob = (props) => {
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }}></input>Male</label>
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}><input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }}></input>Male</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }}></input>Female</label>
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}><input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }}></input>Female</label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1"><input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose</label>
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}><input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose</label>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }}></input>Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -605,7 +605,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }}></input>White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -618,7 +618,7 @@ const ApplyJob = (props) => {
                                                                         </span>
                                                                     </label>
                                                                 </div><div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }}></input>Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -631,7 +631,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }}></input>Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -645,7 +645,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }}></input>Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -663,7 +663,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }}></input>Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -679,7 +679,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }}></input>Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
                                                                             <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
@@ -692,7 +692,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }}></input>I do not wish to disclose
                                                                     </label>
                                                                 </div>
@@ -1042,7 +1042,7 @@ const ApplyJob = (props) => {
                                         <a className="default-btn" href="#apply-now" style={{ paddingLeft: "5rem", paddingRight: "5rem", textDecoration: "none" }}>
                                             Apply Now
                                         </a>}
-                                    <p className="mt-5">Link to this job</p>
+                                    <p className="mt-5" style={{color:"#5874b4", fontWeight:"600"}}>Link to this job</p>
                                     <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3.7rem" }}>
                                         <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                             <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
@@ -1091,8 +1091,8 @@ const ApplyJob = (props) => {
                                     </div>
                                     {props.job.company_website != null && props.job.company_website != "" &&
                                         <div className="single-footer-widget1 mt-2">
-                                            <p style={{ marginBottom: "0rem" }}>Website</p>
-                                            <a className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                            <p style={{ marginBottom: "0rem", fontWeight:"500" }}>Website</p>
+                                            <a style={{color:"#67a3f3"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                         </div>
                                     }
                                 </div>
@@ -1109,14 +1109,14 @@ const ApplyJob = (props) => {
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                             <img style={{ width: "7rem", marginLeft: "34%", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />
                             <h1 className="mt-3" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
-                            <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#006dff", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
-                            <a style={{ textDecoration: "none", color: "#7C94B5", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                            <h2 className="mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67a3f3", textAlign: "center" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}</h2>
+                            <a style={{ textDecoration: "none", color: "#5874b4", fontWeight: "600", fontSize: "0.9rem", marginLeft: "30%" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
-                                    <p className="mt-4" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
+                                    <p className="mt-4" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div className="mt-2">
                                         {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
                                             <button className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>
@@ -1125,7 +1125,7 @@ const ApplyJob = (props) => {
                                             <a className="default-btn" href="#apply-now" style={{ paddingLeft: "5rem", paddingRight: "5rem", textDecoration: "none" }}>
                                                 Apply Now
                                             </a>}
-                                        <p className="mt-3">Link to this job</p>
+                                        <p className="mt-3" style={{color:"#5874b4", fontWeight:"600"}}>Link to this job</p>
                                         <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "4rem" }}>
                                             <div className="pt-2 pl-2" style={{ color: "#090D3A", fontWeight: "500", alignItems: "center" }}>
                                                 <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
@@ -1174,8 +1174,8 @@ const ApplyJob = (props) => {
                                         </div>
                                         {props.job.company_website != null && props.job.company_website != "" &&
                                             <div className="single-footer-widget1 mt-2">
-                                                <p style={{ marginBottom: "0.1rem" }}>Website</p>
-                                                <a className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <p style={{ marginBottom: "0.1rem", fontWeight:"500" }}>Website</p>
+                                                <a style={{color:"#67a3f3"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         }
                                     </div>
@@ -1354,19 +1354,19 @@ const ApplyJob = (props) => {
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Gender</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="gender" value="Male" style={{ marginRight: "1rem" }} />
                                                                         Male
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="gender" value="Female" style={{ marginRight: "1rem" }} />
                                                                         Female
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="gender" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
@@ -1375,7 +1375,7 @@ const ApplyJob = (props) => {
                                                             <div class="form-group">
                                                                 <label className="job-apply-char1">Race or ethnicity</label><span className="job-apply-char2">*</span>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Hispanic or Latino" style={{ marginRight: "1rem" }} />
                                                                         Hispanic or Latino
                                                                         <span className="tool_tip ml-2">
@@ -1391,7 +1391,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="White" style={{ marginRight: "1rem" }} />
                                                                         White (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1405,7 +1405,7 @@ const ApplyJob = (props) => {
                                                                         </span>
                                                                     </label>
                                                                 </div><div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Black or African American" style={{ marginRight: "1rem" }} />
                                                                         Black or African American (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1419,7 +1419,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Native Hawaiian or Pacific Islander" style={{ marginRight: "1rem" }} />
                                                                         Native Hawaiian or Pacific Islander (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1434,7 +1434,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Asian" style={{ marginRight: "1rem" }} />
                                                                         Asian  (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1453,7 +1453,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Native American or Alaska Native" style={{ marginRight: "1rem" }} />
                                                                         Native American or Alaska Native (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1470,7 +1470,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="Two or more races" style={{ marginRight: "1rem" }} />
                                                                         Two or more races (Not Hispanic or Latino)
                                                                         <span className="tool_tip ml-2">
@@ -1484,7 +1484,7 @@ const ApplyJob = (props) => {
                                                                     </label>
                                                                 </div>
                                                                 <div>
-                                                                    <label className="job-apply-char1">
+                                                                    <label className="job-apply-char1" style={{fontWeight:"400"}}>
                                                                         <input type="radio" name="race" value="N/A" style={{ marginRight: "1rem" }} />
                                                                         I do not wish to disclose
                                                                     </label>
