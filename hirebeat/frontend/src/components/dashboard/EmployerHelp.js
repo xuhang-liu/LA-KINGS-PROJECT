@@ -14,7 +14,7 @@ export default class EmployerHelp extends React.Component {
         <div style={{ marginBottom: "30px" }}>
           <h3>
             <b>
-              <i className="bx bx-help-circle"></i>
+              <i className="bx-fw bx bx-help-circle"></i>
               <span className="ml-2">Help</span>
             </b>
           </h3>

@@ -10,11 +10,16 @@ export default class Tutorials extends React.Component {
           <div className="item1_tutorialvideo">
             <h4 style={{ textAlign: "left" }}>Video Title1</h4>
             <ReactPlayer
+              id="rw-video"
               url="https://hirebeat-assets.s3.amazonaws.com/sample-5s.mp4"
               controls={true}
               width="18.75rem"
               height="11.71rem"
               style={{margin: "0 auto"}}
+              // Disable download button
+              config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+              // Disable right click
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
           <div className="item2_tutorialvideo">
@@ -25,6 +30,11 @@ export default class Tutorials extends React.Component {
               width="18.75rem"
               height="11.71rem"
               style={{margin: "0 auto"}}
+              id="rw-video"
+              // Disable download button
+              config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+              // Disable right click
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
           <div className="item3_tutorialvideo">
@@ -35,6 +45,11 @@ export default class Tutorials extends React.Component {
               width="18.75rem"
               height="11.71rem"
               style={{margin: "0 auto"}}
+              id="rw-video"
+              // Disable download button
+              config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+              // Disable right click
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
           <div className="item4_tutorialvideo">
@@ -45,6 +60,11 @@ export default class Tutorials extends React.Component {
               width="18.75rem"
               height="11.71rem"
               style={{margin: "0 auto"}}
+              id="rw-video"
+              // Disable download button
+              config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+              // Disable right click
+              onContextMenu={e => e.preventDefault()}
             />
           </div>
         </section>

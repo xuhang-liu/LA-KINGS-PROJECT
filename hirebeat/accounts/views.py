@@ -1293,7 +1293,7 @@ def create_request_email(request):
         'feedback': feedback,
     }
     from_email = email
-    to_list = ['support@hirebeat.co']
+    to_list = ['ning.wei@hirebeat.co']
     content = message.render(context)
     emailsent = EmailMessage(
         subject,

@@ -218,6 +218,8 @@ export class RequestSupport extends React.Component {
                 border: "1px solid #cecfdf",
                 width: "100%",
                 height: "190px",
+                fontFamily: "Inter, Segoe UI",
+                paddingLeft: "1rem"
               }}
               value={this.state.feedback}
               onChange={this.setFeedback}
