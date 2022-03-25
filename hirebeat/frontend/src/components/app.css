@@ -4860,3 +4860,53 @@ max-width: 110px;
 .job-title-hover-orange:hover {
   color: #ff6b00;
 }
+
+/************* Employer Help Page **********/
+.tab_employer_request_support {
+  display: inline-block;
+  margin-left: 0;
+  padding: 10px;
+  border-bottom: 2px solid #eee;
+  transition: all 0.5s;
+  font-weight: bold;
+  cursor: pointer;
+  color: #C9C9C9;
+}
+
+.tab_employer_request_support.selected {
+  border-bottom: 2px solid #4689FA;
+  color: #090D3A;
+}
+.comment_employer_request_support:focus{
+  outline: none !important;
+  border: 1px solid #13c4a1 !important;
+}
+
+section.grid_tutorialvideo{
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  padding: 2.25rem 3.75rem;
+}
+
+section.grid_tutorialvideo div {
+  
+  background-color: #E8EDFC;
+  text-align: center;
+  padding:10px;
+}
+
+@media only screen and (max-width:989px){
+  section.grid_tutorialvideo{
+    padding:unset;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 540px){
+  section.grid_tutorialvideo{
+    grid-template-columns: 1fr 1fr;
+    padding: 2.25rem 3.75rem;
+  }
+}
