@@ -149,31 +149,35 @@ export class EmailSending extends Component {
     };
 
     sendEmail = () => {
-        const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
-        client.sendMessage({
-            to: this.props.email,
-            from: this.state.emailFrom.value,
-            html: this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
-            subject: this.state.emailSubject
-        });
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-        let data = {}
-        if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
-        } else {
-            data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+        if (this.state.emailSubject == "" || this.state.emailBody == ""){
+            return alert("Email Empty!");
+        }else{
+            const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
+            client.sendMessage({
+                to: this.props.email,
+                from: this.state.emailFrom.value,
+                html: this.state.emailBody?.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
+                subject: this.state.emailSubject
+            });
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let data = {}
+            if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
+                data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
+            } else {
+                data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+            }
+            axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
+                console.log(res)
+            }).catch(error => {
+                console.log(error)
+            });
+            alert("Email Sent!");
+            this.props.hideEmailSending();
         }
-        axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
-            console.log(res)
-        }).catch(error => {
-            console.log(error)
-        });
-        alert("Email Sent!");
-        this.props.hideEmailSending();
     }
 
     render() {
@@ -264,7 +268,7 @@ export class EmailSending extends Component {
                                 </div>
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>
                                     <div>
-                                        {parse("" + this.state.emailBody.replaceAll(/\n/g, "<br />") + this.state.addOnBottom + "")}
+                                        {parse("" + this.state.emailBody?.replaceAll(/\n/g, "<br />") + this.state.addOnBottom + "")}
                                     </div>
                                 </div>
                             </div>
