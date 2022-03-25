@@ -1266,3 +1266,45 @@ def check_code(request):
             return Response({"error" : "Invalid Code. Please try again!"})
     except ObjectDoesNotExist:
         return Response({"error" : redeemrow})
+  
+
+@api_view((['POST']))
+def create_request_email(request):
+    # get data from frontend
+    category = request.data["category"]
+    firstName = request.data["firstName"]
+    lastName = request.data["lastName"]
+    companyName = request.data["companyName"]
+    email = request.data["email"]
+    phone = request.data["phone"]
+    ticket = request.data["ticket"]
+    feedback = request.data["feedback"]
+
+    subject = "You have new feedback from client"
+    message = get_template("accounts/request_support_email.html")
+    context = {
+        'email': email,
+        'firstName': firstName,
+        'lastName': lastName,
+        'companyName': companyName,
+        'phone': phone,
+        'ticket': ticket,
+        'category': category,
+        'feedback': feedback,
+    }
+    from_email = email
+    to_list = ['support@hirebeat.co']
+    content = message.render(context)
+    emailsent = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    emailsent.content_subtype = "html"
+    emailsent.send()
+    
+    return Response({
+        "msg": "Email sent successfully"
+    })
+    

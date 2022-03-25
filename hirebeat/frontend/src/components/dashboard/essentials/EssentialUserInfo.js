@@ -438,19 +438,19 @@ export class EssentialUserInfo extends Component {
                     </div>}
                   <div className="row" style={{ marginTop: "1rem" }}>
                     <div className="col d-flex align-items-start">
-                      <a
+                      <button
                         className="panel-button"
-                        href="https://hirebeat.co/support/"
-                        style={{ outline: "none", margin: "1%", padding:"0px", background: "none", textDecoration: "none" }}
+                        onClick={this.props.renderHelp}
+                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
                       >
                         <IconEmployerText
                           textSize={"12px"}
                           textDisplayed={"Help"}
-                          backColor={defaultBack}
+                          backColor={this.props.subpage == "help" ? selectBack : defaultBack}
                           iconSrc={nonselectHelp}
-                          textColor={defaultEColor}
+                          textColor={this.props.subpage == "help" ? selectEColor : defaultEColor}
                         />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div> :

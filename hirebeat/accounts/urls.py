@@ -14,7 +14,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, create_employer_profile, \
     check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp, \
-    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code
+    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -142,6 +142,8 @@ urlpatterns = [
     path('accounts/check-user-name', check_user_name, name="check user name"),
     path('api/go_stripe_customer_portal', go_stripe_customer_portal, name="go stripe customer portal"),
     path('accounts/check-if-it-reviewer', check_if_it_reviewer, name="check if it reviewer"),
-    path('accounts/add-credit-to-user', add_credit_to_user, name="add credit to user")
+    path('accounts/add-credit-to-user', add_credit_to_user, name="add credit to user"),
+    
+    path('accounts/create-request-email', create_request_email, name="create request email")
 ]
 
