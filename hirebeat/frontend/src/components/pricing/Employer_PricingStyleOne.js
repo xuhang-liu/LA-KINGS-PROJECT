@@ -655,7 +655,7 @@ class Employer_PricingStyleOne extends Component {
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
                                                 <div className="pt-2 pb-2">
                                                     <p style={{ color: "#090d3a" }}>5 Active Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Standard Job Advertising</p>
+                                                    <p style={{ color: "#090d3a" }}>Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
                                                     <p style={{ color: "#090d3a" }}>Team Collaboration</p>
@@ -756,7 +756,7 @@ class Employer_PricingStyleOne extends Component {
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>
                                                 <div className="pt-2 pb-2">
                                                     <p style={{ color: "#090d3a" }}>Unlimited Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
+                                                    <p style={{ color: "#090d3a" }}>Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
                                                     <p style={{ color: "#090d3a" }}>Team Collaboration</p>
@@ -1005,7 +1005,7 @@ class Employer_PricingStyleOne extends Component {
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
                                                 <div className="pt-2 pb-2">
                                                     <p style={{ color: "#090d3a" }}>5 Active Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Standard Job Advertising</p>
+                                                    <p style={{ color: "#090d3a" }}>Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
                                                     <p style={{ color: "#090d3a" }}>Team Collaboration</p>
@@ -1106,7 +1106,7 @@ class Employer_PricingStyleOne extends Component {
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>
                                                 <div className="pt-2 pb-2">
                                                     <p style={{ color: "#090d3a" }}>Unlimited Job Postings</p>
-                                                    <p style={{ color: "#090d3a" }}>Premium Job Advertising</p>
+                                                    <p style={{ color: "#090d3a" }}>Job Advertising</p>
                                                     <p style={{ color: "#090d3a" }}>Applicants Tracking</p>
                                                     <p style={{ color: "#090d3a" }}>One-way Video Interview</p>
                                                     <p style={{ color: "#090d3a" }}>Team Collaboration</p>
@@ -1273,13 +1273,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Job Position Advertising</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Standard Options</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Premium Options</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
@@ -1365,6 +1365,20 @@ class Employer_PricingStyleOne extends Component {
                                     <div className="row py-3">
                                         <div className="col-4 pl-4" style={{ textAlign: "left" }}>
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Knockout Questions</p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
+                                        </div>
+                                        <div className="col-2">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
+                                        </div>
+                                        <div className="col-3">
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="row py-3">
+                                        <div className="col-4 pl-4" style={{ textAlign: "left" }}>
+                                            <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Email Candidates</p>
                                         </div>
                                         <div className="col-3">
                                             <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
@@ -1545,13 +1559,13 @@ class Employer_PricingStyleOne extends Component {
                                             <p style={{ fontWeight: "500", fontSize: "1.1rem", color: "#090d3a" }}>Real-Time Analytics</p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#006dff" }}></i></p>
                                         </div>
                                         <div className="col-2">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#ff6b00" }}></i></p>
                                         </div>
                                         <div className="col-3">
-                                            <p style={{ fontWeight: "400", fontSize: "0.8rem", color: "#090d3a" }}>Coming Soon</p>
+                                            <p style={{ fontWeight: "400", fontSize: "1rem", color: "#090d3a" }}><i class='bx-fw bx bx-check' style={{ color: "#13c4a1" }}></i></p>
                                         </div>
                                     </div>
                                     <div className="row py-3">
