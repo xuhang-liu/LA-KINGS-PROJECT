@@ -193,13 +193,13 @@ export const Applicant = (props) => {
                         (props.isRecorded ?
                             (props.videoCount > 0 ?
                                 <div className="interview-txt9">
-                                    <p style={{ color: "#090d3a" }}><strong>Completed</strong></p>
+                                    <p style={{ color: "#090d3a" }}><strong>Video Submitted</strong></p>
                                 </div> :
                                 <div className="interview-txt9">
                                     <p style={{ color: "#7D7D7D" }}>N/A</p>
                                 </div>) :
                             <div className="interview-txt9">
-                                <p style={{ color: "#7D7D7D" }}>Pending</p>
+                                <p style={{ color: "#7D7D7D" }}>Invitation Sent</p>
                             </div>
                         ) :
                         <div className="interview-txt9">
