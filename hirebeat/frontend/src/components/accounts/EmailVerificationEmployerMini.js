@@ -23,8 +23,9 @@ class EmailVerificationEmployerMini extends Component {
   };
 
   redirectToContact = () => {
-    const { history } = this.props;
-    if (history) history.push(`/contact`);
+    // const { history } = this.props;
+    // if (history) history.push(`https://hirebeat.co/contact/`);
+    window.location.href="https://hirebeat.co/contact/";
   };
 
   resendEmail = () => {

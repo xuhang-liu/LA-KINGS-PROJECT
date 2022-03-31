@@ -59,6 +59,7 @@ import {
   DELETE_PROFILE_EDUCATION,
   DELETE_PROFILE_WORK_EXP,
   ADD_CREDIT_TO_USER,
+  CREATE_REQUEST_EMAIL
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -944,4 +945,18 @@ export const addCreditToUser = (data) => (dispatch, getState) => {
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))
     );
+};
+
+export const createRequestEmail = (data) => (dispatch, getState) => {
+  axios
+    .post("/accounts/create-request-email", data)
+    .then((res) => {
+      dispatch({
+        type: CREATE_REQUEST_EMAIL,
+        payload: res.data,
+      })
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    )
 };

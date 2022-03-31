@@ -43,6 +43,7 @@ import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
 import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
+import EmployerHelp from "./EmployerHelp";
 import Footer from "../layout/Footer";
 import axios from "axios";
 import IdleTimer from 'react-idle-timer'
@@ -392,6 +393,14 @@ export class EmployerDashboard extends Component {
     )
   }
 
+  renderHelp = () => {
+    if (this.state.subpage == 'help'){
+      this.refreshPage();
+    }
+    sessionStorage.setItem('subpage', 'help');
+    this.setState({subpage: "help"})
+  }
+
   renderReviewApplication = () => {
     this.setState({
       subpage: "reviewApplication",
@@ -673,6 +682,8 @@ export class EmployerDashboard extends Component {
           sourcingDataLoaded={this.props.sourcingDataLoaded}
           getSourcingData={this.props.getSourcingData}
         />;
+      case "help":
+        return <EmployerHelp />
       default:
         return null;
       //Do nothing
@@ -809,6 +820,7 @@ export class EmployerDashboard extends Component {
                         job_dots={this.props.job_dots}
                         createMergeLinkToken={this.props.createMergeLinkToken}
                         renderMergeIntergration={this.renderMergeIntergration}
+                        renderHelp={this.renderHelp}
                       />
                     </div>
                   </div>
