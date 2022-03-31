@@ -1,4 +1,5 @@
 #from django.shortcuts import render
+from pickle import TRUE
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList
@@ -6,7 +7,7 @@ from questions.models import Positions, InterviewQuestions, InterviewResumes, In
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
 from rest_framework import status
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, EmptyResultSet
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 import xml.etree.ElementTree as ET
@@ -802,23 +803,27 @@ def add_new_apply_candidate_from_zr(request):
     email = request.data['email']
     # location = request.data['location']
     resume = request.data['resume']
-    answers_zip = request.data['answers']
+    answers_zip = []
     cv_name = email.split("@")[0]
     resume_url = ""
     if "drjobfeedapi.drjobpro.com" in resume:
         resume_url = upload_cv_to_s3_1(resume, cv_name)
     else:
-        resume_url = upload_cv_to_s3(resume, cv_name)
+        resume_url = resume
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     jobQuestions = JobQuestion.objects.filter(jobs=jobs)
+    if len(jobQuestions) > 0 and "drjobfeedapi.drjobpro.com" not in resume:
+        answers_zip = request.data['answers']
     questions = []
     answers = []
     qualifications = []
     must_haves = []
+    qualified = True
+    cur_stage = "Resume Review"
     if len(answers_zip) > 0 and len(jobQuestions) > 0:
         for j in range(len(jobQuestions)):
             for i in range(len(answers_zip)):
@@ -831,20 +836,26 @@ def add_new_apply_candidate_from_zr(request):
                             qualifications.append(True)
                         else:
                             qualifications.append(False)
+                            if jobQuestions[j].is_must:
+                                qualified = False
+                                cur_stage = "Unqualified"
                     else:
                         if int(jobQuestions[j].answer) <= int(answers_zip[i]['value']):
                                 qualifications.append(True)
                         else:
                             qualifications.append(False)
+                            if jobQuestions[j].is_must:
+                                qualified = False
+                                cur_stage = "Unqualified"
     if not applied:
         if "drjobfeedapi.drjobpro.com" in resume:
             ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="DrJob", questions=questions, 
-                                       answers=answers, qualifications=qualifications, must_haves=must_haves)
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, current_stage=cur_stage)
         else:
             ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter", questions=questions, 
-                                       answers=answers, qualifications=qualifications, must_haves=must_haves)
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, current_stage=cur_stage)
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
