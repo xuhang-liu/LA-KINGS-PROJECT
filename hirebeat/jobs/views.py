@@ -729,6 +729,26 @@ def upload_cv_to_s3(encoded_cv, cv_name):
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     return resume_url
 
+def upload_cv_to_s3_1(encoded_cv, cv_name):
+    # decode resume and convert to readable pdf file using io.BytesIO
+    resume = io.BytesIO(encoded_cv)
+    # content = resume.decode("utf-8")
+    file_name = cv_name + str(int(time.time())) + ".pdf"
+    # get bucket name and connect to s3
+    bucket = os.getenv("CV_Interview_Bucket")
+    client = boto3.client('s3', aws_access_key_id=os.getenv("AWSAccessKeyId"),
+                          aws_secret_access_key=os.getenv("AWSSecretKey"))
+    # upload txt file to s3
+    client.upload_fileobj(
+        resume,
+        bucket,
+        file_name,
+        ExtraArgs={'ACL': 'public-read', 'ContentDisposition': 'inline',
+                   'ContentType': 'application/pdf'}
+    )
+    resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
+    return resume_url
+
 # add new candidate to hiring pipeline through uploading resumes
 @api_view(['POST'])
 def add_new_apply_candidate_by_cv(request):
@@ -784,7 +804,11 @@ def add_new_apply_candidate_from_zr(request):
     resume = request.data['resume']
     answers_zip = request.data['answers']
     cv_name = email.split("@")[0]
-    resume_url = upload_cv_to_s3(resume, cv_name)
+    resume_url = ""
+    if "drjobfeedapi.drjobpro.com" in resume:
+        resume_url = upload_cv_to_s3_1(resume, cv_name)
+    else:
+        resume_url = upload_cv_to_s3(resume, cv_name)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
@@ -813,7 +837,12 @@ def add_new_apply_candidate_from_zr(request):
                         else:
                             qualifications.append(False)
     if not applied:
-        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+        if "drjobfeedapi.drjobpro.com" in resume:
+            ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                       location="", resume_url=resume_url, linkedinurl="", apply_source="DrJob", questions=questions, 
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves)
+        else:
+            ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter", questions=questions, 
                                        answers=answers, qualifications=qualifications, must_haves=must_haves)
     else:

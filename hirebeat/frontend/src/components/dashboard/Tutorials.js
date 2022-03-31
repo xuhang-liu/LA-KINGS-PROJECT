@@ -8,10 +8,10 @@ export default class Tutorials extends React.Component {
         <h3 style={{ paddingLeft: "1.6rem" }}>Tutorial Videos</h3>
         <section className="grid_tutorialvideo">
           <div className="item1_tutorialvideo">
-            <h4 style={{ textAlign: "left" }}>Video Title1</h4>
+            <h4 style={{ textAlign: "left" }}>Company Profile</h4>
             <ReactPlayer
               id="rw-video"
-              url="https://hirebeat-assets.s3.amazonaws.com/sample-5s.mp4"
+              url='https://hirebeat-assets.s3.amazonaws.com/Company+Profile.mp4'
               controls={true}
               width="18.75rem"
               height="11.71rem"
@@ -23,9 +23,9 @@ export default class Tutorials extends React.Component {
             />
           </div>
           <div className="item2_tutorialvideo">
-            <h4 style={{ textAlign: "left" }}>Video Title2</h4>
+            <h4 style={{ textAlign: "left" }}>Posting a Job</h4>
             <ReactPlayer
-              url="https://hirebeat-assets.s3.amazonaws.com/sample2-5s.mp4"
+              url="https://hirebeat-assets.s3.amazonaws.com/Posting+a+Job+Video.mp4"
               controls={true}
               width="18.75rem"
               height="11.71rem"
@@ -38,9 +38,9 @@ export default class Tutorials extends React.Component {
             />
           </div>
           <div className="item3_tutorialvideo">
-            <h4 style={{ textAlign: "left" }}>Video Title3</h4>
+            <h4 style={{ textAlign: "left" }}>Managing Applicants</h4>
             <ReactPlayer
-              url="https://hirebeat-assets.s3.amazonaws.com/sample3-5s.mp4"
+              url="https://hirebeat-assets.s3.amazonaws.com/managing-applicants.mp4"
               controls={true}
               width="18.75rem"
               height="11.71rem"
@@ -53,9 +53,9 @@ export default class Tutorials extends React.Component {
             />
           </div>
           <div className="item4_tutorialvideo">
-            <h4 style={{ textAlign: "left" }}>Video Title4</h4>
+            <h4 style={{ textAlign: "left" }}>Video Interview Walkthrough</h4>
             <ReactPlayer
-              url="https://hirebeat-assets.s3.amazonaws.com/sample4-5s.mp4"
+              url="https://hirebeat-assets.s3.amazonaws.com/video+Interview+walkthrough.mp4"
               controls={true}
               width="18.75rem"
               height="11.71rem"

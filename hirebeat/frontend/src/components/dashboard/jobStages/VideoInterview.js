@@ -91,8 +91,8 @@ export function VideoInterview(props) {
     // filter selections
     const options = [
         { value: 'Uninvited', label: 'Not Invited' },
-        { value: 'Completed', label: 'Completed' },
-        { value: 'Pending', label: 'Pending' },
+        { value: 'Completed', label: 'Video Submitted' },
+        { value: 'Pending', label: 'Invitation Sent' },
         { value: 'Withdrawn', label: 'N/A' },
         { value: 'All', label: 'All' },
     ];
