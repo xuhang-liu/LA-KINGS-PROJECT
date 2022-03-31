@@ -809,7 +809,7 @@ def add_new_apply_candidate_from_zr(request):
     if "drjobfeedapi.drjobpro.com" in resume:
         resume_url = upload_cv_to_s3_1(resume, cv_name)
     else:
-        resume_url = resume
+        resume_url = upload_cv_to_s3(resume, cv_name)
     # linkedinurl = request.data['linkedinurl']
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
