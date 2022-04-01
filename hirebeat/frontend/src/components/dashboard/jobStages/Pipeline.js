@@ -390,11 +390,21 @@ export class Pipeline extends Component {
                 <div className="container-fluid py-5 px-5">
                     {/*All Candidates*/}
                     <div className="row">
-                        <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage1.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
+                        <div className="px-5 pt-1">
+                            <button
+                                className="default-btn1 interview-txt6"
+                                onClick={this.inviteExReviewer}
+                                style={{ paddingLeft: "25px", backgroundColor:"#ff6b00" }}
+                            >
+                                Request Sourcing
+                                <span></span>
+                            </button>
+                        </div>
+                        <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage01.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.all_can_num}</p>
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -418,7 +428,7 @@ export class Pipeline extends Component {
                                     <button
                                         className="default-btn1 interview-txt6 mt-4"
                                         onClick={this.inviteExReviewer}
-                                        style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                        style={{ paddingLeft: "25px", width: "13.5rem" }}
                                     >
                                         + Add Hiring Manager
                                         <span></span>
@@ -426,7 +436,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {exReviewers.length > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {(exReviewers.slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -478,11 +488,21 @@ export class Pipeline extends Component {
                     </div>
                     {/*Resume Screening*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
+                        <div className="px-5 pt-1">
+                            <button
+                                className="default-btn1 interview-txt6"
+                                onClick={this.inviteExReviewer}
+                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                            >
+                                Request Sourcing
+                                <span></span>
+                            </button>
+                        </div>
+                        <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage02.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -506,7 +526,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Resume Review")}
                                         >
                                             + Add Reviewer
@@ -516,7 +536,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {resume_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -567,11 +587,21 @@ export class Pipeline extends Component {
                     </div>
                     {/*Video Interview*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage3.png")', width: "18.8rem", height: "7.86rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
+                        <div className="px-5 pt-1">
+                            <button
+                                className="default-btn1 interview-txt6"
+                                onClick={this.inviteExReviewer}
+                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                            >
+                                Request Sourcing
+                                <span></span>
+                            </button>
+                        </div>
+                        <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage03.png")', width: "18.8rem", height: "7.86rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -595,7 +625,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Video Interview")}
                                         >
                                             + Add Reviewer
@@ -605,7 +635,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {video_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -656,11 +686,21 @@ export class Pipeline extends Component {
                     </div>
                     {/*Live Interview*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage4.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
+                        <div className="px-5 pt-1">
+                            <button
+                                className="default-btn1 interview-txt6"
+                                onClick={this.inviteExReviewer}
+                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                            >
+                                Request Sourcing
+                                <span></span>
+                            </button>
+                        </div>
+                        <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage04.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -684,7 +724,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Live Interview")}
                                         >
                                             + Add Reviewer
@@ -694,7 +734,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {live_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
@@ -745,11 +785,21 @@ export class Pipeline extends Component {
                     </div>
                     {/*Short List*/}
                     <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage5.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
+                        <div className="px-5 pt-1">
+                            <button
+                                className="default-btn1 interview-txt6"
+                                onClick={this.inviteExReviewer}
+                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                            >
+                                Request Sourcing
+                                <span></span>
+                            </button>
+                        </div>
+                        <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage05.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
                             <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                        <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
                             <div className="row px-4 pt-3">
                                 <div className="col-8">
                                     <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
@@ -773,7 +823,7 @@ export class Pipeline extends Component {
                                     <div>
                                         <button
                                             className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
                                             onClick={(e) => this.inviteReviever(e, "Short List")}
                                         >
                                             + Add Reviewer
@@ -783,7 +833,7 @@ export class Pipeline extends Component {
                             </div>
                         </div>
                         {shortlist_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                 {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
                                     return (
                                         <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
