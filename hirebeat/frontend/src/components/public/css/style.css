@@ -322,6 +322,26 @@ p:last-child {
   padding-bottom: 10px;
 }
 
+.default-btn5 {
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #ffffff;
+  background-color: #ff6b00;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 50px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .default-btn i {
   position: absolute;
   left: 25px;
@@ -405,6 +425,18 @@ p:last-child {
 }
 
 .default-btn4:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
+.default-btn5:hover, .default-btn:focus {
+  background-color: #090d3a;
+  color: #ffffff;
+  -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+}
+
+.default-btn5:hover span, .default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { removeSubReviewer, delExReviewer, addSubReviewer, addExReviewer } from "../../../redux/actions/question_actions";
 import { getPipelineAnalytics } from "../../../redux/actions/job_actions";
+import { MyModal80 } from "../DashboardComponents";
+import { SourcingRequestForm } from "./SourcingRequestForm"; 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -9,6 +11,22 @@ import { confirmAlert } from 'react-confirm-alert';
 export class Pipeline extends Component {
     constructor(props) {
         super(props);
+    }
+
+    state={
+        showRequestForm: false
+    }
+
+    setShowRequest = () => {
+        this.setState({
+            showRequestForm: true
+        })
+    }
+
+    setHideRequest = () => {
+        this.setState({
+            showRequestForm: false
+        })
     }
 
     componentDidMount() {
@@ -392,9 +410,9 @@ export class Pipeline extends Component {
                     <div className="row">
                         <div className="px-5 pt-1">
                             <button
-                                className="default-btn1 interview-txt6"
-                                onClick={this.inviteExReviewer}
-                                style={{ paddingLeft: "25px", backgroundColor:"#ff6b00" }}
+                                className="default-btn5 interview-txt6"
+                                onClick={this.setShowRequest}
+                                style={{ paddingLeft: "25px" }}
                             >
                                 Request Sourcing
                                 <span></span>
@@ -882,6 +900,15 @@ export class Pipeline extends Component {
                                     </span>}
                             </div>}
                     </div>
+                    {/* Edit Questions */}
+                    <MyModal80
+                        show={this.state.showRequestForm}
+                        onHide={this.setHideRequest}
+                    >
+                        <SourcingRequestForm
+                            hideQEditForm={this.setHideRequest}
+                        />
+                    </MyModal80>
                 </div>
             </React.Fragment>
         )
