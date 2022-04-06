@@ -4910,3 +4910,29 @@ section.grid_tutorialvideo div {
     padding: 2.25rem 3.75rem;
   }
 }
+
+/************Setting - delete part***************/
+.text-55 {
+  font-family: Inter, Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 55px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+input.form-control.inputInModal::placeholder {
+  color: #c9c9c9 !important;
+}
+
+input.form-control.inputInModal:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c9c9c9 !important;
+}
+ 
+input.form-control.inputInModal::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c9c9c9 !important;
+}
