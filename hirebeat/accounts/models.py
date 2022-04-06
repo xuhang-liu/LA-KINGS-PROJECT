@@ -91,6 +91,7 @@ class Profile(models.Model):
     payg_credit = models.IntegerField(default=0, validators=[
         MaxValueValidator(1000)
     ])
+    request_delete = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
 
@@ -237,3 +238,7 @@ class RedeemCode(models.Model):
     is_redeemed = models.BooleanField(default=False)
     dateredeemed = models.DateTimeField(null=True)
     
+class DeletedAccount(models.Model):
+    email = models.CharField(max_length=50, null=True, blank=True)
+    delete_date = models.DateTimeField(auto_now_add=True)
+    company_name = models.CharField(max_length=30,null=True, blank=True)
