@@ -294,7 +294,7 @@ export class SubpageSetting extends Component {
     confirmDelete =(e) => {
         e.preventDefault()
         this.setState({matchemail: event.target.matchemail.value})
-        if (this.state.matchemail !== this.props.user.email){
+        if (this.state.matchemail?.toLowerCase() !== this.props.user.email?.toLowerCase()){
             this.setState({emailerr: true})
             setTimeout(() => this.setState({matchemail: ""}), 1000)
         }
@@ -835,7 +835,9 @@ export class SubpageSetting extends Component {
                   <p style={{color: "#7A7A7A"}}>
                   This action cannot be undone. This will permanently wipe all information and data under your account, including job postings, candidate information, notes, etc, and remove all collaborator associations.
                   <br />
+                  <br />
                   If this is the super admin account (primary subscriber for the company), a permanent deletion will also remove all your collaborator's accounts associated with your company. We will cancel all future billings but we do not refund past payments.
+                  <br />
                   <br />
                   Please type your account email below to confirm deleting this account.
                   </p>
@@ -876,9 +878,10 @@ export class SubpageSetting extends Component {
                   <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem"}}>We are sorry that you leave...</h3>
                   <i className="bx bxs-check-circle text-55" style={{ color: '#01CFA6' }}></i>
                   <p style={{color: "#7A7A7A"}}>
-                  Your account has been deactivated and scheduled for deletion.
+                  You have requested a permanent deletion of your account. The data self-destruct is scheduled, and your data will be completely deleted within one business day.
                   <br />
-                  You no longer have access to this account and it will be deleted from our database within one business day.
+                  <br />
+                  You will not have access to this account after the deletion process is complete.
                   </p>
                   <button onClick={this.setHideInfo} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px"}}>Got it</button>
                 </div>

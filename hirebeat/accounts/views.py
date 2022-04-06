@@ -1334,6 +1334,7 @@ def delete_account(request):
             subject = "Account Deletion Request"
             message = get_template("accounts/request_delete_email.html")
             context = {
+                'id': user.id,
                 'email': email,
                 'company': company_name,
                 'date': delete_date
