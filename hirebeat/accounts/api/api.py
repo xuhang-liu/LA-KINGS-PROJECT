@@ -127,6 +127,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             for s in range(len(subReviewer)):
                 subReviewer[s].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 subReviewer[s].save()
+            EmployerProfileDetail.objects.create(user=user, name = subReviewer[0].company_name, f_name=request.data["firstname"], l_name=request.data["lastname"])
         # check external reviewer
         elif (len(ex_reviewer)>0):
             profile.is_external_reviewer = True
@@ -135,10 +136,13 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             for e in range(len(ex_reviewer)):
                 ex_reviewer[e].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 ex_reviewer[e].save()
+            EmployerProfileDetail.objects.create(user=user, name = ex_reviewer[0].company_name, f_name=request.data["firstname"], l_name=request.data["lastname"])
+        else:
+            EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"],
+                                                company_size=request.data["companySize"], company_type=request.data["companyType"], website=request.data["company_website"], location=request.data["location"])
         profile.plan_interval = "Premium"
         profile.membership = "Premium"
         profile.save()
-        EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"])
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token,
