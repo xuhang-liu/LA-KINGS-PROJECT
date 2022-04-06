@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { employer_register, exchangeToken, checkCompanyNameExistence, createEmployerProfile } from "../../redux/actions/auth_actions";
+import { employer_register, exchangeToken, checkCompanyNameExistence } from "../../redux/actions/auth_actions";
 import { createMessage } from "../../redux/actions/message_actions";
 import { confirmAlert } from 'react-confirm-alert';
 //import SocialButtons from "./SocialButtons";
@@ -34,6 +34,7 @@ export class EmployerRegister extends Component {
       isReviewer: (params[0] == "" || params[0] == null) ? false : true,
       email: params[0],
       companyName: (params[0] == "" || params[0] == null) ? "" : "External or Sub Reviewer",
+      company_website: "",
       password: "",
       password2: "",
       firstName: "",
@@ -108,6 +109,10 @@ export class EmployerRegister extends Component {
                 this.state.email,
                 this.state.password,
                 this.state.companyName,
+                "",
+                "",
+                this.state.company_website,
+                "",
               );
               //      this.redirectToEmailVerification();
             }
@@ -230,18 +235,11 @@ export class EmployerRegister extends Component {
             this.state.email,
             this.state.password,
             this.state.companyName,
+            this.state.companySize.value,
+            this.state.companyType.value,
+            this.state.company_website,
+            this.state.location,
           );
-          // create employer profile detail
-          let data = {
-            email: this.state.email,
-            f_name: this.state.firstName,
-            l_name: this.state.lastName,
-            company_size: this.state.companySize.value,
-            company_type: this.state.companyType.value,
-            company_name: this.state.companyName,
-            location: this.state.location,
-          }
-          setTimeout(() => { this.props.createEmployerProfile(data) }, 300);
         }
       })
       .catch((err) =>
@@ -260,7 +258,7 @@ export class EmployerRegister extends Component {
         }
       }
     };
-    const { firstName, lastName, companyName, email, password, password2, isReviewer } = this.state;
+    const { firstName, lastName, companyName, company_website, email, password, password2, isReviewer } = this.state;
     if (this.props.auth.isAuthenticated) {
       return <Redirect to="/email-verification-employer-mini" />;
     }
@@ -337,6 +335,24 @@ export class EmployerRegister extends Component {
                               placeholder="company Name"
                               onChange={this.onChange}
                               value={companyName}
+                              style={{
+                                fontFamily: "Inter, Segoe UI",
+                                background: "#FFFFFF",
+                                borderRadius: "5px",
+                                paddingLeft: "1rem",
+                                boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                              }}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="company_website"
+                              placeholder="company Website"
+                              onChange={this.onChange}
+                              value={company_website}
                               style={{
                                 fontFamily: "Inter, Segoe UI",
                                 background: "#FFFFFF",
@@ -531,4 +547,4 @@ const mapStateToProps = (state) => ({
   company_name_existence: state.auth_reducer.company_name_existence,
 });
 
-export default connect(mapStateToProps, { employer_register, createMessage, exchangeToken, checkCompanyNameExistence, createEmployerProfile })(EmployerRegister);
+export default connect(mapStateToProps, { employer_register, createMessage, exchangeToken, checkCompanyNameExistence })(EmployerRegister);

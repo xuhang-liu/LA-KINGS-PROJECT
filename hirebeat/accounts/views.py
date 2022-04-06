@@ -1038,32 +1038,36 @@ def create_or_update_profile_sharing(request):
     return Response("Update user profile sharing successfully", status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
-def create_employer_profile(request):
-    email = request.data["email"]
-    f_name = request.data["f_name"]
-    l_name = request.data["l_name"]
-    company_size = request.data["company_size"]
-    company_type = request.data["company_type"]
-    location = request.data["location"]
-    company_name = request.data["company_name"]
-    # user exists
-    try:
-        user = User.objects.get(email=email)
-        profile = EmployerProfileDetail(user_id=user.id)
-        profile.email = email
-        profile.f_name = f_name
-        profile.l_name = l_name
-        profile.company_size = company_size
-        profile.company_type = company_type
-        profile.location = location
-        profile.name = company_name
-        profile.save()
-    # user not exist
-    except ObjectDoesNotExist:
-        return Response("User not exist", status=status.HTTP_200_OK)
+# @api_view(['POST'])
+# def create_employer_profile(request):
+#     email = request.data["email"]
+#     f_name = request.data["f_name"]
+#     l_name = request.data["l_name"]
+#     company_size = request.data["company_size"]
+#     company_type = request.data["company_type"]
+#     location = request.data["location"]
+#     company_name = request.data["company_name"]
+#     company_website = request.data["company_website"]
+#     # user exists
+#     try:
+#         user = User.objects.filter(email=email)[0]
+#         print(user)
+#         # profile = EmployerProfileDetail.objects.filter(user=user)
+#         # for i in range(len(profile)):
+#         #     profile[i].email = email
+#         #     profile[i].f_name = f_name
+#         #     profile[i].l_name = l_name
+#         #     profile[i].company_size = company_size
+#         #     profile[i].company_type = company_type
+#         #     profile[i].location = location
+#         #     profile[i].name = company_name
+#         #     profile[i].website = company_website
+#         #     profile[i].save()
+#     # user not exist
+#     except ObjectDoesNotExist:
+#         return Response("User not exist", status=status.HTTP_200_OK)
 
-    return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)
+#     return Response("Create employer profile successfully", status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
@@ -1308,3 +1312,29 @@ def create_request_email(request):
         "msg": "Email sent successfully"
     })
     
+@api_view((['POST']))
+def deactivate_fraud_user(request):
+    email = request.data["email"]
+    user_found = False
+    user = User.objects.filter(email=email)
+    if (len(user)>0):
+        user_found = True
+        profile = Profile.objects.filter(user=user[0])
+        if (len(profile)>0):
+            profile[0].membership = "Regular"
+            profile[0].plan_interval = "fraud"
+            profile[0].candidate_limit = 25
+            profile[0].position_limit = 0
+            profile[0].is_freetrial = False
+            profile[0].save()
+        jobs = Jobs.objects.filter(user=user[0])
+        if (len(jobs)>0):
+            for j in range(len(jobs)):
+                jobs[j].is_closed = 1
+                jobs[j].save()
+        user[0].is_active = False
+        user[0].save()
+
+    return Response({
+        "user_found": user_found
+    })

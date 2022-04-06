@@ -72,6 +72,27 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                             <p className="register-p">Company Name Invalid Format!</p>}
                         </div>
                     </div>
+                    <div className="form-group">
+                        <div class="register-input-placeholder">
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="company_website"
+                                onChange={this.handleInput}
+                                style={{
+                                  fontFamily: "Inter, Segoe UI",
+                                  background: "#FFFFFF",
+                                  borderRadius: "5px",
+                                  paddingLeft: "1rem",
+                                  boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                }}
+                                required
+                            />
+                            <div class="placeholder">
+                                Company Website <span>*</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="form-group" style={{textAlign: "left"}}>
                         <Select value={this.state.companySize} onChange={this.selectSize} options={SizeOptions} styles={this.customStyles} placeholder={'Company Size'}/>

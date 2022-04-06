@@ -12,9 +12,9 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_or_update_employer_info, create_or_update_employer_social_media, create_or_update_employer_basic_info, create_or_update_employer_video, \
     create_or_update_employer_summary, upload_employer_profile_video, get_employer_post, update_employer_post, add_employer_post, delete_employer_post, \
     upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
-    create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, create_employer_profile, \
+    create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, \
     check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp, \
-    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email
+    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email, deactivate_fraud_user
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -122,7 +122,7 @@ urlpatterns = [
     path('update-employer-video', create_or_update_employer_video, name="create or update employer video"),
     path('update-employer-summary', create_or_update_employer_summary, name="create or update employer summary"),
     path('update-employer-profile-video', upload_employer_profile_video, name="upload employer profile video"),
-    path('accounts/create-employer-profile', create_employer_profile, name="create employer profile"),
+    # path('accounts/create-employer-profile', create_employer_profile, name="create employer profile"),
     # employer post
     path('get-employer-post', get_employer_post, name="get employer post"),
     path('update-employer-post', update_employer_post, name="update employer post"),
@@ -144,6 +144,7 @@ urlpatterns = [
     path('accounts/check-if-it-reviewer', check_if_it_reviewer, name="check if it reviewer"),
     path('accounts/add-credit-to-user', add_credit_to_user, name="add credit to user"),
     
-    path('accounts/create-request-email', create_request_email, name="create request email")
+    path('accounts/create-request-email', create_request_email, name="create request email"),
+    path("accounts/deactivate-fraud-user", deactivate_fraud_user, name="deactivate fraud user")
 ]
 
