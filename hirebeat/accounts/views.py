@@ -21,7 +21,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import check_password
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience, RedeemCode
+from .models import Profile, CandidatesInterview, ProfileDetail, EmployerPost, EmployerProfileDetail, ProfileDetailEducation, ProfileDetailExperience, RedeemCode, DeletedAccount
 from questions.models import Positions, InterviewQuestions, InvitedCandidates
 from videos.models import WPVideo
 from questions.models import SubReviewers, ExternalReviewers
@@ -32,6 +32,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
+from django.conf import settings
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
@@ -1308,3 +1309,47 @@ def create_request_email(request):
         "msg": "Email sent successfully"
     })
     
+
+@api_view(['POST'])
+def delete_account(request):
+    user = User.objects.get(pk=request.data["id"])
+    try:
+        if user is not None:
+            # find company name
+            user_profile = Profile.objects.get(user_id=request.data["id"])
+            user_profile.request_delete = True
+            user_profile.save()
+            
+            # store delete account
+            delete_date = date.today()
+            email = user.email
+            company_name = user_profile.company_name
+            DeletedAccount.objects.create(email=email, company_name=company_name, delete_date=delete_date)
+            
+            # write email to admin
+            subject = "Account Deletion Request"
+            message = get_template("accounts/request_delete_email.html")
+            context = {
+                'email': email,
+                'company': company_name,
+                'date': delete_date
+            }
+            to_list = ['ning.wei@hirebeat.co']
+            bcc_list = ['xuhang.liu@hirebeat.co']
+            content = message.render(context)
+            emailsent = EmailMessage(
+                subject,
+                content,
+                settings.DEFAULT_FROM_EMAIL,
+                to_list,
+                bcc_list
+            )
+            emailsent.content_subtype = "html"
+            emailsent.send()
+            
+            return Response({
+                "msg": "Acccount deleted successfully"
+            })
+            
+    except ObjectDoesNotExist:
+        return Response({"error": "Acount does not exist"})

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { IconText } from "./DashboardComponents";
 import { connect } from "react-redux";
-import { updateProfile, updateUserPassword } from "../../redux/actions/auth_actions";
+import { updateProfile, updateUserPassword, logout } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import emailjs from 'emailjs-com';
 import axios from "axios";
 import { MessageClient } from "cloudmailin";
+import { MyModalUpgrade } from "./DashboardComponents";
+import 'boxicons';
 
 export class SubpageSetting extends Component {
     state = {
@@ -21,7 +23,12 @@ export class SubpageSetting extends Component {
         code: "",
         codeMsg: "",
         codeErr: "",
-        codePlan: ""
+        codePlan: "",
+        confirmShow: false,
+        infoShow: false,
+        matchemail: "",
+        emailerr: false,
+        deleteEnable: true,
     };
 
     componentDidMount() {
@@ -30,6 +37,17 @@ export class SubpageSetting extends Component {
             location: this.props.profile.location,
             company_name: this.props.profile.company_name,
         });
+
+        if (this.props.profile.request_delete == true){
+            this.setState({deleteEnable: false})
+        }
+    }
+
+    componentDidUpdate(){
+        if (this.state.checkInactivate){
+            // setTimeout(() => {this.props.logout()}, 300); 
+            setTimeout(() => window.location.reload(),250);
+        }
     }
 
     componentWillUnmount() {
@@ -257,8 +275,49 @@ export class SubpageSetting extends Component {
         });
     }
 
+    handleConfirm = () => {
+        this.setState({confirmShow: true})
+    }
+
+    setHideConfirm =() => {
+        this.setState({confirmShow: false, matchemail: "", emailerr: false})
+    }
+
+    handleInfo = () => {
+        this.setState({infoShow: true})
+    }
+
+    setHideInfo =() => {
+        this.setState({infoShow: false})
+    }
+
+    confirmDelete =(e) => {
+        e.preventDefault()
+        this.setState({matchemail: event.target.matchemail.value})
+        if (this.state.matchemail !== this.props.user.email){
+            this.setState({emailerr: true})
+            setTimeout(() => this.setState({matchemail: ""}), 1000)
+        }
+        else{
+            const config = {
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }
+            let user_email = {"id": this.props.user.id, "email": this.state.matchemail}
+            axios.post("api/delete_account", user_email, config).then((res) => {
+                if (res.data["msg"] != null){                  
+                    this.setState({confirmShow: false, infoShow: true, matchemail: "", deleteEnable: false})                 
+                }
+            }).catch(err => console.log(err))           
+        }
+        
+        setTimeout(() => this.setState({emailerr: false}), 4000)
+    }
+
     render() {
         return (
+            <>
             <div className="container">
                 <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
                 <div className="row" >
@@ -759,10 +818,74 @@ export class SubpageSetting extends Component {
                                 </button>
                             </form>
                         </div>
-                    </div>}
-            </div>
+                    </div>}                 
+            </div> 
+            {this.props.profile.is_employer ? <div className="container" style={{marginTop:" 30px"}}>
+                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float:"right"}}>Delete Account</button>
+                : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float:"right"}}>Deletion Scheduled</button>}
+            </div> : null}
+            {/* confirm email modal */}
+            {<MyModalUpgrade
+                show={this.state.confirmShow}
+                onHide={this.setHideConfirm}
+              >
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center"}}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem"}}>Are you sure?</h3>
+                  <i className="bx bxs-help-circle text-55" style={{ color: '#FAC046' }}></i>
+                  <p style={{color: "#7A7A7A"}}>
+                  This action cannot be undone. This will permanently wipe all information and data under your account, including job postings, candidate information, notes, etc, and remove all collaborator associations.
+                  <br />
+                  If this is the super admin account (primary subscriber for the company), a permanent deletion will also remove all your collaborator's accounts associated with your company. We will cancel all future billings but we do not refund past payments.
+                  <br />
+                  Please type your account email below to confirm deleting this account.
+                  </p>
+                  <form onSubmit={this.confirmDelete}>
+                      <div className="row" style={{margin: "auto", width: "70%", paddingBottom: "10px"}}>
+                      <input
+                        type="email"
+                        className="form-control inputInModal"
+                        name="matchemail"
+                        value={this.state.matchemail}
+                        onChange = {this.handleInputChange}
+                        placeholder="type your account email here"
+                        required="required"
+                        style={{border: "1px solid #cecfdf", padding: "0 15px"}}
+                      />
+                      {this.state.emailerr ? 
+                      <div style={{colo: "#C9C9C9"}}>
+                        <div>
+                            <i className="bx-fw bx bxs-x-circle" style={{ color: '#FF4D4F' }}></i>
+                            <span>Email does not match your account.</span>
+                        </div>
+                        <div style={{textAlign: "left", paddingLeft: "1.6em"}}>Please try again.</div> 
+                      </div>: null}
+                  </div>
+                  <div style={{ margin: "auto", width: "70%", display: "flex", justifyContent: "space-between"}}>                    
+                      <button type="submit" className="default-btn" style={{ width: "45%", paddingLeft: "18px",paddingTop: "8px", paddingBottom: "8px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", whiteSpace: "nowrap"}}>Delete Forever</button>
+                      <button onClick={this.setHideConfirm} className="default-btn" style={{ width: "45%", paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px"}}>Cancel</button>
+                  </div>
+                  </form>
+                </div>
+            </MyModalUpgrade> }
+            {/* Delete Info */}
+            {<MyModalUpgrade
+                show={this.state.infoShow}
+                onHide={this.setHideInfo}
+              >
+                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center"}}>
+                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem"}}>We are sorry that you leave...</h3>
+                  <i className="bx bxs-check-circle text-55" style={{ color: '#01CFA6' }}></i>
+                  <p style={{color: "#7A7A7A"}}>
+                  Your account has been deactivated and scheduled for deletion.
+                  <br />
+                  You no longer have access to this account and it will be deleted from our database within one business day.
+                  </p>
+                  <button onClick={this.setHideInfo} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px"}}>Got it</button>
+                </div>
+            </MyModalUpgrade> }
+            </>
         )
     };
 }
 
-export default connect(null, { updateProfile, updateUserPassword })(SubpageSetting);
+export default connect(null, { updateProfile, updateUserPassword, logout })(SubpageSetting);
