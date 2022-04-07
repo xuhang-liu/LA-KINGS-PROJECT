@@ -732,7 +732,7 @@ def upload_cv_to_s3(encoded_cv, cv_name):
 
 def upload_cv_to_s3_1(encoded_cv, cv_name):
     # decode resume and convert to readable pdf file using io.BytesIO
-    resume = io.BytesIO(encoded_cv)
+    # resume = io.BytesIO(encoded_cv)
     # content = resume.decode("utf-8")
     file_name = cv_name + str(int(time.time())) + ".pdf"
     # get bucket name and connect to s3
@@ -741,7 +741,7 @@ def upload_cv_to_s3_1(encoded_cv, cv_name):
                           aws_secret_access_key=os.getenv("AWSSecretKey"))
     # upload txt file to s3
     client.upload_fileobj(
-        resume,
+        encoded_cv,
         bucket,
         file_name,
         ExtraArgs={'ACL': 'public-read', 'ContentDisposition': 'inline',
