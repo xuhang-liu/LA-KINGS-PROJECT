@@ -14,7 +14,14 @@ export class Pipeline extends Component {
     }
 
     state={
-        showRequestForm: false
+        showRequestForm: false,
+        requestButton: 0
+    }
+
+    setRequestButton= (data) => {
+        this.setState({
+            requestButton: data
+        })
     }
 
     setShowRequest = () => {
@@ -409,14 +416,23 @@ export class Pipeline extends Component {
                     {/*All Candidates*/}
                     <div className="row">
                         <div className="px-5 pt-1">
+                            {this.state.requestButton==0 &&
                             <button
                                 className="default-btn5 interview-txt6"
                                 onClick={this.setShowRequest}
-                                style={{ paddingLeft: "25px" }}
+                                style={{ paddingLeft: "25px", width:"12rem" }}
                             >
                                 Request Sourcing
                                 <span></span>
-                            </button>
+                            </button>}
+                            {this.state.requestButton==1 &&
+                            <button
+                                className="default-btn5 interview-txt6"
+                                style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width:"12rem", color:"#ff6b00", border:"1px solid #FF6B00" }}
+                            >
+                                List Pending
+                                <span></span>
+                            </button>}
                         </div>
                         <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage01.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
                             <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
@@ -510,7 +526,7 @@ export class Pipeline extends Component {
                             <button
                                 className="default-btn1 interview-txt6"
                                 onClick={this.inviteExReviewer}
-                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                                style={{ paddingLeft: "25px", visibility: 'hidden', width:"12rem" }}
                             >
                                 Request Sourcing
                                 <span></span>
@@ -609,7 +625,7 @@ export class Pipeline extends Component {
                             <button
                                 className="default-btn1 interview-txt6"
                                 onClick={this.inviteExReviewer}
-                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                                style={{ paddingLeft: "25px", visibility: 'hidden', width:"12rem" }}
                             >
                                 Request Sourcing
                                 <span></span>
@@ -708,7 +724,7 @@ export class Pipeline extends Component {
                             <button
                                 className="default-btn1 interview-txt6"
                                 onClick={this.inviteExReviewer}
-                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                                style={{ paddingLeft: "25px", visibility: 'hidden', width:"12rem" }}
                             >
                                 Request Sourcing
                                 <span></span>
@@ -807,7 +823,7 @@ export class Pipeline extends Component {
                             <button
                                 className="default-btn1 interview-txt6"
                                 onClick={this.inviteExReviewer}
-                                style={{ paddingLeft: "25px", visibility: 'hidden' }}
+                                style={{ paddingLeft: "25px", visibility: 'hidden', width:"12rem" }}
                             >
                                 Request Sourcing
                                 <span></span>
@@ -900,13 +916,16 @@ export class Pipeline extends Component {
                                     </span>}
                             </div>}
                     </div>
-                    {/* Edit Questions */}
+                    {/* Open Sourcing Form */}
                     <MyModal80
                         show={this.state.showRequestForm}
                         onHide={this.setHideRequest}
                     >
                         <SourcingRequestForm
-                            hideQEditForm={this.setHideRequest}
+                            setHideRequest={this.setHideRequest}
+                            job={this.props.job.job_details}
+                            user={this.props.user}
+                            profile={this.props.profile}
                         />
                     </MyModal80>
                 </div>

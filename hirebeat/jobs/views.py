@@ -2,7 +2,7 @@
 from pickle import TRUE
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList
+from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
@@ -1572,3 +1572,23 @@ def get_email_message_list(request):
     return Response({
         "data": receivedEmail
     })
+
+@api_view(['POST'])
+def create_new_sourcing_request(request):
+    user_id = request.data["user_id"]
+    job_id = request.data["job_id"]
+    title = request.data["title"]
+    location = request.data["location"]
+    additionalComment = request.data["additionalComment"]
+    year_of_exp = request.data["year_of_exp"]
+    sen_level = request.data["sen_level"]
+    req_skill_set = request.data["req_skill_set"]
+    pre_skill_set = request.data["pre_skill_set"]
+    industry_set = request.data["industry_set"]
+    education_level = request.data["education_level"]
+
+    SourcingRequest.objects.create(user_id=user_id, jobs_id=job_id, title=title, location=location, additionalComment=additionalComment, 
+                                    year_of_exp=year_of_exp, sen_level=sen_level, req_skill_set=req_skill_set, pre_skill_set=pre_skill_set,
+                                    industry_set=industry_set, education_level=education_level)
+    
+    return Response("Requst create successfully", status=status.HTTP_202_ACCEPTED)
