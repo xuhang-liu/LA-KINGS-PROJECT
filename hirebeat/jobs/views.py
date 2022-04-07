@@ -730,26 +730,6 @@ def upload_cv_to_s3(encoded_cv, cv_name):
     resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
     return resume_url
 
-def upload_cv_to_s3_1(encoded_cv, cv_name):
-    # decode resume and convert to readable pdf file using io.BytesIO
-    resume = io.BytesIO(base64.b64decode(encoded_cv))
-    # content = resume.decode("utf-8")
-    file_name = cv_name + str(int(time.time())) + ".pdf"
-    # get bucket name and connect to s3
-    bucket = os.getenv("CV_Interview_Bucket")
-    client = boto3.client('s3', aws_access_key_id=os.getenv("AWSAccessKeyId"),
-                          aws_secret_access_key=os.getenv("AWSSecretKey"))
-    # upload txt file to s3
-    client.upload_fileobj(
-        resume,
-        bucket,
-        file_name,
-        ExtraArgs={'ACL': 'public-read', 'ContentDisposition': 'inline',
-                   'ContentType': 'application/pdf'}
-    )
-    resume_url = "https://hirebeat-interview-resume.s3.amazonaws.com/" + file_name
-    return resume_url
-
 # add new candidate to hiring pipeline through uploading resumes
 @api_view(['POST'])
 def add_new_apply_candidate_by_cv(request):
@@ -801,22 +781,16 @@ def add_new_apply_candidate_from_zr(request):
     lastname = request.data['last_name']
     phone = request.data['phone']
     email = request.data['email']
-    # location = request.data['location']
     resume = request.data['resume']
     answers_zip = []
     cv_name = email.split("@")[0]
-    resume_url = ""
-    if "drjobfeedapi.drjobpro.com" in resume:
-        resume_url = upload_cv_to_s3_1(resume, cv_name)
-    else:
-        resume_url = upload_cv_to_s3(resume, cv_name)
-    # linkedinurl = request.data['linkedinurl']
+    resume_url = upload_cv_to_s3(resume, cv_name)
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     jobQuestions = JobQuestion.objects.filter(jobs=jobs)
-    if len(jobQuestions) > 0 and "drjobfeedapi.drjobpro.com" not in resume:
+    if len(jobQuestions) > 0:
         answers_zip = request.data['answers']
     questions = []
     answers = []
@@ -848,14 +822,50 @@ def add_new_apply_candidate_from_zr(request):
                                 qualified = False
                                 cur_stage = "Unqualified"
     if not applied:
-        if "drjobfeedapi.drjobpro.com" in resume:
-            ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
-                                       location="", resume_url=resume_url, linkedinurl="", apply_source="DrJob", questions=questions, 
-                                       answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, current_stage=cur_stage)
-        else:
-            ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="ZipRecruiter", questions=questions, 
                                        answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, current_stage=cur_stage)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
+
+# the webhook api designed for DrJob to post candidates back to HireBeat platform
+@api_view(['POST'])
+def add_new_apply_candidate_from_drjob(request):
+    job_id = request.data['job_id']
+    firstname = request.data['first_name']
+    lastname = request.data['last_name']
+    phone = request.data['phone']
+    email = request.data['email']
+    resume = request.data['resume']
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
+    fullname = firstname + " " + lastname
+    jobs = Jobs.objects.get(pk=job_id)
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                       location="", resume_url=resume_url, linkedinurl="", apply_source="DrJob")
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
