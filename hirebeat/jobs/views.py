@@ -2,7 +2,7 @@
 from pickle import TRUE
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
-from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest
+from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest, SourcingCandidates
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
 from accounts.models import Profile, EmployerProfileDetail, ProfileDetail, CandidatesInterview, PayGCreditToJob
 from rest_framework.response import Response
@@ -1592,3 +1592,57 @@ def create_new_sourcing_request(request):
                                     industry_set=industry_set, education_level=education_level)
     
     return Response("Requst create successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_sourcing_request_status(request):
+    status = 0
+    jobid = request.query_params.get("jobid")
+    sourcingRequest = SourcingRequest.objects.filter(jobs_id=jobid, is_paid=True)
+    if len(sourcingRequest) > 0:
+        status = 1
+    sourcingCandidates = SourcingCandidates.objects.filter(jobs_id=jobid)
+    if len(sourcingCandidates) > 0:
+        status = 2
+    return Response({
+        "data": status
+    })
+
+@api_view(['POST'])
+def sourcing_request_payment_suc(request):
+    sourcingRequest = SourcingRequest.objects.last()
+    job = Jobs.objects.get(pk=sourcingRequest.jobs.id)
+    user = User.objects.get(pk=sourcingRequest.user.id)
+    sourcingRequest.paid_date = datetime.now()
+    sourcingRequest.is_paid = True
+    sourcingRequest.save()
+    
+    # print("===Sourcing Request Notify===")
+    subject = 'New Sourcing Request'
+    message = get_template("jobs/sourcing_request_notification.html")
+    context = {
+        'user_email': user.email,
+        'date': datetime.now(),
+        'job_url': job.job_url.replace(" ","%20"),
+        'title': sourcingRequest.title,
+        'location': sourcingRequest.location,
+        'additionalComment': sourcingRequest.additionalComment,
+        'year_of_exp': sourcingRequest.year_of_exp,
+        'sen_level': sourcingRequest.sen_level,
+        'req_skill_set': sourcingRequest.req_skill_set,
+        'pre_skill_set': sourcingRequest.pre_skill_set,
+        'industry_set': sourcingRequest.industry_set,
+        'education_level': sourcingRequest.education_level,
+    }
+    from_email = 'HireBeat System <tech@hirebeat.co>'
+    to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Requst sent successfully", status=status.HTTP_202_ACCEPTED)

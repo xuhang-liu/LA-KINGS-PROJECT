@@ -3,6 +3,9 @@ import Select from 'react-select';
 import { IndustryOptions } from '../../accounts/Constants';
 import { SkillSet } from "../jobBoard/Constants";
 import axios from "axios";
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 export class SourcingRequestForm extends Component {
 
@@ -117,12 +120,29 @@ export class SourcingRequestForm extends Component {
             "education_level": this.state.educationLevel,
         };
         axios.post("jobs/create-new-sourcing-request", data, config).then((res) => {
-            console.log(res)
-            this.props.setHideRequest();
+            console.log(res);
+            this.handleSourcingRequest();
         }).catch(error => {
-            console.log(error)
+            console.log(error);
         });
     }
+
+    handleSourcingRequest = async (event) => {
+        // When the customer clicks on the button, redirect them to Checkout.
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: 'price_1KmJXsKxU1MN2zWMlblzQyXj',
+                quantity: 1,
+            }],
+            mode: 'payment',
+            successUrl: 'https://app.hirebeat.co/sourcingpayment',
+            cancelUrl: 'https://app.hirebeat.co/sourcingpayfail',
+            billingAddressCollection: 'auto',
+            customerEmail: this.props.user.email,
+        });
+        error.message;
+    };
 
     render() {
         return (

@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import Select from 'react-select';
-import RichTextEditor from 'react-rte';
+// import RichTextEditor from 'react-rte';
 import parse from 'html-react-parser';
 import { MessageClient } from "cloudmailin";
 import axios from "axios";
 
-const toolbarConfig = {
-    // Optionally specify the groups to display (displayed in the order listed).
-    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'HISTORY_BUTTONS'],
-    INLINE_STYLE_BUTTONS: [
-        { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-        { label: 'Italic', style: 'ITALIC' },
-        { label: 'Underline', style: 'UNDERLINE' }
-    ],
-    BLOCK_TYPE_BUTTONS: [
-        { label: 'UL', style: 'unordered-list-item' },
-        { label: 'OL', style: 'ordered-list-item' }
-    ]
-};
+// const toolbarConfig = {
+//     // Optionally specify the groups to display (displayed in the order listed).
+//     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'HISTORY_BUTTONS'],
+//     INLINE_STYLE_BUTTONS: [
+//         { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
+//         { label: 'Italic', style: 'ITALIC' },
+//         { label: 'Underline', style: 'UNDERLINE' }
+//     ],
+//     BLOCK_TYPE_BUTTONS: [
+//         { label: 'UL', style: 'unordered-list-item' },
+//         { label: 'OL', style: 'ordered-list-item' }
+//     ]
+// };
 
 export class EmailSending extends Component {
 
