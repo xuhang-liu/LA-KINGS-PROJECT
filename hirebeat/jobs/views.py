@@ -1632,6 +1632,8 @@ def sourcing_request_payment_suc(request):
         'pre_skill_set': sourcingRequest.pre_skill_set,
         'industry_set': sourcingRequest.industry_set,
         'education_level': sourcingRequest.education_level,
+        'job_id': job.id,
+        'request_id': sourcingRequest.id
     }
     from_email = 'HireBeat System <tech@hirebeat.co>'
     to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
