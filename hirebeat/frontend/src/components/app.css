@@ -2852,11 +2852,23 @@ h5 {
 }
 
 .back-to-text {
+  font-family: Inter, Segoe UI;
   color: #006dff;
   font-size: 1.25rem;
 }
 
 .back-to-text:hover {
+  color: #ff6b00;
+}
+
+.back-to-text1 {
+  font-family: Inter, Segoe UI;
+  font-weight: 600;
+  color: #090d3a;
+  font-size: 1.25rem;
+}
+
+.back-to-text1:hover {
   color: #ff6b00;
 }
 
@@ -3633,6 +3645,14 @@ h5 {
 }
 
 .title-button2:hover {
+  color: #ff6b00;
+}
+
+.title-button3 {
+  font-family: Inter, Segoe UI;
+}
+
+.title-button3:hover {
   color: #ff6b00;
 }
 
@@ -4935,4 +4955,15 @@ input.form-control.inputInModal:-ms-input-placeholder { /* Internet Explorer 10-
  
 input.form-control.inputInModal::-ms-input-placeholder { /* Microsoft Edge */
   color: #c9c9c9 !important;
+}
+
+/**************** Sourcing *************/
+.sourcingtitle-hover-orange:hover {
+  color: #FF6B00 !important;
+}
+.sourcingRequest:hover{
+  background-color: #090D3A !important;
+}
+.sourcingrow:hover{
+  background-color: rgba(0, 109, 255, 0.1);
 }

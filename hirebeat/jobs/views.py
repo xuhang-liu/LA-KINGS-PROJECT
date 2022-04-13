@@ -1648,3 +1648,11 @@ def sourcing_request_payment_suc(request):
     email.send()
 
     return Response("Requst sent successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_sourcing_request_list_from_jobid(request):
+    jobid = request.query_params.get("jobid")
+    sourcingCandidates = SourcingCandidates.objects.filter(jobs_id=jobid).values()
+    return Response({
+        "data": sourcingCandidates
+    })

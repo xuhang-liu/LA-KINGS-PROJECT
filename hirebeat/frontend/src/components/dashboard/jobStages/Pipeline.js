@@ -428,6 +428,9 @@ export class Pipeline extends Component {
                     <div className="container-fluid py-5 px-5">
                         <SourcingRequestList
                             setrequestListHide={this.setrequestListHide}
+                            job={this.props.job.job_details}
+                            user={this.props.user}
+                            profile={this.props.profile}
                         />
                     </div> :
                     <div className="container-fluid py-5 px-5">
