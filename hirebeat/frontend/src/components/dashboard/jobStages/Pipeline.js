@@ -431,6 +431,7 @@ export class Pipeline extends Component {
                             job={this.props.job.job_details}
                             user={this.props.user}
                             profile={this.props.profile}
+                            employerProfileDetail={this.props.employerProfileDetail}
                         />
                     </div> :
                     <div className="container-fluid py-5 px-5">
@@ -451,7 +452,7 @@ export class Pipeline extends Component {
                                         className="default-btn5 interview-txt6"
                                         style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
                                     >
-                                        Processing List
+                                        Sourcing List Pending
                                         <span></span>
                                     </button>}
                                 {this.state.requestButton == 2 &&
@@ -460,7 +461,7 @@ export class Pipeline extends Component {
                                         onClick={() => this.setState({ requestListShow: true })}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
-                                        View List
+                                        View Sourcing List
                                         <span></span>
                                     </button>}
                             </div>

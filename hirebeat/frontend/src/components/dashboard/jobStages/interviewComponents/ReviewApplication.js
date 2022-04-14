@@ -935,6 +935,7 @@ export class ReviewApplication extends Component {
                         jobid={this.props.jobsId}
                         first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
                         last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
+                        handleStatusChange2={null}
                     />
                 </MyModal80>
             </div>

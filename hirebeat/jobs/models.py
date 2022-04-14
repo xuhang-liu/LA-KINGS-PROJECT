@@ -140,5 +140,6 @@ class SourcingCandidates(models.Model):
     prev_company_name2 = models.CharField(max_length=100, null=True, blank=True)
     prev_company_industry2 = models.CharField(max_length=100, null=True, blank=True)
     prev_company_size2 = models.CharField(max_length=100, null=True, blank=True)
-    approval = models.IntegerField(default=0) #0 means approve, 1 means onHold, 2 means reject
+    approval = models.IntegerField(default=1) #0 means approve, 1 means onHold, 2 means reject
     status = models.IntegerField(default=0) #0 means new, 1 means viewed, 2 means contacted
+    notes = models.TextField(blank=True, null=True)

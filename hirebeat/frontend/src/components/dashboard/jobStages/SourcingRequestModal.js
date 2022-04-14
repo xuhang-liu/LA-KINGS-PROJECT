@@ -1,11 +1,31 @@
 import React from "react";
+import axios from "axios";
 
 export class SourcingRequestModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            notes: "",
+            notes: this.props.sourcing.notes,
         };
+    }
+
+    onChange = (e) => {
+        this.setState({notes: e.target.value});
+    }
+
+    addSourcingNotes = (e) => {
+        e.preventDefault();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "cid": this.props.sourcing.id,  "notes": this.state.notes };
+        axios.post("jobs/add-sourcing-candidate-notes", data, config).then((res) => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
     render() {
@@ -15,7 +35,7 @@ export class SourcingRequestModal extends React.Component {
                     <button
                         type="button"
                         className="panel-button"
-                        onClick={this.props.onHide}
+                        onClick={() =>{this.props.onHide(), this.props.refresh()}}
                         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                     >
                         <div className="center-items back-to-text1">
@@ -186,14 +206,18 @@ export class SourcingRequestModal extends React.Component {
                             >
                                 Notes
                             </h3>
-                            <div
+                            <textarea
                                 style={{
                                     height: "25rem",
+                                    width: "100%",
                                     border: "2px solid #F3F6F9",
                                     overflowY: "auto",
                                     padding: "2rem",
                                 }}
-                            ></div>
+                                value={this.state.notes}
+                                onChange={this.onChange}
+                                onBlur={this.addSourcingNotes}
+                            ></textarea>
                             <div
                                 style={{
                                     display: "flex",
@@ -207,7 +231,7 @@ export class SourcingRequestModal extends React.Component {
                                         paddingLeft: "25px",
                                         backgroundColor: "#01CFA6",
                                     }}
-                                    onClick={this.addNewSourcing}
+                                    onClick={() => this.props.handelApproval(this.props.sourcing.id, 0)}
                                 >
                                     Approve
                                 </button>
@@ -217,7 +241,7 @@ export class SourcingRequestModal extends React.Component {
                                         paddingLeft: "25px",
                                         backgroundColor: "rgb(239, 74, 83)",
                                     }}
-                                    onClick={this.addNewSourcing}
+                                    onClick={() => this.props.handelApproval(this.props.sourcing.id, 2)}
                                 >
                                     Reject
                                 </button>
@@ -229,7 +253,7 @@ export class SourcingRequestModal extends React.Component {
                                     width: "100%",
                                     marginTop: "0.5rem",
                                 }}
-                                onClick={this.addNewSourcing}
+                                onClick={this.props.openEmailSending}
                             >
                                 <i className="bx-fw bx bx-envelope"></i>
                                 Contact

@@ -5,17 +5,22 @@ import { SourcingRequestCard } from "./SourcingRequestCard";
 import { SourcingRequestForm } from "./SourcingRequestForm";
 import axios from "axios";
 import { MyModal80 } from "../DashboardComponents";
+import { confirmAlert } from 'react-confirm-alert';
+import { EmailSending } from '../applications/EmailSending';
 
 export class SourcingRequestList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: { value: "All", label: "All" },
-            approval: { value: "All", label: "All" },
+            status: { value: 3, label: "Prospect Status" },
+            approval: { value: 3, label: "Approval" },
             sourcings: [],
             isAllChecked: false,
             countCheck: 0,
             showRequestForm: false,
+            keyWords: "",
+            showEmailSending: false,
+            email_list: null,
         };
     }
 
@@ -30,6 +35,10 @@ export class SourcingRequestList extends React.Component {
             .catch(error => {
                 console.log(error)
             });
+    }
+
+    hideEmailSending = () => {
+        this.setState({showEmailSending: false})
     }
 
     handleAllChecked = () => {
@@ -65,27 +74,71 @@ export class SourcingRequestList extends React.Component {
         });
     };
 
+    handleApprovalChange = (approval) => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "is_approval": true, "cid": approval.c_id, "approval": approval.value };
+        axios.post("jobs/switch-sourcing-candidate-status", data, config).then((res) => {
+            confirmAlert({
+                title: "Approval Changed Successful!",
+                buttons: [
+                    {
+                        label: 'Ok'
+                    }
+                ]
+            });
+        }).catch(error => {
+            console.log(error)
+        });
+        var status = this.state.status.value;
+        var approval = this.state.approval.value;
+        setTimeout(() => {
+            axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                var sourcing = res.data.data.filter(function (s) {
+                    if (status != 3 && approval != 3) {
+                        return s.status === status && s.approval === approval;
+                    } else if (approval != 3) {
+                        return s.approval === approval;
+                    } else if (status != 3) {
+                        return s.status === status;
+                    } else {
+                        return s;
+                    }
+                });
+                this.setState({
+                    sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                });
+            })
+                .catch(error => {
+                    console.log(error)
+                })
+        }, 300);
+    };
+
     handleEmailSend = () => {
         var email_list = []
         this.state.sourcings.map((sourcing) => {
             if (sourcing.isChecked) {
-                email_list.push(sourcing.email);
+                email_list.push({"email":sourcing.email, "id":sourcing.id});
             }
         });
-        console.log(email_list);
+        this.setState({email_list: email_list, showEmailSending: true})
     }
 
     // filter approval selections
-    options = [
-        { value: "All", label: "All" },
+    approvalOptions = [
+        { value: 3, label: "All" },
         { value: 0, label: "Approve" },
         { value: 1, label: "On Hold" },
         { value: 2, label: "Reject" },
     ];
 
     // filter selections
-    stageOptions = [
-        { value: "All", label: "All" },
+    statusOptions = [
+        { value: 3, label: "All" },
         { value: 0, label: "New" },
         { value: 1, label: "Viewed" },
         { value: 2, label: "Contacted" },
@@ -142,6 +195,18 @@ export class SourcingRequestList extends React.Component {
 
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
+        var keyWords = e.target.value.toLowerCase();
+        axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+            var sourcing = res.data.data.filter(function (s) {
+                return (s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords);
+            });
+            this.setState({
+                sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+            });
+        })
+            .catch(error => {
+                console.log(error)
+            });
     };
 
     setShowRequest = () => {
@@ -154,6 +219,241 @@ export class SourcingRequestList extends React.Component {
         this.setState({
             showRequestForm: false
         })
+    }
+
+    onFilter = (approval) => {
+        this.setState({ approval: approval });
+        var status = this.state.status.value;
+        switch (approval.value) {
+            case 0:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (status === 0) {
+                            return s.approval === 0 && s.status === 0;
+                        } else if (status === 1) {
+                            return s.approval === 0 && s.status === 1;
+                        } else if (status === 2) {
+                            return s.approval === 0 && s.status === 2;
+                        } else {
+                            return s.approval === 0;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            case 1:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (status === 0) {
+                            return s.approval === 1 && s.status === 0;
+                        } else if (status === 1) {
+                            return s.approval === 1 && s.status === 1;
+                        } else if (status === 2) {
+                            return s.approval === 1 && s.status === 2;
+                        } else {
+                            return s.approval === 1;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            case 2:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (status === 0) {
+                            return s.approval === 2 && s.status === 0;
+                        } else if (status === 1) {
+                            return s.approval === 2 && s.status === 1;
+                        } else if (status === 2) {
+                            return s.approval === 2 && s.status === 2;
+                        } else {
+                            return s.approval === 2;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            default:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (status === 0) {
+                            return s.status === 0;
+                        } else if (status === 1) {
+                            return s.status === 1;
+                        } else if (status === 2) {
+                            return s.status === 2;
+                        } else {
+                            return s;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+        }
+    }
+
+    onFilter1 = (status) => {
+        this.setState({ status: status });
+        var approval = this.state.approval.value;
+        switch (status.value) {
+            case 0:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (approval === 0) {
+                            return s.status === 0 && s.approval === 0;
+                        } else if (approval === 1) {
+                            return s.status === 0 && s.approval === 1;
+                        } else if (approval === 2) {
+                            return s.status === 0 && s.approval === 2;
+                        } else {
+                            return s.status === 0;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            case 1:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (approval === 0) {
+                            return s.status === 1 && s.approval === 0;
+                        } else if (approval === 1) {
+                            return s.status === 1 && s.approval === 1;
+                        } else if (approval === 2) {
+                            return s.status === 1 && s.approval === 2;
+                        } else {
+                            return s.status === 1;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            case 2:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (approval === 0) {
+                            return s.status === 2 && s.approval === 0;
+                        } else if (approval === 1) {
+                            return s.status === 2 && s.approval === 1;
+                        } else if (approval === 2) {
+                            return s.status === 2 && s.approval === 2;
+                        } else {
+                            return s.status === 2;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+            default:
+                axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                    var sourcing = res.data.data.filter(function (s) {
+                        if (approval === 0) {
+                            return s.approval === 0;
+                        } else if (approval === 1) {
+                            return s.approval === 1;
+                        } else if (approval === 2) {
+                            return s.approval === 2;
+                        } else {
+                            return s;
+                        }
+                    });
+                    this.setState({
+                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    });
+                })
+                    .catch(error => {
+                        console.log(error)
+                    });
+                break;
+        }
+    }
+
+    handleStatusChange2 = () => {
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        for(let i = 0; i < this.state.email_list.length; i++){
+            let data = { "is_approval": false, "cid": this.state.email_list[i].id,  "c_status": 2 };
+            axios.post("jobs/switch-sourcing-candidate-status", data, config).then((res) => {
+                console.log(res)
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+        setTimeout(() => {
+            axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                this.setState({
+                    sourcings: res.data.data.map((post) => ({ ...post, isChecked: false })),
+                });
+            })
+                .catch(error => {
+                    console.log(error)
+                })
+        }, 300);
+    }
+
+    refresh = () => {
+        var status = this.state.status.value;
+        var approval = this.state.approval.value;
+        var keyWords = this.state.keyWords.toLowerCase();
+        setTimeout(() => {
+            axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                var sourcing = res.data.data.filter(function (s) {
+                    if (status != 3 && approval != 3) {
+                        return s.status === status && s.approval === approval && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
+                    } else if (approval != 3) {
+                        return s.approval === approval && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
+                    } else if (status != 3) {
+                        return s.status === status && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
+                    } else {
+                        return ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
+                    }
+                });
+                this.setState({
+                    sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                });
+            })
+                .catch(error => {
+                    console.log(error)
+                })
+        }, 300);
     }
 
     render() {
@@ -259,8 +559,9 @@ export class SourcingRequestList extends React.Component {
                                 style={{ marginTop: "-8px" }}
                             >
                                 <Select
-                                    // onChange={this.onFilter}
-                                    options={this.options}
+                                    onChange={this.onFilter}
+                                    value={this.state.approval}
+                                    options={this.approvalOptions}
                                     styles={this.customStyles}
                                     className="select-category-jobs-closed"
                                     placeholder={"Approval"}
@@ -278,8 +579,9 @@ export class SourcingRequestList extends React.Component {
                             </div>
                             <div className="col-2" style={{ marginTop: "-8px" }}>
                                 <Select
-                                    // onChange={this.onFilter}
-                                    options={this.stageOptions}
+                                    onChange={this.onFilter1}
+                                    value={this.state.status}
+                                    options={this.statusOptions}
                                     styles={this.customStyles2}
                                     className="select-category-jobs-closed"
                                     placeholder={"Prospect Status"}
@@ -299,10 +601,13 @@ export class SourcingRequestList extends React.Component {
                             return (
                                 <SourcingRequestCard
                                     handleCheck={() => this.handleCheck(sourcing.id)}
+                                    handleApprovalChange={this.handleApprovalChange}
                                     sourcing={sourcing}
                                     job={this.props.job}
                                     user={this.props.user}
                                     profile={this.props.profile}
+                                    employerProfileDetail={this.props.employerProfileDetail}
+                                    refresh={this.refresh}
                                 />
                             );
                         })}
@@ -354,6 +659,20 @@ export class SourcingRequestList extends React.Component {
                         job={this.props.job}
                         user={this.props.user}
                         profile={this.props.profile}
+                    />
+                </MyModal80>
+                {/* Open Email Sending */}
+                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={this.hideEmailSending}
+                        employerProfileDetail={this.props.employerProfileDetail}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        email={this.state.email_list}
+                        jobid={this.props.job.id}
+                        first_name={this.state.email_list}
+                        last_name={this.state.email_list}
+                        handleStatusChange2={this.handleStatusChange2}
                     />
                 </MyModal80>
             </React.Fragment>

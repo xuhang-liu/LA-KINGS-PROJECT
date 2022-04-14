@@ -853,6 +853,7 @@ const ReviewCandidate = (props) => {
                     jobid={props.curJob.job_details.id}
                     first_name={props.first_name}
                     last_name={props.last_name}
+                    handleStatusChange2={null}
                 />
             </MyModal80>
         </div >

@@ -1656,3 +1656,38 @@ def get_sourcing_request_list_from_jobid(request):
     return Response({
         "data": sourcingCandidates
     })
+
+@api_view(['POST'])
+def switch_sourcing_candidate_status(request):
+    cid = request.data["cid"]
+    is_approval = request.data["is_approval"]
+
+    if is_approval:
+        # switch approval:
+        sourcingCandidates = SourcingCandidates.objects.get(pk=cid)
+        sourcingCandidates.approval = request.data["approval"]
+        sourcingCandidates.save()
+    else:
+        # switch status:
+        sourcingCandidates = SourcingCandidates.objects.get(pk=cid)
+        if request.data["c_status"] == 1:
+            if sourcingCandidates.status == 0:
+                sourcingCandidates.status = request.data["c_status"]
+                sourcingCandidates.save()
+        else:
+            sourcingCandidates.status = request.data["c_status"]
+            sourcingCandidates.save()
+
+
+    return Response("Change successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['POST'])
+def add_sourcing_candidate_notes(request):
+    cid = request.data["cid"]
+    notes = request.data["notes"]
+    sourcingCandidates = SourcingCandidates.objects.get(pk=cid)
+    sourcingCandidates.notes = notes
+    sourcingCandidates.save()
+
+
+    return Response("Add notes successfully", status=status.HTTP_202_ACCEPTED)
