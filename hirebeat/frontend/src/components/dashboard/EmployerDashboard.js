@@ -799,7 +799,7 @@ export class EmployerDashboard extends Component {
               </MyModalUpgrade>
               <ScrollToTopOnMount />
               {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
-              <MediaQuery minDeviceWidth={1224}>
+              <MediaQuery minDeviceWidth={900}>
                 <div className="row no-gutters min-width-1290">
                   <div className='col-1'>
                     <div className='dashboard-sidebar'>
@@ -842,7 +842,7 @@ export class EmployerDashboard extends Component {
                   </div>
                 </div>
               </MediaQuery>
-              <MediaQuery maxDeviceWidth={1223}>
+              <MediaQuery maxDeviceWidth={899}>
                 <PageTitleArea
                   pageTitle="Welcome to Hirebeat!"
                   pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
