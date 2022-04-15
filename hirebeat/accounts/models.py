@@ -237,6 +237,7 @@ class RedeemCode(models.Model):
     plan = models.CharField(max_length=100, null=True, blank=True)
     is_redeemed = models.BooleanField(default=False)
     dateredeemed = models.DateTimeField(null=True)
+    userid = models.CharField(max_length=50, null=True, blank=True)
     
 class DeletedAccount(models.Model):
     email = models.CharField(max_length=50, null=True, blank=True)

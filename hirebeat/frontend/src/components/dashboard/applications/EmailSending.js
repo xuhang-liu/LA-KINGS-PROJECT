@@ -1,23 +1,8 @@
 import React, { Component } from "react";
 import Select from 'react-select';
-// import RichTextEditor from 'react-rte';
 import parse from 'html-react-parser';
 import { MessageClient } from "cloudmailin";
 import axios from "axios";
-
-// const toolbarConfig = {
-//     // Optionally specify the groups to display (displayed in the order listed).
-//     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'HISTORY_BUTTONS'],
-//     INLINE_STYLE_BUTTONS: [
-//         { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-//         { label: 'Italic', style: 'ITALIC' },
-//         { label: 'Underline', style: 'UNDERLINE' }
-//     ],
-//     BLOCK_TYPE_BUTTONS: [
-//         { label: 'UL', style: 'unordered-list-item' },
-//         { label: 'OL', style: 'ordered-list-item' }
-//     ]
-// };
 
 export class EmailSending extends Component {
 
@@ -50,6 +35,9 @@ export class EmailSending extends Component {
         }).catch(error => {
             console.log(error)
         });
+        if (this.props.handleStatusChange2 != null) {
+            this.setState({emailFrom: { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' }});
+        }
     }
 
     onFilter = (emailTemp) => {
@@ -99,6 +87,18 @@ export class EmailSending extends Component {
             }
             this.setState({
                 emailBody: newtext5
+            });
+        }
+        if (emailTemp.value == 6) {
+            this.setState({
+                emailSubject: "New vacancy available with " + this.props.employerProfileDetail.name
+            });
+            let newtext6 = "Hi" + ",\n\nWe've just posted a vacancy we think you may be interested in. Click the link below to learn more about the role and to apply.\n\n"+"Job Basic Information:\n"+this.state.job.job_title+" - "+this.state.job.job_location+"\n\nJob Description and Application link:\n"+this.state.job.job_url?.replaceAll(" ", "%20")+"\n\nRegards,\n\n"+this.props.employerProfileDetail.name;
+            if (typeof this.props.email == "string") {
+                newtext6 = "Hi " + this.props.first_name + ",\n\nWe've just posted a vacancy we think you may be interested in. Click the link below to learn more about the role and to apply.\n\n"+"Job Basic Information:\n"+this.state.job.job_title+" - "+this.state.job.job_location+"\n\nJob Description and Application link:\n"+this.state.job.job_url?.replaceAll(" ", "%20")+"\n\nRegards,\n\n"+this.props.employerProfileDetail.name;
+            }
+            this.setState({
+                emailBody: newtext6
             });
         }
         if (emailTemp.value == 0) {
@@ -247,11 +247,26 @@ export class EmailSending extends Component {
             { value: 5, label: 'Default Rejection' },
             { value: 0, label: 'No Selection' },
         ]
+        if (this.props.handleStatusChange2 != null) {
+            options = [
+                { value: 2, label: 'Interview Request with Calendly' },
+                { value: 3, label: 'Candidate Availability Request' },
+                { value: 4, label: 'Candidate Interview Confirmation' },
+                { value: 5, label: 'Default Rejection' },
+                { value: 6, label: 'Invitation to Apply Job' },
+                { value: 0, label: 'No Selection' },
+            ]
+        }
 
         var options1 = [
             { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: this.props.employerProfileDetail?.name },
             { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
         ]
+        if (this.props.handleStatusChange2 != null) {
+            options1 = [
+                { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
+            ]
+        }
 
         var options2 = [
             { value: this.props.employerProfileDetail.name, label: 'Company Name' },
@@ -262,11 +277,10 @@ export class EmailSending extends Component {
             { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
             { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
         ]
-        if (typeof this.props.email == "string") {
+        if (this.props.handleStatusChange2 != null) {
             options2 = [
-                { value: this.props.first_name + " " + this.props.last_name, label: 'Candidate Full Name' },
-                { value: this.props.first_name, label: 'Candidate First Name' },
-                { value: this.props.last_name, label: 'Candidate Last Name' },
+                { value: this.state.job.job_location, label: 'Job Location' },
+                { value: this.state.job.job_url?.replaceAll(" ", "%20"), label: 'Job URL' },
                 { value: this.props.employerProfileDetail.name, label: 'Company Name' },
                 { value: this.props.employerProfileDetail.website, label: 'Company Website' },
                 { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
@@ -275,6 +289,23 @@ export class EmailSending extends Component {
                 { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
                 { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
             ]
+
+            if (typeof this.props.email == "string") {
+                options2 = [
+                    { value: this.props.first_name + " " + this.props.last_name, label: 'Candidate Full Name' },
+                    { value: this.props.first_name, label: 'Candidate First Name' },
+                    { value: this.props.last_name, label: 'Candidate Last Name' },
+                    { value: this.state.job.job_location, label: 'Job Location' },
+                    { value: this.state.job.job_url?.replaceAll(" ", "%20"), label: 'Job URL' },
+                    { value: this.props.employerProfileDetail.name, label: 'Company Name' },
+                    { value: this.props.employerProfileDetail.website, label: 'Company Website' },
+                    { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
+                    { value: this.state.job.job_title, label: 'Job Title' },
+                    { value: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name, label: 'Sender Full Name' },
+                    { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
+                    { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
+                ]
+            }
         }
 
         return (

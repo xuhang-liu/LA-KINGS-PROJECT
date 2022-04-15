@@ -436,13 +436,17 @@ export class SourcingRequestList extends React.Component {
         setTimeout(() => {
             axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
                 var sourcing = res.data.data.filter(function (s) {
-                    if (status != 3 && approval != 3) {
-                        return s.status === status && s.approval === approval && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
-                    } else if (approval != 3) {
-                        return s.approval === approval && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
-                    } else if (status != 3) {
-                        return s.status === status && ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
-                    } else {
+                    if (keyWords == ""){
+                        if (status != 3 && approval != 3) {
+                            return s.status === status && s.approval === approval;
+                        } else if (approval != 3) {
+                            return s.approval === approval;
+                        } else if (status != 3) {
+                            return s.status === status;
+                        } else {
+                            return s;
+                        }
+                    }else{
                         return ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
                     }
                 });
