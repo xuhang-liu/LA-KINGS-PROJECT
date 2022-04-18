@@ -28,7 +28,7 @@ export class SourcingRequestList extends React.Component {
         axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
             setTimeout(() => {
                 this.setState({
-                    sourcings: res.data.data.map((post) => ({ ...post, isChecked: false })),
+                    sourcings: res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                 });
             }, 100);
         })
@@ -109,7 +109,7 @@ export class SourcingRequestList extends React.Component {
                     }
                 });
                 this.setState({
-                    sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                 });
             })
                 .catch(error => {
@@ -201,7 +201,7 @@ export class SourcingRequestList extends React.Component {
                 return (s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords);
             });
             this.setState({
-                sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
             });
         })
             .catch(error => {
@@ -239,7 +239,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -260,7 +260,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -281,7 +281,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -302,7 +302,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -330,7 +330,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -351,7 +351,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -372,7 +372,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -393,7 +393,7 @@ export class SourcingRequestList extends React.Component {
                         }
                     });
                     this.setState({
-                        sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     });
                 })
                     .catch(error => {
@@ -420,7 +420,7 @@ export class SourcingRequestList extends React.Component {
         setTimeout(() => {
             axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
                 this.setState({
-                    sourcings: res.data.data.map((post) => ({ ...post, isChecked: false })),
+                    sourcings: res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                 });
             })
                 .catch(error => {
@@ -451,7 +451,7 @@ export class SourcingRequestList extends React.Component {
                     }
                 });
                 this.setState({
-                    sourcings: sourcing.map((post) => ({ ...post, isChecked: false })),
+                    sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                 });
             })
                 .catch(error => {
@@ -601,7 +601,7 @@ export class SourcingRequestList extends React.Component {
                         className="chart-bg1 container-fluid"
                         style={{ border: "none", height: "24rem", overflowY: "auto" }}
                     >
-                        {sourcings.map((sourcing) => {
+                        {sourcings.sort((a, b) => a.status - b.status).map((sourcing) => {
                             return (
                                 <SourcingRequestCard
                                     handleCheck={() => this.handleCheck(sourcing.id)}

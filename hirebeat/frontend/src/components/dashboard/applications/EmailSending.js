@@ -249,11 +249,11 @@ export class EmailSending extends Component {
         ]
         if (this.props.handleStatusChange2 != null) {
             options = [
+                { value: 6, label: 'Invitation to Apply Job' },
                 { value: 2, label: 'Interview Request with Calendly' },
                 { value: 3, label: 'Candidate Availability Request' },
                 { value: 4, label: 'Candidate Interview Confirmation' },
                 { value: 5, label: 'Default Rejection' },
-                { value: 6, label: 'Invitation to Apply Job' },
                 { value: 0, label: 'No Selection' },
             ]
         }
