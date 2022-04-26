@@ -85,7 +85,6 @@ export const SkillSet = [
         { value: 'account management', label: 'account management' },
         { value: 'valuation', label: 'valuation' },
         { value: 'executive search', label: 'executive search' },
-        { value: '', label: '' },
         { value: 'internal controls', label: 'internal controls' },
         { value: 'market research', label: 'market research' },
         { value: 'quickbooks', label: 'quickbooks' },

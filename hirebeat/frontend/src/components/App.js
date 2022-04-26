@@ -24,7 +24,10 @@ import PrivateRoute from "./basic/PrivateRoute";
 import pricings from "./pricing/pricings";
 import Employer_pricing from "./pricing/Employer_pricing";
 import ROICalculator from "./Common/ROICalculator";
-import Payment from "./payment/Payment"
+import Payment from "./payment/Payment";
+import PaymentPro from "./payment/PaymentPro";
+import SourcingPayFail from "./payment/SourcingPayFail";
+import SourcingPayment from "./payment/SourcingPayment";
 import about from "./company/about";
 // import Employerabout from "./company/employerabout";
 import bloggrid from "./blog/bloggrid";
@@ -397,9 +400,12 @@ class App extends Component {
                 <Route exact path="/" component={EmployerLogin} />
                 <Route exact path="/job-seekers" component={indexsaas} />
                 <Route exact path="/payment" component={Payment} />
+                <Route exact path="/paymentpro" component={PaymentPro} />
                 <Route exact path="/paygpayment" component={PayGPayment} />
                 <Route exact path="/pjobpayment" component={PJobPayment} />
                 <Route exact path="/pjobfail" component={PJobFail} />
+                <Route exact path="/sourcingpayfail" component={SourcingPayFail} />
+                <Route exact path="/sourcingpayment" component={SourcingPayment} />
                 {/* <Route exact path="/privacy" component={Privacy} /> */}
                 {/* <Route exact path="/term" component={Term} /> */}
                 <Route exact path="/contact" component={Contact} />
