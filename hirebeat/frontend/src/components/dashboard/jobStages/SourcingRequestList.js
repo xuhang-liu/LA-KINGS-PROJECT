@@ -122,7 +122,7 @@ export class SourcingRequestList extends React.Component {
         var email_list = []
         this.state.sourcings.map((sourcing) => {
             if (sourcing.isChecked) {
-                email_list.push({"email":sourcing.email, "id":sourcing.id});
+                email_list.push({"email":sourcing.email, "id":sourcing.id, "first_name":sourcing.first_name, "last_name":sourcing.last_name});
             }
         });
         this.setState({email_list: email_list, showEmailSending: true})
@@ -147,7 +147,7 @@ export class SourcingRequestList extends React.Component {
     customStyles = {
         option: (provided, state) => ({
             ...provided,
-            color: "#090D3A",
+            color: state.isSelected ?"#fff":"#090D3A",
         }),
         control: (styles) => ({
             ...styles,
@@ -171,7 +171,7 @@ export class SourcingRequestList extends React.Component {
     customStyles2 = {
         option: (provided, state) => ({
             ...provided,
-            color: "#090D3A",
+            color: state.isSelected ?"#fff":"#090D3A",
         }),
         control: (styles) => ({
             ...styles,
@@ -572,16 +572,16 @@ export class SourcingRequestList extends React.Component {
                                     isSearchable={false}
                                 />
                             </div>
-                            <div className="col-2 d-flex justify-content-start">
+                            <div className="col-2 d-flex justify-content-center">
                                 Prospect Name
                             </div>
-                            <div className="col-2 d-flex justify-content-start">
+                            <div className="col-2 d-flex justify-content-center">
                                 Current Position
                             </div>
-                            <div className="col-2 d-flex justify-content-start">
+                            <div className="col-2 d-flex justify-content-center">
                                 Current Company
                             </div>
-                            <div className="col-2" style={{ marginTop: "-8px" }}>
+                            <div className="col-2 d-flex justify-content-center" style={{ marginTop: "-8px" }}>
                                 <Select
                                     onChange={this.onFilter1}
                                     value={this.state.status}

@@ -46,7 +46,8 @@ class SourcingPayment extends Component {
                         </div>
                     </div>
                 );
-            }
+            },
+            overlayClassName: "overlay",
         });
         return <Redirect to='/' />
     }

@@ -136,6 +136,9 @@ export class SourcingRequestForm extends Component {
                 quantity: 1,
             }],
             mode: 'payment',
+            discounts: [{
+                coupon: 'promo_1KtDMTKxU1MN2zWM8RNwf1Kt',
+            }],
             successUrl: 'https://app.hirebeat.co/sourcingpayment',
             cancelUrl: 'https://app.hirebeat.co/sourcingpayfail',
             billingAddressCollection: 'auto',
@@ -211,7 +214,7 @@ export class SourcingRequestForm extends Component {
                             </div>
                             <div className="form-group col-6">
                                 <label className="db-txt2">
-                                    Prefer Skill Sets
+                                    Preferred Skill Sets
                                 </label>
                                 <div style={{ zIndex: "9999" }}>
                                     <Select value={this.state.preferSkill} onChange={this.onFilter3} options={SkillSet.sort((a, b) => {
@@ -247,7 +250,7 @@ export class SourcingRequestForm extends Component {
                         </div>
                         <div className="form-row mt-3">
                             <div className="form-group col-12">
-                                <label className="db-txt2" style={{ color: "#7e8993" }}>
+                                <label className="db-txt2">
                                     Additional Comment (eg. language skills, certificates, major, etc.)
                                 </label>
                                 <textarea name="additionalComment" value={this.state.additionalComment}

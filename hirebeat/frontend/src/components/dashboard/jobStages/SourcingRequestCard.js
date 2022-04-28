@@ -30,9 +30,9 @@ export class SourcingRequestCard extends React.Component {
         }).catch(error => {
             console.log(error)
         });
-        if (this.props.sourcing.status == 0) {
-            this.setState({ view_status: 1 });
-        }
+        // if (this.props.sourcing.status == 0) {
+        //     this.setState({ view_status: 1 });
+        // }
     };
 
     handleStatusChange2 = (id) => {
@@ -176,26 +176,26 @@ export class SourcingRequestCard extends React.Component {
                         )}
                     />
                 </div>
-                <div className="col-2 interview-txt9 mt-2" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{(this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.length > 29 ? (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.substring(0, 27) + "..." : (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)}</span></div>
-                <div className="col-2 interview-txt9 mt-2" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{this.props.sourcing.current_title?.length > 29 ? this.props.sourcing.current_title?.substring(0, 27) + "..." : this.props.sourcing.current_title}</span></div>
-                <div className="col-2 interview-txt9 mt-2" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{this.props.sourcing.current_company_name?.length > 29 ? this.props.sourcing.current_company_name?.substring(0, 27) + "..." : this.props.sourcing.current_company_name}</span></div>
+                <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{(this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.length > 29 ? (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.substring(0, 27) + "..." : (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)}</span></div>
+                <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{this.props.sourcing.current_title?.length > 29 ? this.props.sourcing.current_title?.substring(0, 27) + "..." : this.props.sourcing.current_title}</span></div>
+                <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{this.props.sourcing.current_company_name?.length > 29 ? this.props.sourcing.current_company_name?.substring(0, 27) + "..." : this.props.sourcing.current_company_name}</span></div>
                 {(this.state.view_status != null ? this.state.view_status : this.props.sourcing.status) === 0 &&
                     <div
-                        className="col-2 interview-txt9 mt-2"
+                        className="col-2 interview-txt9 mt-2 d-flex justify-content-center"
                         style={{ paddingLeft: "25px", color: "#FF6B00" }}
                     >
                         New
                     </div>}
                 {(this.state.view_status != null ? this.state.view_status : this.props.sourcing.status) === 1 &&
                     <div
-                        className="col-2 interview-txt9 mt-2"
+                        className="col-2 interview-txt9 mt-2 d-flex justify-content-center"
                         style={{ paddingLeft: "25px" }}
                     >
                         Viewed
                     </div>}
                 {(this.state.view_status != null ? this.state.view_status : this.props.sourcing.status) === 2 &&
                     <div
-                        className="col-2 interview-txt9 mt-2"
+                        className="col-2 interview-txt9 mt-2 d-flex justify-content-center"
                         style={{ paddingLeft: "25px" }}
                     >
                         Contacted
@@ -221,7 +221,7 @@ export class SourcingRequestCard extends React.Component {
                     ) : null}
                 </div>
                 <div style={{ background: "#E8EDFC" }}>
-                    <MyFullModal1 className="light-blue-modal" show={this.state.showModal} onHide={() => { this.setState({ showModal: false }) }}>
+                    <MyFullModal1 className="light-blue-modal" show={this.state.showModal} onHide={() => { this.setState({ showModal: false }), this.props.refresh() }}>
                         <SourcingRequestModal
                             onHide={() => { this.setState({ showModal: false }) }}
                             handelApproval={this.handelApproval}
@@ -231,6 +231,7 @@ export class SourcingRequestCard extends React.Component {
                             profile={this.props.profile}
                             sourcing={this.props.sourcing}
                             refresh={this.props.refresh}
+                            approval_select={this.state.approval_select != null?this.state.approval_select:approval_select}
                         />
                     </MyFullModal1>
                 </div>
