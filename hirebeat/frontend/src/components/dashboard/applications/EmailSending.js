@@ -373,7 +373,7 @@ export class EmailSending extends Component {
                                 </div>
                                 {(typeof this.props.email != "string") &&
                                     <div className="d-flex justify-content-start px-5 py-1">
-                                        <p style={{ color: "#090d3a", fontSize: "0.8rem" }}>{this.state.emailSalute + " {{first_name}},"}</p>
+                                        <p style={{ color: "#444444", fontSize: "0.8rem" }}>{this.state.emailSalute + " {{first_name}},"}</p>
                                     </div>}
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>
                                     <div>
