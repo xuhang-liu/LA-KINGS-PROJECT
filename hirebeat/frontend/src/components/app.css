@@ -4936,3 +4936,9 @@ input.form-control.inputInModal:-ms-input-placeholder { /* Internet Explorer 10-
 input.form-control.inputInModal::-ms-input-placeholder { /* Microsoft Edge */
   color: #c9c9c9 !important;
 }
+
+
+/***************onboarding*******************/
+.form-control.popup-employerform::placeholder {
+  color: #c9c9c9 !important;
+}

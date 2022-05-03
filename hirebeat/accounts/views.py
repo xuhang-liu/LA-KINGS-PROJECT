@@ -853,6 +853,31 @@ def create_or_update_employer_summary(request):
     return Response("Create or Update employer summary successfully", status=status.HTTP_201_CREATED)
 
 
+@api_view(['POST'])
+def update_employer_onboard(request):
+    user_id = request.data["user_id"]
+    viewed_employer_tutorial = request.data["viewed_employer_tutorial"]
+    employer_profile = Profile.objects.get(user_id=user_id)
+    employer_profile.viewed_employer_tutorial = viewed_employer_tutorial
+    employer_profile.save()
+    return Response("Update employer onboard successfully", status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+def create_or_update_employer_summary(request):
+    user_id = request.data["user_id"]
+    summary = request.data["summary"]
+    try:
+        # update personal information
+        employer_profile = EmployerProfileDetail.objects.get(user_id=user_id)
+        employer_profile.summary = summary
+        employer_profile.save()
+    except ObjectDoesNotExist:
+        # create personal information
+        EmployerProfileDetail.objects.create(user_id=user_id, summary=summary)
+    return Response("Create or Update employer summary successfully", status=status.HTTP_201_CREATED)
+
+
 def upload_employer_profile_video(request):
     object_name = request.GET['objectName']
     content_type = request.GET['contentType']

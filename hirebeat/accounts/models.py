@@ -83,7 +83,9 @@ class Profile(models.Model):
     candidate_limit = models.IntegerField(default=1000, validators=[
         MaxValueValidator(1000)
     ])
-    viewed_tutorial = models.BooleanField(default=False)
+    viewed_tutorial = models.BooleanField(default=False)     
+    viewed_employer_welcome = models.BooleanField(default=False)
+    viewed_employer_tutorial = models.BooleanField(default=False)
     merge_public_token = models.TextField(null=True, blank=True)
     ats_api_token = models.TextField(null=True, blank=True)
     is_freetrial = models.BooleanField(default=True)
