@@ -110,6 +110,8 @@ export class SourcingRequestList extends React.Component {
                 });
                 this.setState({
                     sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                    isAllChecked: false,
+                    countCheck: 0
                 });
             })
                 .catch(error => {
@@ -452,6 +454,8 @@ export class SourcingRequestList extends React.Component {
                 });
                 this.setState({
                     sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                    isAllChecked: false,
+                    countCheck: 0
                 });
             })
                 .catch(error => {

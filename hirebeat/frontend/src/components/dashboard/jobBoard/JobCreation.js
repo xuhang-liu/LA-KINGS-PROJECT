@@ -713,6 +713,9 @@ export class JobCreation extends Component {
                                             onPlaceSelected={(place, inputRef, autocomplete) => {
                                                 this.handleLocation(place.formatted_address);
                                             }}
+                                            options={{
+                                                componentRestrictions: { country: "us" },
+                                            }}
                                             required="required"
                                         />
                                     </div>
