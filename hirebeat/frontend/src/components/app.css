@@ -4957,13 +4957,11 @@ input.form-control.inputInModal::-ms-input-placeholder { /* Microsoft Edge */
   color: #c9c9c9 !important;
 }
 
-<<<<<<< HEAD
 
 /***************onboarding*******************/
 .form-control.popup-employerform::placeholder {
   color: #c9c9c9 !important;
 }
-=======
 /**************** Sourcing *************/
 .sourcingtitle-hover-orange:hover {
   color: #FF6B00 !important;
@@ -4974,4 +4972,3 @@ input.form-control.inputInModal::-ms-input-placeholder { /* Microsoft Edge */
 .sourcingrow:hover{
   background-color: rgba(0, 109, 255, 0.1);
 }
->>>>>>> 0af31aeb1f92939b4a582f78cd39aa0201b68919
