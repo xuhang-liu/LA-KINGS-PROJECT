@@ -141,6 +141,7 @@ export class JobPortalPage extends Component {
                     getAllJobs={this.props.getAllJobs}
                     profile={this.props.profile}
                     user={this.props.user}
+                    employerProfileDetail={this.props.employerProfileDetail}
                 />;
             case "allCandidates":
                 return <AllCandidates

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { removeSubReviewer, delExReviewer, addSubReviewer, addExReviewer } from "../../../redux/actions/question_actions";
 import { getPipelineAnalytics } from "../../../redux/actions/job_actions";
+import { MyModal80 } from "../DashboardComponents";
+import { SourcingRequestForm } from "./SourcingRequestForm";
+import { SourcingRequestList } from "./SourcingRequestList";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -9,6 +12,41 @@ import { confirmAlert } from 'react-confirm-alert';
 export class Pipeline extends Component {
     constructor(props) {
         super(props);
+        axios.get(`jobs/get-sourcing-request-status?jobid=${this.props.job.job_details.id}`).then((res) => {
+            if (res?.data?.data == 1) {
+                this.setState({ requestButton: 1 })
+            } else if (res?.data?.data == 2) {
+                this.setState({ requestButton: 2 })
+            }
+        })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+
+    state = {
+        showRequestForm: false,
+        requestButton: 0,
+        requestListShow: (sessionStorage.getItem('requestListShow'))?true:false,
+    }
+
+    setrequestListHide = () => {
+        this.setState({
+            requestListShow: false
+        })
+        sessionStorage.removeItem('requestListShow');
+    }
+
+    setShowRequest = () => {
+        this.setState({
+            showRequestForm: true
+        })
+    }
+
+    setHideRequest = () => {
+        this.setState({
+            showRequestForm: false
+        })
     }
 
     componentDidMount() {
@@ -387,452 +425,542 @@ export class Pipeline extends Component {
 
         return (
             <React.Fragment>
-                <div className="container-fluid py-5 px-5">
-                    {/*All Candidates*/}
-                    <div className="row">
-                        <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage1.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.all_can_num}</p>
-                        </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
-                            <div className="row px-4 pt-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.all_can_act_num}</p>
-                                </div>
-                            </div>
-                            <div className="row px-4 pb-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.all_can_rej_num}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                            <div>
-                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                {this.state.requestListShow ?
+                    <div className="container-fluid py-5 px-5">
+                        <SourcingRequestList
+                            setrequestListHide={this.setrequestListHide}
+                            job={this.props.job.job_details}
+                            user={this.props.user}
+                            profile={this.props.profile}
+                            employerProfileDetail={this.props.employerProfileDetail}
+                        />
+                    </div> :
+                    <div className="container-fluid py-5 px-5">
+                        {/*All Candidates*/}
+                        <div className="row">
+                            <div className="px-5 pt-1">
+                                {this.state.requestButton == 0 &&
                                     <button
-                                        className="default-btn1 interview-txt6 mt-4"
-                                        onClick={this.inviteExReviewer}
-                                        style={{ paddingLeft: "25px", width:"13.5rem" }}
+                                        className="default-btn5 interview-txt6"
+                                        onClick={this.setShowRequest}
+                                        style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
-                                        + Add Hiring Manager
+                                        Request Sourcing
+                                        <span></span>
+                                    </button>}
+                                {this.state.requestButton == 1 &&
+                                    <button
+                                        className="default-btn5 interview-txt6"
+                                        style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
+                                    >
+                                        Sourcing List Pending
+                                        <span></span>
+                                    </button>}
+                                {this.state.requestButton == 2 &&
+                                    <button
+                                        className="default-btn5 interview-txt6"
+                                        onClick={() => {this.setState({ requestListShow: true }), sessionStorage.setItem('requestListShow', "true");}}
+                                        style={{ paddingLeft: "25px", width: "12rem" }}
+                                    >
+                                        View Sourcing List
                                         <span></span>
                                     </button>}
                             </div>
-                        </div>
-                        {exReviewers.length > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {(exReviewers.slice(0, 3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{ minWidth: "12rem" }}>
-                                                <div className="row">
-                                                    <div className="col-2 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                    </div>
-                                                    <div className="col-10">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
-                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
-                                                    </div>
-                                                </div>
-                                            </p>
-                                        </span>
-                                    )
-                                }))}
-                                {exReviewers.length > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{exReviewers.length - 3}
-                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {exReviewers.map((sub, i) => {
-                                                        return (
-                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                    <div className="row">
-                                                                        <div className="col-2 px-2 py-2">
-                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                        </div>
-                                                                        <div className="col-10">
-                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
-                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </span>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </p>
-                                    </span>
-                                }
-                            </div>}
-                    </div>
-                    {/*Resume Screening*/}
-                    <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage2.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
-                        </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
-                            <div className="row px-4 pt-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                            <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage01.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
+                                <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>All Candidates</p>
+                                <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.all_can_num}</p>
+                            </div>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                                <div className="row px-4 pt-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.all_can_act_num}</p>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.resume_num_act_num}</p>
+                                <div className="row px-4 pb-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.all_can_rej_num}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row px-4 pb-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.resume_num_rej_num}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                            <div>
-                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                    <div>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                <div>
+                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
                                         <button
-                                            className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
-                                            onClick={(e) => this.inviteReviever(e, "Resume Review")}
+                                            className="default-btn1 interview-txt6 mt-4"
+                                            onClick={this.inviteExReviewer}
+                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
                                         >
-                                            + Add Reviewer
+                                            + Add Hiring Manager
                                             <span></span>
-                                        </button>
-                                    </div>}
+                                        </button>}
+                                </div>
                             </div>
-                        </div>
-                        {resume_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{ width: "12rem" }}>
-                                                <div className="row">
-                                                    <div className="col-3 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            {exReviewers.length > 0 &&
+                                <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                    {(exReviewers.slice(0, 3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{ minWidth: "12rem" }}>
+                                                    <div className="row">
+                                                        <div className="col-2 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-10">
+                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
+                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-9">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                </p>
+                                            </span>
+                                        )
+                                    }))}
+                                    {exReviewers.length > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{exReviewers.length - 3}
+                                            <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
+                                                        {exReviewers.map((sub, i) => {
+                                                            return (
+                                                                <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                    <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                        <div className="row">
+                                                                            <div className="col-2 px-2 py-2">
+                                                                                <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                            </div>
+                                                                            <div className="col-10">
+                                                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                                <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "3px" }}>{sub.r_email}</p>
+                                                                                <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteExReviewer(sub.id) }}>Remove</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </p>
+                                                                </span>
+                                                            )
+                                                        })}
                                                     </div>
                                                 </div>
                                             </p>
                                         </span>
-                                    )
-                                })}
-                                {resume_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{resume_review_count - 3}
-                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").map((sub, i) => {
-                                                        return (
-                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                    <div className="row">
-                                                                        <div className="col-3 px-2 py-2">
-                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                        </div>
-                                                                        <div className="col-9">
-                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </span>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </p>
-                                    </span>}
-                            </div>}
-                    </div>
-                    {/*Video Interview*/}
-                    <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage3.png")', width: "18.8rem", height: "7.86rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
+                                    }
+                                </div>}
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
-                            <div className="row px-4 pt-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                        {/*Resume Screening*/}
+                        <div className="row" style={{ marginTop: "-1.7rem" }}>
+                            <div className="px-5 pt-1">
+                                <button
+                                    className="default-btn1 interview-txt6"
+                                    onClick={this.inviteExReviewer}
+                                    style={{ paddingLeft: "25px", visibility: 'hidden', width: "12rem" }}
+                                >
+                                    Request Sourcing
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div onClick={this.props.renderResumeScreen} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage02.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 4 }}>
+                                <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Resume Review</p>
+                                <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.resume_num}</p>
+                            </div>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                                <div className="row px-4 pt-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.resume_num_act_num}</p>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.video_num_act_num}</p>
+                                <div className="row px-4 pb-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.resume_num_rej_num}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row px-4 pb-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.video_num_rej_num}</p>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                <div>
+                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                        <div>
+                                            <button
+                                                className="default-btn interview-txt6 mt-4"
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                                onClick={(e) => this.inviteReviever(e, "Resume Review")}
+                                            >
+                                                + Add Reviewer
+                                                <span></span>
+                                            </button>
+                                        </div>}
                                 </div>
                             </div>
-                        </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                            <div>
-                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                    <div>
-                                        <button
-                                            className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
-                                            onClick={(e) => this.inviteReviever(e, "Video Interview")}
-                                        >
-                                            + Add Reviewer
-                                            <span></span>
-                                        </button>
-                                    </div>}
-                            </div>
-                        </div>
-                        {video_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{ width: "12rem" }}>
-                                                <div className="row">
-                                                    <div className="col-3 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            {resume_review_count > 0 &&
+                                <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").slice(0, 3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{ width: "12rem" }}>
+                                                    <div className="row">
+                                                        <div className="col-3 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-9">
+                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-9">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                </p>
+                                            </span>
+                                        )
+                                    })}
+                                    {resume_review_count > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{resume_review_count - 3}
+                                            <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
+                                                        {subreviewers?.filter(sub1 => sub1.current_stage == "Resume Review").map((sub, i) => {
+                                                            return (
+                                                                <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                    <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                        <div className="row">
+                                                                            <div className="col-3 px-2 py-2">
+                                                                                <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                            </div>
+                                                                            <div className="col-9">
+                                                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                                <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                                                <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </p>
+                                                                </span>
+                                                            )
+                                                        })}
                                                     </div>
                                                 </div>
                                             </p>
-                                        </span>
-                                    )
-                                })}
-                                {video_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{video_review_count - 3}
-                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").map((sub, i) => {
-                                                        return (
-                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                    <div className="row">
-                                                                        <div className="col-3 px-2 py-2">
-                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                        </div>
-                                                                        <div className="col-9">
-                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </span>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </p>
-                                    </span>}
-                            </div>}
-                    </div>
-                    {/*Live Interview*/}
-                    <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage4.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
+                                        </span>}
+                                </div>}
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
-                            <div className="row px-4 pt-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                        {/*Video Interview*/}
+                        <div className="row" style={{ marginTop: "-1.7rem" }}>
+                            <div className="px-5 pt-1">
+                                <button
+                                    className="default-btn1 interview-txt6"
+                                    onClick={this.inviteExReviewer}
+                                    style={{ paddingLeft: "25px", visibility: 'hidden', width: "12rem" }}
+                                >
+                                    Request Sourcing
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div onClick={this.props.renderVideoInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage03.png")', width: "18.8rem", height: "7.86rem", boxSizing: "border-box", position: "relative", zIndex: 3 }}>
+                                <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Video Interview</p>
+                                <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.video_num}</p>
+                            </div>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                                <div className="row px-4 pt-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.video_num_act_num}</p>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.live_num_act_num}</p>
+                                <div className="row px-4 pb-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.video_num_rej_num}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row px-4 pb-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.live_num_rej_num}</p>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                <div>
+                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                        <div>
+                                            <button
+                                                className="default-btn interview-txt6 mt-4"
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                                onClick={(e) => this.inviteReviever(e, "Video Interview")}
+                                            >
+                                                + Add Reviewer
+                                                <span></span>
+                                            </button>
+                                        </div>}
                                 </div>
                             </div>
-                        </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                            <div>
-                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                    <div>
-                                        <button
-                                            className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
-                                            onClick={(e) => this.inviteReviever(e, "Live Interview")}
-                                        >
-                                            + Add Reviewer
-                                            <span></span>
-                                        </button>
-                                    </div>}
-                            </div>
-                        </div>
-                        {live_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{ width: "12rem" }}>
-                                                <div className="row">
-                                                    <div className="col-3 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            {video_review_count > 0 &&
+                                <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").slice(0, 3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{ width: "12rem" }}>
+                                                    <div className="row">
+                                                        <div className="col-3 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-9">
+                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-9">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                </p>
+                                            </span>
+                                        )
+                                    })}
+                                    {video_review_count > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{video_review_count - 3}
+                                            <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
+                                                        {subreviewers?.filter(sub1 => sub1.current_stage == "Video Interview").map((sub, i) => {
+                                                            return (
+                                                                <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                    <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                        <div className="row">
+                                                                            <div className="col-3 px-2 py-2">
+                                                                                <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                            </div>
+                                                                            <div className="col-9">
+                                                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                                <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                                                <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </p>
+                                                                </span>
+                                                            )
+                                                        })}
                                                     </div>
                                                 </div>
                                             </p>
-                                        </span>
-                                    )
-                                })}
-                                {live_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{live_review_count - 3}
-                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").map((sub, i) => {
-                                                        return (
-                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                    <div className="row">
-                                                                        <div className="col-3 px-2 py-2">
-                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
-                                                                        </div>
-                                                                        <div className="col-9">
-                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </span>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </p>
-                                    </span>}
-                            </div>}
-                    </div>
-                    {/*Short List*/}
-                    <div className="row" style={{ marginTop: "-1.7rem" }}>
-                        <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage5.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
-                            <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
-                            <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
+                                        </span>}
+                                </div>}
                         </div>
-                        <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
-                            <div className="row px-4 pt-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                        {/*Live Interview*/}
+                        <div className="row" style={{ marginTop: "-1.7rem" }}>
+                            <div className="px-5 pt-1">
+                                <button
+                                    className="default-btn1 interview-txt6"
+                                    onClick={this.inviteExReviewer}
+                                    style={{ paddingLeft: "25px", visibility: 'hidden', width: "12rem" }}
+                                >
+                                    Request Sourcing
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div onClick={this.props.renderLiveInterview} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage04.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 2 }}>
+                                <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Live Interview</p>
+                                <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.live_num}</p>
+                            </div>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                                <div className="row px-4 pt-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.live_num_act_num}</p>
+                                    </div>
                                 </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.short_num_act_num}</p>
+                                <div className="row px-4 pb-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.live_num_rej_num}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row px-4 pb-3">
-                                <div className="col-8">
-                                    <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
-                                </div>
-                                <div className="col-4">
-                                    <p>{this.props?.analytics?.short_num_rej_num}</p>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                <div>
+                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                        <div>
+                                            <button
+                                                className="default-btn interview-txt6 mt-4"
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                                onClick={(e) => this.inviteReviever(e, "Live Interview")}
+                                            >
+                                                + Add Reviewer
+                                                <span></span>
+                                            </button>
+                                        </div>}
                                 </div>
                             </div>
-                        </div>
-                        <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                            <div>
-                                {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                    <div>
-                                        <button
-                                            className="default-btn interview-txt6 mt-4"
-                                            style={{ paddingLeft: "25px", width:"13.5rem" }}
-                                            onClick={(e) => this.inviteReviever(e, "Short List")}
-                                        >
-                                            + Add Reviewer
-                                            <span></span>
-                                        </button>
-                                    </div>}
-                            </div>
-                        </div>
-                        {shortlist_review_count > 0 &&
-                            <div style={{ border:"1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
-                                {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
-                                    return (
-                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                            <p className="sub_submenu container" style={{ width: "12rem" }}>
-                                                <div className="row">
-                                                    <div className="col-3 px-3 py-2">
-                                                        <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                            {live_review_count > 0 &&
+                                <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").slice(0, 3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{ width: "12rem" }}>
+                                                    <div className="row">
+                                                        <div className="col-3 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-9">
+                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="col-9">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                        <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                        <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                </p>
+                                            </span>
+                                        )
+                                    })}
+                                    {live_review_count > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{live_review_count - 3}
+                                            <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
+                                                        {subreviewers?.filter(sub1 => sub1.current_stage == "Live Interview").map((sub, i) => {
+                                                            return (
+                                                                <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                    <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                        <div className="row">
+                                                                            <div className="col-3 px-2 py-2">
+                                                                                <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                            </div>
+                                                                            <div className="col-9">
+                                                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                                <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                                                <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </p>
+                                                                </span>
+                                                            )
+                                                        })}
                                                     </div>
                                                 </div>
                                             </p>
-                                        </span>
-                                    )
-                                })}
-                                {shortlist_review_count > 3 &&
-                                    <span className="sub_number3" style={{ color: "white" }}>+{shortlist_review_count - 3}
-                                        <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
-                                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").map((sub, i) => {
-                                                        return (
-                                                            <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
-                                                                <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
-                                                                    <div className="row">
-                                                                        <div className="col-3 px-2 py-2">
-                                                                            <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                        </span>}
+                                </div>}
+                        </div>
+                        {/*Short List*/}
+                        <div className="row" style={{ marginTop: "-1.7rem" }}>
+                            <div className="px-5 pt-1">
+                                <button
+                                    className="default-btn1 interview-txt6"
+                                    onClick={this.inviteExReviewer}
+                                    style={{ paddingLeft: "25px", visibility: 'hidden', width: "12rem" }}
+                                >
+                                    Request Sourcing
+                                    <span></span>
+                                </button>
+                            </div>
+                            <div onClick={this.props.renderShortList} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage05.png")', width: "18.8rem", height: "7.9rem", boxSizing: "border-box", position: "relative", zIndex: 1 }}>
+                                <p style={{ textAlign: 'center', color: "#fff", paddingTop: "2.5rem", fontWeight: "600", fontSize: "1rem" }}>Short List</p>
+                                <p style={{ textAlign: 'center', color: "#fff", marginTop: "-1rem", fontWeight: "600", fontSize: "1rem" }}>{this.props?.analytics?.short_num}</p>
+                            </div>
+                            <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative" }}>
+                                <div className="row px-4 pt-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.short_num_act_num}</p>
+                                    </div>
+                                </div>
+                                <div className="row px-4 pb-3">
+                                    <div className="col-8">
+                                        <p style={{ fontWeight: "600" }}><span className="dot" style={{ backgroundColor: "#FF5830" }}></span>Rejected:</p>
+                                    </div>
+                                    <div className="col-4">
+                                        <p>{this.props?.analytics?.short_num_rej_num}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                <div>
+                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                        <div>
+                                            <button
+                                                className="default-btn interview-txt6 mt-4"
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                                onClick={(e) => this.inviteReviever(e, "Short List")}
+                                            >
+                                                + Add Reviewer
+                                                <span></span>
+                                            </button>
+                                        </div>}
+                                </div>
+                            </div>
+                            {shortlist_review_count > 0 &&
+                                <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
+                                    {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").slice(0, 3).map((sub, i) => {
+                                        return (
+                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                <p className="sub_submenu container" style={{ width: "12rem" }}>
+                                                    <div className="row">
+                                                        <div className="col-3 px-3 py-2">
+                                                            <span className={`sub_number${i}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                        </div>
+                                                        <div className="col-9">
+                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                        </div>
+                                                    </div>
+                                                </p>
+                                            </span>
+                                        )
+                                    })}
+                                    {shortlist_review_count > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{shortlist_review_count - 3}
+                                            <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
+                                                <div className="row">
+                                                    <div className="col-12">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0.5rem" }}>Reviewers</p>
+                                                        {subreviewers?.filter(sub1 => sub1.current_stage == "Short List").map((sub, i) => {
+                                                            return (
+                                                                <span className={`sub_number_inside${i % 10} m-1`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}
+                                                                    <p className="sub_submenu_inside container" style={{ width: "12rem" }}>
+                                                                        <div className="row">
+                                                                            <div className="col-3 px-2 py-2">
+                                                                                <span className={`sub_number_inside${i % 10}`} style={{ color: "white" }}>{sub.r_name.substring(0, 2).toUpperCase()}</span>
+                                                                            </div>
+                                                                            <div className="col-9">
+                                                                                <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
+                                                                                <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
+                                                                                <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
+                                                                            </div>
                                                                         </div>
-                                                                        <div className="col-9">
-                                                                            <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{sub.r_name}</p>
-                                                                            <p style={{ fontSize: "0.7rem", fontWeight: "500", color: "#7d7d7d", marginTop: "0", wordWrap: "break-word", wordBreak: "break-word" }}>{sub.r_email}</p>
-                                                                            <a style={{ fontSize: "0.8rem", fontWeight: "600", color: "#000", marginTop: "2rem", textDecoration: "underline", marginLeft: "3.5rem" }} onClick={() => { this.deleteReviever(sub.id) }}>Remove</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </p>
-                                                            </span>
-                                                        )
-                                                    })}
+                                                                    </p>
+                                                                </span>
+                                                            )
+                                                        })}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </p>
-                                    </span>}
-                            </div>}
-                    </div>
-                </div>
+                                            </p>
+                                        </span>}
+                                </div>}
+                        </div>
+                        {/* Open Sourcing Form */}
+                        <MyModal80
+                            show={this.state.showRequestForm}
+                            onHide={this.setHideRequest}
+                        >
+                            <SourcingRequestForm
+                                setHideRequest={this.setHideRequest}
+                                job={this.props.job.job_details}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                            />
+                        </MyModal80>
+                    </div>}
             </React.Fragment>
         )
     }

@@ -300,6 +300,17 @@ export class JobCreation extends Component {
                 })
             )
         }
+        if (this.state.jobLocation == "" || this.state.jobLocation == null) {
+            return (
+                confirmAlert({
+                    title: 'Job Location Invalid',
+                    message: "Please select suggested location to continue.",
+                    buttons: [
+                        { label: 'OK' },
+                    ]
+                })
+            )
+        }
         if (this.props.profile.payg_credit <= 0) {
             if (this.props.profile.membership == "Regular") {
                 return this.setState({
@@ -701,6 +712,9 @@ export class JobCreation extends Component {
                                             apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                             onPlaceSelected={(place, inputRef, autocomplete) => {
                                                 this.handleLocation(place.formatted_address);
+                                            }}
+                                            options={{
+                                                componentRestrictions: { country: "us" },
                                             }}
                                             required="required"
                                         />

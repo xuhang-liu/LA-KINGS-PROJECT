@@ -1259,6 +1259,7 @@ def check_code(request):
                 user = users[0]
                 redeemrow.is_redeemed = True
                 redeemrow.dateredeemed = date.today()
+                redeemrow.userid = request.data["id"]
                 redeemrow.save()
                 plan = redeemrow.plan
                 # Employer plans

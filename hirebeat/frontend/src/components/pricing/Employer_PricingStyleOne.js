@@ -87,134 +87,110 @@ class Employer_PricingStyleOne extends Component {
         });
     }
 
-    handleInputChange = (e) => {
-        if (e.target.value == 'PH2022' || e.target.value == 'ph2022' || e.target.value == 'BL2022' || e.target.value == 'bl2022') {
-            this.setState({
-                anpro: 69,
-                anpre: 164,
-                mopro: 93,
-                mopre: 219
-            });
-        } else {
-            this.setState({
-                anpro: 126,
-                anpre: 299,
-                mopro: 169,
-                mopre: 399
-            });
-        }
-        this.setState({
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    // handleCounponUpgrade = () => {
-    //     if (this.state.coupon_match != 'STARTHIREM1' && this.state.coupon_match != 'STARTHIREA1' && this.state.coupon_match != 'STARTHIREM2' && this.state.coupon_match != 'STARTHIREA2') {
-    //         confirmAlert({
-    //             title: 'Please Enter A Valid Code',
-    //             message: '',
-    //             buttons: [
-    //                 {
-    //                     label: 'Ok'
-    //                 }
-    //             ]
+    // handleInputChange = (e) => {
+    //     if (e.target.value == 'PH2022' || e.target.value == 'ph2022' || e.target.value == 'BL2022' || e.target.value == 'bl2022') {
+    //         this.setState({
+    //             anpro: 69,
+    //             anpre: 164,
+    //             mopro: 93,
+    //             mopre: 219
     //         });
     //     } else {
-    //         if (this.state.coupon_match == 'STARTHIREM1') {
-    //             this.handleCouponProClickUpgrade();
-    //         } else if (this.state.coupon_match == 'STARTHIREA1') {
-    //             this.handleCouponProClickUpgrade1();
-    //         } else if (this.state.coupon_match == 'STARTHIREM2') {
-    //             this.handleCouponPremiumClickUpgrade();
-    //         } else if (this.state.coupon_match == 'STARTHIREA2') {
-    //             this.handleCouponPremiumClickUpgrade1();
-    //         }
+    //         this.setState({
+    //             anpro: 126,
+    //             anpre: 299,
+    //             mopro: 169,
+    //             mopre: 399
+    //         });
     //     }
+    //     this.setState({
+    //         [e.target.name]: e.target.value,
+    //     });
     // };
 
-    handleCouponProUpgrade = () => {
-        this.handleCouponProClickUpgrade();
-    };
+    // handleCouponProUpgrade = () => {
+    //     this.handleCouponProClickUpgrade();
+    // };
 
-    handleCouponProClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1KHADuKxU1MN2zWMnR2zpGiR', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
+    // handleCouponProClickUpgrade = async (event) => {
+    //     // When the customer clicks on the button, redirect them to Checkout.
+    //     const stripe = await stripePromise;
+    //     const { error } = await stripe.redirectToCheckout({
+    //         lineItems: [{
+    //             price: 'price_1KHADuKxU1MN2zWMnR2zpGiR', // Replace with the ID of your price
+    //             quantity: 1,
+    //         }],
+    //         mode: 'subscription',
+    //         successUrl: 'https://app.hirebeat.co/payment',
+    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
+    //         billingAddressCollection: 'auto',
+    //         customerEmail: this.props.user.email,
+    //     });
+    //     error.message;
+    // };
 
-    handleCouponYearProUpgrade = () => {
-        this.handleCouponYearProClickUpgrade();
-    };
+    // handleCouponYearProUpgrade = () => {
+    //     this.handleCouponYearProClickUpgrade();
+    // };
 
-    handleCouponYearProClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1KHADlKxU1MN2zWMTiH3oA8R', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
+    // handleCouponYearProClickUpgrade = async (event) => {
+    //     // When the customer clicks on the button, redirect them to Checkout.
+    //     const stripe = await stripePromise;
+    //     const { error } = await stripe.redirectToCheckout({
+    //         lineItems: [{
+    //             price: 'price_1KHADlKxU1MN2zWMTiH3oA8R', // Replace with the ID of your price
+    //             quantity: 1,
+    //         }],
+    //         mode: 'subscription',
+    //         successUrl: 'https://app.hirebeat.co/payment',
+    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
+    //         billingAddressCollection: 'auto',
+    //         customerEmail: this.props.user.email,
+    //     });
+    //     error.message;
+    // };
 
-    handleCouponPremiumUpgrade = () => {
-        this.handleCouponPremiumClickUpgrade();
-    };
+    // handleCouponPremiumUpgrade = () => {
+    //     this.handleCouponPremiumClickUpgrade();
+    // };
 
-    handleCouponPremiumClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1KHABwKxU1MN2zWM9cOLWe3D', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
+    // handleCouponPremiumClickUpgrade = async (event) => {
+    //     // When the customer clicks on the button, redirect them to Checkout.
+    //     const stripe = await stripePromise;
+    //     const { error } = await stripe.redirectToCheckout({
+    //         lineItems: [{
+    //             price: 'price_1KHABwKxU1MN2zWM9cOLWe3D', // Replace with the ID of your price
+    //             quantity: 1,
+    //         }],
+    //         mode: 'subscription',
+    //         successUrl: 'https://app.hirebeat.co/payment',
+    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
+    //         billingAddressCollection: 'auto',
+    //         customerEmail: this.props.user.email,
+    //     });
+    //     error.message;
+    // };
 
-    handleCouponYearPremiumUpgrade = () => {
-        this.handleCouponYearPremiumClickUpgrade();
-    };
+    // handleCouponYearPremiumUpgrade = () => {
+    //     this.handleCouponYearPremiumClickUpgrade();
+    // };
 
-    handleCouponYearPremiumClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1KHABkKxU1MN2zWMs0TTARc9', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-        });
-        error.message;
-    };
+    // handleCouponYearPremiumClickUpgrade = async (event) => {
+    //     // When the customer clicks on the button, redirect them to Checkout.
+    //     const stripe = await stripePromise;
+    //     const { error } = await stripe.redirectToCheckout({
+    //         lineItems: [{
+    //             price: 'price_1KHABkKxU1MN2zWMs0TTARc9', // Replace with the ID of your price
+    //             quantity: 1,
+    //         }],
+    //         mode: 'subscription',
+    //         successUrl: 'https://app.hirebeat.co/payment',
+    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
+    //         billingAddressCollection: 'auto',
+    //         customerEmail: this.props.user.email,
+    //     });
+    //     error.message;
+    // };
 
     handleProUpgrade = () => {
         this.handleProClickUpgrade();
@@ -228,7 +204,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
+            successUrl: 'https://app.hirebeat.co/paymentpro',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
@@ -248,7 +224,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
+            successUrl: 'https://app.hirebeat.co/paymentpro',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
@@ -365,7 +341,7 @@ class Employer_PricingStyleOne extends Component {
         return (
             <section className="pricing-area pt-100" id="go-to-pricing">
                 <div className="container-xl">
-                    {(this.props.profile.membership == "Regular" || this.props.profile.is_freetrial) &&
+                    {/* {(this.props.profile.membership == "Regular" || this.props.profile.is_freetrial) &&
                         <div className="mt-1 mb-3 pb-5 pt-3" style={{ textAlign: "center", backgroundColor: "#e8edfc" }}>
                             <h2 style={{ fontWeight: "600", color: "#090d3a", marginBottom: "1rem" }}><i className="bx bxs-coupon bx-sm"></i> Enter Coupon Code</h2>
                             <input
@@ -385,16 +361,7 @@ class Employer_PricingStyleOne extends Component {
                                     paddingLeft: "0.5rem"
                                 }}
                             />
-                            {/* <button
-                                onClick={this.handleCounponUpgrade}
-                                type="button"
-                                className="default-btn" style={{ color: "white", display: "inline-block", marginLeft: "1rem", backgroundColor: "#ff6b00" }}
-                            >
-                                <i className="bx bxs-hot"></i>
-                                Apply
-                                <span></span>
-                            </button> */}
-                        </div>}
+                        </div>} */}
                     <div className="tab pricing-list-tab">
                         {/* Pricing Tab List */}
                         <ul className="tabs">
@@ -419,101 +386,7 @@ class Employer_PricingStyleOne extends Component {
                             {/*Annually*/}
                             <div id="tab2" className="tabs_item">
                                 <div className="row pb-5 pt-3">
-                                    {/* Single pricing table 1 */}
-                                    {/*<div className="col-lg-3 col-md-3 px-4">
-                                        <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #006dff"}}>
-                                            <div className="pricing-header">
-                                                <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
-                                            </div>
-
-                                            <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #006dff"}}>
-                                                <sup>$</sup>0 <sub style={{color:"#090d3a"}}>/ mo</sub>
-                                                <p style={{fontSize:"13px", color:"#F0F6FE", fontWeight:"600"}}>Billed at $0</p>
-                                            <div style={{marginLeft:"-2rem", marginTop:"-1.5rem", marginBottom:"1rem"}}>
-                                            {
-                                                this.props.profile.membership == null && 
-                                                <div className="btn-box">
-                                                <Link to="/employer_register">
-                                                <a id="id-employer-select1" className="default-btn" style={{color:"white", paddingLeft:"25px"}}>
-                                                    Select Plan
-                                                    <span></span>
-                                                </a>
-                                                </Link>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Regular" &&
-                                                <div className="btn-box">
-                                                    <Link to="/employer_dashboard">
-                                                    <button className="default-btn" style={{color:"white", backgroundColor:"#080a3c", paddingLeft:"25px"}}>
-                                                        Current Plan
-                                                        <span></span>
-                                                    </button>
-                                                    </Link>
-                                                </div>
-                                            }
-                                            {
-                                                this.props.profile.membership == "Premium" &&
-                                                <div className="btn-box">
-                                                    <button className="default-btn" style={{color:"white", paddingLeft:"25px"}}>
-                                                        Default Plan
-                                                        <span></span>
-                                                    </button>
-                                                </div>
-                                            }
-                                            </div>
-                                            </div>
-
-                                            <ul className="pricing-features pr-2">
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>1</strong> Job Position
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>25</strong> Video Screening per job 
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>3</strong> Customizable Video Questions
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Candidate Shortlisting
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Candidate Rating & Feedback
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Custom Branding
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    <strong>1</strong> Team Collaborator
-                                                </li>
-                                                <li style={{fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bxs-check-circle"></i> 
-                                                    Built- in ATS
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    AI-powered Resume Evaluation
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    AI-Powered Analytics
-                                                </li>
-                                                <li style={{textDecoration:"line-through", fontSize:"1rem", fontWeight:"500"}}>
-                                                    <i className="bx bx-x" style={{color:"#ff0000"}}></i> 
-                                                    API Integrations
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>*/}
-
+                                    
                                     {/* Single pricing table 2 */}
                                     <div className="col-xl-4 col-lg-12 col-md-12 col-sm-12 min-width-350 py-4">
                                         <div style={{ backgroundColor: "#ffffff", borderRadius: "7px 7px 0px 0px", height: "2.5rem", textAlign: "center" }}>

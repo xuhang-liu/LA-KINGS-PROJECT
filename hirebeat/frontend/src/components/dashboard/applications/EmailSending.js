@@ -1,23 +1,8 @@
 import React, { Component } from "react";
 import Select from 'react-select';
-import RichTextEditor from 'react-rte';
 import parse from 'html-react-parser';
 import { MessageClient } from "cloudmailin";
 import axios from "axios";
-
-const toolbarConfig = {
-    // Optionally specify the groups to display (displayed in the order listed).
-    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'HISTORY_BUTTONS'],
-    INLINE_STYLE_BUTTONS: [
-        { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-        { label: 'Italic', style: 'ITALIC' },
-        { label: 'Underline', style: 'UNDERLINE' }
-    ],
-    BLOCK_TYPE_BUTTONS: [
-        { label: 'UL', style: 'unordered-list-item' },
-        { label: 'OL', style: 'ordered-list-item' }
-    ]
-};
 
 export class EmailSending extends Component {
 
@@ -33,65 +18,112 @@ export class EmailSending extends Component {
         emailVal1: { value: "INSERT VARIABLE", label: 'INSERT VARIABLE' },
         emailSubject: "",
         cursorPosition1: 0,
+        emailSalute: "",
         emailBody: "",
         cursorPosition2: 0,
         addOnBottom: '<hr style="margin-top:4rem; border:2px solid rgba(202, 217, 252, 0.5)"/><p style="color:#d0d0d0; font-size:0.8rem">If you have got questions or want to give us some feedback, you can reply to this email and it will go straight to the hiring team responsible for this role.</p>'
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         };
-        let data = {"jobid":this.props.jobid};
+        let data = { "jobid": this.props.jobid };
         axios.post("jobs/get-single-job-details", data, config).then((res) => {
-            this.setState({job:res.data.data})
+            this.setState({ job: res.data.data })
         }).catch(error => {
             console.log(error)
         });
+        if (this.props.handleStatusChange2 != null) {
+            this.setState({ emailFrom: { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' } });
+            this.setState({ addOnBottom: '<hr style="margin-top:4rem; border:2px solid rgba(202, 217, 252, 0.5)"/><p style="color:#d0d0d0; font-size:0.8rem">This message was sent from an unmonitored e-mail address. Please do not reply to this message.</p>' });
+        }
     }
 
     onFilter = (emailTemp) => {
-        if (emailTemp.value == 2){
+        if (emailTemp.value == 2) {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Request"
             });
-            let newtext2 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please select a time through the Calendly link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailSalute: "Dear"
+            });
+            let newtext2 = "Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please select a time through the Calendly link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            if (typeof this.props.email == "string") {
+                newtext2 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please select a time through the Calendly link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            }
             this.setState({
                 emailBody: newtext2
             });
         }
-        if (emailTemp.value == 3){
+        if (emailTemp.value == 3) {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Availability"
             });
-            let newtext3 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nWe'll coordinate with our team and confirm a time with you.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailSalute: "Dear"
+            });
+            let newtext3 = "Thanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nWe'll coordinate with our team and confirm a time with you.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            if (typeof this.props.email == "string") {
+                newtext3 = "Hi " + this.props.first_name + ",\n\nThanks for your interest in the " + this.state.job.job_title + " position at " + this.props.employerProfileDetail.name + ". We're excited to move forward with the interview process.\n\nTo help us schedule your next interview(s), please let us know when you're available by selecting the online calendar link below.\n\n<b>[PLEASE REPLACE THIS LINE WITH YOUR CALENDLY LINK]</b>\n\nWe'll coordinate with our team and confirm a time with you.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            }
             this.setState({
                 emailBody: newtext3
             });
         }
-        if (emailTemp.value == 4){
+        if (emailTemp.value == 4) {
             this.setState({
                 emailSubject: this.props.employerProfileDetail.name + " Interview Confirmation"
             });
-            let newtext4 = "Hi " + this.props.first_name + ",\n\nThanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.\n\nYou're confirmed for your interview on:\n\n<b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b>\n\nLet us know if you have any other questions before your interview.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailSalute: "Dear"
+            });
+            let newtext4 = "Thanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.\n\nYou're confirmed for your interview on:\n\n<b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b>\n\nLet us know if you have any other questions before your interview.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            if (typeof this.props.email == "string") {
+                newtext4 = "Hi " + this.props.first_name + ",\n\nThanks for submitting your availability for the <b>" + this.state.job.job_title + "</b> position.\n\nYou're confirmed for your interview on:\n\n<b>[PLEASE REPLACE THIS LINE WITH THE CONFIRMED INTERVIEW DATE, TIME AND DURATION]</b>\n\nLet us know if you have any other questions before your interview.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            }
             this.setState({
                 emailBody: newtext4
             });
         }
-        if (emailTemp.value == 5){
+        if (emailTemp.value == 5) {
             this.setState({
-                emailSubject: "Your application for "+this.state.job.job_title
+                emailSubject: "Your application for " + this.state.job.job_title
             });
-            let newtext5 = "Hi " + this.props.first_name + ",\n\nWe have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.\n\nWhile it might not be the right fit now, we will keep you in mind for future opportunities.\n\nThank you for considering us "+this.props.employerProfileDetail.name+" your next place of work and we wish you luck in your search.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            this.setState({
+                emailSalute: "Dear"
+            });
+            let newtext5 = "We have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.\n\nWhile it might not be the right fit now, we will keep you in mind for future opportunities.\n\nThank you for considering us " + this.props.employerProfileDetail.name + " your next place of work and we wish you luck in your search.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            if (typeof this.props.email == "string") {
+                newtext5 = "Hi " + this.props.first_name + ",\n\nWe have reviewed your application for the " + this.state.job.job_title + " position, and have decided not to move forward at this time.\n\nWhile it might not be the right fit now, we will keep you in mind for future opportunities.\n\nThank you for considering us " + this.props.employerProfileDetail.name + " your next place of work and we wish you luck in your search.\n\nRegards,\n\n" + this.props.employerProfileDetail.f_name;
+            }
             this.setState({
                 emailBody: newtext5
             });
         }
-        if (emailTemp.value == 0){
+        if (emailTemp.value == 6) {
+            this.setState({
+                emailSubject: "New vacancy available with " + this.props.employerProfileDetail.name
+            });
+            this.setState({
+                emailSalute: "Dear"
+            });
+            let newtext6 = "We've just posted a vacancy we think you may be interested in. Click the link below to learn more about the role and to apply.\n\n" + "Job Basic Information:\n" + this.state.job.job_title + " - " + this.state.job.job_location + "\n\nJob Description and Application link:\n" + this.state.job.job_url?.replaceAll(" ", "%20") + "\n\nRegards,\n\n" + this.props.employerProfileDetail.name;
+            if (typeof this.props.email == "string") {
+                newtext6 = "Hi " + this.props.first_name + ",\n\nWe've just posted a vacancy we think you may be interested in. Click the link below to learn more about the role and to apply.\n\n" + "Job Basic Information:\n" + this.state.job.job_title + " - " + this.state.job.job_location + "\n\nJob Description and Application link:\n" + this.state.job.job_url?.replaceAll(" ", "%20") + "\n\nRegards,\n\n" + this.props.employerProfileDetail.name;
+            }
+            this.setState({
+                emailBody: newtext6
+            });
+        }
+        if (emailTemp.value == 0) {
             this.setState({
                 emailSubject: ""
+            });
+            this.setState({
+                emailSalute: ""
             });
             let newtext0 = "";
             this.setState({
@@ -149,34 +181,55 @@ export class EmailSending extends Component {
     };
 
     sendEmail = () => {
-        if (this.state.emailSubject == "" || this.state.emailBody == ""){
+        if (this.state.emailSubject == "" || this.state.emailBody == "") {
             return alert("Email Empty!");
-        }else{
+        } else {
             const client = new MessageClient({ username: "f70b2f948c506dea", apiKey: "QGkNZHiEHn5VfDqez9RkspVa" });
-            client.sendMessage({
-                to: this.props.email,
-                from: this.state.emailFrom.value,
-                html: this.state.emailBody?.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
-                subject: this.state.emailSubject
-            });
+            if (typeof this.props.email != "string") {
+                if (confirm("You have selected multiple candidates. Are you sure you want to send this email to all?")) {
+                    for (let i = 0; i < this.props.email.length; i++) {
+                        client.sendMessage({
+                            to: this.props.email[i].email,
+                            from: this.state.emailFrom.value,
+                            html: this.state.emailSalute + " " + this.props.email[i].first_name + ",<br/><br/>" + this.state.emailBody?.replaceAll(/\n/g, "<br/>") + this.state.addOnBottom,
+                            subject: this.state.emailSubject
+                        });
+                    }
+                }else{
+                    return;
+                }
+            } else {
+                client.sendMessage({
+                    to: this.props.email,
+                    from: this.state.emailFrom.value,
+                    html: this.state.emailBody?.replaceAll(/\n/g, "<br />") + this.state.addOnBottom,
+                    subject: this.state.emailSubject
+                });
+            }
             const config = {
                 headers: {
                     "Content-Type": "application/json",
                 },
             };
             let data = {}
-            if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-                data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
-            } else {
-                data = { "to": this.props.first_name + " " + this.props.last_name+"<"+this.props.email+">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+            if (this.props.handleStatusChange2 == null) {
+                if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
+                    data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
+                } else {
+                    data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+                }
+                axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
+                    console.log(res)
+                }).catch(error => {
+                    console.log(error)
+                });
             }
-            axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
-                console.log(res)
-            }).catch(error => {
-                console.log(error)
-            });
+
             alert("Email Sent!");
             this.props.hideEmailSending();
+            if (this.props.handleStatusChange2 != null) {
+                this.props.handleStatusChange2();
+            }
         }
     }
 
@@ -218,16 +271,28 @@ export class EmailSending extends Component {
             { value: 5, label: 'Default Rejection' },
             { value: 0, label: 'No Selection' },
         ]
+        if (this.props.handleStatusChange2 != null) {
+            options = [
+                { value: 6, label: 'Invitation to Apply Job' },
+                { value: 2, label: 'Interview Request with Calendly' },
+                { value: 3, label: 'Candidate Availability Request' },
+                { value: 4, label: 'Candidate Interview Confirmation' },
+                { value: 5, label: 'Default Rejection' },
+                { value: 0, label: 'No Selection' },
+            ]
+        }
 
         var options1 = [
             { value: (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), label: this.props.employerProfileDetail?.name },
             { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
         ]
+        if (this.props.handleStatusChange2 != null) {
+            options1 = [
+                { value: 'no-reply@hirebeat.email', label: 'no-reply@hirebeat.email' },
+            ]
+        }
 
         var options2 = [
-            { value: this.props.first_name + " " + this.props.last_name, label: 'Candidate Full Name' },
-            { value: this.props.first_name, label: 'Candidate First Name' },
-            { value: this.props.last_name, label: 'Candidate Last Name' },
             { value: this.props.employerProfileDetail.name, label: 'Company Name' },
             { value: this.props.employerProfileDetail.website, label: 'Company Website' },
             { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
@@ -236,6 +301,36 @@ export class EmailSending extends Component {
             { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
             { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
         ]
+        if (this.props.handleStatusChange2 != null) {
+            options2 = [
+                { value: this.state.job.job_location, label: 'Job Location' },
+                { value: this.state.job.job_url?.replaceAll(" ", "%20"), label: 'Job URL' },
+                { value: this.props.employerProfileDetail.name, label: 'Company Name' },
+                { value: this.props.employerProfileDetail.website, label: 'Company Website' },
+                { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
+                { value: this.state.job.job_title, label: 'Job Title' },
+                { value: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name, label: 'Sender Full Name' },
+                { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
+                { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
+            ]
+
+            if (typeof this.props.email == "string") {
+                options2 = [
+                    { value: this.props.first_name + " " + this.props.last_name, label: 'Candidate Full Name' },
+                    { value: this.props.first_name, label: 'Candidate First Name' },
+                    { value: this.props.last_name, label: 'Candidate Last Name' },
+                    { value: this.state.job.job_location, label: 'Job Location' },
+                    { value: this.state.job.job_url?.replaceAll(" ", "%20"), label: 'Job URL' },
+                    { value: this.props.employerProfileDetail.name, label: 'Company Name' },
+                    { value: this.props.employerProfileDetail.website, label: 'Company Website' },
+                    { value: "https://app.hirebeat.co/company-branding/" + this.props.employerProfileDetail.name?.replaceAll(" ", "%20"), label: 'Company Career Portal' },
+                    { value: this.state.job.job_title, label: 'Job Title' },
+                    { value: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name, label: 'Sender Full Name' },
+                    { value: this.props.employerProfileDetail.f_name, label: 'Sender First Name' },
+                    { value: this.props.employerProfileDetail.l_name, label: 'Sender Last Name' },
+                ]
+            }
+        }
 
         return (
             <React.Fragment>
@@ -254,6 +349,13 @@ export class EmailSending extends Component {
                             <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block" }}>Subject</h3>
                             <Select value={this.state.emailVal} onChange={this.onFilter2} options={options2} styles={customStyles1} isSearchable={false} />
                             <input type="text" style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSubject" value={this.state.emailSubject} onChange={this.onChange} onPointerMove={this.onKeydown}></input>
+                            {(typeof this.props.email != "string") &&
+                                <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Salutation</h3>}
+                            {(typeof this.props.email != "string") &&
+                                <div>
+                                    <input type="text" style={{ marginTop: "0.5rem", width: "50%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSalute" value={this.state.emailSalute} onChange={this.onChange}></input>
+                                    <p style={{ display: "inline-block", color: "#090d3a", marginLeft: "0.5rem" }}>{"{{first_name}},"}</p>
+                                </div>}
                             <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Body</h3>
                             <Select value={this.state.emailVal1} onChange={this.onFilter3} options={options2} styles={customStyles1} isSearchable={false} />
                             <textarea style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '14rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailBody" value={this.state.emailBody} onChange={this.onChange1} onPointerMove={this.onKeydown1}>{this.state.emailBody}</textarea>
@@ -262,10 +364,17 @@ export class EmailSending extends Component {
                         {/*Right */}
                         <div className="col-7" style={{ backgroundColor: "rgba(232, 237, 252, 0.2)", borderRadius: "4px" }}>
                             <h3 className="profile-h3 pl-4" style={{ fontSize: "1rem", paddingTop: "3rem" }}>Email Preview</h3>
+                            {(typeof this.props.email != "string") &&
+                                <p className="profile-p pl-4" style={{ fontSize: "0.8rem" }}>The salutation placeholder is only for display purposes. When the email is sent to each candidate, it will be replaced by real information.</p>
+                            }
                             <div style={{ backgroundColor: "#fff", border: "2px solid #E8EDFC", borderRadius: "4px", margin: "1.6rem" }}>
                                 <div className="d-flex justify-content-center px-5 py-4" style={{ paddingTop: "2rem" }}>
                                     <h3 className="profile-h3" style={{ fontSize: "1.4rem", fontWeight: "600" }}>{this.state.emailSubject}</h3>
                                 </div>
+                                {(typeof this.props.email != "string") &&
+                                    <div className="d-flex justify-content-start px-5 py-1">
+                                        <p style={{ color: "#444444", fontSize: "0.8rem" }}>{this.state.emailSalute + " {{first_name}},"}</p>
+                                    </div>}
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>
                                     <div>
                                         {parse("" + this.state.emailBody?.replaceAll(/\n/g, "<br />") + this.state.addOnBottom + "")}

@@ -322,6 +322,66 @@ p:last-child {
   padding-bottom: 10px;
 }
 
+.default-btn5 {
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #ffffff;
+  background-color: #ff6b00;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 50px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.default-btn6 {
+  border: 1px solid #808080;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #090D3A;
+  background-color: #ffffff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.default-btn7 {
+  border: 1px solid #808080;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #090D3A;
+  background-color: #ffffff;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .default-btn i {
   position: absolute;
   left: 25px;
@@ -405,6 +465,40 @@ p:last-child {
 }
 
 .default-btn4:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
+.default-btn5:hover, .default-btn:focus {
+  background-color: #090d3a;
+  color: #ffffff;
+  -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+}
+
+.default-btn5:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
+.default-btn6:hover, .default-btn:focus {
+  border: 1px solid #01CFA6;
+  -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+}
+
+.default-btn6:hover span, .default-btn:focus span {
+  width: 225%;
+  height: 562.5px;
+}
+
+.default-btn7:hover, .default-btn:focus {
+  border: 1px solid #FF4D4F;
+  -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+}
+
+.default-btn7:hover span, .default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
