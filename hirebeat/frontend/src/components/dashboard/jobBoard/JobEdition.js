@@ -233,7 +233,12 @@ export class JobEdition extends Component {
     };
 
     handleLocation = (location) => {
-        this.setState({ jobLocation: location });
+        if (location.address_components.length == 3){
+            this.setState({ jobLocation: location.address_components[0].short_name+", "+location.address_components[1].short_name+", "+location.address_components[2].short_name});
+        }
+        if (location.address_components.length > 3){
+            this.setState({ jobLocation: location.address_components[0].short_name+", "+location.address_components[2].short_name+", "+location.address_components[3].short_name});
+        }
     }
 
     handleChange() {
@@ -746,10 +751,7 @@ export class JobEdition extends Component {
                                             style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
                                             apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                             onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                this.handleLocation(place.formatted_address);
-                                            }}
-                                            options={{
-                                                componentRestrictions: { country: "us" },
+                                                this.handleLocation(place);
                                             }}
                                             required="required"
                                             defaultValue={this.state.jobLocation}

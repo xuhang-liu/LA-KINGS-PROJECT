@@ -1036,6 +1036,7 @@ function previewEmail(jobTitle, companyName, expire) {
                     <button onClick={() => { onClose(); }} className="default-btn1" style={{ paddingLeft: "25px", float: "right", marginTop: "2rem", marginBottom: '2rem' }}>Confirm</button>
                 </div>
             );
-        }
+        },
+        overlayClassName: "overlay",
     });
 };

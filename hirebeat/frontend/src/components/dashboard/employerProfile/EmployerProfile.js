@@ -695,7 +695,7 @@ export class EmployerProfile extends Component {
                             </div>
 
                             {/* Post */}
-                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
+                            {/* <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
                                 <Post
                                     userId={this.props.userId}
                                     editPost={this.editPost}
@@ -707,7 +707,7 @@ export class EmployerProfile extends Component {
                                     deleteEmployerPost={this.props.deleteEmployerPost}
                                     employerPost={this.props.employerPost}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

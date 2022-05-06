@@ -543,14 +543,14 @@ export class SubpageSetting extends Component {
                     <form style={{ marginBottom: "3%" }} onSubmit={this.PasswordCheck}>
                         <div className="form-row" style={{ marginTop: "1%" }}>
                             <div className="form-group col">
-                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Old Password</p>
+                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Current Password</p>
                                 <input
                                     type="password"
                                     className="form-control"
                                     name={"oldPassword"}
                                     value={this.state.oldPassword}
                                     onChange={this.handleInputChange}
-                                    placeholder={"old password"}
+                                    placeholder={"current password"}
                                     required="required"
                                 />
                             </div>
