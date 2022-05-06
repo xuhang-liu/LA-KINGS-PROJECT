@@ -585,20 +585,11 @@ def create_zr_job_feed(job_detail):
     description.text = job_detail['job_description']
     location = job_detail['job_location'].split(',')
     if len(location) > 0:
-        if len(location) < 3:
-            country.text = location[1].strip()
-            if "|" in location[1].strip():
-                country.text = location[1].strip().split("|")[0]
-        else:
-            country.text = 'US'
-        if len(location) < 3:
-            city.text = location[0]
-        else:
-            city.text = location[0]
-        if len(location) < 3:
-            state.text = ""
-        else:
-            state.text = location[1].strip()
+        city.text = location[0]
+        state.text = location[1].strip()
+        country.text = location[2].strip()
+        if "|" in location[2].strip():
+            country.text = location[2].strip().split("|")[0]
     else:
         country.text = 'US'
         city.text = "New York"
