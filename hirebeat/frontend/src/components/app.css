@@ -4835,7 +4835,7 @@ max-width: 110px;
 }
 
 .overlay {
-  background: rgba(9, 13, 58, 0.4);
+  background: rgba(0,0,0, 0.55);
 }
 
 .basic-info-input {

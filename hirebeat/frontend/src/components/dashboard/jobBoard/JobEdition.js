@@ -233,11 +233,11 @@ export class JobEdition extends Component {
     };
 
     handleLocation = (location) => {
-        if (location.address_components.length == 3){
-            this.setState({ jobLocation: location.address_components[0].short_name+", "+location.address_components[1].short_name+", "+location.address_components[2].short_name});
+        if (location.address_components.length == 3) {
+            this.setState({ jobLocation: location.address_components[0].short_name + ", " + location.address_components[1].short_name + ", " + location.address_components[2].short_name });
         }
-        if (location.address_components.length > 3){
-            this.setState({ jobLocation: location.address_components[0].short_name+", "+location.address_components[2].short_name+", "+location.address_components[3].short_name});
+        if (location.address_components.length > 3) {
+            this.setState({ jobLocation: location.address_components[0].short_name + ", " + location.address_components[2].short_name + ", " + location.address_components[3].short_name });
         }
     }
 
@@ -637,10 +637,10 @@ export class JobEdition extends Component {
     handleQFormChange = (i, key, e) => {
         let questions = [...this.state.questions];
         questions[i][key] = e.target.value;
-        if (key=="isMustHave") {
+        if (key == "isMustHave") {
             if (e.target.checked) {
                 questions[i][key] = "true";
-            }else{
+            } else {
                 questions[i][key] = "";
             }
         }
@@ -727,43 +727,33 @@ export class JobEdition extends Component {
                         </div>
                         <div className="form-row">
                             <div className="form-group col-6">
-                                <div className="d-flex">
-                                    <div className="form-group" style={{ width: "40%" }}>
-                                        {this.state.remote.value == 2 ?
-                                            <label className="db-txt2">
-                                                Preferred Location
-                                                <span className="tool_tip ml-2">
-                                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                    <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
-                                                        <div>
-                                                            We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
-                                                        </div>
-                                                    </p>
-                                                </span>
-                                            </label> :
-                                            <label className="db-txt2">
-                                                Job Location
-                                            </label>}
-                                        <span className="job-apply-char2">*</span>
-                                        <Autocomplete
-                                            className="form-control"
-                                            language="en"
-                                            style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
-                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                            onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                this.handleLocation(place);
-                                            }}
-                                            required="required"
-                                            defaultValue={this.state.jobLocation}
-                                        />
-                                    </div>
-                                    {/* <div className={this.state.remote ? "form-group" : "form-group ml-auto"}>
-                                        <label className="db-txt2">Remote Work?</label>
-                                        <div style={{ paddingTop: "0.7rem" }}>
-                                            <Switch onChange={this.handleChange} checked={this.state.remote} />
-                                        </div>
-                                    </div> */}
-                                </div>
+                                {this.state.remote.value == 2 ?
+                                    <label className="db-txt2">
+                                        Preferred Location
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
+                                                <div>
+                                                    We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
+                                                </div>
+                                            </p>
+                                        </span>
+                                    </label> :
+                                    <label className="db-txt2">
+                                        Job Location
+                                    </label>}
+                                <span className="job-apply-char2">*</span>
+                                <Autocomplete
+                                    className="form-control"
+                                    language="en"
+                                    style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem" }}
+                                    apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                    onPlaceSelected={(place, inputRef, autocomplete) => {
+                                        this.handleLocation(place);
+                                    }}
+                                    required="required"
+                                    defaultValue={this.state.jobLocation}
+                                />
                             </div>
                         </div>
 
