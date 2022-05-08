@@ -76,6 +76,7 @@ export class EmployerDashboard extends Component {
       showUpgradeM3: false,
       job_back_home: false,
       isOpenWelcome: !this.props.profile.viewed_employer_welcome ? true : false,
+      isOpenDetail: false,
       isTourOpen: !this.props.profile?.viewed_employer_tutorial ? true : false,
       isEndTour: false,
     }
@@ -96,6 +97,27 @@ export class EmployerDashboard extends Component {
     position_list: PropTypes.array.isRequired,
     user_existence: PropTypes.bool,
   };
+
+  setCloseWelcome = () => {
+    this.setState({isOpenWelcome: false, isOpenDetail: true})
+    let profile = {
+      user_id: this.props.user.id,
+      viewed_employer_welcome: true
+    }
+    const config = {
+      headers: {
+          "Content-Type": "application/json",
+      }
+    };
+    axios.post("update-employer-onboard0", profile, config).then(res => {
+      console.log(res)
+      this.props.loadProfile();
+    })
+  }
+
+  setCloseDetail = () => {
+    this.setState({isOpenDetail: false})
+  }
 
   // tour functions
   disableBody = (target) => disableBodyScroll(target);
@@ -747,6 +769,8 @@ export class EmployerDashboard extends Component {
     setTimeout(() => { this.props.logout() }, 300)
   }
 
+
+
   render() {
     const meta = {
       title: 'HireBeat - Employer Dashboard',
@@ -759,7 +783,8 @@ export class EmployerDashboard extends Component {
       }
     };
     //    console.log(this.props.postedJobs, this.props.jobs);
-    const { isTourOpen, isEndTour } = this.state;
+    const { isTourOpen, isEndTour, isOpenDetail } = this.state;
+    const bg1 = "https://hirebeat-assets.s3.amazonaws.com/Employer/welcome.png";
 
     return (
       <DocumentMeta {...meta}>
@@ -773,10 +798,40 @@ export class EmployerDashboard extends Component {
             debounce={250}
           />
 
-          {/* Welcome page & Pop up Detail form */}
-          {/* Popup ISSUE */}
-          {/* {this.state.isOpenWelcome && <EmployerDetailFormModal
-            isOpenWelcome={this.state.isOpenWelcome}
+          {/* Welcome page */}
+          <MyModalUpgrade
+            show={this.state.isOpenWelcome}
+            onHide={this.setCloseWelcome}
+            backdrop="static"
+          >
+            <div style={{ position: "relative", width: "100%" }}>
+              <img
+                src={bg1}
+                alt="welcome page"
+                style={{ width: "100%", height: "auto" }}
+              />
+              <button
+                className="default-btn"
+                onClick={this.setCloseWelcome}
+                style={{
+                  paddingLeft: "25px",
+                  textDecoration: "none",
+                  backgroundColor: "#ff6b00",
+                  color: "#fff",
+                  position: "absolute",
+                  left: "40%",
+                  top: "80%",
+                }}
+              >
+                Let's go!
+              </button>
+            </div>
+          </MyModalUpgrade>
+
+          {/* Pop up Detailed Form */}
+          {/* **********************BUG SECTION ************************ */}
+          {isOpenDetail && <EmployerDetailFormModal
+            isOpenDetail={isOpenDetail}
             userId={this.props.user.id}
             employerProfileDetail={this.props.employerProfileDetail}
             getEmployerProfileDetail={this.props.getEmployerProfileDetail}
@@ -784,7 +839,10 @@ export class EmployerDashboard extends Component {
             updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
             updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
             updateEmployerSummary={this.props.updateEmployerSummary}
-          />} */}
+            setCloseDetail={this.setCloseDetail}
+          />}
+          {/* **********************BUG SECTION ************************ */}
+
           <Tour
               onRequestClose={this.closeTour}
               loadProfile={this.props.loadProfile}

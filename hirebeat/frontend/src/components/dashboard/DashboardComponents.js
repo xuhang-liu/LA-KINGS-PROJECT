@@ -734,3 +734,70 @@ export const tourConfig = [
         )
     },
 ];
+
+export const tourConfigEmployer = [
+    {
+        selector: '[data-tut="reactour-createjob"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step1: Create a Job</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                    Start by creating a new job posting here. You can also configure screening questions and manage job broadcasting while editing the job post.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-jobs"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step2: Manage jobs and Candidates</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                All your jobs will be listed here. Inside each job, you can easily manage the candidate pipeline, collaborate with teammates, and communicate with candidates.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-company"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step3: Manage Company</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                Please make sure to complete the company profile so candidates can know you better. First impression matters.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-analysis"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step4: Check Analytics</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                Monitor your recruiting efficiency and make data-driven decisions through our real-time analytics reports.
+                </span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-accounts"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step5: Account Setting & Integration</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>Here is a summary of your activities. Keep motivated!</span>
+            </div>
+        )
+    },
+    {
+        selector: '[data-tut="reactour-help"]',
+        content: () => (
+            <div>
+                <h3 className="tour-title">Step6: Need Help?</h3>
+                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                Let us know whenever you have a question or feedback. You can also find tutorials here.
+                </span>
+            </div>
+        )
+    },
+];

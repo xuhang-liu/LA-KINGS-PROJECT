@@ -852,6 +852,14 @@ def create_or_update_employer_summary(request):
         EmployerProfileDetail.objects.create(user_id=user_id, summary=summary)
     return Response("Create or Update employer summary successfully", status=status.HTTP_201_CREATED)
 
+@api_view(['POST'])
+def update_employer_onboard0(request):
+    user_id = request.data["user_id"]
+    viewed_employer_welcome = request.data["viewed_employer_welcome"]
+    employer_profile = Profile.objects.get(user_id=user_id)
+    employer_profile.viewed_employer_welcome = viewed_employer_welcome
+    employer_profile.save()
+    return Response("Update employer onboard successfully", status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def update_employer_onboard(request):
