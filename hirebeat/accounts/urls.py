@@ -14,7 +14,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     upload_employer_logo, create_or_update_employer_logo, upload_user_logo, create_or_update_user_logo, check_user_existence, check_company_name_existence, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, \
     check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp, \
-    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email, delete_account, deactivate_fraud_user
+    check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email, delete_account, deactivate_fraud_user, update_employer_onboard, update_employer_onboard0
 from .api.social_login import exchange_token
 
 from django.contrib.auth import views as auth_views
@@ -122,6 +122,8 @@ urlpatterns = [
     path('update-employer-basic-info', create_or_update_employer_basic_info, name="create or update employer basic info"),
     path('update-employer-video', create_or_update_employer_video, name="create or update employer video"),
     path('update-employer-summary', create_or_update_employer_summary, name="create or update employer summary"),
+    path('update-employer-onboard0', update_employer_onboard0, name="update employer onboard"),
+    path('update-employer-onboard', update_employer_onboard, name="update employer onboard"),
     path('update-employer-profile-video', upload_employer_profile_video, name="upload employer profile video"),
     # path('accounts/create-employer-profile', create_employer_profile, name="create employer profile"),
     # employer post

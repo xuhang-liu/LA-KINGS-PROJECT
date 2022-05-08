@@ -180,37 +180,6 @@ export class EssentialUserInfo extends Component {
         <div className="container">
           <DbCenterRow>
             <div>
-              {this.props.profile.is_employer &&
-                <div>
-                  <div className="row" style={{ marginTop: "2rem", textAlign: "center" }}>
-                    <div className="col d-flex align-items-center" style={{ justifyContent: "center" }}>
-                      <IconText
-                        textMarginLeft={"1rem"}
-                        textDisplayed={this.props.profile.company_name}
-                        textSize={"1rem"}
-                        textColor={"#ffffff"}
-                      />
-                    </div>
-                  </div>
-                  <div style={{ marginTop: "1rem", textAlign: "center", marginBottom: "0.5rem" }}>
-                    {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-                      <div className="col d-flex align-items-center">
-                        <button
-                          type="button"
-                          className="panel-button"
-                          onClick={this.props.renderEmployerProfile}
-                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
-                        >
-                          <IconUserText
-                            textSize={"12px"}
-                            textDisplayed={"Company"}
-                            backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
-                            iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
-                            textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
-                          />
-                        </button>
-                      </div>}
-                  </div>
                   {/*this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.plan_interval == "Pro" ?
@@ -272,16 +241,17 @@ export class EssentialUserInfo extends Component {
                 </div>}
               </div>*/}
                   {/* <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr> */}
-                </div>}
+              
               {this.props.profile.is_employer ?
-                <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
+                <div style={{ marginLeft: "1.4rem", marginTop: "2rem", marginRight: "1.4rem" }}>
                   <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <button
                         type="button"
                         className="panel-button"
                         onClick={this.props.renderJobs}
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
+                        data-tut="reactour-jobs"
                       >
                         <IconEmployerText
                           textSize={"12px"}
@@ -355,6 +325,27 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>
                   */}
+                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                      <div className="col d-flex align-items-center">
+                        <button
+                          type="button"
+                          className="panel-button"
+                          onClick={this.renderApplications}
+                          style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
+                          data-tut="reactour-analysis"
+                        >
+                          <IconEmployerText
+                            textSize={"12px"}
+                            textDisplayed={"Analytics"}
+                            backColor={this.props.subpage == "analytics" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "analytics" ? selectAnalytics : nonselectAnalytics}
+                            textColor={this.props.subpage == "analytics" ? selectEColor : defaultEColor}
+                          />
+                        </button>
+                      </div>
+                    </div>}
+
                   <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr>
                   {/* {(this.props.profile.is_employer && !this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer) &&
                     <div className="row" style={{ marginTop: "0rem", textAlign: "center", marginBottom: "0.5rem" }}>
@@ -380,32 +371,34 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>
                   } */}
-                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
-                    <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                  <div className="row" style={{ marginTop: "0%", textAlign: "center", marginBottom: "0.5rem" }}>
+                    {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
                           className="panel-button"
-                          onClick={this.renderApplications}
-                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                          onClick={this.props.renderEmployerProfile}
+                          style={{ outline: "none", margin: "-5%", padding: "0px", background: "none" }}
+                          data-tut="reactour-company"
                         >
-                          <IconEmployerText
+                          <IconUserText
                             textSize={"12px"}
-                            textDisplayed={"Analytics"}
-                            backColor={this.props.subpage == "analytics" ? selectBack : defaultBack}
-                            iconSrc={this.props.subpage == "analytics" ? selectAnalytics : nonselectAnalytics}
-                            textColor={this.props.subpage == "analytics" ? selectEColor : defaultEColor}
+                            textDisplayed={"Company"}
+                            backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "employerProfile" ? selectEmployerDash : nonSelectEmployerDash}
+                            textColor={this.props.subpage == "employerProfile" ? selectEColor : defaultEColor}
                           />
                         </button>
-                      </div>
-                    </div>}
+                      </div>}
+                  </div>
+
                   <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     <div className="col d-flex align-items-center">
                       <button
                         type="button"
                         className="panel-button"
                         onClick={this.props.renderSetting}
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
                       >
                         <IconEmployerText
                           textSize={"12px"}
@@ -419,12 +412,12 @@ export class EssentialUserInfo extends Component {
                   </div>
                   {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
                     <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
-                      <div className="col d-flex align-items-center">
+                      <div className="col d-flex align-items-center" data-tut="reactour-accounts">
                         <button
                           type="button"
                           className="panel-button"
                           onClick={this.props.renderMergeIntergration}
-                          style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                          style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
                         >
                           <IconEmployerText
                             textSize={"12px"}
@@ -441,7 +434,8 @@ export class EssentialUserInfo extends Component {
                       <button
                         className="panel-button"
                         onClick={this.props.renderHelp}
-                        style={{ outline: "none", margin: "1%", padding: "0px", background: "none" }}
+                        style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
+                        data-tut="reactour-help"
                       >
                         <IconEmployerText
                           textSize={"12px"}
