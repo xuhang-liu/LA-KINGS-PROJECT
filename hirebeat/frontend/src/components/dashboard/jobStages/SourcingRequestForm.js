@@ -136,9 +136,6 @@ export class SourcingRequestForm extends Component {
                 quantity: 1,
             }],
             mode: 'payment',
-            discounts: [{
-                coupon: 'promo_1KtDMTKxU1MN2zWM8RNwf1Kt',
-            }],
             successUrl: 'https://app.hirebeat.co/sourcingpayment',
             cancelUrl: 'https://app.hirebeat.co/sourcingpayfail',
             billingAddressCollection: 'auto',
