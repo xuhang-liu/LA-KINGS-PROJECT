@@ -92,6 +92,9 @@ class Profile(models.Model):
         MaxValueValidator(1000)
     ])
     request_delete = models.BooleanField(default=False)
+    jobt_company_id = models.CharField(max_length=30,null=True, blank=True)
+    jobt_user_id = models.CharField(max_length=30,null=True, blank=True)
+    jobt_token = models.CharField(max_length=100,null=True, blank=True)
     def __str__(self):
         return self.user.username
 
