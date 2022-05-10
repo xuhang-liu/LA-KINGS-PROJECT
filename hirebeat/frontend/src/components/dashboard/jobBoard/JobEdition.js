@@ -37,6 +37,10 @@ const toolbarConfig = {
     ]
 };
 
+function getClientReferenceId() {
+    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+}
+
 export class JobEdition extends Component {
     constructor(props) {
         super(props);
@@ -268,6 +272,7 @@ export class JobEdition extends Component {
             cancelUrl: 'https://app.hirebeat.co/pjobfail',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };

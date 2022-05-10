@@ -9,6 +9,10 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
+function getClientReferenceId() {
+    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+}
+
 class PricingStyleOne extends Component {
 
     state = {
@@ -308,6 +312,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -325,6 +330,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -342,6 +348,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -359,6 +366,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -428,6 +436,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -444,6 +453,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -460,6 +470,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -477,6 +488,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -493,6 +505,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -509,6 +522,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -578,6 +592,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -594,6 +609,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -610,6 +626,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: this.props.user.email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -627,6 +644,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -643,6 +661,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -659,6 +678,7 @@ class PricingStyleOne extends Component {
           cancelUrl: 'https://app.hirebeat.co/pricing',
           billingAddressCollection: 'auto',
           customerEmail: email,
+          clientReferenceId: getClientReferenceId()
         });
         error.message;
     };

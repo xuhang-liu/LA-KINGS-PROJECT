@@ -13,6 +13,10 @@ import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
+function getClientReferenceId() {
+    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+}
+
 class Employer_PricingStyleOne extends Component {
     state = {
         upAndDown1: true,
@@ -208,6 +212,7 @@ class Employer_PricingStyleOne extends Component {
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -228,6 +233,7 @@ class Employer_PricingStyleOne extends Component {
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -248,6 +254,7 @@ class Employer_PricingStyleOne extends Component {
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -268,6 +275,7 @@ class Employer_PricingStyleOne extends Component {
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -288,6 +296,7 @@ class Employer_PricingStyleOne extends Component {
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
+            clientReferenceId: getClientReferenceId()
         });
         error.message;
     };
@@ -992,7 +1001,7 @@ class Employer_PricingStyleOne extends Component {
                         </div>
                     </div>
                     <div className="mb-5 d-flex justify-content-center">
-                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>Talk to us ></a>
+                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>{"Talk to us >"}</a>
                     </div>
 
                     {/** All Features Table */}
