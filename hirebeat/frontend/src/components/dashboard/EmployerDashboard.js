@@ -334,6 +334,55 @@ export class EmployerDashboard extends Component {
       }
       )
     }
+    // JobTarget steps:
+    var jobt_company_id = "";
+    var jobt_user_id = "";
+    var jobt_token = "";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    // Create or get company
+    if ((this.props.profile.jobt_company_id == "" || this.props.profile.jobt_company_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+      let data1 = {
+        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+        "name": this.props.employerProfileDetail.name,
+        "external_company_id": this.props.employerProfileDetail.id
+      }
+      axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/create", data1, config).then((res1) => {
+        if (res1.data.status == 0 || res1.data.status == "0") {
+          // update info
+          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": jobt_user_id, "jobt_token": jobt_token }
+          axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+            console.log(res)
+          }).catch(error => {
+            console.log(error)
+          });
+        } else {
+          let data2 = {
+            "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+            "external_company_id": this.props.employerProfileDetail.id
+          }
+          axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/getcompaniesviaptoken", data2, config).then((res2) => {
+            if (res2.data.status == 0 || res2.data.status == "0") {
+              // update info
+              let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": jobt_user_id, "jobt_token": jobt_token }
+              axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                console.log(res)
+              }).catch(error => {
+                console.log(error)
+              });
+            }
+          }).catch(error => {
+            console.log(error)
+          });
+        }
+      }).catch(error => {
+        console.log(error)
+      });
+    }
+    // The end of jobtarget steps
   }
 
   renderApplications = () => {
@@ -394,11 +443,11 @@ export class EmployerDashboard extends Component {
   }
 
   renderHelp = () => {
-    if (this.state.subpage == 'help'){
+    if (this.state.subpage == 'help') {
       this.refreshPage();
     }
     sessionStorage.setItem('subpage', 'help');
-    this.setState({subpage: "help"})
+    this.setState({ subpage: "help" })
   }
 
   renderReviewApplication = () => {
@@ -690,16 +739,16 @@ export class EmployerDashboard extends Component {
     }
   };
 
-  handleOnAction (event) {
+  handleOnAction(event) {
     // console.log('user did something', event)
   }
 
-  handleOnActive (event) {
+  handleOnActive(event) {
     // console.log('user is active', event)
     // console.log('time remaining', this.idleTimer.getRemainingTime())
   }
 
-  handleOnIdle (event) {
+  handleOnIdle(event) {
     console.log('user is idle', event)
     console.log('last active', this.idleTimer.getLastActiveTime())
     sessionStorage.clear();
