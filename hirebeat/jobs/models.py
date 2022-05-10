@@ -131,7 +131,7 @@ class SourcingCandidates(models.Model):
     current_location = models.CharField(max_length=100, null=True, blank=True)
     current_industry = models.CharField(max_length=100, null=True, blank=True)
     current_company_size = models.CharField(max_length=100, null=True, blank=True)
-    skillsets = models.CharField(max_length=300, null=True, blank=True)
+    skillsets = models.TextField(blank=True, null=True)
     prev_title1 = models.CharField(max_length=100, null=True, blank=True)
     prev_company_name1 = models.CharField(max_length=100, null=True, blank=True)
     prev_company_industry1 = models.CharField(max_length=100, null=True, blank=True)
