@@ -335,15 +335,12 @@ export class EmployerDashboard extends Component {
       )
     }
     // JobTarget steps:
-    var jobt_company_id = "";
-    var jobt_user_id = "";
-    var jobt_token = "";
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    // Create or get company
+    // Create or get jobtarget company
     if ((this.props.profile.jobt_company_id == "" || this.props.profile.jobt_company_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       let data1 = {
         "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
@@ -353,7 +350,7 @@ export class EmployerDashboard extends Component {
       axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/create", data1, config).then((res1) => {
         if (res1.data.status == 0 || res1.data.status == "0") {
           // update info
-          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": jobt_user_id, "jobt_token": jobt_token }
+          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": "", "jobt_token": "" }
           axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
             console.log(res)
           }).catch(error => {
@@ -367,7 +364,7 @@ export class EmployerDashboard extends Component {
           axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/getcompaniesviaptoken", data2, config).then((res2) => {
             if (res2.data.status == 0 || res2.data.status == "0") {
               // update info
-              let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": jobt_user_id, "jobt_token": jobt_token }
+              let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": "", "jobt_token": "" }
               axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
                 console.log(res)
               }).catch(error => {
