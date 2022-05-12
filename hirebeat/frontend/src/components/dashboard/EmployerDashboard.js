@@ -71,6 +71,7 @@ export class EmployerDashboard extends Component {
       showUpgradeM2: false,
       showUpgradeM3: false,
       job_back_home: false,
+      jobt_company_id: "",
     }
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
@@ -264,6 +265,27 @@ export class EmployerDashboard extends Component {
       loc_radius: 0,
     }
     this.props.getSourcingData(queryData);
+    // Job Target Get jobtarget token
+    if ((this.props.profile.jobt_token != "" && this.props.profile.jobt_token != null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+      let data3 = {
+        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+        "email": this.props.user.email
+      }
+      axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
+        console.log(res3)
+        if (res3.data.status == 0 || res3.data.status == "0") {
+          // update info
+          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
+          axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+            console.log(res)
+          }).catch(error => {
+            console.log(error)
+          });
+        }
+      }).catch(error => {
+        console.log(error)
+      });
+    }
   }
 
   getInitialSubpage = () => {
@@ -352,7 +374,7 @@ export class EmployerDashboard extends Component {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": "", "jobt_token": "" }
           axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-            console.log(res)
+            this.setState({ jobt_company_id: res1.data.company_id });
           }).catch(error => {
             console.log(error)
           });
@@ -366,7 +388,7 @@ export class EmployerDashboard extends Component {
               // update info
               let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": "", "jobt_token": "" }
               axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-                console.log(res)
+                this.setState({ jobt_company_id: res2.data.companies[0].company_id });
               }).catch(error => {
                 console.log(error)
               });
@@ -578,6 +600,7 @@ export class EmployerDashboard extends Component {
           jobs={this.props.jobs}
           companyName={this.props.profile.company_name}
           loadProfile={this.props.loadProfile}
+          jobt_company_id={this.state.jobt_company_id}
         />;
       case "jobEdition":
         return <JobEdition

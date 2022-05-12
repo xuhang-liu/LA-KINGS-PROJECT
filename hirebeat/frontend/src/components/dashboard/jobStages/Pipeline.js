@@ -27,14 +27,13 @@ export class Pipeline extends Component {
     state = {
         showRequestForm: false,
         requestButton: 0,
-        requestListShow: (sessionStorage.getItem('requestListShow'))?true:false,
+        requestListShow: false,
     }
 
     setrequestListHide = () => {
         this.setState({
             requestListShow: false
         })
-        sessionStorage.removeItem('requestListShow');
     }
 
     setShowRequest = () => {
@@ -459,7 +458,7 @@ export class Pipeline extends Component {
                                 {this.state.requestButton == 2 &&
                                     <button
                                         className="default-btn5 interview-txt6"
-                                        onClick={() => {this.setState({ requestListShow: true }), sessionStorage.setItem('requestListShow', "true");}}
+                                        onClick={() => {this.setState({ requestListShow: true })}}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
                                         View Sourcing List

@@ -91,7 +91,7 @@ export class JobCreation extends Component {
                     "title": "Recruiter",
                     "email": this.props.user.email,
                     "is_admin": 0,
-                    "company_id": this.props.profile.jobt_company_id,
+                    "company_id": this.props.jobt_company_id,
                     "external_user_id": this.props.user.id
                 }
             }
@@ -304,6 +304,7 @@ export class JobCreation extends Component {
     };
 
     handleLocation = (location) => {
+        console.log(location);
         if (location.address_components.length == 3) {
             this.setState({ jobLocation: location.address_components[0].short_name + ", " + location.address_components[1].short_name + ", " + location.address_components[2].short_name });
         }
