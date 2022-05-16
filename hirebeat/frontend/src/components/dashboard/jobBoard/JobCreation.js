@@ -304,7 +304,6 @@ export class JobCreation extends Component {
     };
 
     handleLocation = (location) => {
-        console.log(location);
         if (location.address_components.length == 3) {
             this.setState({ jobLocation: location.address_components[0].short_name + ", " + location.address_components[1].short_name + ", " + location.address_components[2].short_name });
         }
