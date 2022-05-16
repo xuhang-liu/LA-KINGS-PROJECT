@@ -1419,3 +1419,21 @@ def deactivate_fraud_user(request):
     return Response({
         "user_found": user_found
     })
+
+@api_view((['POST']))
+def job_target_info_update(request):
+    profile_id = request.data["profile_id"]
+    jobt_company_id = request.data["jobt_company_id"]
+    jobt_user_id = request.data["jobt_user_id"]
+    jobt_token = request.data["jobt_token"]
+
+    profile = Profile.objects.get(pk=profile_id)
+    if jobt_company_id != "":
+        profile.jobt_company_id = jobt_company_id
+    if jobt_user_id != "":
+        profile.jobt_user_id = jobt_user_id
+    if jobt_token != "":
+        profile.jobt_token = jobt_token
+    profile.save()
+
+    return Response("Job Target Info update successfully", status=status.HTTP_201_CREATED)

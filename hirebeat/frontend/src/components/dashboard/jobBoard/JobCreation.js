@@ -14,6 +14,7 @@ import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
 import ScreenQuestion from "./ScreenQuestion";
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -38,7 +39,7 @@ const toolbarConfig = {
 };
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window.Rewardful && window.Rewardful.referral || ('checkout_' + (new Date).getTime());
 }
 
 export class JobCreation extends Component {
@@ -72,6 +73,81 @@ export class JobCreation extends Component {
     static propTypes = {
         onChange: PropTypes.func,
     };
+
+    componentDidMount() {
+        // JobTarget steps:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        // Create or get jobtarget user
+        if ((this.props.profile.jobt_user_id == "" || this.props.profile.jobt_user_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data1 = {
+                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                "user": {
+                    "first_name": this.props.employerProfileDetail.f_name,
+                    "last_name": this.props.employerProfileDetail.l_name,
+                    "title": "Recruiter",
+                    "email": this.props.user.email,
+                    "is_admin": 0,
+                    "company_id": this.props.jobt_company_id,
+                    "external_user_id": this.props.user.id
+                }
+            }
+            axios.post("https://stagingatsapi.jobtarget.com/api/employer/user/create", data1, config).then((res1) => {
+                if (res1.data.status == 0 || res1.data.status == "0") {
+                    // update info
+                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res1.data.user.user_id, "jobt_token": "" }
+                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                        console.log(res)
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                } else {
+                    let data2 = {
+                        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                        "email": this.props.user.email
+                    }
+                    axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data2, config).then((res2) => {
+                        if (res2.data.status == 0 || res2.data.status == "0") {
+                            // update info
+                            let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res2.data.user.user_id, "jobt_token": "" }
+                            axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                                console.log(res)
+                            }).catch(error => {
+                                console.log(error)
+                            });
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+        // Get jobtarget token
+        if ((this.props.profile.jobt_token == "" || this.props.profile.jobt_token == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data3 = {
+                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                "email": this.props.user.email
+            }
+            axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
+                if (res3.data.status == 0 || res3.data.status == "0") {
+                    // update info
+                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
+                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                        console.log(res)
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+    }
 
     setHideUpgradeM = () => {
         this.setState({ showUpgradeM: false });
