@@ -128,7 +128,7 @@ export class JobCreation extends Component {
             });
         }
         // Get jobtarget token
-        if ((this.props.profile.jobt_token == "" || this.props.profile.jobt_token == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
             let data3 = {
                 "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
                 "email": this.props.user.email

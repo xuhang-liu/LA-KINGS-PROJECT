@@ -328,13 +328,12 @@ export class EmployerDashboard extends Component {
     }
     this.props.getSourcingData(queryData);
     // Job Target Get jobtarget token
-    if ((this.props.profile.jobt_token != "" && this.props.profile.jobt_token != null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+    if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       let data3 = {
         "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
         "email": this.props.user.email
       }
       axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
-        console.log(res3)
         if (res3.data.status == 0 || res3.data.status == "0") {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
@@ -663,7 +662,7 @@ export class EmployerDashboard extends Component {
           jobs={this.props.jobs}
           companyName={this.props.profile.company_name}
           loadProfile={this.props.loadProfile}
-          jobt_company_id={this.state.jobt_company_id}
+          jobt_company_id={(this.props.profile.jobt_company_id == "" || this.props.profile.jobt_company_id == null)?this.state.jobt_company_id:this.props.profile.jobt_company_id}
         />;
       case "jobEdition":
         return <JobEdition
