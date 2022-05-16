@@ -332,11 +332,11 @@ export class Header extends Component {
                 <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
                 <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                   <ul className="nav_submenu" style={{ width: "9rem" }}>
-                    <li>
+                    {/* <li>
                       <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
                         Dashboard
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
@@ -349,11 +349,11 @@ export class Header extends Component {
                 <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
                 <span className="header-text" style={{ cursor: 'pointer', marginRight: "2.5rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                   <ul className="nav_submenu" style={{ width: "10rem" }}>
-                    <li>
+                    {/* <li>
                       <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
                         Dashboard
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out

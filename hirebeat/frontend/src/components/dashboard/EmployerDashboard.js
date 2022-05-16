@@ -7,7 +7,7 @@ import MergeIntergration from "./essentials/MergeIntergration";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
-import { MyModalUpgrade } from "./DashboardComponents";
+import { MyModalUpgrade, AlertModal } from "./DashboardComponents";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import {
@@ -47,6 +47,10 @@ import EmployerHelp from "./EmployerHelp";
 import Footer from "../layout/Footer";
 import axios from "axios";
 import IdleTimer from 'react-idle-timer'
+import EmployerDetailFormModal from "./EmployerDetailFormModal";
+import {tourConfigEmployer} from "./DashboardComponents";
+import Tour from 'reactour';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 //import ReviewCandidate from "./applications/ReviewCandidate";
 
 function ScrollToTopOnMount() {
@@ -71,8 +75,13 @@ export class EmployerDashboard extends Component {
       showUpgradeM2: false,
       showUpgradeM3: false,
       job_back_home: false,
+      isOpenWelcome: ((!this.props.profile.viewed_employer_welcome) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) ? true : false,
+      isOpenDetail: false,
+      isTourOpen: false,
+      isEndTour: false,
       jobt_company_id: "",
     }
+    
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
     sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
@@ -89,6 +98,59 @@ export class EmployerDashboard extends Component {
     position_list: PropTypes.array.isRequired,
     user_existence: PropTypes.bool,
   };
+
+  setCloseWelcome = () => {
+    this.setState({isOpenWelcome: false, isOpenDetail: true})
+    let profile = {
+      user_id: this.props.user.id,
+      viewed_employer_welcome: true
+    }
+    const config = {
+      headers: {
+          "Content-Type": "application/json",
+      }
+    };
+    axios.post("update-employer-onboard0", profile, config).then(res => {
+      console.log(res)
+      this.props.loadProfile();
+    })
+  }
+
+  setCloseDetail = () => {
+    this.setState({isOpenDetail: false, isTourOpen: true})
+  }
+
+  // tour functions
+  disableBody = (target) => disableBodyScroll(target);
+  enableBody = (target) => enableBodyScroll(target);
+
+  closeTour = () => {
+    this.setState({ isTourOpen: false , isEndTour: true});
+    // mark user has viewed tutorial
+    let profile = {
+      user_id: this.props.user.id,
+      viewed_employer_tutorial: true
+    }
+    const config = {
+      headers: {
+          "Content-Type": "application/json",
+      }
+    };
+    axios.post("update-employer-onboard", profile, config).then(res => {
+      console.log(res)
+      this.props.loadProfile();
+    })
+
+    this.enableBody();
+  };
+
+  openTour = () => {
+    this.setState({ isTourOpen: true });
+  };
+
+  closeTourOpenJob = () => {
+    this.setState({ isEndTour: false })
+  }
 
   setJob_back_home = () => {
     this.setState({
@@ -289,7 +351,7 @@ export class EmployerDashboard extends Component {
   }
 
   getInitialSubpage = () => {
-    let subpage = sessionStorage.getItem('subpage') || "employerProfile";
+    let subpage = sessionStorage.getItem('subpage') || "jobs";
     if (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) {
       subpage = "jobs";
     }
@@ -334,6 +396,7 @@ export class EmployerDashboard extends Component {
   }
 
   renderJobCreation = () => {
+    this.closeTourOpenJob()
     if (this.props.employerProfileDetail.summary == "" || this.props.employerProfileDetail.summary == null) {
       confirmAlert({
         title: 'One More Step!',
@@ -775,6 +838,8 @@ export class EmployerDashboard extends Component {
     setTimeout(() => { this.props.logout() }, 300)
   }
 
+
+
   render() {
     const meta = {
       title: 'HireBeat - Employer Dashboard',
@@ -787,6 +852,9 @@ export class EmployerDashboard extends Component {
       }
     };
     //    console.log(this.props.postedJobs, this.props.jobs);
+    const { isTourOpen, isEndTour, isOpenDetail } = this.state;
+    const bg1 = "https://hirebeat-assets.s3.amazonaws.com/Employer/welcome.png";
+
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
@@ -798,6 +866,83 @@ export class EmployerDashboard extends Component {
             onAction={this.handleOnAction}
             debounce={250}
           />
+
+          {/* Welcome page */}
+          <MyModalUpgrade
+            show={this.state.isOpenWelcome}
+            onHide={this.setCloseWelcome}
+            backdrop="static"
+          >
+            <div style={{ position: "relative", width: "100%" }}>
+              <img
+                src={bg1}
+                alt="welcome page"
+                style={{ width: "100%", height: "auto" }}
+              />
+              <button
+                className="default-btn"
+                onClick={this.setCloseWelcome}
+                style={{
+                  paddingLeft: "25px",
+                  textDecoration: "none",
+                  backgroundColor: "#ff6b00",
+                  color: "#fff",
+                  position: "absolute",
+                  left: "40%",
+                  top: "80%",
+                }}
+              >
+                Let's go!
+              </button>
+            </div>
+          </MyModalUpgrade>
+
+          {/* Pop up Detailed Form */}
+          {isOpenDetail && <EmployerDetailFormModal
+            isOpenDetail={isOpenDetail}
+            userId={this.props.user.id}
+            user={this.props.user}
+            employerProfileDetail={this.props.employerProfileDetail}
+            getEmployerProfileDetail={this.props.getEmployerProfileDetail}
+            updateEmployerInfo={this.props.updateEmployerInfo}
+            updateEmployerSocialMedia={this.props.updateEmployerSocialMedia}
+            updateEmployerBasicInfo={this.props.updateEmployerBasicInfo}
+            updateEmployerSummary={this.props.updateEmployerSummary}
+            setCloseDetail={this.setCloseDetail}
+          />}
+
+          <Tour
+              onRequestClose={this.closeTour}
+              loadProfile={this.props.loadProfile}
+              steps={tourConfigEmployer}
+              isOpen={isTourOpen}
+              className="helper"
+              rounded={6}
+              onAfterOpen={this.disableBody}
+              onBeforeClose={this.enableBody}
+              closeWithMask={false}
+              showNumber={false}
+              disableDotsNavigation={true}
+              showNavigation={false}
+              showNavigationNumber={false}
+              showCloseButton={false}
+              nextButton={<i className="tour-next-btn" style={{color: "#006dff", border: "1px solid #006dff",backgroundColor: "transparent"}}>Next</i>}
+              prevButton={<i className="tour-next-btn" style={{display: "none"}}></i>}
+              lastStepNextButton={<i className="tour-next-btn" style={{color: "#fff", background: "#006dff"}}>Congrats! You're ready now!</i>}
+            />
+            {isEndTour && 
+            <AlertModal
+              show={this.state.isEndTour}
+              onHide={this.closeTourOpenJob}
+              backdrop="static"
+            >
+              <h2 style={{textAlign:"center", color: "#090d3a", fontFamily: "Inter, Segoe UI", paddingTop:"2rem"}}>Let's Create a Job!</h2>
+              <div style={{display: "flex", justifyContent: "center", padding: "20px 0"}}>
+                <button onClick={this.closeTourOpenJob} className="default-btn4" style={{paddingLeft:"25px", marginRight:"1rem"}}>Later</button>
+                <button onClick={this.renderJobCreation} className="default-btn5" style={{paddingLeft:"25px"}}>Create a Job</button>
+              </div>
+            </AlertModal>}
+
           {this.props.employerDetailLoaded ?
             <div>
               <MyModalUpgrade
