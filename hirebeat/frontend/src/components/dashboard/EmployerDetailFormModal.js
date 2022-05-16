@@ -3,14 +3,35 @@ import Select from "react-select";
 import Autocomplete from "react-google-autocomplete";
 import { SizeOptions, IndustryOptions } from "../accounts/Constants";
 import { MyModalUpgrade } from "./DashboardComponents";
+import RichTextEditor from 'react-rte';
 import "boxicons";
+
+const toolbarConfig = {
+  // Optionally specify the groups to display (displayed in the order listed).
+  display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
+  INLINE_STYLE_BUTTONS: [
+    { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
+    { label: 'Italic', style: 'ITALIC' },
+    { label: 'Underline', style: 'UNDERLINE' }
+  ],
+  BLOCK_TYPE_DROPDOWN: [
+    { label: 'Normal', style: 'unstyled' },
+    { label: 'Heading Large', style: 'header-one' },
+    { label: 'Heading Medium', style: 'header-two' },
+    { label: 'Heading Small', style: 'header-three' }
+  ],
+  BLOCK_TYPE_BUTTONS: [
+    { label: 'UL', style: 'unordered-list-item' },
+    { label: 'OL', style: 'ordered-list-item' }
+  ]
+};
 
 export class EmployerDetailFormModal extends Component {
   state = {
-    companySize: "",
-    companyType: "",
+    companySize: { value: '', label: '' },
+    companyType: { value: '', label: '' },
     location: "",
-    companySummary: "",
+    companySummary: RichTextEditor.createEmptyValue(),
     companyLinkedin: "",
     errLinkedin: "",
   };
@@ -21,43 +42,55 @@ export class EmployerDetailFormModal extends Component {
     });
   };
 
+  onChange = (companySummary) => {
+    this.setState({ companySummary });
+  };
+
   handleLocation = (location) => {
     this.setState({ location: location });
   };
 
   selectSize = (companySize) => {
-    this.setState({ companySize: companySize });
+    this.setState({ companySize });
   };
 
   selectIndustry = (companyType) => {
-    this.setState({ companyType: companyType });
+    this.setState({ companyType });
   };
 
-  onSubmit = () => {
+  getUpdatedData = () => {
+    this.props.getEmployerProfileDetail(this.props.userId);
+  }
+
+  onSubmit = (e) => {
     e.preventDefault();
-    if (!this.state.companyLinkedin.toLowerCase().includes("linkedin")) {
-      this.setState({ errLinkedin: "Please Enter Correct LinkedIn URL" });
+    if ((!this.state.companyLinkedin.toLowerCase().includes("linkedin")) && this.state.companyLinkedin.length >0) {
+      return this.setState({ errLinkedin: "Please Enter Correct LinkedIn URL" });
     }
-
+    if (this.state.companySummary.toString('html') == "<p><br></p>") {
+      return alert("Please enter company overview!");
+    }
     let data1 = {
-      user_id: this.props.userId,
-      company_type: this.state.companyType.value,
-      location: location,
-      company_size: this.state.companySize.value,
-    };
+      "user_id": this.props.userId,
+      "company_type": this.state.companyType.value,
+      "contactEmail": this.props.user.email,
+      "location": this.state.location,
+      "company_size": this.state.companySize.value,
+    }
     this.props.updateEmployerBasicInfo(data1);
-
     let data2 = {
-      user_id: this.props.userId,
-      summary: this.state.companySummary.toString("html"),
+      "user_id": this.props.userId,
+      "summary": this.state.companySummary.toString('html'),
     };
     this.props.updateEmployerSummary(data2);
-
     let data3 = {
-      user_id: this.props.userId,
-      linkedin: companyLinkedin,
-    };
+      "user_id": this.props.userId,
+      "linkedin": this.state.companyLinkedin,
+      "facebook": "",
+      "twitter": "",
+    }
     this.props.updateEmployerSocialMedia(data3);
+    setTimeout(() => { this.getUpdatedData() }, 300);
     this.props.setCloseDetail();
   };
 
@@ -66,7 +99,7 @@ export class EmployerDetailFormModal extends Component {
       ...styles,
       backgroundColor: "#ffffff",
       boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)",
-      height: "55px",
+      height: "3rem",
     }),
     singleValue: (styles) => ({
       ...styles,
@@ -82,6 +115,8 @@ export class EmployerDetailFormModal extends Component {
       fontSize: "16px",
       color: "rgb(153 153 153)",
     }),
+    menuPortal: provided => ({ ...provided, zIndex: 99 }),
+    menu: provided => ({ ...provided, zIndex: 99 })
   };
 
   render() {
@@ -110,6 +145,7 @@ export class EmployerDetailFormModal extends Component {
               marginBottom: "3rem",
               paddingTop: "3rem",
             }}
+            onSubmit={this.onSubmit}
           >
             <div>
               <div
@@ -122,7 +158,7 @@ export class EmployerDetailFormModal extends Component {
                   width: "100%",
                 }}
               >
-                <div className="detailform_part1_left" onSubmit={this.onSubmit}>
+                <div className="detailform_part1_left">
                   <div className="form-group">
                     <label style={{ fontWeight: "bold", color: "#fff" }}>
                       Company Location
@@ -212,19 +248,11 @@ export class EmployerDetailFormModal extends Component {
                 <label style={{ fontWeight: "bold", color: "#fff" }}>
                   Company Overview <span style={{ color: "red" }}>*</span>
                 </label>
-                <textarea
-                  id="website"
-                  className="profile-input profile-p"
-                  name="companySummary"
-                  style={{
-                    width: "100%",
-                    border: "1px solid #7E8993",
-                    borderRadius: "3px",
-                    paddingLeft: "0.5rem",
-                    height: "200px",
-                  }}
-                  onChange={this.handleInputChange}
-                ></textarea>
+                <RichTextEditor
+                  value={this.state.companySummary}
+                  onChange={this.onChange}
+                  toolbarConfig={toolbarConfig}
+                />
               </div>
 
               <div

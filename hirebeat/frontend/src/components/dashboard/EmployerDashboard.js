@@ -75,9 +75,9 @@ export class EmployerDashboard extends Component {
       showUpgradeM2: false,
       showUpgradeM3: false,
       job_back_home: false,
-      isOpenWelcome: !this.props.profile.viewed_employer_welcome ? true : false,
+      isOpenWelcome: ((!this.props.profile.viewed_employer_welcome) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) ? true : false,
       isOpenDetail: false,
-      isTourOpen: !this.props.profile?.viewed_employer_tutorial ? true : false,
+      isTourOpen: false,
       isEndTour: false,
     }
     
@@ -116,7 +116,7 @@ export class EmployerDashboard extends Component {
   }
 
   setCloseDetail = () => {
-    this.setState({isOpenDetail: false})
+    this.setState({isOpenDetail: false, isTourOpen: true})
   }
 
   // tour functions
@@ -829,10 +829,10 @@ export class EmployerDashboard extends Component {
           </MyModalUpgrade>
 
           {/* Pop up Detailed Form */}
-          {/* **********************BUG SECTION ************************ */}
           {isOpenDetail && <EmployerDetailFormModal
             isOpenDetail={isOpenDetail}
             userId={this.props.user.id}
+            user={this.props.user}
             employerProfileDetail={this.props.employerProfileDetail}
             getEmployerProfileDetail={this.props.getEmployerProfileDetail}
             updateEmployerInfo={this.props.updateEmployerInfo}
@@ -841,7 +841,6 @@ export class EmployerDashboard extends Component {
             updateEmployerSummary={this.props.updateEmployerSummary}
             setCloseDetail={this.setCloseDetail}
           />}
-          {/* **********************BUG SECTION ************************ */}
 
           <Tour
               onRequestClose={this.closeTour}
@@ -868,10 +867,10 @@ export class EmployerDashboard extends Component {
               onHide={this.closeTourOpenJob}
               backdrop="static"
             >
-              <h2 style={{padding: "30px 25%", color: "#000", fontFamily: "Inter"}}>Let's Create a Job!</h2>
+              <h2 style={{textAlign:"center", color: "#090d3a", fontFamily: "Inter, Segoe UI", paddingTop:"2rem"}}>Let's Create a Job!</h2>
               <div style={{display: "flex", justifyContent: "center", padding: "20px 0"}}>
-                <button onClick={this.closeTourOpenJob} style={{marginRight: "20px", width: "20%", padding: "10px 10px", border: "1px solid #808080", color: "#808080"}}>Later</button>
-                <button onClick={this.renderJobCreation} style={{border: "none", padding: "10px 10px", backgroundColor: "#ff6b00", color: "#fff", fontWeight: "500"}}>Create a Job</button>
+                <button onClick={this.closeTourOpenJob} className="default-btn4" style={{paddingLeft:"25px", marginRight:"1rem"}}>Later</button>
+                <button onClick={this.renderJobCreation} className="default-btn5" style={{paddingLeft:"25px"}}>Create a Job</button>
               </div>
             </AlertModal>}
 
