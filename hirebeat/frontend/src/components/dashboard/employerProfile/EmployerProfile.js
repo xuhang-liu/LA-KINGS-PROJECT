@@ -92,6 +92,8 @@ export class EmployerProfile extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
+        menuPortal: provided => ({ ...provided, zIndex: 99 }),
+        menu: provided => ({ ...provided, zIndex: 99 })
     };
 
     options = [

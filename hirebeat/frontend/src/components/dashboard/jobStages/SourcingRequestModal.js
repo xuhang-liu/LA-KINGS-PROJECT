@@ -50,22 +50,25 @@ export class SourcingRequestModal extends React.Component {
                     >
                         <div style={{ color: "#7A7A7A" }}>{this.props.sourcing.current_location}</div>
                         <div style={{ display: "flex" }}>
-                            <div>
-                                <i className="bx-fw bx bx-phone"></i>
-                                {this.props.sourcing.phone}
-                            </div>
-                            <div style={{ paddingLeft: "1rem" }}>
-                                <i className="bx-fw bx bx-envelope"></i>
-                                {this.props.sourcing.email}
-                            </div>
-                            <a
-                                href={this.props.sourcing.linkedin_url}
-                                target="_blank"
-                                style={{ paddingLeft: "1rem" }}
-                            >
-                                <i className="bx-fw bx bxl-linkedin-square"></i>
-                                Go to LinkedIn Page
-                            </a>
+                            {(this.props.sourcing.phone != null && this.props.sourcing.phone != "") &&
+                                <div>
+                                    <i className="bx-fw bx bx-phone"></i>
+                                    {this.props.sourcing.phone}
+                                </div>}
+                            {(this.props.sourcing.email != null && this.props.sourcing.email != "") &&
+                                <div style={{ paddingLeft: "1rem" }}>
+                                    <i className="bx-fw bx bx-envelope"></i>
+                                    {this.props.sourcing.email}
+                                </div>}
+                            {(this.props.sourcing.linkedin_url != null && this.props.sourcing.linkedin_url != "") &&
+                                <a
+                                    href={this.props.sourcing.linkedin_url}
+                                    target="_blank"
+                                    style={{ paddingLeft: "1rem" }}
+                                >
+                                    <i className="bx-fw bx bxl-linkedin-square"></i>
+                                    Go to LinkedIn Page
+                                </a>}
                         </div>
                     </div>
                     <div
@@ -95,31 +98,32 @@ export class SourcingRequestModal extends React.Component {
                             >
                                 {this.props.sourcing.current_title} at <b>{this.props.sourcing.current_company_name}</b>
                             </div>
-                            <div style={{ paddingBottom: "2rem" }}>
-                                <span
-                                    style={{
+                            {(this.props.sourcing.current_company_size != null && this.props.sourcing.current_company_size != "") &&
+                                <div style={{ paddingBottom: "2rem" }}>
+                                    <span
+                                        style={{
+                                            backgroundColor: "#F3F6F9",
+                                            paddingLeft: "0.7rem",
+                                            paddingRight: "0.7rem",
+                                            paddingTop: "0.2rem",
+                                            paddingBottom: "0.2rem",
+                                            marginRight: "0.5rem"
+                                        }}
+                                    >
+                                        {this.props.sourcing.current_company_size} Employees
+                                    </span>
+                                    <span style={{
                                         backgroundColor: "#F3F6F9",
                                         paddingLeft: "0.7rem",
                                         paddingRight: "0.7rem",
                                         paddingTop: "0.2rem",
                                         paddingBottom: "0.2rem",
                                         marginRight: "0.5rem"
-                                    }}
-                                >
-                                    {this.props.sourcing.current_company_size} Employees
-                                </span>
-                                <span style={{
-                                    backgroundColor: "#F3F6F9",
-                                    paddingLeft: "0.7rem",
-                                    paddingRight: "0.7rem",
-                                    paddingTop: "0.2rem",
-                                    paddingBottom: "0.2rem",
-                                    marginRight: "0.5rem"
-                                }}>
-                                    {this.props.sourcing.current_industry}
-                                </span>
-                            </div>
-                            <div>
+                                    }}>
+                                        {this.props.sourcing.current_industry}
+                                    </span>
+                                </div>}
+                            <div className={(this.props.sourcing.current_company_size != null && this.props.sourcing.current_company_size != "") ? "" : "mt-5"}>
                                 <h3
                                     style={{
                                         fontFamily: "Inter",
@@ -146,26 +150,27 @@ export class SourcingRequestModal extends React.Component {
                                             >
                                                 {this.props.sourcing.prev_title1} at <b>{this.props.sourcing.prev_company_name1}</b>
                                             </div>
-                                            <div>
-                                                <span style={{
-                                                    backgroundColor: "#fff",
-                                                    paddingLeft: "0.7rem",
-                                                    paddingRight: "0.7rem",
-                                                    paddingTop: "0.2rem",
-                                                    paddingBottom: "0.2rem",
-                                                    marginRight: "0.5rem"
-                                                }}>
-                                                    {this.props.sourcing.prev_company_size1} Employees
-                                                </span>
-                                                <span style={{
-                                                    backgroundColor: "#fff",
-                                                    paddingLeft: "0.7rem",
-                                                    paddingRight: "0.7rem",
-                                                    paddingTop: "0.2rem",
-                                                    paddingBottom: "0.2rem",
-                                                    marginRight: "0.5rem"
-                                                }}>{this.props.sourcing.prev_company_industry1}</span>
-                                            </div>
+                                            {(this.props.sourcing.prev_company_size1 != null && this.props.sourcing.prev_company_size1 != "") &&
+                                                <div>
+                                                    <span style={{
+                                                        backgroundColor: "#fff",
+                                                        paddingLeft: "0.7rem",
+                                                        paddingRight: "0.7rem",
+                                                        paddingTop: "0.2rem",
+                                                        paddingBottom: "0.2rem",
+                                                        marginRight: "0.5rem"
+                                                    }}>
+                                                        {this.props.sourcing.prev_company_size1} Employees
+                                                    </span>
+                                                    <span style={{
+                                                        backgroundColor: "#fff",
+                                                        paddingLeft: "0.7rem",
+                                                        paddingRight: "0.7rem",
+                                                        paddingTop: "0.2rem",
+                                                        paddingBottom: "0.2rem",
+                                                        marginRight: "0.5rem"
+                                                    }}>{this.props.sourcing.prev_company_industry1}</span>
+                                                </div>}
                                         </li>}
                                     {(this.props.sourcing.prev_title2 != null && this.props.sourcing.prev_title2 != "") &&
                                         <li style={{ padding: "0.5rem" }}>
@@ -174,26 +179,27 @@ export class SourcingRequestModal extends React.Component {
                                             >
                                                 {this.props.sourcing.prev_title2} at <b>{this.props.sourcing.prev_company_name2}</b>
                                             </div>
-                                            <div>
-                                                <span style={{
-                                                    backgroundColor: "#fff",
-                                                    paddingLeft: "0.7rem",
-                                                    paddingRight: "0.7rem",
-                                                    paddingTop: "0.2rem",
-                                                    paddingBottom: "0.2rem",
-                                                    marginRight: "0.5rem"
-                                                }}>
-                                                    {this.props.sourcing.prev_company_size2} Employees
-                                                </span>
-                                                <span style={{
-                                                    backgroundColor: "#fff",
-                                                    paddingLeft: "0.7rem",
-                                                    paddingRight: "0.7rem",
-                                                    paddingTop: "0.2rem",
-                                                    paddingBottom: "0.2rem",
-                                                    marginRight: "0.5rem"
-                                                }}>{this.props.sourcing.prev_company_industry2}</span>
-                                            </div>
+                                            {(this.props.sourcing.prev_company_size2 != null && this.props.sourcing.prev_company_size2 != "") &&
+                                                <div>
+                                                    <span style={{
+                                                        backgroundColor: "#fff",
+                                                        paddingLeft: "0.7rem",
+                                                        paddingRight: "0.7rem",
+                                                        paddingTop: "0.2rem",
+                                                        paddingBottom: "0.2rem",
+                                                        marginRight: "0.5rem"
+                                                    }}>
+                                                        {this.props.sourcing.prev_company_size2} Employees
+                                                    </span>
+                                                    <span style={{
+                                                        backgroundColor: "#fff",
+                                                        paddingLeft: "0.7rem",
+                                                        paddingRight: "0.7rem",
+                                                        paddingTop: "0.2rem",
+                                                        paddingBottom: "0.2rem",
+                                                        marginRight: "0.5rem"
+                                                    }}>{this.props.sourcing.prev_company_industry2}</span>
+                                                </div>}
                                         </li>}
                                 </ul>
                             </div>

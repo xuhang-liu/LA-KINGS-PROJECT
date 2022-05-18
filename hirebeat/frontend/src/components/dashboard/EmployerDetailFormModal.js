@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import Autocomplete from "react-google-autocomplete";
 import { SizeOptions, IndustryOptions } from "../accounts/Constants";
-import { MyModalUpgrade } from "./DashboardComponents";
+import { MyModalTut } from "./DashboardComponents";
 import RichTextEditor from 'react-rte';
 import "boxicons";
 
@@ -28,9 +28,9 @@ const toolbarConfig = {
 
 export class EmployerDetailFormModal extends Component {
   state = {
-    companySize: { value: '', label: '' },
-    companyType: { value: '', label: '' },
-    location: "",
+    companySize: { value: this.props.employerProfileDetail?.company_size, label: this.props.employerProfileDetail?.company_size },
+    companyType: { value: this.props.employerProfileDetail?.company_type, label: this.props.employerProfileDetail?.company_type },
+    location: this.props.employerProfileDetail?.location,
     companySummary: RichTextEditor.createEmptyValue(),
     companyLinkedin: "",
     errLinkedin: "",
@@ -124,7 +124,7 @@ export class EmployerDetailFormModal extends Component {
       "https://hirebeat-assets.s3.amazonaws.com/Employer/moredetail.png";
 
     return (
-      <MyModalUpgrade
+      <MyModalTut
         show={this.props.isOpenDetail}
         onHide={this.props.setCloseDetail}
         backdrop="static"
@@ -142,23 +142,26 @@ export class EmployerDetailFormModal extends Component {
           </h1>
           <form
             style={{
-              marginBottom: "3rem",
+              paddingBottom: "3rem",
               paddingTop: "3rem",
+              paddingLeft: "1rem",
+              paddingRight:"1rem"
             }}
             onSubmit={this.onSubmit}
           >
             <div>
               <div
-                className="detailform_part1"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
-                  padding: "20px",
+                  paddingTop: "1rem",
+                  paddingLeft: "1.2rem",
+                  paddingRight: "1.2rem",
                   justifyContent: "space-between",
                   width: "100%",
                 }}
               >
-                <div className="detailform_part1_left">
+                <div>
                   <div className="form-group">
                     <label style={{ fontWeight: "bold", color: "#fff" }}>
                       Company Location
@@ -173,6 +176,7 @@ export class EmployerDetailFormModal extends Component {
                         onPlaceSelected={(place, inputRef, autocomplete) => {
                           this.handleLocation(place.formatted_address);
                         }}
+                        defaultValue={this.props.employerProfileDetail?.location}
                       />
                     </div>
                   </div>
@@ -235,7 +239,7 @@ export class EmployerDetailFormModal extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="detailform_part1_right">
+                <div>
                   <img
                     src={bg2}
                     alt="detailform page"
@@ -244,7 +248,7 @@ export class EmployerDetailFormModal extends Component {
                 </div>
               </div>
 
-              <div className="form-group" style={{ padding: "20px" }}>
+              <div className="form-group" style={{ paddingTop: "0.5rem", paddingLeft: "1.2rem", paddingRight: "1.2rem", }}>
                 <label style={{ fontWeight: "bold", color: "#fff" }}>
                   Company Overview <span style={{ color: "red" }}>*</span>
                 </label>
@@ -282,7 +286,7 @@ export class EmployerDetailFormModal extends Component {
             </div>
           </form>
         </div>
-      </MyModalUpgrade>
+      </MyModalTut>
     );
   }
 }
