@@ -7,7 +7,7 @@ import MergeIntergration from "./essentials/MergeIntergration";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
-import { MyModalUpgrade, AlertModal } from "./DashboardComponents";
+import { MyModalUpgrade, AlertModal, MyModalTut } from "./DashboardComponents";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import {
@@ -867,7 +867,7 @@ export class EmployerDashboard extends Component {
           />
 
           {/* Welcome page */}
-          <MyModalUpgrade
+          <MyModalTut
             show={this.state.isOpenWelcome}
             onHide={this.setCloseWelcome}
             backdrop="static"
@@ -887,14 +887,14 @@ export class EmployerDashboard extends Component {
                   backgroundColor: "#ff6b00",
                   color: "#fff",
                   position: "absolute",
-                  left: "40%",
+                  left: "23vw",
                   top: "80%",
                 }}
               >
                 Let's go!
               </button>
             </div>
-          </MyModalUpgrade>
+          </MyModalTut>
 
           {/* Pop up Detailed Form */}
           {isOpenDetail && <EmployerDetailFormModal
