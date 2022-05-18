@@ -14,7 +14,7 @@ export class JobList extends Component {
     }
 
     customStyles = {
-        control: styles => ({ ...styles, border:"none", marginTop:"-1rem", width:"10rem", paddingLeft:"1.3rem" }),
+        control: styles => ({ ...styles, border: "none", marginTop: "-1rem", width: "10rem", paddingLeft: "1.3rem" }),
         singleValue: styles => ({
             ...styles,
             color: '#4a6f8a',
@@ -22,7 +22,7 @@ export class JobList extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     };
 
     options = [
@@ -64,92 +64,80 @@ export class JobList extends Component {
                                 </div> */}
                                 <div className="container-fluid" style={{ marginTop: "1rem" }}>
                                     <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
-                                        <div className="col-2"><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} isSearchable={false}/></div>
-                                        <div className="col-4 d-flex justify-content-start" style={{paddingLeft:'2.2rem'}}>Job Title</div>
+                                        <div className="col-2"><Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={this.customStyles} className="select-category-jobs-closed" placeholder={"Status"} isSearchable={false} /></div>
+                                        <div className="col-4 d-flex justify-content-start" style={{ paddingLeft: '2.2rem' }}>Job Title</div>
                                         <div className="col-2 d-flex justify-content-center">ID</div>
                                         <div className="col-2 d-flex justify-content-center">Applicants</div>
                                         <div className="col-2 d-flex justify-content-center">Created On</div>
                                     </div>
-                                    {Object.keys(this.props.jobs).sort((a, b) => parseInt(b) - parseInt(a)).map((key, index) => {
-                                        let job = this.props.jobs[key];
-                                        let curJobKey = key;
-                                        if (this.props.keyWords != "") {
-                                            let jobTitle = job["job_details"].job_title;
-                                            if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
-                                        }
-                                        if (this.state.job_closed["value"] != "All") {
-                                            switch (this.state.job_closed["value"]) {
-                                                case 0:
-                                                    if (job["job_details"].is_closed != 0) return null;
-                                                    if (this.props.keyWords != "") {
-                                                        let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                    {(Object.keys(this.props.jobs)?.length < 1) ?
+                                        <div className="row" style={{paddingTop:"5rem", margin:"auto", width:"30%"}}>
+                                            <img style={{cursor:"pointer"}} onClick={this.props.renderJobCreation} src="https://hirebeat-assets.s3.amazonaws.com/Employer/no-job-display-icon.png" alt="icon"/>
+                                        </div>:
+                                        <span>
+                                            {Object.keys(this.props.jobs).sort((a, b) => parseInt(b) - parseInt(a)).map((key, index) => {
+                                                let job = this.props.jobs[key];
+                                                let curJobKey = key;
+                                                if (this.props.keyWords != "") {
+                                                    let jobTitle = job["job_details"].job_title;
+                                                    if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                                }
+                                                if (this.state.job_closed["value"] != "All") {
+                                                    switch (this.state.job_closed["value"]) {
+                                                        case 0:
+                                                            if (job["job_details"].is_closed != 0) return null;
+                                                            if (this.props.keyWords != "") {
+                                                                let jobTitle = job["job_details"].job_title;
+                                                                if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                                            }
+                                                            break;
+                                                        case 1:
+                                                            if (job["job_details"].is_closed != 1) return null;
+                                                            if (this.props.keyWords != "") {
+                                                                let jobTitle = job["job_details"].job_title;
+                                                                if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                                            }
+                                                            break;
+                                                        case 2:
+                                                            if (job["job_details"].is_closed != 2) return null;
+                                                            if (this.props.keyWords != "") {
+                                                                let jobTitle = job["job_details"].job_title;
+                                                                if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                                            }
+                                                            break;
+                                                        case 3:
+                                                            if (job["job_details"].is_closed != 3) return null;
+                                                            if (this.props.keyWords != "") {
+                                                                let jobTitle = job["job_details"].job_title;
+                                                                if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
+                                                            }
+                                                            break;
+                                                        default:
+                                                            return null;
                                                     }
-                                                    break;
-                                                case 1:
-                                                    if (job["job_details"].is_closed != 1) return null;
-                                                    if (this.props.keyWords != "") {
-                                                        let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
-                                                    }
-                                                    break;
-                                                case 2:
-                                                    if (job["job_details"].is_closed != 2) return null;
-                                                    if (this.props.keyWords != "") {
-                                                        let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
-                                                    }
-                                                    break;
-                                                case 3:
-                                                    if (job["job_details"].is_closed != 3) return null;
-                                                    if (this.props.keyWords != "") {
-                                                        let jobTitle = job["job_details"].job_title;
-                                                        if (!jobTitle.toLowerCase().includes(this.props.keyWords.toLowerCase())) return null;
-                                                    }
-                                                    break;
-                                                default:
-                                                    return null;
+                                                }
+                                                return (
+                                                    <JobCard
+                                                        filter={this.props.filter}
+                                                        job={job}
+                                                        user={this.props.user}
+                                                        profile={this.props.profile}
+                                                        setStatus={this.props.setStatus}
+                                                        enableView={this.setViewTrue}
+                                                        disableView={this.setViewFalse}
+                                                        setCurJob={this.props.setCurJob}
+                                                        renderJobEdition={this.props.renderJobEdition}
+                                                        setJobInfo={this.props.setJobInfo}
+                                                        getPJobs={this.props.getPJobs}
+                                                        curJobKey={curJobKey}
+                                                        setJobKey={this.props.setJobKey}
+                                                        setViewPortal={this.props.setViewPortal}
+                                                        setJob_back_home={this.props.setJob_back_home}
+                                                    />
+                                                );
+                                            })
                                             }
-                                        }
-                                        // switch (this.props.filter) {
-                                        //     case "active":
-                                        //         if (job["job_details"].is_closed) return null;
-                                        //         if (this.state.keyWords != "") {
-                                        //             let jobTitle = job["job_details"].job_title;
-                                        //             if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                                        //         }
-                                        //         break;
-                                        //     case "closed":
-                                        //         if (!job["job_details"].is_closed) return null;
-                                        //         if (this.state.keyWords != "") {
-                                        //             let jobTitle = job["job_details"].job_title;
-                                        //             if (!jobTitle.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                                        //         }
-                                        //         break;
-                                        //     default:
-                                        //         return null;
-                                        // }
-                                        return (
-                                            <JobCard
-                                                filter={this.props.filter}
-                                                job={job}
-                                                user={this.props.user}
-                                                profile={this.props.profile}
-                                                setStatus={this.props.setStatus}
-                                                enableView={this.setViewTrue}
-                                                disableView={this.setViewFalse}
-                                                setCurJob={this.props.setCurJob}
-                                                renderJobEdition={this.props.renderJobEdition}
-                                                setJobInfo={this.props.setJobInfo}
-                                                getPJobs={this.props.getPJobs}
-                                                curJobKey={curJobKey}
-                                                setJobKey={this.props.setJobKey}
-                                                setViewPortal={this.props.setViewPortal}
-                                                setJob_back_home={this.props.setJob_back_home}
-                                            />
-                                        );
-                                    })
-                                    }
+                                        </span>}
                                 </div>
                             </div> :
                             <div>

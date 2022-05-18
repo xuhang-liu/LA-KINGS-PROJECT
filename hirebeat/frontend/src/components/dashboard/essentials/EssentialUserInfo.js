@@ -180,7 +180,7 @@ export class EssentialUserInfo extends Component {
         <div className="container">
           <DbCenterRow>
             <div>
-                  {/*this.props.profile.membership == "Premium" ?
+              {/*this.props.profile.membership == "Premium" ?
                 <div style={{marginLeft:"1.4rem", marginRight:"1.4rem"}}>
                   {this.props.profile.plan_interval == "Pro" ?
                   <div className="row">
@@ -240,8 +240,8 @@ export class EssentialUserInfo extends Component {
                   </div>
                 </div>}
               </div>*/}
-                  {/* <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr> */}
-              
+              {/* <hr style={{ border: "1px solid rgba(232, 237, 252, 0.25)" }}></hr> */}
+
               {this.props.profile.is_employer ?
                 <div style={{ marginLeft: "1.4rem", marginTop: "2rem", marginRight: "1.4rem" }}>
                   <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
@@ -391,44 +391,45 @@ export class EssentialUserInfo extends Component {
                         </button>
                       </div>}
                   </div>
-
-                  <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
-                    <div className="col d-flex align-items-center">
-                      <button
-                        type="button"
-                        className="panel-button"
-                        onClick={this.props.renderSetting}
-                        style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
-                      >
-                        <IconEmployerText
-                          textSize={"12px"}
-                          textDisplayed={"Settings"}
-                          backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
-                          iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
-                          textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
-                        />
-                      </button>
-                    </div>
-                  </div>
-                  {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                  <span data-tut="reactour-accounts">
                     <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
-                      <div className="col d-flex align-items-center" data-tut="reactour-accounts">
+                      <div className="col d-flex align-items-center">
                         <button
                           type="button"
                           className="panel-button"
-                          onClick={this.props.renderMergeIntergration}
+                          onClick={this.props.renderSetting}
                           style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
                         >
                           <IconEmployerText
                             textSize={"12px"}
-                            textDisplayed={"Integration"}
-                            backColor={this.props.subpage == "mergeintergration" ? selectBack : defaultBack}
-                            iconSrc={this.props.subpage == "mergeintergration" ? selectIntergration : nonselectIntergration}
-                            textColor={this.props.subpage == "mergeintergration" ? selectEColor : defaultEColor}
+                            textDisplayed={"Settings"}
+                            backColor={this.props.subpage == "settings" ? selectBack : defaultBack}
+                            iconSrc={this.props.subpage == "settings" ? selectSetting : nonselectSetting}
+                            textColor={this.props.subpage == "settings" ? selectEColor : defaultEColor}
                           />
                         </button>
                       </div>
-                    </div>}
+                    </div>
+                    {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
+                      <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
+                        <div className="col d-flex align-items-center">
+                          <button
+                            type="button"
+                            className="panel-button"
+                            onClick={this.props.renderMergeIntergration}
+                            style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
+                          >
+                            <IconEmployerText
+                              textSize={"12px"}
+                              textDisplayed={"Integration"}
+                              backColor={this.props.subpage == "mergeintergration" ? selectBack : defaultBack}
+                              iconSrc={this.props.subpage == "mergeintergration" ? selectIntergration : nonselectIntergration}
+                              textColor={this.props.subpage == "mergeintergration" ? selectEColor : defaultEColor}
+                            />
+                          </button>
+                        </div>
+                      </div>}
+                  </span>
                   <div className="row" style={{ marginTop: "1rem" }}>
                     <div className="col d-flex align-items-start">
                       <button

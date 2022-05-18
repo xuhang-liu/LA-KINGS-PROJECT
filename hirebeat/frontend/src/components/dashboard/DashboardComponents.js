@@ -339,6 +339,19 @@ export const MyModalUpgrade = (props) => {
     );
 };
 
+export const MyModalTut = (props) => {
+    return (
+        <Modal
+            {...props}
+            dialogClassName={"my-modal-tut"}
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            {props.children}
+        </Modal>
+    );
+};
+
 export const MyVideoModal = (props) => {
     return (
         <Modal
@@ -740,8 +753,8 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-createjob"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step1: Create a Job</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>
+                <h3 className="tour-title">Step 1: Create a Job</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
                     Start by creating a new job posting here. You can also configure screening questions and manage job broadcasting while editing the job post.
                 </span>
             </div>
@@ -751,9 +764,9 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-jobs"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step2: Manage jobs and Candidates</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>
-                All your jobs will be listed here. Inside each job, you can easily manage the candidate pipeline, collaborate with teammates, and communicate with candidates.
+                <h3 className="tour-title">Step 2: Manage jobs and Candidates</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
+                    All your jobs will be listed here. Inside each job, you can easily manage the candidate pipeline, collaborate with teammates, and communicate with candidates.
                 </span>
             </div>
         )
@@ -762,9 +775,9 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-company"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step3: Manage Company</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>
-                Please make sure to complete the company profile so candidates can know you better. First impression matters.
+                <h3 className="tour-title">Step 3: Manage Company</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
+                    Please make sure to complete the company profile so candidates can know you better. First impression matters.
                 </span>
             </div>
         )
@@ -773,9 +786,9 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-analysis"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step4: Check Analytics</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>
-                Monitor your recruiting efficiency and make data-driven decisions through our real-time analytics reports.
+                <h3 className="tour-title">Step 4: Check Analytics</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
+                    Monitor your recruiting efficiency and make data-driven decisions through our real-time analytics reports.
                 </span>
             </div>
         )
@@ -784,8 +797,10 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-accounts"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step5: Account Setting & Integration</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>Here is a summary of your activities. Keep motivated!</span>
+                <h3 className="tour-title">Step 5: Account Setting & Integration</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
+                    Here you can manage your own account, subscription, teammates, and integrations.
+                </span>
             </div>
         )
     },
@@ -793,9 +808,9 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-help"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step6: Need Help?</h3>
-                <span className="tour-text" style={{color: "#7a7a7a"}}>
-                Let us know whenever you have a question or feedback. You can also find tutorials here.
+                <h3 className="tour-title">Step 6: Need Help?</h3>
+                <span className="tour-text" style={{ color: "#7a7a7a" }}>
+                    Let us know whenever you have a question or feedback. You can also find tutorials here.
                 </span>
             </div>
         )

@@ -60,7 +60,7 @@ export const JobCover = (props) => {
 
       {((!viewPortal) || (props.job_back_home)) ?
         <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
-          <div style={{ paddingBottom: "1rem" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b>{props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer))&&<i className="bx bxs-error-circle" style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight:"600", fontFamily: "Inter, Segoe UI", cursor: "pointer"}} onClick={openTour}>Get Started!</i>}</h3>
+          <div style={{ paddingBottom: "1rem" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b>{props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer))&&<span onClick={openTour}><i className="bx-fw bx bxs-error-circle bx-xs" style={{ paddingLeft: "0.4rem", color: "#ff6b00", cursor: "pointer"}}></i><span style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight:"600", fontFamily: "Inter, Segoe UI", cursor: "pointer"}}>Get Started!</span></span>}</h3>
             <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "inline-block", float:"left", marginTop:"0.5rem" }}>
               <div style={{ position: "absolute", left: "1.3rem", marginTop: "0.2rem" }}><i className="bx bx-search bx-sm"></i></div>
               <div>
@@ -74,27 +74,6 @@ export const JobCover = (props) => {
               <span></span>
             </button>
           </div>
-          {/* <div style={{ paddingBottom: "2rem", paddingTop:"-2rem" }}>
-        <button
-          className={decideClassName(filter, "active")}
-          onClick={() => { setView(false); setFilter("active"); sessionStorage.setItem("filter", "active"); sessionStorage.removeItem("view"); sessionStorage.removeItem("jobKey")}}
-        >
-          Active
-        </button>
-        <button
-          className={decideClassName(filter, "closed")}
-          style={{ marginLeft: "2rem" }}
-          onClick={() => { setView(false); setFilter("closed"); sessionStorage.setItem("filter", "closed"); sessionStorage.removeItem("view"); sessionStorage.removeItem("jobKey")}}
-        >
-          Archived
-        </button>
-        <button className="default-btn" onClick={props.renderJobCreation}
-          style={{ color: "white", float: "right", marginBottom: "2rem" }}>
-          <i className="bx bx-plus"></i>
-          Create New Position
-          <span></span>
-        </button>
-      </div> */}
           <JobList
             jobs={props.jobs}
             user={props.user}
@@ -115,6 +94,7 @@ export const JobCover = (props) => {
             employerProfileDetail={props.employerProfileDetail}
             setJob_back_home={props.setJob_back_home}
             keyWords={keyWords}
+            renderJobCreation={props.renderJobCreation}
           />
         </div> :
         <JobPortalPage
