@@ -28,6 +28,14 @@ export class Pipeline extends Component {
         showRequestForm: false,
         requestButton: 0,
         requestListShow: false,
+        showIframe: false,
+        marketplace_iframe: ""
+    }
+
+    setHideRequest1 = () => {
+        this.setState({
+            showIframe: false
+        })
     }
 
     setrequestListHide = () => {
@@ -399,6 +407,78 @@ export class Pipeline extends Component {
         });
     };
 
+    openJobTportal = () => {
+        // JobTarget steps:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let full_address = this.props.job.job_details.job_location?.split("|")[0];
+        let city = full_address.split(",")[0].trim()
+        let state = full_address.split(",")[1].trim()
+        let country = full_address.split(",")[2].trim()
+        let questions = this.formatQuestions();
+        let data1 = {
+            "token": this.props.profile.jobt_token,
+            "job": {
+                "requisition_name": this.props.job.job_details.id,
+                "company_name": this.props.employerProfileDetail.name,
+                "title": this.props.job.job_details.job_title,
+                "description": this.props.job.job_details.job_description,
+                "job_view_url": this.props.job.job_details.job_url?.replaceAll(' ', '%20'),
+                "apply_url": this.props.job.job_details.job_url?.replaceAll(' ', '%20'),
+                "location": {
+                    "city": city,
+                    "state": state,
+                    "country": country
+                },
+                "experience": this.props.job.job_details.job_level,
+                "job_type": this.props.job.job_details.job_type,
+                "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
+                "easy_apply": true,
+                "easy_apply_type": "basic",
+                "questionnaire_webhook": questions
+            }
+        }
+        axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
+            console.log(res1)
+            if (res1.data.status == 0 || res1.data.status == "0") {
+                this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
+            } else {
+                let data2 = {
+                    "token": this.props.profile.jobt_token,
+                    "requisition_name": this.props.job.job_details.id
+                  }
+                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
+                    console.log(res2)
+                    if (res2.data.status == 0 || res2.data.status == "0") {
+                        this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
+                    }
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
+        }).catch(error => {
+            console.log(error)
+        });
+    }
+
+    formatQuestions = () => {
+        let questions = [];
+        for (let i = 0; i < this.props.job.job_details.screen_questions.length; i++) {
+            let screen_question = this.props.job.job_details.screen_questions[i];
+            questions.push(new Object({
+                question: screen_question.question,
+                responseType: screen_question.answer_type == "boolean" ? "Yes/No" : "Numeric",
+                ideal_bool_answer: screen_question.answer_type == "boolean" ? screen_question.answer : "none",
+                ideal_num_answer: screen_question.answer_type == "Numeric" ? screen_question.answer : "none",
+                isMustHave: screen_question.is_must ? "true" : "false",
+            }))
+        }
+        return questions;
+    }
+
     render() {
         let position_detail = this.props.postedJobs[this.props.job.job_details.positions_id];
         let subreviewers = position_detail?.subreviewers;
@@ -458,7 +538,7 @@ export class Pipeline extends Component {
                                 {this.state.requestButton == 2 &&
                                     <button
                                         className="default-btn5 interview-txt6"
-                                        onClick={() => {this.setState({ requestListShow: true })}}
+                                        onClick={() => { this.setState({ requestListShow: true }) }}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
                                         View Sourcing List
@@ -556,10 +636,10 @@ export class Pipeline extends Component {
                             <div className="px-5 pt-1">
                                 <button
                                     className="default-btn1 interview-txt6"
-                                    onClick={this.inviteExReviewer}
-                                    style={{ paddingLeft: "25px", visibility: 'hidden', width: "12rem" }}
+                                    onClick={this.openJobTportal}
+                                    style={{ paddingLeft: "25px", width: "12rem" }}
                                 >
-                                    Request Sourcing
+                                    Job Target
                                     <span></span>
                                 </button>
                             </div>
@@ -958,6 +1038,15 @@ export class Pipeline extends Component {
                                 user={this.props.user}
                                 profile={this.props.profile}
                             />
+                        </MyModal80>
+                        {/* Open Job Target Portal */}
+                        <MyModal80
+                            show={this.state.showIframe}
+                            onHide={this.setHideRequest1}
+                        >
+                            <div>
+                                <iframe src={this.state.marketplace_iframe} style={{ width: "100%", height: "50rem" }}></iframe>
+                            </div>
                         </MyModal80>
                     </div>}
             </React.Fragment>
