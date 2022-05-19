@@ -20,7 +20,7 @@ class FreeTrialArea extends Component {
                         <Link to="/register">
                             <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#006dff"}}>
                                 <i className="bx bxs-hot"></i> 
-                                Get Started
+                                Getting Started
                                 <span></span>
                             </a>
                         </Link>
@@ -52,7 +52,7 @@ class FreeTrialArea extends Component {
                         <Link to="/register">
                             <a id="f-tff" className="default-btn" style={{color:"white", backgroundColor:"#006dff"}}>
                                 <i className="bx bxs-hot"></i> 
-                                Get Started
+                                Getting Started
                                 <span></span>
                             </a>
                         </Link>

@@ -797,9 +797,9 @@ export const tourConfigEmployer = [
         selector: '[data-tut="reactour-accounts"]',
         content: () => (
             <div>
-                <h3 className="tour-title">Step 5: Account Setting & Integration</h3>
+                <h3 className="tour-title">Step 5: Account Settings</h3>
                 <span className="tour-text" style={{ color: "#7a7a7a" }}>
-                    Here you can manage your own account, subscription, teammates, and integrations.
+                    Here you can manage your own account, subscription, and teammates.
                 </span>
             </div>
         )

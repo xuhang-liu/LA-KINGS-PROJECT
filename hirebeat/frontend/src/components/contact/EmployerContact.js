@@ -85,7 +85,7 @@ class EmployerContact extends Component {
               <ScrollToTopOnMount />
                 <PageTitleArea1 
                     pageTitle="Contact Us" 
-                    pageDescription="Submit a request, and our expert will take you on a tour of the platform, explain pricing and guide you to get started." 
+                    pageDescription="Submit a request, and our expert will take you on a tour of the platform, explain pricing and guide you to getting started." 
                 />
                 <MediaQuery minDeviceWidth={1224}>
                 {/* 5th part */}

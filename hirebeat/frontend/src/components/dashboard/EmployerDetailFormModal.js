@@ -5,6 +5,7 @@ import { SizeOptions, IndustryOptions } from "../accounts/Constants";
 import { MyModalTut } from "./DashboardComponents";
 import RichTextEditor from 'react-rte';
 import "boxicons";
+import axios from "axios";
 
 const toolbarConfig = {
   // Optionally specify the groups to display (displayed in the order listed).
@@ -31,8 +32,9 @@ export class EmployerDetailFormModal extends Component {
     companySize: { value: this.props.employerProfileDetail?.company_size, label: this.props.employerProfileDetail?.company_size },
     companyType: { value: this.props.employerProfileDetail?.company_type, label: this.props.employerProfileDetail?.company_type },
     location: this.props.employerProfileDetail?.location,
-    companySummary: RichTextEditor.createEmptyValue(),
-    companyLinkedin: "",
+    companySummary: (this.props.employerProfileDetail?.summary !== null && this.props.employerProfileDetail?.summary !== "") ?
+    RichTextEditor.createValueFromString(this.props.employerProfileDetail?.summary, 'html') : RichTextEditor.createEmptyValue(),
+    companyLinkedin: this.props.employerProfileDetail?.linkedin,
     errLinkedin: "",
   };
 
@@ -42,7 +44,7 @@ export class EmployerDetailFormModal extends Component {
     });
   };
 
-  onChange = (companySummary) => {
+  handelSummary = (companySummary) => {
     this.setState({ companySummary });
   };
 
@@ -70,26 +72,26 @@ export class EmployerDetailFormModal extends Component {
     if (this.state.companySummary.toString('html') == "<p><br></p>") {
       return alert("Please enter company overview!");
     }
-    let data1 = {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let data = {
       "user_id": this.props.userId,
+      "emp_pro_id": this.props.employerProfileDetail.id,
       "company_type": this.state.companyType.value,
       "contactEmail": this.props.user.email,
       "location": this.state.location,
       "company_size": this.state.companySize.value,
-    }
-    this.props.updateEmployerBasicInfo(data1);
-    let data2 = {
-      "user_id": this.props.userId,
       "summary": this.state.companySummary.toString('html'),
-    };
-    this.props.updateEmployerSummary(data2);
-    let data3 = {
-      "user_id": this.props.userId,
       "linkedin": this.state.companyLinkedin,
-      "facebook": "",
-      "twitter": "",
     }
-    this.props.updateEmployerSocialMedia(data3);
+    axios.post("/update-employer-tutorial-infos", data, config).then((res) => {
+      console.log(res)
+    }).catch(error => {
+      console.log(error)
+    });
     setTimeout(() => { this.getUpdatedData() }, 300);
     this.props.setCloseDetail();
   };
@@ -138,7 +140,7 @@ export class EmployerDetailFormModal extends Component {
               padding: "30px",
             }}
           >
-            Get Started!
+            Getting Started!
           </h1>
           <form
             style={{
@@ -254,7 +256,7 @@ export class EmployerDetailFormModal extends Component {
                 </label>
                 <RichTextEditor
                   value={this.state.companySummary}
-                  onChange={this.onChange}
+                  onChange={this.handelSummary}
                   toolbarConfig={toolbarConfig}
                 />
               </div>
