@@ -656,7 +656,7 @@ class Employer_PricingStyleOne extends Component {
                                         <div className="single-pricing-table left-align h-100" style={{backgroundColor:"#F0F6FE", border:"2px solid #006dff"}}>
                                             <div className="pricing-header">
                                                 <h3 style={{fontWeight:"600",  marginBottom:"0.6rem"}}>Free</h3>
-                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to get started</p>
+                                                <p style={{color:"#090d3a", fontSize:"12px"}}>Try the essentials to getting started</p>
                                             </div>
 
                                             <div className="price" style={{borderTop:"none", borderBottom:"2px dashed #006dff"}}>

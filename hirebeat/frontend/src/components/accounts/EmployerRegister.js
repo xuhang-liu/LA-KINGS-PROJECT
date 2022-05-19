@@ -323,7 +323,7 @@ export class EmployerRegister extends Component {
                     <div className="signup-content" style={{ marginTop: "1rem", marginLeft: "20%" }}>
                       <div style={{ marginBottom: "3rem", paddingTop: "1rem" }}>
                         <h1 style={{ color: "#ffffff", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Welcome to HireBeat</b></h1>
-                        <h3 style={{ color: "#ffffff", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Get started in minutes</b></h3>
+                        <h3 style={{ color: "#ffffff", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Getting started in minutes</b></h3>
                       </div>
                       <div className="signup-form" style={{ minWidth: "14rem" }}>
                         <form id="Employer_Register_Mobile" onSubmit={this.onSubmit}>

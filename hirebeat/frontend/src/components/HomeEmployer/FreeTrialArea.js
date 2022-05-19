@@ -18,7 +18,7 @@ class FreeTrialArea extends Component {
                         <p>Hiring is easy as never before!</p>
                         <Link id="id-employer_signup3" to='/employer_register' className='default-btn' style={{textDecoration:'none'}}>
                             <i className="bx bxs-arrow-to-right"></i>
-                            Get Started for Free Now
+                            Getting Started for Free Now
                             <span></span>
                         </Link>
                     </div>
@@ -47,7 +47,7 @@ class FreeTrialArea extends Component {
                         <p>Hiring is easy as never before!</p>
                         <Link id="id-employer_signup3" to='/employer_register' className='default-btn' style={{textDecoration:'none'}}>
                             <i className="bx bxs-arrow-to-right"></i>
-                            Get Started for Free Now
+                            Getting Started for Free Now
                             <span></span>
                         </Link>
                     </div>

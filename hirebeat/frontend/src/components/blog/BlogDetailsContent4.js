@@ -33,7 +33,7 @@ class BlogDetailsContent4 extends Component {
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog4-pic.jpg" alt="image" />
                                     </div>
                                     <p>
-                                    Before we even get started, did you know that people get hired at career fairs? Well, they do. However, it is only those that stand out get lucky. Career fairs give students and people looking to gain experience in the business world and the opportunity to be in the same space with potential employers and benefit from each other.
+                                    Before we even getting started, did you know that people get hired at career fairs? Well, they do. However, it is only those that stand out get lucky. Career fairs give students and people looking to gain experience in the business world and the opportunity to be in the same space with potential employers and benefit from each other.
                                     </p>
                                     <p>
                                     Apart from dressing for the occasion, making good business cards, fixing your resume, and being motivated, you should be prepared with questions. These are questions that will make recruiters love you and help you identify whether the company is a good fit.

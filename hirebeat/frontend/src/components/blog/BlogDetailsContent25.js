@@ -32,7 +32,7 @@ class BlogDetailsContent25 extends Component {
                                     You are finally here reading this article about interview questions. Whether you are preparing to take an interview or appearing in one, this article shares the four most commonly asked questions in an interview and how they can benefit the interviewer.
                                     </p>
                                     <p>
-                                    Let's just get started.
+                                    Let's just getting started.
                                     </p>
                                     <div className="article-image">
                                     <img src="https://hirebeat-assets.s3.amazonaws.com/blog/blog25-pic.jpg" alt="Interview, question, job, intern, recruit, company, human resources" />
