@@ -34,7 +34,6 @@ export class Pipeline extends Component {
         this.setState({
             requestListShow: false
         })
-        sessionStorage.removeItem('requestListShow');
     }
 
     setShowRequest = () => {
