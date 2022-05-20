@@ -14,6 +14,7 @@ import { MyModalUpgrade } from "./../DashboardComponents";
 //import Switch from "react-switch";
 import ScreenQuestion from "./ScreenQuestion";
 import parse from 'html-react-parser';
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -38,7 +39,7 @@ const toolbarConfig = {
 };
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window.Rewardful && window.Rewardful.referral || ('checkout_' + (new Date).getTime());
 }
 
 export class JobEdition extends Component {
@@ -421,6 +422,44 @@ export class JobEdition extends Component {
                 };
             }
             this.props.updateJob(data);
+            // Job Target Steps:
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            if (!(this.props.profile.jobt_job_id == "" || this.props.profile.jobt_job_id == null)) {
+                let city = this.state.jobLocation.split(",")[0].trim()
+                let state = this.state.jobLocation.split(",")[1].trim()
+                let country = this.state.jobLocation.split(",")[2].trim()
+                let data1 = {
+                    "token": this.props.profile.jobt_token,
+                    "job": {
+                        "job_id": this.props.profile.jobt_job_id,
+                        "company_name": this.props.employerProfileDetail.name,
+                        "title": this.state.jobTitle,
+                        "description": this.state.jobDescription.toString('html'),
+                        "job_view_url": this.props.jobInfo.job_url?.replaceAll(' ', '%20'),
+                        "apply_url": this.props.jobInfo.job_url?.replaceAll(' ', '%20'),
+                        "location": {
+                            "city": city,
+                            "state": state,
+                            "country": country
+                        },
+                        "job_type": this.state.jobType["value"],
+                        "entrylevel": (this.state.jobLevel["value"] == "Entry Level") ? 1 : 0,
+                        "easy_apply": true,
+                        "easy_apply_type": "basic",
+                        "questionnaire_webhook": this.state.questions
+                    }
+                }
+                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {
+                    console.log(res1)
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
+            // End job target
             setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             this.props.renderJobs();
             if (this.props.jobInfo.job_post != 2 && this.state.job_post == 2) {

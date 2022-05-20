@@ -433,7 +433,6 @@ export class Pipeline extends Component {
                     "state": state,
                     "country": country
                 },
-                "experience": this.props.job.job_details.job_level,
                 "job_type": this.props.job.job_details.job_type,
                 "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
                 "easy_apply": true,
@@ -445,6 +444,12 @@ export class Pipeline extends Component {
             console.log(res1)
             if (res1.data.status == 0 || res1.data.status == "0") {
                 this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
+                let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res1.data.job_id}
+                axios.post("accounts/job-target-market-iframe-update", data3, config).then((res3) => {
+                    console.log(res3)
+                }).catch(error => {
+                    console.log(error)
+                });
             } else {
                 let data2 = {
                     "token": this.props.profile.jobt_token,
@@ -454,6 +459,12 @@ export class Pipeline extends Component {
                     console.log(res2)
                     if (res2.data.status == 0 || res2.data.status == "0") {
                         this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
+                        let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res2.data.job_id}
+                        axios.post("accounts/job-target-market-iframe-update", data3, config).then((res3) => {
+                            console.log(res3)
+                        }).catch(error => {
+                            console.log(error)
+                        });
                     }
                 }).catch(error => {
                     console.log(error)
@@ -471,8 +482,8 @@ export class Pipeline extends Component {
             questions.push(new Object({
                 question: screen_question.question,
                 responseType: screen_question.answer_type == "boolean" ? "Yes/No" : "Numeric",
-                ideal_bool_answer: screen_question.answer_type == "boolean" ? screen_question.answer : "none",
-                ideal_num_answer: screen_question.answer_type == "Numeric" ? screen_question.answer : "none",
+                ans: screen_question.answer_type == "boolean" ? screen_question.answer : "none",
+                numAns: screen_question.answer_type == "Numeric" ? screen_question.answer : "none",
                 isMustHave: screen_question.is_must ? "true" : "false",
             }))
         }

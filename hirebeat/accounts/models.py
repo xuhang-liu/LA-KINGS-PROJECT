@@ -97,6 +97,7 @@ class Profile(models.Model):
     jobt_company_id = models.CharField(max_length=30,null=True, blank=True)
     jobt_user_id = models.CharField(max_length=30,null=True, blank=True)
     jobt_token = models.CharField(max_length=100,null=True, blank=True)
+    jobt_job_id = models.CharField(max_length=30,null=True, blank=True)
     def __str__(self):
         return self.user.username
 
