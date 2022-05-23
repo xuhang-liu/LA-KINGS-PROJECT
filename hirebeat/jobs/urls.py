@@ -8,7 +8,8 @@ from .views import add_new_job, get_all_jobs, update_job, archive_job, add_new_a
     update_applicant_basic_info, switch_job_closed_status, assign_credit_to_job, receive_email_from_cloudmail, get_most_recent_job, \
     premium_job_payment_suc, check_premium_job_list, send_email_from_cloudmail, get_single_job_details, get_email_message_list, \
     add_new_apply_candidate_from_drjob, create_new_sourcing_request, get_sourcing_request_status, sourcing_request_payment_suc, \
-    get_sourcing_request_list_from_jobid, switch_sourcing_candidate_status, add_sourcing_candidate_notes, get_questions_from_job
+    get_sourcing_request_list_from_jobid, switch_sourcing_candidate_status, add_sourcing_candidate_notes, get_questions_from_job, \
+    job_target_job_id_update, add_new_apply_candidate_from_jobtarget
 
 urlpatterns = [
     path('add-new-job', add_new_job),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('jobs/update-viewed-status', update_viewed_status),
     path('jobs/get-zr-xml', get_zr_xml),
     path('jobs/add-new-apply-candidate-from-zr', add_new_apply_candidate_from_zr),
+    path('jobs/add-new-apply-candidate-from-jobtarget', add_new_apply_candidate_from_jobtarget),
     path('jobs/add-new-apply-candidate-from-drjob', add_new_apply_candidate_from_drjob),
     path('company-branding/<str:companyName>/get-company-branding-info', getCompanyBrandingInfo),
     path('jobs/get-resume-from-job-application', get_resume_from_job_application),
@@ -57,5 +59,6 @@ urlpatterns = [
     path('jobs/get-sourcing-request-list-from-jobid', get_sourcing_request_list_from_jobid),
     path('jobs/switch-sourcing-candidate-status', switch_sourcing_candidate_status),
     path('jobs/add-sourcing-candidate-notes', add_sourcing_candidate_notes),
-    path('jobs/get-questions-from-job', get_questions_from_job)
+    path('jobs/get-questions-from-job', get_questions_from_job),
+    path('jobs/job-target-job-id-update', job_target_job_id_update)
 ]

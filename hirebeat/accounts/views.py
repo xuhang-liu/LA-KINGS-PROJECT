@@ -1462,12 +1462,3 @@ def job_target_info_update(request):
     profile.save()
 
     return Response("Job Target Info update successfully", status=status.HTTP_201_CREATED)
-
-@api_view((['POST']))
-def job_target_market_iframe_update(request):
-    jobt_job_id = request.data["jobt_job_id"]
-    profile_id = request.data["profile_id"]
-    profile = Profile.objects.get(pk=profile_id)
-    profile.jobt_job_id = jobt_job_id
-    profile.save()
-    return Response("Job Target Iframe url update successfully", status=status.HTTP_201_CREATED)

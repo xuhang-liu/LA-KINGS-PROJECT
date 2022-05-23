@@ -436,15 +436,16 @@ export class Pipeline extends Component {
                 "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
                 "easy_apply": true,
                 "easy_apply_type": "basic",
-                "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.props.job.job_details.id
+                "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.props.job.job_details.id,
+                "application_delivery_webhook": "https://"+window.location.hostname+"jobs/add-new-apply-candidate-from-jobtarget"
             }
         }
         axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
             console.log(res1);
             if (res1.data.status == 0 || res1.data.status == "0") {
                 this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
-                let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res1.data.job_id}
-                axios.post("accounts/job-target-market-iframe-update", data3, config).then((res3) => {
+                let data3 = {"job_id": this.props.job.job_details.id, "jobt_job_id": res1.data.job_id}
+                axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                     console.log(res3)
                 }).catch(error => {
                     console.log(error)
@@ -458,8 +459,8 @@ export class Pipeline extends Component {
                     console.log(res2);
                     if (res2.data.status == 0 || res2.data.status == "0") {
                         this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
-                        let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res2.data.job_id}
-                        axios.post("accounts/job-target-market-iframe-update", data3, config).then((res3) => {
+                        let data3 = {"job_id": this.props.job.job_details.id, "jobt_job_id": res2.data.job_id}
+                        axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                             console.log(res3)
                         }).catch(error => {
                             console.log(error)

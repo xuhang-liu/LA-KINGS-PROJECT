@@ -428,14 +428,14 @@ export class JobEdition extends Component {
                     "Content-Type": "application/json",
                 },
             };
-            if (!(this.props.profile.jobt_job_id == "" || this.props.profile.jobt_job_id == null)) {
+            if (!(this.props.jobInfo.jobt_job_id == "" || this.props.jobInfo.jobt_job_id == null)) {
                 let city = this.state.jobLocation.split(",")[0].trim()
                 let state = this.state.jobLocation.split(",")[1].trim()
                 let country = this.state.jobLocation.split(",")[2].trim()
                 let data1 = {
                     "token": this.props.profile.jobt_token,
                     "job": {
-                        "job_id": this.props.profile.jobt_job_id,
+                        "job_id": this.props.jobInfo.jobt_job_id,
                         "company_name": this.props.employerProfileDetail.name,
                         "title": this.state.jobTitle,
                         "description": this.state.jobDescription.toString('html'),
@@ -450,7 +450,8 @@ export class JobEdition extends Component {
                         "entrylevel": (this.state.jobLevel["value"] == "Entry Level") ? 1 : 0,
                         "easy_apply": true,
                         "easy_apply_type": "basic",
-                        "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.state.jobId
+                        "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.state.jobId,
+                        "application_delivery_webhook": "https://"+window.location.hostname+"jobs/add-new-apply-candidate-from-jobtarget"
                     }
                 }
                 axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {

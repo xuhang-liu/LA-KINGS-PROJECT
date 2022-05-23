@@ -840,6 +840,85 @@ def add_new_apply_candidate_from_zr(request):
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
 
+# the webhook api designed for JobTarget to post candidates back to HireBeat platform
+@api_view(['POST'])
+def add_new_apply_candidate_from_jobtarget(request):
+    job_id = request.data['job']['jobId']
+    firstname = request.data['applicant']['fullName'].split()[0]
+    lastname = request.data['applicant']['fullName'].split()[1]
+    phone = request.data['applicant']['phoneNumber']
+    email = request.data['applicant']['email']
+    resume = request.data['applicant']['resume']['file']['data']
+    cv_name = email.split("@")[0]
+    resume_url = upload_cv_to_s3(resume, cv_name)
+    fullname = request.data['applicant']['fullName']
+    apply_referer = request.data['analytics']['referer']
+    jobs = {}
+    if Jobs.objects.filter(jobt_job_id=job_id).exists():
+        jobs = Jobs.objects.filter(jobt_job_id=job_id).last()
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    jobQuestions = JobQuestion.objects.filter(jobs=jobs)
+    answers_zip = []
+    if len(jobQuestions) > 0:
+        answers_zip = request.data['questionsAndAnswers']['questionsAndAnswers']
+    questions = []
+    answers = []
+    qualifications = []
+    must_haves = []
+    qualified = True
+    cur_stage = "Resume Review"
+    if len(answers_zip) > 0 and len(jobQuestions) > 0:
+        for j in range(len(jobQuestions)):
+            for i in range(len(answers_zip)):
+                if answers_zip[i]['question']['question'] == jobQuestions[j].question:
+                    questions.append(jobQuestions[j].question)
+                    answers.append(answers_zip[i]['answer'])
+                    must_haves.append(jobQuestions[j].is_must)
+                    if jobQuestions[j].answer_type == "boolean":
+                        if jobQuestions[j].answer == answers_zip[i]['answer']:
+                            qualifications.append(True)
+                        else:
+                            qualifications.append(False)
+                            if jobQuestions[j].is_must:
+                                qualified = False
+                                cur_stage = "Unqualified"
+                    else:
+                        if int(jobQuestions[j].answer) <= int(answers_zip[i]['answer']):
+                                qualifications.append(True)
+                        else:
+                            qualifications.append(False)
+                            if jobQuestions[j].is_must:
+                                qualified = False
+                                cur_stage = "Unqualified"
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                       location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, 
+                                       current_stage=cur_stage, apply_referer=apply_referer)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidate from JobTarget successfully", status=status.HTTP_202_ACCEPTED)
+
 # the webhook api designed for DrJob to post candidates back to HireBeat platform
 @api_view(['POST'])
 def add_new_apply_candidate_from_drjob(request):
@@ -1700,3 +1779,12 @@ def get_questions_from_job(request):
         data_array.append(data)
     data_dict["questions"]=data_array
     return JsonResponse(data_dict)
+
+@api_view((['POST']))
+def job_target_job_id_update(request):
+    jobt_job_id = request.data["jobt_job_id"]
+    job_id = request.data["job_id"]
+    job = Jobs.objects.get(pk=job_id)
+    job.jobt_job_id = jobt_job_id
+    job.save()
+    return Response("Job Target Iframe url update successfully", status=status.HTTP_201_CREATED)
