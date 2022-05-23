@@ -418,7 +418,6 @@ export class Pipeline extends Component {
         let city = full_address.split(",")[0].trim()
         let state = full_address.split(",")[1].trim()
         let country = full_address.split(",")[2].trim()
-        let questions = this.formatQuestions();
         let data1 = {
             "token": this.props.profile.jobt_token,
             "job": {
@@ -437,11 +436,11 @@ export class Pipeline extends Component {
                 "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
                 "easy_apply": true,
                 "easy_apply_type": "basic",
-                "questionnaire_webhook": questions
+                "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.props.job.job_details.id
             }
         }
         axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
-            console.log(res1)
+            console.log(res1);
             if (res1.data.status == 0 || res1.data.status == "0") {
                 this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
                 let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res1.data.job_id}
@@ -456,7 +455,7 @@ export class Pipeline extends Component {
                     "requisition_name": this.props.job.job_details.id
                   }
                 axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
-                    console.log(res2)
+                    console.log(res2);
                     if (res2.data.status == 0 || res2.data.status == "0") {
                         this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
                         let data3 = {"profile_id": this.props.profile.id, "jobt_job_id": res2.data.job_id}
@@ -473,21 +472,6 @@ export class Pipeline extends Component {
         }).catch(error => {
             console.log(error)
         });
-    }
-
-    formatQuestions = () => {
-        let questions = [];
-        for (let i = 0; i < this.props.job.job_details.screen_questions.length; i++) {
-            let screen_question = this.props.job.job_details.screen_questions[i];
-            questions.push(new Object({
-                question: screen_question.question,
-                responseType: screen_question.answer_type == "boolean" ? "Yes/No" : "Numeric",
-                ans: screen_question.answer_type == "boolean" ? screen_question.answer : "none",
-                numAns: screen_question.answer_type == "Numeric" ? screen_question.answer : "none",
-                isMustHave: screen_question.is_must ? "true" : "false",
-            }))
-        }
-        return questions;
     }
 
     render() {

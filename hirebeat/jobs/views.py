@@ -31,6 +31,7 @@ import json
 import math
 from django.forms.models import model_to_dict
 from django.db.models import Q
+from django.http import JsonResponse
 
 
 @api_view(['POST'])
@@ -1682,3 +1683,20 @@ def add_sourcing_candidate_notes(request):
 
 
     return Response("Add notes successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_questions_from_job(request):
+    jobid = request.query_params.get("jobid")
+    jobQuestion = JobQuestion.objects.filter(jobs_id=jobid)
+    data_dict = {}
+    data_array = []
+    for j in range(len(jobQuestion)):
+        data = {
+            "question": jobQuestion[j].question,
+            "question_type": jobQuestion[j].answer_type,
+            "must_have": jobQuestion[j].is_must,
+            "ideal_answer": jobQuestion[j].answer
+        }
+        data_array.append(data)
+    data_dict["questions"]=data_array
+    return JsonResponse(data_dict)

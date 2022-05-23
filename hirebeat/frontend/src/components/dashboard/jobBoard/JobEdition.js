@@ -450,7 +450,7 @@ export class JobEdition extends Component {
                         "entrylevel": (this.state.jobLevel["value"] == "Entry Level") ? 1 : 0,
                         "easy_apply": true,
                         "easy_apply_type": "basic",
-                        "questionnaire_webhook": this.state.questions
+                        "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.state.jobId
                     }
                 }
                 axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {
