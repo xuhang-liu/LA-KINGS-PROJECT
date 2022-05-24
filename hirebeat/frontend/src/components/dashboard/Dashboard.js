@@ -241,8 +241,11 @@ export class Dashboard extends Component {
     if (!this.props.profile.email_confirmed) {
         // normal user
         if (!this.props.profile.is_employer) {
-          if (this.props.user.email.length >0) {
-            return <Redirect to="/dashboard" />;
+          if (this.props.user.email.length <= 0) {
+            if(!window.location.hash) {
+              window.location = window.location + '#loaded';
+              window.location.reload();
+            }
           }
             return <Redirect to="/email-verification-mini" />;
         }
