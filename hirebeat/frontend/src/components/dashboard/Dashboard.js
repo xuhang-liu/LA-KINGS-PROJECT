@@ -240,7 +240,7 @@ export class Dashboard extends Component {
     // email verification
     if (!this.props.profile.email_confirmed) {
         // normal user
-        if (!this.props.profile.is_employer) {
+        if ((!this.props.profile.is_employer) && (this.props.user.email.length >0)) {
             return <Redirect to="/email-verification-mini" />;
         }
         // employer user
