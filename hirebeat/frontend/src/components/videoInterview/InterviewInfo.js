@@ -32,8 +32,7 @@ class InterviewInfo extends Component {
             showTest: false,
         };
         // check candidate resume
-        const url = new URL("https://app.hirebeat.co/jobs/get-resume-from-job-application"); // todo change here when online
-        //const url = new URL("http://127.0.0.1:8000/jobs/get-resume-from-job-application");
+        const url = new URL("https://"+window.location.hostname+"/jobs/get-resume-from-job-application");
         const params = {positionId: this.positionId, email: this.email};
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         fetch(url)

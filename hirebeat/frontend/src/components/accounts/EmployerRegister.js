@@ -105,8 +105,8 @@ export class EmployerRegister extends Component {
               this.props.employer_register(
                 this.state.firstName,
                 this.state.lastName,
-                this.state.email,
-                this.state.email,
+                this.state.email?.toLowerCase(),
+                this.state.email?.toLowerCase(),
                 this.state.password,
                 this.state.companyName,
                 "",
@@ -158,7 +158,7 @@ export class EmployerRegister extends Component {
     }
 
     // check email registered or not
-    const email = { email: this.state.email };
+    const email = { email: this.state.email?.toLowerCase() };
     axios
       .post("check-user-registration", email)
       .then((res) => {
@@ -231,8 +231,8 @@ export class EmployerRegister extends Component {
           this.props.employer_register(
             this.state.firstName,
             this.state.lastName,
-            this.state.email,
-            this.state.email,
+            this.state.email?.toLowerCase(),
+            this.state.email?.toLowerCase(),
             this.state.password,
             this.state.companyName,
             this.state.companySize.value,

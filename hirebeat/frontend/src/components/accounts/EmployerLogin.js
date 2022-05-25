@@ -45,12 +45,12 @@ export class EmployerLogin extends Component {
         "Content-Type": "application/json",
       },
     };
-    let user_pw = { "username": this.state.username, "password": this.state.password};
+    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password};
 
     axios.post("api/check_user_login", user_pw, config).then((res) => {
       if (res.data.data) {
         this.setLoginFail1();
-        this.props.login(this.state.username, this.state.password);
+        this.props.login(this.state.username?.toLowerCase(), this.state.password);
       } else {
         this.setLoginFail();
       }

@@ -65,7 +65,7 @@ class Profile(models.Model):
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
     plan_interval = models.CharField(max_length=30, null=True, blank=True)
-    company_name = models.CharField(max_length=30,null=True, blank=True)
+    company_name = models.CharField(max_length=100,null=True, blank=True)
     is_subreviwer = models.BooleanField(default=False)
     is_external_reviewer = models.BooleanField(default=False)
     reviewer_count = models.IntegerField(default=1, validators=[
