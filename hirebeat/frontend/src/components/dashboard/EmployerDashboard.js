@@ -48,7 +48,7 @@ import Footer from "../layout/Footer";
 import axios from "axios";
 import IdleTimer from 'react-idle-timer'
 import EmployerDetailFormModal from "./EmployerDetailFormModal";
-import {tourConfigEmployer} from "./DashboardComponents";
+import { tourConfigEmployer } from "./DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 //import ReviewCandidate from "./applications/ReviewCandidate";
@@ -80,8 +80,9 @@ export class EmployerDashboard extends Component {
       isTourOpen: false,
       isEndTour: false,
       jobt_company_id: "",
+      jobt_token: "",
     }
-    
+
     // store user info to sessionStorage
     sessionStorage.setItem('user', JSON.stringify(this.props.user));
     sessionStorage.setItem("isAuthenticated", this.props.isAuthenticated);
@@ -100,14 +101,14 @@ export class EmployerDashboard extends Component {
   };
 
   setCloseWelcome = () => {
-    this.setState({isOpenWelcome: false, isOpenDetail: true})
+    this.setState({ isOpenWelcome: false, isOpenDetail: true })
     let profile = {
       user_id: this.props.user.id,
       viewed_employer_welcome: true
     }
     const config = {
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       }
     };
     axios.post("update-employer-onboard0", profile, config).then(res => {
@@ -117,7 +118,7 @@ export class EmployerDashboard extends Component {
   }
 
   setCloseDetail = () => {
-    this.setState({isOpenDetail: false, isTourOpen: true})
+    this.setState({ isOpenDetail: false, isTourOpen: true })
   }
 
   // tour functions
@@ -125,7 +126,7 @@ export class EmployerDashboard extends Component {
   enableBody = (target) => enableBodyScroll(target);
 
   closeTour = () => {
-    this.setState({ isTourOpen: false , isEndTour: true});
+    this.setState({ isTourOpen: false, isEndTour: true });
     // mark user has viewed tutorial
     let profile = {
       user_id: this.props.user.id,
@@ -133,7 +134,7 @@ export class EmployerDashboard extends Component {
     }
     const config = {
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       }
     };
     axios.post("update-employer-onboard", profile, config).then(res => {
@@ -338,7 +339,7 @@ export class EmployerDashboard extends Component {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
           axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-            console.log(res)
+            this.setState({jobt_token: res3.data.token});
           }).catch(error => {
             console.log(error)
           });
@@ -425,7 +426,7 @@ export class EmployerDashboard extends Component {
       },
     };
     // Create or get jobtarget company
-    if ((this.props.profile.jobt_company_id == "" || this.props.profile.jobt_company_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+    if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       let data1 = {
         "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
         "name": this.props.employerProfileDetail.name,
@@ -645,6 +646,7 @@ export class EmployerDashboard extends Component {
           employerProfileDetail={this.props.employerProfileDetail}
           job_back_home={this.state.job_back_home}
           setJob_back_home={this.setJob_back_home}
+          jobt_company_id={(this.state.jobt_company_id == "") ? this.props.profile.jobt_company_id : this.state.jobt_company_id}
         />;
       case "jobCreation":
         return <JobCreation
@@ -662,7 +664,7 @@ export class EmployerDashboard extends Component {
           jobs={this.props.jobs}
           companyName={this.props.profile.company_name}
           loadProfile={this.props.loadProfile}
-          jobt_company_id={(this.props.profile.jobt_company_id == "" || this.props.profile.jobt_company_id == null)?this.state.jobt_company_id:this.props.profile.jobt_company_id}
+          jobt_company_id={(this.state.jobt_company_id == "") ? this.props.profile.jobt_company_id : this.state.jobt_company_id}
         />;
       case "jobEdition":
         return <JobEdition
@@ -675,6 +677,7 @@ export class EmployerDashboard extends Component {
           getPJobs={this.getPJobs}
           employerProfileDetail={this.props.employerProfileDetail}
           loadProfile={this.props.loadProfile}
+          jobt_token={(this.state.jobt_token == "")?this.props.profile.jobt_token:this.state.jobt_token}
         />;
       case "applications":
         return <ApplicationCover
@@ -911,34 +914,34 @@ export class EmployerDashboard extends Component {
           />}
 
           <Tour
-              onRequestClose={this.closeTour}
-              loadProfile={this.props.loadProfile}
-              steps={tourConfigEmployer}
-              isOpen={isTourOpen}
-              className="helper"
-              rounded={6}
-              onAfterOpen={this.disableBody}
-              onBeforeClose={this.enableBody}
-              closeWithMask={false}
-              showNumber={false}
-              disableDotsNavigation={true}
-              showNavigation={false}
-              showNavigationNumber={false}
-              showCloseButton={false}
-              nextButton={<i className="tour-next-btn" style={{color: "#006dff", border: "1px solid #006dff",backgroundColor: "transparent"}}>Next</i>}
-              prevButton={<i className="tour-next-btn" style={{display: "none"}}></i>}
-              lastStepNextButton={<i className="tour-next-btn" style={{color: "#fff", background: "#006dff"}}>Congrats! You're ready now!</i>}
-            />
-            {isEndTour && 
+            onRequestClose={this.closeTour}
+            loadProfile={this.props.loadProfile}
+            steps={tourConfigEmployer}
+            isOpen={isTourOpen}
+            className="helper"
+            rounded={6}
+            onAfterOpen={this.disableBody}
+            onBeforeClose={this.enableBody}
+            closeWithMask={false}
+            showNumber={false}
+            disableDotsNavigation={true}
+            showNavigation={false}
+            showNavigationNumber={false}
+            showCloseButton={false}
+            nextButton={<i className="tour-next-btn" style={{ color: "#006dff", border: "1px solid #006dff", backgroundColor: "transparent" }}>Next</i>}
+            prevButton={<i className="tour-next-btn" style={{ display: "none" }}></i>}
+            lastStepNextButton={<i className="tour-next-btn" style={{ color: "#fff", background: "#006dff" }}>Congrats! You're ready now!</i>}
+          />
+          {isEndTour &&
             <AlertModal
               show={this.state.isEndTour}
               onHide={this.closeTourOpenJob}
               backdrop="static"
             >
-              <h2 style={{textAlign:"center", color: "#090d3a", fontFamily: "Inter, Segoe UI", paddingTop:"2rem"}}>Let's Create a Job!</h2>
-              <div style={{display: "flex", justifyContent: "center", padding: "20px 0"}}>
-                <button onClick={this.closeTourOpenJob} className="default-btn4" style={{paddingLeft:"25px", marginRight:"1rem"}}>Later</button>
-                <button onClick={this.renderJobCreation} className="default-btn5" style={{paddingLeft:"25px"}}>Create a Job</button>
+              <h2 style={{ textAlign: "center", color: "#090d3a", fontFamily: "Inter, Segoe UI", paddingTop: "2rem" }}>Let's Create a Job!</h2>
+              <div style={{ display: "flex", justifyContent: "center", padding: "20px 0" }}>
+                <button onClick={this.closeTourOpenJob} className="default-btn4" style={{ paddingLeft: "25px", marginRight: "1rem" }}>Later</button>
+                <button onClick={this.renderJobCreation} className="default-btn5" style={{ paddingLeft: "25px" }}>Create a Job</button>
               </div>
             </AlertModal>}
 

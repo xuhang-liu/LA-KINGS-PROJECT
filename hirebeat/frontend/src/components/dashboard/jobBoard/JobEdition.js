@@ -433,7 +433,7 @@ export class JobEdition extends Component {
                 let state = this.state.jobLocation.split(",")[1].trim()
                 let country = this.state.jobLocation.split(",")[2].trim()
                 let data1 = {
-                    "token": this.props.profile.jobt_token,
+                    "token": this.props.jobt_token,
                     "job": {
                         "job_id": this.props.jobInfo.jobt_job_id,
                         "company_name": this.props.employerProfileDetail.name,

@@ -419,7 +419,7 @@ export class Pipeline extends Component {
         let state = full_address.split(",")[1].trim()
         let country = full_address.split(",")[2].trim()
         let data1 = {
-            "token": this.props.profile.jobt_token,
+            "token": this.props.jobt_token,
             "job": {
                 "requisition_name": this.props.job.job_details.id,
                 "company_name": this.props.employerProfileDetail.name,
@@ -452,7 +452,7 @@ export class Pipeline extends Component {
                 });
             } else {
                 let data2 = {
-                    "token": this.props.profile.jobt_token,
+                    "token": this.props.jobt_token,
                     "requisition_name": this.props.job.job_details.id
                   }
                 axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {

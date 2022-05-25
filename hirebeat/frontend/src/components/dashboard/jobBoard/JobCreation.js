@@ -82,7 +82,7 @@ export class JobCreation extends Component {
             },
         };
         // Create or get jobtarget user
-        if ((this.props.profile.jobt_user_id == "" || this.props.profile.jobt_user_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
             let data1 = {
                 "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
                 "user": {
@@ -119,26 +119,6 @@ export class JobCreation extends Component {
                                 console.log(error)
                             });
                         }
-                    }).catch(error => {
-                        console.log(error)
-                    });
-                }
-            }).catch(error => {
-                console.log(error)
-            });
-        }
-        // Get jobtarget token
-        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
-            let data3 = {
-                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
-                "email": this.props.user.email
-            }
-            axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
-                if (res3.data.status == 0 || res3.data.status == "0") {
-                    // update info
-                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
-                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-                        console.log(res)
                     }).catch(error => {
                         console.log(error)
                     });
