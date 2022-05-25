@@ -272,7 +272,7 @@ export class SourcingRequestModal extends React.Component {
                                     marginTop: "0.5rem",
                                 }}
                             >
-                                {this.props.approval_select.value == 0 ?
+                                {this.props.approval_select == 0 ?
                                     <button
                                         className="default-btn1 col-6"
                                         style={{
@@ -289,7 +289,7 @@ export class SourcingRequestModal extends React.Component {
                                     >
                                         Approve
                                     </button>}
-                                {this.props.approval_select.value == 2 ?
+                                {this.props.approval_select == 2 ?
                                     <button
                                         className="default-btn1 col-6"
                                         style={{
