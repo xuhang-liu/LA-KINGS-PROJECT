@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "react-select";
 import "boxicons";
 import { MyFullModal1, MyModal80 } from "../DashboardComponents";
 import { EmailSending } from "../applications/EmailSending";
@@ -30,9 +29,6 @@ export class SourcingRequestCard extends React.Component {
         }).catch(error => {
             console.log(error)
         });
-        // if (this.props.sourcing.status == 0) {
-        //     this.setState({ view_status: 1 });
-        // }
     };
 
     handleStatusChange2 = (id) => {
@@ -41,7 +37,7 @@ export class SourcingRequestCard extends React.Component {
                 "Content-Type": "application/json",
             },
         };
-        let data = { "is_approval": false, "cid": id,  "c_status": 2 };
+        let data = { "is_approval": false, "cid": id, "c_status": 2 };
         axios.post("jobs/switch-sourcing-candidate-status", data, config).then((res) => {
             console.log(res)
         }).catch(error => {
@@ -64,26 +60,17 @@ export class SourcingRequestCard extends React.Component {
         });
         if (approval == 0) {
             this.setState({
-                approval_select: {
-                    value: 0,
-                    text: "Approve",
-                    icon: "bx bxs-circle",
-                    color: "#01CFA6",
-                    c_id: this.props.sourcing.id,
-                }
+                approval_select: 0
             });
         } else {
             this.setState({
-                approval_select: {
-                    value: 2,
-                    text: "Reject",
-                    icon: "bx bxs-circle",
-                    color: "#FF4D4F",
-                    c_id: this.props.sourcing.id,
-                }
+                approval_select: 2
             });
         }
         this.setState({ showModal: false });
+        if (this.props.sourcing.status == 0) {
+            this.setState({ view_status: 1 });
+        }
     }
 
     hideEmailSending = () => {
@@ -95,53 +82,6 @@ export class SourcingRequestCard extends React.Component {
     }
 
     render() {
-        var approval_select = {};
-        if (this.props.sourcing.approval === 0) {
-            approval_select = {
-                value: 0,
-                text: "Approve",
-                icon: "bx bxs-circle",
-                color: "#01CFA6",
-                c_id: this.props.sourcing.id,
-            }
-        } else if (this.props.sourcing.approval === 1) {
-            approval_select = {
-                value: 1,
-                text: "On Hold",
-                icon: "bx bxs-circle",
-                color: "#FAC046",
-                c_id: this.props.sourcing.id,
-            }
-        } else if (this.props.sourcing.approval === 2) {
-            approval_select = {
-                value: 2,
-                text: "Reject",
-                icon: "bx bxs-circle",
-                color: "#FF4D4F",
-                c_id: this.props.sourcing.id,
-            }
-        }
-        let options = [
-            { value: 0, text: "Approve", icon: "bx bxs-circle", color: "#01CFA6", c_id: this.props.sourcing.id },
-            { value: 1, text: "On Hold", icon: "bx bxs-circle", color: "#FAC046", c_id: this.props.sourcing.id },
-            { value: 2, text: "Reject", icon: "bx bxs-circle", color: "#FF4D4F", c_id: this.props.sourcing.id },
-        ];
-        let customStyles = {
-            control: (styles) => ({
-                ...styles,
-                border: "none",
-                width: "8.6rem",
-            }),
-            singleValue: (styles) => ({
-                ...styles,
-                color: "#090d3a",
-                fontSize: "0.9375rem",
-                fontFamily: "Inter,Segoe UI, sans-serif",
-                fontWeight: "600",
-            }),
-            indicatorSeparator: (styles) => ({ ...styles, visibility: "hidden" }),
-        };
-
         return (
             <div
                 className="row interview-txt7 interview-center sourcingrow"
@@ -157,24 +97,10 @@ export class SourcingRequestCard extends React.Component {
                         value={this.props.sourcing.id}
                     />
                 </div>
-                <div
-                    className="col-2 interview-txt9 mt-2 d-flex justify-content-center"
-                >
-                    <Select
-                        onChange={this.props.handleApprovalChange}
-                        isSearchable={false}
-                        value={this.state.approval_select != null?this.state.approval_select:approval_select}
-                        // onChange={this.onFilter}
-                        options={options}
-                        styles={customStyles}
-                        className="select-category-jobs-closed"
-                        getOptionLabel={(e) => (
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ color: e.color }} class={e.icon}></i>
-                                <span style={{ marginLeft: "0.5rem" }}>{e.text}</span>
-                            </div>
-                        )}
-                    />
+                <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center">
+                    {(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval) === 0 && <span style={{ color: "#01CFA6" }}>Approve</span>}
+                    {(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval) === 1 && <span style={{ color: "#FAC046" }}>On Hold</span>}
+                    {(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval) === 2 && <span style={{ color: "#FF4D4F" }}>Reject</span>}
                 </div>
                 <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{(this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.length > 29 ? (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.substring(0, 27) + "..." : (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)}</span></div>
                 <div className="col-2 interview-txt9 mt-2 d-flex justify-content-center" style={{ cursor: "pointer" }} onClick={() => { this.setState({ showModal: true }), this.handleStatusChange(this.props.sourcing.id) }}><span className="title-button3">{this.props.sourcing.current_title?.length > 29 ? this.props.sourcing.current_title?.substring(0, 27) + "..." : this.props.sourcing.current_title}</span></div>
@@ -231,7 +157,7 @@ export class SourcingRequestCard extends React.Component {
                             profile={this.props.profile}
                             sourcing={this.props.sourcing}
                             refresh={this.props.refresh}
-                            approval_select={this.state.approval_select != null?this.state.approval_select:approval_select}
+                            approval_select={(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval)}
                         />
                     </MyFullModal1>
                 </div>
