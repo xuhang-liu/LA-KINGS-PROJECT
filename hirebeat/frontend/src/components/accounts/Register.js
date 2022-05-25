@@ -64,7 +64,7 @@ export class Register extends Component {
     if (this.passwordsMatch()) {
       this.props.register(
           this.state.username,
-          this.state.email,
+          this.state.email?.toLowerCase(),
           this.state.password
       );
       // new user registration report
@@ -80,12 +80,12 @@ export class Register extends Component {
       // register account
       this.props.register(
           this.state.username,
-          this.state.email,
+          this.state.email?.toLowerCase(),
           this.state.password
       );
       // save profile data to profileDetail table
       let data = {
-        email: this.state.email,
+        email: this.state.email?.toLowerCase(),
         f_name: this.state.firstName,
         l_name: this.state.lastName,
         location: this.state.location,
@@ -164,7 +164,7 @@ export class Register extends Component {
         return;
     }
     // check email registered or not
-    const data = {email: this.state.email, username: this.state.username};
+    const data = {email: this.state.email?.toLowerCase(), username: this.state.username?.toLowerCase()};
     axios
     .post("accounts/check-user-name", data)
     .then((res) => {

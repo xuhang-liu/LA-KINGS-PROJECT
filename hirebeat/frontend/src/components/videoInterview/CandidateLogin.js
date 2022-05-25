@@ -28,7 +28,7 @@ export class CandidateLogin extends Component {
   };
   componentDidMount() {
     // check user exists or not
-    let userEmail = this.state.email;
+    let userEmail = this.state.email?.toLowerCase();
     let emailData = { "email": userEmail }; // json stringfy
     this.props.getCompanyName(this.state.positionId);
     this.props.checkUserRegistration(emailData);
@@ -59,7 +59,7 @@ export class CandidateLogin extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state.email, this.state.password);
+    this.props.login(this.state.email?.toLowerCase(), this.state.password);
   };
 
   passwordsMatch = () => {
@@ -75,8 +75,8 @@ export class CandidateLogin extends Component {
     if (this.passwordsMatch()) {
       // prefill username and user email
       this.props.register(
-        this.state.email, // userName
-        this.state.email, // email
+        this.state.email?.toLowerCase(), // userName
+        this.state.email?.toLowerCase(), // email
         this.state.password
       );
     }
@@ -116,14 +116,14 @@ export class CandidateLogin extends Component {
     sessionStorage.removeItem("interviewPositionId");
     sessionStorage.removeItem("interviewShowTest");
     // save parsed parameters to sessionStorage
-    sessionStorage.setItem('interviewEmail', this.state.email);
+    sessionStorage.setItem('interviewEmail', this.state.email?.toLowerCase());
     sessionStorage.setItem('interviewPositionId', this.state.positionId);
 
     const { history } = this.props;
     if (history) history.push({
       pathname: "/interview-info",
       params: {
-        email: this.state.email,
+        email: this.state.email?.toLowerCase(),
         positionId: this.state.positionId,
       }
     });
