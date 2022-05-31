@@ -127,7 +127,7 @@ const ApplyJob = (props) => {
                 ]
             });
         }
-        if (((job_id == null || job_id == "") ? "" : props.job.emails.map(v => v.toLowerCase())).includes(email.toLowerCase())) {
+        if (((job_id == null || job_id == "") ? "" : props.job.emails?.map(v => window?.atob(v)?.toLowerCase()))?.includes(email?.toLowerCase())) {
             return confirmAlert({
                 title: "Already Applied!",
                 message: "You have already applied this job.",
@@ -195,96 +195,96 @@ const ApplyJob = (props) => {
             }
         }
     }
-    function applySubmit1(e) {
-        e.preventDefault();
-        let gender = null;
-        let race = null;
-        // get gender and race
-        gender = document.querySelector('input[name="gender"]:checked')?.value;
-        race = document.querySelector('input[name="race"]:checked')?.value;
-        // check eeo form filling
-        if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
-            return confirmAlert({
-                title: "EEO Survey Required!",
-                message: "Please fill out the EEO Survey.",
-                buttons: [
-                    {
-                        label: 'Ok'
-                    }
-                ]
-            });
-        }
-        // no EEO survey, set gender and race to empty string
-        if (props.job.eeo_ques_req == "0") {
-            gender = "";
-            race = "";
-        }
-        // check linkedin url
-        if (props.job.lin_req == "0" && !isValidLinkedin(linkedinurl)) {
-            return confirmAlert({
-                title: "Invalid Linkedin",
-                message: "Please enter a valid linkedin url",
-                buttons: [
-                    {
-                        label: 'Ok'
-                    }
-                ]
-            });
-        }
-        if (resume_url == "") {
-            return confirmAlert({
-                title: "Resume Required!",
-                message: "Please attach your resume to submit.",
-                buttons: [
-                    {
-                        label: 'Ok'
-                    }
-                ]
-            });
-        }
-        if (((job_id == null || job_id == "") ? "" : props.job.emails.map(v => v.toLowerCase())).includes(email.toLowerCase())) {
-            return confirmAlert({
-                title: "Already Applied!",
-                message: "You have already applied this job.",
-                buttons: [
-                    {
-                        label: 'Ok'
-                    }
-                ]
-            });
-        }
-        if (fisrtname.trim() == null || fisrtname.trim() == "" || fisrtname.includes("@")
-            || fisrtname.includes("!") || fisrtname.includes("#") || fisrtname.includes("0") || fisrtname.includes("1")
-            || fisrtname.includes("2") || fisrtname.includes("3") || fisrtname.includes("4") || fisrtname.includes("5")
-            || fisrtname.includes("6") || fisrtname.includes("7") || fisrtname.includes("8") || fisrtname.includes("9")
-            || fisrtname.includes("/") || fisrtname.includes("(") || fisrtname.includes("%") || fisrtname.includes("-")
-            || fisrtname.includes("+") || fisrtname.includes("=") || fisrtname.includes(";") || fisrtname.includes("^")) {
-            return alert("Firstname Invalid Format!")
-        }
-        if (lastname.trim() == null || lastname.trim() == "" || lastname.includes("@")
-            || lastname.includes("!") || lastname.includes("#") || lastname.includes("0") || lastname.includes("1")
-            || lastname.includes("2") || lastname.includes("3") || lastname.includes("4") || lastname.includes("5")
-            || lastname.includes("6") || lastname.includes("7") || lastname.includes("8") || lastname.includes("9")
-            || lastname.includes("/") || lastname.includes("(") || lastname.includes("%") || lastname.includes("-")
-            || lastname.includes("+") || lastname.includes("=") || lastname.includes(";") || lastname.includes("^")) {
-            return alert("Lastname Invalid Format!")
-        }
-        let data = {
-            job_id: props?.job?.id,
-            firstname: fisrtname,
-            lastname: lastname,
-            phone: phone,
-            email: email.toLowerCase(),
-            location: location,
-            resume_url: resume_url,
-            linkedinurl: linkedinurl,
-            gender: gender,
-            race: race,
-            answers: ansObjs,
-        };
-        props.addNewApplyCandidate(data);
-        props.uploader.uploadFile(resume);
-    }
+    // function applySubmit1(e) {
+    //     e.preventDefault();
+    //     let gender = null;
+    //     let race = null;
+    //     // get gender and race
+    //     gender = document.querySelector('input[name="gender"]:checked')?.value;
+    //     race = document.querySelector('input[name="race"]:checked')?.value;
+    //     // check eeo form filling
+    //     if (props.job.eeo_ques_req == "1" && (gender == null || race == null)) {
+    //         return confirmAlert({
+    //             title: "EEO Survey Required!",
+    //             message: "Please fill out the EEO Survey.",
+    //             buttons: [
+    //                 {
+    //                     label: 'Ok'
+    //                 }
+    //             ]
+    //         });
+    //     }
+    //     // no EEO survey, set gender and race to empty string
+    //     if (props.job.eeo_ques_req == "0") {
+    //         gender = "";
+    //         race = "";
+    //     }
+    //     // check linkedin url
+    //     if (props.job.lin_req == "0" && !isValidLinkedin(linkedinurl)) {
+    //         return confirmAlert({
+    //             title: "Invalid Linkedin",
+    //             message: "Please enter a valid linkedin url",
+    //             buttons: [
+    //                 {
+    //                     label: 'Ok'
+    //                 }
+    //             ]
+    //         });
+    //     }
+    //     if (resume_url == "") {
+    //         return confirmAlert({
+    //             title: "Resume Required!",
+    //             message: "Please attach your resume to submit.",
+    //             buttons: [
+    //                 {
+    //                     label: 'Ok'
+    //                 }
+    //             ]
+    //         });
+    //     }
+    //     if (((job_id == null || job_id == "") ? "" : props.job.emails.map(v => v.toLowerCase())).includes(email.toLowerCase())) {
+    //         return confirmAlert({
+    //             title: "Already Applied!",
+    //             message: "You have already applied this job.",
+    //             buttons: [
+    //                 {
+    //                     label: 'Ok'
+    //                 }
+    //             ]
+    //         });
+    //     }
+    //     if (fisrtname.trim() == null || fisrtname.trim() == "" || fisrtname.includes("@")
+    //         || fisrtname.includes("!") || fisrtname.includes("#") || fisrtname.includes("0") || fisrtname.includes("1")
+    //         || fisrtname.includes("2") || fisrtname.includes("3") || fisrtname.includes("4") || fisrtname.includes("5")
+    //         || fisrtname.includes("6") || fisrtname.includes("7") || fisrtname.includes("8") || fisrtname.includes("9")
+    //         || fisrtname.includes("/") || fisrtname.includes("(") || fisrtname.includes("%") || fisrtname.includes("-")
+    //         || fisrtname.includes("+") || fisrtname.includes("=") || fisrtname.includes(";") || fisrtname.includes("^")) {
+    //         return alert("Firstname Invalid Format!")
+    //     }
+    //     if (lastname.trim() == null || lastname.trim() == "" || lastname.includes("@")
+    //         || lastname.includes("!") || lastname.includes("#") || lastname.includes("0") || lastname.includes("1")
+    //         || lastname.includes("2") || lastname.includes("3") || lastname.includes("4") || lastname.includes("5")
+    //         || lastname.includes("6") || lastname.includes("7") || lastname.includes("8") || lastname.includes("9")
+    //         || lastname.includes("/") || lastname.includes("(") || lastname.includes("%") || lastname.includes("-")
+    //         || lastname.includes("+") || lastname.includes("=") || lastname.includes(";") || lastname.includes("^")) {
+    //         return alert("Lastname Invalid Format!")
+    //     }
+    //     let data = {
+    //         job_id: props?.job?.id,
+    //         firstname: fisrtname,
+    //         lastname: lastname,
+    //         phone: phone,
+    //         email: email.toLowerCase(),
+    //         location: location,
+    //         resume_url: resume_url,
+    //         linkedinurl: linkedinurl,
+    //         gender: gender,
+    //         race: race,
+    //         answers: ansObjs,
+    //     };
+    //     props.addNewApplyCandidate(data);
+    //     props.uploader.uploadFile(resume);
+    // }
     function onChange1(e) {
         setUsername(e.target.value);
     };
