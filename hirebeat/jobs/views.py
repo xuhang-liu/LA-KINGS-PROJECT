@@ -435,7 +435,7 @@ def get_current_jobs(request, companyName):
     employerp = EmployerProfileDetail.objects.get(user_id=jobs.user_id)
     applyCandidates = ApplyCandidates.objects.filter(jobs=jobs)
     for i in range(len(applyCandidates)):
-        emails.append(applyCandidates[i].email)
+        emails.append(str(base64.b64encode(bytes(applyCandidates[i].email, "utf-8")), "utf-8"))
     data = {
         "job_title": jobs.job_title,
         "job_level": jobs.job_level,
