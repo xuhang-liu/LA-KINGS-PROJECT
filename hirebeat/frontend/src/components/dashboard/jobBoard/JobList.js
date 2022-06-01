@@ -72,7 +72,7 @@ export class JobList extends Component {
                                     </div>
                                     {(Object.keys(this.props.jobs)?.length < 1) ?
                                         <div className="row" style={{paddingTop:"5rem", margin:"auto", width:"30%"}}>
-                                            <img style={{cursor:"pointer"}} onClick={this.props.renderJobCreation} src="https://hirebeat-assets.s3.amazonaws.com/Employer/no-job-display-icon.png" alt="icon"/>
+                                            <img style={{cursor:"pointer"}} onClick={this.props.renderJobCreation} src="https://hirebeat-assets.s3.amazonaws.com/Employer/no-job-display-icon1.png" alt="icon"/>
                                         </div>:
                                         <span>
                                             {Object.keys(this.props.jobs).sort((a, b) => parseInt(b) - parseInt(a)).map((key, index) => {
