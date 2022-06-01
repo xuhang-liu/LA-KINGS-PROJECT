@@ -66,7 +66,7 @@ export class EmployerDetailFormModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if ((!this.state.companyLinkedin.toLowerCase().includes("linkedin")) && this.state.companyLinkedin.length >0) {
+    if ((!this.state.companyLinkedin?.toLowerCase()?.includes("linkedin")) && this.state.companyLinkedin?.length >0) {
       return this.setState({ errLinkedin: "Please Enter Correct LinkedIn URL" });
     }
     if (this.state.companySummary.toString('html') == "<p><br></p>") {

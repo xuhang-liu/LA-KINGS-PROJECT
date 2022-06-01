@@ -25,8 +25,6 @@ from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from MergeATSClient.model.available_actions import AvailableActions
 from MergeATSClient.model.job_interview_stage import JobInterviewStage
-from pprint import pprint
-import requests
 import json
 import math
 from django.forms.models import model_to_dict
