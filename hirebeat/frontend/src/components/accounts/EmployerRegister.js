@@ -113,7 +113,8 @@ export class EmployerRegister extends Component {
                 "",
                 this.state.company_website,
                 "",
-              );
+              ).then(() => {gr('track', 'conversion', { email: this.state.email?.toLowerCase() }); console.log("Success Register.")})
+              .catch((err) => {console.log(err)});
               //      this.redirectToEmailVerification();
             }
           }
@@ -239,7 +240,8 @@ export class EmployerRegister extends Component {
             this.state.companyType.value,
             this.state.company_website,
             this.state.location,
-          );
+          ).then(() => {gr('track', 'conversion', { email: this.state.email?.toLowerCase() }); console.log("Success Register.")})
+          .catch((err) => {console.log(err)});
         }
       })
       .catch((err) =>
