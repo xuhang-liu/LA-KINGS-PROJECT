@@ -151,6 +151,25 @@ export class ReviewApplication extends Component {
             this.enableSuccessAlert();
         }
         // this.props.hide();
+        // JobTarget steps:
+        if (!(applicant.jt_jtochash == null || applicant.jt_jtochash == "")) {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            let data1 = {
+                "token": this.props.profile.jobt_token,
+                "jtochash": applicant.jt_jtochash,
+                "jtocprof": applicant.jt_jtocprof,
+                "stage": this.state.nextStage
+            }
+            axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/applicantdata", data1, config).then((res1) => {
+                console.log(res1);
+            }).catch(error => {
+                console.log(error)
+            });
+        }
     };
 
     rejectCandidates = () => {

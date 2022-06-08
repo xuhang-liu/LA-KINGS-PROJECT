@@ -11,6 +11,7 @@ import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplica
 import BasicInfoEdition from "./BasicInfoEdition";
 import { connect } from "react-redux";
 import { addReviewNote, getReviewNote } from "../../../redux/actions/question_actions";
+import axios from "axios";
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
@@ -114,6 +115,25 @@ const ReviewCandidate = (props) => {
                 enableSuccessAlert();
             }
             // props.onHide();
+            // JobTarget steps:
+            if (!(props.applicant.jt_jtochash == null || props.applicant.jt_jtochash == "")) {
+                const config = {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+                let data1 = {
+                    "token": props.profile.jobt_token,
+                    "jtochash": props.applicant.jt_jtochash,
+                    "jtocprof": props.applicant.jt_jtocprof,
+                    "stage": nextStage
+                }
+                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/applicantdata", data1, config).then((res1) => {
+                    console.log(res1);
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
         } else {
             alert("Please select a stage to move.");
         }
