@@ -841,58 +841,38 @@ def add_new_apply_candidate_from_zr(request):
 # the webhook api designed for JobTarget to post candidates back to HireBeat platform
 @api_view(['POST'])
 def add_new_apply_candidate_from_jobtarget(request):
-    job_id = request.data['job']['jobId']
-    firstname = request.data['applicant']['fullName'].split()[0]
-    lastname = request.data['applicant']['fullName'].split()[1]
+    job_id = request.data['jobId']
+    firstname = request.data['applicant']['firstName']
+    lastname = request.data['applicant']['lastName']
     phone = request.data['applicant']['phoneNumber']
     email = request.data['applicant']['email']
     resume = request.data['applicant']['resume']['file']['data']
     cv_name = email.split("@")[0]
     resume_url = upload_cv_to_s3(resume, cv_name)
-    fullname = request.data['applicant']['fullName']
-    apply_referer = request.data['analytics']['referer']
-    jobs = {}
-    if Jobs.objects.filter(jobt_job_id=job_id).exists():
-        jobs = Jobs.objects.filter(jobt_job_id=job_id).last()
+    fullname = firstname+" "+lastname
+    apply_referer = request.data['medium']
+    jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
-    jobQuestions = JobQuestion.objects.filter(jobs=jobs)
-    answers_zip = []
-    if len(jobQuestions) > 0:
-        answers_zip = request.data['questionsAndAnswers']['questionsAndAnswers']
+    questions_zip = request.data['questions']['questions']
+    answers_zip = request.data['questions']['answers']
     questions = []
     answers = []
     qualifications = []
     must_haves = []
-    qualified = True
     cur_stage = "Resume Review"
-    if len(answers_zip) > 0 and len(jobQuestions) > 0:
-        for j in range(len(jobQuestions)):
-            for i in range(len(answers_zip)):
-                if answers_zip[i]['question']['question'] == jobQuestions[j].question:
-                    questions.append(jobQuestions[j].question)
-                    answers.append(answers_zip[i]['answer'])
-                    must_haves.append(jobQuestions[j].is_must)
-                    if jobQuestions[j].answer_type == "boolean":
-                        if jobQuestions[j].answer == answers_zip[i]['answer']:
-                            qualifications.append(True)
-                        else:
-                            qualifications.append(False)
-                            if jobQuestions[j].is_must:
-                                qualified = False
-                                cur_stage = "Unqualified"
-                    else:
-                        if int(jobQuestions[j].answer) <= int(answers_zip[i]['answer']):
-                                qualifications.append(True)
-                        else:
-                            qualifications.append(False)
-                            if jobQuestions[j].is_must:
-                                qualified = False
-                                cur_stage = "Unqualified"
+    if len(answers_zip) > 0 and len(questions_zip) > 0:
+        for i in range(len(questions_zip)):
+            for j in range(len(answers_zip)):
+                if questions_zip[i]['id'] == answers_zip[j]['id']:
+                    questions.append(questions_zip[i]['question'])
+                    answers.append(answers_zip[j]['value'])
+                    must_haves.append(questions_zip[i]['required'])
+                    qualifications.append(True)
     if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
-                                       answers=answers, qualifications=qualifications, must_haves=must_haves, is_active=qualified, 
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves,
                                        current_stage=cur_stage, apply_referer=apply_referer)
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
