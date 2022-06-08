@@ -64,6 +64,7 @@ export class JobCreation extends Component {
             questionCount: 0,
             questions: [],
             showUpgradeM: false,
+            showUpgradeM1: false,
         }
         this.props.getjobidlist(this.props.user.id);
         this.handleChange = this.handleChange.bind(this);
@@ -75,6 +76,10 @@ export class JobCreation extends Component {
 
     setHideUpgradeM = () => {
         this.setState({ showUpgradeM: false });
+    }
+
+    setHideUpgradeM1 = () => {
+        this.setState({ showUpgradeM1: false });
     }
 
     onFilter = (jobType) => {
@@ -329,7 +334,7 @@ export class JobCreation extends Component {
             } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
                 if (this.props.profile.position_count >= this.props.profile.position_limit) {
                     return this.setState({
-                        showUpgradeM: true
+                        showUpgradeM1: true
                     });
                 }
             }
@@ -1036,14 +1041,33 @@ export class JobCreation extends Component {
                             onHide={this.setHideUpgradeM}
                         >
                             <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
-                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
-                                <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
+                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Upgrade needed</h3>
+                                <p className="pt-3">You do not have an active plan or PAYG job credit left.</p>
+                                <p>Please upgrade or purchase a plan to publish your job.</p>
                                 <div className="row" style={{ margin: "auto", width: "80%" }}>
                                     <div className="col-6">
                                         <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
                                     </div>
                                     <div className="col-6">
                                         <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </MyModalUpgrade>
+                        <MyModalUpgrade
+                            show={this.state.showUpgradeM1}
+                            onHide={this.setHideUpgradeM1}
+                        >
+                            <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                                <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Upgrade Needed</h3>
+                                <p className="pt-3">You have reached your job publish limit.</p>
+                                <p>Please upgrade or purchase a plan to publish your job.</p>
+                                <div className="row" style={{ margin: "auto", width: "80%" }}>
+                                    <div className="col-6">
+                                        <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
+                                    </div>
+                                    <div className="col-6">
+                                        <button onClick={this.setHideUpgradeM1} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
                                     </div>
                                 </div>
                             </div>
