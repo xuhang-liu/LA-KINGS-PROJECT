@@ -873,7 +873,7 @@ def add_new_apply_candidate_from_jobtarget(request):
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
                                        answers=answers, qualifications=qualifications, must_haves=must_haves,
-                                       current_stage=cur_stage, apply_referer=apply_referer)
+                                       current_stage=cur_stage, apply_referer=apply_referer, jt_jtochash=request.data['jtochash'], jt_jtocprof=request.data['jtocprof'])
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
