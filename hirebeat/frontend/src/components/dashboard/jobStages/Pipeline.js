@@ -61,6 +61,19 @@ export class Pipeline extends Component {
             "job_id": this.props.job.job_details.id
         }
         this.props.getPipelineAnalytics(data);
+        
+        // Send Job target applicants data:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data3 = { "jobid": this.props.job.job_details.id }
+        axios.post("jobs/job-target-push-candidates-back", data3, config).then((res3) => {
+            console.log(res3)
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
     deleteReviever = (sub_id) => {
@@ -434,17 +447,17 @@ export class Pipeline extends Component {
                 },
                 "job_type": this.props.job.job_details.job_type,
                 "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
-                "easy_apply": true,
+                "easy_apply": 1,
                 "easy_apply_type": "basic",
-                "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.props.job.job_details.id,
-                "application_delivery_webhook": "https://"+window.location.hostname+"jobs/add-new-apply-candidate-from-jobtarget"
+                "questionnaire_webhook": "https://" + window.location.hostname + "/jobs/get-questions-from-job?jobid=" + this.props.job.job_details.id,
+                "application_delivery_webhook": "https://" + window.location.hostname + "jobs/add-new-apply-candidate-from-jobtarget"
             }
         }
         axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
             console.log(res1);
             if (res1.data.status == 0 || res1.data.status == "0") {
                 this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
-                let data3 = {"job_id": this.props.job.job_details.id, "jobt_job_id": res1.data.job_id}
+                let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res1.data.job_id }
                 axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                     console.log(res3)
                 }).catch(error => {
@@ -454,12 +467,12 @@ export class Pipeline extends Component {
                 let data2 = {
                     "token": this.props.jobt_token,
                     "requisition_name": this.props.job.job_details.id
-                  }
+                }
                 axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
                     console.log(res2);
                     if (res2.data.status == 0 || res2.data.status == "0") {
                         this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
-                        let data3 = {"job_id": this.props.job.job_details.id, "jobt_job_id": res2.data.job_id}
+                        let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res2.data.job_id }
                         axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                             console.log(res3)
                         }).catch(error => {

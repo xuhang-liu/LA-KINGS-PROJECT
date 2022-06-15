@@ -448,7 +448,7 @@ export class JobEdition extends Component {
                         },
                         "job_type": this.state.jobType["value"],
                         "entrylevel": (this.state.jobLevel["value"] == "Entry Level") ? 1 : 0,
-                        "easy_apply": true,
+                        "easy_apply": 1,
                         "easy_apply_type": "basic",
                         "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.state.jobId,
                         "application_delivery_webhook": "https://"+window.location.hostname+"jobs/add-new-apply-candidate-from-jobtarget"

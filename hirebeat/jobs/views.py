@@ -1,6 +1,6 @@
 #from django.shortcuts import render
 from pickle import TRUE
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest, SourcingCandidates
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
@@ -30,6 +30,7 @@ import math
 from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.http import JsonResponse
+from rest_framework.permissions import IsAuthenticated
 
 
 @api_view(['POST'])
@@ -840,6 +841,7 @@ def add_new_apply_candidate_from_zr(request):
 
 # the webhook api designed for JobTarget to post candidates back to HireBeat platform
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add_new_apply_candidate_from_jobtarget(request):
     job_id = request.data['jobId']
     firstname = request.data['applicant']['firstName']
@@ -1766,3 +1768,22 @@ def job_target_job_id_update(request):
     job.jobt_job_id = jobt_job_id
     job.save()
     return Response("Job Target Iframe url update successfully", status=status.HTTP_201_CREATED)
+
+@api_view((['POST']))
+def job_target_push_candidates_back(request):
+    jobid = request.data["jobid"]
+    jobT_candidates = ApplyCandidates.objects.filter(jobs_id = jobid, apply_source = "JobTarget")
+    for j in range(len(jobT_candidates)):
+        jobT_candidate = jobT_candidates[j]
+        url = "https://stagingatsapi.jobtarget.com/api/employer/jobs/applicantdataviaptoken"
+        data = {
+            "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+            "jtochash": jobT_candidate.jt_jtochash,
+            "jtocprof": jobT_candidate.jt_jtocprof,
+            "stage": jobT_candidate.current_stage,
+            "event_timestamp": datetime.now().strftime("%Y:%m:%d %H:%M"),
+        }
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        res = requests.post(url, data=json.dumps(data), headers=headers)
+        print(res.json())
+    return Response("Job Target Push Candidates Back Successfully", status=status.HTTP_201_CREATED)
