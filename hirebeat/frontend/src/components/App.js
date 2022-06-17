@@ -239,6 +239,11 @@ import PJobFail from "./payment/PJobFail";
 import PJobPayment from "./payment/PJobPayment";
 import RemoveFraudPortal from "./accounts/RemoveFraudPortal";
 import iframeTest from "./home/iframeTest";
+import TagManager from 'react-gtm-module';
+
+TagManager.initialize({
+  gtmId: 'GTM-MKHJ38Q',
+});
 
 const alertOptions = {
   timeout: 3000,
