@@ -53,7 +53,7 @@
     <!-- End Snap Pixel Code -->
 
     {% load static %}
-    <script src="{% static "frontend/main450.js" %}" async defer></script>
+    <script src="{% static "frontend/main451.js" %}" async defer></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous" async defer></script>
@@ -70,8 +70,16 @@
   <body class="container-fluid bg-white p-0 m-0">
 
     <div id="app"></div>
-     <!-- Start of HubSpot Embed Code -->
-  <script type="text/javascript" id="hs-script-loader" async defer src="//js-na1.hs-scripts.com/20214785.js"></script>
-<!-- End of HubSpot Embed Code -->
+<!-- Start of Fresh Chat Code -->
+     <script>
+      function initFreshChat() {
+        window.fcWidget.init({
+          token: "dd66f2d4-3365-4d85-a38b-1e9b63ab2cf2",
+          host: "https://wchat.freshchat.com"
+        });
+      }
+      function initialize(i,t){var e;i.getElementById(t)?initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}function initiateCall(){initialize(document,"Freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);
+    </script>
+    <!-- End of Fresh Chat Code -->
   </body>
 </html>
