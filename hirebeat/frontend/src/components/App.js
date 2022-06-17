@@ -238,12 +238,6 @@ import PayGPayment from "./payment/PayGPayment";
 import PJobFail from "./payment/PJobFail";
 import PJobPayment from "./payment/PJobPayment";
 import RemoveFraudPortal from "./accounts/RemoveFraudPortal";
-import iframeTest from "./home/iframeTest";
-import TagManager from 'react-gtm-module';
-
-TagManager.initialize({
-  gtmId: 'GTM-MKHJ38Q',
-});
 
 const alertOptions = {
   timeout: 3000,
@@ -529,7 +523,6 @@ class App extends Component {
                 {/* <Route exact path="/employer-intergration-page" component={IntergrationPage} /> */}
                 <Route exact path="/talent-profile" component={PublicProfile} />
                 <Route exact path="/9483286d2a9dd1d9" component={RemoveFraudPortal} />
-                <Route exact path="/iframetest" component={iframeTest}/>
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
