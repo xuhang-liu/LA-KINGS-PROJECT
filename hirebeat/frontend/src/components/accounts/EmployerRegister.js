@@ -16,6 +16,13 @@ import EmployerRegisterInfoForm from "./EmployerRegisterInfoForm";
 import EmployerRegisterCompanyInfoForm from "./EmployerRegisterCompanyInfoForm";
 import axios from "axios";
 import { Email_Block_List } from "./Constants";
+import TagManager from 'react-gtm-module';
+ 
+const tagManagerArgs = {
+    gtmId: 'GTM-MKHJ38Q'
+}
+ 
+TagManager.initialize(tagManagerArgs)
 
 function ScrollToTopOnMount() {
   useEffect(() => {

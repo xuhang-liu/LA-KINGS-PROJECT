@@ -9,6 +9,13 @@ import { useEffect } from "react";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 import axios from "axios";
+import TagManager from 'react-gtm-module';
+ 
+const tagManagerArgs = {
+    gtmId: 'GTM-MKHJ38Q'
+}
+ 
+TagManager.initialize(tagManagerArgs)
 
 function ScrollToTopOnMount() {
   useEffect(() => {
