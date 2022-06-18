@@ -115,12 +115,13 @@ export const JobCover = (props) => {
                 <input placeholder="Search" className="search-candidate-input" style={{ height: "auto", border: "2px solid #006dff" }} value={keyWords} onChange={onChange}></input>
               </div>
             </div>
+            {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) &&
             <button className="default-btn" onClick={props.renderJobCreation} data-tut="reactour-createjob"
               style={{ color: "white", float: "right", marginBottom: "2rem" }}>
               <i className="bx bx-plus"></i>
               Create New Position
               <span></span>
-            </button>
+            </button>}
           </div>
           <JobList
             jobs={props.jobs}

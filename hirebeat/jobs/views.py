@@ -1,6 +1,6 @@
 #from django.shortcuts import render
 from pickle import TRUE
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest, SourcingCandidates
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
@@ -31,7 +31,7 @@ from django.forms.models import model_to_dict
 from django.db.models import Q
 from django.http import JsonResponse
 from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.authentication import TokenAuthentication
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -841,6 +841,7 @@ def add_new_apply_candidate_from_zr(request):
 
 # the webhook api designed for JobTarget to post candidates back to HireBeat platform
 @api_view(['POST'])
+@authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def add_new_apply_candidate_from_jobtarget(request):
     job_id = request.data['jobId']
