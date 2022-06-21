@@ -79,6 +79,13 @@ export class Dashboard extends Component {
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
+    window.fcWidget.user.setProperties({
+      firstName: this.props.userfullname,
+      lastName: "",
+      email: this.props.user.email,
+      "plan": this.props.profile.membership,
+      "status": "Active"
+    })
   }
 
   // params passed from resume page
