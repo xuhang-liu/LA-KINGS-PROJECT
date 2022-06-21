@@ -1,11 +1,4 @@
 import React, {Component} from "react";
-import TagManager from 'react-gtm-module';
- 
-const tagManagerArgs = {
-    gtmId: 'GTM-MKHJ38Q'
-}
- 
-TagManager.initialize(tagManagerArgs)
 
 export class EmployerRegisterInfoForm extends Component {
     handleInput = (e) => {
