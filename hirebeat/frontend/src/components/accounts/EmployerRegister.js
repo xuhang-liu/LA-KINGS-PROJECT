@@ -17,12 +17,6 @@ import EmployerRegisterCompanyInfoForm from "./EmployerRegisterCompanyInfoForm";
 import axios from "axios";
 import { Email_Block_List } from "./Constants";
 import TagManager from 'react-gtm-module';
- 
-const tagManagerArgs = {
-    gtmId: 'GTM-MKHJ38Q'
-}
- 
-TagManager.initialize(tagManagerArgs)
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -83,6 +77,16 @@ export class EmployerRegister extends Component {
   //        if (history) history.push(`/email-verification`);
   //  };
 
+  componentDidMount() {
+    TagManager.initialize({
+      gtmId: 'GTM-MKHJ38Q'
+    });
+    window.dataLayer.push({
+      name: "",
+      email: ""
+    });
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     if ((Email_Block_List.includes(this.state.email.toLowerCase().split("@")[1])) && !this.state.isReviewer
@@ -120,9 +124,15 @@ export class EmployerRegister extends Component {
                 "",
                 this.state.company_website,
                 "",
-              ).then(() => {gr('track', 'conversion', { email: this.state.email?.toLowerCase() }); console.log("Success Register.")})
-              .catch((err) => {console.log(err)});
-              //      this.redirectToEmailVerification();
+              );
+              TagManager.initialize({
+                gtmId: 'GTM-MKHJ38Q',
+                dataLayerName: 'Form Submit'
+              });
+              window.dataLayer.push({
+                name: this.state.firstName+ " "+this.state.lastName,
+                email: this.state.email?.toLowerCase()
+              });
             }
           }
         })
@@ -247,8 +257,15 @@ export class EmployerRegister extends Component {
             this.state.companyType.value,
             this.state.company_website,
             this.state.location,
-          ).then(() => {gr('track', 'conversion', { email: this.state.email?.toLowerCase() }); console.log("Success Register.")})
-          .catch((err) => {console.log(err)});
+          );
+          TagManager.initialize({
+            gtmId: 'GTM-MKHJ38Q',
+            dataLayerName: 'Form Submit'
+          });
+          window.dataLayer.push({
+            name: this.state.firstName+ " "+this.state.lastName,
+            email: this.state.email?.toLowerCase()
+          });
         }
       })
       .catch((err) =>
