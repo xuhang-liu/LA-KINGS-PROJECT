@@ -326,6 +326,17 @@ export class EmployerDashboard extends Component {
       loc_radius: 0,
     }
     this.props.getSourcingData(queryData);
+    window.fcWidget.user.setProperties({
+      firstName: this.props.employerProfileDetail.f_name,
+      lastName: this.props.employerProfileDetail.l_name,
+      email: this.props.user.email,
+      "user_id": this.props.user.id,
+      "company_name": this.props.employerProfileDetail.name,
+      "membership": this.props.profile.membership,
+      "is_employer": this.props.profile.is_employer,
+      "is_freetrial": this.props.profile.is_freetrial,
+      "plan": this.props.profile.plan_interval
+    });
   }
 
   getInitialSubpage = () => {

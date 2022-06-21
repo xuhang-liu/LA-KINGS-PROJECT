@@ -83,9 +83,12 @@ export class Dashboard extends Component {
       firstName: this.props.userfullname,
       lastName: "",
       email: this.props.user.email,
-      "plan": this.props.profile.membership,
-      "status": "Active"
-    })
+      "user_id": this.props.user.id,
+      "membership": this.props.profile.membership,
+      "is_employer": this.props.profile.is_employer,
+      "is_freetrial": this.props.profile.is_freetrial,
+      "plan": this.props.profile.plan_interval
+    });
   }
 
   // params passed from resume page
