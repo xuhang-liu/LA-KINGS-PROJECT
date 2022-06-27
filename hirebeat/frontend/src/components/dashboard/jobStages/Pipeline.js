@@ -450,7 +450,7 @@ export class Pipeline extends Component {
                 "easy_apply": 1,
                 "easy_apply_type": "basic",
                 "questionnaire_webhook": "https://" + window.location.hostname + "/jobs/get-questions-from-job?jobid=" + this.props.job.job_details.id,
-                "application_delivery_webhook": "https://" + window.location.hostname + "jobs/add-new-apply-candidate-from-jobtarget"
+                "application_delivery_webhook": "https://" + window.location.hostname + "/jobs/add-new-apply-candidate-from-jobtarget"
             }
         }
         axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
