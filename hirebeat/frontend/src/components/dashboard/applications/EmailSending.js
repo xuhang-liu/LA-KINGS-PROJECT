@@ -195,7 +195,7 @@ export class EmailSending extends Component {
                             subject: this.state.emailSubject
                         });
                     }
-                }else{
+                } else {
                     return;
                 }
             } else {
@@ -213,16 +213,31 @@ export class EmailSending extends Component {
             };
             let data = {}
             if (this.props.handleStatusChange2 == null) {
-                if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
-                    data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
+                if (typeof this.props.email != "string") {
+                    for (let i = 0; i < this.props.email.length; i++) {
+                        if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
+                            data = { "to": this.props.email[i].first_name + " " + this.props.email[i].last_name + "<" + this.props.email[i].email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
+                        } else {
+                            data = { "to": this.props.email[i].first_name + " " + this.props.email[i].last_name + "<" + this.props.email[i].email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+                        }
+                        axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
+                            console.log(res)
+                        }).catch(error => {
+                            console.log(error)
+                        });
+                    }
                 } else {
-                    data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+                    if (this.state.emailFrom.label == "no-reply@hirebeat.email") {
+                        data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": "No-reply: " + this.state.emailSubject };
+                    } else {
+                        data = { "to": this.props.first_name + " " + this.props.last_name + "<" + this.props.email + ">", "from": (this.props.employerProfileDetail?.name + '<' + window.btoa(this.props.employerProfileDetail?.f_name?.toLowerCase() + " " + this.props.employerProfileDetail?.l_name?.toLowerCase()) + '-' + window.btoa(this.props.jobid) + '@hirebeat.email' + '>'), "plain": this.state.emailBody?.replaceAll(/\n/g, "<br />"), "subject": this.state.emailSubject };
+                    }
+                    axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
+                        console.log(res)
+                    }).catch(error => {
+                        console.log(error)
+                    });
                 }
-                axios.post("jobs/send-email-from-cloudmail", data, config).then((res) => {
-                    console.log(res)
-                }).catch(error => {
-                    console.log(error)
-                });
             }
 
             alert("Email Sent!");
