@@ -79,16 +79,18 @@ export class Dashboard extends Component {
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
-    window.fcWidget.user.setProperties({
-      firstName: this.props.userfullname,
-      lastName: "",
-      email: this.props.user.email,
-      "user_id": this.props.user.id,
-      "membership": this.props.profile.membership,
-      "is_employer": this.props.profile.is_employer,
-      "is_freetrial": this.props.profile.is_freetrial,
-      "plan": this.props.profile.plan_interval
-    });
+    // if (window) {
+    //   window.fcWidget.user.setProperties({
+    //     firstName: this.props.userfullname,
+    //     lastName: "",
+    //     email: this.props.user.email,
+    //     "user_id": this.props.user.id,
+    //     "membership": this.props.profile.membership,
+    //     "is_employer": this.props.profile.is_employer,
+    //     "is_freetrial": this.props.profile.is_freetrial,
+    //     "plan": this.props.profile.plan_interval
+    //   });
+    // }
   }
 
   // params passed from resume page
@@ -244,104 +246,98 @@ export class Dashboard extends Component {
     let user = JSON.parse(sessionStorage.getItem("user")) || this.props.user;
     const { isTourOpen } = this.state;
     const accentColor = "#5cb7b7";
-    if(!this.props.isAuthenticated){
+    if (!this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
     // email verification
     if (!this.props.profile.email_confirmed) {
-        // normal user
-        if (!this.props.profile.is_employer) {
-          if (this.props.user.email.length <= 0) {
-            if(!window.location.hash) {
-              window.location = window.location + '#loaded';
-              window.location.reload();
-            }
-          }
-            return <Redirect to="/email-verification-mini" />;
-        }
-        // employer user
-        else {
-            return <Redirect to="/email-verification-employer-mini" />;
-        }
+      // normal user
+      if (!this.props.profile.is_employer) {
+        return <Redirect to="/email-verification-mini" />;
+      }
+      // employer user
+      else {
+        return <Redirect to="/email-verification-employer-mini" />;
+      }
     }
     if (this.props.profile.is_employer) {
       return <Redirect to="/employer_dashboard" />;
     } else {
       return (
         <DocumentMeta {...meta}>
-        <React.Fragment>
-          <ScrollToTopOnMount />
-          {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
-          <MediaQuery minDeviceWidth={1224}>
-            <Tour
-              onRequestClose={this.closeTour}
-              steps={tourConfig}
-              isOpen={isTourOpen}
-              className="helper"
-              rounded={5}
-              accentColor={accentColor}
-              onAfterOpen={this.disableBody}
-              onBeforeClose={this.enableBody}
-              closeWithMask={false}
-              prevButton={<i className="tour-prev-btn">Back</i>}
-              nextButton={<i className="tour-next-btn">Next</i>}
-            />
-            <div className="row no-gutters min-width-1290" data-tut="reactour-dashboard">
-              <div className='col-1'>
-                <div className='dashboard-sidebar'>
-                  <EssentialUserInfo
-                    userfullname={this.props.userfullname}
-                    user={this.props.user}
-                    profile={this.props.profile}
-                    updateProfile={this.props.updateProfile}
-                    renderSetting={this.renderSetting}
-                    renderVideos={this.renderVideos}
-                    renderResume={this.renderResume}
-                    renderInterview={this.renderInterview}
-                    renderProfile={this.renderProfile}
-                    subpage={this.state.subpage}
-                    profileDetail={this.props.profileDetail}
-                  />
+          <React.Fragment>
+            <ScrollToTopOnMount />
+            {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
+            <MediaQuery minDeviceWidth={1224}>
+              <Tour
+                onRequestClose={this.closeTour}
+                steps={tourConfig}
+                isOpen={isTourOpen}
+                className="helper"
+                rounded={5}
+                accentColor={accentColor}
+                onAfterOpen={this.disableBody}
+                onBeforeClose={this.enableBody}
+                closeWithMask={false}
+                prevButton={<i className="tour-prev-btn">Back</i>}
+                nextButton={<i className="tour-next-btn">Next</i>}
+              />
+              <div className="row no-gutters min-width-1290" data-tut="reactour-dashboard">
+                <div className='col-1'>
+                  <div className='dashboard-sidebar'>
+                    <EssentialUserInfo
+                      userfullname={this.props.userfullname}
+                      user={this.props.user}
+                      profile={this.props.profile}
+                      updateProfile={this.props.updateProfile}
+                      renderSetting={this.renderSetting}
+                      renderVideos={this.renderVideos}
+                      renderResume={this.renderResume}
+                      renderInterview={this.renderInterview}
+                      renderProfile={this.renderProfile}
+                      subpage={this.state.subpage}
+                      profileDetail={this.props.profileDetail}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className='col-11' style={{ backgroundColor: "#e8edfc" }}>
-                <div className="dashboard-main">
-                  {this.state.subpage === "settings" || this.state.subpage === "profile" ? null :
-                    <div className="container-fluid" style={{ height: "12rem" }} data-tut="reactour-rowbox">
-                      <RowBoxes
-                        renderVideos={this.renderVideos}
-                        renderResume={this.renderResume}
-                        renderInterview={this.renderInterview}
-                        userId={user.id}
-                        isEmployer={false}
-                      />
-                    </div>}
-                  <div className="container-fluid" style={{ marginBottom: "10%" }}>
-                    {/* fake h1 tag */}
-                    <h1 style={{visibility  : "hidden", textAlign: "center"}}>Dashboard</h1>
-                    <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
-                      {this.renderSubpage()}
+                <div className='col-11' style={{ backgroundColor: "#e8edfc" }}>
+                  <div className="dashboard-main">
+                    {this.state.subpage === "settings" || this.state.subpage === "profile" ? null :
+                      <div className="container-fluid" style={{ height: "12rem" }} data-tut="reactour-rowbox">
+                        <RowBoxes
+                          renderVideos={this.renderVideos}
+                          renderResume={this.renderResume}
+                          renderInterview={this.renderInterview}
+                          userId={user.id}
+                          isEmployer={false}
+                        />
+                      </div>}
+                    <div className="container-fluid" style={{ marginBottom: "10%" }}>
+                      {/* fake h1 tag */}
+                      <h1 style={{ visibility: "hidden", textAlign: "center" }}>Dashboard</h1>
+                      <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
+                        {this.renderSubpage()}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </MediaQuery>
-          <MediaQuery maxDeviceWidth={1223}>
-            <PageTitleArea
-              pageTitle="Welcome to Hirebeat!"
-              pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
-            />
-            <div style={{ textAlign: "center" }}>
-              <Link to="/">
-                <a className="default-btn" style={{ color: "white", backgroundColor: "#FF6B00", marginTop: "1rem", marginBottom: "1rem" }}>
-                  <i className="bx bxs-hot"></i>
-                  Back to Home Page
-                </a>
-              </Link>
-            </div>
-          </MediaQuery>
-        </React.Fragment>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1223}>
+              <PageTitleArea
+                pageTitle="Welcome to Hirebeat!"
+                pageDescription="Our mobile functionality is currently under construction, we apologized for the inconvenience.Please login on your PC to get the full experience."
+              />
+              <div style={{ textAlign: "center" }}>
+                <Link to="/">
+                  <a className="default-btn" style={{ color: "white", backgroundColor: "#FF6B00", marginTop: "1rem", marginBottom: "1rem" }}>
+                    <i className="bx bxs-hot"></i>
+                    Back to Home Page
+                  </a>
+                </Link>
+              </div>
+            </MediaQuery>
+          </React.Fragment>
         </DocumentMeta>
       );
     }

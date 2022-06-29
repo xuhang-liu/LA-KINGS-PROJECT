@@ -369,6 +369,7 @@ export class JobPortalPage extends Component {
                 />;
             case "shortList":
                 return <ShortList
+                    filter={this.props.filter}
                     getPJobs={this.props.getPJobs}
                     postedJobs={this.props.postedJobs}
                     int_ques={this.props.int_ques}
@@ -397,6 +398,8 @@ export class JobPortalPage extends Component {
                     jobsId={this.props.job.job_details.id}
                     employerProfileDetail={this.props.employerProfileDetail}
                     reviewerStageLength={this.state.reviewerStage?.length}
+                    updateInviteStatus={this.props.updateInviteStatus}
+                    moveCandidateToInterview={this.props.moveCandidateToInterview}
                 />;
             default:
                 return null;
