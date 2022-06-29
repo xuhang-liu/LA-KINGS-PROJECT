@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MyModal80 } from './../DashboardComponents';
+import { MyModal80, AlertModal } from './../DashboardComponents';
+import MoveForm from "./interviewComponents/MoveForm";
 import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { connect } from 'react-redux';
 import { loadStarList, getResumeURL, addExReviewer, delExReviewer } from './../../../redux/actions/question_actions';
@@ -43,6 +44,7 @@ const ShortList = (props) => {
         <div>
             <div className="container-fluid min-width-980">
                 <AcceptedCandidate
+                    filter={props.filter}
                     getPJobs={props.getPJobs}
                     refreshPage={refreshPage}
                     id_candidate={props.id_candidate}
@@ -77,6 +79,9 @@ const ShortList = (props) => {
                     jobsId={props.jobsId}
                     employerProfileDetail={props.employerProfileDetail}
                     reviewerStageLength={props.reviewerStageLength}
+                    updateInviteStatus={props.updateInviteStatus}
+                    moveCandidateToInterview={props.moveCandidateToInterview}
+                    positionId={props.positionId}
                 />
             </div>
         </div>
@@ -98,6 +103,11 @@ export default withRouter(connect(mapStateToProps, { loadStarList, getResumeURL,
 const AcceptedCandidate = (props) => {
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
     const [category5, setCategory5] = useState({ value: 'All', label: 'All' });
+    const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
+    const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
+    const [showMoveForm, setShowMoveForm] = useState(false);
+    const [currentStage, setCurrentStage] = useState("Short List");
+    const [nextStage, setNextStage] = useState("Live Interview");
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
 
@@ -136,8 +146,195 @@ const AcceptedCandidate = (props) => {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
+
+    function selectAllCandidates() {
+        let checkbox = document.getElementById("select-all");
+        let candidates = document.getElementsByClassName("selected-candidate");
+        if (checkbox.checked) {
+            // select all candidates
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = true;
+            }
+        }
+        else {
+            // cancel all candidates selection
+            for (let i = 0; i < candidates.length; i++) {
+                candidates[i].checked = false;
+            }
+        }
+    }
+
+    function unSelectAllCandidates() {
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            candidates[i].checked = false;
+        }
+    }
+
+    const openMoveForm = () => {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            setShowMoveForm(true);
+        }
+        else {
+            noCandidateAlert();
+        }
+
+    }
+
+    const hideMoveForm = () => {
+        setShowMoveForm(false);
+    }
+
+    function noCandidateAlert() {
+        confirmAlert({
+            title: "No Candidate Selected",
+            message: "Please select candidates for interview",
+            buttons: [
+                {
+                    label: 'Ok'
+                }
+            ]
+        });
+    }
+
+    const enableSuccessAlert = () => {
+        setShowMoveSuccessAlert(true);
+    }
+
+    const enableRejectSuccessAlert = () => {
+        setShowRejectSuccessAlert(true);
+    }
+
+    const hideSuccessAlert = () => {
+        handleAlertChoice();
+        setShowMoveSuccessAlert(false);
+    }
+
+    const handleAlertChoice = () => {
+        let checkbox = document.getElementById("alertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainMove", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainMove", "false");
+        }
+    }
+
+    const hideRejectSuccessAlert = () => {
+        handleRejectAlertChoice();
+        setShowRejectSuccessAlert(false);
+    }
+
+    const handleRejectAlertChoice = () => {
+        let checkbox = document.getElementById("rejectAlertCheckbox");
+        let isChecked = checkbox.checked;
+        if (isChecked) {
+            localStorage.setItem("noShowAgainReject", "true");
+        }
+        else {
+            localStorage.setItem("noShowAgainReject", "false");
+        }
+    }
+
+    const moveCandidates = () => {
+        let candidateCount = 0;
+        let positionId = props.positionId;
+        let jobId = props.jobsId;
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.id);
+                candidateCount += 1;
+            }
+        }
+        // check candidates selected or not
+        if (candidateCount > 0) {
+            if ((nextStage != "") && (nextStage != "Short List")) {
+                let meta = {
+                    position_id: positionId,
+                    job_id: jobId,
+                    emails: emails,
+                    names: names,
+                    candidates: invitedCandidates,
+                    nextStage: nextStage,
+                }
+                props.moveCandidateToInterview(meta);
+                hideMoveForm();
+                // update
+                let page = 1;
+                let userId = props.user.id;
+                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value) }, 300);
+                unSelectAllCandidates();
+                let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                if (!noShowAgainMove) {
+                    enableSuccessAlert();
+                }
+            } else if (nextStage == "Short List") {
+                alert("These candidates are already in this stage!");
+            } else {
+                alert("Please select a stage to move!");
+            }
+        }
+        else {
+            noCandidateAlert();
+        }
+        window.scrollTo(0, 0);
+    }
+
+    const rejectCandidates = () => {
+        let candidateCount = 0;
+        let positionId = props.positionId;
+        const emails = [];
+        const names = [];
+        const invitedCandidates = [];
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                let candidate = JSON.parse(candidates[i].value);
+                names.push(candidate.name);
+                emails.push(candidate.email.toLowerCase());
+                invitedCandidates.push(candidate.apply_candidate_id);
+                candidateCount += 1;
+            }
+        }
+        if (candidateCount > 0) {
+            let data = {
+                positionId: positionId,
+                candidates: invitedCandidates,
+                nextStage: nextStage,
+                is_reject: true,
+            }
+            props.updateInviteStatus(data);
+            // update
+            let page = 1;
+            let userId = props.user.id;
+            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value) }, 300);
+            unSelectAllCandidates();
+            let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            if (!noShowAgainReject) {
+                enableRejectSuccessAlert();
+            }
+        } else {
+            noCandidateAlert();
+        }
+        window.scrollTo(0, 0);
+    };
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
@@ -165,8 +362,13 @@ const AcceptedCandidate = (props) => {
                     }
                 </div>
                 <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow: "none" }}>
-                    <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="ml-3 d-flex justify-content-start container-fluid row interview-txt7 interview-center">
-                        <div className="col-3">Name</div>
+                    <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="d-flex justify-content-start row interview-txt7 interview-center">
+                        {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                            <div style={{ marginLeft: "1rem", display: "flex" }}>
+                                <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                            </div>
+                        }
+                        <div className="col-2">Name</div>
                         {/* <div className="col-3">Video Average Score</div> */}
                         <div className="col-2">Resume Score</div>
                         {(props.reviewerStageLength > 0) &&
@@ -263,6 +465,63 @@ const AcceptedCandidate = (props) => {
                         />
                     </div>
                 }
+                {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                    <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
+                        <button
+                            className="default-btn"
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                            onClick={openMoveForm}
+                        >
+                            Move
+                            <span></span>
+                        </button>
+                        <button
+                            className="default-btn"
+                            onClick={rejectCandidates}
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                        >
+                            Reject
+                            <span></span>
+                        </button>
+                    </div>
+                }
+                <MoveForm
+                    showMoveForm={showMoveForm}
+                    hideMoveForm={hideMoveForm}
+                    currentStage={currentStage}
+                    setCurrentStage={setCurrentStage}
+                    nextStage={nextStage}
+                    setNextStage={setNextStage}
+                    moveCandidates={moveCandidates}
+                />
+                {/*  move success alert prompt */}
+                <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                        <h3 className="interview-h3">Move to next stage Success</h3>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
+                {/*  reject success alert prompt */}
+                <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                        <h3 className="interview-h3">Candidate Rejected!</h3>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have rejected the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
+                            Don't show again
+                        </div>
+                        <div className="row d-flex justify-content-center">
+                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
+                        </div>
+                    </div>
+                </AlertModal>
             </div>
         </div>
     )
@@ -286,7 +545,7 @@ const CandidateCard = (props) => {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
 
     const options1 = [
@@ -443,8 +702,13 @@ const CandidateCard = (props) => {
                     }}
                 />
             </div>
-            <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="ml-3 d-flex justify-content-start container-fluid row h-100">
-                <div className="col-3 title-button2" onClick={() => { viewResult(); }} style={{ cursor: "pointer" }}>
+            <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="container-fluid row h-100">
+                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                    <div className="interview-txt9">
+                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
+                    </div>
+                }
+                <div className="col-2 title-button2" onClick={() => { viewResult(); }} style={{ cursor: "pointer" }}>
                     {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
                 </div>
 
@@ -470,7 +734,7 @@ const CandidateCard = (props) => {
                     </div>
                 }
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{ marginLeft: "-0.6rem" }}>
+                    <div className="col-3" style={{marginLeft:"1.5rem"}}>
                         <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
                     </div>}
                 {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
@@ -501,7 +765,6 @@ const CandidateCard = (props) => {
                 setShowResume={setShowResume}
                 setShowEva={setShowEva}
                 onHide={hideModal}
-                int_ques={props.int_ques}
                 positionId={props.applicant.positions_id}
                 resumeURL={props.resumeURL}
                 recordTime={props.recordTime}
