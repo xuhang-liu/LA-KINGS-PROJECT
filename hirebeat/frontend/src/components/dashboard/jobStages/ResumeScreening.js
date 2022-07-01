@@ -11,6 +11,7 @@ import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
 import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import EditQuestion from "./../jobBoard/EditQuestion";
+import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 
@@ -29,6 +30,8 @@ export class ResumeScreening extends Component {
         currentStage: "Resume Review",
         showMoveSuccessAlert: false,
         showRejectSuccessAlert: false,
+        showEmailSending: false,
+        email_list: null,
     }
 
     componentDidMount() {
@@ -67,7 +70,7 @@ export class ResumeScreening extends Component {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
 
     onChange = (e) => {
@@ -203,7 +206,7 @@ export class ResumeScreening extends Component {
         else {
             this.noCandidateAlert();
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     rejectCandidates = () => {
@@ -242,7 +245,7 @@ export class ResumeScreening extends Component {
         } else {
             this.noCandidateAlert();
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
     // invite candidates with video interviews
     //    inviteCandidates = () => {
@@ -363,7 +366,7 @@ export class ResumeScreening extends Component {
         else {
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "False");
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     hideSuccessAlert = () => {
@@ -406,6 +409,32 @@ export class ResumeScreening extends Component {
         }
     }
 
+    openEmailForm = () => {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            var email_list = []
+            for (let i = 0; i < candidates.length; i++) {
+                if (candidates[i].checked) {
+                    let candidate = JSON.parse(candidates[i].value);
+                    email_list.push({ "email": candidate?.email, "id": candidate?.id, "first_name": candidate?.first_name, "last_name": candidate?.last_name });
+                }
+            }
+            this.setState({ email_list: email_list, showEmailSending: true })
+        } else {
+            this.noCandidateAlert();
+        }
+    }
+
+    hideEmailSending = () => {
+        this.setState({ showEmailSending: false })
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -435,9 +464,9 @@ export class ResumeScreening extends Component {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px", boxShadow:"none" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px", boxShadow: "none" }}>
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
-                            <div style={{ marginLeft: "2rem", marginRight:"1rem" }}>
+                            <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
                                 {!this.props.profile.is_subreviwer &&
                                     <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: "inline" }} />
                                 }
@@ -581,6 +610,14 @@ export class ResumeScreening extends Component {
                             Reject
                             <span></span>
                         </button>
+                        <button
+                            className="default-btn"
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
+                            onClick={this.openEmailForm}
+                        >
+                            Email
+                            <span></span>
+                        </button>
                     </div>
                 }
                 <MyModalUpgrade
@@ -690,6 +727,19 @@ export class ResumeScreening extends Component {
                         </div>
                     </div>
                 </AlertModal>
+                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={this.hideEmailSending}
+                        employerProfileDetail={this.props.employerProfileDetail}
+                        user={this.props.user}
+                        profile={this.props.profile}
+                        email={this.state.email_list}
+                        jobid={this.props.curJob.job_details.id}
+                        first_name={this.state.email_list}
+                        last_name={this.state.email_list}
+                        handleStatusChange2={null}
+                    />
+                </MyModal80>
             </React.Fragment>
         )
     }
@@ -788,7 +838,7 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem", marginRight:"1rem" }}>
+                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem", marginRight: "1rem" }}>
                     {!props.profile.is_subreviwer &&
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
                     }

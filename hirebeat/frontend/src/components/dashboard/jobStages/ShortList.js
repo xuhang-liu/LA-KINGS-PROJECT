@@ -8,6 +8,7 @@ import { checkUserExistence } from './../../../redux/actions/auth_actions';
 import { withRouter } from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import { MyVerticallyCenteredModal } from "./interviewComponents/MyVerticallyCenteredModal";
+import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import axios from "axios";
@@ -108,6 +109,8 @@ const AcceptedCandidate = (props) => {
     const [showMoveForm, setShowMoveForm] = useState(false);
     const [currentStage, setCurrentStage] = useState("Short List");
     const [nextStage, setNextStage] = useState("Live Interview");
+    const [showEmailSending, setShowEmailSending] = useState(false);
+    const [email_list, setEmail_list] = useState(null);
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
 
@@ -335,6 +338,34 @@ const AcceptedCandidate = (props) => {
         }
         window.scrollTo(0, 0);
     };
+
+    const openEmailForm = () => {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            var email_list = []
+            for (let i = 0; i < candidates.length; i++) {
+                if (candidates[i].checked) {
+                    let candidate = JSON.parse(candidates[i].value);
+                    email_list.push({ "email": candidate?.email, "id": candidate?.apply_candidate_id, "first_name": candidate?.name?.split(" ")[0], "last_name": candidate?.name?.split(" ")[1] });
+                }
+            }
+            setEmail_list(email_list);
+            setShowEmailSending(true);
+        } else {
+            noCandidateAlert();
+        }
+    }
+
+    const hideEmailSending = () => {
+        setShowEmailSending(false);
+    }
+    
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
@@ -364,7 +395,7 @@ const AcceptedCandidate = (props) => {
                 <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow: "none" }}>
                     <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="d-flex justify-content-start row interview-txt7 interview-center">
                         {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                            <div style={{ marginLeft: "1rem", display: "flex" }}>
+                            <div className='mr-3' style={{ marginLeft: "1rem", display: "flex" }}>
                                 <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                             </div>
                         }
@@ -483,6 +514,14 @@ const AcceptedCandidate = (props) => {
                             Reject
                             <span></span>
                         </button>
+                        <button
+                            className="default-btn"
+                            onClick={openEmailForm}
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
+                        >
+                            Email
+                            <span></span>
+                        </button>
                     </div>
                 }
                 <MoveForm
@@ -522,6 +561,19 @@ const AcceptedCandidate = (props) => {
                         </div>
                     </div>
                 </AlertModal>
+                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={hideEmailSending}
+                        employerProfileDetail={props.employerProfileDetail}
+                        user={props.user}
+                        profile={props.profile}
+                        email={email_list}
+                        jobid={props.jobsId}
+                        first_name={email_list}
+                        last_name={email_list}
+                        handleStatusChange2={null}
+                    />
+                </MyModal80>
             </div>
         </div>
     )
@@ -694,7 +746,7 @@ const CandidateCard = (props) => {
     }
     return (
         <React.Fragment>
-            <div className="px-4">
+            <div>
                 <hr
                     style={{
                         border: props.current == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
@@ -704,7 +756,7 @@ const CandidateCard = (props) => {
             </div>
             <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="container-fluid row h-100">
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                    <div className="interview-txt9">
+                    <div className="interview-txt9 mr-3">
                         <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
                     </div>
                 }

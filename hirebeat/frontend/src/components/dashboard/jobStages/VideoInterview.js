@@ -10,6 +10,7 @@ import EditQuestion from "./interviewComponents/EditQuestion"
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
+import { EmailSending } from '../applications/EmailSending';
 
 export function VideoInterview(props) {
     //    useEffect(() => {
@@ -31,6 +32,8 @@ export function VideoInterview(props) {
     const [expire, setExpire] = useState({ value: 7, label: '7 days' });
     const [showMoveSuccessAlert, setShowMoveSuccessAlert] = useState(false);
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
+    const [showEmailSending, setShowEmailSending] = useState(false);
+    const [email_list, setEmail_list] = useState(null);
     function onFilter1(expire) {
         setExpire(expire);
     }
@@ -143,7 +146,7 @@ export function VideoInterview(props) {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
 
     const customStyles1 = {
@@ -155,7 +158,7 @@ export function VideoInterview(props) {
             fontFamily: 'Inter,Segoe UI, sans-serif',
             fontWeight: '500'
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
 
     const [keyWords, setkeyWords] = useState("");
@@ -290,7 +293,7 @@ export function VideoInterview(props) {
                 let userId = props.user.id;
                 setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
                 unSelectAllCandidates();
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 inviteSuccessAlert();
             }
         }
@@ -305,7 +308,7 @@ export function VideoInterview(props) {
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
         props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value);
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     const [showMoveForm, setShowMoveForm] = useState(false);
@@ -381,7 +384,7 @@ export function VideoInterview(props) {
         else {
             noCandidateAlert();
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     const rejectCandidates = () => {
@@ -416,7 +419,7 @@ export function VideoInterview(props) {
         } else {
             noCandidateAlert();
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     const hideSuccessAlert = () => {
@@ -494,7 +497,7 @@ export function VideoInterview(props) {
         } else {
             noCandidateAlert();
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     const openRejectNoteForm = () => {
@@ -507,6 +510,33 @@ export function VideoInterview(props) {
             }
         }
         setShowRejectNote(true);
+    }
+
+    const openEmailForm = () => {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            var email_list = []
+            for (let i = 0; i < candidates.length; i++) {
+                if (candidates[i].checked) {
+                    let candidate = JSON.parse(candidates[i].value);
+                    email_list.push({ "email": candidate?.email, "id": candidate?.apply_candidate_id, "first_name": candidate?.name?.split(" ")[0], "last_name": candidate?.name?.split(" ")[1] });
+                }
+            }
+            setEmail_list(email_list);
+            setShowEmailSending(true);
+        } else {
+            noCandidateAlert();
+        }
+    }
+
+    const hideEmailSending = () => {
+        setShowEmailSending(false);
     }
 
     const openGreenhouseMoveForm = () => {
@@ -582,13 +612,13 @@ export function VideoInterview(props) {
         } else {
             alert("Please select a stage!");
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     return (
         <React.Fragment>
             <div className="container-fluid">
-                <div className="mt-4 pb-3" style={{paddingTop:"1.4rem"}}>
+                <div className="mt-4 pb-3" style={{ paddingTop: "1.4rem" }}>
                     <div className="row">
                         <div className="interview-center">
                             {/* Edit Questions */}
@@ -652,7 +682,7 @@ export function VideoInterview(props) {
                             </div>
                         }
                     </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow:"none" }}>
+                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow: "none" }}>
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
@@ -808,6 +838,14 @@ export function VideoInterview(props) {
                                 <span></span>
                             </button>
                         }
+                        <button
+                            className="default-btn"
+                            onClick={openEmailForm}
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
+                        >
+                            Email
+                            <span></span>
+                        </button>
                     </div>
                 }
                 <MoveForm
@@ -888,32 +926,45 @@ export function VideoInterview(props) {
                 </MyModalShare2>
                 {/*  move success alert prompt */}
                 <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Move to next stage Success</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have moved the candidates to selected stage successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="alertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have moved the candidates to selected stage successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
                 {/*  reject success alert prompt */}
                 <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding:"2rem"}}>
+                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
                         <h3 className="interview-h3">Candidate Rejected!</h3>
-                        <p className="interview-p" style={{marginBottom: "0.5rem"}}>You have rejected the candidates successfully.</p>
-                        <div className="interview-p align-center" style={{marginBottom: "1rem"}}>
-                            <input id="rejectAlertCheckbox" type="checkbox" style={{marginRight: "1rem"}}/>
+                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have rejected the candidates successfully.</p>
+                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                            <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
                             Don't show again
                         </div>
                         <div className="row d-flex justify-content-center">
-                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right"}}>Ok</button>
+                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
                         </div>
                     </div>
                 </AlertModal>
+                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={hideEmailSending}
+                        employerProfileDetail={props.employerProfileDetail}
+                        user={props.user}
+                        profile={props.profile}
+                        email={email_list}
+                        jobid={props.jobsId}
+                        first_name={email_list}
+                        last_name={email_list}
+                        handleStatusChange2={null}
+                    />
+                </MyModal80>
             </div>
         </React.Fragment>
     )

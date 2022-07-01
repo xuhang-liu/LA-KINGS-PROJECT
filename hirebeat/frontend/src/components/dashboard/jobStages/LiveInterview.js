@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AlertModal, MyShareModal } from "./../DashboardComponents";
+import { AlertModal, MyShareModal, MyModal80 } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { ApplicantList_Live } from "./interviewComponents/ApplicantList_Live";
@@ -7,6 +7,7 @@ import 'boxicons';
 import Select from 'react-select';
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
+import { EmailSending } from '../applications/EmailSending';
 import axios from "axios";
 
 export function LiveInterview(props) {
@@ -28,6 +29,8 @@ export function LiveInterview(props) {
     const [live3value, setlive3value] = useState(props.livcat3);
     const [live4value, setlive4value] = useState(props.livcat4);
     const [live5value, setlive5value] = useState(props.livcat5);
+    const [showEmailSending, setShowEmailSending] = useState(false);
+    const [email_list, setEmail_list] = useState(null);
 
     // function onFilter1(expire) {
     //     setExpire(expire);
@@ -350,6 +353,33 @@ export function LiveInterview(props) {
         });
     }
 
+    const openEmailForm = () => {
+        let candidateCount = 0;
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked) {
+                candidateCount += 1;
+            }
+        };
+        if (candidateCount > 0) {
+            var email_list = []
+            for (let i = 0; i < candidates.length; i++) {
+                if (candidates[i].checked) {
+                    let candidate = JSON.parse(candidates[i].value);
+                    email_list.push({ "email": candidate?.email, "id": candidate?.apply_candidate_id, "first_name": candidate?.name?.split(" ")[0], "last_name": candidate?.name?.split(" ")[1] });
+                }
+            }
+            setEmail_list(email_list);
+            setShowEmailSending(true);
+        } else {
+            noCandidateAlert();
+        }
+    }
+
+    const hideEmailSending = () => {
+        setShowEmailSending(false);
+    }
+
     return (
         <React.Fragment>
             <div className="container-fluid">
@@ -514,6 +544,14 @@ export function LiveInterview(props) {
                             Reject
                             <span></span>
                         </button>
+                        <button
+                            className="default-btn"
+                            onClick={openEmailForm}
+                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
+                        >
+                            Email
+                            <span></span>
+                        </button>
                     </div>
                 }
                 <MoveForm
@@ -644,6 +682,19 @@ export function LiveInterview(props) {
                         </form>
                     </div>
                 </MyShareModal>
+                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
+                    <EmailSending
+                        hideEmailSending={hideEmailSending}
+                        employerProfileDetail={props.employerProfileDetail}
+                        user={props.user}
+                        profile={props.profile}
+                        email={email_list}
+                        jobid={props.jobsId}
+                        first_name={email_list}
+                        last_name={email_list}
+                        handleStatusChange2={null}
+                    />
+                </MyModal80>
             </div>
         </React.Fragment>
     )
