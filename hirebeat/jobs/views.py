@@ -851,19 +851,32 @@ def add_new_apply_candidate_from_jobtarget(request):
     email = request.data['applicant']['email']
     resume = request.data['applicant']['resume']['file']['data']
     cv_name = email.split("@")[0]
-    resume_url = upload_cv_to_s3(resume, cv_name)
+    cv_fileName = request.data['applicant']['resume']['file']['fileName']
+    resume_url = ""
+    if 'sample' not in cv_fileName:
+        resume_url = upload_cv_to_s3(resume, cv_name)
     fullname = firstname+" "+lastname
-    apply_referer = request.data['medium']
-    jobs = Jobs.objects.get(pk=job_id)
+    apply_referer = "JobTarget"
+    if 'medium' in request.data:
+        apply_referer = request.data['medium']
+    jobs = Jobs.objects.get(pk=int(job_id))
     user = User.objects.get(pk=jobs.user_id)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
-    questions_zip = request.data['questions']['questions']
-    answers_zip = request.data['questions']['answers']
+    questions_zip = []
+    answers_zip = []
+    if 'questions' in request.data and 'answers' in request.data:
+        questions_zip = request.data['questions']['questions']
+        answers_zip = request.data['questions']['answers']
     questions = []
     answers = []
     qualifications = []
     must_haves = []
     cur_stage = "Resume Review"
+    jt_jtochash = ""
+    jt_jtocprof = ""
+    if 'jtochash' in request.data and 'jtocprof' in request.data:
+        jt_jtochash=request.data['jtochash']
+        jt_jtocprof=request.data['jtocprof']
     if len(answers_zip) > 0 and len(questions_zip) > 0:
         for i in range(len(questions_zip)):
             for j in range(len(answers_zip)):
@@ -876,7 +889,7 @@ def add_new_apply_candidate_from_jobtarget(request):
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
                                        answers=answers, qualifications=qualifications, must_haves=must_haves,
-                                       current_stage=cur_stage, apply_referer=apply_referer, jt_jtochash=request.data['jtochash'], jt_jtocprof=request.data['jtocprof'])
+                                       current_stage=cur_stage, apply_referer=apply_referer, jt_jtochash=jt_jtochash, jt_jtocprof=jt_jtocprof)
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
