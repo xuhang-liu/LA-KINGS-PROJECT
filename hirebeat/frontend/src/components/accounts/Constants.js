@@ -4913,4 +4913,9 @@ export const Email_Block_List = [
     "zzom.co.uk",
     "zzz.com",
     "zzz.pl",
-    "proton.me"]
+    "proton.me",
+    "teleg.eu",
+    "fxcoral.biz",
+    "coinxt.net",
+    "ema-sofia.eu",
+    "mailo.icu"]
