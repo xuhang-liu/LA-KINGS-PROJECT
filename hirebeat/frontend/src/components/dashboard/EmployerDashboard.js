@@ -339,7 +339,7 @@ export class EmployerDashboard extends Component {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
           axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-            this.setState({jobt_token: res3.data.token});
+            this.setState({ jobt_token: res3.data.token });
           }).catch(error => {
             console.log(error)
           });
@@ -348,22 +348,21 @@ export class EmployerDashboard extends Component {
         console.log(error)
       });
     }
-    // if (window) {
-    //   window.fcWidget.user.setProperties({
-    //     firstName: this.props.employerProfileDetail.f_name,
-    //     lastName: this.props.employerProfileDetail.l_name,
-    //     email: this.props.user.email,
-    //     "user_id": this.props.user.id,
-    //     "company_name": this.props.employerProfileDetail.name,
-    //     "membership": this.props.profile.membership,
-    //     "is_employer": this.props.profile.is_employer,
-    //     "is_freetrial": this.props.profile.is_freetrial,
-    //     "plan": this.props.profile.plan_interval
-    //   });
-    // }
+    //Freshchat code
+    window.fcWidget.user.setProperties({
+      firstName: this.props.employerProfileDetail.f_name,
+      lastName: this.props.employerProfileDetail.l_name,
+      email: this.props.user.email,
+      "user_id": this.props.user.id,
+      "company_name": this.props.employerProfileDetail.name,
+      "membership": this.props.profile.membership,
+      "is_employer": this.props.profile.is_employer,
+      "is_freetrial": this.props.profile.is_freetrial,
+      "plan": this.props.profile.plan_interval
+    });
     // Segment code
     analytics.identify('f4ca124298', {
-      name: this.props.employerProfileDetail.f_name+" "+this.props.employerProfileDetail.l_name,
+      name: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name,
       email: this.props.user.email
     });
   }
@@ -695,7 +694,7 @@ export class EmployerDashboard extends Component {
           getPJobs={this.getPJobs}
           employerProfileDetail={this.props.employerProfileDetail}
           loadProfile={this.props.loadProfile}
-          jobt_token={(this.state.jobt_token == "")?this.props.profile.jobt_token:this.state.jobt_token}
+          jobt_token={(this.state.jobt_token == "") ? this.props.profile.jobt_token : this.state.jobt_token}
         />;
       case "applications":
         return <ApplicationCover
