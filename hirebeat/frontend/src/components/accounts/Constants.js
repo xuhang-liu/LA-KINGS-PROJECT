@@ -4918,4 +4918,10 @@ export const Email_Block_List = [
     "fxcoral.biz",
     "coinxt.net",
     "ema-sofia.eu",
-    "mailo.icu"]
+    "mailo.icu",
+    "decabg.eu",
+    "kellychibale-researchgroup-uct.com",
+    "forexnews.bg",
+    "xometryinc.onmicrosoft.com",
+    "nextraworld.com",
+    "proceedwky.com"]
