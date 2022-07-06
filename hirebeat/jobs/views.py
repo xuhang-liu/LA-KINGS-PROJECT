@@ -911,7 +911,7 @@ def add_new_apply_candidate_from_jobtarget(request):
     email.content_subtype = "html"
     email.send()
 
-    return Response("Add new apply candidate from JobTarget successfully", status=status.HTTP_202_ACCEPTED)
+    return Response("Add new apply candidate from JobTarget successfully", status=status.HTTP_200_OK)
 
 # the webhook api designed for DrJob to post candidates back to HireBeat platform
 @api_view(['POST'])

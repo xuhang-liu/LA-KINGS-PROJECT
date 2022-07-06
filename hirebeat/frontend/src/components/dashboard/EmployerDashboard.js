@@ -361,6 +361,11 @@ export class EmployerDashboard extends Component {
     //     "plan": this.props.profile.plan_interval
     //   });
     // }
+    // Segment code
+    analytics.identify('f4ca124298', {
+      name: this.props.employerProfileDetail.f_name+" "+this.props.employerProfileDetail.l_name,
+      email: this.props.user.email
+    });
   }
 
   getInitialSubpage = () => {
