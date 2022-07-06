@@ -79,18 +79,16 @@ export class Dashboard extends Component {
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
-    // if (window) {
-    //   window.fcWidget.user.setProperties({
-    //     firstName: this.props.userfullname,
-    //     lastName: "",
-    //     email: this.props.user.email,
-    //     "user_id": this.props.user.id,
-    //     "membership": this.props.profile.membership,
-    //     "is_employer": this.props.profile.is_employer,
-    //     "is_freetrial": this.props.profile.is_freetrial,
-    //     "plan": this.props.profile.plan_interval
-    //   });
-    // }
+    window.fcWidget.user.setProperties({
+      firstName: this.props.userfullname,
+      lastName: "",
+      email: this.props.user.email,
+      "user_id": this.props.user.id,
+      "membership": this.props.profile.membership,
+      "is_employer": this.props.profile.is_employer,
+      "is_freetrial": this.props.profile.is_freetrial,
+      "plan": this.props.profile.plan_interval
+    });
   }
 
   // params passed from resume page
