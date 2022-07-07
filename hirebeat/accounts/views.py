@@ -36,7 +36,7 @@ from django.conf import settings
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
-stripe.api_key = os.getenv("STRIPE_API_KEY")
+stripe.api_key = 'sk_test_51H4wpRKxU1MN2zWMSFbyyFroEGjV9yOCh7wtZj6A15FyJJHjTGuiLGfL6pmYpR9CpbjouDYpWaCqRJBvG0hLOljC00fSxnuMxT'
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -79,6 +79,31 @@ class ActivateAccount(View):
             return render(request, 'accounts/activation_success.html')
         else:
             return render(request, 'accounts/activation_failure.html')
+
+def calculate_order_amount(items):
+    print(items)
+    # Replace this constant with a calculation of the order's amount
+    # Calculate the order total on the server to prevent
+    # people from directly manipulating the amount on the client
+    return 299
+
+
+@api_view(['POST'])
+def stripe_paymentIntent(request):
+    try:
+        # Create a PaymentIntent with the order amount and currency
+        intent = stripe.PaymentIntent.create(
+            amount=calculate_order_amount(request.data['items']),
+            currency='usd',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+        )
+        return Response({
+            'clientSecret': intent['client_secret']
+        })
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_403_FORBIDDEN)
 
 
 @api_view(['POST'])

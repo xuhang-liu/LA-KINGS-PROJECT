@@ -238,6 +238,7 @@ import PayGPayment from "./payment/PayGPayment";
 import PJobFail from "./payment/PJobFail";
 import PJobPayment from "./payment/PJobPayment";
 import RemoveFraudPortal from "./accounts/RemoveFraudPortal";
+import { Stripepayment } from "./home/Stripepayment";
 
 const alertOptions = {
   timeout: 3000,
@@ -523,6 +524,7 @@ class App extends Component {
                 {/* <Route exact path="/employer-intergration-page" component={IntergrationPage} /> */}
                 <Route exact path="/talent-profile" component={PublicProfile} />
                 <Route exact path="/9483286d2a9dd1d9" component={RemoveFraudPortal} />
+                <Route exact path="/stripe" component={Stripepayment} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
