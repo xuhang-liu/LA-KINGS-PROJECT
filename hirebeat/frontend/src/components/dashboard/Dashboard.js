@@ -91,7 +91,7 @@ export class Dashboard extends Component {
       "plan": this.props.profile.plan_interval
     });
     // Segment code
-    analytics.identify('f4ca124298', {
+    window.analytics.identify('f4ca124298', {
       name: this.props.userfullname,
       email: this.props.user.email
     });
