@@ -449,7 +449,7 @@ export class Pipeline extends Component {
                 "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
                 "easy_apply": 1,
                 "easy_apply_type": "basic",
-                "questionnaire_webhook": "https://" + window.location.hostname + "/jobs/get-questions-from-job?jobid=" + this.props.job.job_details.id,
+                // "questionnaire_webhook": "https://" + window.location.hostname + "/jobs/get-questions-from-job?jobid=" + this.props.job.job_details.id,
                 "application_delivery_webhook": "https://" + window.location.hostname + "/jobs/add-new-apply-candidate-from-jobtarget"
             }
         }
