@@ -9,7 +9,7 @@ import requests
 import boto
 import mimetypes
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import os
 from dotenv import load_dotenv
 from django.views.generic import View
@@ -80,30 +80,27 @@ class ActivateAccount(View):
         else:
             return render(request, 'accounts/activation_failure.html')
 
-def calculate_order_amount(items):
-    print(items)
-    # Replace this constant with a calculation of the order's amount
-    # Calculate the order total on the server to prevent
-    # people from directly manipulating the amount on the client
-    return 299
-
-
 @api_view(['POST'])
-def stripe_paymentIntent(request):
+def stripe_create_subcription(request):
     try:
-        # Create a PaymentIntent with the order amount and currency
-        intent = stripe.PaymentIntent.create(
-            amount=calculate_order_amount(request.data['items']),
-            currency='usd',
-            automatic_payment_methods={
-                'enabled': True,
-            },
+        # Create the subscription. Note we're expanding the Subscription's
+        # latest invoice and that invoice's payment_intent
+        # so we can pass it to the front end to confirm the payment
+        subscription = stripe.Subscription.create(
+            customer='cus_HiSXKGaUtJJqo0',
+            items=[{
+                'price': 'price_1LJLwsKxU1MN2zWM3PiqUIwf',
+            }],
+            payment_behavior='default_incomplete',
+            payment_settings={'save_default_payment_method': 'on_subscription'},
+            expand=['latest_invoice.payment_intent'],
         )
-        return Response({
-            'clientSecret': intent['client_secret']
+        return JsonResponse({
+            'subscriptionId': subscription.id,
+            'clientSecret': subscription.latest_invoice.payment_intent.client_secret
         })
     except Exception:
-        return Response("Stripe payment failed", status=status.HTTP_403_FORBIDDEN)
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
