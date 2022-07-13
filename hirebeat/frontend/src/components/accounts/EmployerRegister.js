@@ -40,8 +40,8 @@ export class EmployerRegister extends Component {
       password2: "",
       firstName: "",
       lastName: "",
-      companySize: {value:"", label:""},
-      companyType: {value:"", label:""},
+      companySize: { value: "", label: "" },
+      companyType: { value: "", label: "" },
       location: "",
       step: 1,
       validEmail: true,
@@ -130,8 +130,19 @@ export class EmployerRegister extends Component {
                 dataLayerName: 'Form Submit'
               });
               window.dataLayer.push({
-                name: this.state.firstName+ " "+this.state.lastName,
+                name: this.state.firstName + " " + this.state.lastName,
                 email: this.state.email?.toLowerCase()
+              });
+              //Segment info
+              window?.analytics?.track("User - Employer Register", {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                workEmail: this.state.email?.toLowerCase(),
+                companyName: this.state.companyName,
+                companyWebsite: this.state.company_website,
+                companySize: "",
+                companyIndustry: "",
+                location: ""
               });
             }
           }
@@ -263,8 +274,19 @@ export class EmployerRegister extends Component {
             dataLayerName: 'Form Submit'
           });
           window.dataLayer.push({
-            name: this.state.firstName+ " "+this.state.lastName,
+            name: this.state.firstName + " " + this.state.lastName,
             email: this.state.email?.toLowerCase()
+          });
+          //Segment info
+          window?.analytics?.track("User - Employer Register", {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            workEmail: this.state.email?.toLowerCase(),
+            companyName: this.state.companyName,
+            companyWebsite: this.state.company_website,
+            companySize: this.state.companySize.value,
+            companyIndustry: this.state.companyType.value,
+            location: this.state.location
           });
         }
       })

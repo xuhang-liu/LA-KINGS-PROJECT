@@ -476,6 +476,16 @@ export class JobCreation extends Component {
                 if (this.state.job_post == 2) {
                     this.handlePremiumJobUpgrade();
                 }
+                //Segment info
+                window?.analytics?.track("Job - Post", {
+                    postedTime: Date().toLocaleString(),
+                    jobTitle: this.state.jobTitle,
+                    jobID: this.state.jobId,
+                    employmentType: this.state.jobType["value"],
+                    experienceLevel: this.state.jobLevel["value"],
+                    workplacePolicy: this.state.remote["label"],
+                    jobLocation: this.state.jobLocation
+                });
             }
         }
     }
@@ -548,6 +558,16 @@ export class JobCreation extends Component {
             this.props.addNewJob(data);
             setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs() }, 300);
             setTimeout(() => { this.props.renderJobs() }, 300);
+            //Segment info
+            window?.analytics?.track("Job - Save Draft", {
+                postedTime: Date().toLocaleString(),
+                jobTitle: this.state.jobTitle,
+                jobID: this.state.jobId,
+                employmentType: this.state.jobType["value"],
+                experienceLevel: this.state.jobLevel["value"],
+                workplacePolicy: this.state.remote["label"],
+                jobLocation: this.state.jobLocation
+            });
         }
     }
 

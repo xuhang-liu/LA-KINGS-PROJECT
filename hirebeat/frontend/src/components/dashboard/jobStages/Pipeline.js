@@ -48,6 +48,10 @@ export class Pipeline extends Component {
         this.setState({
             showRequestForm: true
         })
+        //Segment info
+        window?.analytics?.track("Job - Sourcing Request", {
+            viewSourcingTime: Date().toLocaleString(),
+        });
     }
 
     setHideRequest = () => {
@@ -486,6 +490,10 @@ export class Pipeline extends Component {
         }).catch(error => {
             console.log(error)
         });
+        //Segment info
+        window?.analytics?.track("Job - View Job Target", {
+            viewJobtargetTime: Date().toLocaleString(),
+        });
     }
 
     render() {
@@ -525,45 +533,45 @@ export class Pipeline extends Component {
                     </div> :
                     <div className="container-fluid py-5 px-5">
                         {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
-                        <div className="row">
-                            <div className="pr-5 pl-2 pb-5">
-                                {this.state.requestButton == 0 &&
+                            <div className="row">
+                                <div className="pr-5 pl-2 pb-5">
+                                    {this.state.requestButton == 0 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            onClick={this.setShowRequest}
+                                            style={{ paddingLeft: "25px", width: "12rem" }}
+                                        >
+                                            Request Sourcing
+                                            <span></span>
+                                        </button>}
+                                    {this.state.requestButton == 1 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
+                                        >
+                                            Sourcing List Pending
+                                            <span></span>
+                                        </button>}
+                                    {this.state.requestButton == 2 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            onClick={() => { this.setState({ requestListShow: true }) }}
+                                            style={{ paddingLeft: "25px", width: "12rem" }}
+                                        >
+                                            View Sourcing List
+                                            <span></span>
+                                        </button>}
+                                </div>
+                                <div className="pl-5 pb-5">
                                     <button
-                                        className="default-btn5 interview-txt6"
-                                        onClick={this.setShowRequest}
+                                        className="default-btn8 interview-txt6"
+                                        onClick={this.openJobTportal}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
-                                        Request Sourcing
-                                        <span></span>
-                                    </button>}
-                                {this.state.requestButton == 1 &&
-                                    <button
-                                        className="default-btn5 interview-txt6"
-                                        style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
-                                    >
-                                        Sourcing List Pending
-                                        <span></span>
-                                    </button>}
-                                {this.state.requestButton == 2 &&
-                                    <button
-                                        className="default-btn5 interview-txt6"
-                                        onClick={() => { this.setState({ requestListShow: true }) }}
-                                        style={{ paddingLeft: "25px", width: "12rem" }}
-                                    >
-                                        View Sourcing List
-                                        <span></span>
-                                    </button>}
-                            </div>
-                            <div className="pl-5 pb-5">
-                                <button
-                                    className="default-btn8 interview-txt6"
-                                    onClick={this.openJobTportal}
-                                    style={{ paddingLeft: "25px", width: "12rem" }}
-                                >
-                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon"/>
-                                </button>
-                            </div>
-                        </div>}
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon" />
+                                    </button>
+                                </div>
+                            </div>}
                         {/*All Candidates*/}
                         <div className="row">
                             <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage01.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
@@ -589,20 +597,20 @@ export class Pipeline extends Component {
                                 </div>
                             </div>
                             {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                        <button
-                                            className="default-btn1 interview-txt6 mt-4"
-                                            onClick={this.inviteExReviewer}
-                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
-                                        >
-                                            + Add Hiring Manager
-                                            <span></span>
-                                        </button>}
-                                </div>
-                            </div>}
-                            {(exReviewers.length > 0 && (!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)))&&
+                                <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                    <div>
+                                        {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                            <button
+                                                className="default-btn1 interview-txt6 mt-4"
+                                                onClick={this.inviteExReviewer}
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                            >
+                                                + Add Hiring Manager
+                                                <span></span>
+                                            </button>}
+                                    </div>
+                                </div>}
+                            {(exReviewers.length > 0 && (!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer))) &&
                                 <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                     {(exReviewers.slice(0, 3).map((sub, i) => {
                                         return (
