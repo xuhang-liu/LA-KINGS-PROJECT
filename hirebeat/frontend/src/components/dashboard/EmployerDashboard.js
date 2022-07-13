@@ -364,7 +364,14 @@ export class EmployerDashboard extends Component {
     window.analytics.identify(this.props.user.id, {
       name: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name,
       email: this.props.user.email,
-      plan: this.props.profile.plan_interval
+      company: {
+        name: this.props.profile?.company_name,
+        plan: this.props.profile?.plan_interval
+      },
+      phone: this.props.profile?.phone_number,
+      username: this.props.user.username,
+      website: this.props.employerProfileDetail?.website,
+      description: this.props.employerProfileDetail?.location
     });
   }
 

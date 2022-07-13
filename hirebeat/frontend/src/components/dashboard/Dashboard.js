@@ -92,9 +92,15 @@ export class Dashboard extends Component {
     });
     // Segment code
     window.analytics.identify(this.props.user.id, {
-      name: this.props.userfullname,
+      name: this.props?.userfullname,
       email: this.props.user.email,
-      plan: this.props.profile.plan_interval
+      company: {
+        name: this.props.profile?.company_name,
+        plan: this.props.profile?.plan_interval
+      },
+      phone: this.props.profile?.phone_number,
+      username: this.props.user.username,
+      description: this.props.profileDetail?.location
     });
   }
 

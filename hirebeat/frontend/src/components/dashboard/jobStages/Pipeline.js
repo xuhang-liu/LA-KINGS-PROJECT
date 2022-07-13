@@ -556,12 +556,11 @@ export class Pipeline extends Component {
                             </div>
                             <div className="pl-5 pb-5">
                                 <button
-                                    className="default-btn1 interview-txt6"
+                                    className="default-btn8 interview-txt6"
                                     onClick={this.openJobTportal}
                                     style={{ paddingLeft: "25px", width: "12rem" }}
                                 >
-                                    Job Target
-                                    <span></span>
+                                    <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon"/>
                                 </button>
                             </div>
                         </div>}
