@@ -872,11 +872,9 @@ def add_new_apply_candidate_from_jobtarget(request):
     qualifications = []
     must_haves = []
     cur_stage = "Resume Review"
-    jt_jtochash = ""
-    jt_jtocprof = ""
-    if 'jtochash' in request.data and 'jtocprof' in request.data:
-        jt_jtochash=request.data['jtochash']
-        jt_jtocprof=request.data['jtocprof']
+    applicant_guid = None
+    if 'applicant_guid' in request.data:
+        applicant_guid=request.data['applicant_guid']
     if len(answers_zip) > 0 and len(questions_zip) > 0:
         for i in range(len(questions_zip)):
             for j in range(len(answers_zip)):
@@ -889,7 +887,7 @@ def add_new_apply_candidate_from_jobtarget(request):
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
                                        location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
                                        answers=answers, qualifications=qualifications, must_haves=must_haves,
-                                       current_stage=cur_stage, apply_referer=apply_referer, jt_jtochash=jt_jtochash, jt_jtocprof=jt_jtocprof)
+                                       current_stage=cur_stage, apply_referer=apply_referer, applicant_guid=applicant_guid)
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
@@ -1792,8 +1790,7 @@ def job_target_push_candidates_back(request):
         url = "https://stagingatsapi.jobtarget.com/api/employer/jobs/applicantdataviaptoken"
         data = {
             "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
-            "jtochash": jobT_candidate.jt_jtochash,
-            "jtocprof": jobT_candidate.jt_jtocprof,
+            "applicant_guid": jobT_candidate.applicant_guid,
             "stage": jobT_candidate.current_stage,
             "event_timestamp": datetime.now().strftime("%Y:%m:%d %H:%M"),
         }

@@ -60,8 +60,7 @@ class ApplyCandidates(models.Model):
     linkedinurl = models.CharField(max_length=100, null=True, blank=True)
     apply_source = models.CharField(max_length=100, default="HireBeat")
     apply_referer = models.CharField(max_length=300, null=True, blank=True)
-    jt_jtochash = models.CharField(max_length=300, null=True, blank=True)
-    jt_jtocprof = models.CharField(max_length=300, null=True, blank=True)
+    applicant_guid = models.CharField(max_length=300, null=True, blank=True)
     gender = models.CharField(max_length=100, null=True)
     race = models.CharField(max_length=200, null=True)
     # new resume analysis fields

@@ -133,23 +133,20 @@ export class EmployerRegister extends Component {
                 name: this.state.firstName + " " + this.state.lastName,
                 email: this.state.email?.toLowerCase()
               });
-              //Segment info
-              window?.analytics?.track("User - Employer Register", {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                workEmail: this.state.email?.toLowerCase(),
-                companyName: this.state.companyName,
-                companyWebsite: this.state.company_website,
-                companySize: "",
-                companyIndustry: "",
-                location: ""
-              });
             }
           }
         })
         .catch((err) =>
           console.log(err)
         );
+      //Segment info
+      window?.analytics?.track("User - Employer Register", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        workEmail: this.state.email?.toLowerCase(),
+        companyName: this.state.companyName,
+        companyWebsite: this.state.company_website,
+      });
     }
   };
 
@@ -277,22 +274,22 @@ export class EmployerRegister extends Component {
             name: this.state.firstName + " " + this.state.lastName,
             email: this.state.email?.toLowerCase()
           });
-          //Segment info
-          window?.analytics?.track("User - Employer Register", {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            workEmail: this.state.email?.toLowerCase(),
-            companyName: this.state.companyName,
-            companyWebsite: this.state.company_website,
-            companySize: this.state.companySize.value,
-            companyIndustry: this.state.companyType.value,
-            location: this.state.location
-          });
         }
       })
       .catch((err) =>
         console.log(err)
       );
+    //Segment info
+    window?.analytics?.track("User - Employer Register", {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      workEmail: this.state.email?.toLowerCase(),
+      companyName: this.state.companyName,
+      companyWebsite: this.state.company_website,
+      companySize: this.state.companySize["value"],
+      companyIndustry: this.state.companyType["value"],
+      location: this.state.location
+    });
   };
 
   render() {

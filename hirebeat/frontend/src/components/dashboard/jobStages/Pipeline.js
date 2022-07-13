@@ -49,7 +49,7 @@ export class Pipeline extends Component {
             showRequestForm: true
         })
         //Segment info
-        window?.analytics?.track("Job - Sourcing Request", {
+        window?.analytics?.track("Job - View Sourcing Request", {
             viewSourcingTime: Date().toLocaleString(),
         });
     }
