@@ -104,6 +104,15 @@ export class EmployerRegister extends Component {
       if (this.state.companyName.trim() == null || this.state.companyName.trim() == "") {
         return alert("Company Name Invalid Format!");
       }
+      //Segment info
+      window?.analytics?.track("User - Employer Register", {
+        registerTime: Date().toLocaleString(),
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        workEmail: this.state.email,
+        companyName: this.state.companyName,
+        companyWebsite: this.state.company_website
+      });
       axios
         .get(`accounts/check-company-name-existence?companyName=${this.state.companyName}`)
         .then((res) => {
@@ -139,14 +148,6 @@ export class EmployerRegister extends Component {
         .catch((err) =>
           console.log(err)
         );
-      //Segment info
-      window?.analytics?.track("User - Employer Register", {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        workEmail: this.state.email?.toLowerCase(),
-        companyName: this.state.companyName,
-        companyWebsite: this.state.company_website,
-      });
     }
   };
 
@@ -244,7 +245,15 @@ export class EmployerRegister extends Component {
       this.setState({ validCompanyName: false });
       return;
     }
-
+    //Segment info
+    window?.analytics?.track("User - Employer Register", {
+      registerTime: Date().toLocaleString(),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      workEmail: this.state.email,
+      companyName: this.state.companyName,
+      companyWebsite: this.state.company_website
+    });
     // check company name exist or not
     axios
       .get(`accounts/check-company-name-existence?companyName=${this.state.companyName}`)
@@ -279,17 +288,6 @@ export class EmployerRegister extends Component {
       .catch((err) =>
         console.log(err)
       );
-    //Segment info
-    window?.analytics?.track("User - Employer Register", {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      workEmail: this.state.email?.toLowerCase(),
-      companyName: this.state.companyName,
-      companyWebsite: this.state.company_website,
-      companySize: this.state.companySize["value"],
-      companyIndustry: this.state.companyType["value"],
-      location: this.state.location
-    });
   };
 
   render() {
