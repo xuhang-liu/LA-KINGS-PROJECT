@@ -111,6 +111,8 @@ const AcceptedCandidate = (props) => {
     const [nextStage, setNextStage] = useState("Live Interview");
     const [showEmailSending, setShowEmailSending] = useState(false);
     const [email_list, setEmail_list] = useState(null);
+    const [select_all, setSelect_all] = useState(false);
+    const [candidates_count, setCandidates_count] = useState(0);
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
 
@@ -160,12 +162,15 @@ const AcceptedCandidate = (props) => {
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
+            setSelect_all(true);
         }
         else {
             // cancel all candidates selection
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
+            setSelect_all(false);
+            setCandidates_count(0);
         }
     }
 
@@ -282,7 +287,7 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -327,7 +332,7 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -365,7 +370,17 @@ const AcceptedCandidate = (props) => {
     const hideEmailSending = () => {
         setShowEmailSending(false);
     }
-    
+
+    const CheckListCheckbox = () => {
+        setCandidates_count(0);
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked == true) {
+                setCandidates_count(candidates_count + 1);
+            }
+        }
+    }
+
     return (
         <div>
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
@@ -474,6 +489,7 @@ const AcceptedCandidate = (props) => {
                                     reviewerStageLength={props.reviewerStageLength}
                                     category3={category3}
                                     category5={category5}
+                                    CheckListCheckbox={CheckListCheckbox}
                                 />
                             </div>
                         )
@@ -498,30 +514,123 @@ const AcceptedCandidate = (props) => {
                 }
                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                        <button
-                            className="default-btn"
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                            onClick={openMoveForm}
-                        >
-                            Move
-                            <span></span>
-                        </button>
-                        <button
-                            className="default-btn"
-                            onClick={rejectCandidates}
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                        >
-                            Reject
-                            <span></span>
-                        </button>
-                        <button
-                            className="default-btn"
-                            onClick={openEmailForm}
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
-                        >
-                            Email
-                            <span></span>
-                        </button>
+                        {select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={openMoveForm}
+                            >
+                                Move All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {candidates_count > 0 ?
+                                    <span>
+                                        {candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openMoveForm}
+                                            >
+                                                Move ({candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openMoveForm}
+                                            >
+                                                Move
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
+                                    >
+                                        Move
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
+                        {select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={rejectCandidates}
+                            >
+                                Reject All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {candidates_count > 0 ?
+                                    <span>
+                                        {candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={rejectCandidates}
+                                            >
+                                                Reject ({candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={rejectCandidates}
+                                            >
+                                                Reject
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
+                                    >
+                                        Reject
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
+                        {select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={openEmailForm}
+                            >
+                                Email All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {candidates_count > 0 ?
+                                    <span>
+                                        {candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openEmailForm}
+                                            >
+                                                Email ({candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openEmailForm}
+                                            >
+                                                Email
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
+                                    >
+                                        Email
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
                     </div>
                 }
                 <MoveForm
@@ -757,7 +866,7 @@ const CandidateCard = (props) => {
             <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="container-fluid row h-100">
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="interview-txt9 mr-3">
-                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
+                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={props.CheckListCheckbox} />
                     </div>
                 }
                 <div className="col-2 title-button2" onClick={() => { viewResult(); }} style={{ cursor: "pointer" }}>
@@ -786,7 +895,7 @@ const CandidateCard = (props) => {
                     </div>
                 }
                 {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{marginLeft:"1.5rem"}}>
+                    <div className="col-3" style={{ marginLeft: "1.5rem" }}>
                         <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
                     </div>}
                 {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&

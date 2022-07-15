@@ -34,6 +34,8 @@ export function VideoInterview(props) {
     const [showRejectSuccessAlert, setShowRejectSuccessAlert] = useState(false);
     const [showEmailSending, setShowEmailSending] = useState(false);
     const [email_list, setEmail_list] = useState(null);
+    const [select_all, setSelect_all] = useState(false);
+    const [candidates_count, setCandidates_count] = useState(0);
     function onFilter1(expire) {
         setExpire(expire);
     }
@@ -178,12 +180,15 @@ export function VideoInterview(props) {
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
+            setSelect_all(true);
         }
         else {
             // cancel all candidates selection
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
+            setSelect_all(false);
+            setCandidates_count(0);
         }
     }
 
@@ -615,6 +620,16 @@ export function VideoInterview(props) {
         window.scrollTo(0, 0);
     };
 
+    const CheckListCheckbox = () => {
+        setCandidates_count(0);
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked == true) {
+                setCandidates_count(candidates_count + 1);
+            }
+        }
+    }
+
     return (
         <React.Fragment>
             <div className="container-fluid">
@@ -771,6 +786,7 @@ export function VideoInterview(props) {
                                 reviewerStageLength={props.reviewerStageLength}
                                 setShowNoQuestionAlert={setShowNoQuestionAlert}
                                 questions={props.questions}
+                                CheckListCheckbox={CheckListCheckbox}
                             />
                         </div>
                     </div>
@@ -794,26 +810,51 @@ export function VideoInterview(props) {
                 </div>
                 {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                        <button
-                            className="default-btn interview-txt6"
-                            style={{ paddingLeft: "25px", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                            onClick={handleInvitation}
-                        >
-                            Invite to Video Interview
-                            <span></span>
-                        </button>
                         {(props.gh_current_stage_id == "" || props.gh_current_stage_id == null) ?
+                            <span>
+                                {select_all ?
+                                    <button
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                        onClick={openMoveForm}
+                                    >
+                                        Move All
+                                        <span></span>
+                                    </button> :
+                                    <span>
+                                        {candidates_count > 0 ?
+                                            <span>
+                                                {candidates_count > 1 ?
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={openMoveForm}
+                                                    >
+                                                        Move ({candidates_count})
+                                                        <span></span>
+                                                    </button> :
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={openMoveForm}
+                                                    >
+                                                        Move
+                                                        <span></span>
+                                                    </button>}
+                                            </span> :
+                                            <button
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
+                                            >
+                                                Move
+                                                <span></span>
+                                            </button>}
+                                    </span>
+                                }
+                            </span> :
                             <button
                                 className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={openMoveForm}
-                            >
-                                Move
-                                <span></span>
-                            </button> :
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
                                 onClick={openGreenhouseMoveForm}
                             >
                                 Move
@@ -821,14 +862,47 @@ export function VideoInterview(props) {
                             </button>
                         }
                         {(props.gh_current_stage_id == "" || props.gh_current_stage_id == null) ?
-                            <button
-                                className="default-btn"
-                                onClick={rejectCandidates}
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                            >
-                                Reject
-                                <span></span>
-                            </button> :
+                            <span>
+                                {select_all ?
+                                    <button
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                        onClick={rejectCandidates}
+                                    >
+                                        Reject All
+                                        <span></span>
+                                    </button> :
+                                    <span>
+                                        {candidates_count > 0 ?
+                                            <span>
+                                                {candidates_count > 1 ?
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={rejectCandidates}
+                                                    >
+                                                        Reject ({candidates_count})
+                                                        <span></span>
+                                                    </button> :
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={rejectCandidates}
+                                                    >
+                                                        Reject
+                                                        <span></span>
+                                                    </button>}
+                                            </span> :
+                                            <button
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
+                                            >
+                                                Reject
+                                                <span></span>
+                                            </button>}
+                                    </span>
+                                }
+                            </span> :
                             <button
                                 className="default-btn"
                                 onClick={openRejectNoteForm}
@@ -838,14 +912,84 @@ export function VideoInterview(props) {
                                 <span></span>
                             </button>
                         }
-                        <button
-                            className="default-btn"
-                            onClick={openEmailForm}
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
-                        >
-                            Email
-                            <span></span>
-                        </button>
+                        {select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff6b00", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={handleInvitation}
+                            >
+                                Interview All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {candidates_count > 0 ?
+                                    <span>
+                                        {candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff6b00", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={handleInvitation}
+                                            >
+                                                Interview ({candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff6b00", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={handleInvitation}
+                                            >
+                                                Interview
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff6b00", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff6b00" }}
+                                    >
+                                        Interview
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
+                        {select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={openEmailForm}
+                            >
+                                Email All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {candidates_count > 0 ?
+                                    <span>
+                                        {candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openEmailForm}
+                                            >
+                                                Email ({candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={openEmailForm}
+                                            >
+                                                Email
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
+                                    >
+                                        Email
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
                     </div>
                 }
                 <MoveForm

@@ -68,6 +68,7 @@ export const ApplicantList_Live = (props) => {
                         livcat={props.applicants[index].livcat}
                         category3={props.category3}
                         category4={props.category4}
+                        CheckListCheckbox={props.CheckListCheckbox}
                     />
                 )
             })}
