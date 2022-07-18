@@ -26,6 +26,8 @@ function ScrollToTopOnMount() {
   return null;
 }
 
+const recaptchaRef = React.createRef();
+
 export class EmployerRegister extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +50,7 @@ export class EmployerRegister extends Component {
       validPwd: true,
       validCompanyName: true,
       unusedEmail: true,
+      recap_value: "",
     };
   }
 
@@ -165,36 +168,61 @@ export class EmployerRegister extends Component {
     });
   };
 
+  onCapChange = (value) => {
+    this.setState({ recap_value: value });
+  }
+
   checkAccountData = (e) => {
     e.preventDefault();
+    // check Capcha value:
+    if (this.state.recap_value == "") {
+      return alert("Recaptcha field is required!")
+    }
     // reset error states
     this.setState({ validEmail: true, validPwd: true, unusedEmail: true });
     // check email format
     if ((Email_Block_List.includes(this.state.email?.toLowerCase()?.split("@")[1])) && !this.state.isReviewer) {
       this.setState({ validEmail: false });
+      recaptchaRef.current.reset();
       return;
     }
     else if ((this.state.email?.toLowerCase()?.endsWith(".edu")) && !this.state.isReviewer) {
       this.setState({ validEmail: false });
+      recaptchaRef.current.reset();
       return;
     }
     // check passwords
     if (this.state.password !== this.state.password2) {
       this.setState({ validPwd: false });
+      recaptchaRef.current.reset();
       return;
     }
 
-    // check email registered or not
-    const email = { email: this.state.email?.toLowerCase() };
     axios
-      .post("check-user-registration", email)
+      .post(`https://www.google.com/recaptcha/api/siteverify?secret=${'6Ldp3_0gAAAAACipmoS0jGqI9Ja05QDWaQjyVOZz'}&response=${recaptchaRef.current.getValue()}`)
       .then((res) => {
-        let isRegistered = res.data.is_registered;
-        this.setState({ unusedEmail: false });
-        if (!isRegistered) {
-          // move to next step
-          let nextStep = this.state.step + 1;
-          this.setStep(nextStep);
+        if (res?.data?.success) {
+          // check email registered or not
+          const email = { email: this.state.email?.toLowerCase() };
+          axios
+            .post("check-user-registration", email)
+            .then((res) => {
+              let isRegistered = res.data.is_registered;
+              this.setState({ unusedEmail: false });
+              if (!isRegistered) {
+                // move to next step
+                let nextStep = this.state.step + 1;
+                this.setStep(nextStep);
+              } else {
+                recaptchaRef.current.reset();
+              }
+            })
+            .catch(error => {
+              console.log(error)
+            });
+        } else {
+          recaptchaRef.current.reset();
+          return alert("Recaptcha failed!");
         }
       })
       .catch(error => {
@@ -333,6 +361,8 @@ export class EmployerRegister extends Component {
                                 validEmail={this.state.validEmail}
                                 unusedEmail={this.state.unusedEmail}
                                 validPwd={this.state.validPwd}
+                                onCapChange={this.onCapChange}
+                                recaptchaRef={recaptchaRef}
                               />
                             }
                             {this.state.step === 2 &&

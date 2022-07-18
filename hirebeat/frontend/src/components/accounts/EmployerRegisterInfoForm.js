@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export class EmployerRegisterInfoForm extends Component {
     handleInput = (e) => {
@@ -127,6 +128,11 @@ export class EmployerRegisterInfoForm extends Component {
                     </p>
 
                     <br/>
+                    <ReCAPTCHA
+                      sitekey="6Ldp3_0gAAAAAJyz-MISCBnyhHAycmmj4ZIpGJ_U"
+                      onChange={this.props.onCapChange}
+                      ref={this.props.recaptchaRef}
+                    />
 
                     <p className="d-flex flex-wrap justify-content-start mb-2"
                          style={{
