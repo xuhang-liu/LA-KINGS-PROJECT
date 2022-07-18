@@ -188,9 +188,15 @@ export class EmployerRegister extends Component {
       recaptchaRef.current.reset();
       return;
     }
-
+    
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+    };
     axios
-      .post(`https://www.google.com/recaptcha/api/siteverify?secret=${'6Ldp3_0gAAAAACipmoS0jGqI9Ja05QDWaQjyVOZz'}&response=${recaptchaRef.current.getValue()}`)
+      .post(`https://www.google.com/recaptcha/api/siteverify?secret=${'6Ldp3_0gAAAAACipmoS0jGqI9Ja05QDWaQjyVOZz'}&response=${recaptchaRef.current.getValue()}`, config)
       .then((res) => {
         if (res?.data?.success) {
           // check email registered or not
