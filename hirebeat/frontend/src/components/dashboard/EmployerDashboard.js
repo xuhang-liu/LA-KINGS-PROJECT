@@ -106,6 +106,10 @@ export class EmployerDashboard extends Component {
       user_id: this.props.user.id,
       viewed_employer_welcome: true
     }
+    //Segment info
+    window?.analytics?.track("Tutorial - Welcome", {
+      eventTime: Date().toLocaleString()
+    });
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -150,6 +154,10 @@ export class EmployerDashboard extends Component {
   };
 
   closeTourOpenJob = () => {
+    //Segment info
+    window?.analytics?.track("Tutorial - Later", {
+      eventTime: Date().toLocaleString()
+    });
     this.setState({ isEndTour: false })
   }
 
@@ -349,7 +357,7 @@ export class EmployerDashboard extends Component {
       });
     }
     //Freshchat code
-    window.fcWidget.user.setProperties({
+    window?.fcWidget.user.setProperties({
       firstName: this.props.employerProfileDetail.f_name,
       lastName: this.props.employerProfileDetail.l_name,
       email: this.props.user.email,
@@ -361,7 +369,9 @@ export class EmployerDashboard extends Component {
       "plan": this.props.profile.plan_interval
     });
     // Segment code
-    window.analytics.identify(this.props.user.id, {
+    window?.analytics?.identify(this.props.user.id, {
+      firstName: this.props.employerProfileDetail.f_name,
+      lastName: this.props.employerProfileDetail.l_name,
       name: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name,
       email: this.props.user.email,
       company: {
@@ -371,7 +381,8 @@ export class EmployerDashboard extends Component {
       phone: this.props.profile?.phone_number,
       username: this.props.user.username,
       website: this.props.employerProfileDetail?.website,
-      description: this.props.employerProfileDetail?.location
+      description: this.props.employerProfileDetail?.location,
+      createdAt: Date().toLocaleString()
     });
   }
 
@@ -444,6 +455,10 @@ export class EmployerDashboard extends Component {
       }
       )
     }
+    //Segment info
+    window?.analytics?.track("Tutorial - Create a Job", {
+      eventTime: Date().toLocaleString()
+    });
     // JobTarget steps:
     const config = {
       headers: {

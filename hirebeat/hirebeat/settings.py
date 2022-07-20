@@ -58,8 +58,6 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     # , is required otherwise viewed as a string
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
         'knox.auth.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [

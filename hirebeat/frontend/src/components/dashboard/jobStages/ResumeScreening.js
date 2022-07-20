@@ -199,6 +199,34 @@ export class ResumeScreening extends Component {
                 if (!noShowAgainMove) {
                     this.enableSuccessAlert();
                 }
+                //Segment
+                window.scrollTo(0, 0);
+                switch (this.state.nextStage) {
+                    case "Resume Review":
+                        return (window?.analytics?.track("Recruitment - Move to Resume Review", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: this.props.user.id
+                        }));
+                    case "Video Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Video Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: this.props.user.id
+                        }));
+                    case "Live Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Live Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: this.props.user.id
+                        }));
+                    case "Short List":
+                        return (window?.analytics?.track("Recruitment - Move to Short List", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: this.props.user.id
+                        }));
+                }
             } else if (this.state.nextStage == "Resume Review") {
                 alert("These candidates are already in this stage!");
             } else {

@@ -201,6 +201,34 @@ export function LiveInterview(props) {
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
+                //Segment
+                window.scrollTo(0, 0);
+                switch (nextStage) {
+                    case "Resume Review":
+                        return (window?.analytics?.track("Recruitment - Move to Resume Review", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Video Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Video Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Live Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Live Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Short List":
+                        return (window?.analytics?.track("Recruitment - Move to Short List", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                }
             } else if (nextStage == "Live Interview") {
                 alert("These candidates are already in this stage!");
             } else {

@@ -80,7 +80,7 @@ export class Dashboard extends Component {
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
     //Freshchat code
-    window.fcWidget.user.setProperties({
+    window?.fcWidget?.user.setProperties({
       firstName: this.props.userfullname,
       lastName: "",
       email: this.props.user.email,
@@ -91,7 +91,7 @@ export class Dashboard extends Component {
       "plan": this.props.profile.plan_interval
     });
     // Segment code
-    window.analytics.identify(this.props.user.id, {
+    window?.analytics?.identify(this.props.user.id, {
       name: this.props?.userfullname,
       email: this.props.user.email,
       company: {

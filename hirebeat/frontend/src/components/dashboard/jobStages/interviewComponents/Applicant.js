@@ -125,6 +125,12 @@ export const Applicant = (props) => {
             props.setShowNoQuestionAlert(true);
         }
         else {
+            //Segment info
+            window?.analytics?.track("Recruitment - Video Interview Invitation Sent", {
+                eventTime: Date().toLocaleString(),
+                jobTitle: props.jobTitle,
+                employerID: props.user.id
+            });
             // encode url
             let url = "";
             //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
@@ -157,7 +163,7 @@ export const Applicant = (props) => {
         // }
         // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, (props.selectedPage+1), props.currentStage, props.category.value, props.category3.value) }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, props.category.value, props.category3.value) }, 300);
         setShow(false);
     }
 
@@ -184,7 +190,7 @@ export const Applicant = (props) => {
                 <div className="col-2">
                     {(isInvited || props.isRecorded) &&
                         <div className="interview-txt9">
-                            <p style={{ color: "#090d3a" }}>{props.date?props.date:""}</p>
+                            <p style={{ color: "#090d3a" }}>{props.date ? props.date : ""}</p>
                         </div>
                     }
                 </div>
@@ -262,14 +268,14 @@ export const Applicant = (props) => {
                         {(isInvited && props.filter == "active") ?
                             (props.isRecorded && props.videoCount > 0 ?
                                 null
-                                : 
+                                :
                                 <button
                                     onClick={() => inviteAgain()}
                                     className="title-button2"
                                 >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
-                                Resend
-                                </button>) 
+                                    {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
+                                    Resend
+                                </button>)
                             :
                             <button
                                 onClick={() => inviteAgain()}

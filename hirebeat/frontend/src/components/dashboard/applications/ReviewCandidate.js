@@ -115,6 +115,33 @@ const ReviewCandidate = (props) => {
                 enableSuccessAlert();
             }
             // props.onHide();
+            //Segment
+            switch (nextStage) {
+                case "Resume Review":
+                    return (window?.analytics?.track("Recruitment - Move to Resume Review", {
+                        eventTime: Date().toLocaleString(),
+                        jobID: jobId,
+                        employerID: props.user.id
+                    }));
+                case "Video Interview":
+                    return (window?.analytics?.track("Recruitment - Move to Video Interview", {
+                        eventTime: Date().toLocaleString(),
+                        jobID: jobId,
+                        employerID: props.user.id
+                    }));
+                case "Live Interview":
+                    return (window?.analytics?.track("Recruitment - Move to Live Interview", {
+                        eventTime: Date().toLocaleString(),
+                        jobID: jobId,
+                        employerID: props.user.id
+                    }));
+                case "Short List":
+                    return (window?.analytics?.track("Recruitment - Move to Short List", {
+                        eventTime: Date().toLocaleString(),
+                        jobID: jobId,
+                        employerID: props.user.id
+                    }));
+            }
         } else {
             alert("Please select a stage to move.");
         }
