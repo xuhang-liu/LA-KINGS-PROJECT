@@ -25,7 +25,8 @@ import {
     UPDATE_APPLICANT_BASIC_INFO,
     SWITCH_JOB_CLOSED_STATUS,
     ASSIGN_CREDIT_TO_JOB,
-    CHECK_PREMIUM_JOB_LIST
+    CHECK_PREMIUM_JOB_LIST,
+    GET_JOB_DOTS
     } from "./action_types";
 import axios from "axios";
 import { tokenConfig } from "./auth_actions";
@@ -53,6 +54,10 @@ export const getAllJobs = (userId, page, subpage, status, sort) => (dispatch, ge
         type: GET_ALL_JOBS,
         payload: res.data,
       });
+      dispatch({
+        type: GET_JOB_DOTS,
+        payload: res.data,
+    });
     })
     .catch((err) =>
       dispatch(returnErrors(err.response.data, err.response.status))
