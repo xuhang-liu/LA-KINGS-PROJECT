@@ -182,7 +182,7 @@ export const Applicant = (props) => {
             <div className="row interview-center" style={{ color: "#7D7D7D", height: "2.5rem" }}>
                 {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                     <div className="interview-txt9" style={{ marginLeft: "1rem" }}>
-                        <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" />
+                        <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" onClick={props.CheckListCheckbox} />
                     </div>
                 }
                 <div className="col-3 mb-1">

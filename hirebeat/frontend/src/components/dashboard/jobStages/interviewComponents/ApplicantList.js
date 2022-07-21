@@ -65,6 +65,7 @@ export const ApplicantList = (props) => {
                         category={props.category}
                         category2={props.category2}
                         category3={props.category3}
+                        CheckListCheckbox={props.CheckListCheckbox}
                     />
                 )
             })}

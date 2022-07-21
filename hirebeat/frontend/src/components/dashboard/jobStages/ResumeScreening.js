@@ -32,6 +32,8 @@ export class ResumeScreening extends Component {
         showRejectSuccessAlert: false,
         showEmailSending: false,
         email_list: null,
+        select_all: false,
+        candidates_count: 0
     }
 
     componentDidMount() {
@@ -336,12 +338,14 @@ export class ResumeScreening extends Component {
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
+            this.setState({ select_all: true });
         }
         else {
             // cancel all candidates selection
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
+            this.setState({ select_all: false, candidates_count: false });
         }
     }
 
@@ -439,6 +443,18 @@ export class ResumeScreening extends Component {
 
     hideEmailSending = () => {
         this.setState({ showEmailSending: false })
+    }
+
+    CheckListCheckbox = () => {
+        this.setState({ candidates_count: 0 })
+        let candidates = document.getElementsByClassName("selected-candidate");
+        for (let i = 0; i < candidates.length; i++) {
+            if (candidates[i].checked == true) {
+                this.setState(prevState => {
+                    return { candidates_count: prevState.candidates_count + 1 }
+                })
+            }
+        }
     }
 
     render() {
@@ -576,6 +592,7 @@ export class ResumeScreening extends Component {
                                     updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
                                     employerProfileDetail={this.props.employerProfileDetail}
                                     reviewerStageLength={this.props.reviewerStageLength}
+                                    CheckListCheckbox={this.CheckListCheckbox}
                                 />
                             )
                         })}
@@ -600,30 +617,123 @@ export class ResumeScreening extends Component {
                 </div>
                 {(this.props.filter == "active" && !this.props.profile.is_subreviwer) &&
                     <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                        <button
-                            className="default-btn"
-                            style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                            onClick={this.openMoveForm}
-                        >
-                            Move
-                            <span></span>
-                        </button>
-                        <button
-                            className="default-btn"
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                            onClick={this.rejectCandidates}
-                        >
-                            Reject
-                            <span></span>
-                        </button>
-                        <button
-                            className="default-btn"
-                            style={{ paddingLeft: "25px", marginLeft: "1rem", paddingTop: "8px", paddingBottom: "8px" }}
-                            onClick={this.openEmailForm}
-                        >
-                            Email
-                            <span></span>
-                        </button>
+                        {this.state.select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={this.openMoveForm}
+                            >
+                                Move All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {this.state.candidates_count > 0 ?
+                                    <span>
+                                        {this.state.candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.openMoveForm}
+                                            >
+                                                Move ({this.state.candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.openMoveForm}
+                                            >
+                                                Move
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
+                                    >
+                                        Move
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
+                        {this.state.select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={this.rejectCandidates}
+                            >
+                                Reject All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {this.state.candidates_count > 0 ?
+                                    <span>
+                                        {this.state.candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.rejectCandidates}
+                                            >
+                                                Reject ({this.state.candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.rejectCandidates}
+                                            >
+                                                Reject
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
+                                    >
+                                        Reject
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
+                        {this.state.select_all ?
+                            <button
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                onClick={this.openEmailForm}
+                            >
+                                Email All
+                                <span></span>
+                            </button> :
+                            <span>
+                                {this.state.candidates_count > 0 ?
+                                    <span>
+                                        {this.state.candidates_count > 1 ?
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.openEmailForm}
+                                            >
+                                                Email ({this.state.candidates_count})
+                                                <span></span>
+                                            </button> :
+                                            <button
+                                                className="default-btn"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                onClick={this.openEmailForm}
+                                            >
+                                                Email
+                                                <span></span>
+                                            </button>}
+                                    </span> :
+                                    <button
+                                        className="default-btn1"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
+                                    >
+                                        Email
+                                        <span></span>
+                                    </button>}
+                            </span>
+                        }
                     </div>
                 }
                 <MyModalUpgrade
@@ -846,7 +956,7 @@ const ApplicantRow = (props) => {
             <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
                 <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem", marginRight: "1rem" }}>
                     {!props.profile.is_subreviwer &&
-                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
+                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={() => props.CheckListCheckbox()} />
                     }
                     {/*(props.applicant.is_invited != 1) ?
                         <div>
