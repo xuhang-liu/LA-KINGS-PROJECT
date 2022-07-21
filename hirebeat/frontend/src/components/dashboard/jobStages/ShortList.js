@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MyModal80, AlertModal } from './../DashboardComponents';
 import MoveForm from "./interviewComponents/MoveForm";
 import { ResumeEva } from "./interviewComponents/ResumeEva";
@@ -37,7 +37,7 @@ const ShortList = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Short List");
+        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId);
         window.scrollTo(0, 0);
     };
 
@@ -74,6 +74,8 @@ const ShortList = (props) => {
                     getAllJobs={props.getAllJobs}
                     keyWords={keyWords}
                     onChange={onChange}
+                    handlePageClick={handlePageClick}
+                    currentPage={props.currentPage}
                     totalPage={props.totalPage}
                     selectedPage={selectedPage}
                     reviewer_type={props.reviewer_type}
@@ -83,6 +85,7 @@ const ShortList = (props) => {
                     updateInviteStatus={props.updateInviteStatus}
                     moveCandidateToInterview={props.moveCandidateToInterview}
                     positionId={props.positionId}
+                    filterReset={props.filterReset}
                 />
             </div>
         </div>
@@ -116,6 +119,13 @@ const AcceptedCandidate = (props) => {
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
 
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setCategory3({ value: 'All', label: 'All' });
+            setCategory5({ value: 'All', label: 'All' });
+        }
+    }, [props.filterReset]); 
+
     function onFilter3(category3) {
         setCategory3(category3)
     }
@@ -124,7 +134,7 @@ const AcceptedCandidate = (props) => {
         setCategory5(category5)
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value);
+        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId);
     }
 
     const options3 = [
@@ -287,7 +297,7 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -332,7 +342,7 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -402,7 +412,7 @@ const AcceptedCandidate = (props) => {
                                 onPageChange={props.handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={props.selectedPage}
+                                forcePage={props.currentPage}
                             />
                         </div>
                     }
@@ -508,7 +518,7 @@ const AcceptedCandidate = (props) => {
                             onPageChange={props.handlePageClick}
                             containerClassName={'pagination3'}
                             activeClassName={'active'}
-                            forcePage={props.selectedPage}
+                            forcePage={props.currentPage}
                         />
                     </div>
                 }
@@ -851,7 +861,7 @@ const CandidateCard = (props) => {
         //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
-        props.getPostedJobs(userId, page, "Short List", "", props.category3.value, "", props.category5.value);
+        props.getPostedJobs(userId, page, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId);
     }
     return (
         <React.Fragment>

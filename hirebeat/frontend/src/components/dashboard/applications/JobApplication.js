@@ -942,7 +942,7 @@ const JobCard = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Video Interview");
+        props.getPostedJobs(props.user.id, page, "Video Interview", "", "", "", "", props.jobId);
         sessionStorage.setItem("intAppPage", String(selectedPage));
     };
 
@@ -955,7 +955,12 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { props.hideView(); props.getPJobs(); sessionStorage.removeItem("intAppPage"); props.getPostedJobs(props.user.id, 1, "Video Interview")}}
+                            onClick={() => { 
+                                props.hideView(); 
+                                props.getPJobs(); 
+                                sessionStorage.removeItem("intAppPage"); 
+                                props.getPostedJobs(props.user.id, 1, "Video Interview", "", "", "", "", props.jobId)
+                            }}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">
@@ -1151,7 +1156,10 @@ const JobCard = (props) => {
                         <button
                             type="button"
                             className="panel-button"
-                            onClick={() => { setInvite(false); props.getPostedJobs(props.user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1), "Video Interview")}}
+                            onClick={() => { 
+                                setInvite(false); 
+                                props.getPostedJobs(props.user.id, (sessionStorage.getItem("intAppPage")?parseInt(sessionStorage.getItem("intAppPage"))+1:1), "Video Interview", "", "", "", "", props.jobId)
+                            }}
                             style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
                         >
                             <div className="center-items back-to-text">

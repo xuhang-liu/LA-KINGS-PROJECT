@@ -193,7 +193,10 @@ export class ResumeScreening extends Component {
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+                setTimeout(() => { 
+                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+                }, 300);
                 this.unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -238,7 +241,10 @@ export class ResumeScreening extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+            setTimeout(() => { 
+                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+            }, 300);
             this.unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -475,7 +481,7 @@ export class ResumeScreening extends Component {
                                     onPageChange={this.handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={this.state.selectedPage}
+                                    forcePage={this.props.curJob.current_page}
                                 />
                             </div>
                         }
@@ -604,7 +610,7 @@ export class ResumeScreening extends Component {
                                 onPageChange={this.handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={this.state.selectedPage}
+                                forcePage={this.props.curJob.current_page}
                             />
                         </div>
                     }

@@ -196,7 +196,10 @@ export const Applicant_Live = (props) => {
         // }
         // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage, "", "", props.category4.value) }, 300);
+        setTimeout(() => { 
+            props.getAllJobs(props.user.id, 1, props.currentStage); 
+            props.getPostedJobs(props.user.id, 1, props.currentStage, "", "", props.category4.value,"", props.jobsId) 
+        }, 300);
         setShow(false);
     }
 
