@@ -12,7 +12,7 @@ import axios from "axios";
 
 export function LiveInterview(props) {
     useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Live Interview");
+        props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId);
     }, [])
 
     //const [expire, setExpire] = useState({ value: 7, label: '7 days' });
@@ -57,16 +57,23 @@ export function LiveInterview(props) {
         setCategory4(category4);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value, "", props.jobsId);
     }
-
+    
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
     function onFilter3(category3) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "","", props.jobsId);
     }
+
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setCategory3({ value: 'All', label: 'All' });
+            setCategory4({ value: 'All', label: 'All' });
+        }
+    }, [props.filterReset]); 
 
     // const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
 
@@ -128,7 +135,7 @@ export function LiveInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Live Interview");
+        props.getPostedJobs(props.user.id, page, "Live Interview", "","","","", props.jobsId);
         window.scrollTo(0, 0);
     };
 
@@ -190,7 +197,7 @@ export function LiveInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -235,7 +242,7 @@ export function LiveInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -346,7 +353,7 @@ export function LiveInterview(props) {
         };
         axios.post("questions/update-live-interview-categories", data, config).then((res) => {
             console.log(res.data);
-            setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview"); }, 300);
+            setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId); }, 300);
             hideShowConfigInt();
         }).catch(error => {
             console.log(error)
@@ -414,7 +421,7 @@ export function LiveInterview(props) {
                                     onPageChange={handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={selectedPage}
+                                    forcePage={props.currentPage}
                                 />
                             </div>
                         }
@@ -521,7 +528,7 @@ export function LiveInterview(props) {
                                 onPageChange={handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={selectedPage}
+                                forcePage={props.currentPage}
                             />
                         </div>
                     }

@@ -18,6 +18,7 @@ export function VideoInterview(props) {
     //    }, [])
 
     var curlimit = 0;
+    var selectForceReset = props.filterReset;
     const [showQEditForm, setShowQEditForm] = useState(false);
     const [showNoQuestionAlert, setShowNoQuestionAlert] = useState(false);
     const [showInviteAlert, setShowInviteAlert] = useState(false);
@@ -116,9 +117,10 @@ export function VideoInterview(props) {
     const [category, setCategory] = useState({ value: 'All', label: 'All' });
     function onFilter(category) {
         setCategory(category);
+        selectForceReset = false;
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value,"","", props.jobsId);
         setSelectedPage(0);
     }
 
@@ -128,7 +130,7 @@ export function VideoInterview(props) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value);
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId);
         setSelectedPage(0);
     }
 
@@ -136,6 +138,13 @@ export function VideoInterview(props) {
     function onFilter4(category4) {
         setCategory4(category4);
     }
+
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setCategory3({ value: 'All', label: 'All' });
+            setCategory({ value: 'All', label: 'All' });
+        }
+    }, [props.filterReset]); 
 
     const customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
@@ -291,7 +300,7 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId) }, 300);
                 unSelectAllCandidates();
                 window.scrollTo(0, 0);
                 inviteSuccessAlert();
@@ -307,7 +316,7 @@ export function VideoInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value);
+        props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value, "","", props.jobsId);
         window.scrollTo(0, 0);
     };
 
@@ -369,7 +378,7 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -410,7 +419,7 @@ export function VideoInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -492,7 +501,7 @@ export function VideoInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId) }, 300);
             rejectSuccessAlert();
         } else {
             noCandidateAlert();
@@ -603,7 +612,7 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview") }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId) }, 300);
                 sendSuccessAlert(category4['label']);
             }
             else {
@@ -677,7 +686,7 @@ export function VideoInterview(props) {
                                     onPageChange={handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={selectedPage}
+                                    forcePage={props.currentPage}
                                 />
                             </div>
                         }
@@ -787,7 +796,7 @@ export function VideoInterview(props) {
                                 onPageChange={handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={selectedPage}
+                                forcePage={props.currentPage}
                             />
                         </div>
                     }

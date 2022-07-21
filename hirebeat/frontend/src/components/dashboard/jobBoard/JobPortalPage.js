@@ -20,7 +20,8 @@ export class JobPortalPage extends Component {
         window.scrollTo(0, 0);
         this.state = {
             portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
-            reviewerStage: []
+            reviewerStage: [],
+            subComponentFilterReset: 0
         }
         if (this.props.job?.reviewer_type == "subr") {
             const config = {
@@ -32,17 +33,17 @@ export class JobPortalPage extends Component {
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
                 let stage_array = res?.data?.current_stage;
                 if (stage_array.includes("Short List")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Short List");
+                    this.props.getPostedJobs(this.props.user.id, 1, "Short List", "","","","", this.props.job.job_details.id);
                     this.setState({portalSubpage: "shortList"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
                 }
                 if (stage_array.includes("Live Interview")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview");
+                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview", "","","","", this.props.job.job_details.id);
                     this.setState({portalSubpage: "liveInterview"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
                 }
                 if (stage_array.includes("Video Interview")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview");
+                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview", "","","","", this.props.job.job_details.id);
                     this.setState({portalSubpage: "videoInterview"});
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
                 }
@@ -57,6 +58,14 @@ export class JobPortalPage extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        setTimeout(() => {
+            this.setState({
+                subComponentFilterReset: 0
+            });
+        }, 200);
+    }
+
     renderAllCandidates = () => {
         sessionStorage.setItem('selectedSubpageForJob', "");
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "allCandidates");
@@ -64,6 +73,7 @@ export class JobPortalPage extends Component {
         this.props.getAllJobs(this.props.user.id, page, "", "", "");
         this.setState({
             portalSubpage: "allCandidates",
+            subComponentFilterReset: 1
         });
     };
     renderResumeScreen = () => {
@@ -83,9 +93,10 @@ export class JobPortalPage extends Component {
         sessionStorage.setItem('selectedSubpage', "Video Interview");
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "videoInterview");
         let page = 1;
-        this.props.getPostedJobs(this.props.user.id, page, "Video Interview");
+        this.props.getPostedJobs(this.props.user.id, page, "Video Interview", "","","","", this.props.job.job_details.id);
         this.setState({
             portalSubpage: "videoInterview",
+            subComponentFilterReset: 1,
         });
     };
     renderLiveInterview = () => {
@@ -95,9 +106,10 @@ export class JobPortalPage extends Component {
             sessionStorage.setItem('selectedSubpage', "Live Interview");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "liveInterview");
             let page = 1;
-            this.props.getPostedJobs(this.props.user.id, page, "Live Interview");
+            this.props.getPostedJobs(this.props.user.id, page, "Live Interview", "","","","", this.props.job.job_details.id);
             this.setState({
                 portalSubpage: "liveInterview",
+                subComponentFilterReset: 1,
             });
         }
     };
@@ -108,9 +120,10 @@ export class JobPortalPage extends Component {
             sessionStorage.setItem('selectedSubpage', "Short List");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "shortList");
             let page = 1;
-            this.props.getPostedJobs(this.props.user.id, page, "Short List");
+            this.props.getPostedJobs(this.props.user.id, page, "Short List", "","","","", this.props.job.job_details.id);
             this.setState({
                 portalSubpage: "shortList",
+                subComponentFilterReset: 1,
             });
         }
     };
@@ -154,6 +167,7 @@ export class JobPortalPage extends Component {
                     isClosed={p.is_closed}
                     getPostedJobs={this.props.getPostedJobs}
                     employerProfileDetail={this.props.employerProfileDetail}
+                    filterReset={this.state.subComponentFilterReset}
                 />;
             case "resumeScreen":
                 return <ResumeScreening
@@ -217,6 +231,7 @@ export class JobPortalPage extends Component {
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     totalRecords={p.total_records}
+                    currentPage={p.current_page}
                     totalPage={p.total_page}
                     getPostedJobs={this.props.getPostedJobs}
                     updateInviteStatus={this.props.updateInviteStatus}
@@ -225,6 +240,7 @@ export class JobPortalPage extends Component {
                     gh_current_stage_id={this.props.job.job_details.gh_current_stage_id}
                     employerProfileDetail={this.props.employerProfileDetail}
                     reviewerStageLength={this.state.reviewerStage?.length}
+                    filterReset={this.state.subComponentFilterReset}
                 />;
             case "liveInterview":
                 return <LiveInterview
@@ -276,6 +292,7 @@ export class JobPortalPage extends Component {
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
                     totalRecords={p.total_records}
+                    currentPage={p.current_page}
                     totalPage={p.total_page}
                     getPostedJobs={this.props.getPostedJobs}
                     updateInviteStatus={this.props.updateInviteStatus}
@@ -289,6 +306,7 @@ export class JobPortalPage extends Component {
                     livcat4={p?.position?.livcat4}
                     livcat5={p?.position?.livcat5}
                     renderLiveInterview={this.renderLiveInterview}
+                    filterReset={this.state.subComponentFilterReset}
                 />;
             case "shortList":
                 return <ShortList
@@ -317,12 +335,14 @@ export class JobPortalPage extends Component {
                     reviewer_type={p.reviewer_type}
                     getPostedJobs={this.props.getPostedJobs}
                     getAllJobs={this.props.getAllJobs}
+                    currentPage={p.current_page}
                     totalPage={p.total_page}
                     jobsId={this.props.job.job_details.id}
                     employerProfileDetail={this.props.employerProfileDetail}
                     reviewerStageLength={this.state.reviewerStage?.length}
                     updateInviteStatus={this.props.updateInviteStatus}
                     moveCandidateToInterview={this.props.moveCandidateToInterview}
+                    filterReset={this.state.subComponentFilterReset}
                 />;
             default:
                 return null;
