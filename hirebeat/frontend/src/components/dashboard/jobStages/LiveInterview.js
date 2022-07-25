@@ -11,8 +11,9 @@ import { EmailSending } from '../applications/EmailSending';
 import axios from "axios";
 
 export function LiveInterview(props) {
+
     useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Live Interview");
+        props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId);
     }, [])
 
     //const [expire, setExpire] = useState({ value: 7, label: '7 days' });
@@ -33,6 +34,7 @@ export function LiveInterview(props) {
     const [email_list, setEmail_list] = useState(null);
     const [select_all, setSelect_all] = useState(false);
     const [candidates_count, setCandidates_count] = useState(0);
+    const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
 
     // function onFilter1(expire) {
     //     setExpire(expire);
@@ -59,16 +61,23 @@ export function LiveInterview(props) {
         setCategory4(category4);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value, "", props.jobsId);
     }
-
+    
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
     function onFilter3(category3) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "","", props.jobsId);
     }
+
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setCategory3({ value: 'All', label: 'All' });
+            setCategory4({ value: 'All', label: 'All' });
+        }
+    }, [props.filterReset]); 
 
     // const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
 
@@ -92,12 +101,14 @@ export function LiveInterview(props) {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0){ return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
             setSelect_all(true);
+            setSelectedAllCandidates(true);
         }
         else {
             // cancel all candidates selection
@@ -105,6 +116,7 @@ export function LiveInterview(props) {
                 candidates[i].checked = false;
             }
             setSelect_all(false);
+            setSelectedAllCandidates(false);
             setCandidates_count(0);
         }
     }
@@ -133,7 +145,7 @@ export function LiveInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Live Interview");
+        props.getPostedJobs(props.user.id, page, "Live Interview", "","","","", props.jobsId);
         window.scrollTo(0, 0);
     };
 
@@ -195,7 +207,7 @@ export function LiveInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -229,6 +241,8 @@ export function LiveInterview(props) {
                             employerID: userId
                         }));
                 }
+                //let checkbox = document.getElementById("select-all");
+                setSelectedAllCandidates(false);
             } else if (nextStage == "Live Interview") {
                 alert("These candidates are already in this stage!");
             } else {
@@ -268,9 +282,10 @@ export function LiveInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            setSelectedAllCandidates(false);
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
@@ -379,7 +394,7 @@ export function LiveInterview(props) {
         };
         axios.post("questions/update-live-interview-categories", data, config).then((res) => {
             console.log(res.data);
-            setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview"); }, 300);
+            setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId); }, 300);
             hideShowConfigInt();
         }).catch(error => {
             console.log(error)
@@ -414,13 +429,14 @@ export function LiveInterview(props) {
     }
 
     const CheckListCheckbox = () => {
-        setCandidates_count(0);
         let candidates = document.getElementsByClassName("selected-candidate");
+        let prev_candidates = 0
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked == true) {
-                setCandidates_count(candidates_count + 1);
+                prev_candidates++;
             }
         }
+        setCandidates_count(prev_candidates);
     }
 
     return (
@@ -457,7 +473,7 @@ export function LiveInterview(props) {
                                     onPageChange={handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={selectedPage}
+                                    forcePage={props.currentPage}
                                 />
                             </div>
                         }
@@ -466,7 +482,7 @@ export function LiveInterview(props) {
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
-                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                    <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                                 </div>
                             }
                             <div className="col-3">
@@ -565,7 +581,7 @@ export function LiveInterview(props) {
                                 onPageChange={handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={selectedPage}
+                                forcePage={props.currentPage}
                             />
                         </div>
                     }

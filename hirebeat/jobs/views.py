@@ -123,6 +123,7 @@ def get_all_jobs(request):
     jobs = []
     user_id = request.query_params.get("userId")
     page = 1
+    job_dots = 0
     try:
         page = int(request.query_params.get("page"))
     except:
@@ -149,9 +150,20 @@ def get_all_jobs(request):
     else:
         jobs = list(Jobs.objects.filter(
             user_id=user_id).order_by('-id').values())
+        positions = Positions.objects.filter(user_id=user_id)
+        for i in range(len(positions)):
+            positions_id = positions[i].id
+            job_dot = InvitedCandidates.objects.filter(
+                    positions_id=positions_id, is_viewed=False).count()
+            job_dots += job_dot
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
+
+        job_dot = ApplyCandidates.objects.filter(
+                    jobs_id=job_id, is_invited=0, is_viewed=False).count()
+        job_dots += job_dot
+
         # get reviewer type for each job in jobs
         reviewer_type = ""
         if profile.is_subreviwer or profile.is_external_reviewer:
@@ -223,8 +235,10 @@ def get_all_jobs(request):
                     applicant_email=applicant["email"], position_id=positions_id, current_stage=subpage).count()
 
         # get statistic data for each job
-        un_view = True if ApplyCandidates.objects.filter(
-            jobs_id=job_id, is_viewed=False, is_invited=0).count() > 0 else False
+        unviewed_count = ApplyCandidates.objects.filter(
+            jobs_id=job_id, is_viewed=False, is_invited=0).count() +\
+                        InvitedCandidates.objects.filter(positions_id=positions_id, is_viewed=False).count()
+        un_view = unviewed_count > 0
 
         # get interview questions for current job
         questions = list(InterviewQuestions.objects.filter(
@@ -247,6 +261,7 @@ def get_all_jobs(request):
             "un_view": un_view,
             "position": position,
             "total_records": total_records,
+            "current_page": page - 1,
             "total_page": total_page,
             "reviewer_type": reviewer_type,
         }
@@ -254,6 +269,7 @@ def get_all_jobs(request):
 
     return Response({
         "data": data,
+        "job_dots": job_dots
     })
 
 # for job edition

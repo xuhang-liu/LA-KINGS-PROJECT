@@ -88,7 +88,10 @@ export class Pipeline extends Component {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => { this.props.removeSubReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "") }
+                    onClick: () => { 
+                        this.props.removeSubReviewer(data); this.deletSuccessAlert(); 
+                        this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id) 
+                    }
                 },
                 {
                     label: 'No'
@@ -105,7 +108,10 @@ export class Pipeline extends Component {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => { this.props.delExReviewer(data); this.deletSuccessAlert(); this.props.getPostedJobs(this.props.user.id, 1, "") }
+                    onClick: () => { 
+                        this.props.delExReviewer(data); this.deletSuccessAlert(); 
+                        this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id) 
+                    }
                 },
                 {
                     label: 'No'
@@ -241,7 +247,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "") }, 300);
+                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id) }, 300);
             } else {
                 encoded_email = window.btoa("email=" + sub_reviewer_email?.toLowerCase());
                 let data = {
@@ -258,7 +264,7 @@ export class Pipeline extends Component {
                 const myPromise = new Promise((resolve, reject) => {
                     this.props.addSubReviewer(data);
                 });
-                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id));
                 //this.props.addSubReviewer(data);
                 //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();
@@ -349,7 +355,7 @@ export class Pipeline extends Component {
             let user_existence = res.data.data;
             if (user_existence) {
                 this.sendFailAlert();
-                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "") }, 300);
+                setTimeout(() => { this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id) }, 300);
             } else {
                 encoded_email = window.btoa("email=" + ex_reviewer_email?.toLowerCase());
                 let data = {
@@ -365,7 +371,7 @@ export class Pipeline extends Component {
                 const myPromise = new Promise((resolve, reject) => {
                     this.props.addExReviewer(data);
                 });
-                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, ""));
+                myPromise.then(this.props.getPostedJobs(this.props.user.id, 1, "","","","","", this.props.job.job_details.id));
                 //this.props.addExReviewer(data);
                 //setTimeout(() => {this.props.getPostedJobs(this.props.user.id, 1, "")}, 300);
                 this.alertSuccess();

@@ -33,7 +33,8 @@ export class ResumeScreening extends Component {
         showEmailSending: false,
         email_list: null,
         select_all: false,
-        candidates_count: 0
+        candidates_count: 0,
+        selectAllCandidates: false,
     }
 
     componentDidMount() {
@@ -188,12 +189,16 @@ export class ResumeScreening extends Component {
                 }
                 this.props.moveCandidateToInterview(meta);
                 this.setState({
-                    showMoveForm: false
+                    showMoveForm: false,
+                    selectAllCandidates: false
                 });
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+                setTimeout(() => { 
+                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+                }, 300);
                 this.unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -263,10 +268,16 @@ export class ResumeScreening extends Component {
                 "is_reject": true,
             }
             this.props.updateInviteStatus(data);
+            this.setState({
+                selectAllCandidates: false
+            });
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPostedJobs(userId, page, "Resume Review") }, 300);
+            setTimeout(() => { 
+                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+            }, 300);
             this.unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             if (!noShowAgainReject) {
@@ -355,19 +366,20 @@ export class ResumeScreening extends Component {
     selectAllCandidates = () => {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0) { return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
-            this.setState({ select_all: true });
+            this.setState({ select_all: true, selectAllCandidates: true });
         }
         else {
             // cancel all candidates selection
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = false;
             }
-            this.setState({ select_all: false, candidates_count: false });
+            this.setState({ select_all: false, candidates_count: false, selectAllCandidates: false });
         }
     }
 
@@ -503,7 +515,7 @@ export class ResumeScreening extends Component {
                                     onPageChange={this.handlePageClick}
                                     containerClassName={'pagination3'}
                                     activeClassName={'active'}
-                                    forcePage={this.state.selectedPage}
+                                    forcePage={this.props.curJob.current_page}
                                 />
                             </div>
                         }
@@ -512,7 +524,7 @@ export class ResumeScreening extends Component {
                         <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
                             <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
                                 {!this.props.profile.is_subreviwer &&
-                                    <input id="select-all" type="checkbox" onClick={this.selectAllCandidates} style={{ display: "inline" }} />
+                                    <input id="select-all" type="checkbox" checked={this.state.selectAllCandidates} onClick={this.selectAllCandidates} style={{ display: "inline" }} />
                                 }
                             </div>
                             <div className="col-4"><span>Name</span></div>
@@ -632,7 +644,7 @@ export class ResumeScreening extends Component {
                                 onPageChange={this.handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={this.state.selectedPage}
+                                forcePage={this.props.curJob.current_page}
                             />
                         </div>
                     }

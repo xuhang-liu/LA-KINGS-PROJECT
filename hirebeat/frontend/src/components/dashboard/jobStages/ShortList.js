@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MyModal80, AlertModal } from './../DashboardComponents';
 import MoveForm from "./interviewComponents/MoveForm";
 import { ResumeEva } from "./interviewComponents/ResumeEva";
@@ -37,7 +37,7 @@ const ShortList = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Short List");
+        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId);
         window.scrollTo(0, 0);
     };
 
@@ -74,6 +74,8 @@ const ShortList = (props) => {
                     getAllJobs={props.getAllJobs}
                     keyWords={keyWords}
                     onChange={onChange}
+                    handlePageClick={handlePageClick}
+                    currentPage={props.currentPage}
                     totalPage={props.totalPage}
                     selectedPage={selectedPage}
                     reviewer_type={props.reviewer_type}
@@ -83,6 +85,7 @@ const ShortList = (props) => {
                     updateInviteStatus={props.updateInviteStatus}
                     moveCandidateToInterview={props.moveCandidateToInterview}
                     positionId={props.positionId}
+                    filterReset={props.filterReset}
                 />
             </div>
         </div>
@@ -115,6 +118,14 @@ const AcceptedCandidate = (props) => {
     const [candidates_count, setCandidates_count] = useState(0);
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
+    const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
+
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setCategory3({ value: 'All', label: 'All' });
+            setCategory5({ value: 'All', label: 'All' });
+        }
+    }, [props.filterReset]); 
 
     function onFilter3(category3) {
         setCategory3(category3)
@@ -124,7 +135,7 @@ const AcceptedCandidate = (props) => {
         setCategory5(category5)
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value);
+        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId);
     }
 
     const options3 = [
@@ -157,12 +168,14 @@ const AcceptedCandidate = (props) => {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0) { return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
             setSelect_all(true);
+            setSelectedAllCandidates(true);
         }
         else {
             // cancel all candidates selection
@@ -170,6 +183,7 @@ const AcceptedCandidate = (props) => {
                 candidates[i].checked = false;
             }
             setSelect_all(false);
+            setSelectedAllCandidates(false);
             setCandidates_count(0);
         }
     }
@@ -287,9 +301,10 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
+                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                setSelectedAllCandidates(false);
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
@@ -360,9 +375,10 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value) }, 300);
+            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            setSelectedAllCandidates(false);
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
@@ -400,13 +416,14 @@ const AcceptedCandidate = (props) => {
     }
 
     const CheckListCheckbox = () => {
-        setCandidates_count(0);
         let candidates = document.getElementsByClassName("selected-candidate");
+        let prev_candidates = 0
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked == true) {
-                setCandidates_count(candidates_count + 1);
+                prev_candidates++;
             }
         }
+        setCandidates_count(prev_candidates);
     }
 
     return (
@@ -430,7 +447,7 @@ const AcceptedCandidate = (props) => {
                                 onPageChange={props.handlePageClick}
                                 containerClassName={'pagination3'}
                                 activeClassName={'active'}
-                                forcePage={props.selectedPage}
+                                forcePage={props.currentPage}
                             />
                         </div>
                     }
@@ -439,7 +456,7 @@ const AcceptedCandidate = (props) => {
                     <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="d-flex justify-content-start row interview-txt7 interview-center">
                         {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                             <div className='mr-3' style={{ marginLeft: "1rem", display: "flex" }}>
-                                <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                             </div>
                         }
                         <div className="col-2">Name</div>
@@ -536,7 +553,7 @@ const AcceptedCandidate = (props) => {
                             onPageChange={props.handlePageClick}
                             containerClassName={'pagination3'}
                             activeClassName={'active'}
-                            forcePage={props.selectedPage}
+                            forcePage={props.currentPage}
                         />
                     </div>
                 }
@@ -879,7 +896,7 @@ const CandidateCard = (props) => {
         //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
-        props.getPostedJobs(userId, page, "Short List", "", props.category3.value, "", props.category5.value);
+        props.getPostedJobs(props.user.id, props.currentPage, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId);
     }
     return (
         <React.Fragment>

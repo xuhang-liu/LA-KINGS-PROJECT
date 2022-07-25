@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MyModal80 } from "./../../DashboardComponents";
 import { ResumeEva } from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
@@ -29,6 +29,10 @@ export const Applicant = (props) => {
     //         setShow(true);
     //     }
     // }, [setShow]);
+
+    useEffect(() => {
+        setIsViewed(props.isViewed)
+    }, [props.isViewed]); 
 
     function viewResult() {
         if (!isViewed) {
@@ -150,7 +154,10 @@ export const Applicant = (props) => {
             };
 
             props.resendInvitation(meta);
-            setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, 1, props.currentStage) }, 300);
+            setTimeout(() => { 
+                props.getAllJobs(props.user.id, 1, props.currentStage); 
+                props.getPostedJobs(props.user.id, 1, props.currentStage,"","","","", props.jobsId) 
+            }, 300);
             alert1();
         }
     }
@@ -163,7 +170,10 @@ export const Applicant = (props) => {
         // }
         // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { props.getAllJobs(props.user.id, 1, props.currentStage); props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, props.category.value, props.category3.value) }, 300);
+        setTimeout(() => { 
+            props.getAllJobs(props.user.id, 1, props.currentStage); 
+            props.getPostedJobs(props.user.id, (props.selectedPage+1), props.currentStage, props.category.value, props.category3.value,"", "", props.jobsId)
+        }, 300);
         setShow(false);
     }
 
