@@ -11,6 +11,7 @@ import { EmailSending } from '../applications/EmailSending';
 import axios from "axios";
 
 export function LiveInterview(props) {
+
     useEffect(() => {
         props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId);
     }, [])
@@ -33,6 +34,7 @@ export function LiveInterview(props) {
     const [email_list, setEmail_list] = useState(null);
     const [select_all, setSelect_all] = useState(false);
     const [candidates_count, setCandidates_count] = useState(0);
+    const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
 
     // function onFilter1(expire) {
     //     setExpire(expire);
@@ -99,12 +101,14 @@ export function LiveInterview(props) {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0){ return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
             setSelect_all(true);
+            setSelectedAllCandidates(true);
         }
         else {
             // cancel all candidates selection
@@ -112,6 +116,7 @@ export function LiveInterview(props) {
                 candidates[i].checked = false;
             }
             setSelect_all(false);
+            setSelectedAllCandidates(false);
             setCandidates_count(0);
         }
     }
@@ -208,6 +213,8 @@ export function LiveInterview(props) {
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
+                //let checkbox = document.getElementById("select-all");
+                setSelectedAllCandidates(false);
             } else if (nextStage == "Live Interview") {
                 alert("These candidates are already in this stage!");
             } else {
@@ -250,6 +257,7 @@ export function LiveInterview(props) {
             setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            setSelectedAllCandidates(false);
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
@@ -393,13 +401,14 @@ export function LiveInterview(props) {
     }
 
     const CheckListCheckbox = () => {
-        setCandidates_count(0);
         let candidates = document.getElementsByClassName("selected-candidate");
+        let prev_candidates = 0
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked == true) {
-                setCandidates_count(candidates_count + 1);
+                prev_candidates++;
             }
         }
+        setCandidates_count(prev_candidates);
     }
 
     return (
@@ -445,7 +454,7 @@ export function LiveInterview(props) {
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
-                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                    <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                                 </div>
                             }
                             <div className="col-3">

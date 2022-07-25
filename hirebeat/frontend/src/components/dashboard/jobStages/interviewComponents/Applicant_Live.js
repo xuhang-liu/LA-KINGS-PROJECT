@@ -198,7 +198,7 @@ export const Applicant_Live = (props) => {
         setCurrent(props.index);
         setTimeout(() => { 
             props.getAllJobs(props.user.id, 1, props.currentStage); 
-            props.getPostedJobs(props.user.id, 1, props.currentStage, "", "", props.category4.value,"", props.jobsId) 
+            props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, "", "", props.category4.value,"", props.jobsId) 
         }, 300);
         setShow(false);
     }
