@@ -138,13 +138,13 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         }
         let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
         if (!noShowAgainMove) {
@@ -169,13 +169,13 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         } else {
-            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value); this.props.getNextResult(this.props.current) }, 300);
+            setTimeout(() => { this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId); this.props.getNextResult(this.props.current) }, 300);
         }
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (applicant.is_active) {
@@ -244,7 +244,11 @@ export class ReviewApplication extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.getNextResult(this.props.current); this.props.hide(); }, 300);
+            setTimeout(() => { 
+                this.props.getAllJobs(userId, page, this.state.currentStage); 
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId); 
+                this.props.getNextResult(this.props.current); this.props.hide(); 
+            }, 300);
             alert("Candidate Moved!");
         } else {
             alert("Please select a stage!");
@@ -288,7 +292,11 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => { this.props.getAllJobs(userId, page, this.state.currentStage); this.props.getPostedJobs(userId, page, this.state.currentStage); this.props.getNextResult(this.props.current); this.props.hide(); }, 300);
+        setTimeout(() => { 
+            this.props.getAllJobs(userId, page, this.state.currentStage); 
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId); 
+            this.props.getNextResult(this.props.current); this.props.hide(); 
+        }, 300);
         this.setState({ showRejectNote: false });
         alert("Candidate Rejected!");
     };

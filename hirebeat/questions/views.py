@@ -120,9 +120,31 @@ def add_position(request):
         "jobtitle": jobtitle
     })
 
-# get position objects from Position table
-@api_view(['GET'])
-def get_posted_jobs(request):
+from functools import wraps
+import time
+
+def timer(func):
+    """helper function to estimate view execution time"""
+
+    @wraps(func)  # used for copying func metadata
+    def wrapper(*args, **kwargs):
+        # record start time
+        start = time.time()
+
+        # func execution
+        result = func(*args, **kwargs)
+        
+        duration = (time.time() - start) * 1000
+        # output execution time to console
+        print('view {} takes {:.2f} ms'.format(
+            func.__name__, 
+            duration
+            ))
+        return result
+    return wrapper
+
+
+def get_posted_jobs_original(request):
     data = {}
     job_dots = 0
     user_id = int(request.GET.get("user_id", 0))
@@ -377,6 +399,304 @@ def get_posted_jobs(request):
                 "position": position,
                 "company_name": company_name,
                 "total_records": total_records,
+                "total_page": total_page,
+                "reviewer_type": reviewer_type
+            }
+            # convert to json
+            data[position_id] = job_details
+    
+    return Response({
+        "data": data,
+        "job_dots": job_dots,
+    })
+
+
+# get position objects from Position table
+@api_view(['GET'])
+@timer
+def get_posted_jobs(request):
+    return get_posted_jobs_new(request)
+
+def get_posted_jobs_new(request):
+    data = {}
+    job_dots = 0
+    user_id = int(request.GET.get("user_id", 0))
+    page = int(request.GET.get("page", 1))
+    stage = request.GET.get("stage", "")
+    if stage == "undefined":
+        stage = ""
+    video_filter = request.GET.get("video_filter", "")
+    if video_filter == "undefined":
+        video_filter = ""
+    reviewed = request.GET.get("reviewed", "")
+    if reviewed == "undefined":
+        reviewed = ""
+    live_filter = request.GET.get("live_filter", "")
+    if live_filter == "undefined":
+        live_filter = ""
+    short_filter = request.GET.get("short_filter", "")
+    if short_filter == "undefined":
+        short_filter = ""
+    job_filter = request.GET.get("job_filter", "")
+    if job_filter == "undefined":
+        job_filter = ""
+
+    # get user profile
+    profile = Profile.objects.get(user_id=user_id)
+    # get user object
+    user = User.objects.get(pk=user_id)
+
+    # employer role
+    if profile.is_subreviwer is False and profile.is_external_reviewer is False:
+        # get all positions posted by current user
+        positions = Positions.objects.filter(user_id=user_id)
+
+        for i in range(len(positions)):
+            positions_id = positions[i].id
+            job_dot = InvitedCandidates.objects.filter(
+                    positions_id=positions_id, is_viewed=False).count()
+            job_dots += job_dot
+
+        if job_filter != "":
+            positions = positions.filter(job_id_in_jobs = int(job_filter))
+        for i in range(len(positions)):
+            positions_id = positions[i].id
+            position = positions[i]
+            # get each position applicants by current stage
+            applicants = []
+            # get all candidates for each position at the specific stage: current_stage=stage
+            if stage == "":
+                applicants = InvitedCandidates.objects.filter(
+                    positions=position, is_active=True)
+            else:
+                applicants = InvitedCandidates.objects.filter(
+                    positions=position, current_stage=stage, is_active=True)
+            # filter by video
+            if video_filter != "":
+                # Uninvited case
+                if video_filter == "Uninvited":
+                    applicants = applicants.filter(is_invited=False, is_recorded=False)
+                # finished video interview
+                elif video_filter == "Completed":
+                    applicants = applicants.filter(is_recorded=True, video_count__gt=0)
+                # waiting for video recording
+                elif video_filter == "Pending":
+                    applicants = applicants.filter(is_invited=True, is_recorded=False)
+                # ghosted case
+                elif video_filter == "Withdrawn":
+                    applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+            # filter by live interview
+            if live_filter != "" and live_filter != "All":
+                applicants = applicants.filter(livcat=live_filter)
+            # filter by shortlist interview
+            if short_filter != "" and short_filter != "All":
+                applicants = applicants.filter(shortcat=short_filter)
+            # convert queryset to list， order applicants by id descending
+
+            # begin pagination, each single page should have at most 15 applicants
+            total_records = applicants.count()
+            #print(total_records)
+            total_page = math.ceil(len(applicants) / 15)
+            if total_records > 15:
+                begin = (page - 1) * 15
+                end = page * 15
+                applicants = list(applicants.order_by('-id').values()[begin:end])
+            else:
+                applicants = list(applicants.order_by('-id').values())
+            
+            # get linkedin and is_active values from ApplyCandidates model
+            for applicant in applicants:
+                applicant["linkedinurl"] = ""
+                applicant["apply_candidate_id"] = 0
+                # get vote rate
+                applicant["num_vote_yes"] = 0
+                applicant["num_votes"] = 0
+                if stage != "":
+                    applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=positions_id, evaluation=1, current_stage=stage).count()
+                    applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=positions_id, current_stage=stage).count()
+                # get applicant application information from ApplyCandidates table
+                jobs = Jobs.objects.filter(positions=position, user_id=user_id)
+                if len(jobs) > 0:
+                    candidate = ApplyCandidates.objects.filter(
+                        email=applicant["email"], jobs_id=jobs[0].id)
+                    if len(candidate) > 0:
+                        applicant["linkedinurl"] = candidate[0].linkedinurl
+                        applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
+
+
+            # get each applicant user_id, if not registered, the user_id will be -1
+            if stage == "Short List":
+                for j in range(len(applicants)):
+                    applicant_info = User.objects.filter(
+                        email=applicants[j]["email"]).values()
+                    if len(applicant_info) == 1:
+                        applicants[j]["user_id"] = applicant_info[0]["id"]
+                    else:
+                        applicants[j]["user_id"] = -1
+                        
+            # get interview questions for current job
+            questions = list(InterviewQuestions.objects.filter(
+                positions_id=positions_id).values())
+
+            # get subreviewers and external reviews(hiring manager) for this position
+            subreviewers = list(SubReviewers.objects.filter(
+                position_id=positions_id).values())
+            ex_reviewers = list(ExternalReviewers.objects.filter(
+                position_id=positions_id).values())
+            # get position detail
+            position = Positions.objects.filter(id=positions_id).values()[0]
+            #print(positions[i].job_id_in_jobs)
+            job_details = {
+                "position_id": positions_id,
+                "job_id": positions[i].job_id,
+                "job_title": positions[i].job_title,
+                "is_closed": positions[i].is_closed,
+                "invite_date": positions[i].invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subreviewers,
+                "ex_reviewers": ex_reviewers,
+                "position": position,
+                "total_records": total_records,
+                "current_page": page - 1,
+                "total_page": total_page,
+            }
+            # convert to json
+            data[positions_id] = job_details
+
+        # count the number of applicants that haven't been reviewed
+        jobs = Jobs.objects.filter(user_id=user_id)
+        for i in range(len(jobs)):
+            jobs_id = jobs[i].id
+            job_dot = ApplyCandidates.objects.filter(
+                jobs_id=jobs_id, is_invited=0, is_viewed=False).count()
+            job_dots += job_dot
+
+    # reviewer
+    else:
+        # get the combinations of subreviewers and external reviewers using user.email
+        ex_reviewers = list(chain(SubReviewers.objects.filter(
+            r_email=user.email), ExternalReviewers.objects.filter(r_email=user.email)))
+        for i in range(len(ex_reviewers)):
+            # check reviewer type
+            reviewer_type = ""
+            position_id = ex_reviewers[i].position.id
+            if (ExternalReviewers.objects.filter(r_email=user.email, position_id=position_id).exists()):
+                reviewer_type = "extr"
+            elif (SubReviewers.objects.filter(r_email=user.email, position_id=position_id).exists()):
+                reviewer_type = "subr"
+            # get each position applicants by current stage
+            applicants = []
+            # get all candidates for each position at the specific stage: current_stage=stage
+            if stage == "":
+                applicants = InvitedCandidates.objects.filter(
+                    positions_id=position_id, is_active=True)
+            else:
+                applicants = InvitedCandidates.objects.filter(
+                    positions_id=position_id, current_stage=stage, is_active=True)
+            # filter by video
+            if video_filter != "":
+                # Uninvited case
+                if video_filter == "Uninvited":
+                    applicants = applicants.filter(is_invited=False)
+                # finished video interview
+                elif video_filter == "Completed":
+                    applicants = applicants.filter(is_recorded=True, video_count__gt=0)
+                # waiting for video recording
+                elif video_filter == "Pending":
+                    applicants = applicants.filter(is_invited=True, is_recorded=False)
+                # ghosted case
+                elif video_filter == "Withdrawn":
+                    applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+            # convert queryset to list， order applicants by id descending
+            applicants = list(applicants.order_by('-id').values())
+            company_name = ex_reviewers[i].company_name
+            # get extra information like linkedin and is_active values from ApplyCandidates model
+
+
+
+
+            # and get review evaluation for each applicant
+            for applicant in applicants:
+                applicant["linkedinurl"] = ""
+                applicant["is_active"] = False
+                applicant["apply_candidate_id"] = 0
+                # get vote evaluation
+                applicant["num_vote_yes"] = 0
+                applicant["num_votes"] = 0
+                if stage != "":
+                    applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=position_id, evaluation=1, current_stage=stage).count()
+                    applicant["num_votes"] = ReviewerEvaluation.objects.filter(
+                        applicant_email=applicant["email"], position_id=position_id, current_stage=stage).count()
+                    # get each applicant review status
+                    applicant["reviewer_review_status"] = ReviewerEvaluation.objects.filter(
+                        reviewer_email=user.email, applicant_email=applicant["email"], current_stage=stage).exists()
+                # get each applicant answers to each position screen questions
+                jobs = Jobs.objects.filter(
+                    positions_id=position_id, user_id=ex_reviewers[i].master_user)
+                if len(jobs) > 0:
+                    candidate = ApplyCandidates.objects.filter(
+                        email=applicant["email"], jobs_id=jobs[0].id)
+                    if len(candidate) > 0:
+                        applicant["linkedinurl"] = candidate[0].linkedinurl
+                        applicant["is_active"] = candidate[0].is_active
+                        applicant["apply_candidate_id"] = candidate[0].id
+                        applicant["questions"] = candidate[0].questions
+                        applicant["answers"] = candidate[0].answers
+                        applicant["qualifications"] = candidate[0].qualifications
+                        applicant["must_haves"] = candidate[0].must_haves
+            # filter by reviewed status
+            if reviewed == "Reviewed":
+                applicants = [a for a in applicants if a["reviewer_review_status"]]
+            elif reviewed == "Pending":
+                applicants = [a for a in applicants if not a["reviewer_review_status"]]
+            # begin pagination, each single page should have at most 15 applicants
+            total_records = len(applicants)
+            total_page = math.ceil(len(applicants) / 15)
+            if total_records > 15:
+                begin = (page - 1) * 15
+                end = page * 15
+                applicants = applicants[begin:end]
+            # get each applicant user_id, if not registered, the user_id will be -1
+            if stage == "Short List":
+                for j in range(len(applicants)):
+                    applicant_info = User.objects.filter(
+                        email=applicants[j]["email"]).values()
+                    if len(applicant_info) == 1:
+                        applicants[j]["user_id"] = applicant_info[0]["id"]
+                    else:
+                        applicants[j]["user_id"] = -1
+            # get interview questions for current job
+            questions = list(InterviewQuestions.objects.filter(
+                positions_id=position_id).values())
+            # get subreviewers and external reviews(hiring manager) for this position
+            subs = list(SubReviewers.objects.filter(
+                position_id=position_id).values())
+            exts = list(ExternalReviewers.objects.filter(
+                position_id=position_id).values())
+            # get position detail
+            position = Positions.objects.filter(id=position_id).values()[0]
+            job_details = {
+                "position_id": position_id,
+                "job_id": ex_reviewers[i].position.job_id,
+                "job_title": ex_reviewers[i].position.job_title,
+                "is_closed": ex_reviewers[i].position.is_closed,
+                "invite_date": ex_reviewers[i].position.invite_date,
+                "applicants": applicants,
+                "questions": questions,
+                "subreviewers": subs,
+                "ex_reviewers": exts,
+                "position": position,
+                "company_name": company_name,
+                "total_records": total_records,
+                "current_page": page - 1,
                 "total_page": total_page,
                 "reviewer_type": reviewer_type
             }

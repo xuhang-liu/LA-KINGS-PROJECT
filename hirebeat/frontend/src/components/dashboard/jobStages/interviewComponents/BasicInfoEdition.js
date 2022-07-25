@@ -23,7 +23,7 @@ export class BasicInfoEdition extends Component {
         this.props.updateApplicantBasicInfo(data);
         setTimeout(() => {
             let page = this.props.selectedPage + 1; // selectedPage is 0 indexed
-            this.props.getPostedJobs(this.props.user.id, page, this.props.selectedCurrentStage);
+            this.props.getPostedJobs(this.props.user.id, page, this.props.selectedCurrentStage, "" ,"", "", "", this.props.jobId);
             this.props.disableEdit();
         }, 300)
 

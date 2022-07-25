@@ -69,6 +69,14 @@ export class AllCandidates extends Component {
         indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.filterReset > 0){
+            return { stage:    { value: '', label: 'All' },
+                     category: { value: '', label: 'All' },
+                   };
+        }
+    }
+
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
     };
@@ -79,7 +87,10 @@ export class AllCandidates extends Component {
 
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, ""); }, 300);
+        setTimeout(() => {
+             this.props.getAllJobs(this.props.user.id, page, "", "", ""); 
+             this.props.getPostedJobs(this.props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id); 
+        }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -161,7 +172,10 @@ export class AllCandidates extends Component {
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 let page = this.state.selectedPage + 1;
-                setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "", "", ""); this.props.getPostedJobs(this.props.user.id, page, "") }, 300);
+                setTimeout(() => { 
+                    this.props.getAllJobs(this.props.user.id, page, "", "", ""); 
+                    this.props.getPostedJobs(this.props.user.id, page, "", "", "", "","", this.props.curJob.job_details.id) 
+                }, 300);
                 this.sendSuccessAlert();
             }
         }
@@ -260,7 +274,7 @@ export class AllCandidates extends Component {
                                             onPageChange={this.handlePageClick}
                                             containerClassName={'pagination3'}
                                             activeClassName={'active'}
-                                            forcePage={this.state.selectedPage}
+                                            forcePage={this.props.curJob.current_page}
                                         />
                                     </div>
                                 }
@@ -346,7 +360,7 @@ export class AllCandidates extends Component {
                                         onPageChange={this.handlePageClick}
                                         containerClassName={'pagination3'}
                                         activeClassName={'active'}
-                                        forcePage={this.state.selectedPage}
+                                        forcePage={this.props.curJob.current_page}
                                     />
                                 </div>
                             }
@@ -493,7 +507,10 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "", "", ""); props.getPostedJobs(props.user.id, page, "") }, 300);
+        setTimeout(() => {
+            props.getAllJobs(props.user.id, page, "", "", ""); 
+            props.getPostedJobs(props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id) 
+        }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
