@@ -118,6 +118,7 @@ const AcceptedCandidate = (props) => {
     const [candidates_count, setCandidates_count] = useState(0);
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
+    const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
 
     useEffect(() => {
         if (props.filterReset > 0){
@@ -167,12 +168,14 @@ const AcceptedCandidate = (props) => {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0) { return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
             setSelect_all(true);
+            setSelectedAllCandidates(true);
         }
         else {
             // cancel all candidates selection
@@ -180,6 +183,7 @@ const AcceptedCandidate = (props) => {
                 candidates[i].checked = false;
             }
             setSelect_all(false);
+            setSelectedAllCandidates(false);
             setCandidates_count(0);
         }
     }
@@ -300,6 +304,7 @@ const AcceptedCandidate = (props) => {
                 setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                setSelectedAllCandidates(false);
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
@@ -345,6 +350,7 @@ const AcceptedCandidate = (props) => {
             setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            setSelectedAllCandidates(false);
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
@@ -382,13 +388,14 @@ const AcceptedCandidate = (props) => {
     }
 
     const CheckListCheckbox = () => {
-        setCandidates_count(0);
         let candidates = document.getElementsByClassName("selected-candidate");
+        let prev_candidates = 0
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked == true) {
-                setCandidates_count(candidates_count + 1);
+                prev_candidates++;
             }
         }
+        setCandidates_count(prev_candidates);
     }
 
     return (
@@ -421,7 +428,7 @@ const AcceptedCandidate = (props) => {
                     <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="d-flex justify-content-start row interview-txt7 interview-center">
                         {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                             <div className='mr-3' style={{ marginLeft: "1rem", display: "flex" }}>
-                                <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                             </div>
                         }
                         <div className="col-2">Name</div>
@@ -861,7 +868,7 @@ const CandidateCard = (props) => {
         //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
-        props.getPostedJobs(userId, page, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId);
+        props.getPostedJobs(props.user.id, props.currentPage, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId);
     }
     return (
         <React.Fragment>

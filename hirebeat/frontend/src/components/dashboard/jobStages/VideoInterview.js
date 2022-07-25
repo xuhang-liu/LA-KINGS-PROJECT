@@ -37,6 +37,8 @@ export function VideoInterview(props) {
     const [email_list, setEmail_list] = useState(null);
     const [select_all, setSelect_all] = useState(false);
     const [candidates_count, setCandidates_count] = useState(0);
+    const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
+
     function onFilter1(expire) {
         setExpire(expire);
     }
@@ -184,12 +186,14 @@ export function VideoInterview(props) {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
+        if (candidates.length <= 0) { return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
                 candidates[i].checked = true;
             }
             setSelect_all(true);
+            setSelectedAllCandidates(true);
         }
         else {
             // cancel all candidates selection
@@ -197,6 +201,7 @@ export function VideoInterview(props) {
                 candidates[i].checked = false;
             }
             setSelect_all(false);
+            setSelectedAllCandidates(false);
             setCandidates_count(0);
         }
     }
@@ -386,6 +391,7 @@ export function VideoInterview(props) {
                 setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId) }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
+                setSelectedAllCandidates(false);
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
@@ -427,6 +433,7 @@ export function VideoInterview(props) {
             setTimeout(() => { props.getAllJobs(userId, page, "Video Interview"); props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId) }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
+            setSelectedAllCandidates(false);
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
@@ -630,13 +637,14 @@ export function VideoInterview(props) {
     };
 
     const CheckListCheckbox = () => {
-        setCandidates_count(0);
         let candidates = document.getElementsByClassName("selected-candidate");
+        let prev_candidates = 0
         for (let i = 0; i < candidates.length; i++) {
             if (candidates[i].checked == true) {
-                setCandidates_count(candidates_count + 1);
+                prev_candidates++;
             }
         }
+        setCandidates_count(prev_candidates);
     }
 
     return (
@@ -710,7 +718,7 @@ export function VideoInterview(props) {
                         <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
                             {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
                                 <div style={{ marginLeft: "1rem", display: "flex" }}>
-                                    <input id="select-all" type="checkbox" onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                    <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
                                 </div>
                             }
                             <div className="col-3">
