@@ -62,6 +62,7 @@ class Profile(models.Model):
         MaxValueValidator(1000)
     ])
     email_confirmed = models.BooleanField(default=False)
+    plan_selected = models.BooleanField(default=False)
     customer_id = models.CharField(max_length=30,null=True, blank=True)
     sub_id = models.CharField(max_length=30,null=True, blank=True)
     plan_interval = models.CharField(max_length=30, null=True, blank=True)
@@ -77,7 +78,7 @@ class Profile(models.Model):
     position_count = models.IntegerField(default=0, validators=[
         MaxValueValidator(1000)
     ])
-    position_limit = models.IntegerField(default=1000, validators=[
+    position_limit = models.IntegerField(default=0, validators=[
         MaxValueValidator(1000)
     ])
     candidate_limit = models.IntegerField(default=1000, validators=[

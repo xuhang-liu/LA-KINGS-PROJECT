@@ -123,7 +123,14 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         if (len(subReviewer)>0):
             profile.is_subreviwer = True
             profile.company_name = subReviewer[0].company_name
-            profile.is_freetrial = False
+            profile.email_confirmed = True
+            profile.plan_selected = True
+            profile.viewed_employer_tutorial = True
+            profile.viewed_employer_welcome = True
+            profile.viewed_tutorial = True
+            profile.position_limit  = 1000
+            profile.plan_interval = "Premium"
+            profile.membership = "Premium"
             for s in range(len(subReviewer)):
                 subReviewer[s].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 subReviewer[s].save()
@@ -132,7 +139,14 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         elif (len(ex_reviewer)>0):
             profile.is_external_reviewer = True
             profile.company_name = ex_reviewer[0].company_name
-            profile.is_freetrial = False
+            profile.email_confirmed = True
+            profile.plan_selected = True
+            profile.viewed_employer_tutorial = True
+            profile.viewed_employer_welcome = True
+            profile.viewed_tutorial = True
+            profile.position_limit  = 1000
+            profile.plan_interval = "Premium"
+            profile.membership = "Premium"
             for e in range(len(ex_reviewer)):
                 ex_reviewer[e].r_name = request.data["firstname"] + " " + request.data["lastname"]
                 ex_reviewer[e].save()
@@ -140,8 +154,8 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         else:
             EmployerProfileDetail.objects.create(user=user, name = request.data["company_name"], f_name=request.data["firstname"], l_name=request.data["lastname"],
                                                 company_size=request.data["companySize"], company_type=request.data["companyType"], website=request.data["company_website"], location=request.data["location"])
-        profile.plan_interval = "Premium"
-        profile.membership = "Premium"
+        # profile.plan_interval = "Premium"
+        # profile.membership = "Premium"
         profile.save()
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,

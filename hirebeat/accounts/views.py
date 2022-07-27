@@ -1164,10 +1164,6 @@ def check_freetrial_expire(request):
             expired = True
             try:
                 profile.is_freetrial = False
-                profile.candidate_limit = 25
-                profile.position_limit = 0
-                profile.plan_interval = "Regular"
-                profile.membership = "Regular"
                 profile.save()
             except ObjectDoesNotExist:
                 return Response("User not exist", status=status.HTTP_201_CREATED)
@@ -1346,6 +1342,7 @@ def check_code(request):
                     user.save_limit = 1000
                     user.save_resume_limit = 1000
                 user.is_freetrial = False
+                user.plan_selected = True
                 user.save()
                 return Response({"msg" : "Add a redeem code!", "plan": user.plan_interval})
         else:

@@ -16,6 +16,7 @@ import indexsaas from "./home/index-saas";
 import EmailVerification from "./accounts/EmailVerification";
 import EmailVerificationMini from "./accounts/EmailVerificationMini";
 import EmailVerificationEmployerMini from "./accounts/EmailVerificationEmployerMini";
+import PlanSelectionEmployer from "./accounts/PlanSelectionEmployer";
 import Login from "./accounts/Login";
 import EmployerLogin from "./accounts/EmployerLogin";
 import Register from "./accounts/Register";
@@ -513,6 +514,7 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <PrivateRoute exact path="/email-verification-mini" component={EmailVerificationMini} />
                 <PrivateRoute exact path="/email-verification-employer-mini" component={EmailVerificationEmployerMini} />
+                <PrivateRoute exact path="/plan-selection-employer" component={PlanSelectionEmployer}/>
                 <Route exact path="/job-seekers-career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
                 <Route exact path="/candidate-login" component={CandidateLogin} />
