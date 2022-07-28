@@ -1,12 +1,12 @@
 import React, { Component, useEffect } from 'react';
 import { connect } from "react-redux";
 import DocumentMeta from 'react-document-meta';
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import MediaQuery from 'react-responsive';
-import { loadStripe } from '@stripe/stripe-js';
 import Collapse from 'react-bootstrap/Collapse';
 import 'boxicons';
 import axios from "axios";
+import { Stripepayment } from "../home/Stripepayment";
 
 function ScrollToTopOnMount() {
     useEffect(() => {
@@ -15,13 +15,6 @@ function ScrollToTopOnMount() {
 
     return null;
 }
-
-const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
-
-function getClientReferenceId() {
-    return window?.Rewardful && window?.Rewardful?.referral || ('checkout_' + (new Date).getTime());
-}
-
 
 class PlanSelectionEmployer extends Component {
 
@@ -38,6 +31,8 @@ class PlanSelectionEmployer extends Component {
         showRedeem: false,
         code: "",
         codeErr: "",
+        coupon: "",
+        planPrice: "",
     }
 
     componentDidMount() {
@@ -99,109 +94,23 @@ class PlanSelectionEmployer extends Component {
     }
 
     handleProUpgrade = () => {
-        this.handleProClickUpgrade();
-    };
-    handleProClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1ITDJGKxU1MN2zWMKd4L8TOH', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/paymentpro',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-            clientReferenceId: getClientReferenceId()
-        });
-        error.message;
+        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdOgKxU1MN2zWMqc2M6u92" });
     };
 
     handleYearProUpgrade = () => {
-        this.handleYearProClickUpgrade();
-    };
-    handleYearProClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1JAcQeKxU1MN2zWMU4DYwhVA', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/paymentpro',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-            clientReferenceId: getClientReferenceId()
-        });
-        error.message;
+        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdRHKxU1MN2zWMrNPTju3z" });
     };
 
     handlePremiumUpgrade = () => {
-        this.handlePremiumClickUpgrade();
-    };
-    handlePremiumClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1K7REaKxU1MN2zWMcG3Oknyt', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-            clientReferenceId: getClientReferenceId()
-        });
-        error.message;
+        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LJLwsKxU1MN2zWM3PiqUIwf" });
     };
 
     handleYearPremiumUpgrade = () => {
-        this.handleYearPremiumClickUpgrade();
-    };
-    handleYearPremiumClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1K7RExKxU1MN2zWM87rKnRhM', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-            clientReferenceId: getClientReferenceId()
-        });
-        error.message;
+        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdSoKxU1MN2zWMHtZSudl8" });
     };
 
     handlePayAsYouGoUpgrade = () => {
-        this.setState({ showPayment: true })
-        // this.handlePayAsYouGoClickUpgrade();
-    };
-    handlePayAsYouGoClickUpgrade = async (event) => {
-        // When the customer clicks on the button, redirect them to Checkout.
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-            lineItems: [{
-                price: 'price_1K7QhOKxU1MN2zWM6f54d41L', // Replace with the ID of your price
-                quantity: 1,
-            }],
-            mode: 'payment',
-            successUrl: 'https://app.hirebeat.co/paygpayment',
-            cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-            billingAddressCollection: 'auto',
-            customerEmail: this.props.user.email,
-            clientReferenceId: getClientReferenceId()
-        });
-        error.message;
+        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQbu3KxU1MN2zWMAaZbcGBr" });
     };
 
     openTabSection = (evt, tabNmae) => {
@@ -282,7 +191,11 @@ class PlanSelectionEmployer extends Component {
                     <ScrollToTopOnMount />
                     {(this.state.showPayment) ?
                         <div>
-                            Payment page
+                            <Stripepayment
+                                coupon={this.state.coupon}
+                                user={this.props.user}
+                                planPrice={this.state.planPrice}
+                            />
                         </div> :
                         <div>
                             <MediaQuery minDeviceWidth={1224}>
@@ -330,7 +243,7 @@ class PlanSelectionEmployer extends Component {
                                             <button
                                                 type="button"
                                                 className="default-btn7 mr-2"
-                                                style={{ paddingLeft: "25px", textDecoration: "none", color:"#006dff", border:"1px solid #006dff" }}
+                                                style={{ paddingLeft: "25px", textDecoration: "none", color: "#006dff", border: "1px solid #006dff" }}
                                                 onClick={() => { this.setState({ showRedeem: false }) }}
                                             >
                                                 Cancel

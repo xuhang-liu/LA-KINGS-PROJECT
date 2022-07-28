@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.db.models.functions import Length
 import math
 from django.contrib.postgres.search import SearchVector
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from django.forms.models import model_to_dict
 import requests
 import boto
@@ -86,19 +86,53 @@ def stripe_create_subcription(request):
         # Create the subscription. Note we're expanding the Subscription's
         # latest invoice and that invoice's payment_intent
         # so we can pass it to the front end to confirm the payment
-        subscription = stripe.Subscription.create(
-            customer='cus_HiSXKGaUtJJqo0',
-            items=[{
-                'price': 'price_1LJLwsKxU1MN2zWM3PiqUIwf',
-            }],
-            payment_behavior='default_incomplete',
-            payment_settings={'save_default_payment_method': 'on_subscription'},
-            expand=['latest_invoice.payment_intent'],
-        )
-        return JsonResponse({
-            'subscriptionId': subscription.id,
-            'clientSecret': subscription.latest_invoice.payment_intent.client_secret
-        })
+        coupon = request.data['coupon']
+        userID = request.data['userID']
+        planPrice = request.data['planPrice']
+        clientReferenceId = request.data['clientReferenceId']
+        user = User.objects.get(pk=userID)
+        employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+        customer_id = ""
+        if user.profile.customer_id != "" and user.profile.customer_id != None:
+            customer_id=user.profile.customer_id
+        else:
+            customer_id=stripe.Customer.create(
+                name=employerProfileDetail.name,
+                email=user.email,
+            )['id']
+        if planPrice == 'price_1LQbu3KxU1MN2zWMAaZbcGBr':
+            intent = stripe.PaymentIntent.create(
+            amount=9900,
+            currency='usd',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+            customer=customer_id,
+            metadata={
+                'clientReferenceId': clientReferenceId
+            }
+            )
+            return JsonResponse({
+                'clientSecret': intent['client_secret']
+            })
+        else:
+            subscription = stripe.Subscription.create(
+                customer=customer_id,
+                items=[{
+                    'price': planPrice,
+                }],
+                payment_behavior='default_incomplete',
+                payment_settings={'save_default_payment_method': 'on_subscription'},
+                expand=['latest_invoice.payment_intent'],
+                coupon=coupon,
+                metadata={
+                    'clientReferenceId': clientReferenceId
+                }
+            )
+            return JsonResponse({
+                'subscriptionId': subscription.id,
+                'clientSecret': subscription.latest_invoice.payment_intent.client_secret
+            })
     except Exception:
         return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
@@ -1288,10 +1322,30 @@ def check_if_it_reviewer(request):
 @api_view(['POST'])
 def add_credit_to_user(request):
     user_id = request.data["user_id"]
+    plan = request.data["plan"]
     user = User.objects.get(pk=user_id)
     profile = Profile.objects.get(user=user)
-    profile.payg_credit += 1
-    profile.save()
+    if plan == "payg":
+        profile.payg_credit += 1
+        profile.plan_selected = True
+        profile.is_freetrial = False
+        profile.save()
+    
+    if plan == "pro":
+        profile.membership = "Premium"
+        profile.plan_interval = "Pro"
+        profile.position_limit  = 5
+        profile.plan_selected = True
+        profile.datejoined = datetime.now()
+        profile.save()
+
+    if plan == "premium":
+        profile.membership = "Premium"
+        profile.plan_interval = "Premium"
+        profile.position_limit  = 1000
+        profile.plan_selected = True
+        profile.datejoined = datetime.now()
+        profile.save()
 
     return Response("Add credit to user successfully", status=status.HTTP_201_CREATED)
 

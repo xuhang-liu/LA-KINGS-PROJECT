@@ -236,6 +236,8 @@ import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 // import IntergrationPage from "./HomeEmployer/IntergrationPage";
 import PublicProfile from "./dashboard/profile/PublicProfile";
 import PayGPayment from "./payment/PayGPayment";
+import ProPayment from "./payment/ProPayment";
+import PremiumPayment from "./payment/PremiumPayment";
 import PJobFail from "./payment/PJobFail";
 import PJobPayment from "./payment/PJobPayment";
 import RemoveFraudPortal from "./accounts/RemoveFraudPortal";
@@ -404,6 +406,8 @@ class App extends Component {
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/paymentpro" component={PaymentPro} />
                 <Route exact path="/paygpayment" component={PayGPayment} />
+                <Route exact path="/proplanpayment-suc" component={ProPayment} />
+                <Route exact path="/premiumplanpayment-suc" component={PremiumPayment} />
                 <Route exact path="/pjobpayment" component={PJobPayment} />
                 <Route exact path="/pjobfail" component={PJobFail} />
                 <Route exact path="/sourcingpayfail" component={SourcingPayFail} />

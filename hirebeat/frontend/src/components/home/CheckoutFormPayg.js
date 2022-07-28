@@ -6,7 +6,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutFormPayg() {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -58,8 +58,7 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://127.0.0.1:8000/payment",
+        return_url: "http://127.0.0.1:8000/paygpayment",
       },
     });
 
