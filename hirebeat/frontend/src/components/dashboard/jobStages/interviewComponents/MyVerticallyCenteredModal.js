@@ -39,6 +39,7 @@ export function MyVerticallyCenteredModal(props) {
                     filter={props.filter}
                     currentStage={props.currentStage}
                     getPostedJobs={props.getPostedJobs}
+                    keyWords={props.keyWords}
                     getAllJobs={props.getAllJobs}
                     reviewer_type={props.reviewer_type}
                     gh_current_stage_id={props.gh_current_stage_id}

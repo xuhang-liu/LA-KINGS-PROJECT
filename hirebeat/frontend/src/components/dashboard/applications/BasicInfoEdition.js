@@ -23,7 +23,7 @@ export class BasicInfoEdition extends Component {
         setTimeout(() => {
             let isSortByScore = this.props.isSortByScore || "";
             let page = this.props.selectedPage + 1; // selectedPage is 0 indexed
-            this.props.getAllJobs(this.props.user.id, page, this.props.selectedCurrentStage, this.props.selectedStatus, isSortByScore);
+            this.props.getAllJobs(this.props.user.id, page, this.props.selectedCurrentStage, this.props.selectedStatus, isSortByScore, this.props.keyWords);
             this.props.setIsEdit(false);
         }, 300)
 

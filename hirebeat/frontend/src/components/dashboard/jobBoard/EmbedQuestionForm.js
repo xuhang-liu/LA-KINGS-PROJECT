@@ -144,7 +144,10 @@ export class EmbedQuestionForm extends Component {
         }
         // update invite status
         this.props.updateInviteStatus(inviteData);
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id); this.props.getPJobs(); }, 300);
+        setTimeout(() => { 
+            this.props.getAllJobs(this.props.user.id); 
+            this.props.getPJobs(); 
+        }, 300);
         alert("Send Invitation Success");
         this.props.hideEmbedQForm();
     }

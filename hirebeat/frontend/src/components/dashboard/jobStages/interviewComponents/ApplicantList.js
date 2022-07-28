@@ -5,14 +5,17 @@ export const ApplicantList = (props) => {
     return (
         <div>
             {props.applicants.sort((a, b) => (b.invite_date===null)-(a.invite_date===null) || (new Date(b.invite_date) - new Date(a.invite_date))).map((a, index) => {
+                /*
                 if (props.keyWords != "") {
                     let name = a.name;
                     if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
                 }
+                */
                 return (
                     <Applicant
                         filter={props.filter}
                         index={index}
+                        keyWords={props.keyWords}
                         applicants={props.applicants}
                         getPJobs={props.getPJobs}
                         profile={props.profile}
