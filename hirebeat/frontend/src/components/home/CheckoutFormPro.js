@@ -105,6 +105,23 @@ export default function CheckoutFormPro(props) {
     });
   }
 
+  const cancelSub = () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let data = { "subid": props.subscriptionId };
+
+    axios.post("accounts/stripe-cancel-subscription", data, config).then((res) => {
+      seterrormsg(res.data.errormsg);
+      setpercent(res.data.percent);
+    }).catch(error => {
+      console.log(error);
+    });
+    props.hideShowPayment();
+  }
+
   var linkStyle2 = { outline: "6px solid #FF6B00", boxShadow: "0px 4px 32px 0px #C3520066", transition: "0.2s" }
 
   return (
@@ -168,7 +185,7 @@ export default function CheckoutFormPro(props) {
             }
           </div>
           <div className="row d-flex justify-content-end pr-3">
-            <button type="button" disabled={isLoading || !stripe || !elements} className="default-btn4" style={{ paddingLeft: "25px", marginTop: "1rem", marginRight: "1rem" }} onClick={props.hideShowPayment}>Back to Plans</button>
+            <button type="button" disabled={isLoading || !stripe || !elements} className="default-btn4" style={{ paddingLeft: "25px", marginTop: "1rem", marginRight: "1rem" }} onClick={cancelSub}>Back to Plans</button>
             <button type="submit" disabled={isLoading || !stripe || !elements} id="submit" className="default-btn1" style={{ paddingLeft: "25px", marginTop: "1rem" }}>
               <span id="button-text">
                 {isLoading ? <div id="spinner"></div> : "Pay now"}
