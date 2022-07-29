@@ -16,6 +16,7 @@ import indexsaas from "./home/index-saas";
 import EmailVerification from "./accounts/EmailVerification";
 import EmailVerificationMini from "./accounts/EmailVerificationMini";
 import EmailVerificationEmployerMini from "./accounts/EmailVerificationEmployerMini";
+import PlanSelectionEmployer from "./accounts/PlanSelectionEmployer";
 import Login from "./accounts/Login";
 import EmployerLogin from "./accounts/EmployerLogin";
 import Register from "./accounts/Register";
@@ -235,9 +236,12 @@ import CompanyBranding from "./dashboard/jobBoard/CompanyBranding";
 // import IntergrationPage from "./HomeEmployer/IntergrationPage";
 import PublicProfile from "./dashboard/profile/PublicProfile";
 import PayGPayment from "./payment/PayGPayment";
+import ProPayment from "./payment/ProPayment";
+import PremiumPayment from "./payment/PremiumPayment";
 import PJobFail from "./payment/PJobFail";
 import PJobPayment from "./payment/PJobPayment";
 import RemoveFraudPortal from "./accounts/RemoveFraudPortal";
+import { Stripepayment } from "./home/Stripepayment";
 
 const alertOptions = {
   timeout: 3000,
@@ -402,6 +406,8 @@ class App extends Component {
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/paymentpro" component={PaymentPro} />
                 <Route exact path="/paygpayment" component={PayGPayment} />
+                <Route exact path="/proplanpayment-suc" component={ProPayment} />
+                <Route exact path="/premiumplanpayment-suc" component={PremiumPayment} />
                 <Route exact path="/pjobpayment" component={PJobPayment} />
                 <Route exact path="/pjobfail" component={PJobFail} />
                 <Route exact path="/sourcingpayfail" component={SourcingPayFail} />
@@ -512,6 +518,7 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification" component={EmailVerification} />
                 <PrivateRoute exact path="/email-verification-mini" component={EmailVerificationMini} />
                 <PrivateRoute exact path="/email-verification-employer-mini" component={EmailVerificationEmployerMini} />
+                <PrivateRoute exact path="/plan-selection-employer" component={PlanSelectionEmployer}/>
                 <Route exact path="/job-seekers-career" component={SearchPanel} />
                 <Route exact path="/career-details" component={SearchResult} />
                 <Route exact path="/candidate-login" component={CandidateLogin} />
@@ -523,6 +530,7 @@ class App extends Component {
                 {/* <Route exact path="/employer-intergration-page" component={IntergrationPage} /> */}
                 <Route exact path="/talent-profile" component={PublicProfile} />
                 <Route exact path="/9483286d2a9dd1d9" component={RemoveFraudPortal} />
+                <Route exact path="/stripe" component={Stripepayment} />
                 <Route component={NotFoundPage} />
               </Switch>
             </Fragment>
