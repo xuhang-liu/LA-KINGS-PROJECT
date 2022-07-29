@@ -260,8 +260,14 @@ export class Dashboard extends Component {
     if (!this.props.isAuthenticated) {
       return <Redirect to="/" />;
     }
+    //Plan verification
+    if (!this.props.profile.plan_selected) {
+      if (this.props.profile.is_employer) {
+        return <Redirect to="/plan-selection-employer" />;
+      }
+    }
     // email verification
-    if (!this.props.profile.email_confirmed) {
+    else if (!this.props.profile.email_confirmed) {
       // normal user
       if (!this.props.profile.is_employer) {
         return <Redirect to="/email-verification-mini" />;

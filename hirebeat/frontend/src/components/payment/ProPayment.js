@@ -15,11 +15,11 @@ function ScrollToTopOnMount() {
   return null;
 }
 
-class PayGPayment extends Component {
+class ProPayment extends Component {
     componentDidMount() {
         if(this.props.isAuthenticated){
             var data = {
-                "plan": "payg",
+                "plan": "pro",
                 "user_id": this.props.user.id
             }
             this.props.addCreditToUser(data);
@@ -31,7 +31,7 @@ class PayGPayment extends Component {
         //alert
     confirmAlert({
         title: 'Congratulation!',
-        message: 'Your purchase of pay-as-you-go plan is successful. You now have '+(this.props.profile.payg_credit+1)+' job credits. To apply these credits, you can either create and publish a new job, or activate an archived job by changing its job status.',
+        message: 'You are [PRO] member now.',
         buttons: [
           {
             label: 'OK'
@@ -69,4 +69,4 @@ const mapStateToProps = (state) => ({
     profile: state.auth_reducer.profile,
 });
 
-export default connect(mapStateToProps, { addCreditToUser })(PayGPayment);
+export default connect(mapStateToProps, { addCreditToUser })(ProPayment);

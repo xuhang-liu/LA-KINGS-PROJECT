@@ -5,9 +5,7 @@ import { updateProfile, updateUserEmail } from "../../redux/actions/auth_actions
 import { createMessage } from "../../redux/actions/message_actions";
 import { loadStripe } from '@stripe/stripe-js';
 import MediaQuery from 'react-responsive';
-import Collapse from 'react-bootstrap/Collapse'
-//import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import Collapse from 'react-bootstrap/Collapse';
 import 'boxicons';
 import axios from "axios";
 
@@ -91,111 +89,6 @@ class Employer_PricingStyleOne extends Component {
         });
     }
 
-    // handleInputChange = (e) => {
-    //     if (e.target.value == 'PH2022' || e.target.value == 'ph2022' || e.target.value == 'BL2022' || e.target.value == 'bl2022') {
-    //         this.setState({
-    //             anpro: 69,
-    //             anpre: 164,
-    //             mopro: 93,
-    //             mopre: 219
-    //         });
-    //     } else {
-    //         this.setState({
-    //             anpro: 126,
-    //             anpre: 299,
-    //             mopro: 169,
-    //             mopre: 399
-    //         });
-    //     }
-    //     this.setState({
-    //         [e.target.name]: e.target.value,
-    //     });
-    // };
-
-    // handleCouponProUpgrade = () => {
-    //     this.handleCouponProClickUpgrade();
-    // };
-
-    // handleCouponProClickUpgrade = async (event) => {
-    //     // When the customer clicks on the button, redirect them to Checkout.
-    //     const stripe = await stripePromise;
-    //     const { error } = await stripe.redirectToCheckout({
-    //         lineItems: [{
-    //             price: 'price_1KHADuKxU1MN2zWMnR2zpGiR', // Replace with the ID of your price
-    //             quantity: 1,
-    //         }],
-    //         mode: 'subscription',
-    //         successUrl: 'https://app.hirebeat.co/payment',
-    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-    //         billingAddressCollection: 'auto',
-    //         customerEmail: this.props.user.email,
-    //     });
-    //     error.message;
-    // };
-
-    // handleCouponYearProUpgrade = () => {
-    //     this.handleCouponYearProClickUpgrade();
-    // };
-
-    // handleCouponYearProClickUpgrade = async (event) => {
-    //     // When the customer clicks on the button, redirect them to Checkout.
-    //     const stripe = await stripePromise;
-    //     const { error } = await stripe.redirectToCheckout({
-    //         lineItems: [{
-    //             price: 'price_1KHADlKxU1MN2zWMTiH3oA8R', // Replace with the ID of your price
-    //             quantity: 1,
-    //         }],
-    //         mode: 'subscription',
-    //         successUrl: 'https://app.hirebeat.co/payment',
-    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-    //         billingAddressCollection: 'auto',
-    //         customerEmail: this.props.user.email,
-    //     });
-    //     error.message;
-    // };
-
-    // handleCouponPremiumUpgrade = () => {
-    //     this.handleCouponPremiumClickUpgrade();
-    // };
-
-    // handleCouponPremiumClickUpgrade = async (event) => {
-    //     // When the customer clicks on the button, redirect them to Checkout.
-    //     const stripe = await stripePromise;
-    //     const { error } = await stripe.redirectToCheckout({
-    //         lineItems: [{
-    //             price: 'price_1KHABwKxU1MN2zWM9cOLWe3D', // Replace with the ID of your price
-    //             quantity: 1,
-    //         }],
-    //         mode: 'subscription',
-    //         successUrl: 'https://app.hirebeat.co/payment',
-    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-    //         billingAddressCollection: 'auto',
-    //         customerEmail: this.props.user.email,
-    //     });
-    //     error.message;
-    // };
-
-    // handleCouponYearPremiumUpgrade = () => {
-    //     this.handleCouponYearPremiumClickUpgrade();
-    // };
-
-    // handleCouponYearPremiumClickUpgrade = async (event) => {
-    //     // When the customer clicks on the button, redirect them to Checkout.
-    //     const stripe = await stripePromise;
-    //     const { error } = await stripe.redirectToCheckout({
-    //         lineItems: [{
-    //             price: 'price_1KHABkKxU1MN2zWMs0TTARc9', // Replace with the ID of your price
-    //             quantity: 1,
-    //         }],
-    //         mode: 'subscription',
-    //         successUrl: 'https://app.hirebeat.co/payment',
-    //         cancelUrl: 'https://app.hirebeat.co/employer-pricing',
-    //         billingAddressCollection: 'auto',
-    //         customerEmail: this.props.user.email,
-    //     });
-    //     error.message;
-    // };
-
     handleProUpgrade = () => {
         this.handleProClickUpgrade();
     };
@@ -208,7 +101,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/paymentpro',
+            successUrl: 'https://app.hirebeat.co/proplanpayment-suc',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
@@ -229,7 +122,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/paymentpro',
+            successUrl: 'https://app.hirebeat.co/proplanpayment-suc',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
@@ -250,7 +143,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
+            successUrl: 'https://app.hirebeat.co/premiumplanpayment-suc',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
@@ -271,7 +164,7 @@ class Employer_PricingStyleOne extends Component {
                 quantity: 1,
             }],
             mode: 'subscription',
-            successUrl: 'https://app.hirebeat.co/payment',
+            successUrl: 'https://app.hirebeat.co/premiumplanpayment-suc',
             cancelUrl: 'https://app.hirebeat.co/employer-pricing',
             billingAddressCollection: 'auto',
             customerEmail: this.props.user.email,
