@@ -108,7 +108,9 @@ const ReviewCandidate = (props) => {
             // update
             let page = props.selectedPage + 1;
             let isSortByScore = props.isSortByScore || ""
-            setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore); }, 300);
+            setTimeout(() => { 
+                props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords); 
+            }, 300);
             let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
             if (!noShowAgainMove) {
                 enableSuccessAlert();
@@ -133,7 +135,7 @@ const ReviewCandidate = (props) => {
         // update
         let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore); }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords); }, 300);
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
         if (props.applicant.is_active) {
             if (!noShowAgainReject) {
@@ -206,7 +208,7 @@ const ReviewCandidate = (props) => {
     function nextOrPreUpdate() {
         let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
-        props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore);
+        props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords);
         //        sessionStorage.vwoveItem("current");
     }
 
@@ -220,7 +222,7 @@ const ReviewCandidate = (props) => {
         props.updateCandidateViewedStatus(data);
         let page = props.selectedPage + 1;
         let isSortByScore = props.isSortByScore || "";
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore); }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords); }, 300);
     }
 
     function showResumeEva() {
@@ -452,6 +454,7 @@ const ReviewCandidate = (props) => {
                             selectedPage={props.selectedPage}
                             selectedCurrentStage={props.selectedCurrentStage}
                             selectedStatus={props.selectedStatus}
+                            keyWords={props.keyWords}
                             getAllJobs={props.getAllJobs}
                             isSortByScore={props.isSortByScore}
                             user={props.user}
