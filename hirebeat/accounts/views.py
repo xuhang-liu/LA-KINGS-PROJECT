@@ -127,28 +127,14 @@ def stripe_create_subcription(request):
                 payment_behavior='default_incomplete',
                 payment_settings={'save_default_payment_method': 'on_subscription'},
                 expand=['latest_invoice.payment_intent'],
-                trial_from_plan=True,
                 metadata={
                     'clientReferenceId': clientReferenceId
                 }
             )
-            setupIntent=stripe.SetupIntent.create(
-                customer=customer_id,
-                payment_method_types=["card"],
-            )
             return JsonResponse({
                 'subscriptionId': subscription.id,
-                'clientSecret': setupIntent.client_secret
+                'clientSecret': subscription.latest_invoice.payment_intent.client_secret
             })
-    except Exception:
-        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
-
-@api_view(['POST'])
-def stripe_cancel_subcription(request):
-    subid = request.data['subid']
-    try:
-        stripe.Subscription.delete(subid)
-        return Response("Sub cancel", status=status.HTTP_200_OK)
     except Exception:
         return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 

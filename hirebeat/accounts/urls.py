@@ -15,7 +15,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, \
     check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp, \
     check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email, delete_account, deactivate_fraud_user, update_employer_onboard, \
-    update_employer_onboard0, create_or_update_employer_tutorial_infos, job_target_info_update, stripe_create_subcription, stripe_apply_coupon_code, stripe_cancel_subcription
+    update_employer_onboard0, create_or_update_employer_tutorial_infos, job_target_info_update, stripe_create_subcription, stripe_apply_coupon_code
 from .api.social_login import exchange_token
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import views as auth_views
@@ -154,6 +154,5 @@ urlpatterns = [
     path('accounts/job-target-info-update', job_target_info_update, name="update job target info"),
     path("accounts/stripe-create-subcription", csrf_exempt(stripe_create_subcription), name="stripe create subscription"),
     path("accounts/stripe-apply-coupon-code", csrf_exempt(stripe_apply_coupon_code), name="stripe apply coupon code"),
-    path("accounts/stripe-cancel-subscription", csrf_exempt(stripe_cancel_subcription), name="stripe apply coupon code")
 ]
 
