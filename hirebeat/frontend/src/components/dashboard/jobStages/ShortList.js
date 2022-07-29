@@ -23,6 +23,13 @@ const ShortList = (props) => {
     //        props.loadStarList(props.positionId);
     //    }, [])
 
+
+    useEffect(() => {
+        if (props.filterReset > 0){
+            setkeyWords("");
+        }
+    }, [props.filterReset]); 
+
     function refreshPage() {
         props.loadStarList(curJobId);
     }
@@ -37,7 +44,7 @@ const ShortList = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId);
+        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
@@ -135,8 +142,21 @@ const AcceptedCandidate = (props) => {
         setCategory5(category5)
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId);
+        props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords);
     }
+
+
+    const onKeyPress = (e) => {
+        //setkeyWords(e.target.value);
+        if (e.key === 'Enter') {
+            let userId = props.user.id;
+            props.getPostedJobs(userId, 1, "Short List", "", category3.value, "", category5.value, props.jobsId, e.target.value);
+        }
+    };
+    const onSearch = (e) => {
+        let userId = props.user.id;
+        props.getPostedJobs(userId, 1, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords);
+    };
 
     const options3 = [
         { value: 'Pending', label: 'Pending' },
@@ -301,7 +321,10 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
+                setTimeout(() => { 
+                    props.getAllJobs(userId, page, "Short List"); 
+                    props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+                }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 setSelectedAllCandidates(false);
@@ -375,7 +398,10 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Short List"); props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId) }, 300);
+            setTimeout(() => { 
+                props.getAllJobs(userId, page, "Short List"); 
+                props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+            }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             setSelectedAllCandidates(false);
@@ -431,8 +457,8 @@ const AcceptedCandidate = (props) => {
             <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
                 <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                     <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
-                        <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
-                        <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} style={{ height: "auto" }}></input>
+                        <label onClick={onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
+                        <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} onKeyPress={onKeyPress} style={{ height: "auto" }}></input>
                     </div>
                     {props.totalPage > 1 &&
                         <div className="ml-auto">
@@ -492,10 +518,12 @@ const AcceptedCandidate = (props) => {
                         {(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>}
                     </div>
                     {props.theJob.applicants.map((applicant, index) => {
+                        /*
                         if (props.keyWords != "") {
                             let name = applicant.name;
                             if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
                         }
+                        */
                         return (
                             <div>
                                 <CandidateCard
@@ -526,6 +554,7 @@ const AcceptedCandidate = (props) => {
                                     getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
                                     user={props.user}
                                     getPostedJobs={props.getPostedJobs}
+                                    keyWords={props.keyWords}
                                     getAllJobs={props.getAllJobs}
                                     reviewer_type={props.reviewer_type}
                                     selectedPage={props.selectedPage}
@@ -896,7 +925,7 @@ const CandidateCard = (props) => {
         //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
-        props.getPostedJobs(props.user.id, props.currentPage, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId);
+        props.getPostedJobs(props.user.id, props.currentPage, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId, props.keyWords);
     }
     return (
         <React.Fragment>
@@ -986,6 +1015,7 @@ const CandidateCard = (props) => {
                 filter={"active"}
                 getPostedJobs={props.getPostedJobs}
                 getAllJobs={props.getAllJobs}
+                keyWords={props.keyWords}
                 currentStage={"Short List"}
                 reviewer_type={props.reviewer_type}
                 jobsId={props.jobsId}

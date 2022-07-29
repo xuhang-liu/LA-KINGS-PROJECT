@@ -161,6 +161,7 @@ export class JobPortalPage extends Component {
             this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
             this.setState({
                 portalSubpage: "resumeScreen",
+                subComponentFilterReset: 1,
             });
         }
     };
@@ -256,6 +257,7 @@ export class JobPortalPage extends Component {
                     user={this.props.user}
                     employerProfileDetail={this.props.employerProfileDetail}
                     reviewerStageLength={this.state.reviewerStage?.length}
+                    filterReset={this.state.subComponentFilterReset}
                 />;
             case "videoInterview":
                 return <VideoInterview

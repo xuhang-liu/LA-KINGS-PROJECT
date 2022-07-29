@@ -42,6 +42,14 @@ export class ResumeScreening extends Component {
         setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPJobs(); }, 300);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.filterReset > 0){
+            return { 
+                     keyWords: "",
+                   };
+        }
+    }
+
     onFilter = (category) => {
         this.setState({ category: category })
     }
@@ -78,6 +86,13 @@ export class ResumeScreening extends Component {
 
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
+        if (e.key === 'Enter') {
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, e.target.value); 
+        }
+    };
+
+    onSearch = () => {
+        this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
     };
 
     setTempQuestion = (questions) => {
@@ -86,7 +101,10 @@ export class ResumeScreening extends Component {
 
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore); this.props.getPJobs(); }, 300);
+        setTimeout(() => { 
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
+            this.props.getPJobs(); 
+        }, 300);
         this.setState({ showQForm: false });
 
     }
@@ -196,7 +214,7 @@ export class ResumeScreening extends Component {
                 let page = 1;
                 let userId = this.props.user.id;
                 setTimeout(() => { 
-                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
                     this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
                 }, 300);
                 this.unSelectAllCandidates();
@@ -275,7 +293,7 @@ export class ResumeScreening extends Component {
             let page = 1;
             let userId = this.props.user.id;
             setTimeout(() => { 
-                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore); 
+                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
                 this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
             }, 300);
             this.unSelectAllCandidates();
@@ -392,10 +410,10 @@ export class ResumeScreening extends Component {
 
     sortByScore = () => {
         if (!this.state.isSortByScore) {
-            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True", this.state.keyWords);
         }
         else {
-            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "False");
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "False", this.state.keyWords);
         }
         this.setState({ isSortByScore: !this.state.isSortByScore });
     }
@@ -405,10 +423,10 @@ export class ResumeScreening extends Component {
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
         if (this.state.isSortByScore) {
-            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True");
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "True", this.state.keyWords);
         }
         else {
-            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "False");
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", "False", this.state.keyWords);
         }
         window.scrollTo(0, 0);
     };
@@ -498,8 +516,8 @@ export class ResumeScreening extends Component {
                     <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1.4rem" }}>
                         <div>
                             <span style={{ display: "flex", alignItems: "center" }}>
-                                <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
-                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
+                                <i onClick={this.onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
+                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange}></input>
                             </span>
                         </div>
                         {this.props.curJob.total_page > 1 &&
@@ -552,10 +570,12 @@ export class ResumeScreening extends Component {
                             }
                         </div>
                         {this.props.curJob.applicants.map((a, index) => {
+                            /*
                             if (this.state.keyWords != "") {
                                 let name = a.first_name + " " + a.last_name;
                                 if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
                             }
+                            */
                             if (this.state.category.value != "All") {
                                 switch (this.state.category.value) {
                                     case "Invited":
@@ -589,6 +609,7 @@ export class ResumeScreening extends Component {
                                     index={index}
                                     applicants={this.props.curJob.applicants}
                                     curJob={this.props.curJob}
+                                    keyWords={this.state.keyWords}
                                     tempQuestion={this.state.tempQuestion}
                                     setTempQuestion={this.setTempQuestion}
                                     profile={this.props.profile}
@@ -930,7 +951,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore, props.keyWords); }, 300);
         //sessionStorage.removeItem("showPreview" + props.index);
         //sessionStorage.removeItem("showPreview" + current);
         setShowPreview(false);
@@ -970,7 +991,7 @@ const ApplicantRow = (props) => {
 
     const refresh = () => {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore); props.getPJobs() }, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, "Resume Review", "True", props.isSortByScore, props.keyWords); props.getPJobs() }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
         props.getApplicantsInfo(applicants[current].email);
@@ -1056,6 +1077,7 @@ const ApplicantRow = (props) => {
                         candidateId={applicants[current].id}
                         updateInviteStatus={props.updateInviteStatus}
                         getAllJobs={props.getAllJobs}
+                        keyWords={props.keyWords}
                         getPJobs={props.getPJobs}
                         user={props.user}
                         setStatus={setStatus}

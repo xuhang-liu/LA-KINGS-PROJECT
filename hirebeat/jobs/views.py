@@ -32,6 +32,9 @@ from django.db.models import Q
 from django.http import JsonResponse
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from django.db.models import Value as V
+from django.db.models.functions import Concat   
+
 
 @api_view(['POST'])
 def add_new_job(request):
@@ -131,6 +134,9 @@ def get_all_jobs(request):
     subpage = request.GET.get("subpage", "")
     has_is_active = True if (request.GET.get("status", "") != "") else False
     has_resume_sort = True if (request.GET.get("sort", "") != "") else False
+    search_filter = request.GET.get("search_filter", "")
+    if search_filter == "undefined":
+        search_filter = ""
 
     data = {}
     # check user type with Profile table
@@ -194,6 +200,10 @@ def get_all_jobs(request):
                     jobs_id=job_id, is_active=is_active)
             else:
                 applicants = ApplyCandidates.objects.filter(jobs_id=job_id)
+
+        if search_filter != "":
+            applicants = applicants.annotate(full_name=Concat('first_name', V(' '), 'last_name')).filter(full_name__icontains=search_filter)
+
         applicants = list(applicants.values())
         # sort by score or id
         # note the result_rate is the type of string, make sure to convert it to float

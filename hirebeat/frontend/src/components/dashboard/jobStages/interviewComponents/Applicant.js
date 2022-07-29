@@ -156,7 +156,7 @@ export const Applicant = (props) => {
             props.resendInvitation(meta);
             setTimeout(() => { 
                 props.getAllJobs(props.user.id, 1, props.currentStage); 
-                props.getPostedJobs(props.user.id, 1, props.currentStage,"","","","", props.jobsId) 
+                props.getPostedJobs(props.user.id, 1, props.currentStage,"","","","", props.jobsId, props.keyWords) 
             }, 300);
             alert1();
         }
@@ -172,7 +172,7 @@ export const Applicant = (props) => {
         setCurrent(props.index);
         setTimeout(() => { 
             props.getAllJobs(props.user.id, 1, props.currentStage); 
-            props.getPostedJobs(props.user.id, (props.selectedPage+1), props.currentStage, props.category.value, props.category3.value,"", "", props.jobsId)
+            props.getPostedJobs(props.user.id, (props.selectedPage+1), props.currentStage, props.category.value, props.category3.value,"", "", props.jobsId, props.keyWords)
         }, 300);
         setShow(false);
     }
@@ -337,6 +337,7 @@ export const Applicant = (props) => {
                 filter={props.filter}
                 currentStage={props.currentStage}
                 getPostedJobs={props.getPostedJobs}
+                keyWords={props.keyWords}
                 getAllJobs={props.getAllJobs}
                 reviewer_type={props.reviewer_type}
                 gh_current_stage_id={props.gh_current_stage_id}

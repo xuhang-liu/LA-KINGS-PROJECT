@@ -31,14 +31,14 @@ export class AllCandidates extends Component {
         this.setState({ category: category });
         let page = this.state.selectedPage + 1;
         let stage = this.state.stage.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, ""); this.setState({ selectedPage: 0 });}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "", this.state.keyWords); this.setState({ selectedPage: 0 });}, 300);
     }
 
     filterStage = (stage) => {
         this.setState({ stage: stage });
         let page = this.state.selectedPage + 1;
         let status = this.state.category.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, ""); this.setState({ selectedPage: 0 });}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "", this.state.keyWords); this.setState({ selectedPage: 0 });}, 300);
     }
     // filter selections
     options = [
@@ -73,13 +73,21 @@ export class AllCandidates extends Component {
         if (props.filterReset > 0){
             return { stage:    { value: '', label: 'All' },
                      category: { value: '', label: 'All' },
+                     keyWords: "",
                    };
         }
     }
 
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
+        if (e.key === 'Enter') {
+            this.props.getAllJobs(this.props.user.id, 1, this.state.stage.value, this.state.category.value, "", e.target.value);
+        }
     };
+
+    onSearch = () =>{
+        this.props.getAllJobs(this.props.user.id, 1, this.state.stage.value, this.state.category.value, "", this.state.keyWords);
+    }
 
     setTempQuestion = (questions) => {
         this.setState({ tempQuestion: questions });
@@ -88,7 +96,7 @@ export class AllCandidates extends Component {
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
         setTimeout(() => {
-             this.props.getAllJobs(this.props.user.id, page, "", "", ""); 
+             this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords); 
              this.props.getPostedJobs(this.props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id); 
         }, 300);
         this.setState({ showQForm: false });
@@ -173,7 +181,7 @@ export class AllCandidates extends Component {
                 // update
                 let page = this.state.selectedPage + 1;
                 setTimeout(() => { 
-                    this.props.getAllJobs(this.props.user.id, page, "", "", ""); 
+                    this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords); 
                     this.props.getPostedJobs(this.props.user.id, page, "", "", "", "","", this.props.curJob.job_details.id) 
                 }, 300);
                 this.sendSuccessAlert();
@@ -205,7 +213,7 @@ export class AllCandidates extends Component {
         let selectedPage = data.selected; // 0 index based
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
-        this.props.getAllJobs(this.props.user.id, page, this.state.stage.value, this.state.category.value, "");
+        this.props.getAllJobs(this.props.user.id, page, this.state.stage.value, this.state.category.value, "", this.state.keyWords);
         window.scrollTo(0,0);
     };
 
@@ -241,8 +249,8 @@ export class AllCandidates extends Component {
                             <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
                                 <div>
                                     <span style={{ display: "flex", alignItems: "center" }}>
-                                        <i style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
-                                        <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
+                                        <i onClick={this.onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
+                                        <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange}></input>
                                     </span>
                                 </div>
                                 <div>
@@ -297,10 +305,12 @@ export class AllCandidates extends Component {
                                     </div>
                                 </div>
                                 {this.props.curJob.applicants.map((a, index) => {
+                                    /*
                                     if (this.state.keyWords != "") {
                                         let name = a.first_name + " " + a.last_name;
                                         if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
                                     }
+                                    */
                                     return (
                                         <ApplicantRow
                                             filter={this.props.filter}
@@ -308,6 +318,7 @@ export class AllCandidates extends Component {
                                             index={index}
                                             applicants={this.props.curJob.applicants}
                                             curJob={this.props.curJob}
+                                            keyWords={this.state.keyWords}
                                             tempQuestion={this.state.tempQuestion}
                                             setTempQuestion={this.setTempQuestion}
                                             profile={this.props.profile}
@@ -403,6 +414,7 @@ export class AllCandidates extends Component {
                         getPostedJobs={this.props.getPostedJobs}
                         jobId={this.props.curJob.job_details.id}
                         user={this.props.user}
+                        keyWords={this.state.keyWords}
                     />
                 }
             </React.Fragment>
@@ -445,7 +457,7 @@ const ApplicantRow = (props) => {
 
     function hideModal() {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "");}, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "", props.keyWords);}, 300);
         //sessionStorage.removeItem("showPreview" + props.index);
         //sessionStorage.removeItem("showPreview" + current);
         //sessionStorage.removeItem("current");
@@ -508,7 +520,7 @@ const ApplicantRow = (props) => {
     const refresh = () => {
         let page = props.selectedPage + 1;
         setTimeout(() => {
-            props.getAllJobs(props.user.id, page, "", "", ""); 
+            props.getAllJobs(props.user.id, page, "", "", "", props.keyWords); 
             props.getPostedJobs(props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id) 
         }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
@@ -586,6 +598,7 @@ const ApplicantRow = (props) => {
             <div style={{ background: "#E8EDFC" }}>
                 <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
                     <ReviewCandidate
+                        keyWords={props.keyWords}
                         phone={applicants[current].phone}
                         email={applicants[current].email}
                         location={applicants[current].location}

@@ -61,7 +61,7 @@ export function LiveInterview(props) {
         setCategory4(category4);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value, "", props.jobsId);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value, "", props.jobsId, keyWords);
     }
     
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
@@ -69,13 +69,14 @@ export function LiveInterview(props) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "","", props.jobsId);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "","", props.jobsId, keyWords);
     }
 
     useEffect(() => {
         if (props.filterReset > 0){
             setCategory3({ value: 'All', label: 'All' });
             setCategory4({ value: 'All', label: 'All' });
+            setkeyWords("");
         }
     }, [props.filterReset]); 
 
@@ -96,6 +97,14 @@ export function LiveInterview(props) {
     const [keyWords, setkeyWords] = useState("");
     function onChange(e) {
         setkeyWords(e.target.value);
+        if (e.key === 'Enter') {
+            let userId = props.user.id;
+            props.getPostedJobs(userId, 1, "Live Interview", "", category3.value, category4.value, "", props.jobsId, e.target.value);
+        }
+    };
+    function onSearch(e) {
+        let userId = props.user.id;
+        props.getPostedJobs(userId, 1, "Live Interview", "", category3.value, category4.value, "", props.jobsId, keyWords);
     };
 
     function selectAllCandidates() {
@@ -145,7 +154,7 @@ export function LiveInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Live Interview", "","","","", props.jobsId);
+        props.getPostedJobs(props.user.id, page, "Live Interview", "","","","", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
@@ -207,7 +216,10 @@ export function LiveInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
+                setTimeout(() => { 
+                    props.getAllJobs(userId, page, "Live Interview"); 
+                    props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords) 
+                }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
                 if (!noShowAgainMove) {
@@ -282,7 +294,10 @@ export function LiveInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { props.getAllJobs(userId, page, "Live Interview"); props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId) }, 300);
+            setTimeout(() => { 
+                props.getAllJobs(userId, page, "Live Interview"); 
+                props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords) 
+            }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
             setSelectedAllCandidates(false);
@@ -394,7 +409,10 @@ export function LiveInterview(props) {
         };
         axios.post("questions/update-live-interview-categories", data, config).then((res) => {
             console.log(res.data);
-            setTimeout(() => { props.getAllJobs(props.user.id, 1, "Live Interview"); props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId); }, 300);
+            setTimeout(() => { 
+                props.getAllJobs(props.user.id, 1, "Live Interview"); 
+                props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId, keyWords); 
+            }, 300);
             hideShowConfigInt();
         }).catch(error => {
             console.log(error)
@@ -445,8 +463,8 @@ export function LiveInterview(props) {
                 <div className="mt-4 pb-3" style={{ paddingTop: "1.4rem" }}>
                     <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
                         <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
-                            <label style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
-                            <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} style={{ height: "auto" }}></input>
+                            <label onClick={onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
+                            <input placeholder={"Search candidate"} className="search-candidate-input" value={keyWords} onChange={onChange} onKeyPress={onChange} style={{ height: "auto" }}></input>
                         </div>
                         {(props.reviewerStageLength == 0) &&
                             <div className="col-2 interview-txt7" style={{ textAlign: "right" }}>
