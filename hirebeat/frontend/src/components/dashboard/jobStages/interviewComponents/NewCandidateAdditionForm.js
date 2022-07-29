@@ -20,7 +20,7 @@ export class NewCandidateAdditionForm extends Component {
     }
 
     closeForm = () => {
-        this.props.getAllJobs(this.props.user.id, 1, "", "", "");
+        this.props.getAllJobs(this.props.user.id, 1, "", "", "", this.props.keyWords);
         this.props.hideAdditionForm();
     };
 
@@ -115,7 +115,12 @@ export class NewCandidateAdditionForm extends Component {
             });
 
         }
-        setTimeout(() => {this.props.getAllJobs(this.props.user.id, 1, "", "", "");; this.setState({candidates: []}); this.uploadSuccess(); this.props.hideAdditionForm();}, 500);
+        setTimeout(() => {
+            this.props.getAllJobs(this.props.user.id, 1, "", "", "", this.props.keyWords);;
+            this.setState({candidates: []}); 
+            this.uploadSuccess(); 
+            this.props.hideAdditionForm();
+        }, 500);
     };
 
     onUploadError = (err) => {
