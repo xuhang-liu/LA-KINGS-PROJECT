@@ -63,7 +63,7 @@ export default function CheckoutFormPremium(props) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://127.0.0.1:8000/premiumplanpayment-suc",
+        return_url: "https://"+window?.location?.hostname+"/premiumplanpayment-suc",
       },
     });
 
