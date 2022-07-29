@@ -307,7 +307,7 @@ export class EmployerRegister extends Component {
     };
     const { firstName, lastName, companyName, company_website, email, password, password2, isReviewer } = this.state;
     if (this.props.auth.isAuthenticated) {
-      return <Redirect to="/email-verification-employer-mini" />;
+      return <Redirect to="/plan-selection-employer" />;
     }
     return (
       <DocumentMeta {...meta}>

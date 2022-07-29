@@ -223,11 +223,22 @@ export class EmployerDashboard extends Component {
 
   redirectToEmailVerification = () => {
     const { history } = this.props;
-    if (history) history.push(`/email-verification`);
+    if (history) history.push(`/email-verification-employer-mini`);
+  };
+
+  redirectToPlanSelection = () => {
+    const { history } = this.props;
+    if (history) history.push(`/plan-selection-employer`);
   };
 
   verifyEmail = () => {
-    if (!this.props.profile.email_confirmed) {
+    //Plan verification
+    if (!this.props.profile.plan_selected) {
+      if (this.props.profile.is_employer) {
+        this.redirectToPlanSelection();
+      }
+    }
+    else if (!this.props.profile.email_confirmed) {
       this.redirectToEmailVerification();
       return this.alert("Account Activation Needed", "Please check the activation email and activate your account");
     }
@@ -291,27 +302,7 @@ export class EmployerDashboard extends Component {
     };
     let user_id = { "user_id": this.props.user.id };
     axios.post("api/check_freetrial_expire", user_id, config).then((res) => {
-      if (res.data.data) {
-        var data = {
-          "id": this.props.user.id,
-          "limit": this.props.profile.position_limit,
-        }
-        this.props.checkFreeAccountActiveJobs(data);
-        setTimeout(() => {
-          this.props.getPostedJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpage") || "");
-          this.props.getAllJobs(this.props.user.id, 1, sessionStorage.getItem("selectedSubpageForJob") || "", "", "");
-        }, 300)
-        sessionStorage.setItem('subpage', "employerProfile");
-        this.setState({
-          subpage: "employerProfile"
-        });
-        var user = { "id": this.props.user.id };
-        this.props.loadProfile();
-        this.props.loadUserFullname(user);
-        this.props.getEmployerProfileDetail(this.props.user.id);
-        this.props.getEmployerPost(this.props.user.id, 0);
-        this.setShowUpgradeM3();
-      }
+      console.log(res)
     }).catch(error => {
       console.log(error)
     });

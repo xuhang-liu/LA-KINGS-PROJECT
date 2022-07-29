@@ -19,6 +19,7 @@ class PayGPayment extends Component {
     componentDidMount() {
         if(this.props.isAuthenticated){
             var data = {
+                "plan": "payg",
                 "user_id": this.props.user.id
             }
             this.props.addCreditToUser(data);

@@ -3,13 +3,13 @@ from django.db.models import Q
 from django.db.models.functions import Length
 import math
 from django.contrib.postgres.search import SearchVector
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from django.forms.models import model_to_dict
 import requests
 import boto
 import mimetypes
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import os
 from dotenv import load_dotenv
 from django.views.generic import View
@@ -36,7 +36,7 @@ from django.conf import settings
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
-stripe.api_key = os.getenv("STRIPE_API_KEY")
+stripe.api_key = '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'
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -80,6 +80,87 @@ class ActivateAccount(View):
         else:
             return render(request, 'accounts/activation_failure.html')
 
+@api_view(['POST'])
+def stripe_create_subcription(request):
+    try:
+        # Create the subscription. Note we're expanding the Subscription's
+        # latest invoice and that invoice's payment_intent
+        # so we can pass it to the front end to confirm the payment
+        userID = request.data['userID']
+        planPrice = request.data['planPrice']
+        clientReferenceId = request.data['clientReferenceId']
+        user = User.objects.get(pk=userID)
+        employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+        customer_id = ""
+        if user.profile.customer_id != "" and user.profile.customer_id != None:
+            customer_id=user.profile.customer_id
+        else:
+            customer_id=stripe.Customer.create(
+                name=employerProfileDetail.name,
+                email=user.email,
+            )['id']
+            profile=Profile.objects.get(user=user)
+            profile.customer_id = customer_id
+            profile.save()
+        if planPrice == 'price_1K7QhOKxU1MN2zWM6f54d41L':
+            intent = stripe.PaymentIntent.create(
+            amount=9900,
+            currency='usd',
+            automatic_payment_methods={
+                'enabled': True,
+            },
+            customer=customer_id,
+            metadata={
+                'clientReferenceId': clientReferenceId
+            }
+            )
+            return JsonResponse({
+                'subscriptionId': intent['id'],
+                'clientSecret': intent['client_secret']
+            })
+        else:
+            subscription = stripe.Subscription.create(
+                customer=customer_id,
+                items=[{
+                    'price': planPrice,
+                }],
+                payment_behavior='default_incomplete',
+                payment_settings={'save_default_payment_method': 'on_subscription'},
+                expand=['latest_invoice.payment_intent'],
+                metadata={
+                    'clientReferenceId': clientReferenceId
+                }
+            )
+            return JsonResponse({
+                'subscriptionId': subscription.id,
+                'clientSecret': subscription.latest_invoice.payment_intent.client_secret
+            })
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def stripe_apply_coupon_code(request):
+    coupon = request.data['coupon']
+    subid = request.data['subid']
+    percent = 1
+    errormsg = "*This code is invalid. Please try again."
+    try:
+        coupon_list = stripe.Coupon.list().data
+        for i in range(len(coupon_list)):
+            if coupon_list[i].id == coupon:
+                percent = 1-(int(coupon_list[i].percent_off)/100)
+                errormsg = ""
+                stripe.Subscription.modify(
+                    subid,
+                    coupon=coupon,
+                )
+        return Response({
+            "percent": percent,
+            "errormsg": errormsg
+        })
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def upgrade_accounts(request):
@@ -1142,10 +1223,6 @@ def check_freetrial_expire(request):
             expired = True
             try:
                 profile.is_freetrial = False
-                profile.candidate_limit = 25
-                profile.position_limit = 0
-                profile.plan_interval = "Regular"
-                profile.membership = "Regular"
                 profile.save()
             except ObjectDoesNotExist:
                 return Response("User not exist", status=status.HTTP_201_CREATED)
@@ -1270,10 +1347,30 @@ def check_if_it_reviewer(request):
 @api_view(['POST'])
 def add_credit_to_user(request):
     user_id = request.data["user_id"]
+    plan = request.data["plan"]
     user = User.objects.get(pk=user_id)
     profile = Profile.objects.get(user=user)
-    profile.payg_credit += 1
-    profile.save()
+    if plan == "payg":
+        profile.payg_credit += 1
+        profile.plan_selected = True
+        profile.is_freetrial = False
+        profile.save()
+    
+    if plan == "pro":
+        profile.membership = "Premium"
+        profile.plan_interval = "Pro"
+        profile.position_limit  = 5
+        profile.plan_selected = True
+        profile.datejoined = datetime.now()
+        profile.save()
+
+    if plan == "premium":
+        profile.membership = "Premium"
+        profile.plan_interval = "Premium"
+        profile.position_limit  = 1000
+        profile.plan_selected = True
+        profile.datejoined = datetime.now()
+        profile.save()
 
     return Response("Add credit to user successfully", status=status.HTTP_201_CREATED)
 
@@ -1324,6 +1421,7 @@ def check_code(request):
                     user.save_limit = 1000
                     user.save_resume_limit = 1000
                 user.is_freetrial = False
+                user.plan_selected = True
                 user.save()
                 return Response({"msg" : "Add a redeem code!", "plan": user.plan_interval})
         else:
