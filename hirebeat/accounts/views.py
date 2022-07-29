@@ -127,6 +127,7 @@ def stripe_create_subcription(request):
                 payment_behavior='default_incomplete',
                 payment_settings={'save_default_payment_method': 'on_subscription'},
                 expand=['latest_invoice.payment_intent'],
+                trial_period_days=14,
                 metadata={
                     'clientReferenceId': clientReferenceId
                 }
