@@ -36,7 +36,7 @@ from django.conf import settings
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 load_dotenv()
-stripe.api_key = 'sk_test_51H4wpRKxU1MN2zWMSFbyyFroEGjV9yOCh7wtZj6A15FyJJHjTGuiLGfL6pmYpR9CpbjouDYpWaCqRJBvG0hLOljC00fSxnuMxT'
+stripe.api_key = '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'
 
 if not boto.config.get('s3', 'use-sigv4'):
     boto.config.add_section('s3')
@@ -86,7 +86,6 @@ def stripe_create_subcription(request):
         # Create the subscription. Note we're expanding the Subscription's
         # latest invoice and that invoice's payment_intent
         # so we can pass it to the front end to confirm the payment
-        coupon = request.data['coupon']
         userID = request.data['userID']
         planPrice = request.data['planPrice']
         clientReferenceId = request.data['clientReferenceId']
@@ -100,7 +99,10 @@ def stripe_create_subcription(request):
                 name=employerProfileDetail.name,
                 email=user.email,
             )['id']
-        if planPrice == 'price_1LQbu3KxU1MN2zWMAaZbcGBr':
+            profile=Profile.objects.get(user=user)
+            profile.customer_id = customer_id
+            profile.save()
+        if planPrice == 'price_1K7QhOKxU1MN2zWM6f54d41L':
             intent = stripe.PaymentIntent.create(
             amount=9900,
             currency='usd',
@@ -113,6 +115,7 @@ def stripe_create_subcription(request):
             }
             )
             return JsonResponse({
+                'subscriptionId': intent['id'],
                 'clientSecret': intent['client_secret']
             })
         else:
@@ -124,7 +127,6 @@ def stripe_create_subcription(request):
                 payment_behavior='default_incomplete',
                 payment_settings={'save_default_payment_method': 'on_subscription'},
                 expand=['latest_invoice.payment_intent'],
-                coupon=coupon,
                 metadata={
                     'clientReferenceId': clientReferenceId
                 }
@@ -136,6 +138,29 @@ def stripe_create_subcription(request):
     except Exception:
         return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+def stripe_apply_coupon_code(request):
+    coupon = request.data['coupon']
+    subid = request.data['subid']
+    percent = 1
+    errormsg = "*This code is invalid. Please try again."
+    try:
+        coupon_list = stripe.Coupon.list().data
+        for i in range(len(coupon_list)):
+            if coupon_list[i].id == coupon:
+                percent = 1-(int(coupon_list[i].percent_off)/100)
+                errormsg = ""
+                stripe.Subscription.modify(
+                    subid,
+                    coupon=coupon,
+                )
+        return Response({
+            "percent": percent,
+            "errormsg": errormsg
+        })
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def upgrade_accounts(request):

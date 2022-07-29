@@ -31,7 +31,6 @@ class PlanSelectionEmployer extends Component {
         showRedeem: false,
         code: "",
         codeErr: "",
-        coupon: "",
         planPrice: "",
     }
 
@@ -94,23 +93,27 @@ class PlanSelectionEmployer extends Component {
     }
 
     handleProUpgrade = () => {
-        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdOgKxU1MN2zWMqc2M6u92" });
+        this.setState({ showPayment: true, planPrice: "price_1ITDJGKxU1MN2zWMKd4L8TOH" });
     };
 
     handleYearProUpgrade = () => {
-        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdRHKxU1MN2zWMrNPTju3z" });
+        this.setState({ showPayment: true, planPrice: "price_1JAcQeKxU1MN2zWMU4DYwhVA" });
     };
 
     handlePremiumUpgrade = () => {
-        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LJLwsKxU1MN2zWM3PiqUIwf" });
+        this.setState({ showPayment: true, planPrice: "price_1K7REaKxU1MN2zWMcG3Oknyt" });
     };
 
     handleYearPremiumUpgrade = () => {
-        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQdSoKxU1MN2zWMHtZSudl8" });
+        this.setState({ showPayment: true, planPrice: "price_1K7RExKxU1MN2zWM87rKnRhM" });
     };
 
     handlePayAsYouGoUpgrade = () => {
-        this.setState({ showPayment: true, coupon: this.state.coupon, planPrice: "price_1LQbu3KxU1MN2zWMAaZbcGBr" });
+        this.setState({ showPayment: true, planPrice: "price_1K7QhOKxU1MN2zWM6f54d41L" });
+    };
+
+    hideShowPayment = () => {
+        this.setState({ showPayment: false });
     };
 
     openTabSection = (evt, tabNmae) => {
@@ -192,9 +195,9 @@ class PlanSelectionEmployer extends Component {
                     {(this.state.showPayment) ?
                         <div>
                             <Stripepayment
-                                coupon={this.state.coupon}
                                 user={this.props.user}
                                 planPrice={this.state.planPrice}
+                                hideShowPayment={this.hideShowPayment}
                             />
                         </div> :
                         <div>
@@ -469,7 +472,7 @@ class PlanSelectionEmployer extends Component {
                                                             </div>
 
                                                             <div className="price" style={{ borderTop: "none", color: "#090d3a", borderBottom: "1px dashed rgba(103, 163, 243, 0.3)" }}>
-                                                                <sup style={{ color: "#090d3a" }}>$</sup>169<sub style={{ color: "#090d3a" }}>/mo</sub>
+                                                                <sup style={{ color: "#090d3a" }}>$</sup>399<sub style={{ color: "#090d3a" }}>/mo</sub>
                                                                 <div style={{ marginTop: "-1rem", marginBottom: "1rem" }}>
                                                                     <div className="btn-box">
                                                                         <button id="id-tifn5" className="default-btn" style={{ color: "white", paddingRight: "50px", backgroundColor: "#13c4a1", paddingTop: "10px", paddingBottom: "10px" }} onClick={this.handlePremiumUpgrade}>
