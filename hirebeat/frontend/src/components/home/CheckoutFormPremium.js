@@ -24,15 +24,15 @@ export default function CheckoutFormPremium(props) {
     }
 
     const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
+      "setup_intent_client_secret"
     );
 
     if (!clientSecret) {
       return;
     }
 
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
+    stripe.retrieveSetupIntent(clientSecret).then(({ setupIntent }) => {
+      switch (setupIntent.status) {
         case "succeeded":
           setMessage("Payment succeeded!");
           break;
@@ -60,7 +60,7 @@ export default function CheckoutFormPremium(props) {
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    const { error } = await stripe.confirmSetup({
       elements,
       confirmParams: {
         return_url: "https://"+window?.location?.hostname+"/premiumplanpayment-suc",
@@ -103,6 +103,22 @@ export default function CheckoutFormPremium(props) {
     }).catch(error => {
       console.log(error);
     });
+  }
+
+  const cancelSripesub = () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let data = { "subid": props.subscriptionId };
+
+    axios.post("accounts/stripe-cancel-sub", data, config).then((res) => {
+      console.log(res);
+    }).catch(error => {
+      console.log(error);
+    });
+    props.hideShowPayment();
   }
 
   var linkStyle3 = { outline: "6px solid #13C4A1", boxShadow: "0px 4px 32px 0px #079A7D66", transition: "0.2s" }
@@ -169,7 +185,7 @@ export default function CheckoutFormPremium(props) {
             }
           </div>
           <div className="row d-flex justify-content-end pr-3">
-            <button type="button" disabled={isLoading || !stripe || !elements} className="default-btn4" style={{ paddingLeft: "25px", marginTop: "1rem", marginRight: "1rem" }} onClick={props.hideShowPayment}>Back to Plans</button>
+            <button type="button" disabled={isLoading || !stripe || !elements} className="default-btn4" style={{ paddingLeft: "25px", marginTop: "1rem", marginRight: "1rem" }} onClick={cancelSripesub}>Back to Plans</button>
             <button type="submit" disabled={isLoading || !stripe || !elements} id="submit" className="default-btn1" style={{ paddingLeft: "25px", marginTop: "1rem" }}>
               <span id="button-text">
                 {isLoading ? <div id="spinner"></div> : "Pay now"}
