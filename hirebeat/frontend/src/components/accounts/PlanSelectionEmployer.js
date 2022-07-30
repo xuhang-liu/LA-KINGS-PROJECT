@@ -54,6 +54,19 @@ class PlanSelectionEmployer extends Component {
                 allFeaturesIndicate1?.classList.remove("is-sticky");
             }
         });
+        //Clear Stripe customer
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data = { "userid": this.props.user.id };
+
+        axios.post("accounts/stripe-delete-customer", data, config).then((res) => {
+            console.log(res);
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     toggleHover1 = () => {

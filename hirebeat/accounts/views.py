@@ -115,25 +115,28 @@ def stripe_create_subcription(request):
             }
             )
             return JsonResponse({
-                'subscriptionId': intent['id'],
                 'clientSecret': intent['client_secret']
             })
         else:
-            subscription = stripe.Subscription.create(
+            setupIntent = stripe.SetupIntent.create(
                 customer=customer_id,
-                items=[{
-                    'price': planPrice,
-                }],
-                payment_behavior='default_incomplete',
-                payment_settings={'save_default_payment_method': 'on_subscription'},
-                expand=['latest_invoice.payment_intent'],
-                metadata={
-                    'clientReferenceId': clientReferenceId
-                }
             )
+            subscription = stripe.Subscription.create(
+            customer=customer_id,
+            items=[{
+                'price': planPrice,
+            }],
+            payment_behavior='default_incomplete',
+            payment_settings={'save_default_payment_method': 'on_subscription'},
+            expand=['latest_invoice.payment_intent'],
+            trial_from_plan=True,
+            metadata={
+                'clientReferenceId': clientReferenceId
+            }
+        )
             return JsonResponse({
                 'subscriptionId': subscription.id,
-                'clientSecret': subscription.latest_invoice.payment_intent.client_secret
+                'clientSecret': setupIntent.client_secret
             })
     except Exception:
         return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
@@ -158,6 +161,29 @@ def stripe_apply_coupon_code(request):
             "percent": percent,
             "errormsg": errormsg
         })
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def stripe_cancel_sub(request):
+    subid = request.data['subid']
+    try:
+        stripe.Subscription.delete(subid)
+        return Response("Cancel stripe sub successfully", status=status.HTTP_200_OK)
+    except Exception:
+        return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def stripe_delete_customer(request):
+    userid = request.data['userid']
+    try:
+        user = User.objects.get(pk=userid)
+        profile = Profile.objects.get(user=user)
+        if profile.customer_id != "" and profile.customer_id != None:
+            stripe.Customer.delete(profile.customer_id)
+            profile.customer_id = None
+            profile.save()
+        return Response("Cancel stripe sub successfully", status=status.HTTP_200_OK)
     except Exception:
         return Response("Stripe payment failed", status=status.HTTP_400_BAD_REQUEST)
 
@@ -1358,16 +1384,20 @@ def add_credit_to_user(request):
     if plan == "pro":
         profile.membership = "Premium"
         profile.plan_interval = "Pro"
+        profile.candidate_limit = 1000
         profile.position_limit  = 5
         profile.plan_selected = True
+        profile.is_freetrial = True
         profile.datejoined = datetime.now()
         profile.save()
 
     if plan == "premium":
         profile.membership = "Premium"
         profile.plan_interval = "Premium"
+        profile.candidate_limit = 1000
         profile.position_limit  = 1000
         profile.plan_selected = True
+        profile.is_freetrial = True
         profile.datejoined = datetime.now()
         profile.save()
 
