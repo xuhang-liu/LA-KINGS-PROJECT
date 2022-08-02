@@ -56,7 +56,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPayg price={99} hideShowPayment={props.hideShowPayment}/>
+                                <CheckoutFormPayg price={99} hideShowPayment={props.hideShowPayment} setPlanPaidTrue={props.setPlanPaidTrue}/>
                             </Elements>
                         )}
                     </span>
@@ -65,7 +65,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} />
+                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
                             </Elements>
                         )}
                     </span>
@@ -74,7 +74,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} />
+                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
                             </Elements>
                         )}
                     </span>
@@ -83,7 +83,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} />
+                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
                             </Elements>
                         )}
                     </span>
@@ -92,7 +92,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} />
+                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
                             </Elements>
                         )}
                     </span>

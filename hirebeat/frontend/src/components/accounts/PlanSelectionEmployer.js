@@ -32,6 +32,7 @@ class PlanSelectionEmployer extends Component {
         code: "",
         codeErr: "",
         planPrice: "",
+        planPaid: false,
     }
 
     componentDidMount() {
@@ -61,7 +62,7 @@ class PlanSelectionEmployer extends Component {
             },
         };
         let data = { "userid": this.props.user.id };
-        if (!(this.props?.profile?.plan_selected)) {
+        if ((!this.props?.profile?.plan_selected) && (!this.state.planPaid)) {
             axios.post("accounts/stripe-delete-customer", data, config).then((res) => {
                 console.log(res);
             }).catch(error => {
@@ -176,6 +177,10 @@ class PlanSelectionEmployer extends Component {
         this.setState({ code: "" })
     }
 
+    setPlanPaidTrue = () => {
+        this.setState({planPaid: true});
+    }
+
     render() {
         const meta = {
             title: 'HireBeat – Plan Selection(Employer) On Registration',
@@ -212,6 +217,7 @@ class PlanSelectionEmployer extends Component {
                                 user={this.props.user}
                                 planPrice={this.state.planPrice}
                                 hideShowPayment={this.hideShowPayment}
+                                setPlanPaidTrue={this.setPlanPaidTrue}
                             />
                         </div> :
                         <div>

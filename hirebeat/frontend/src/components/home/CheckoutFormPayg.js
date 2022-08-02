@@ -73,6 +73,7 @@ export default function CheckoutFormPayg(props) {
       setMessage("An unexpected error occurred.");
     }
 
+    props.setPlanPaidTrue();
     setIsLoading(false);
   };
 
