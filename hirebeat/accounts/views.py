@@ -179,7 +179,7 @@ def stripe_delete_customer(request):
     try:
         user = User.objects.get(pk=userid)
         profile = Profile.objects.get(user=user)
-        if profile.customer_id != "" and profile.customer_id != None:
+        if profile.customer_id != "" and profile.customer_id != None and not profile.plan_selected:
             stripe.Customer.delete(profile.customer_id)
             profile.customer_id = None
             profile.save()
