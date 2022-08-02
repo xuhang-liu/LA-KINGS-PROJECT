@@ -61,12 +61,13 @@ class PlanSelectionEmployer extends Component {
             },
         };
         let data = { "userid": this.props.user.id };
-
-        axios.post("accounts/stripe-delete-customer", data, config).then((res) => {
-            console.log(res);
-        }).catch(error => {
-            console.log(error);
-        });
+        if (!(this.props?.profile?.plan_selected)) {
+            axios.post("accounts/stripe-delete-customer", data, config).then((res) => {
+                console.log(res);
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     }
 
     toggleHover1 = () => {
