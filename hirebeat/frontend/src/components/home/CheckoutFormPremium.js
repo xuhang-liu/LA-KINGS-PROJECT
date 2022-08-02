@@ -78,6 +78,7 @@ export default function CheckoutFormPremium(props) {
       setMessage("An unexpected error occurred.");
     }
 
+    props.setPlanPaidTrue();
     setIsLoading(false);
   };
 
