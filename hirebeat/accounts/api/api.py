@@ -129,6 +129,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             profile.viewed_employer_welcome = True
             profile.viewed_tutorial = True
             profile.position_limit  = 1000
+            profile.is_freetrial = False
             profile.plan_interval = "Premium"
             profile.membership = "Premium"
             for s in range(len(subReviewer)):
@@ -145,6 +146,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             profile.viewed_employer_welcome = True
             profile.viewed_tutorial = True
             profile.position_limit  = 1000
+            profile.is_freetrial = False
             profile.plan_interval = "Premium"
             profile.membership = "Premium"
             for e in range(len(ex_reviewer)):
