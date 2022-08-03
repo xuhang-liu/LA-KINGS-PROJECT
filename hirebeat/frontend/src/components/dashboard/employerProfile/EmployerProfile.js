@@ -331,8 +331,6 @@ export class EmployerProfile extends Component {
                                                     <span>Premium Lite</span>}
                                                 </p>
                                             </div>
-                                            {(this.props.profile.position_limit != 1 && this.props.profile.position_limit != 10 && this.props.profile.position_limit != 50) &&
-                                            <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade</p></Link>}
                                         </div> :
                                         <div className="row">
                                             <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid" }}>
@@ -340,12 +338,6 @@ export class EmployerProfile extends Component {
                                                     <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
                                                 </p>
                                             </div>
-                                            {this.props.profile.is_freetrial &&
-                                            <div style={{height:"2rem"}}>
-                                                <p className="pl-3" style={{display:"inline-block"}}>Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>
-                                                <Link to="/employer-pricing" style={{ textDecoration: "none", marginLeft: "1rem", display:"inline-block" }}><p style={{ color: "#fac046", fontSize: "14px" }}>Upgrade Now</p></Link>
-                                                </div>
-                                                }
                                         </div>}
                                 </div> :
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>

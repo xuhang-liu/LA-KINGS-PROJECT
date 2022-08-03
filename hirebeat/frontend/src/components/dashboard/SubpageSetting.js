@@ -717,7 +717,7 @@ export class SubpageSetting extends Component {
                                             </p>
                                         </div>}
                                     {this.props.profile.is_freetrial &&
-                                        <p className="ml-2">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
+                                        <p className="ml-2 mb-3">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
                                 </div>
                             </div>
 
@@ -725,7 +725,7 @@ export class SubpageSetting extends Component {
 
                             <div className="form-row">
                                 <div className="form-group col">
-                                    {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null && this.props.profile.customer_id != "none") && (!this.props.profile.is_freetrial)) &&
+                                    {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null)) &&
                                         <div>
                                             <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.stripeCustomerPortal}>Manage Subscription</button>
                                         </div>
