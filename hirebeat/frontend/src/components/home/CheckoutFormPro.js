@@ -146,17 +146,30 @@ export default function CheckoutFormPro(props) {
         </div>
       </div>
       <div className="col-xl-8 col-lg-12 col-md-12 col-sm-12 py-4 px-5">
-        <h3 className="mb-3">Payment Detail</h3>
+        <h3>Payment Detail</h3>
+        <p className="mb-4" style={{color:"#7a7a7a", fontSize:"0.8rem"}}>*Your credit car will not be charged until your free trial is complete. You can cancel at any time during your trial. Your subscription will automatically renew until cancelled.</p>
         <form id="payment-form" onSubmit={handleSubmit}>
           <PaymentElement id="payment-element" />
           <hr />
           <h3 className="mb-3">Payment Summary</h3>
           <div className="row">
             <div className="col-4">
-              <p>{(props.price == 169) ? "" : "Annual "}Pro Subtotal</p>
+              <p>{(props.price == 169) ? "Monthly " : "Annual "}Pro Subtotal</p>
             </div>
             <div className="col-1"></div>
-            <div className="col-3"><p>${(props.price == 169) ? "169" : "1512"}{(props.price == 169) ? " / mo" : " / yr"}</p></div>
+            <div className="col-3"><p>${(props.price == 169) ? "169" : "1,512"}{(props.price == 169) ? " / mo" : " / yr"}</p></div>
+          </div>
+          <div className="row mt-3">
+            <div className="col-4">
+              <p>Next Billing Date</p>
+            </div>
+            <div className="col-1"></div>
+            <div className="col-6"><p>{(new Date(props.endp*1000)?.toLocaleDateString("en-US"))}</p></div>
+          </div>
+          <div className="row mb-3">
+            <div className="col-4"></div>
+            <div className="col-1"></div>
+            <div className="col-6"><p style={{color:"#7a7a7a", fontSize:"0.8rem"}}>*You will not be charged until your free trial is complete.</p></div>
           </div>
           <div className="row my-3">
             {!showCoupon ?
@@ -180,8 +193,8 @@ export default function CheckoutFormPro(props) {
             </div>
             <div className="col-1"></div>
             {(percent == 1) ?
-              <div className="col-3"><p>${(props.price == 169) ? "169" : "1512"}</p></div> :
-              <div className="col-3"><p style={{ display: "inline-block" }}>${(props.price == 169) ? parseInt(169 * percent) : parseInt(1512 * percent)}</p><p style={{ marginLeft: "0.6rem", color: "#7a7a7a", textDecorationLine: "line-through", display: "inline-block" }}>${(props.price == 169) ? "169" : "1512"}</p></div>
+              <div className="col-3"><p>${(props.price == 169) ? "169" : "1,512"}</p></div> :
+              <div className="col-3"><p style={{ display: "inline-block" }}>${(props.price == 169) ? (169 * percent)?.toLocaleString(undefined, {maximumFractionDigits:2}) : (1512 * percent)?.toLocaleString(undefined, {maximumFractionDigits:2})}</p><p style={{ marginLeft: "0.6rem", color: "#7a7a7a", textDecorationLine: "line-through", display: "inline-block" }}>${(props.price == 169) ? "169" : "1512"}</p></div>
             }
           </div>
           <div className="row d-flex justify-content-end pr-3">

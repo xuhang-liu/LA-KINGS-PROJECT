@@ -115,6 +115,7 @@ def stripe_create_subcription(request):
             }
             )
             return JsonResponse({
+                'subscriptionId': "",
                 'clientSecret': intent['client_secret']
             })
         else:
@@ -135,6 +136,7 @@ def stripe_create_subcription(request):
             }
         )
             return JsonResponse({
+                'subdetail': subscription,
                 'subscriptionId': subscription.id,
                 'clientSecret': setupIntent.client_secret
             })
