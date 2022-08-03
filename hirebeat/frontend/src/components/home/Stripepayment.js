@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutFormPremium from "./CheckoutFormPremium";
 import CheckoutFormPro from "./CheckoutFormPro";
 import CheckoutFormPayg from "./CheckoutFormPayg";
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 function getClientReferenceId() {
@@ -13,6 +14,7 @@ function getClientReferenceId() {
 export const Stripepayment = (props) => {
     const [clientSecret, setClientSecret] = useState("");
     const [subscriptionId, setsubscriptionId] = useState(null);
+    const [endp, setendp] = useState("");
 
     const appearance = {
         theme: 'stripe',
@@ -46,7 +48,7 @@ export const Stripepayment = (props) => {
             }),
         })
             .then((res) => res.json())
-            .then((data) => { setClientSecret(data.clientSecret), setsubscriptionId(data.subscriptionId) })
+            .then((data) => { setClientSecret(data?.clientSecret), setsubscriptionId(data?.subscriptionId), setendp(data?.subdetail?.current_period_end)})
     }
 
     return (
@@ -56,7 +58,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPayg price={99} hideShowPayment={props.hideShowPayment} setPlanPaidTrue={props.setPlanPaidTrue}/>
+                                <CheckoutFormPayg price={99} hideShowPayment={props.hideShowPayment} setPlanPaidTrue={props.setPlanPaidTrue} />
                             </Elements>
                         )}
                     </span>
@@ -65,7 +67,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
+                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
                             </Elements>
                         )}
                     </span>
@@ -74,7 +76,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
+                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
                             </Elements>
                         )}
                     </span>
@@ -83,7 +85,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
+                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
                             </Elements>
                         )}
                     </span>
@@ -92,7 +94,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue}/>
+                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
                             </Elements>
                         )}
                     </span>
