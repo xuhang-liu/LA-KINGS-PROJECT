@@ -156,19 +156,23 @@ def get_all_jobs(request):
     else:
         jobs = list(Jobs.objects.filter(
             user_id=user_id).order_by('-id').values())
-        positions = Positions.objects.filter(user_id=user_id)
-        for i in range(len(positions)):
-            positions_id = positions[i].id
-            job_dot = InvitedCandidates.objects.filter(
-                    positions_id=positions_id, is_viewed=False).count()
-            job_dots += job_dot
+
     for i in range(len(jobs)):
         job_id = jobs[i]["id"]
         positions_id = jobs[i]["positions_id"]
 
-        job_dot = ApplyCandidates.objects.filter(
-                    jobs_id=job_id, is_invited=0, is_viewed=False).count()
-        job_dots += job_dot
+        # Get general orange dots and tab orange dots
+        stage_dots = {}
+        Invited_Unviewed = InvitedCandidates.objects.filter(
+                positions_id=positions_id, is_viewed=False, is_active=True)
+        job_dots += Invited_Unviewed.count()
+        stage_dots["video_interview"] = Invited_Unviewed.filter(current_stage="Video Interview").count()
+
+        Applicats_Unviewed = ApplyCandidates.objects.filter(
+                    jobs_id=job_id, is_invited=0, is_viewed=False, is_active=True)
+        job_dots += Applicats_Unviewed.count()
+        stage_dots["resume_review"] = Applicats_Unviewed.filter(current_stage="Resume Review").count()
+        
 
         # get reviewer type for each job in jobs
         reviewer_type = ""
@@ -274,6 +278,7 @@ def get_all_jobs(request):
             "current_page": page - 1,
             "total_page": total_page,
             "reviewer_type": reviewer_type,
+            "stage_dots": stage_dots
         }
         data[job_id] = job_details
 

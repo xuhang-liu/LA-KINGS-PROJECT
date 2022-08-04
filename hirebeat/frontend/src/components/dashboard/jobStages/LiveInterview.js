@@ -532,8 +532,8 @@ export function LiveInterview(props) {
                                     <Select isSearchable={false} value={category4} onChange={onFilter4} options={options4} className="select-category" styles={customStyles} />
                                 </div>
                             }
-                            {(props.reviewerStageLength == 0) &&
-                                <div className="col-3">Contact</div>}
+                            {/*(props.reviewerStageLength == 0) &&
+                                <div className="col-3">Contact</div>*/}
                         </div>
                         <div style={{ marginBottom: "0.5rem" }}>
                             <ApplicantList_Live
