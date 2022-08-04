@@ -519,6 +519,10 @@ class PlanSelectionEmployer extends Component {
                                         </div>
                                     </div>
 
+                                    <div className="mb-5 d-flex justify-content-center">
+                                        <a target="_blank" rel="noreferrer" href="https://calendly.com/hirebeat/discovery" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>{"Talk to us >"}</a>
+                                    </div>
+
                                     {/** All Features Table */}
                                     <div className="text-center pt-5 pb-3">
                                         <h1 style={{ fontSize: "2.4rem", fontWeight: "600", color: "#090D3A", marginBottom: "2rem" }}>

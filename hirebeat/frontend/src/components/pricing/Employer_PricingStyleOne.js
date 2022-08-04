@@ -894,7 +894,7 @@ class Employer_PricingStyleOne extends Component {
                         </div>
                     </div>
                     <div className="mb-5 d-flex justify-content-center">
-                        <a target="_blank" rel="noreferrer" href="https://meetings.hubspot.com/hirebeat" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>{"Talk to us >"}</a>
+                        <a target="_blank" rel="noreferrer" href="https://calendly.com/hirebeat/discovery" className="default-btn1" style={{ paddingLeft: "25px", color: "#ffffff", textDecoration: "none", cursor: "pointer" }}>{"Talk to us >"}</a>
                     </div>
 
                     {/** All Features Table */}
