@@ -249,3 +249,10 @@ class DeletedAccount(models.Model):
     email = models.CharField(max_length=50, null=True, blank=True)
     delete_date = models.DateTimeField(auto_now_add=True)
     company_name = models.CharField(max_length=30,null=True, blank=True)
+
+class Email_Logs(models.Model):
+    delivery_id = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, null=True, blank=True)
+    sent_timestamp = models.DateTimeField(auto_now_add=True)
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
