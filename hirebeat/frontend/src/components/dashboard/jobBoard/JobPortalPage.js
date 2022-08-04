@@ -13,6 +13,7 @@ import {
     addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews
 } from "./../../../redux/actions/question_actions";
 import axios from "axios";
+import { constants } from "fs";
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -351,6 +352,27 @@ export class JobPortalPage extends Component {
         };
     }
 
+    getStageTabOrangeDot = () => {
+        const p = this.props.postedJobs[this.props.job.job_details.positions_id];
+        const j = this.props.job;
+        //if (typeof p == 'undefined') { p = this.props.job }
+        switch (this.state.portalSubpage) {
+            case "pipeline":
+                return j.stage_dots;
+            case "allCandidates":
+                return j.stage_dots;
+            case "resumeScreen":
+                return j.stage_dots;
+            case "videoInterview":
+                return p.stage_dots;
+            case "liveInterview":
+                return p.stage_dots;
+            case "shortList":
+                return p.stage_dots;
+            default:
+                return j.stage_dots;
+        }
+    }
     render() {
         return (
             <React.Fragment>
@@ -383,8 +405,12 @@ export class JobPortalPage extends Component {
                                 {((this.state.reviewerStage.includes("resumeScreen") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "resumeScreen" ?
-                                            <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
+                                                {(this.getStageTabOrangeDot().resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
+                                                {(this.getStageTabOrangeDot().resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
@@ -394,8 +420,12 @@ export class JobPortalPage extends Component {
                                 {(this.state.reviewerStage.includes("videoInterview") || this.state.reviewerStage?.length == 0) ?
                                     <div>
                                         {this.state.portalSubpage == "videoInterview" ?
-                                            <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
+                                                {(this.getStageTabOrangeDot().video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                            <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
+                                                {(this.getStageTabOrangeDot().video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>

@@ -171,6 +171,16 @@ def get_posted_jobs(request):
         for i in range(len(positions)):
             positions_id = positions[i].id
             position = positions[i]
+
+            # Get general orange dots and tab orange dots
+            stage_dots = {}
+            Invited_Unviewed = InvitedCandidates.objects.filter(
+                    positions_id=positions_id, is_viewed=False, is_active=True)
+            stage_dots["video_interview"] = Invited_Unviewed.filter(current_stage="Video Interview").count()
+
+            stage_dots["resume_review"] = ApplyCandidates.objects.filter(
+                        jobs_id=position.job_id_in_jobs, is_invited=0, is_viewed=False, is_active=True, current_stage="Resume Review").count()
+
             # get each position applicants by current stage
             applicants = []
             # get all candidates for each position at the specific stage: current_stage=stage
@@ -278,6 +288,7 @@ def get_posted_jobs(request):
                 "total_records": total_records,
                 "current_page": page - 1,
                 "total_page": total_page,
+                "stage_dots": stage_dots
             }
             # convert to json
             data[positions_id] = job_details
@@ -303,6 +314,14 @@ def get_posted_jobs(request):
                 reviewer_type = "extr"
             elif (SubReviewers.objects.filter(r_email=user.email, position_id=position_id).exists()):
                 reviewer_type = "subr"
+
+            # Get general orange dots and tab orange dots
+            stage_dots = {}
+            Invited_Unviewed = InvitedCandidates.objects.filter(
+                    positions_id=positions_id, is_viewed=False, is_active=True)
+            stage_dots["video_interview"] = Invited_Unviewed.filter(current_stage="Video Interview").count()
+            stage_dots["resume_review"] = 0
+
             # get each position applicants by current stage
             applicants = []
             # get all candidates for each position at the specific stage: current_stage=stage
@@ -410,7 +429,8 @@ def get_posted_jobs(request):
                 "total_records": total_records,
                 "current_page": page - 1,
                 "total_page": total_page,
-                "reviewer_type": reviewer_type
+                "reviewer_type": reviewer_type,
+                "stage_dots": stage_dots
             }
             # convert to json
             data[position_id] = job_details
