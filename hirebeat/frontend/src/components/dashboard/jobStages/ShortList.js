@@ -487,7 +487,7 @@ const AcceptedCandidate = (props) => {
                                 </div>
                             </div>
                         }
-                        {(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>}
+                        {/*(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>*/}
                     </div>
                     {props.theJob.applicants.map((applicant, index) => {
                         /*
@@ -944,7 +944,7 @@ const CandidateCard = (props) => {
                     <div className="col-3" style={{ marginLeft: "1.5rem" }}>
                         <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
                     </div>}
-                {!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
+                {/*!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
                     <div className="col-2">
                         <a
                             target="_blank"
@@ -955,7 +955,7 @@ const CandidateCard = (props) => {
                             <i className="bx-fw bx bx-mail-send"></i> Send Email
                         </a>
                     </div>
-                }
+                */}
             </div>
             <MyVerticallyCenteredModal
                 refresh={refresh}

@@ -159,7 +159,7 @@ export class SourcingRequestForm extends Component {
                         </div>
                         <div className="form-row mt-3" style={{ justifyContent: "center" }}>
                             <p className="db-txt3">
-                                On-demand sourcing is a fast and effective way to fill your recruitment pipeline with quality candidates. You will specify the ideal candidate profile for each soucing request and get 50 matching prospects within 24 hours.
+                                On-demand sourcing is a fast and effective way to fill your recruitment pipeline with quality candidates. You will specify the ideal candidate profile for each soucing request and get 50 matching prospects within 1-2 business days.
                             </p>
                         </div>
                         <div className="form-row mt-5">
