@@ -301,6 +301,10 @@ export class ResumeScreening extends Component {
             if (!noShowAgainReject) {
                 this.enableRejectSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Reject - Resume Review", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             this.noCandidateAlert();
         }
@@ -488,6 +492,10 @@ export class ResumeScreening extends Component {
                 }
             }
             this.setState({ email_list: email_list, showEmailSending: true })
+            //Segment info
+            window?.analytics?.track("View Email - Resume Review", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             this.noCandidateAlert();
         }

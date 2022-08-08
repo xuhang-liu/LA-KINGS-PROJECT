@@ -474,6 +474,10 @@ export class ReviewApplication extends Component {
 
     enableEdit = () => {
         this.setState({ isEdit: true });
+        //Segment info
+        window?.analytics?.track("Edit Candidate Profile", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     disableEdit = () => {
@@ -509,6 +513,10 @@ export class ReviewApplication extends Component {
         this.setState({ comment: "" });
         this.props.addReviewNote(data);
         setTimeout(() => { this.props.getReviewNote(this.props.positionId, this.props.applicants[this.props.current].email) }, 300);
+        //Segment info
+        window?.analytics?.track("Post Comment", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     render() {
@@ -942,14 +950,14 @@ export class ReviewApplication extends Component {
                             <button
                                 className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
                                 disabled={this.props.current == this.props.start ? true : false}
-                                onClick={() => this.props.viewPrevResult(this.props.current)}
+                                onClick={() => {this.props.viewPrevResult(this.props.current); window?.analytics?.track("Previous Candidate", {eventTime: Date()?.toLocaleString()});}}
                             >
                                 &lt; Prev
                             </button>
                             <button
                                 className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
                                 disabled={this.props.current == this.props.end ? true : false}
-                                onClick={() => this.props.viewNextResult(this.props.current)}
+                                onClick={() => {this.props.viewNextResult(this.props.current); window?.analytics?.track("Next Candidate", {eventTime: Date()?.toLocaleString()});}}
                                 style={{ marginLeft: "2vw" }}
                             >
                                 Next &gt;

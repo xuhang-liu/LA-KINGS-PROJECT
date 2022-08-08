@@ -174,55 +174,99 @@ export class JobEdition extends Component {
         this.setState({
             loc_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_require", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLocReq1 = () => {
         this.setState({
             loc_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_option", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLocReq2 = () => {
         this.setState({
             loc_req: 2
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setPhoReq0 = () => {
         this.setState({
             pho_req: 0
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_require", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setPhoReq1 = () => {
         this.setState({
             pho_req: 1
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_option", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setPhoReq2 = () => {
         this.setState({
             pho_req: 2
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_disable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLinReq0 = () => {
         this.setState({
             lin_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_require", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLinReq1 = () => {
         this.setState({
             lin_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_option", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLinReq2 = () => {
         this.setState({
             lin_req: 2
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoReq0 = () => {
         this.setState({
             eeo_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoReq1 = () => {
         this.setState({
             eeo_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Enable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
 
@@ -230,10 +274,18 @@ export class JobEdition extends Component {
         this.setState({
             eeo_ques_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoQuesReq1 = () => {
         this.setState({
             eeo_ques_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Enable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
 
@@ -1056,17 +1108,17 @@ export class JobEdition extends Component {
                                         <span>
                                             {this.state.job_post == 0 ?
                                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
-                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", {eventTime: Date()?.toLocaleString()})}}>Disabled</button>
                                             }
                                             {this.state.job_post == 1 ?
                                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
-                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", {eventTime: Date()?.toLocaleString()})}}>Standard</button>
                                             }
                                         </span>
                                     }
                                     {this.state.job_post == 2 ?
                                         <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
+                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(2); window?.analytics?.track("Job_posting_broadcast_premium", {eventTime: Date()?.toLocaleString()})}}>Premium</button>
                                     }
                                 </div>
                                 <div className="form-group col-12">

@@ -190,6 +190,10 @@ export class JobCard extends Component {
                 }
                 this.props.switchJobClosedStatus(data);
                 setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+                //Segment info
+                window?.analytics?.track("Change Status to Published", {
+                    eventTime: Date()?.toLocaleString()
+                });
             }
         } else {
             let data = {
@@ -199,6 +203,10 @@ export class JobCard extends Component {
             }
             this.props.switchJobClosedStatus(data);
             setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+            //Segment info
+            window?.analytics?.track("Change Status to Closed", {
+                eventTime: Date()?.toLocaleString()
+            });
         }
         if (this.state.next_select.value == 1 || this.state.next_select.value == 2) {
             // JobTarget steps:
@@ -231,6 +239,10 @@ export class JobCard extends Component {
 
     openShare = () => {
         this.setState({ showShare: true });
+        //Segment info
+        window?.analytics?.track("Jobs_view_Share job posting", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     disableShowShare = () => {
@@ -262,6 +274,10 @@ export class JobCard extends Component {
         }
         this.props.deleteJob(data);
         setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
+        //Segment info
+        window?.analytics?.track("Jobs_Delete job posting", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
 
     activateJob = () => {
@@ -295,6 +311,10 @@ export class JobCard extends Component {
                     label: 'Ok'
                 }
             ]
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_Copy sharing link", {
+            eventTime: Date()?.toLocaleString()
         });
     }
 
@@ -357,7 +377,7 @@ export class JobCard extends Component {
                         {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 2) ?
                             <button
                                 className="title-button2"
-                                onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
+                                onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)); window?.analytics?.track("Jobs_View job posting", {eventTime: Date()?.toLocaleString()}); }}
                             >
                                 {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button> :

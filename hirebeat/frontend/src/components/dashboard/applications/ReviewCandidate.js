@@ -398,6 +398,10 @@ const ReviewCandidate = (props) => {
         props.addReviewNote(data);
         setTimeout(() => { props.getReviewNote(props.curJob.job_details.positions_id, props.applicant.email) }, 300);
         setComment("");
+        //Segment info
+        window?.analytics?.track("Post Comment", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     return (
@@ -421,7 +425,7 @@ const ReviewCandidate = (props) => {
                                         }}
                                     >
                                         {props.first_name + " " + props.last_name}
-                                        <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={() => setIsEdit(true)}></i></span>
+                                        <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={() => {setIsEdit(true); window?.analytics?.track("Edit Candidate Profile", {eventTime: Date()?.toLocaleString()});}}></i></span>
                                     </h2>
                                 </div>
                             </div>
@@ -754,14 +758,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => { setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); }, 200) }}
+                            onClick={() => { setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); }, 200); window?.analytics?.track("Previous Candidate", {eventTime: Date()?.toLocaleString()}); }}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => { setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); }, 200) }}
+                            onClick={() => { setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); }, 200); window?.analytics?.track("Next Candidate", {eventTime: Date()?.toLocaleString()}); }}
                             style={{ marginLeft: "2vw" }}
                         >
                             Next &gt;

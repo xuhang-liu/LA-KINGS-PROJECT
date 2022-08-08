@@ -408,6 +408,10 @@ const AcceptedCandidate = (props) => {
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Reject - Short List", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -432,6 +436,10 @@ const AcceptedCandidate = (props) => {
             }
             setEmail_list(email_list);
             setShowEmailSending(true);
+            //Segment info
+            window?.analytics?.track("View Email - Short List", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }

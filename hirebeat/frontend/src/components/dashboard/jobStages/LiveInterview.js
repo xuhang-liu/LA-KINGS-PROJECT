@@ -304,6 +304,10 @@ export function LiveInterview(props) {
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Reject - Live Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -417,6 +421,10 @@ export function LiveInterview(props) {
         }).catch(error => {
             console.log(error)
         });
+        //Segment info
+        window?.analytics?.track("Confirm_Config Interview_Live Interview", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     const openEmailForm = () => {
@@ -437,6 +445,10 @@ export function LiveInterview(props) {
             }
             setEmail_list(email_list);
             setShowEmailSending(true);
+            //Segment info
+            window?.analytics?.track("View Email - Live Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -472,7 +484,7 @@ export function LiveInterview(props) {
                                     type="button"
                                     className="read-more"
                                     style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
-                                    onClick={() => setShowConfigInt(true)}
+                                    onClick={() => {setShowConfigInt(true); window?.analytics?.track("View_Config Interview_Live Interview", {eventTime: Date()?.toLocaleString()})}}
                                 >
                                     <i className="bx bx-cog pr-1"></i> Config Interview
                                 </button>

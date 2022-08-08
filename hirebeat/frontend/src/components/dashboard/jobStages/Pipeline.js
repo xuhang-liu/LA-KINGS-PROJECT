@@ -217,6 +217,10 @@ export class Pipeline extends Component {
             },
             overlayClassName: "overlay",
         });
+        //Segment info
+        window?.analytics?.track("View - Add Reviewer", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     submitSubReviewer = (e, stage) => {
@@ -273,6 +277,10 @@ export class Pipeline extends Component {
             .catch(error => {
                 console.log(error)
             });
+        //Segment info
+        window?.analytics?.track("Add - Add Reviewer", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     inviteExReviewer = () => {
@@ -331,6 +339,10 @@ export class Pipeline extends Component {
             },
             overlayClassName: "overlay",
         });
+        //Segment info
+        window?.analytics?.track("View - Add Hiring Manager", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     submitExReviewer = (e) => {
@@ -380,6 +392,10 @@ export class Pipeline extends Component {
             .catch(error => {
                 console.log(error)
             });
+        //Segment info
+        window?.analytics?.track("Add - Add Hiring Manager", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     deletSuccessAlert = () => {
@@ -498,7 +514,7 @@ export class Pipeline extends Component {
         });
         //Segment info
         window?.analytics?.track("Job - View Job Target", {
-            viewJobtargetTime: Date().toLocaleString(),
+            viewJobtargetTime: Date()?.toLocaleString(),
         });
     }
 

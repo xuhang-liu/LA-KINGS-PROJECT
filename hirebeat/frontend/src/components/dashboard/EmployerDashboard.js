@@ -409,12 +409,20 @@ export class EmployerDashboard extends Component {
         subpage: "jobs",
       });
     }
+    //Segment track
+    window?.analytics?.track("Jobs dashboard", {
+      eventTime: Date()?.toLocaleString(),
+    });
     window.scrollTo(0, 0);
   };
 
   renderJobEdition = () => {
     this.setState({
       subpage: "jobEdition",
+    });
+    //Segment info
+    window?.analytics?.track("Jobs_Edit job posting", {
+      eventTime: Date()?.toLocaleString()
     });
   };
 
@@ -447,8 +455,8 @@ export class EmployerDashboard extends Component {
       )
     }
     //Segment info
-    window?.analytics?.track("Tutorial - Create a Job", {
-      eventTime: Date().toLocaleString()
+    window?.analytics?.track("Jobs_Create New Position", {
+      eventTime: Date()?.toLocaleString()
     });
     // JobTarget steps:
     const config = {
@@ -553,6 +561,10 @@ export class EmployerDashboard extends Component {
       subpage: "settings",
     }
     )
+    //Segment track
+    window?.analytics?.track("Settings", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderHelp = () => {
@@ -561,6 +573,10 @@ export class EmployerDashboard extends Component {
     }
     sessionStorage.setItem('subpage', 'help');
     this.setState({ subpage: "help" })
+    //Segment track
+    window?.analytics?.track("Help", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderReviewApplication = () => {
@@ -595,6 +611,10 @@ export class EmployerDashboard extends Component {
         subpage: "analytics",
       });
     }, 200)
+    //Segment track
+    window?.analytics?.track("Analytics", {
+      eventTime: Date()?.toLocaleString(),
+    });
   };
 
   renderEmployerProfile = () => {
@@ -606,6 +626,10 @@ export class EmployerDashboard extends Component {
       subpage: "employerProfile",
     }
     )
+    //Segment track
+    window?.analytics?.track("Company", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderMergeIntergration = () => {
@@ -621,6 +645,10 @@ export class EmployerDashboard extends Component {
     } else {
       this.setShowUpgradeM();
     }
+    //Segment track
+    window?.analytics?.track("Integration", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderEmployerSourcing = () => {

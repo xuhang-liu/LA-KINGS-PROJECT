@@ -94,6 +94,10 @@ export function VideoInterview(props) {
 
     function editQuestions() {
         setShowQEditForm(true);
+        //Segment info
+        window?.analytics?.track("View_Edit Question_Video Interview", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     // filter selections
@@ -265,10 +269,9 @@ export function VideoInterview(props) {
             setShowNoQuestionAlert(true);
         }
         else {
-            window?.analytics?.track("Recruitment - Video Interview Invitation Sent", {
-                eventTime: Date().toLocaleString(),
-                jobTitle: props.jobTitle,
-                employerID: props.user.id
+            //Segment info
+            window?.analytics?.track("View Interview - Video Interview", {
+                eventTime: Date()?.toLocaleString()
             });
             setShowInviteAlert(true);
         }
@@ -333,6 +336,10 @@ export function VideoInterview(props) {
                 window.scrollTo(0, 0);
                 inviteSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Confirm Interview - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         }
         else {
             noCandidateAlert();
@@ -489,6 +496,10 @@ export function VideoInterview(props) {
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Reject - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -606,6 +617,10 @@ export function VideoInterview(props) {
             }
             setEmail_list(email_list);
             setShowEmailSending(true);
+            //Segment info
+            window?.analytics?.track("View Email - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -1309,5 +1324,9 @@ function previewEmail(jobTitle, companyName, expire) {
             );
         },
         overlayClassName: "overlay",
+    });
+    //Segment info
+    window?.analytics?.track("View_Preview Email_Video Interview", {
+        eventTime: Date()?.toLocaleString()
     });
 };

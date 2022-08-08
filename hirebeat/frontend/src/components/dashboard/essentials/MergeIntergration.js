@@ -28,6 +28,10 @@ const MergeIntergration = (props) => {
         if (props.profile.ats_api_token != "" && props.profile.ats_api_token != null){
             setGreenhouse_api(props.profile.ats_api_token);
         }
+        //Segment info
+        window?.analytics?.track("Integration_Integrate", {
+            eventTime: Date()?.toLocaleString()
+        });
     }, []);
 
     const customStyles = {
@@ -145,6 +149,10 @@ const MergeIntergration = (props) => {
         }).catch(error => {
             console.log(error)
         });
+        //Segment info
+        window?.analytics?.track("Integration_Synchronize", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     const createCanFromMerge = () => {
@@ -193,6 +201,10 @@ const MergeIntergration = (props) => {
                 })
             ); 
         }
+        //Segment info
+        window?.analytics?.track("Integration_Confirm", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     return (

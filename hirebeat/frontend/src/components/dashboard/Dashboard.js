@@ -100,7 +100,8 @@ export class Dashboard extends Component {
       },
       phone: this.props.profile?.phone_number,
       username: this.props.user.username,
-      description: this.props.profileDetail?.location
+      description: this.props.profileDetail?.location,
+      createdAt: Date().toLocaleString()
     });
   }
 

@@ -296,7 +296,11 @@ export class SubpageSetting extends Component {
     }
 
     handleConfirm = () => {
-        this.setState({confirmShow: true})
+        this.setState({confirmShow: true});
+        //Segment info
+        window?.analytics?.track("View - Delete Account", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     setHideConfirm =() => {
@@ -332,7 +336,11 @@ export class SubpageSetting extends Component {
             }).catch(err => console.log(err))           
         }
         
-        setTimeout(() => this.setState({emailerr: false}), 4000)
+        setTimeout(() => this.setState({emailerr: false}), 4000);
+        //Segment info
+        window?.analytics?.track("Delete Forever - Delete Account", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     render() {
