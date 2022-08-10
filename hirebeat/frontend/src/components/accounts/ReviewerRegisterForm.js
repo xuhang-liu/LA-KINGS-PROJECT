@@ -162,12 +162,12 @@ export class ReviewerRegisterForm extends Component {
                           marginTop:"4rem",
                         }}
                     />
-                    <div>
+                    {/* <div>
                         <img src={this.props.badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
                         <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Inter, Segoe UI", color:'#ffffff'}}>
                             <a>No credit card information needed during signup. Enjoy your free plan.</a>
                         </div>
-                    </div>
+                    </div> */}
                 </form>
             </React.Fragment>
         )

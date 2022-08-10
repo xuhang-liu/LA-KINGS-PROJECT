@@ -568,13 +568,13 @@ export class EmployerRegister extends Component {
                           />
 
                         </form>
-                        <div>
+                        {/* <div>
                           <div>
                             <img src={badge} style={{ width: "5.5rem", float: "left", marginRight: "1rem" }} alt="image" />
                             <div style={{ paddingTop: "1rem", textAlign: "left", fontFamily: "Inter, Segoe UI", color: "#fff" }}>
                               <a>No credit card information needed during signup. Enjoy your free trial.</a>
                             </div></div>
-                        </div>
+                        </div> */}
 
                       </div>
                     </div>
