@@ -480,6 +480,7 @@ def get_current_jobs(request, companyName):
         "emails": emails,
         "company_logo": jobs.company_logo,
         "is_closed": jobs.is_closed,
+        "job_status": jobs.job_status,
         "pho_req": jobs.pho_req,
         "loc_req":  jobs.loc_req,
         "job_post": jobs.job_post,
