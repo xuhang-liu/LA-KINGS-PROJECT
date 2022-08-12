@@ -7,7 +7,7 @@ import { resendActivationEmail } from "../../redux/actions/auth_actions";
 import { confirmAlert } from 'react-confirm-alert';
 import { CountdownButton } from "./CountdownButton";
 import DocumentMeta from 'react-document-meta';
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -25,7 +25,7 @@ class EmailVerificationEmployerMini extends Component {
   redirectToContact = () => {
     // const { history } = this.props;
     // if (history) history.push(`https://hirebeat.co/contact/`);
-    window.location.href="https://hirebeat.co/contact/";
+    window.location.href = "https://hirebeat.co/contact/";
   };
 
   resendEmail = () => {
@@ -69,46 +69,36 @@ class EmailVerificationEmployerMini extends Component {
       }
     };
     if (this.props?.profile?.email_confirmed) {
-      return <Redirect to="/employer_dashboard"/>;
+      return <Redirect to="/employer_dashboard" />;
     }
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
-          <section className="signup-area min-width-1290" style={{ background: "linear-gradient(90deg, #006dff 0%, #5269F3 100%)" }}>
-            <div className="row m-0">
-              <div className="col-lg-6 col-md-12 p-0">
-                {(this.props?.profile?.is_subreviwer || this.props.profile.is_external_reviewer) ?
-                  <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister1.png" alt="image"></img> :
-                  <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration.png" alt="image"></img>
-                }
-              </div>
-              <div className="col-lg-6 col-md-12 p-0">
-                <div className="signup-content" style={{ marginTop: "6rem" }}>
-                  <div className="signup-form">
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <img style={{ height: "3vw" }} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration_step3.png" alt="step flow" />
-                    </div>
-                    <h1 className="email-verify-title" style={{ color: "#ffffff" }}>One More Step</h1>
-                    <p className="email-verify-txt" style={{ color: "#ffffff" }}>You will need to verify your email to complete registration  </p>
-                    <div className="justify-items">
-                      <i className="bx bx-mail-send" style={{ fontSize: "9.375rem", color: "#ffffff" }}></i>
-                    </div>
-                    <p className="email-text" style={{ color: "#ffffff" }}>
-                      An email has been sent to <span style={{ color: "#ffffff", textDecoration: "underline" }}>{this.props.user.email} </span>
-                      with a link to verify your account. If you have not received the email after a few minutes, please check your spam folder.
-                    </p>
-                    <div style={{ marginBottom: "10%", marginTop: "3rem" }}>
-                      <CountdownButton resendEmail={this.resendEmail} />
-                      <button
-                        onClick={this.redirectToContact}
-                        className="default-btn"
-                        style={{ color: "#006dff", backgroundColor: "#ffffff", paddingLeft: "1.5625rem" }}
-                      >
-                        Contact Us
-                        <span></span>
-                      </button>
-                    </div>
+          <section className="signup-area min-width-1290">
+            <div className="row pt-5 d-flex justify-content-center"><img src="https://hirebeat-assets.s3.amazonaws.com/employer_progress_step4.png" alt="image"></img></div>
+            <div className="row d-flex justify-content-center m-0">
+              <div className="signup-content" style={{ marginTop: "6rem", marginLeft:"0rem", width:"100%" }}>
+                <div className="signup-form">
+                  <h1 className="email-verify-title" style={{ color: "#090d3a" }}>One More Step</h1>
+                  <p className="email-verify-txt" style={{ color: "#090d3a" }}>You will need to verify your email to complete registration  </p>
+                  <div className="justify-items">
+                    <i className="bx bx-mail-send" style={{ fontSize: "9.375rem", color: "#090d3a" }}></i>
+                  </div>
+                  <p className="email-text" style={{ color: "#090d3a" }}>
+                    An email has been sent to <span style={{ color: "#090d3a", textDecoration: "underline" }}>{this.props.user.email} </span>
+                    with a link to verify your account. If you have not received the email after a few minutes, please check your spam folder.
+                  </p>
+                  <div style={{ marginBottom: "10%", marginTop: "3rem" }}>
+                    <CountdownButton resendEmail={this.resendEmail} />
+                    <button
+                      onClick={this.redirectToContact}
+                      className="default-btn4"
+                      style={{ paddingLeft: "25px" }}
+                    >
+                      Contact Us
+                      <span></span>
+                    </button>
                   </div>
                 </div>
               </div>

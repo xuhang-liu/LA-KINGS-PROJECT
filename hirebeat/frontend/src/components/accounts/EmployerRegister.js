@@ -13,7 +13,7 @@ import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 import ReviewerRegisterForm from "./ReviewerRegisterForm";
 import EmployerRegisterInfoForm from "./EmployerRegisterInfoForm";
-import EmployerRegisterCompanyInfoForm from "./EmployerRegisterCompanyInfoForm";
+// import EmployerRegisterCompanyInfoForm from "./EmployerRegisterCompanyInfoForm";
 import axios from "axios";
 import { Email_Block_List } from "./Constants";
 import TagManager from 'react-gtm-module';
@@ -45,7 +45,6 @@ export class EmployerRegister extends Component {
       companySize: { value: "", label: "" },
       companyType: { value: "", label: "" },
       location: "",
-      step: 1,
       validEmail: true,
       validPwd: true,
       validCompanyName: true,
@@ -205,13 +204,12 @@ export class EmployerRegister extends Component {
         .post("check-user-registration", email)
         .then((res) => {
           let isRegistered = res.data.is_registered;
-          this.setState({ unusedEmail: false });
           if (!isRegistered) {
             // move to next step
-            let nextStep = this.state.step + 1;
-            this.setStep(nextStep);
+            this.registration(e);
           } else {
             recaptchaRef.current.reset();
+            this.setState({ unusedEmail: false });
           }
         })
         .catch(error => {
@@ -241,30 +239,13 @@ export class EmployerRegister extends Component {
     }
   }
 
-  setStep = (step) => {
-    this.setState({ step: step });
-  }
-
-  setCompanySize = (companySize) => {
-    this.setState({ companySize: companySize });
-  }
-
-  setCompanyType = (companyType) => {
-    this.setState({ companyType: companyType });
-  }
-
-  setLocation = (location) => {
-    this.setState({ location: location });
-  }
-
   // new employer registration submit
   registration = (e) => {
     e.preventDefault();
     // reset error state
     this.setState({ validCompanyName: true });
     if (this.state.companyName.trim() == null || this.state.companyName.trim() == "") {
-      this.setState({ validCompanyName: false });
-      return;
+      return this.setState({ validCompanyName: false });
     }
     //Segment info
     window?.analytics?.track("User - Employer Register", {
@@ -281,7 +262,7 @@ export class EmployerRegister extends Component {
       .then((res) => {
         let companyNameExists = res.data.data;
         if (companyNameExists) {
-          return alert("Company Name Already Exist!");
+          return this.setState({ validCompanyName: false });
         }
         else {
           this.props.employer_register(
@@ -332,42 +313,32 @@ export class EmployerRegister extends Component {
           <ScrollToTopOnMount />
           <div>
             <MediaQuery minDeviceWidth={1224}>
-              <section className="signup-area min-width-1290" style={{ background: "linear-gradient(90deg, #006dff 0%, #5269F3 100%)" }}>
+              <section className="signup-area min-width-1290">
+                {!isReviewer &&
+                  <div className="row pt-5 d-flex justify-content-center"><img src="https://hirebeat-assets.s3.amazonaws.com/employer_progress_step1.png" alt="image"></img></div>
+                }
                 <div className="row m-0">
                   <div className="col-lg-6 col-md-12 p-0">
-                    {this.state.step === 1 ?
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister1.png" alt="image"></img> :
-                      <img src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration.png" alt="image"></img>
-                    }
+                    <img style={{ paddingTop: "6rem", paddingLeft: "4rem", paddingRight: "2rem" }} src="https://hirebeat-assets.s3.amazonaws.com/EmployerRegister0812.png" alt="image"></img>
                   </div>
 
                   <div className="col-lg-6 col-md-12 p-0">
-                    <div className="signup-content" style={{ marginTop: "3rem" }}>
+                    <div className="signup-content px-4" style={{ marginTop: "2rem", backgroundColor: "#F3F6F9" }}>
                       <div className="signup-form">
                         {!isReviewer ?
                           <div>
-                            {this.state.step === 1 &&
-                              <EmployerRegisterInfoForm
-                                badge={badge}
-                                updateState={this.updateState}
-                                checkAccountData={this.checkAccountData}
-                                validEmail={this.state.validEmail}
-                                unusedEmail={this.state.unusedEmail}
-                                validPwd={this.state.validPwd}
-                                onCapChange={this.onCapChange}
-                                recaptchaRef={recaptchaRef}
-                              />
-                            }
-                            {this.state.step === 2 &&
-                              <EmployerRegisterCompanyInfoForm
-                                updateState={this.updateState}
-                                setCompanySize={this.setCompanySize}
-                                setCompanyType={this.setCompanyType}
-                                setLocation={this.setLocation}
-                                registration={this.registration}
-                                validCompanyName={this.state.validCompanyName}
-                              />
-                            }
+                            <EmployerRegisterInfoForm
+                              badge={badge}
+                              updateState={this.updateState}
+                              checkAccountData={this.checkAccountData}
+                              validEmail={this.state.validEmail}
+                              unusedEmail={this.state.unusedEmail}
+                              validPwd={this.state.validPwd}
+                              onCapChange={this.onCapChange}
+                              registration={this.registration}
+                              validCompanyName={this.state.validCompanyName}
+                              recaptchaRef={recaptchaRef}
+                            />
                           </div> :
                           <ReviewerRegisterForm
                             email={email}
@@ -383,13 +354,13 @@ export class EmployerRegister extends Component {
               </section>
             </MediaQuery>
             <MediaQuery maxDeviceWidth={1223}>
-              <section className="signup-area" style={{ background: "linear-gradient(90deg, #006dff 0%, #5269F3 100%)" }}>
+              <section className="signup-area">
                 <div className="row m-0">
                   <div className="col-lg-6 col-md-12 p-0">
                     <div className="signup-content" style={{ marginTop: "1rem", marginLeft: "20%" }}>
                       <div style={{ marginBottom: "3rem", paddingTop: "1rem" }}>
-                        <h1 style={{ color: "#ffffff", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Welcome to HireBeat</b></h1>
-                        <h3 style={{ color: "#ffffff", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Getting started in minutes</b></h3>
+                        <h1 style={{ color: "#090d3a", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Welcome to HireBeat</b></h1>
+                        <h3 style={{ color: "#090d3a", fontFamily: "Inter, Segoe UI", textAlign: "center" }}><b>Getting started in minutes</b></h3>
                       </div>
                       <div className="signup-form" style={{ minWidth: "14rem" }}>
                         <form id="Employer_Register_Mobile" onSubmit={this.onSubmit}>
@@ -525,7 +496,7 @@ export class EmployerRegister extends Component {
                           <p className="d-flex flex-wrap justify-content-end"
                             style={{
                               fontSize: "0.9rem",
-                              color: "#ffffff",
+                              color: "#090d3a",
                               fontWeight: "500"
                             }}>
                             Have an account?
@@ -533,7 +504,7 @@ export class EmployerRegister extends Component {
                               className="active d-flex ml-2"
                               style={{
                                 textDecoration: "underline",
-                                color: "#fac046",
+                                color: "#006dff",
                                 fontWeight: "500"
                               }}>
                               Log in
@@ -545,7 +516,7 @@ export class EmployerRegister extends Component {
                           <p className="d-flex flex-wrap justify-content-start mb-2"
                             style={{
                               fontSize: "0.9rem",
-                              color: "#ffffff",
+                              color: "#090d3a",
                               fontWeight: "500"
                             }}>
                             <input type="checkbox" required name="terms" style={{ marginRight: '5%', display: 'inline', marginTop: "1%" }}></input>
@@ -557,7 +528,7 @@ export class EmployerRegister extends Component {
                               className="active d-flex ml-2"
                               style={{
                                 textDecoration: "underline",
-                                color: "#fac046",
+                                color: "#006dff",
                                 fontWeight: "500"
                               }}>
                               Terms & Conditions
@@ -567,8 +538,8 @@ export class EmployerRegister extends Component {
                           <div className="form-group">
                             <button
                               type="submit"
-                              className="default-btn"
-                              style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold', backgroundColor: "#fac046" }}
+                              className="default-btn1"
+                              style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold'}}
                             >
                               <i className="bx bxs-hot"></i>
                               Sign Up Now
