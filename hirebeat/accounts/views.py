@@ -401,24 +401,44 @@ def employer_notification(request):
     position = Positions.objects.get(id=positions)
     user = User.objects.get(pk=position.user_id)
     print("===Employer Notify Email Called===")
-    subject = 'Interview Completed: ' + position.job_title + " from " + can_name
-    message = get_template("accounts/employer_notification_email.html")
-    context = {
-        'name': can_name,
-        'email': email,
-        'title': position.job_title,
+    # subject = 'Interview Completed: ' + position.job_title + " from " + can_name
+    # message = get_template("accounts/employer_notification_email.html")
+    # context = {
+    #     'name': can_name,
+    #     'email': email,
+    #     'title': position.job_title,
+    # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+
+    requestBody = {
+        "to": [
+            {
+                "name": user.firstname + user.lastname,
+                "email": user.email
+            }
+        ],
+        "template": "InterviewCompletedForJobTitle",
+
+        "body": {
+            "can_name": can_name,
+            "email": email,
+            "view_applicant_link": "www.google.com", #test link
+            "job_title": position.job_title
+        }
     }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
@@ -793,25 +813,47 @@ def subreviewer_update_comment(request):
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
     print("===Reviewer Update Comment Notify Email Called===")
-    subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
-    message = get_template("accounts/reviewer_comment_notification_email.html")
-    context = {
-        'ruser': ruser.username,
-        'ruser_email': ruser.email,
-        'cuser': wpvideo.email,
-        'title': position.job_title,
+    # subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
+    # message = get_template("accounts/reviewer_comment_notification_email.html")
+    # context = {
+    #     'ruser': ruser.username,
+    #     'ruser_email': ruser.email,
+    #     'cuser': wpvideo.email,
+    #     'title': position.job_title,
+    # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [puser.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+
+    requestBody = {
+        "to": [
+            {
+                "name": puser.firstname + puser.lastname,
+                "email": puser.email
+            }
+        ],
+        "template": "NewSubReviewerCommentsForPosition",
+        "body": {
+            "job_title": position.job_title,
+            "ruser": ruser.username,
+            "cuser": wpvideo.email,
+            "ruser_email": ruser.email,
+            "view_comment_link": "www.google.com" #test link
+
+        }
     }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [puser.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))
+
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 

@@ -26,6 +26,9 @@ from itertools import chain
 import time
 from django.db.models import Q
 from datetime import date, timedelta
+import os
+import requests
+import json
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -949,32 +952,51 @@ def add_sub_reviewer(request):
 
 
 def send_sub_invitation(name, email, encoded_email, company_name, master_email, position_name):
-    subject = 'Co-review Invitation to HireBeat for ' + company_name
+    # subject = 'Co-review Invitation to HireBeat for ' + company_name
     user = User.objects.filter(email=email)
-    message = {}
-    if len(user) == 0:
-        message = get_template("questions/sub_reviewer_email.html")
-    else:
-        message = get_template("questions/external_reviewer_notice.html")
+    # message = {}
+    # if len(user) == 0:
+    #     message = get_template("questions/sub_reviewer_email.html")
+    # else:
+    #     message = get_template("questions/external_reviewer_notice.html")
     link = "https://app.hirebeat.co/employer_register?" + encoded_email
-    context = {
-        'link': link,
-        'name': name,
-        'company_name': company_name,
-        'master_email': master_email,
-        'position_name': position_name,
+    # context = {
+    #     'link': link,
+    #     'name': name,
+    #     'company_name': company_name,
+    #     'master_email': master_email,
+    #     'position_name': position_name,
+    # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+    requestBody = {
+        "to": [
+            {
+                "name":user.firstname + " " + user.lastname,
+                "email":email
+            }
+        ],
+        "template": "CoReviewInvitationToHirebeat",
+        "body": {
+            "company_name": company_name,
+            "name": name,
+            "position_name": position_name,
+            "master_email": master_email,
+            "login_account_link": link
+        }
     }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))
 
 
 @api_view(['POST'])
