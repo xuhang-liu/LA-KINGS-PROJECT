@@ -222,25 +222,44 @@ def resend_activation_email(request):
     user = User.objects.get(pk=request.data["id"])
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
-    subject = 'Please Activate Your Hirebeat Account'
-    message = get_template("accounts/account_activation_email.html")
+    # subject = 'Please Activate Your Hirebeat Account'
+    # message = get_template("accounts/account_activation_email.html")
     context = {
         'user': user,
         'domain': current_site.domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
     }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+    requestBody = {
+        {
+            "to": [
+                {
+                    "name":user.firstname + " " + user.lastname,
+                    "email":user.email
+                }
+            ],
+            "template": "HirebeatAccountActivation",
+
+            "body": {
+                "name": user.firstname + " " + user.lastname,
+                "activate_url": context.domain +"/activate/"+context.uid+"/"+context.token,
+            }
+        }
+    }
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))    
 
     return Response({
         "msg": "Email Sent Successfully"
@@ -423,7 +442,7 @@ def employer_notification(request):
     requestBody = {
         "to": [
             {
-                "name": user.firstname + user.lastname,
+                "name": user.firstname + " " + user.lastname,
                 "email": user.email
             }
         ],
@@ -432,7 +451,7 @@ def employer_notification(request):
         "body": {
             "can_name": can_name,
             "email": email,
-            "view_applicant_link": "www.google.com", #test link
+            "view_applicant_link": "app.hirebeat.co/employer_dashboard",
             "job_title": position.job_title
         }
     }
@@ -846,7 +865,7 @@ def subreviewer_update_comment(request):
             "ruser": ruser.username,
             "cuser": wpvideo.email,
             "ruser_email": ruser.email,
-            "view_comment_link": "www.google.com" #test link
+            "view_comment_link": "app.hirebeat.co/employer_dashboard"
 
         }
     }

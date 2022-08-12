@@ -456,7 +456,7 @@ def add_new_apply_candidate(request):
         {
             "to": [
                 {
-                    "name":user.firstname + user.lastname,
+                    "name":user.firstname + " " + user.lastname,
                     "email":user.email
                 }
             ],
@@ -465,7 +465,7 @@ def add_new_apply_candidate(request):
             "body": {
                 "job_title": jobs.job_title,
                 "username": fullname,
-                "view_applicant_link": "www.google.com" #test link
+                "view_applicant_link": "app.hirebeat.co/employer_dashboard" #test link
             }
         }
     }
@@ -817,7 +817,7 @@ def add_new_apply_candidate_by_cv(request):
         {
             "to": [
                 {
-                    "name":user.firstname + user.lastname,
+                    "name":user.firstname + " " + user.lastname,
                     "email":user.email
                 }
             ],
@@ -826,7 +826,7 @@ def add_new_apply_candidate_by_cv(request):
             "body": {
                 "job_title": jobs.job_title,
                 "username": fullname,
-                "view_applicant_link": "www.google.com" #test link
+                "view_applicant_link": "app.hirebeat.co/employer_dashboard" #test link
             }
         }
     }
@@ -913,7 +913,7 @@ def add_new_apply_candidate_from_zr(request):
         {
             "to": [
                 {
-                    "name":user.firstname + user.lastname,
+                    "name":user.firstname + " " + user.lastname,
                     "email":user.email
                 }
             ],
@@ -922,10 +922,13 @@ def add_new_apply_candidate_from_zr(request):
             "body": {
                 "job_title": jobs.job_title,
                 "username": fullname,
-                "view_applicant_link": "www.google.com" #test link
+                "view_applicant_link": "app.hirebeat.co/employer_dashboard" #test link
             }
         }
     }
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -971,7 +974,7 @@ def add_new_apply_candidate_from_drjob(request):
         {
             "to": [
                 {
-                    "name":user.firstname + user.lastname,
+                    "name":user.firstname + " " + user.lastname,
                     "email":user.email
                 }
             ],
@@ -980,10 +983,13 @@ def add_new_apply_candidate_from_drjob(request):
             "body": {
                 "job_title": jobs.job_title,
                 "username": fullname,
-                "view_applicant_link": "www.google.com" #test link
+                "view_applicant_link": "app.hirebeat.co/employer_dashboard" #test link
             }
         }
     }
+
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody))
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
 
