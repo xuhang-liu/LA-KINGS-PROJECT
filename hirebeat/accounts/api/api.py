@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
-from accounts.models import Profile, CandidatesInterview, EmployerProfileDetail
+from accounts.models import Profile, CandidatesInterview, EmployerProfileDetail, ProfileDetail
 from django.contrib.auth.models import User
 from resume.models import Resume
 from videos.models import Video
@@ -47,45 +47,43 @@ class ResgisterAPI(generics.GenericAPIView):
         if (not CandidatesInterview.objects.filter(email=user.email).exists()):
             account_activation_token = PasswordResetTokenGenerator()
             current_site = get_current_site(request)
-            # subject = 'Please Activate Your Hirebeat Account'
-            # message = get_template("accounts/account_activation_email.html")
+            subject = 'Please Activate Your Hirebeat Account'
+            message = get_template("accounts/account_activation_email.html")
             context = {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             }
-            # from_email = 'HireBeat Team <tech@hirebeat.co>'
-            # to_list = [user.email]
-            # content = message.render(context)
-            # email = EmailMessage(
-            #     subject,
-            #     content,
-            #     from_email,
-            #     to_list,
-            # )
-            # email.content_subtype = "html"
-            # email.send()
+            from_email = 'HireBeat Team <tech@hirebeat.co>'
+            to_list = [user.email]
+            content = message.render(context)
+            email = EmailMessage(
+                subject,
+                content,
+                from_email,
+                to_list,
+            )
+            email.content_subtype = "html"
+            email.send()
 
-            requestBody = {
-                {
-                    "to": [
-                        {
-                            "name":user.firstname + " " + user.lastname,
-                            "email":user.email
-                        }
-                    ],
-                    "template": "HirebeatAccountActivation",
+            # requestBody = {
+            #     "to": [
+            #         {
+            #             "name":user.first_name + " " + user.last_name,
+            #             "email":user.email
+            #         }
+            #     ],
+            #     "template": "HirebeatAccountActivation",
 
-                    "body": {
-                        "name": user.firstname + " " + user.lastname,
-                        "activate_url": context.domain +"/activate/"+context.uid+"/"+context.token,
-                    }
-                }
-            }
+            #     "body": {
+            #         "name": user.first_name + " " + user.last_name,
+            #         "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
+            #     }
+            # }
 
-            emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-            requests.post(emailUrl, data=json.dumps(requestBody))             
+            # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+            # requests.post(emailUrl, data=json.dumps(requestBody))             
 
         ### token
         _, token = AuthToken.objects.create(user)
@@ -115,45 +113,43 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         ## email
         account_activation_token = PasswordResetTokenGenerator()
         current_site = get_current_site(request)
-        # subject = 'Please Activate Your Hirebeat Account'
-        # message = get_template("accounts/account_activation_email.html")
+        subject = 'Please Activate Your Hirebeat Account'
+        message = get_template("accounts/account_activation_email.html")
         context = {
             'user': user,
             'domain': current_site.domain,
             'uid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token': account_activation_token.make_token(user),
         }
-        # from_email = 'HireBeat Team <tech@hirebeat.co>'
-        # to_list = [user.email]
-        # content = message.render(context)
-        # email = EmailMessage(
-        #     subject,
-        #     content,
-        #     from_email,
-        #     to_list,
-        # )
-        # email.content_subtype = "html"
-        # email.send()
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.content_subtype = "html"
+        email.send()
 
-        requestBody = {
-            {
-                "to": [
-                    {
-                        "name":user.firstname + " " + user.lastname,
-                        "email":user.email
-                    }
-                ],
-                "template": "HirebeatAccountActivation",
+        # requestBody = {
+        #     "to": [
+        #         {
+        #             "name":request.data["firstname"] + " " + request.data["lastname"],
+        #             "email":user.email
+        #         }
+        #     ],
+        #     "template": "HirebeatAccountActivation",
 
-                "body": {
-                    "name": user.firstname + " " + user.lastname,
-                    "activate_url": context.domain +"/activate/"+context.uid+"/"+context.token,
-                }
-            }
-        }
+        #     "body": {
+        #         "name": request.data["firstname"] + " " + request.data["lastname"],
+        #         "activate_url": context["domain"] +"/activate/"+context["uid"] +"/"+context["token"],
+        #     }
+        # }
 
-        emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-        requests.post(emailUrl, data=json.dumps(requestBody)) 
+        # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+        # requests.post(emailUrl, data=json.dumps(requestBody)) 
         
         ### token
         _, token = AuthToken.objects.create(user)

@@ -632,7 +632,7 @@ export class Pipeline extends Component {
                                             </button>}
                                     </div>
                                 </div>}
-                            {(exReviewers.length > 0 && (!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer))) &&
+                            {(exReviewers?.length > 0 && (!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer))) &&
                                 <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                     {(exReviewers.slice(0, 3).map((sub, i) => {
                                         return (
@@ -652,8 +652,8 @@ export class Pipeline extends Component {
                                             </span>
                                         )
                                     }))}
-                                    {exReviewers.length > 3 &&
-                                        <span className="sub_number3" style={{ color: "white" }}>+{exReviewers.length - 3}
+                                    {exReviewers?.length > 3 &&
+                                        <span className="sub_number3" style={{ color: "white" }}>+{exReviewers?.length - 3}
                                             <p className="sub_submenu container py-3" style={{ minWidth: "14.6rem" }}>
                                                 <div className="row">
                                                     <div className="col-12">
