@@ -321,7 +321,7 @@ def get_posted_jobs(request):
             # Get general orange dots and tab orange dots
             stage_dots = {}
             Invited_Unviewed = InvitedCandidates.objects.filter(
-                    positions_id=positions_id, is_viewed=False, is_active=True)
+                    positions_id=position_id, is_viewed=False, is_active=True)
             stage_dots["video_interview"] = Invited_Unviewed.filter(current_stage="Video Interview").count()
             stage_dots["resume_review"] = 0
 
@@ -348,13 +348,13 @@ def get_posted_jobs(request):
                 # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+            
+            if search_filter != "":
+                applicants = applicants.filter(name__icontains = search_filter)
+
             # convert queryset to list， order applicants by id descending
             applicants = list(applicants.order_by('-id').values())
             company_name = ex_reviewers[i].company_name
-            # get extra information like linkedin and is_active values from ApplyCandidates model
-
-            if search_filter != "":
-                applicants = applicants.filter(name__icontains = search_filter)
 
             # and get review evaluation for each applicant
             for applicant in applicants:
