@@ -166,7 +166,7 @@ export class JobPortalPage extends Component {
                     getPJobs={this.props.getPJobs}
                     profile={this.props.profile}
                     user={this.props.user}
-                    isClosed={p.is_closed}
+                    isClosed={p?.is_closed}
                     getPostedJobs={this.props.getPostedJobs}
                     employerProfileDetail={this.props.employerProfileDetail}
                     filterReset={this.state.subComponentFilterReset}
@@ -192,16 +192,16 @@ export class JobPortalPage extends Component {
                     getPJobs={this.props.getPJobs}
                     resumeURL={this.props.resumeURL}
                     addSelected={this.props.setselectedId}
-                    questions={p.questions}
+                    questions={p?.questions}
                     companyName={this.props.companyName}
-                    positionId={p.position_id}
-                    jobId={p.job_id}
-                    jobTitle={p.job_title}
-                    isClosed={p.is_closed}
-                    inviteDate={p.invite_date}
-                    applicants={p.applicants}
+                    positionId={p?.position_id}
+                    jobId={p?.job_id}
+                    jobTitle={p?.job_title}
+                    isClosed={p?.is_closed}
+                    inviteDate={p?.invite_date}
+                    applicants={p?.applicants}
                     subreviewers={p?.subreviewers}
-                    reviewer_type={p.reviewer_type}
+                    reviewer_type={p?.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -225,7 +225,7 @@ export class JobPortalPage extends Component {
                     profile={this.props.profile}
                     updateViewStatus={this.props.updateViewStatus}
                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                    position={p.position}
+                    position={p?.position}
                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                     sendInterviews={this.props.sendInterviews}
                     checkUserExistence={this.props.checkUserExistence}
@@ -233,9 +233,9 @@ export class JobPortalPage extends Component {
                     getReviewNote={this.props.getReviewNote}
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                    totalRecords={p.total_records}
-                    currentPage={p.current_page}
-                    totalPage={p.total_page}
+                    totalRecords={p?.total_records}
+                    currentPage={p?.current_page}
+                    totalPage={p?.total_page}
                     getPostedJobs={this.props.getPostedJobs}
                     updateInviteStatus={this.props.updateInviteStatus}
                     jobsId={this.props.job.job_details.id}
@@ -253,16 +253,16 @@ export class JobPortalPage extends Component {
                     getPJobs={this.props.getPJobs}
                     resumeURL={this.props.resumeURL}
                     addSelected={this.props.setselectedId}
-                    questions={p.questions}
+                    questions={p?.questions}
                     companyName={this.props.companyName}
-                    positionId={p.position_id}
-                    jobId={p.job_id}
-                    jobTitle={p.job_title}
-                    isClosed={p.is_closed}
-                    inviteDate={p.invite_date}
-                    applicants={p.applicants}
+                    positionId={p?.position_id}
+                    jobId={p?.job_id}
+                    jobTitle={p?.job_title}
+                    isClosed={p?.is_closed}
+                    inviteDate={p?.invite_date}
+                    applicants={p?.applicants}
                     subreviewers={p?.subreviewers}
-                    reviewer_type={p.reviewer_type}
+                    reviewer_type={p?.reviewer_type}
                     addInterviews={this.props.addInterviews}
                     getApplicantsVideos={this.props.getApplicantsVideos}
                     getApplicantsInfo={this.props.getApplicantsInfo}
@@ -286,7 +286,7 @@ export class JobPortalPage extends Component {
                     profile={this.props.profile}
                     updateViewStatus={this.props.updateViewStatus}
                     subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                    position={p.position}
+                    position={p?.position}
                     moveCandidateToInterview={this.props.moveCandidateToInterview}
                     sendInterviews={this.props.sendInterviews}
                     checkUserExistence={this.props.checkUserExistence}
@@ -294,9 +294,9 @@ export class JobPortalPage extends Component {
                     getReviewNote={this.props.getReviewNote}
                     getReviewerEvaluation={this.props.getReviewerEvaluation}
                     getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                    totalRecords={p.total_records}
-                    currentPage={p.current_page}
-                    totalPage={p.total_page}
+                    totalRecords={p?.total_records}
+                    currentPage={p?.current_page}
+                    totalPage={p?.total_page}
                     getPostedJobs={this.props.getPostedJobs}
                     updateInviteStatus={this.props.updateInviteStatus}
                     jobsId={this.props.job.job_details.id}
@@ -358,19 +358,19 @@ export class JobPortalPage extends Component {
         //if (typeof p == 'undefined') { p = this.props.job }
         switch (this.state.portalSubpage) {
             case "pipeline":
-                return j.stage_dots;
+                return j?.stage_dots;
             case "allCandidates":
-                return j.stage_dots;
+                return j?.stage_dots;
             case "resumeScreen":
-                return j.stage_dots;
+                return j?.stage_dots;
             case "videoInterview":
-                return p.stage_dots;
+                return p?.stage_dots;
             case "liveInterview":
-                return p.stage_dots;
+                return p?.stage_dots;
             case "shortList":
-                return p.stage_dots;
+                return p?.stage_dots;
             default:
-                return j.stage_dots;
+                return j?.stage_dots;
         }
     }
     render() {
@@ -406,10 +406,10 @@ export class JobPortalPage extends Component {
                                     <div>
                                         {this.state.portalSubpage == "resumeScreen" ?
                                             <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot().resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                                                 Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
                                             <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot().resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                                                 Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
@@ -421,10 +421,10 @@ export class JobPortalPage extends Component {
                                     <div>
                                         {this.state.portalSubpage == "videoInterview" ?
                                             <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot().video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                                                 Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
                                             <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot().video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                                {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
                                                 Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
                                         }
                                     </div> :
