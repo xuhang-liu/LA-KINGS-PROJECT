@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileSerializer
-from accounts.models import Profile, CandidatesInterview, EmployerProfileDetail
+from accounts.models import Profile, CandidatesInterview, EmployerProfileDetail, ProfileDetail
 from django.contrib.auth.models import User
 from resume.models import Resume
 from videos.models import Video
@@ -19,6 +19,9 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import send_mail
 from django.db.models import Q
 import datetime
+import requests
+import os
+import json
 
 
 # Register API
@@ -63,6 +66,24 @@ class ResgisterAPI(generics.GenericAPIView):
             )
             email.content_subtype = "html"
             email.send()
+
+            # requestBody = {
+            #     "to": [
+            #         {
+            #             "name":user.first_name + " " + user.last_name,
+            #             "email":user.email
+            #         }
+            #     ],
+            #     "template": "HirebeatAccountActivation",
+
+            #     "body": {
+            #         "name": user.first_name + " " + user.last_name,
+            #         "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
+            #     }
+            # }
+
+            # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+            # requests.post(emailUrl, data=json.dumps(requestBody))             
 
         ### token
         _, token = AuthToken.objects.create(user)
@@ -112,6 +133,24 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         email.content_subtype = "html"
         email.send()
 
+        # requestBody = {
+        #     "to": [
+        #         {
+        #             "name":request.data["firstname"] + " " + request.data["lastname"],
+        #             "email":user.email
+        #         }
+        #     ],
+        #     "template": "HirebeatAccountActivation",
+
+        #     "body": {
+        #         "name": request.data["firstname"] + " " + request.data["lastname"],
+        #         "activate_url": context["domain"] +"/activate/"+context["uid"] +"/"+context["token"],
+        #     }
+        # }
+
+        # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+        # requests.post(emailUrl, data=json.dumps(requestBody)) 
+        
         ### token
         _, token = AuthToken.objects.create(user)
         ### profile is autocreated

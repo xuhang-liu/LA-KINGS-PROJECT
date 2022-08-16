@@ -48,11 +48,14 @@ export const Stripepayment = (props) => {
             }),
         })
             .then((res) => res.json())
-            .then((data) => { setClientSecret(data?.clientSecret), setsubscriptionId(data?.subscriptionId), setendp(data?.subdetail?.current_period_end)})
+            .then((data) => { setClientSecret(data?.clientSecret), setsubscriptionId(data?.subscriptionId), setendp(data?.subdetail?.current_period_end) })
     }
 
     return (
         <React.Fragment>
+            {clientSecret &&
+                <div className="row pt-5 d-flex justify-content-center"><img src="https://hirebeat-assets.s3.amazonaws.com/employer_progress_step2.png" alt="image"></img></div>
+            }
             <div className='px-5 py-5'>
                 {(props.planPrice == "price_1K7QhOKxU1MN2zWM6f54d41L") &&
                     <span>
@@ -67,7 +70,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
+                                <CheckoutFormPro price={169} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp} />
                             </Elements>
                         )}
                     </span>
@@ -76,7 +79,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
+                                <CheckoutFormPro price={126} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp} />
                             </Elements>
                         )}
                     </span>
@@ -85,7 +88,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
+                                <CheckoutFormPremium price={399} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp} />
                             </Elements>
                         )}
                     </span>
@@ -94,7 +97,7 @@ export const Stripepayment = (props) => {
                     <span>
                         {clientSecret && (
                             <Elements options={options} stripe={stripePromise}>
-                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp}/>
+                                <CheckoutFormPremium price={299} hideShowPayment={props.hideShowPayment} subscriptionId={subscriptionId} setPlanPaidTrue={props.setPlanPaidTrue} endp={endp} />
                             </Elements>
                         )}
                     </span>

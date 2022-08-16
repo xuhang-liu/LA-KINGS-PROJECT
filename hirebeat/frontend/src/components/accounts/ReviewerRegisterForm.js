@@ -10,8 +10,8 @@ export class ReviewerRegisterForm extends Component {
         return (
             <React.Fragment>
                 <div style={{marginBottom:"3rem", paddingTop:"3rem"}}>
-                    <h1 style={{color:"#ffffff", fontFamily: "Inter, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
-                    <h3 style={{color:"#ffffff", fontFamily: "Inter, Segoe UI", textAlign:"center", fontSize:"1.5rem"}}><b>Start your Hiring Now!</b></h3>
+                    <h1 style={{color:"#090d3a", fontFamily: "Inter, Segoe UI", textAlign:"center"}}><b>Welcome to HireBeat</b></h1>
+                    <h3 style={{color:"#090d3a", fontFamily: "Inter, Segoe UI", textAlign:"center", fontSize:"1.5rem"}}><b>Start your Hiring Now!</b></h3>
                 </div>
                 <form id="Reviewer_Register_Desk" onSubmit={this.props.onSubmit}>
                     <div className="form-group">
@@ -104,7 +104,7 @@ export class ReviewerRegisterForm extends Component {
                     <p className="d-flex flex-wrap justify-content-end"
                          style={{
                            fontSize: "0.9rem",
-                           color: "#ffffff",
+                           color: "#090d3a",
                            fontWeight: "500"
                          }}>
                         Have an account?
@@ -112,7 +112,7 @@ export class ReviewerRegisterForm extends Component {
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "#fac046",
+                             color: "#006dff",
                              fontWeight: "500"
                            }}>
                           Log in
@@ -124,7 +124,7 @@ export class ReviewerRegisterForm extends Component {
                     <p className="d-flex flex-wrap justify-content-start mb-2"
                          style={{
                            fontSize: "0.9rem",
-                           color: "#ffffff",
+                           color: "#090d3a",
                            fontWeight: "500"
                          }}>
                         <input type="checkbox" required name="terms" style={{marginRight:'5%',display:'inline', marginTop:"1%"}}></input>
@@ -136,7 +136,7 @@ export class ReviewerRegisterForm extends Component {
                            className="active d-flex ml-2"
                            style={{
                              textDecoration: "underline",
-                             color: "#fac046",
+                             color: "#006dff",
                              fontWeight: "500"
                            }}>
                           Terms & Conditions
@@ -146,27 +146,12 @@ export class ReviewerRegisterForm extends Component {
                     <div className="form-group">
                         <button
                             type="submit"
-                            className="default-btn"
-                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold', backgroundColor:"#fac046"}}
+                            className="default-btn1"
+                            style={{width:"100%", fontSize:'1rem', fontWeight:'bold'}}
                         >
-                          <i className="bx bxs-hot"></i>
+                          <i className="bx bx-fw bxs-hot" style={{marginRight:"0.5rem"}}></i>
                           Sign Up Now
                         </button>
-                    </div>
-
-                    <hr className="style-four"
-                        data-content=""
-                        style={{
-                          fontFamily: "Inter, Segoe UI",
-                          marginBottom:"2rem",
-                          marginTop:"4rem",
-                        }}
-                    />
-                    <div>
-                        <img src={this.props.badge} style={{width:"5.5rem", float:"left", marginRight:"1rem"}} alt="image"/>
-                        <div style={{paddingTop:"1rem", textAlign:"left", fontFamily: "Inter, Segoe UI", color:'#ffffff'}}>
-                            <a>No credit card information needed during signup. Enjoy your free plan.</a>
-                        </div>
                     </div>
                 </form>
             </React.Fragment>

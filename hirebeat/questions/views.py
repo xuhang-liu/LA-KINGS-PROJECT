@@ -26,6 +26,9 @@ from itertools import chain
 import time
 from django.db.models import Q
 from datetime import date, timedelta
+import os
+import requests
+import json
 
 
 class QuestionAPIView(generics.ListCreateAPIView):
@@ -318,7 +321,7 @@ def get_posted_jobs(request):
             # Get general orange dots and tab orange dots
             stage_dots = {}
             Invited_Unviewed = InvitedCandidates.objects.filter(
-                    positions_id=positions_id, is_viewed=False, is_active=True)
+                    positions_id=position_id, is_viewed=False, is_active=True)
             stage_dots["video_interview"] = Invited_Unviewed.filter(current_stage="Video Interview").count()
             stage_dots["resume_review"] = 0
 
@@ -345,13 +348,13 @@ def get_posted_jobs(request):
                 # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+            
+            if search_filter != "":
+                applicants = applicants.filter(name__icontains = search_filter)
+
             # convert queryset to list， order applicants by id descending
             applicants = list(applicants.order_by('-id').values())
             company_name = ex_reviewers[i].company_name
-            # get extra information like linkedin and is_active values from ApplyCandidates model
-
-            if search_filter != "":
-                applicants = applicants.filter(name__icontains = search_filter)
 
             # and get review evaluation for each applicant
             for applicant in applicants:
@@ -603,6 +606,28 @@ def send_interviews(name, email, url, job_title, company_name, expire):
     )
     email.content_subtype = "html"
     email.send()
+
+    # requestBody = {
+    #         "to": [
+    #             {
+    #                 "name":name,
+    #                 "email":email
+    #             }
+    #         ],
+    #         "template": "VideoInterviewInvitation",
+
+    #         "body": {
+    #             "company_name": company_name,
+    #             "name": name,
+    #             "email": email,
+    #             "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
+    #             "start_interview_link": url.replace("https://",""),
+    #             "job_title": job_title,
+    #         }
+    # }
+
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody))    
 
 # resend video interview for a single person
 @api_view(['POST'])
@@ -956,7 +981,7 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
         message = get_template("questions/sub_reviewer_email.html")
     else:
         message = get_template("questions/external_reviewer_notice.html")
-    link = "https://app.hirebeat.co/employer_register?" + encoded_email
+    link = "app.hirebeat.co/employer_register?" + encoded_email
     context = {
         'link': link,
         'name': name,
@@ -975,6 +1000,25 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
     )
     email.content_subtype = "html"
     email.send()
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":name,
+    #             "email":email
+    #         }
+    #     ],
+    #     "template": "CoReviewInvitationToHirebeat",
+    #     "body": {
+    #         "company_name": company_name,
+    #         "name": name,
+    #         "position_name": position_name,
+    #         "master_email": master_email,
+    #         "login_account_link": link
+    #     }
+    # }
+
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody))
 
 
 @api_view(['POST'])

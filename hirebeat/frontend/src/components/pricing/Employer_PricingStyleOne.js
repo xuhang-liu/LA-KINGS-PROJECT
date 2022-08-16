@@ -321,9 +321,9 @@ class Employer_PricingStyleOne extends Component {
                                                             </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations with occasional hiring needs.</p>
@@ -422,9 +422,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -523,9 +523,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>
@@ -671,9 +671,9 @@ class Employer_PricingStyleOne extends Component {
                                                             </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations with occasional hiring needs.</p>
@@ -772,9 +772,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For smaller teams looking to simplify and speed up the hiring process with the essential features.</p>
@@ -873,9 +873,9 @@ class Employer_PricingStyleOne extends Component {
                                                         </div>
                                                     }
                                                 </div>
-                                                {this.props.profile.membership == null &&
+                                                {/* {this.props.profile.membership == null &&
                                                     <p style={{ fontSize: "0.9rem", fontWeight: "500", color: "#000", paddingBottom: "0.6rem" }}>No Credit Card Needed</p>
-                                                }
+                                                } */}
                                             </div>
                                             <div className="px-5 py-4">
                                                 <p>For organizations seeking hiring automation and team collaboration with an all-in-one talent acquisition suite.</p>

@@ -25,7 +25,7 @@ export class EmployerRegisterCompanyInfoForm extends Component {
     };
 
     customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)", height: '55px' }),
+        control: styles => ({ ...styles, backgroundColor: '#ffffff', boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)", height: '55px', border:"none" }),
         singleValue: styles => ({
             ...styles,
             fontSize: '14px',
@@ -45,9 +45,9 @@ export class EmployerRegisterCompanyInfoForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="d-flex justify-content-center" style={{marginBottom:"3rem", paddingTop:"3rem"}}>
+                {/* <div className="d-flex justify-content-center" style={{marginBottom:"3rem", paddingTop:"3rem"}}>
                     <img style={{height: "3vw"}} src="https://hirebeat-assets.s3.amazonaws.com/Company-page/registration_step2.png" />
-                </div>
+                </div> */}
                 <form id="Employer_Register_Desk_Step2" onSubmit={this.props.registration}>
                     <div className="form-group">
                         <div class="register-input-placeholder">
@@ -104,8 +104,8 @@ export class EmployerRegisterCompanyInfoForm extends Component {
                     <div className="form-group">
                         <div className="register">
                             <Autocomplete
-                                className="form-control register-form"
-                                style={{width: "100%"}}
+                                className="form-control"
+                                style={{width: "100%", fontFamily: "Inter, Segoe UI", color:"#666"}}
                                 language="en"
                                 apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                 onPlaceSelected={(place, inputRef, autocomplete) => {

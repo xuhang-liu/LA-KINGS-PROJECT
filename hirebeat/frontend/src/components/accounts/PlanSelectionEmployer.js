@@ -178,7 +178,7 @@ class PlanSelectionEmployer extends Component {
     }
 
     setPlanPaidTrue = () => {
-        this.setState({planPaid: true});
+        this.setState({ planPaid: true });
     }
 
     render() {
@@ -225,8 +225,7 @@ class PlanSelectionEmployer extends Component {
                                 <div className="min-width-1290">
                                     <div className="container">
                                         <div className="page-title-content py-5">
-                                            <h1 style={{ color: "#090d3a" }}>{"Pricing & Plans"}</h1>
-                                            <p style={{ color: "#006dff" }}>{"Hire talent in a heartbeat with one hub to promote your job opening and manage candidates."}</p>
+                                            <div className="d-flex justify-content-center"><img src="https://hirebeat-assets.s3.amazonaws.com/employer_progress_step2.png" alt="image"></img></div>
                                             <p style={{ color: "#7a7a7a" }}>{"Pitchground user can redeem your code "}<span style={{ textDecorationLine: "underline", cursor: "pointer" }} onClick={() => { this.setState({ showRedeem: true }) }}>here.</span></p>
                                         </div>
                                     </div>
@@ -236,8 +235,7 @@ class PlanSelectionEmployer extends Component {
                                 <div>
                                     <div className="container">
                                         <div className="page-title-content py-5">
-                                            <h1 style={{ color: "#090d3a" }}>{"Pricing & Plans"}</h1>
-                                            <p style={{ color: "#006dff" }}>{"Hire talent in a heartbeat with one hub to promote your job opening and manage candidates."}</p>
+                                            <div className="d-flex justify-content-center"><img src="https://hirebeat-assets.s3.amazonaws.com/employer_progress_step2.png" alt="image"></img></div>
                                             <p style={{ color: "#7a7a7a" }}>{"Pitchground user can redeem your code "}<span style={{ textDecorationLine: "underline", cursor: "pointer" }} onClick={() => { this.setState({ showRedeem: true }) }}>here.</span></p>
                                         </div>
                                     </div>
@@ -304,6 +302,7 @@ class PlanSelectionEmployer extends Component {
                                                 </span>
                                             </li>
                                         </ul>
+                                        <p className='d-flex justify-content-center' style={{fontSize:"0.8rem", color:"#7a7a7a"}}>*You can apply your coupon code on the next page</p>
                                         <div className="tab_content">
                                             {/*Annually*/}
                                             <div id="tab2" className="tabs_item">

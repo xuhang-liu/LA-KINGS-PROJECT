@@ -220,6 +220,7 @@ def upgrade_accounts(request):
 def resend_activation_email(request):
     print("===Resend Email Called===")
     user = User.objects.get(pk=request.data["id"])
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
     subject = 'Please Activate Your Hirebeat Account'
@@ -241,6 +242,23 @@ def resend_activation_email(request):
     )
     email.content_subtype = "html"
     email.send()
+    # requestBody = {
+    #         "to": [
+    #             {
+    #                 "name":employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
+    #                 "email":user.email
+    #             }
+    #         ],
+    #         "template": "HirebeatAccountActivation",
+
+    #         "body": {
+    #             "name": employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
+    #             "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
+    #         }
+    # }
+
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody))    
 
     return Response({
         "msg": "Email Sent Successfully"
@@ -400,6 +418,7 @@ def employer_notification(request):
     can_name = invited_obj.name
     position = Positions.objects.get(id=positions)
     user = User.objects.get(pk=position.user_id)
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     print("===Employer Notify Email Called===")
     subject = 'Interview Completed: ' + position.job_title + " from " + can_name
     message = get_template("accounts/employer_notification_email.html")
@@ -419,6 +438,26 @@ def employer_notification(request):
     )
     email.content_subtype = "html"
     email.send()
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
+    #             "email":user.email
+    #         }
+    #     ],
+    #     "template": "InterviewCompletedForJobTitle",
+
+    #     "body": {
+    #         "can_name": can_name,
+    #         "email": email,
+    #         "view_applicant_link": "app.hirebeat.co/employer_dashboard",
+    #         "job_title": position.job_title
+    #     }
+    # }
+
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody))
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
@@ -792,6 +831,7 @@ def subreviewer_update_comment(request):
     puser = User.objects.get(pk=position.user_id)
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     print("===Reviewer Update Comment Notify Email Called===")
     subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
     message = get_template("accounts/reviewer_comment_notification_email.html")
@@ -812,6 +852,28 @@ def subreviewer_update_comment(request):
     )
     email.content_subtype = "html"
     email.send()
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name": employerProfileDetail.f_name + employerProfileDetail.l_name,
+    #             "email": puser.email
+    #         }
+    #     ],
+    #     "template": "NewSubReviewerCommentsForPosition",
+    #     "body": {
+    #         "job_title": position.job_title,
+    #         "ruser": ruser.username,
+    #         "cuser": wpvideo.email,
+    #         "ruser_email": ruser.email,
+    #         "view_comment_link": "app.hirebeat.co/employer_dashboard"
+
+    #     }
+    # }
+
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody))
+
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 

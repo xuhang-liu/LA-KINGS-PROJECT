@@ -5511,9 +5511,10 @@ Signup Area CSS
 }
 
 .signup-content {
-  height: 60rem;
+  height: 58rem;
   width: 56%;
   margin-left: 24%;
+  margin-bottom: 2rem;
 }
 
 .signup-content .signup-form {
