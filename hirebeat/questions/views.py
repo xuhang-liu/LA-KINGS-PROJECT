@@ -586,48 +586,52 @@ def move_candidate_to_interview(request):
 
 # send interview email notice via smtp
 def send_interviews(name, email, url, job_title, company_name, expire):
-    subject = 'Follow up on your application of ' + job_title + " at " + company_name
-    message = get_template("questions/interview_email.html")
-    context = {
-        'name': name,
-        'url': url,
-        'job_title': job_title,
-        'company_name': company_name,
-        'expire': expire,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # requestBody = {
-    #         "to": [
-    #             {
-    #                 "name":name,
-    #                 "email":email
-    #             }
-    #         ],
-    #         "template": "VideoInterviewInvitation",
-
-    #         "body": {
-    #             "company_name": company_name,
-    #             "name": name,
-    #             "email": email,
-    #             "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
-    #             "start_interview_link": url.replace("https://",""),
-    #             "job_title": job_title,
-    #         }
+    # subject = 'Follow up on your application of ' + job_title + " at " + company_name
+    # message = get_template("questions/interview_email.html")
+    # context = {
+    #     'name': name,
+    #     'url': url,
+    #     'job_title': job_title,
+    #     'company_name': company_name,
+    #     'expire': expire,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+    if  name != '':
+        username = name
+    else:
+        username = "User"
 
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))    
+    requestBody = {
+            "to": [
+                {
+                    "name":username,
+                    "email":email
+                }
+            ],
+            "template": "VideoInterviewInvitation",
+            "body": {
+                "company_name": company_name,
+                "name": name,
+                "email": email,
+                "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
+                "start_interview_link": url.replace("https://",""),
+                "job_title": job_title,
+            }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)  
 
 # resend video interview for a single person
 @api_view(['POST'])
@@ -974,51 +978,58 @@ def add_sub_reviewer(request):
 
 
 def send_sub_invitation(name, email, encoded_email, company_name, master_email, position_name):
-    subject = 'Co-review Invitation to HireBeat for ' + company_name
-    user = User.objects.filter(email=email)
-    message = {}
-    if len(user) == 0:
-        message = get_template("questions/sub_reviewer_email.html")
-    else:
-        message = get_template("questions/external_reviewer_notice.html")
+    # subject = 'Co-review Invitation to HireBeat for ' + company_name
+    # user = User.objects.filter(email=email)
+    # message = {}
+    # if len(user) == 0:
+    #     message = get_template("questions/sub_reviewer_email.html")
+    # else:
+    #     message = get_template("questions/external_reviewer_notice.html")
     link = "app.hirebeat.co/employer_register?" + encoded_email
-    context = {
-        'link': link,
-        'name': name,
-        'company_name': company_name,
-        'master_email': master_email,
-        'position_name': position_name,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name":name,
-    #             "email":email
-    #         }
-    #     ],
-    #     "template": "CoReviewInvitationToHirebeat",
-    #     "body": {
-    #         "company_name": company_name,
-    #         "name": name,
-    #         "position_name": position_name,
-    #         "master_email": master_email,
-    #         "login_account_link": link
-    #     }
+    # context = {
+    #     'link': link,
+    #     'name': name,
+    #     'company_name': company_name,
+    #     'master_email': master_email,
+    #     'position_name': position_name,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))
+    if  name != '':
+        username = name
+    else:
+        username = "User"
+        
+    requestBody = {
+        "to": [
+            {
+                "name":username,
+                "email":email
+            }
+        ],
+        "template": "CoReviewInvitationToHirebeat",
+        "body": {
+            "company_name": company_name,
+            "name": name,
+            "position_name": position_name,
+            "master_email": master_email,
+            "login_account_link": link
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
 
 @api_view(['POST'])
