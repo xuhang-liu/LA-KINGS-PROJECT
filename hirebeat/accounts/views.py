@@ -220,46 +220,49 @@ def upgrade_accounts(request):
 def resend_activation_email(request):
     print("===Resend Email Called===")
     user = User.objects.get(pk=request.data["id"])
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
-    subject = 'Please Activate Your Hirebeat Account'
-    message = get_template("accounts/account_activation_email.html")
-    context = {
-        'user': user,
-        'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-    # requestBody = {
-    #         "to": [
-    #             {
-    #                 "name":employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
-    #                 "email":user.email
-    #             }
-    #         ],
-    #         "template": "HirebeatAccountActivation",
-
-    #         "body": {
-    #             "name": employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
-    #             "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
-    #         }
+    # subject = 'Please Activate Your Hirebeat Account'
+    # message = get_template("accounts/account_activation_email.html")
+    # context = {
+    #     'user': user,
+    #     'domain': current_site.domain,
+    #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+    #     'token': account_activation_token.make_token(user),
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+    if  user.first_name != '' and user.last_name != '':
+        username = user.first_name + ' ' + user.last_name
+    else:
+        username = "User"
 
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))    
+    requestBody = {
+        "to": [
+            {
+                "name":  username,
+                "email": user.email
+            }
+        ],
+        "template": "HirebeatAccountActivation",
+        "body": {
+            "name": username,
+            "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user)
+        }
+    }
 
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
     return Response({
         "msg": "Email Sent Successfully"
     })

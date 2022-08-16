@@ -1717,69 +1717,70 @@ def sourcing_request_payment_suc(request):
     sourcingRequest.save()
     
     print("===Sourcing Request Notify===")
-    subject = 'New Sourcing Request'
-    message = get_template("jobs/sourcing_request_notification.html")
-    context = {
-        'user_email': user.email,
-        'date': datetime.now(),
-        'job_url': job.job_url.replace(" ","%20"),
-        'title': sourcingRequest.title,
-        'location': sourcingRequest.location,
-        'additionalComment': sourcingRequest.additionalComment,
-        'year_of_exp': sourcingRequest.year_of_exp,
-        'sen_level': sourcingRequest.sen_level,
-        'req_skill_set': sourcingRequest.req_skill_set,
-        'pre_skill_set': sourcingRequest.pre_skill_set,
-        'industry_set': sourcingRequest.industry_set,
-        'education_level': sourcingRequest.education_level,
-        'job_id': job.id,
-        'request_id': sourcingRequest.id
-    }
-    from_email = 'HireBeat System <tech@hirebeat.co>'
-    to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name": "Ning Wei",
-    #             "email": "ning.wei@hirebeat.co"
-    #         },
-    #         {
-    #             "name": "Xuhang Liu",
-    #             "email": "xuhang.liu@hirebeat.co"
-    #         }
-    #     ],
-    #     "template": "NewSourcingRequest",
-    #     "body": {
-    #         "username": user.email,
-    #         "date": datetime.now(),
-    #         "title": sourcingRequest.title,
-    #         "location": sourcingRequest.location,
-    #         "additional_comment": sourcingRequest.additionalComment,
-    #         "year_of_exp": sourcingRequest.year_of_exp,
-    #         "seniority_level": sourcingRequest.sen_level,
-    #         "required_skill_set": sourcingRequest.req_skill_set,
-    #         "preferred_skill_set": sourcingRequest.pre_skill_set,
-    #         "preferred_industry": sourcingRequest.industry_set,
-    #         "education_level": sourcingRequest.education_level,
-    #         "job_description": job.job_url.replace(" ","%20"),
-    #         "job_id": job.id,
-    #         "request_id": sourcingRequest.id            
-    #     }
+    # subject = 'New Sourcing Request'
+    # message = get_template("jobs/sourcing_request_notification.html")
+    # context = {
+    #     'user_email': user.email,
+    #     'date': datetime.now(),
+    #     'job_url': job.job_url.replace(" ","%20"),
+    #     'title': sourcingRequest.title,
+    #     'location': sourcingRequest.location,
+    #     'additionalComment': sourcingRequest.additionalComment,
+    #     'year_of_exp': sourcingRequest.year_of_exp,
+    #     'sen_level': sourcingRequest.sen_level,
+    #     'req_skill_set': sourcingRequest.req_skill_set,
+    #     'pre_skill_set': sourcingRequest.pre_skill_set,
+    #     'industry_set': sourcingRequest.industry_set,
+    #     'education_level': sourcingRequest.education_level,
+    #     'job_id': job.id,
+    #     'request_id': sourcingRequest.id
     # }
+    # from_email = 'HireBeat System <tech@hirebeat.co>'
+    # to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))
+    requestBody = {
+        "to": [
+            {
+                "name": "Ning Wei",
+                "email": "ning.wei@hirebeat.co"
+            },
+            {
+                "name": "Xuhang Liu",
+                "email": "xuhang.liu@hirebeat.co"
+            }
+        ],
+        "template": "NewSourcingRequest",
+        "body": {
+            "username": user.email,
+            "date": str(datetime.now()),
+            "title": sourcingRequest.title,
+            "location": sourcingRequest.location,
+            "additional_comment": sourcingRequest.additionalComment,
+            "year_of_exp": sourcingRequest.year_of_exp,
+            "seniority_level": sourcingRequest.sen_level,
+            "required_skill_set": sourcingRequest.req_skill_set,
+            "preferred_skill_set": sourcingRequest.pre_skill_set,
+            "preferred_industry": sourcingRequest.industry_set,
+            "education_level": sourcingRequest.education_level,
+            "job_description": job.job_url.replace(" ","%20"),
+            "job_id": job.id,
+            "request_id": sourcingRequest.id            
+        }
+    }
 
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
+    
     return Response("Requst sent successfully", status=status.HTTP_202_ACCEPTED)
 
 @api_view(['GET'])
