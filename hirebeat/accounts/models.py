@@ -255,4 +255,4 @@ class Email_Logs(models.Model):
     status = models.CharField(max_length=100, null=True, blank=True)
     sent_timestamp = models.DateTimeField(auto_now_add=True)
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.CharField(max_length=200, default="")
