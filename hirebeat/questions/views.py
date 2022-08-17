@@ -612,21 +612,21 @@ def send_interviews(name, email, url, job_title, company_name, expire):
         username = "User"
 
     requestBody = {
-            "to": [
-                {
-                    "name":username,
-                    "email":email
-                }
-            ],
-            "template": "VideoInterviewInvitation",
-            "body": {
-                "company_name": company_name,
-                "name": name,
-                "email": email,
-                "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
-                "start_interview_link": url.replace("https://",""),
-                "job_title": job_title,
+        "to": [
+            {
+                "name":username,
+                "email":email
             }
+        ],
+        "template": "VideoInterviewInvitation",
+        "body": {
+            "company_name": company_name,
+            "name": name,
+            "email": email,
+            "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
+            "start_interview_link": url.replace("https://",""),
+            "job_title": job_title,
+        }
     }
 
     headers = {'Content-type': 'application/json'}

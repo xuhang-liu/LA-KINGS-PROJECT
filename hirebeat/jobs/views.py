@@ -457,12 +457,12 @@ def add_new_apply_candidate(request):
         # email.content_subtype = "html"
         # email.send()
 
-    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-    else:
-        username = "User"
+        if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+            username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+        else:
+            username = "User"
 
-    requestBody = {
+        requestBody = {
             "to": [
                 {
                     "name":username,
@@ -476,11 +476,11 @@ def add_new_apply_candidate(request):
                 "username": fullname,
                 "view_applicant_link": "app.hirebeat.co/employer_dashboard"
             }
-    }
+        }
 
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+        headers = {'Content-type': 'application/json'}
+        emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+        requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -829,19 +829,19 @@ def add_new_apply_candidate_by_cv(request):
         username = "User"
 
     requestBody = {
-            "to": [
-                {
-                    "name":username,
-                    "email":user.email
-                }
-            ],
-            "template": "NewApplicantForJob",
-
-            "body": {
-                "job_title": jobs.job_title,
-                "username": fullname,
-                "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        "to": [
+            {
+                "name":username,
+                "email":user.email
             }
+        ],
+        "template": "NewApplicantForJob",
+
+        "body": {
+            "job_title": jobs.job_title,
+            "username": fullname,
+            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        }
     }
 
     headers = {'Content-type': 'application/json'}
@@ -930,19 +930,19 @@ def add_new_apply_candidate_from_zr(request):
         username = "User"
 
     requestBody = {
-            "to": [
-                {
-                    "name":username,
-                    "email":user.email
-                }
-            ],
-            "template": "NewApplicantForJob",
-
-            "body": {
-                "job_title": jobs.job_title,
-                "username": fullname,
-                "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        "to": [
+            {
+                "name":username,
+                "email":user.email
             }
+        ],
+        "template": "NewApplicantForJob",
+
+        "body": {
+            "job_title": jobs.job_title,
+            "username": fullname,
+            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        }
     }
 
     headers = {'Content-type': 'application/json'}
@@ -996,19 +996,19 @@ def add_new_apply_candidate_from_drjob(request):
         username = "User"
 
     requestBody = {
-            "to": [
-                {
-                    "name":username,
-                    "email":user.email
-                }
-            ],
-            "template": "NewApplicantForJob",
-
-            "body": {
-                "job_title": jobs.job_title,
-                "username": fullname,
-                "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        "to": [
+            {
+                "name":username,
+                "email":user.email
             }
+        ],
+        "template": "NewApplicantForJob",
+
+        "body": {
+            "job_title": jobs.job_title,
+            "username": fullname,
+            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        }
     }
 
     headers = {'Content-type': 'application/json'}
