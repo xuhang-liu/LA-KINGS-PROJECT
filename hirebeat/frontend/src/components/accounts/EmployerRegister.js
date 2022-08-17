@@ -65,10 +65,16 @@ export class EmployerRegister extends Component {
     let email = window.location.search;
     email = email?.substring(1, email?.length); // remove "?" from uri
     if (email?.startsWith("ZW1haWw")) {
+      if (email?.includes("&")){
+        email = email?.split("&")[0]
+      }
       email = window?.atob(email); // decode
     }
     if (email?.startsWith("email")) {
       let param = email?.split("=")[1]; // get value
+      if (param?.includes("&")){
+        param = param.split("&")[0]
+      }
       params.push(param);
     }
     return params;
