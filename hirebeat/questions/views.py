@@ -467,9 +467,10 @@ def add_interviews(request):
                     email=emails[i], positions_id=position_id)
                 InvitedCandidates.objects.create(
                     positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
+                position = Positions.objects.get(pk=position_id)
                 # send email
                 send_interviews(names[i], emails[i], urls[i],
-                                job_title, company_name, expire)
+                                job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
@@ -492,9 +493,11 @@ def send_video_interviews(request):
                 candidate.is_invited = True
                 candidate.invite_date = timezone.now()
                 candidate.save()
+
+                position = Positions.objects.get(pk=candidate.positions_id)
                 # send email
                 send_interviews(names[i], emails[i], urls[i],
-                            job_title, company_name, expire)
+                            job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Send interviews successfully", status=status.HTTP_200_OK)
 
@@ -585,7 +588,7 @@ def move_candidate_to_interview(request):
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
 # send interview email notice via smtp
-def send_interviews(name, email, url, job_title, company_name, expire):
+def send_interviews(name, email, url, job_title, company_name, expire, job_id):
     # subject = 'Follow up on your application of ' + job_title + " at " + company_name
     # message = get_template("questions/interview_email.html")
     # context = {
@@ -626,7 +629,8 @@ def send_interviews(name, email, url, job_title, company_name, expire):
             "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
             "start_interview_link": url.replace("https://",""),
             "job_title": job_title,
-        }
+        },
+        "job_id": job_id
     }
 
     headers = {'Content-type': 'application/json'}
@@ -648,7 +652,9 @@ def resend_invitation(request):
     candidate.is_invited = True
     # candidate.invite_date = timezone.now()
     candidate.save()
-    send_interviews(name, email, url, job_title, company_name, expire)
+
+    position = Positions.objects.get(pk=candidate.positions_id)
+    send_interviews(name, email, url, job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
 

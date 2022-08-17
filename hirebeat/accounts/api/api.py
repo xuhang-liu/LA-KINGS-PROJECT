@@ -82,7 +82,11 @@ class ResgisterAPI(generics.GenericAPIView):
             "template": "HirebeatAccountActivation",
             "body": {
                 "name": username,
+<<<<<<< HEAD
                 "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user) + "/"
+=======
+                "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user)+ "/"
+>>>>>>> satya
             }
         }
 
@@ -153,7 +157,7 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
             "template": "HirebeatAccountActivation",
             "body": {
                 "name": username,
-                "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user) + "/"
+                "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user)+ "/"
             }
         }
 
