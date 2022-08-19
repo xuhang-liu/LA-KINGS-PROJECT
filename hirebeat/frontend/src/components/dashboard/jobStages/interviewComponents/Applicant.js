@@ -3,12 +3,14 @@ import { MyModal80 } from "./../../DashboardComponents";
 import { ResumeEva } from "./ResumeEva";
 import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
+import axios from "axios";
 
 export const Applicant = (props) => {
     const [current, setCurrent] = useState(props.index);
     const [show, setShow] = useState(props.showCandidateModal);
     const [showResume, setShowResume] = useState(false);
     const [showEva, setShowEva] = useState(false);
+    const [emailStatus, setEmailStatus] = useState("");
     //const [next, setNext] = useState(null);
     //const [prev, setPrev] = useState(null);
     let applicants = props.applicants;
@@ -33,6 +35,20 @@ export const Applicant = (props) => {
     useEffect(() => {
         setIsViewed(props.isViewed)
     }, [props.isViewed]); 
+
+    useEffect(() => {
+        const config = {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          let data = { "email": email, "positionId": positionId};
+          axios.post("questions/get-status-from-email-logs-table", data, config).then((res) => {
+            setEmailStatus(res.data.status)
+          }).catch(error => {
+            console.log(error)
+          });
+    }, []);
 
     function viewResult() {
         if (!isViewed) {
@@ -148,9 +164,9 @@ export const Applicant = (props) => {
             };
 
             props.resendInvitation(meta);
-            setTimeout(() => { 
-                props.getAllJobs(props.user.id, 1, props.currentStage); 
-                props.getPostedJobs(props.user.id, 1, props.currentStage,"","","","", props.jobsId, props.keyWords) 
+            setTimeout(() => {
+                props.getAllJobs(props.user.id, 1, props.currentStage);
+                props.getPostedJobs(props.user.id, 1, props.currentStage, "", "", "", "", props.jobsId, props.keyWords)
             }, 300);
             alert1();
         }
@@ -164,9 +180,9 @@ export const Applicant = (props) => {
         // }
         // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { 
-            props.getAllJobs(props.user.id, 1, props.currentStage); 
-            props.getPostedJobs(props.user.id, (props.selectedPage+1), props.currentStage, props.category.value, props.category3.value,"", "", props.jobsId, props.keyWords)
+        setTimeout(() => {
+            props.getAllJobs(props.user.id, 1, props.currentStage);
+            props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, props.category.value, props.category3.value, "", "", props.jobsId, props.keyWords)
         }, 300);
         setShow(false);
     }
@@ -194,7 +210,7 @@ export const Applicant = (props) => {
                 <div className="col-2">
                     {(isInvited || props.isRecorded) &&
                         <div className="interview-txt9">
-                            <p style={{ color: "#090d3a" }}>{props.date?props.date:""}</p>
+                            <p style={{ color: "#090d3a" }}>{props.date ? props.date : ""}</p>
                         </div>
                     }
                 </div>
@@ -208,9 +224,13 @@ export const Applicant = (props) => {
                                 <div className="interview-txt9">
                                     <p style={{ color: "#7D7D7D" }}>N/A</p>
                                 </div>) :
-                            <div className="interview-txt9">
-                                <p style={{ color: "#7D7D7D" }}>Invitation Sent</p>
-                            </div>
+                            (emailStatus == "" ?
+                                <div className="interview-txt9">
+                                    <p style={{ color: "#7D7D7D" }}>Invitation Sent</p>
+                                </div> :
+                                <div className="interview-txt9">
+                                    <p style={{ color: "#7D7D7D" }}>Invitation Sent ({emailStatus})</p>
+                                </div>)
                         ) :
                         <div className="interview-txt9">
                             <p style={{ color: "#7D7D7D" }}>Not Invited</p>
@@ -272,14 +292,14 @@ export const Applicant = (props) => {
                         {(isInvited && props.filter == "active") ?
                             (props.isRecorded && props.videoCount > 0 ?
                                 null
-                                : 
+                                :
                                 <button
                                     onClick={() => inviteAgain()}
                                     className="title-button2"
                                 >
-                                {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
-                                Resend
-                                </button>) 
+                                    {/*<i className="bx bx-redo interview-txt9" style={{color: "#006dff"}}></i>*/}
+                                    Resend
+                                </button>)
                             :
                             <button
                                 onClick={() => inviteAgain()}

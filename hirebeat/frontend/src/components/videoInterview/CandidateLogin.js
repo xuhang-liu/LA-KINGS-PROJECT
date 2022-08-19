@@ -37,9 +37,12 @@ export class CandidateLogin extends Component {
   getParams = () => {
     let params = [];
     let uri = window.location.search;
-    uri = uri.substring(1, uri.length); // remove "?" from uri
-    uri = window.atob(uri); // decode
-    let arr = uri.split("&") // split by "&" to get key value pairs
+    uri = uri?.substring(1, uri.length); // remove "?" from uri
+    if (uri?.includes("&")){
+      uri = uri?.split("&")[0]
+    }
+    uri = window?.atob(uri); // decode
+    let arr = uri?.split("&") // split by "&" to get key value pairs
     for (let i = 0; i < arr.length; i++) {
       let param = arr[i].split("=")[1]; // get value
       params.push(param);
