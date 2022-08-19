@@ -256,3 +256,14 @@ class Email_Logs(models.Model):
     sent_timestamp = models.DateTimeField(auto_now_add=True)
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
     email = models.CharField(max_length=200, default="")
+
+class Email_Templates(models.Model):
+    template = models.CharField(max_length=200, null=True, blank=True)
+    code = models.CharField(max_length=200, null=True, blank=True)
+    template_type = models.CharField(max_length=200, null=True, blank=True)
+    status = models.BooleanField(default=True)
+
+class Email_Preferences(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email_template = models.ForeignKey(Email_Templates, on_delete=models.CASCADE)
+    status = models.BooleanField(default=True)
