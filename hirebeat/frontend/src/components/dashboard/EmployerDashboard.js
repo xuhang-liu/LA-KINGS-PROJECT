@@ -317,7 +317,7 @@ export class EmployerDashboard extends Component {
       loc_radius: 0,
     }
     this.props.getSourcingData(queryData);
-    window.fcWidget.user.setProperties({
+    window?.fcWidget.user.setProperties({
       firstName: this.props.employerProfileDetail.f_name,
       lastName: this.props.employerProfileDetail.l_name,
       email: this.props.user.email,

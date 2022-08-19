@@ -38,7 +38,7 @@ const toolbarConfig = {
 };
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window?.Rewardful && window?.Rewardful.referral || ('checkout_'+(new Date).getTime());
 }
 
 export class JobEdition extends Component {

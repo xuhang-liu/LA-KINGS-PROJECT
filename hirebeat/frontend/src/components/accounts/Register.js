@@ -105,7 +105,7 @@ export class Register extends Component {
   };
 
   gtag_report_conversion = () => {
-    window.gtag('event', 'conversion', {
+    window?.gtag('event', 'conversion', {
       'send_to': 'AW-443211953/vaMjCOOC7fABELHBq9MB',
       'event_callback': callback
     });

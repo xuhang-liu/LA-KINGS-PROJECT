@@ -1825,7 +1825,7 @@ const ApplyJob = (props) => {
                         description: props.job.job_description,
                         datePosted: props.job.create_date,
                         employmentType: props.job.job_type,
-                        identifier: window.btoa(props.job.id),
+                        identifier: window?.btoa(props.job.id),
                         url: props.job.job_url,
                         sameAs: props.job.job_url,
                         }}>

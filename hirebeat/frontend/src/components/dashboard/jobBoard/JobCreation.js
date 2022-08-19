@@ -38,7 +38,7 @@ const toolbarConfig = {
 };
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window?.Rewardful && window?.Rewardful.referral || ('checkout_'+(new Date).getTime());
 }
 
 export class JobCreation extends Component {
@@ -1030,7 +1030,7 @@ export class JobCreation extends Component {
                             <div className="container" style={{ padding: "2rem" }}>
                                 <ShareJob
                                     disableShowShare={this.disableShowShare}
-                                    shareLink={"https://app.hirebeat.co/apply-job/" + this.props.companyName + "?id=" + window.btoa(Object.keys(this.props.jobs).sort(function (a, b) { return b - a; })[0])}
+                                    shareLink={"https://app.hirebeat.co/apply-job/" + this.props.companyName + "?id=" + window?.btoa(Object.keys(this.props.jobs).sort(function (a, b) { return b - a; })[0])}
                                     companyName={this.props.companyName}
                                     jobTitle={this.state.jobTitle}
                                 />

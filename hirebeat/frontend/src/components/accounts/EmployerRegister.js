@@ -20,7 +20,7 @@ import TagManager from 'react-gtm-module';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window?.scrollTo(0, 0);
   }, []);
 
   return null;
@@ -89,7 +89,7 @@ export class EmployerRegister extends Component {
     TagManager.initialize({
       gtmId: 'GTM-MKHJ38Q'
     });
-    window.dataLayer.push({
+    window?.dataLayer.push({
       name: "",
       email: ""
     });
@@ -137,7 +137,7 @@ export class EmployerRegister extends Component {
                 gtmId: 'GTM-MKHJ38Q',
                 dataLayerName: 'Form Submit'
               });
-              window.dataLayer.push({
+              window?.dataLayer.push({
                 name: this.state.firstName + " " + this.state.lastName,
                 email: this.state.email?.toLowerCase()
               });
@@ -270,7 +270,7 @@ export class EmployerRegister extends Component {
             gtmId: 'GTM-MKHJ38Q',
             dataLayerName: 'Form Submit'
           });
-          window.dataLayer.push({
+          window?.dataLayer.push({
             name: this.state.firstName + " " + this.state.lastName,
             email: this.state.email?.toLowerCase()
           });
