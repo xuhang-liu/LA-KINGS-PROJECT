@@ -24,6 +24,8 @@ import {
   CHECK_USER_EXISTENCE,
   CHECK_COMPANY_NAME_EXISTENCE,
   GET_SOURCING_DATA,
+  SEARCH_SEEKER_JOBS,
+  GET_TOP_SEARCH_KEYWORDS
 } from "../actions/action_types";
 
 const initialState = {
@@ -51,6 +53,8 @@ const initialState = {
   jobTitle: "",
   sourcingData: {},
   sourcingDataLoaded: false,
+  seekerJobs: {},
+  topKeywords: ["All Jobs"]
 };
 
 export default function (state = initialState, action) {
@@ -137,6 +141,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         zpJobs: action.payload.data,
+      };
+    case GET_TOP_SEARCH_KEYWORDS:
+      return {
+        ...state,
+        topKeywords: action.payload.data,
+      };
+    case SEARCH_SEEKER_JOBS:
+      return {
+        ...state,
+        seekerJobs: action.payload.data,
       };
     case CHECK_USER_REGISTRATION:
       return {

@@ -1,3 +1,4 @@
+from re import T
 import stripe
 from django.db.models import Q
 from django.db.models.functions import Length
@@ -35,6 +36,8 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
+from .api.schedules import getTopKeywords
+
 load_dotenv()
 stripe.api_key = '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'
 
@@ -338,9 +341,46 @@ def get_ziprecruiter_jobs(request):
     api_key = os.getenv('REACT_APP_ZR_API_KEY')
     data = requests.get(url.format(
         search, location, jobs_per_page, days_ago, refine_by_salary, api_key)).json()
-
     return Response({"data": data})
 
+@api_view(['GET'])
+def get_jobSearch_keywords(request):
+    return Response({"data": getTopKeywords()})
+
+@api_view(['GET'])
+def search_jobseekers_jobs(request):
+
+    search = request.query_params.get("search")
+    if search == 'undefined' or search == 'All Jobs':
+        search = ""
+    location = request.query_params.get("location")
+    jobs_per_page = 200
+    days_ago = request.query_params.get("days_ago")
+    refine_by_salary = request.query_params.get("refine_by_salary")
+    job_type = request.query_params.get("job_type")
+
+    jobs = Jobs.objects.filter(is_closed = 0, job_status = "Published")
+    if location != "":
+        jobs = jobs.filter(job_location__icontains = location)
+    if search != "":
+        for term in search.split():
+            jobs = jobs.filter( Q(job_title__icontains = term) | Q(company_name__icontains = term)\
+                             | Q(job_description__icontains = term) | Q(skills__icontains = term))
+        #jobs = jobs.annotate(search_concat = Concat('job_title', V(' '), 'company_name', V(' '), 'job_description')).filter(search_concat__icontains = search)
+    if days_ago != "":
+        date_limit = date.today() - timedelta(days = int(days_ago))
+        jobs = jobs.filter(first_publish_date__gte = date_limit)
+    if job_type != "":
+        jobs = jobs.filter(job_type__in = job_type.split("|"))
+
+    jobs = jobs.order_by('-first_publish_date')
+    if jobs.count() > jobs_per_page:
+        jobs = jobs[:jobs_per_page]
+    
+    jobs = list(jobs.values())
+    data = {"jobs": jobs}
+
+    return Response({"data": data})
 
 @api_view(['POST'])
 def check_user_registration(request):
