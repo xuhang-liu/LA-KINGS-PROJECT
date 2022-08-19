@@ -26,10 +26,10 @@ export class Login extends Component {
   };
 
   setLoginFail = () => {
-    this.setState({login_fail: true});
+    this.setState({ login_fail: true });
   }
   setLoginFail1 = () => {
-    this.setState({login_fail: false});
+    this.setState({ login_fail: false });
   }
 
   static propTypes = {
@@ -45,7 +45,7 @@ export class Login extends Component {
         "Content-Type": "application/json",
       },
     };
-    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password};
+    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
 
     axios.post("api/check_user_login", user_pw, config).then((res) => {
       if (res.data.data) {
@@ -56,6 +56,11 @@ export class Login extends Component {
       }
     }).catch(error => {
       console.log(error)
+    });
+    //Segment info
+    window?.analytics?.track("User - Login", {
+      loginTime: Date().toLocaleString(),
+      username: this.state.username?.toLowerCase()
     });
   };
 
@@ -199,8 +204,8 @@ export class Login extends Component {
                           required />
                       </div>
 
-                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{marginTop: "0.6rem", marginBottom:"0.6rem"}}>
-                        {this.state.login_fail && <p className="share-p4" style={{fontWeight:"600"}}>Incorrect username or password. Please try again.</p>}
+                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>
+                        {this.state.login_fail && <p className="share-p4" style={{ fontWeight: "600" }}>Incorrect username or password. Please try again.</p>}
                       </div>
 
                       <div className="d-flex flex-wrap justify-content-between align-items-center">

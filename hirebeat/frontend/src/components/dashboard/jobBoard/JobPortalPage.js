@@ -22,6 +22,7 @@ export class JobPortalPage extends Component {
         this.state = {
             portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
             reviewerStage: [],
+            jobt_token: "",
             subComponentFilterReset: 0
         }
         if (this.props.job?.reviewer_type == "subr") {
@@ -59,6 +60,80 @@ export class JobPortalPage extends Component {
         }
     }
 
+    componentDidMount() {
+        // JobTarget steps:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        // Create or get jobtarget user
+        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data1 = {
+                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                "user": {
+                    "first_name": this.props.employerProfileDetail.f_name,
+                    "last_name": this.props.employerProfileDetail.l_name,
+                    "title": "Recruiter",
+                    "email": this.props.user.email,
+                    "is_admin": 0,
+                    "company_id": this.props.jobt_company_id,
+                    "external_user_id": this.props.user.id
+                }
+            }
+            axios.post("https://stagingatsapi.jobtarget.com/api/employer/user/create", data1, config).then((res1) => {
+                if (res1.data.status == 0 || res1.data.status == "0") {
+                    // update info
+                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res1.data.user.user_id, "jobt_token": "" }
+                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                        console.log(res)
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                } else {
+                    let data2 = {
+                        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                        "email": this.props.user.email
+                    }
+                    axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data2, config).then((res2) => {
+                        if (res2.data.status == 0 || res2.data.status == "0") {
+                            // update info
+                            let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res2.data.user.user_id, "jobt_token": "" }
+                            axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                                console.log(res)
+                            }).catch(error => {
+                                console.log(error)
+                            });
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+        // Get jobtarget token
+        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data3 = {
+                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                "email": this.props.user.email
+            }
+            axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
+                if (res3.data.status == 0 || res3.data.status == "0") {
+                    // update info
+                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
+                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                        this.setState({jobt_token: res3.data.token});
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+    }
     componentDidUpdate(prevProps) {
         setTimeout(() => {
             this.setState({
@@ -157,6 +232,7 @@ export class JobPortalPage extends Component {
                     profile={this.props.profile}
                     user={this.props.user}
                     employerProfileDetail={this.props.employerProfileDetail}
+                    jobt_token={(this.state.jobt_token == "")?this.props.profile.jobt_token:this.state.jobt_token}
                 />;
             case "allCandidates":
                 return <AllCandidates
@@ -394,8 +470,8 @@ export class JobPortalPage extends Component {
                                 {(this.state.reviewerStage.includes("allCandidates") || this.state.reviewerStage?.length == 0)?
                                     <div>
                                         {this.state.portalSubpage == "allCandidates" ?
-                                            <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
+                                            <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>All Candidates</p>
@@ -407,10 +483,10 @@ export class JobPortalPage extends Component {
                                         {this.state.portalSubpage == "resumeScreen" ?
                                             <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
                                                 {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                                Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
                                             <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
                                                 {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Resume Review <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                                Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
@@ -422,10 +498,10 @@ export class JobPortalPage extends Component {
                                         {this.state.portalSubpage == "videoInterview" ?
                                             <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
                                                 {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
+                                                Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
                                             <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
                                                 {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Video Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                                Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>
@@ -435,8 +511,8 @@ export class JobPortalPage extends Component {
                                 {((this.state.reviewerStage.includes("liveInterview") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "liveInterview" ?
-                                            <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p> :
-                                            <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>>></span></p>
+                                            <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
+                                            <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Live Interview</p>
@@ -446,8 +522,8 @@ export class JobPortalPage extends Component {
                                 {((this.state.reviewerStage.includes("shortList") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
                                     <div>
                                         {this.state.portalSubpage == "shortList" ?
-                                            <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#7C94B5" }}>>></span></p> :
-                                            <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#ffffff" }}>>></span></p>
+                                            <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#7C94B5" }}>{'>>'}</span></p> :
+                                            <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#ffffff" }}>{'>>'}</span></p>
                                         }
                                     </div> :
                                     <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default"}}><i class='bx-fw bx bx-filter-alt'></i>Short List</p>

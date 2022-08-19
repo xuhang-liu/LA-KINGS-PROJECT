@@ -94,6 +94,10 @@ export function VideoInterview(props) {
 
     function editQuestions() {
         setShowQEditForm(true);
+        //Segment info
+        window?.analytics?.track("View_Edit Question_Video Interview", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     // filter selections
@@ -265,6 +269,10 @@ export function VideoInterview(props) {
             setShowNoQuestionAlert(true);
         }
         else {
+            //Segment info
+            window?.analytics?.track("View Interview - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
             setShowInviteAlert(true);
         }
     }
@@ -328,6 +336,10 @@ export function VideoInterview(props) {
                 window.scrollTo(0, 0);
                 inviteSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Confirm Interview - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         }
         else {
             noCandidateAlert();
@@ -411,6 +423,34 @@ export function VideoInterview(props) {
                 if (!noShowAgainMove) {
                     enableSuccessAlert();
                 }
+                //Segment
+                window.scrollTo(0, 0);
+                switch (nextStage) {
+                    case "Resume Review":
+                        return (window?.analytics?.track("Recruitment - Move to Resume Review", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Video Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Video Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Live Interview":
+                        return (window?.analytics?.track("Recruitment - Move to Live Interview", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                    case "Short List":
+                        return (window?.analytics?.track("Recruitment - Move to Short List", {
+                            eventTime: Date().toLocaleString(),
+                            jobID: jobId,
+                            employerID: userId
+                        }));
+                }
             } else if (nextStage == "Video Interview") {
                 alert("These candidates are already in this stage!");
             } else {
@@ -456,6 +496,10 @@ export function VideoInterview(props) {
             if (!noShowAgainReject) {
                 enableRejectSuccessAlert();
             }
+            //Segment info
+            window?.analytics?.track("Reject - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -573,6 +617,10 @@ export function VideoInterview(props) {
             }
             setEmail_list(email_list);
             setShowEmailSending(true);
+            //Segment info
+            window?.analytics?.track("View Email - Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
         } else {
             noCandidateAlert();
         }
@@ -1275,5 +1323,9 @@ function previewEmail(jobTitle, companyName, expire) {
             );
         },
         overlayClassName: "overlay",
+    });
+    //Segment info
+    window?.analytics?.track("View_Preview Email_Video Interview", {
+        eventTime: Date()?.toLocaleString()
     });
 };

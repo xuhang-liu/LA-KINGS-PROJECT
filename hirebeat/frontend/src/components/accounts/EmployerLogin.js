@@ -45,7 +45,7 @@ export class EmployerLogin extends Component {
         "Content-Type": "application/json",
       },
     };
-    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password};
+    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
 
     axios.post("api/check_user_login", user_pw, config).then((res) => {
       if (res.data.data) {
@@ -56,6 +56,11 @@ export class EmployerLogin extends Component {
       }
     }).catch(error => {
       console.log(error)
+    });
+    //Segment info
+    window?.analytics?.track("User - Login", {
+      loginTime: Date().toLocaleString(),
+      username: this.state.username?.toLowerCase()
     });
   };
 
@@ -73,7 +78,7 @@ export class EmployerLogin extends Component {
       case "linkedin":
         return provider + "-oauth2";
       default:
-        // Do nothing
+      // Do nothing
     }
   };
 

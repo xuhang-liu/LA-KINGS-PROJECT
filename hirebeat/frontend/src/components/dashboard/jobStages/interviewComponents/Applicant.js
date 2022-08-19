@@ -145,6 +145,12 @@ export const Applicant = (props) => {
             props.setShowNoQuestionAlert(true);
         }
         else {
+            //Segment info
+            window?.analytics?.track("Recruitment - Video Interview Invitation Sent", {
+                eventTime: Date().toLocaleString(),
+                jobTitle: props.jobTitle,
+                employerID: props.user.id
+            });
             // encode url
             let url = "";
             //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test

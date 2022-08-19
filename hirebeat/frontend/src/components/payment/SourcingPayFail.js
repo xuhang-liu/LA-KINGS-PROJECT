@@ -16,6 +16,10 @@ function ScrollToTopOnMount() {
 class SourcingPayFail extends Component {
     componentDidMount() {
         this.renderRedirect();
+        //Segment info
+        window?.analytics?.track("Job - Sourcing Paid Fail", {
+            paymentTime: Date().toLocaleString(),
+        });
     }
 
     renderRedirect = () => {
@@ -28,9 +32,9 @@ class SourcingPayFail extends Component {
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                         <div className="container py-5 px-5" style={{ fontFamily: "Inter, Segoe UI", backgroundColor: "#ffffff", borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)" }}>
                             <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}>Oops!</h3>
-                            <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}><i className='bx bxs-x-circle bx-md' style={{color:"#ff4d4f"}}></i></h3>
-                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color:"#7a7a7a" }}>Looks like the payment was not successful.</h3>
-                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color:"#7a7a7a" }}>Please try again later.</h3>
+                            <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}><i className='bx bxs-x-circle bx-md' style={{ color: "#ff4d4f" }}></i></h3>
+                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color: "#7a7a7a" }}>Looks like the payment was not successful.</h3>
+                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color: "#7a7a7a" }}>Please try again later.</h3>
                         </div>
                     </div>
                 );

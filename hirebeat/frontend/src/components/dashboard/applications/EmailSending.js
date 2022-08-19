@@ -245,6 +245,10 @@ export class EmailSending extends Component {
             if (this.props.handleStatusChange2 != null) {
                 this.props.handleStatusChange2();
             }
+            //Segment info
+            window?.analytics?.track("Send Email", {
+                eventTime: Date()?.toLocaleString()
+            });
         }
     }
 

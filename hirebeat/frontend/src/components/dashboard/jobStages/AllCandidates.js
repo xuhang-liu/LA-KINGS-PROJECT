@@ -222,6 +222,10 @@ export class AllCandidates extends Component {
             this.candidateLimitAlert();
         } else {
             this.setState({isAddNewCandidate: true});
+            //Segment info
+            window?.analytics?.track("View - Add Candidates", {
+                eventTime: Date()?.toLocaleString()
+            });
         }
     }
 

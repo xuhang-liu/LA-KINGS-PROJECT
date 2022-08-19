@@ -21,6 +21,16 @@ export class AnalyticsCover extends Component {
 
         document.getElementById(tabNmae).style.display = "block";
         evt.currentTarget.className += "current";
+        //Segment info
+        if (tabNmae == 'tab1'){
+            window?.analytics?.track("Analytics_View All Jobs", {
+                eventTime: Date()?.toLocaleString()
+            });
+        }else{
+            window?.analytics?.track("Analytics_View Video Interview", {
+                eventTime: Date()?.toLocaleString()
+            });
+        }
     }
 
     render() {
