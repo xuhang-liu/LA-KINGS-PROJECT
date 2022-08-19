@@ -12,7 +12,7 @@ import axios from "axios";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window?.scrollTo(0, 0);
   }, []);
 
   return null;

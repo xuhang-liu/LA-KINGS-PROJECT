@@ -4,7 +4,7 @@ from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, Update
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
-    check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
+    check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, search_jobseekers_jobs, get_jobSearch_keywords,\
     update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, \
     get_profile_detail, create_or_update_personal_info, create_or_update_social_media, create_or_update_basic_info, \
     create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
@@ -72,6 +72,12 @@ urlpatterns = [
 
     ### get ziprecruiter jobs
     path('get-ziprecruiter-jobs', get_ziprecruiter_jobs, name='get ziprecruiter jobs'),
+
+    ### search top 10 keywords
+    path('get-top-search-keywords', get_jobSearch_keywords, name='get top search keywords'),
+
+    ### search jobs from our platform
+    path('search-jobseekers-jobs', search_jobseekers_jobs, name='search jobseekers jobs'),
 
     ### check user registration
     path('check-user-registration', check_user_registration, name="check user registration"),

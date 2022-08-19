@@ -320,6 +320,7 @@ export class JobCard extends Component {
 
     deleteAlert = () => {
         confirmAlert({
+            overlayClassName: "overlay",
             title: "Confirm to delete",
             message: "Are you sure to delete this job?",
             buttons: [

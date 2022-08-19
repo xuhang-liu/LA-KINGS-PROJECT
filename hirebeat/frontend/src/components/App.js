@@ -196,6 +196,7 @@ import SunLifeFinancialInfo from"./companyData/companies/SunLifeFinancialInfo";
 
 import SearchPanel from "./career/SearchPanel";
 import SearchResult from "./career/SearchResult";
+import JobSearchResult from "./career/JobSearchResult";
 import JobList from "./career/JobList";
 import UIDesigner from "./career/jobs/UIDesigner";
 import BusinessAnalyst from "./career/jobs/BusinessAnalyst";
@@ -519,8 +520,8 @@ class App extends Component {
                 <PrivateRoute exact path="/email-verification-mini" component={EmailVerificationMini} />
                 <PrivateRoute exact path="/email-verification-employer-mini" component={EmailVerificationEmployerMini} />
                 <PrivateRoute exact path="/plan-selection-employer" component={PlanSelectionEmployer}/>
-                <Route exact path="/job-seekers-career" component={SearchPanel} />
-                <Route exact path="/career-details" component={SearchResult} />
+                <Route exact path="/job-seekers-career" component={JobSearchResult} />
+                <Route exact path="/career-details" component={JobSearchResult} />
                 <Route exact path="/candidate-login" component={CandidateLogin} />
                 <PrivateRoute exact path="/interview-info" component={InterviewInfo} />
                 {/* <Route exact path="/employer-product" component={ProductPage} /> */}

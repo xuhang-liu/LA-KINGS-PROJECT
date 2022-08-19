@@ -212,7 +212,7 @@ const JobViewDetail = (props) => {
                     sendFailAlert();
                     props.getPJobs();
                 } else {
-                    encoded_email = window.btoa("email=" + sub_reviewer_email.toLowerCase());
+                    encoded_email = window?.btoa("email=" + sub_reviewer_email.toLowerCase());
                     let data = {
                         sub_name: sub_reviewer_name,
                         sub_email: sub_reviewer_email,
@@ -913,7 +913,7 @@ const JobCard = (props) => {
                         //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
                         let prefix = "https://app.hirebeat.co/candidate-login?";  // online
                         let params = "email=" + emails[i] + "&" + "positionId=" + positionId;
-                        let encode = window.btoa(params);
+                        let encode = window?.btoa(params);
                         url = prefix + encode;
                     }
                     urls.push(url);
@@ -1841,7 +1841,7 @@ const Applicant = (props) => {
         //let prefix = "http://127.0.0.1:8000/candidate-login?" // local test
         let prefix = "https://app.hirebeat.co/candidate-login?";  // online
         let params = "email=" + email + "&" + "positionId=" + positionId;
-        let encode = window.btoa(params);
+        let encode = window?.btoa(params);
         url = prefix + encode;
 
         let meta = {

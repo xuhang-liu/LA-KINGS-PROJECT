@@ -15,6 +15,7 @@ import RichTextEditor from 'react-rte';
 // import Select from 'react-select';
 import Autocomplete from "react-google-autocomplete";
 import ApplyQuestion from "./ApplyQuestion";
+import {JSONLD, Generic} from "react-structured-data";
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -1817,6 +1818,28 @@ const ApplyJob = (props) => {
                         </div>
                     </div>}
             </MediaQuery>
+            {(job_id == null || job_id == "" || props.job.is_closed || props.job.job_status != "Published") ? "" : 
+                <JSONLD>
+                    <Generic type="jobposting" jsonldtype="JobPosting" schema={{
+                        title: props.job.job_title, 
+                        description: props.job.job_description,
+                        datePosted: props.job.create_date,
+                        employmentType: props.job.job_type,
+                        identifier: window?.btoa(props.job.id),
+                        url: props.job.job_url,
+                        sameAs: props.job.job_url,
+                        }}>
+                        <Generic type="hiringOrganization" jsonldtype="Organization" schema={{
+                            name: props.job.company_name,
+                            logo: props.job.company_logo,
+                            sameAs: props.job.company_website,
+                            }} />
+                        <Generic type="jobLocation" jsonldtype="Place" schema={{
+                            address: props.job.job_location
+                            }}/>
+                    </Generic>
+                </JSONLD>
+            }
         </React.Fragment>
     )
 };
