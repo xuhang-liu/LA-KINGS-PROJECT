@@ -59,7 +59,9 @@ import {
   DELETE_PROFILE_EDUCATION,
   DELETE_PROFILE_WORK_EXP,
   ADD_CREDIT_TO_USER,
-  CREATE_REQUEST_EMAIL
+  CREATE_REQUEST_EMAIL,
+  SEARCH_SEEKER_JOBS,
+  GET_TOP_SEARCH_KEYWORDS
 } from "./action_types";
 
 // ********  LOAD USER  ********
@@ -350,6 +352,34 @@ export const getZipRecruiterJobs = (search, location, daysAgo, minSalary) => (di
     .then((res) => {
       dispatch({
         type: GET_ZP_JOBS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getTopSearchKeywords = () => (dispatch, getState) => {
+  axios
+    .get(`get-top-search-keywords`)
+    .then((res) => {
+      dispatch({
+        type: GET_TOP_SEARCH_KEYWORDS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const searchJobseekerJobs = (search, location, daysAgo, minSalary, jobType = "") => (dispatch, getState) => {
+  axios
+    .get(`search-jobseekers-jobs?search=${search}&location=${location}&days_ago=${daysAgo}&refine_by_salary=${minSalary}&job_type=${jobType}`)
+    .then((res) => {
+      dispatch({
+        type: SEARCH_SEEKER_JOBS,
         payload: res.data,
       });
     })
