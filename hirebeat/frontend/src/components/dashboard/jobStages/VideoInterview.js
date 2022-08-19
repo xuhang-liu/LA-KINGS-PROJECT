@@ -122,7 +122,7 @@ export function VideoInterview(props) {
         { value: 'All', label: 'All' },
     ];
 
-    const [category, setCategory] = useState({ value: 'All', label: 'All' });
+    const [category, setCategory] = useState({ value: 'All', label: 'Video Interview' });
     function onFilter(category) {
         setCategory(category);
         selectForceReset = false;
@@ -803,8 +803,7 @@ export function VideoInterview(props) {
                             <div className="col-2">Invited On</div>
                             <div className="col-3">
                                 <div className="row">
-                                    <div style={{ display: "flex", alignItems: "center", marginRight: "0.5rem" }}>Video</div>
-                                    <Select isSearchable={false} value={category} onChange={onFilter} options={options} className="select-category" styles={customStyles} />
+                                    <Select isSearchable={false} value={category} onChange={onFilter} options={options} className="select-category3" styles={customStyles} />
                                 </div>
                             </div>
                             {/*<div className="col-1">Action</div>*/}

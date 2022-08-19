@@ -2,7 +2,7 @@ from re import T
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
     InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote, ReviewerEvaluation
-from accounts.models import CandidatesInterview, Profile
+from accounts.models import CandidatesInterview, Profile, Email_Logs
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
 from rest_framework import generics, permissions
@@ -207,6 +207,24 @@ def get_posted_jobs(request):
                 # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+                # # Email opened or clicked user
+                # elif video_filter == "Opened":
+                #     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                #     for i in range(len(applicants)):
+                #         jos_id_from_app = Jobs.objects.filter(positions=applicants[i].positions)[0]
+                #         email_from_app = applicants[i].email
+                #         email_Logs = Email_Logs.objects.filter(jobs_id=jos_id_from_app, email=email_from_app, status="opened")
+                #         if len(email_Logs) == 0:
+                #             applicants.exclude(pk=applicants[i].id)
+
+                # elif video_filter == "Clicked":
+                #     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                #     for i in range(len(applicants)):
+                #         jos_id_from_app = Jobs.objects.filter(positions=applicants[i].positions)[0]
+                #         email_from_app = applicants[i].email
+                #         email_Logs = Email_Logs.objects.filter(jobs_id=jos_id_from_app, email=email_from_app, status="clicked")
+                #         if len(email_Logs) == 0:
+                #             applicants.exclude(pk=applicants[i].id)
             # filter by live interview
             if live_filter != "" and live_filter != "All":
                 applicants = applicants.filter(livcat=live_filter)
@@ -1584,3 +1602,19 @@ def update_shortlist_candidate_offer_status(request):
     invitedCandidates.save()
 
     return Response("Update Live Interview Candidate Status successfully", status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def get_status_from_email_logs_table(request):
+    email = request.data['email']
+    positionId = request.data['positionId']
+    jobs = Jobs.objects.filter(positions_id=positionId)[0]
+    status = ""
+    emailLogs = Email_Logs.objects.filter(email=email, jobs=jobs)
+    if len(emailLogs)>0:
+        if emailLogs[0].status == 'opened':
+            status = "Email Opened"
+        elif emailLogs[0].status == 'clicked':
+            status = "Email Clicked"
+
+    return Response({"status": status})
