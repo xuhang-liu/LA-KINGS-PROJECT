@@ -146,7 +146,7 @@ export function VideoInterview(props) {
     useEffect(() => {
         if (props.filterReset > 0){
             setCategory3({ value: 'All', label: 'All' });
-            setCategory({ value: 'All', label: 'All' });
+            setCategory({ value: 'All', label: 'Video Interview' });
             setkeyWords("");
         }
     }, [props.filterReset]); 
