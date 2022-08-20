@@ -11,8 +11,9 @@ def statKeywords():
     skills = Jobs.objects.all().values_list('skills')
     skillKeywords = []
     for skSet in skills:
-        for s in skSet[0]:
-            skillKeywords.append(re.sub(r"'.+$", "", s[11:]))
+        if not skSet[0] is None:
+            for s in skSet[0]:
+                skillKeywords.append(re.sub(r"'.+$", "", s[11:]))
     keywords_count = collections.Counter(skillKeywords).most_common(10)
     global selected_keywords
     selected_keywords = [i[0] for i in keywords_count]
