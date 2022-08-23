@@ -67,23 +67,27 @@ class ResgisterAPI(generics.GenericAPIView):
             email.content_subtype = "html"
             email.send()
 
+            # username = "User"
+            # if  user.first_name != '' and user.last_name != '':
+            #     username = user.first_name + ' ' + user.last_name
+
             # requestBody = {
             #     "to": [
             #         {
-            #             "name":user.first_name + " " + user.last_name,
-            #             "email":user.email
+            #             "name":  username,
+            #             "email": user.email
             #         }
             #     ],
             #     "template": "HirebeatAccountActivation",
-
             #     "body": {
-            #         "name": user.first_name + " " + user.last_name,
-            #         "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
+            #         "name": username,
+            #         "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user)+ "/"
             #     }
             # }
 
+            # headers = {'Content-type': 'application/json'}
             # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-            # requests.post(emailUrl, data=json.dumps(requestBody))             
+            # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)              
 
         ### token
         _, token = AuthToken.objects.create(user)
@@ -133,23 +137,27 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         email.content_subtype = "html"
         email.send()
 
+        # username = "User"
+        # if  user.first_name != '' and user.last_name != '':
+        #     username = user.first_name + ' ' + user.last_name
+
         # requestBody = {
         #     "to": [
         #         {
-        #             "name":request.data["firstname"] + " " + request.data["lastname"],
-        #             "email":user.email
+        #             "name":  username,
+        #             "email": user.email
         #         }
         #     ],
         #     "template": "HirebeatAccountActivation",
-
         #     "body": {
-        #         "name": request.data["firstname"] + " " + request.data["lastname"],
-        #         "activate_url": context["domain"] +"/activate/"+context["uid"] +"/"+context["token"],
+        #         "name": username,
+        #         "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user)+ "/"
         #     }
         # }
 
+        # headers = {'Content-type': 'application/json'}
         # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-        # requests.post(emailUrl, data=json.dumps(requestBody)) 
+        # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)   
         
         ### token
         _, token = AuthToken.objects.create(user)

@@ -2,7 +2,7 @@ from re import T
 from django.db.models.aggregates import Count
 from .models import Question, Categorys, SubCategory, Positions, InterviewQuestions, InvitedCandidates, InterviewFeedback, \
     InterviewResumes, SubReviewers, ExternalReviewers, InterviewNote, ReviewerEvaluation
-from accounts.models import CandidatesInterview, Profile
+from accounts.models import CandidatesInterview, Profile, Email_Logs, EmployerProfileDetail
 from videos.models import WPVideo
 from jobs.models import ApplyCandidates, Jobs
 from rest_framework import generics, permissions
@@ -207,6 +207,24 @@ def get_posted_jobs(request):
                 # ghosted case
                 elif video_filter == "Withdrawn":
                     applicants = applicants.filter(is_recorded=True, video_count__lte=0)
+                # # Email opened or clicked user
+                # elif video_filter == "Opened":
+                #     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                #     for i in range(len(applicants)):
+                #         jos_id_from_app = Jobs.objects.filter(positions=applicants[i].positions)[0]
+                #         email_from_app = applicants[i].email
+                #         email_Logs = Email_Logs.objects.filter(jobs_id=jos_id_from_app, email=email_from_app, status="opened")
+                #         if len(email_Logs) == 0:
+                #             applicants.exclude(pk=applicants[i].id)
+
+                # elif video_filter == "Clicked":
+                #     applicants = applicants.filter(is_invited=True, is_recorded=False)
+                #     for i in range(len(applicants)):
+                #         jos_id_from_app = Jobs.objects.filter(positions=applicants[i].positions)[0]
+                #         email_from_app = applicants[i].email
+                #         email_Logs = Email_Logs.objects.filter(jobs_id=jos_id_from_app, email=email_from_app, status="clicked")
+                #         if len(email_Logs) == 0:
+                #             applicants.exclude(pk=applicants[i].id)
             # filter by live interview
             if live_filter != "" and live_filter != "All":
                 applicants = applicants.filter(livcat=live_filter)
@@ -467,9 +485,10 @@ def add_interviews(request):
                     email=emails[i], positions_id=position_id)
                 InvitedCandidates.objects.create(
                     positions_id=position_id, email=emails[i], name=names[i], comment_status=0)
+                position = Positions.objects.get(pk=position_id)
                 # send email
                 send_interviews(names[i], emails[i], urls[i],
-                                job_title, company_name, expire)
+                                job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Add interviews data successfully", status=status.HTTP_200_OK)
 
@@ -492,9 +511,11 @@ def send_video_interviews(request):
                 candidate.is_invited = True
                 candidate.invite_date = timezone.now()
                 candidate.save()
+
+                position = Positions.objects.get(pk=candidate.positions_id)
                 # send email
                 send_interviews(names[i], emails[i], urls[i],
-                            job_title, company_name, expire)
+                            job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Send interviews successfully", status=status.HTTP_200_OK)
 
@@ -585,7 +606,7 @@ def move_candidate_to_interview(request):
     return Response("Move candidates to interview process successfully", status=status.HTTP_200_OK)
 
 # send interview email notice via smtp
-def send_interviews(name, email, url, job_title, company_name, expire):
+def send_interviews(name, email, url, job_title, company_name, expire, job_id):
     subject = 'Follow up on your application of ' + job_title + " at " + company_name
     message = get_template("questions/interview_email.html")
     context = {
@@ -607,27 +628,32 @@ def send_interviews(name, email, url, job_title, company_name, expire):
     email.content_subtype = "html"
     email.send()
 
-    # requestBody = {
-    #         "to": [
-    #             {
-    #                 "name":name,
-    #                 "email":email
-    #             }
-    #         ],
-    #         "template": "VideoInterviewInvitation",
+    # username = "User"
+    # if  name != '':
+    #     username = name
 
-    #         "body": {
-    #             "company_name": company_name,
-    #             "name": name,
-    #             "email": email,
-    #             "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
-    #             "start_interview_link": url.replace("https://",""),
-    #             "job_title": job_title,
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":username,
+    #             "email":email
     #         }
+    #     ],
+    #     "template": "VideoInterviewInvitation",
+    #     "body": {
+    #         "company_name": company_name,
+    #         "name": name,
+    #         "email": email,
+    #         "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
+    #         "start_interview_link": url.replace("https://",""),
+    #         "job_title": job_title,
+    #     },
+    #     "job_id": job_id
     # }
 
+    # headers = {'Content-type': 'application/json'}
     # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))    
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)  
 
 # resend video interview for a single person
 @api_view(['POST'])
@@ -644,7 +670,9 @@ def resend_invitation(request):
     candidate.is_invited = True
     # candidate.invite_date = timezone.now()
     candidate.save()
-    send_interviews(name, email, url, job_title, company_name, expire)
+
+    position = Positions.objects.get(pk=candidate.positions_id)
+    send_interviews(name, email, url, job_title, company_name, expire, position.job_id_in_jobs)
 
     return Response("Submit feedback data successfully", status=status.HTTP_200_OK)
 
@@ -1000,10 +1028,15 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
     )
     email.content_subtype = "html"
     email.send()
+
+    # username = "User"
+    # if  name != '':
+    #     username = name
+        
     # requestBody = {
     #     "to": [
     #         {
-    #             "name":name,
+    #             "name":username,
     #             "email":email
     #         }
     #     ],
@@ -1017,8 +1050,9 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
     #     }
     # }
 
+    # headers = {'Content-type': 'application/json'}
     # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
 
 @api_view(['POST'])
@@ -1375,6 +1409,9 @@ def add_review_note(request):
     reviewer_email = request.data["reviewer_email"]
     reviewer_type = request.data["reviewer_type"]
     current_stage = request.data["current_stage"]
+    position = Positions.objects.get(id=request.data["position_id"])
+    puser = User.objects.get(pk=position.user_id)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     reviewer = ""
     if reviewer_type == "sub_reviewer":
         sub_reviewer = SubReviewers.objects.filter(
@@ -1388,6 +1425,54 @@ def add_review_note(request):
         reviewer = request.data["reviewer"]
     InterviewNote.objects.create(reviewer=reviewer, comment=comment, current_stage=current_stage, reviewer_email=reviewer_email,
                                  applicant_email=applicant_email, position_id=position_id)
+
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
+    print("===Reviewer Update Comment Notify Email Called===")
+    subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
+    message = get_template("accounts/reviewer_comment_notification_email.html")
+    context = {
+        'ruser': reviewer_email,
+        'ruser_email': reviewer_email,
+        'cuser': applicant_email,
+        'title': position.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [puser.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+    
+    # username = "User"
+    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name": username,
+    #             "email": puser.email
+    #         }
+    #     ],
+    #     "template": "NewSubReviewerCommentsForPosition",
+    #     "body": {
+    #         "job_title": position.job_title,
+    #         "ruser": reviewer_email,
+    #         "cuser": applicant_email,
+    #         "ruser_email": reviewer_email,
+    #         "view_comment_link": "app.hirebeat.co/employer_dashboard"
+
+    #     }
+    # }
+
+    # headers = {'Content-type': 'application/json'}
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)
 
     return Response("Added review successfully", status=status.HTTP_200_OK)
 
@@ -1567,3 +1652,19 @@ def update_shortlist_candidate_offer_status(request):
     invitedCandidates.save()
 
     return Response("Update Live Interview Candidate Status successfully", status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def get_status_from_email_logs_table(request):
+    email = request.data['email']
+    positionId = request.data['positionId']
+    jobs = Jobs.objects.filter(positions_id=positionId)[0]
+    status = ""
+    emailLogs = Email_Logs.objects.filter(email=email, jobs=jobs)
+    if len(emailLogs)>0:
+        if emailLogs[0].status == 'opened':
+            status = "Email Opened"
+        elif emailLogs[0].status == 'clicked':
+            status = "Email Clicked"
+
+    return Response({"status": status})

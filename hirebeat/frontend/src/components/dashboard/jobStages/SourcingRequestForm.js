@@ -8,7 +8,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window?.Rewardful && window?.Rewardful.referral || ('checkout_'+(new Date).getTime());
 }
 
 export class SourcingRequestForm extends Component {

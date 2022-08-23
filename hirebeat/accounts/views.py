@@ -223,7 +223,6 @@ def upgrade_accounts(request):
 def resend_activation_email(request):
     print("===Resend Email Called===")
     user = User.objects.get(pk=request.data["id"])
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
     subject = 'Please Activate Your Hirebeat Account'
@@ -245,24 +244,28 @@ def resend_activation_email(request):
     )
     email.content_subtype = "html"
     email.send()
-    # requestBody = {
-    #         "to": [
-    #             {
-    #                 "name":employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
-    #                 "email":user.email
-    #             }
-    #         ],
-    #         "template": "HirebeatAccountActivation",
 
-    #         "body": {
-    #             "name": employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
-    #             "activate_url": context["domain"] +"/activate/"+context["uid"]+"/"+context["token"],
+    # username = "User"
+    # if  user.first_name != '' and user.last_name != '':
+    #     username = user.first_name + ' ' + user.last_name
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":  username,
+    #             "email": user.email
     #         }
+    #     ],
+    #     "template": "HirebeatAccountActivation",
+    #     "body": {
+    #         "name": username,
+    #         "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user) + "/"
+    #     }
     # }
 
+    # headers = {'Content-type': 'application/json'}
     # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))    
-
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
     return Response({
         "msg": "Email Sent Successfully"
     })
@@ -458,7 +461,7 @@ def employer_notification(request):
     can_name = invited_obj.name
     position = Positions.objects.get(id=positions)
     user = User.objects.get(pk=position.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     print("===Employer Notify Email Called===")
     subject = 'Interview Completed: ' + position.job_title + " from " + can_name
     message = get_template("accounts/employer_notification_email.html")
@@ -479,10 +482,14 @@ def employer_notification(request):
     email.content_subtype = "html"
     email.send()
 
+    # username = "User"
+    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
     # requestBody = {
     #     "to": [
     #         {
-    #             "name":employerProfileDetail.f_name + " " + employerProfileDetail.l_name,
+    #             "name": username,
     #             "email":user.email
     #         }
     #     ],
@@ -496,8 +503,9 @@ def employer_notification(request):
     #     }
     # }
 
+    # headers = {'Content-type': 'application/json'}
     # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
@@ -871,7 +879,7 @@ def subreviewer_update_comment(request):
     puser = User.objects.get(pk=position.user_id)
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     print("===Reviewer Update Comment Notify Email Called===")
     subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
     message = get_template("accounts/reviewer_comment_notification_email.html")
@@ -893,10 +901,14 @@ def subreviewer_update_comment(request):
     email.content_subtype = "html"
     email.send()
 
+    # username = "User"
+    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
     # requestBody = {
     #     "to": [
     #         {
-    #             "name": employerProfileDetail.f_name + employerProfileDetail.l_name,
+    #             "name": username,
     #             "email": puser.email
     #         }
     #     ],
@@ -911,8 +923,9 @@ def subreviewer_update_comment(request):
     #     }
     # }
 
+    # headers = {'Content-type': 'application/json'}
     # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody))
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
@@ -1675,3 +1688,21 @@ def deactivate_fraud_user(request):
     return Response({
         "user_found": user_found
     })
+
+@api_view((['POST']))
+def job_target_info_update(request):
+    profile_id = request.data["profile_id"]
+    jobt_company_id = request.data["jobt_company_id"]
+    jobt_user_id = request.data["jobt_user_id"]
+    jobt_token = request.data["jobt_token"]
+
+    profile = Profile.objects.get(pk=profile_id)
+    if jobt_company_id != "":
+        profile.jobt_company_id = jobt_company_id
+    if jobt_user_id != "":
+        profile.jobt_user_id = jobt_user_id
+    if jobt_token != "":
+        profile.jobt_token = jobt_token
+    profile.save()
+
+    return Response("Job Target Info update successfully", status=status.HTTP_201_CREATED)

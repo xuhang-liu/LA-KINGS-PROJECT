@@ -33,7 +33,7 @@ export class EmployerDetailFormModal extends Component {
     companyType: { value: this.props.employerProfileDetail?.company_type, label: this.props.employerProfileDetail?.company_type },
     location: this.props.employerProfileDetail?.location,
     companySummary: (this.props.employerProfileDetail?.summary !== null && this.props.employerProfileDetail?.summary !== "") ?
-    RichTextEditor.createValueFromString(this.props.employerProfileDetail?.summary, 'html') : RichTextEditor.createEmptyValue(),
+      RichTextEditor.createValueFromString(this.props.employerProfileDetail?.summary, 'html') : RichTextEditor.createEmptyValue(),
     companyLinkedin: this.props.employerProfileDetail?.linkedin,
     errLinkedin: "",
   };
@@ -66,12 +66,22 @@ export class EmployerDetailFormModal extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if ((!this.state.companyLinkedin?.toLowerCase()?.includes("linkedin")) && this.state.companyLinkedin?.length >0) {
+    if ((!this.state.companyLinkedin?.toLowerCase()?.includes("linkedin")) && this.state.companyLinkedin?.length > 0) {
       return this.setState({ errLinkedin: "Please Enter Correct LinkedIn URL" });
     }
     if (this.state.companySummary.toString('html') == "<p><br></p>") {
       return alert("Please enter company overview!");
     }
+    //Segment info
+    window?.analytics?.track("Tutorial - Save & Next", {
+      eventTime: Date().toLocaleString(),
+      companyName: this.props.employerProfileDetail?.name,
+      companyLocation: this.state.location,
+      companySize: this.state.companySize?.value,
+      companyType: this.state.companyType?.value,
+      companyLinkedin: this.state.companyLinkedin,
+      companyOverview: this.state.companySummary.toString('html')
+    });
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +157,7 @@ export class EmployerDetailFormModal extends Component {
               paddingBottom: "3rem",
               paddingTop: "3rem",
               paddingLeft: "1rem",
-              paddingRight:"1rem"
+              paddingRight: "1rem"
             }}
             onSubmit={this.onSubmit}
           >

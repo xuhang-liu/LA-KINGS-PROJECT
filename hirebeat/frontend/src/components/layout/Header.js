@@ -45,6 +45,13 @@ export class Header extends Component {
     logout: PropTypes.func.isRequired,
   };
 
+  trackLogoutSeg = () => {
+    //Segment track
+    window?.analytics?.track("User - Logout", {
+      eventTime: Date()?.toLocaleString(),
+    });
+  }
+
   renderUserLinks = () => {
     let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
     // for the purpose of routing to different links
@@ -69,7 +76,7 @@ export class Header extends Component {
               <span className="header-text" style={{ cursor: 'pointer' }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
                 <ul className="nav_submenu" style={{ width: "8rem", marginLeft: "-1rem" }}>
                   <li>
-                    <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                    <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                       Log out
                     </Link>
                   </li>
@@ -103,7 +110,7 @@ export class Header extends Component {
                     Resources <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{ height: "7.6rem", width: "10rem" }}>
                       <li>
-                        <Link id="id-findajob" to="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        <Link id="id-findajob" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                           Find Jobs</Link>
                       </li>
                       <li>
@@ -151,7 +158,7 @@ export class Header extends Component {
                       <Link id="id-howitworks1" to="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</Link></li>
                     <li>
-                      <Link id="id-findajob1" to="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <Link id="id-findajob1" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</Link></li>
                     <li>
                       <Link id="id-careerquiz1" to="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
@@ -248,7 +255,7 @@ export class Header extends Component {
                       <a id="id-howitworks3" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</a></li>
                     <li>
-                      <a id="id-findajob3" href="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <a id="id-findajob3" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</a></li>
                     <li>
                       <a id="id-careerquiz3" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
@@ -338,7 +345,7 @@ export class Header extends Component {
                       </Link>
                     </li> */}
                     <li>
-                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>
@@ -355,7 +362,7 @@ export class Header extends Component {
                       </Link>
                     </li> */}
                     <li>
-                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
+                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
                         Log out
                       </a>
                     </li>
@@ -442,7 +449,7 @@ export class Header extends Component {
                       <a id="id-howitworks2" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</a></li>
                     <li>
-                      <a id="id-findajob2" href="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <a id="id-findajob2" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</a></li>
                     <li>
                       <a id="id-careerquiz2" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
@@ -551,7 +558,7 @@ export class Header extends Component {
         <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
             <Link to="/">
-              <a className="default-btn" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300) }} style={{ color: "white" }}>
+              <a className="default-btn" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} style={{ color: "white" }}>
                 <i className="bx-fw bx bxs-hot"></i>Logout<span></span>
               </a>
             </Link>

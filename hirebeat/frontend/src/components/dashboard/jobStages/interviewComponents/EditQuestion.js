@@ -97,6 +97,10 @@ export class EditQuestion extends Component {
             this.props.getPostedJobs(this.props.user.id, 1, "Video Interview", "", "", "", "", "", this.props.keyWords)
         }, 300);
         alert("Change interview questions Success!");
+        //Segment info
+        window?.analytics?.track("Save_Edit Question_Video Interview", {
+            eventTime: Date()?.toLocaleString()
+        });
         this.props.hideQEditForm();
     }
 
