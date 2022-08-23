@@ -330,10 +330,10 @@ export class EmployerDashboard extends Component {
     // Job Target Get jobtarget token
     if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       let data3 = {
-        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+        "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
         "email": this.props.user.email
       }
-      axios.post("https://stagingatsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
+      axios.post("https://atsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
         if (res3.data.status == 0 || res3.data.status == "0") {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
@@ -467,11 +467,11 @@ export class EmployerDashboard extends Component {
     // Create or get jobtarget company
     if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
       let data1 = {
-        "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+        "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
         "name": this.props.employerProfileDetail.name,
         "external_company_id": this.props.employerProfileDetail.id
       }
-      axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/create", data1, config).then((res1) => {
+      axios.post("https://atsapi.jobtarget.com/api/employer/company/create", data1, config).then((res1) => {
         if (res1.data.status == 0 || res1.data.status == "0") {
           // update info
           let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": "", "jobt_token": "" }
@@ -482,10 +482,10 @@ export class EmployerDashboard extends Component {
           });
         } else {
           let data2 = {
-            "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+            "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
             "external_company_id": this.props.employerProfileDetail.id
           }
-          axios.post("https://stagingatsapi.jobtarget.com/api/employer/company/getcompaniesviaptoken", data2, config).then((res2) => {
+          axios.post("https://atsapi.jobtarget.com/api/employer/company/getcompaniesviaptoken", data2, config).then((res2) => {
             if (res2.data.status == 0 || res2.data.status == "0") {
               // update info
               let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": "", "jobt_token": "" }

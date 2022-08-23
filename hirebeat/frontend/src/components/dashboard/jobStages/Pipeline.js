@@ -479,7 +479,7 @@ export class Pipeline extends Component {
                 "application_delivery_webhook": "https://" + window.location.hostname + "/jobs/add-new-apply-candidate-from-jobtarget"
             }
         }
-        axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
+        axios.post("https://atsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
             console.log(res1);
             if (res1.data.status == 0 || res1.data.status == "0") {
                 this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
@@ -494,7 +494,7 @@ export class Pipeline extends Component {
                     "token": this.props.jobt_token,
                     "requisition_name": this.props.job.job_details.id
                 }
-                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
+                axios.post("https://atsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
                     console.log(res2);
                     if (res2.data.status == 0 || res2.data.status == "0") {
                         this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })

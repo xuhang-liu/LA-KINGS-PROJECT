@@ -277,7 +277,7 @@ export class SubpageSetting extends Component {
         //Update jobtarget User's name
         if (!(this.props.profile.jobt_user_id == "" || this.props.profile.jobt_user_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
             let data2 = {
-                "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+                "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
                 "user": {
                   "user_id": this.props.profile.jobt_user_id,
                   "first_name": firstName,
@@ -287,7 +287,7 @@ export class SubpageSetting extends Component {
                   "is_active": 1
                 }
               }
-            axios.post("https://stagingatsapi.jobtarget.com/api/employer/user/edit", data2, config).then((res3) => {
+            axios.post("https://atsapi.jobtarget.com/api/employer/user/edit", data2, config).then((res3) => {
                 console.log(res3)
             }).catch(error => {
                 console.log(error)

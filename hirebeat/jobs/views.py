@@ -1912,9 +1912,9 @@ def job_target_push_candidates_back(request):
     jobT_candidates = ApplyCandidates.objects.filter(jobs_id = jobid, apply_source = "JobTarget")
     for j in range(len(jobT_candidates)):
         jobT_candidate = jobT_candidates[j]
-        url = "https://stagingatsapi.jobtarget.com/api/employer/jobs/applicantdataviaptoken"
+        url = "https://atsapi.jobtarget.com/api/employer/jobs/applicantdataviaptoken"
         data = {
-            "p_token": "E8867D28-1965-4B2B-9967-03C05F498E65",
+            "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
             "applicant_guid": jobT_candidate.applicant_guid,
             "stage": jobT_candidate.current_stage,
             "event_timestamp": datetime.now().strftime("%Y:%m:%d %H:%M"),

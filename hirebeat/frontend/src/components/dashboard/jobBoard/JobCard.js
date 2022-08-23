@@ -220,7 +220,7 @@ export class JobCard extends Component {
                 "job_id": this.props.job.job_details.jobt_job_id
             }
             if (this.props.job.job_details.jobt_job_id?.length > 0) {
-                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/stopjob", data1, config).then((res1) => {
+                axios.post("https://atsapi.jobtarget.com/api/employer/jobs/stopjob", data1, config).then((res1) => {
                     console.log(res1);
                 }).catch(error => {
                     console.log(error)

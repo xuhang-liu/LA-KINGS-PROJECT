@@ -506,7 +506,7 @@ export class JobEdition extends Component {
                         "application_delivery_webhook": "https://"+window.location.hostname+"/jobs/add-new-apply-candidate-from-jobtarget"
                     }
                 }
-                axios.post("https://stagingatsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {
+                axios.post("https://atsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {
                     console.log(res1)
                 }).catch(error => {
                     console.log(error)

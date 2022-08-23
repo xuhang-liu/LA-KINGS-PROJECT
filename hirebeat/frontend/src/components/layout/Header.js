@@ -110,7 +110,7 @@ export class Header extends Component {
                     Resources <i className="bx-fw bx bx-chevron-down"></i>
                     <ul className="nav_submenu" style={{ height: "7.6rem", width: "10rem" }}>
                       <li>
-                        <Link id="id-findajob" to="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                        <Link id="id-findajob" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                           Find Jobs</Link>
                       </li>
                       <li>
@@ -158,7 +158,7 @@ export class Header extends Component {
                       <Link id="id-howitworks1" to="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</Link></li>
                     <li>
-                      <Link id="id-findajob1" to="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <Link id="id-findajob1" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</Link></li>
                     <li>
                       <Link id="id-careerquiz1" to="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
@@ -255,7 +255,7 @@ export class Header extends Component {
                       <a id="id-howitworks3" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</a></li>
                     <li>
-                      <a id="id-findajob3" href="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <a id="id-findajob3" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</a></li>
                     <li>
                       <a id="id-careerquiz3" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
@@ -449,7 +449,7 @@ export class Header extends Component {
                       <a id="id-howitworks2" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         How it works</a></li>
                     <li>
-                      <a id="id-findajob2" href="/job-seekers-career" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
+                      <a id="id-findajob2" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
                         Find a Job</a></li>
                     <li>
                       <a id="id-careerquiz2" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
