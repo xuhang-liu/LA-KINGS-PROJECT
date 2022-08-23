@@ -14,6 +14,7 @@ import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
 import ShareJob from "./ShareJob";
 import Autocomplete from "react-google-autocomplete";
 import ScreenQuestion from "./ScreenQuestion";
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -73,6 +74,61 @@ export class JobCreation extends Component {
     static propTypes = {
         onChange: PropTypes.func,
     };
+
+    componentDidMount() {
+        // JobTarget steps:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        // Create or get jobtarget user
+        if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data1 = {
+                "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+                "user": {
+                    "first_name": this.props.employerProfileDetail.f_name,
+                    "last_name": this.props.employerProfileDetail.l_name,
+                    "title": "Recruiter",
+                    "email": this.props.user.email,
+                    "is_admin": 0,
+                    "company_id": this.props.jobt_company_id,
+                    "external_user_id": this.props.user.id
+                }
+            }
+            axios.post("https://atsapi.jobtarget.com/api/employer/user/create", data1, config).then((res1) => {
+                if (res1.data.status == 0 || res1.data.status == "0") {
+                    // update info
+                    let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res1.data.user.user_id, "jobt_token": "" }
+                    axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                        console.log(res)
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                } else {
+                    let data2 = {
+                        "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+                        "email": this.props.user.email
+                    }
+                    axios.post("https://atsapi.jobtarget.com/api/employer/auth/gettoken", data2, config).then((res2) => {
+                        if (res2.data.status == 0 || res2.data.status == "0") {
+                            // update info
+                            let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": res2.data.user.user_id, "jobt_token": "" }
+                            axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                                console.log(res)
+                            }).catch(error => {
+                                console.log(error)
+                            });
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+    }
 
     setHideUpgradeM = () => {
         this.setState({ showUpgradeM: false });
@@ -420,6 +476,16 @@ export class JobCreation extends Component {
                 if (this.state.job_post == 2) {
                     this.handlePremiumJobUpgrade();
                 }
+                //Segment info
+                window?.analytics?.track("Job - Post", {
+                    postedTime: Date().toLocaleString(),
+                    jobTitle: this.state.jobTitle,
+                    jobID: this.state.jobId,
+                    employmentType: this.state.jobType["value"],
+                    experienceLevel: this.state.jobLevel["value"],
+                    workplacePolicy: this.state.remote["label"],
+                    jobLocation: this.state.jobLocation
+                });
             }
         }
     }
@@ -492,6 +558,16 @@ export class JobCreation extends Component {
             this.props.addNewJob(data);
             setTimeout(() => { this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs() }, 300);
             setTimeout(() => { this.props.renderJobs() }, 300);
+            //Segment info
+            window?.analytics?.track("Job - Save Draft", {
+                postedTime: Date().toLocaleString(),
+                jobTitle: this.state.jobTitle,
+                jobID: this.state.jobId,
+                employmentType: this.state.jobType["value"],
+                experienceLevel: this.state.jobLevel["value"],
+                workplacePolicy: this.state.remote["label"],
+                jobLocation: this.state.jobLocation
+            });
         }
     }
 

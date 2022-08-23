@@ -10,6 +10,10 @@ export class ResumeEvaJobs extends Component {
             totalSkillsCount: this.props.interviewResume.required_skills_name?.length + this.props.interviewResume.extra_skills_name?.length || 0,
             transferableSkillsCount: this.props.interviewResume.transferable_skills_name?.length || 0,
         };
+        //Segment info
+        window?.analytics?.track("Resume Evaluation", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     getSkillsMatchCount = () => {

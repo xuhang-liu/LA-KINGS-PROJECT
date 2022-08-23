@@ -27,6 +27,10 @@ class SourcingPayment extends Component {
             console.log(error);
         });
         this.renderRedirect();
+        //Segment info
+        window?.analytics?.track("Job - Sourcing Paid Success", {
+            paymentTime: Date().toLocaleString(),
+        });
     }
 
     renderRedirect = () => {
@@ -39,10 +43,10 @@ class SourcingPayment extends Component {
                         <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                         <div className="container py-5 px-5" style={{ fontFamily: "Inter, Segoe UI", backgroundColor: "#ffffff", borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)" }}>
                             <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}>Request Received!</h3>
-                            <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}><i className='bx bxs-check-circle bx-md' style={{color:"#01cfa6"}}></i></h3>
-                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color:"#7a7a7a" }}>Thank you for submitting the sourcing request.</h3>
-                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color:"#7a7a7a" }}>We will notify you via email when your candidate list is ready,</h3>
-                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color:"#7a7a7a" }}>which usually takes less than 24 hours.</h3>
+                            <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "1rem" }}><i className='bx bxs-check-circle bx-md' style={{ color: "#01cfa6" }}></i></h3>
+                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color: "#7a7a7a" }}>Thank you for submitting the sourcing request.</h3>
+                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color: "#7a7a7a" }}>We will notify you via email when your candidate list is ready,</h3>
+                            <h3 className="profile-p" style={{ textAlign: "center", marginBottom: "2rem", marginTop: "-1rem", color: "#7a7a7a" }}>which usually takes less than 24 hours.</h3>
                         </div>
                     </div>
                 );

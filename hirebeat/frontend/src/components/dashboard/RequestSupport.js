@@ -77,10 +77,20 @@ export class RequestSupport extends React.Component {
   requestSubmit = (e) => {
     e.preventDefault();
     //return popup modal
-
+    //Segment info
+    window?.analytics?.track("Tutorial - Sumbit Request Support", {
+      eventTime: Date().toLocaleString(),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      companyName: this.state.companyName,
+      email: this.state.email,
+      phone: this.state.phone,
+      ticket: this.state.ticket,
+      category: this.state.category?.value,
+    });
     // save request data to email content
     let data = {
-      category: this.state.category.value,
+      category: this.state.category?.value,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       companyName: this.state.companyName,

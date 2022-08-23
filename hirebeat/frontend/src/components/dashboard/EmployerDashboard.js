@@ -79,6 +79,8 @@ export class EmployerDashboard extends Component {
       isOpenDetail: false,
       isTourOpen: false,
       isEndTour: false,
+      jobt_company_id: "",
+      jobt_token: "",
     }
 
     // store user info to sessionStorage
@@ -104,6 +106,10 @@ export class EmployerDashboard extends Component {
       user_id: this.props.user.id,
       viewed_employer_welcome: true
     }
+    //Segment info
+    window?.analytics?.track("Tutorial - Welcome", {
+      eventTime: Date().toLocaleString()
+    });
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -148,6 +154,10 @@ export class EmployerDashboard extends Component {
   };
 
   closeTourOpenJob = () => {
+    //Segment info
+    window?.analytics?.track("Tutorial - Later", {
+      eventTime: Date().toLocaleString()
+    });
     this.setState({ isEndTour: false })
   }
 
@@ -317,6 +327,27 @@ export class EmployerDashboard extends Component {
       loc_radius: 0,
     }
     this.props.getSourcingData(queryData);
+    // Job Target Get jobtarget token
+    if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+      let data3 = {
+        "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+        "email": this.props.user.email
+      }
+      axios.post("https://atsapi.jobtarget.com/api/employer/auth/gettoken", data3, config).then((res3) => {
+        if (res3.data.status == 0 || res3.data.status == "0") {
+          // update info
+          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
+          axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+            this.setState({ jobt_token: res3.data.token });
+          }).catch(error => {
+            console.log(error)
+          });
+        }
+      }).catch(error => {
+        console.log(error)
+      });
+    }
+    //Freshchat code
     window?.fcWidget.user.setProperties({
       firstName: this.props.employerProfileDetail.f_name,
       lastName: this.props.employerProfileDetail.l_name,
@@ -327,6 +358,22 @@ export class EmployerDashboard extends Component {
       "is_employer": this.props.profile.is_employer,
       "is_freetrial": this.props.profile.is_freetrial,
       "plan": this.props.profile.plan_interval
+    });
+    // Segment code
+    window?.analytics?.identify(this.props.user.id, {
+      firstName: this.props.employerProfileDetail.f_name,
+      lastName: this.props.employerProfileDetail.l_name,
+      name: this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name,
+      email: this.props.user.email,
+      company: {
+        name: this.props.profile?.company_name,
+        plan: this.props.profile?.plan_interval
+      },
+      phone: this.props.profile?.phone_number,
+      username: this.props.user.username,
+      website: this.props.employerProfileDetail?.website,
+      description: this.props.employerProfileDetail?.location,
+      createdAt: Date().toLocaleString()
     });
   }
 
@@ -362,12 +409,20 @@ export class EmployerDashboard extends Component {
         subpage: "jobs",
       });
     }
+    //Segment track
+    window?.analytics?.track("Jobs dashboard", {
+      eventTime: Date()?.toLocaleString(),
+    });
     window.scrollTo(0, 0);
   };
 
   renderJobEdition = () => {
     this.setState({
       subpage: "jobEdition",
+    });
+    //Segment info
+    window?.analytics?.track("Jobs_Edit job posting", {
+      eventTime: Date()?.toLocaleString()
     });
   };
 
@@ -399,6 +454,56 @@ export class EmployerDashboard extends Component {
       }
       )
     }
+    //Segment info
+    window?.analytics?.track("Jobs_Create New Position", {
+      eventTime: Date()?.toLocaleString()
+    });
+    // JobTarget steps:
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    // Create or get jobtarget company
+    if ((!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+      let data1 = {
+        "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+        "name": this.props.employerProfileDetail.name,
+        "external_company_id": this.props.employerProfileDetail.id
+      }
+      axios.post("https://atsapi.jobtarget.com/api/employer/company/create", data1, config).then((res1) => {
+        if (res1.data.status == 0 || res1.data.status == "0") {
+          // update info
+          let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res1.data.company_id, "jobt_user_id": "", "jobt_token": "" }
+          axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+            this.setState({ jobt_company_id: res1.data.company_id });
+          }).catch(error => {
+            console.log(error)
+          });
+        } else {
+          let data2 = {
+            "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+            "external_company_id": this.props.employerProfileDetail.id
+          }
+          axios.post("https://atsapi.jobtarget.com/api/employer/company/getcompaniesviaptoken", data2, config).then((res2) => {
+            if (res2.data.status == 0 || res2.data.status == "0") {
+              // update info
+              let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": res2.data.companies[0].company_id, "jobt_user_id": "", "jobt_token": "" }
+              axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
+                this.setState({ jobt_company_id: res2.data.companies[0].company_id });
+              }).catch(error => {
+                console.log(error)
+              });
+            }
+          }).catch(error => {
+            console.log(error)
+          });
+        }
+      }).catch(error => {
+        console.log(error)
+      });
+    }
+    // The end of jobtarget steps
   }
 
   renderApplications = () => {
@@ -456,6 +561,10 @@ export class EmployerDashboard extends Component {
       subpage: "settings",
     }
     )
+    //Segment track
+    window?.analytics?.track("Settings", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderHelp = () => {
@@ -464,6 +573,10 @@ export class EmployerDashboard extends Component {
     }
     sessionStorage.setItem('subpage', 'help');
     this.setState({ subpage: "help" })
+    //Segment track
+    window?.analytics?.track("Help", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderReviewApplication = () => {
@@ -498,6 +611,10 @@ export class EmployerDashboard extends Component {
         subpage: "analytics",
       });
     }, 200)
+    //Segment track
+    window?.analytics?.track("Analytics", {
+      eventTime: Date()?.toLocaleString(),
+    });
   };
 
   renderEmployerProfile = () => {
@@ -509,6 +626,10 @@ export class EmployerDashboard extends Component {
       subpage: "employerProfile",
     }
     )
+    //Segment track
+    window?.analytics?.track("Company", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderMergeIntergration = () => {
@@ -524,6 +645,10 @@ export class EmployerDashboard extends Component {
     } else {
       this.setShowUpgradeM();
     }
+    //Segment track
+    window?.analytics?.track("Integration", {
+      eventTime: Date()?.toLocaleString(),
+    });
   }
 
   renderEmployerSourcing = () => {
@@ -580,6 +705,7 @@ export class EmployerDashboard extends Component {
           employerProfileDetail={this.props.employerProfileDetail}
           job_back_home={this.state.job_back_home}
           setJob_back_home={this.setJob_back_home}
+          jobt_company_id={(this.state.jobt_company_id == "") ? this.props.profile.jobt_company_id : this.state.jobt_company_id}
         />;
       case "jobCreation":
         return <JobCreation
@@ -597,6 +723,7 @@ export class EmployerDashboard extends Component {
           jobs={this.props.jobs}
           companyName={this.props.profile.company_name}
           loadProfile={this.props.loadProfile}
+          jobt_company_id={(this.state.jobt_company_id == "") ? this.props.profile.jobt_company_id : this.state.jobt_company_id}
         />;
       case "jobEdition":
         return <JobEdition
@@ -609,6 +736,7 @@ export class EmployerDashboard extends Component {
           getPJobs={this.getPJobs}
           employerProfileDetail={this.props.employerProfileDetail}
           loadProfile={this.props.loadProfile}
+          jobt_token={(this.state.jobt_token == "") ? this.props.profile.jobt_token : this.state.jobt_token}
         />;
       case "applications":
         return <ApplicationCover

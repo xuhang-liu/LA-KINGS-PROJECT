@@ -37,6 +37,10 @@ export class ReviewNote extends Component {
         this.setState({ comment: "" });
         this.props.addReviewNote(data);
         setTimeout(() => { this.props.getReviewNote(this.props.positionId, this.props.applicantEmail) }, 300);
+        //Segment info
+        window?.analytics?.track("Post Comment - Evaluation Notes", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     render() {
