@@ -41,6 +41,12 @@ export class JobSearchResult extends Component {
         this.setState({ offset: offset });
     };
 
+    componentDidMount(){
+        this.setState({
+            searched: false,
+        });
+    }
+
     componentDidUpdate(prevProps){
         // sync data in current result page
          if(prevProps.seekerJobs !== this.props.seekerJobs){
@@ -145,7 +151,7 @@ export class JobSearchResult extends Component {
                 </div>
                 <div className="row" style={{backgroundColor:"#E8EDFC"}}>
                     <div className="col" style={{marginLeft: "12rem", marginRight: "12rem", marginTop: "12px", marginBottom: "2rem", textAlign: "center", justifyContent: 'center', alignItems: 'center'}}>
-                        {typeof this.props.seekerJobs !== 'undefined' ? (this.props.topKeywords.map((k) => {
+                        {typeof this.props.topKeywords !== 'undefined' ? (this.props.topKeywords.map((k) => {
                             return (
                                     <button
                                     onClick={this.handleSearch(k)}
@@ -187,13 +193,22 @@ export class JobSearchResult extends Component {
                     {
                         this.state.seekerJobs != null ? (
                             this.state.seekerJobs.jobs.map((j) => {
+                                function decodeHtml(html) {
+                                    var txt = document.createElement("textarea");
+                                    txt.innerHTML = html;
+                                    return txt.value;
+                                }
                                 let jobDesc = j.job_description;
                                 // exclude html tags in job description
                                 jobDesc = jobDesc.replace(/<.*?>/ig,"");
                                 // exclude space
-                                jobDesc = jobDesc.replace(/&nbsp;/, "");
+                                jobDesc = jobDesc.replace(/(&nbsp;)+/g, " ");
+                                // decode Html format
+                                jobDesc = decodeHtml(jobDesc);
                                 // the single quote
                                 jobDesc = jobDesc.replace(/&#x27;/, "'");
+
+                                if (jobDesc.length > 525) jobDesc = jobDesc.substr(0, 525) + "...";
                                 
                                 let postedDate = j.first_publish_date;
                                 
