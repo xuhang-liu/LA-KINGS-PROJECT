@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { confirmAlert } from 'react-confirm-alert';
+import Spinner from 'react-bootstrap/Spinner';
 
 export class Pipeline extends Component {
     constructor(props) {
@@ -29,7 +30,14 @@ export class Pipeline extends Component {
         requestButton: 0,
         requestListShow: false,
         showIframe: false,
-        marketplace_iframe: ""
+        marketplace_iframe: "",
+        loading: false,
+    }
+
+    setLoadingTrue = () => {
+        this.setState({
+            loading: true
+        })
     }
 
     setHideRequest1 = () => {
@@ -447,6 +455,7 @@ export class Pipeline extends Component {
     };
 
     openJobTportal = () => {
+        this.setLoadingTrue();
         // JobTarget steps:
         const config = {
             headers: {
@@ -482,7 +491,7 @@ export class Pipeline extends Component {
         axios.post("https://atsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
             console.log(res1);
             if (res1.data.status == 0 || res1.data.status == "0") {
-                this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true })
+                this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true, loading: false })
                 let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res1.data.job_id }
                 axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                     console.log(res3)
@@ -497,7 +506,7 @@ export class Pipeline extends Component {
                 axios.post("https://atsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
                     console.log(res2);
                     if (res2.data.status == 0 || res2.data.status == "0") {
-                        this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true })
+                        this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true, loading: false })
                         let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res2.data.job_id }
                         axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
                             console.log(res3)
@@ -590,7 +599,7 @@ export class Pipeline extends Component {
                                         onClick={this.openJobTportal}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
-                                        <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon" />
+                                        {this.state.loading ? <span><Spinner animation="border" size="sm"/> loading</span> : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon" />}
                                     </button>
                                 </div>
                             </div>}
