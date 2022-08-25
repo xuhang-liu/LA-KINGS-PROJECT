@@ -12,6 +12,7 @@ import question_subcategory_reducer from "./question_subcategory_reducers";
 import question_retry_reducer from "./question_retry_reducers"
 import practice_info_reducers from "./practice_info_reducers"
 import job_reducer from "./job_reducers";
+import email_preference_reducers from "./email_preference_reducers";
 import { LOGOUT_SUCCESS } from "../actions/action_types";
 
 const rootReducer = (state, action) => {
@@ -35,6 +36,7 @@ const appReducer = combineReducers({
   question_retry_reducer,
   practice_info_reducers,
   job_reducer,
+  email_preference_reducers,
 });
 
 export default rootReducer;

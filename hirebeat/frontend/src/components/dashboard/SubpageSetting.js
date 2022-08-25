@@ -9,6 +9,7 @@ import axios from "axios";
 import { MessageClient } from "cloudmailin";
 import { MyModalUpgrade } from "./DashboardComponents";
 import 'boxicons';
+import EmailPreference from './settingsComponents/EmailPreference';
 
 export class SubpageSetting extends Component {
     state = {
@@ -38,15 +39,15 @@ export class SubpageSetting extends Component {
             company_name: this.props.profile.company_name,
         });
 
-        if (this.props.profile.request_delete == true){
-            this.setState({deleteEnable: false})
+        if (this.props.profile.request_delete == true) {
+            this.setState({ deleteEnable: false })
         }
     }
 
-    componentDidUpdate(){
-        if (this.state.checkInactivate){
+    componentDidUpdate() {
+        if (this.state.checkInactivate) {
             // setTimeout(() => {this.props.logout()}, 300); 
-            setTimeout(() => window.location.reload(),250);
+            setTimeout(() => window.location.reload(), 250);
         }
     }
 
@@ -165,7 +166,7 @@ export class SubpageSetting extends Component {
                         client.sendMessage({
                             to: "xuhang.liu@hirebeat.co",
                             from: "HireBeat_Team@hirebeat.email",
-                            plain: this.props.user.email+" redeem a code.",
+                            plain: this.props.user.email + " redeem a code.",
                             subject: "HireBeat System notification"
                         });
                     }
@@ -174,7 +175,7 @@ export class SubpageSetting extends Component {
             }
 
         }).catch(error => console.log(error))
-        this.setState({code:""})
+        this.setState({ code: "" })
     }
 
     sendEmail(e) {
@@ -296,47 +297,47 @@ export class SubpageSetting extends Component {
     }
 
     handleConfirm = () => {
-        this.setState({confirmShow: true});
+        this.setState({ confirmShow: true })
         //Segment info
         window?.analytics?.track("View - Delete Account", {
             eventTime: Date()?.toLocaleString()
         });
     }
 
-    setHideConfirm =() => {
-        this.setState({confirmShow: false, matchemail: "", emailerr: false})
+    setHideConfirm = () => {
+        this.setState({ confirmShow: false, matchemail: "", emailerr: false })
     }
 
     handleInfo = () => {
-        this.setState({infoShow: true})
+        this.setState({ infoShow: true })
     }
 
-    setHideInfo =() => {
-        this.setState({infoShow: false})
+    setHideInfo = () => {
+        this.setState({ infoShow: false })
     }
 
-    confirmDelete =(e) => {
+    confirmDelete = (e) => {
         e.preventDefault()
-        this.setState({matchemail: event.target.matchemail.value})
-        if (this.state.matchemail?.toLowerCase() !== this.props.user.email?.toLowerCase()){
-            this.setState({emailerr: true})
-            setTimeout(() => this.setState({matchemail: ""}), 1000)
+        this.setState({ matchemail: event.target.matchemail.value })
+        if (this.state.matchemail?.toLowerCase() !== this.props.user.email?.toLowerCase()) {
+            this.setState({ emailerr: true })
+            setTimeout(() => this.setState({ matchemail: "" }), 1000)
         }
-        else{
+        else {
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
             }
-            let user_email = {"id": this.props.user.id, "email": this.state.matchemail}
+            let user_email = { "id": this.props.user.id, "email": this.state.matchemail }
             axios.post("api/delete_account", user_email, config).then((res) => {
-                if (res.data["msg"] != null){                  
-                    this.setState({confirmShow: false, infoShow: true, matchemail: "", deleteEnable: false})                 
+                if (res.data["msg"] != null) {
+                    this.setState({ confirmShow: false, infoShow: true, matchemail: "", deleteEnable: false })
                 }
-            }).catch(err => console.log(err))           
+            }).catch(err => console.log(err))
         }
         
-        setTimeout(() => this.setState({emailerr: false}), 4000);
+        setTimeout(() => this.setState({ emailerr: false }), 4000);
         //Segment info
         window?.analytics?.track("Delete Forever - Delete Account", {
             eventTime: Date()?.toLocaleString()
@@ -346,92 +347,92 @@ export class SubpageSetting extends Component {
     render() {
         return (
             <>
-            <div className="container">
-                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
-                <div className="row" >
-                    <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                        {!this.props.profile.is_employer &&
-                            // (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
-                            //     <button
-                            //         type="button"
-                            //         className="panel-button"
-                            //         onClick={this.props.renderJobs}
-                            //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                            //     >
-                            //         <div className="center-items back-to-text">
-                            //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                            //         </div>
-                            //     </button> :
-                            //     <button
-                            //         type="button"
-                            //         className="panel-button"
-                            //         onClick={this.props.renderEmployerProfile}
-                            //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                            //     >
-                            //         <div className="center-items back-to-text">
-                            //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                            //         </div>
-                            //     </button> :
-                            <button
-                                type="button"
-                                className="panel-button"
-                                onClick={this.props.renderVideos}
-                                style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                            >
-                                <div className="center-items back-to-text">
-                                    <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                </div>
-                            </button>}
-                    </div>
-                </div>
-                <div>
+                <div className="container">
+                    <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
                     <div className="row" >
                         <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                            <IconText
-                                textDisplayed={"Account Information"}
-                                textSize={"24px"}
-                                textColor={"#090D3A"}
-                                iconMargin={"3px"}
-                            />
+                            {!this.props.profile.is_employer &&
+                                // (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
+                                //     <button
+                                //         type="button"
+                                //         className="panel-button"
+                                //         onClick={this.props.renderJobs}
+                                //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                //     >
+                                //         <div className="center-items back-to-text">
+                                //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                //         </div>
+                                //     </button> :
+                                //     <button
+                                //         type="button"
+                                //         className="panel-button"
+                                //         onClick={this.props.renderEmployerProfile}
+                                //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                //     >
+                                //         <div className="center-items back-to-text">
+                                //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                //         </div>
+                                //     </button> :
+                                <button
+                                    type="button"
+                                    className="panel-button"
+                                    onClick={this.props.renderVideos}
+                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                >
+                                    <div className="center-items back-to-text">
+                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                    </div>
+                                </button>}
                         </div>
                     </div>
+                    <div>
+                        <div className="row" >
+                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                <IconText
+                                    textDisplayed={"Account Information"}
+                                    textSize={"24px"}
+                                    textColor={"#090D3A"}
+                                    iconMargin={"3px"}
+                                />
+                            </div>
+                        </div>
 
-                    <div className="chart-bg1 container">
-                        <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                            <div className="form-group col">
-                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Email</p>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col">
-                                <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.user.email}</p>
-                            </div>
-                        </div>
-                        {this.props.profile.is_employer &&
-                            <div>
-                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Name <i className="bx bx-edit-alt" style={{ cursor: "pointer", color: "#006dff", marginLeft: "1rem" }} onClick={() => this.switch_name_change_on()}></i></p>
-                                    </div>
+                        <div className="chart-bg1 container">
+                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                <div className="form-group col">
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Email</p>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col">
-                                        {!this.state.change_name_switch ?
-                                            <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.employerProfileDetail?.f_name + " " + this.props.employerProfileDetail?.l_name}</p> :
-                                            <div>
-                                                <p style={{ display: 'inline-block', fontSize: "15px" }}>First Name</p>
-                                                <input id="firstName" defaultValue={this.props.employerProfileDetail?.f_name}></input>
-                                                <p style={{ display: 'inline-block', fontSize: "15px", marginLeft: "1rem" }}>Last Name</p>
-                                                <input id="lastName" defaultValue={this.props.employerProfileDetail?.l_name}></input>
-                                                <div className="profile-edit">
-                                                    <span style={{ cursor: "pointer" }} onClick={() => this.save_name_change()}>Save</span>
-                                                    <span style={{ cursor: "pointer", color: "#979797", marginLeft: "1rem" }} onClick={() => this.switch_name_change_off()}>Cancel</span>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col">
+                                    <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.user.email}</p>
+                                </div>
+                            </div>
+                            {this.props.profile.is_employer &&
+                                <div>
+                                    <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                        <div className="form-group col">
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Name <i className="bx bx-edit-alt" style={{ cursor: "pointer", color: "#006dff", marginLeft: "1rem" }} onClick={() => this.switch_name_change_on()}></i></p>
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col">
+                                            {!this.state.change_name_switch ?
+                                                <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.employerProfileDetail?.f_name + " " + this.props.employerProfileDetail?.l_name}</p> :
+                                                <div>
+                                                    <p style={{ display: 'inline-block', fontSize: "15px" }}>First Name</p>
+                                                    <input id="firstName" defaultValue={this.props.employerProfileDetail?.f_name}></input>
+                                                    <p style={{ display: 'inline-block', fontSize: "15px", marginLeft: "1rem" }}>Last Name</p>
+                                                    <input id="lastName" defaultValue={this.props.employerProfileDetail?.l_name}></input>
+                                                    <div className="profile-edit">
+                                                        <span style={{ cursor: "pointer" }} onClick={() => this.save_name_change()}>Save</span>
+                                                        <span style={{ cursor: "pointer", color: "#979797", marginLeft: "1rem" }} onClick={() => this.switch_name_change_off()}>Cancel</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                                {/* <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                    {/* <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                     <div className="form-group col">
                                         <p style={{ fontSize: "17px", color: "#090d3a" }}>Company Job Portal</p>
                                     </div>
@@ -441,9 +442,9 @@ export class SubpageSetting extends Component {
                                         <a target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                     </div>
                                 </div> */}
-                            </div>
-                        }
-                        {/*<form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
+                                </div>
+                            }
+                            {/*<form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
                                 <div className="form-row" style={{ marginTop: "1%" }}>
                                     {!this.props.profile.is_employer &&
                                         <div className="form-group col-6">
@@ -494,188 +495,267 @@ export class SubpageSetting extends Component {
                                     Update Profile
                                 </button>
                             </form>*/}
-                    </div>
-                </div>
-                {(!this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer && this.props.profile.is_employer) &&
-                    <div>
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                <IconText
-                                    textDisplayed={"Hiring Team"}
-                                    textSize={"24px"}
-                                    textColor={"#090D3A"}
-                                    iconMargin={"3px"}
-                                />
-                            </div>
-                        </div>
-                        <div className="chart-bg1 container">
-                            <div className="row pb-4 pt-2" style={{ marginTop: "1%" }}>
-                                <div className="col-6 h-100">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Reviewers</p>
-                                    {this.props.sub_r_list.map((s, i) => {
-                                        return (
-                                            <div className="row ml-1">
-                                                <div className="col-1 pt-2">
-                                                    <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
-                                                </div>
-                                                <div className="col-8">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
-                                                    <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
-                                                </div>
-                                                <div className="col-3 pt-3">
-                                                    <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "sub")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="col-6 h-100">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Hiring Managers</p>
-                                    {this.props.ext_r_list.map((s, i) => {
-                                        return (
-                                            <div className="row ml-1">
-                                                <div className="col-1 pt-2">
-                                                    <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
-                                                </div>
-                                                <div className="col-8">
-                                                    <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
-                                                    <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
-                                                </div>
-                                                <div className="col-3 pt-3">
-                                                    <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "ext")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                                {(this.props.ext_r_list.length <= 0 && this.props.sub_r_list.length <= 0) &&
-                                    <div className="col-12 mt-4">
-                                        <p style={{ marginLeft: "25%", fontSize: "1.1rem", fontWeight: "500", color: "#7a7a7a" }}>You haven't invited any reviewers yet.</p>
-                                    </div>}
-                            </div>
                         </div>
                     </div>
-                }
-                <div className="row" >
-                    <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                        <IconText
-                            textDisplayed={"Change Password"}
-                            textSize={"24px"}
-                            textColor={"#090D3A"}
-                            iconMargin={"3px"}
-                        />
+                    {(!this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer && this.props.profile.is_employer) &&
+                        <div>
+                            <div className="row" >
+                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                    <IconText
+                                        textDisplayed={"Hiring Team"}
+                                        textSize={"24px"}
+                                        textColor={"#090D3A"}
+                                        iconMargin={"3px"}
+                                    />
+                                </div>
+                            </div>
+                            <div className="chart-bg1 container">
+                                <div className="row pb-4 pt-2" style={{ marginTop: "1%" }}>
+                                    <div className="col-6 h-100">
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Reviewers</p>
+                                        {this.props.sub_r_list.map((s, i) => {
+                                            return (
+                                                <div className="row ml-1">
+                                                    <div className="col-1 pt-2">
+                                                        <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-8">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
+                                                        <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
+                                                    </div>
+                                                    <div className="col-3 pt-3">
+                                                        <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "sub")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="col-6 h-100">
+                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Hiring Managers</p>
+                                        {this.props.ext_r_list.map((s, i) => {
+                                            return (
+                                                <div className="row ml-1">
+                                                    <div className="col-1 pt-2">
+                                                        <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
+                                                    </div>
+                                                    <div className="col-8">
+                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
+                                                        <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
+                                                    </div>
+                                                    <div className="col-3 pt-3">
+                                                        <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "ext")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    {(this.props.ext_r_list.length <= 0 && this.props.sub_r_list.length <= 0) &&
+                                        <div className="col-12 mt-4">
+                                            <p style={{ marginLeft: "25%", fontSize: "1.1rem", fontWeight: "500", color: "#7a7a7a" }}>You haven't invited any reviewers yet.</p>
+                                        </div>}
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div className="row" >
+                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                            <IconText
+                                textDisplayed={"Change Password"}
+                                textSize={"24px"}
+                                textColor={"#090D3A"}
+                                iconMargin={"3px"}
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <div className="chart-bg1 container">
-                    <form style={{ marginBottom: "3%" }} onSubmit={this.PasswordCheck}>
-                        <div className="form-row" style={{ marginTop: "1%" }}>
-                            <div className="form-group col">
-                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Current Password</p>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    name={"oldPassword"}
-                                    value={this.state.oldPassword}
-                                    onChange={this.handleInputChange}
-                                    placeholder={"current password"}
-                                    required="required"
-                                />
-                            </div>
-                        </div>
-                        <div className="form-row" style={{ marginTop: "1%" }}>
-                            <div className="form-group col-6">
-                                <p style={{ fontSize: "17px", color: "#090d3a" }}>New Password</p>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    name={"newPassword"}
-                                    value={this.state.newPassword}
-                                    onChange={this.handleInputChange}
-                                    placeholder={"new password"}
-                                    required="required"
-                                />
-                            </div>
-                            <div className="form-group col-6">
-                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Confirm Password</p>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    name={"confirmPassword"}
-                                    value={this.state.confirmPassword}
-                                    onChange={this.handleInputChange}
-                                    placeholder={"confirm new password"}
-                                    required="required"
-                                    pattern="[0-9 a-z A-Z ]+"
-                                    title="Alphabet letters only!"
-                                />
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            className="default-btn"
-                            style={{ paddingLeft: "25px", textDecoration: "none" }}
-                        >
-                            Update Password
-                        </button>
-                    </form>
-                </div>
-                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
-                    <div>
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                <IconText
-                                    textDisplayed={"Membership"}
-                                    textSize={"24px"}
-                                    textColor={"#090D3A"}
-                                    iconMargin={"3px"}
-                                />
-                            </div>
-                        </div>
-                        <div className="chart-bg1 container">
-                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                    <div className="chart-bg1 container">
+                        <form style={{ marginBottom: "3%" }} onSubmit={this.PasswordCheck}>
+                            <div className="form-row" style={{ marginTop: "1%" }}>
                                 <div className="form-group col">
-                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                    {this.props.profile.plan_interval == "Premium" &&
-                                        <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                            <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
-                                            </p>
-                                        </div>}
-                                    {this.props.profile.plan_interval == "Pro" &&
-                                        <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                            <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
-                                            </p>
-                                        </div>}
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Current Password</p>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        name={"oldPassword"}
+                                        value={this.state.oldPassword}
+                                        onChange={this.handleInputChange}
+                                        placeholder={"current password"}
+                                        required="required"
+                                    />
                                 </div>
                             </div>
-                            <div className="form-row">
-                                <div className="form-group col">
-                                    <a
-                                        href="/employer-pricing"
-                                        type="submit"
-                                        className="default-btn"
-                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                    >
-                                        Change Plan
-                                    </a>
+                            <div className="form-row" style={{ marginTop: "1%" }}>
+                                <div className="form-group col-6">
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>New Password</p>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        name={"newPassword"}
+                                        value={this.state.newPassword}
+                                        onChange={this.handleInputChange}
+                                        placeholder={"new password"}
+                                        required="required"
+                                    />
+                                </div>
+                                <div className="form-group col-6">
+                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Confirm Password</p>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        name={"confirmPassword"}
+                                        value={this.state.confirmPassword}
+                                        onChange={this.handleInputChange}
+                                        placeholder={"confirm new password"}
+                                        required="required"
+                                        pattern="[0-9 a-z A-Z ]+"
+                                        title="Alphabet letters only!"
+                                    />
                                 </div>
                             </div>
-                            {!this.props.profile.is_freetrial &&
-                                <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                            <button
+                                type="submit"
+                                className="default-btn"
+                                style={{ paddingLeft: "25px", textDecoration: "none" }}
+                            >
+                                Update Password
+                            </button>
+                        </form>
+                    </div>
+                    {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
+                        <div>
+                            <div className="row" >
+                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                    <IconText
+                                        textDisplayed={"Membership"}
+                                        textSize={"24px"}
+                                        textColor={"#090D3A"}
+                                        iconMargin={"3px"}
+                                    />
+                                </div>
+                            </div>
+                            <div className="chart-bg1 container">
+                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                    <div className="form-group col">
+                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                        {this.props.profile.plan_interval == "Premium" &&
+                                            <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                                </p>
+                                            </div>}
+                                        {this.props.profile.plan_interval == "Pro" &&
+                                            <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                                </p>
+                                            </div>}
+                                    </div>
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group col">
+                                        <a
+                                            href="/employer-pricing"
+                                            type="submit"
+                                            className="default-btn"
+                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                        >
+                                            Change Plan
+                                        </a>
+                                    </div>
+                                </div>
+                                {!this.props.profile.is_freetrial &&
+                                    <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                                        <div className="form-row" style={{ marginTop: "1%" }}>
+                                            <div className="form-group col">
+                                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
+                                                <input
+                                                    type="email"
+                                                    className="form-control"
+                                                    name={"useremail"}
+                                                    value={this.state.useremail}
+                                                    onChange={this.handleInputChange}
+                                                    placeholder={"email"}
+                                                    required="required"
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="default-btn"
+                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                        >
+                                            Cancel Membership
+                                        </button>
+                                    </form>}
+                            </div>
+                        </div>}
+                    {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer) && (this.props.profile.is_employer)) &&
+                        <div>
+                            <div className="row" >
+                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                    <IconText
+                                        textDisplayed={"Subscription"}
+                                        textSize={"24px"}
+                                        textColor={"#090D3A"}
+                                        iconMargin={"3px"}
+                                    />
+                                </div>
+                            </div>
+                            <div className="chart-bg1 container">
+                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                    <div className="form-group col">
+                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current Plan</p>
+                                        {this.props.profile.plan_interval == "Premium" &&
+                                            <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                                </p>
+                                            </div>}
+                                        {this.props.profile.plan_interval == "Pro" &&
+                                            <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                    <i className="bx-fw bx bx-diamond bx-xs"></i>
+                                                    {this.props.profile.position_limit == 5 &&
+                                                        <span>Pro</span>}
+                                                    {this.props.profile.position_limit == 1 &&
+                                                        <span>Basic Plan</span>}
+                                                    {this.props.profile.position_limit == 10 &&
+                                                        <span>Pro Plus</span>}
+                                                    {this.props.profile.position_limit == 50 &&
+                                                        <span>Premium Lite</span>}
+                                                </p>
+                                            </div>}
+                                        {this.props.profile.is_freetrial &&
+                                            <p className="ml-2 mb-3">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
+                                    </div>
+                                </div>
+
+                                {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><i className="bx bxs-check-circle" style={{ color: "green" }}></i><span className="ml-2" style={{ color: "#000", fontWeight: "bolder" }}>{this.state.codeMsg}</span></div> : null}
+
+                                <div className="form-row">
+                                    <div className="form-group col">
+                                        {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null)) &&
+                                            <div>
+                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.stripeCustomerPortal}>Manage Subscription</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
                                     <div className="form-row" style={{ marginTop: "1%" }}>
                                         <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
                                             <input
-                                                type="email"
+                                                type="text"
                                                 className="form-control"
-                                                name={"useremail"}
-                                                value={this.state.useremail}
+                                                name="code"
+                                                value={this.state.code}
                                                 onChange={this.handleInputChange}
-                                                placeholder={"email"}
+                                                placeholder="Enter promo code"
                                                 required="required"
                                             />
+
+                                            {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
                                         </div>
                                     </div>
                                     <button
@@ -683,237 +763,160 @@ export class SubpageSetting extends Component {
                                         className="default-btn"
                                         style={{ paddingLeft: "25px", textDecoration: "none" }}
                                     >
-                                        Cancel Membership
+                                        Apply
                                     </button>
-                                </form>}
-                        </div>
-                    </div>}
-                {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer) && (this.props.profile.is_employer)) &&
-                    <div>
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                <IconText
-                                    textDisplayed={"Subscription"}
-                                    textSize={"24px"}
-                                    textColor={"#090D3A"}
-                                    iconMargin={"3px"}
-                                />
+                                </form>
                             </div>
-                        </div>
-                        <div className="chart-bg1 container">
-                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                <div className="form-group col">
-                                    <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current Plan</p>
-                                    {this.props.profile.plan_interval == "Premium" &&
-                                        <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                            <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
-                                            </p>
-                                        </div>}
-                                    {this.props.profile.plan_interval == "Pro" &&
-                                        <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                            <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                <i className="bx-fw bx bx-diamond bx-xs"></i>
-                                                {this.props.profile.position_limit == 5 &&
-                                                    <span>Pro</span>}
-                                                {this.props.profile.position_limit == 1 &&
-                                                    <span>Basic Plan</span>}
-                                                {this.props.profile.position_limit == 10 &&
-                                                    <span>Pro Plus</span>}
-                                                {this.props.profile.position_limit == 50 &&
-                                                    <span>Premium Lite</span>}
-                                            </p>
-                                        </div>}
-                                    {this.props.profile.is_freetrial &&
-                                        <p className="ml-2 mb-3">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
+                        </div>}
+                    {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
+                        <div>
+                            <div className="row" >
+                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                    <IconText
+                                        textDisplayed={"Membership"}
+                                        textSize={"24px"}
+                                        textColor={"#090D3A"}
+                                        iconMargin={"3px"}
+                                    />
                                 </div>
                             </div>
-
-                            {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><i className="bx bxs-check-circle" style={{ color: "green" }}></i><span className="ml-2" style={{ color: "#000", fontWeight: "bolder" }}>{this.state.codeMsg}</span></div> : null}
-
-                            <div className="form-row">
-                                <div className="form-group col">
-                                    {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null)) &&
-                                        <div>
-                                            <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.stripeCustomerPortal}>Manage Subscription</button>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                            <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
-                                <div className="form-row" style={{ marginTop: "1%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            name="code"
-                                            value={this.state.code}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Enter promo code"
-                                            required="required"
-                                        />
-
-                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                            <div className="chart-bg1 container">
+                                <form style={{ marginBottom: "3%" }}>
+                                    <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
+                                        {(this.props.profile.is_employer) ?
+                                            <div className="form-group col">
+                                                <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                        <span>Free</span>
+                                                    </p>
+                                                </div>
+                                            </div> :
+                                            <div className="form-group col">
+                                                <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
+                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                        <span>Free</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="default-btn"
-                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                >
-                                    Apply
-                                </button>
-                            </form>
-                        </div>
-                    </div>}
-                {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
-                    <div>
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                <IconText
-                                    textDisplayed={"Membership"}
-                                    textSize={"24px"}
-                                    textColor={"#090D3A"}
-                                    iconMargin={"3px"}
-                                />
-                            </div>
-                        </div>
-                        <div className="chart-bg1 container">
-                            <form style={{ marginBottom: "3%" }}>
-                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    {(this.props.profile.is_employer) ?
+                                    {this.props.profile.is_employer ?
+                                        <div>
+                                            {!this.props.profile.is_subreviwer &&
+                                                <a
+                                                    href="/employer-pricing"
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                                >
+                                                    Upgrade Plan
+                                                </a>}</div> :
+                                        <a
+                                            href="/pricing"
+                                            className="default-btn"
+                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                        >
+                                            Upgrade Plan
+                                        </a>}
+                                </form>
+
+                                <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
+                                    <div className="form-row" style={{ marginTop: "1%" }}>
                                         <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                            <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <span>Free</span>
-                                                </p>
-                                            </div>
-                                        </div> :
-                                        <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                            <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <span>Free</span>
-                                                </p>
-                                            </div>
+                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="code"
+                                                value={this.state.code}
+                                                onChange={this.handleInputChange}
+                                                placeholder="Enter promo code"
+                                                required="required"
+                                            />
+
+                                            {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
                                         </div>
-                                    }
-                                </div>
-                                {this.props.profile.is_employer ?
-                                    <div>
-                                        {!this.props.profile.is_subreviwer &&
-                                            <a
-                                                href="/employer-pricing"
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                            >
-                                                Upgrade Plan
-                                            </a>}</div> :
-                                    <a
-                                        href="/pricing"
+                                    </div>
+                                    <button
+                                        type="submit"
                                         className="default-btn"
                                         style={{ paddingLeft: "25px", textDecoration: "none" }}
                                     >
-                                        Upgrade Plan
-                                    </a>}
-                            </form>
-
-                            <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
-                                <div className="form-row" style={{ marginTop: "1%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            name="code"
-                                            value={this.state.code}
-                                            onChange={this.handleInputChange}
-                                            placeholder="Enter promo code"
-                                            required="required"
-                                        />
-
-                                        {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
-                                    </div>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="default-btn"
-                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                >
-                                    Apply
-                                </button>
-                            </form>
-                        </div>
-                    </div>}                 
-            </div> 
-            {this.props.profile.is_employer ? <div className="container" style={{marginTop:" 30px"}}>
-                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float:"right"}}>Delete Account</button>
-                : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float:"right"}}>Deletion Scheduled</button>}
-            </div> : null}
-            {/* confirm email modal */}
-            {<MyModalUpgrade
-                show={this.state.confirmShow}
-                onHide={this.setHideConfirm}
-              >
-                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center"}}>
-                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem"}}>Are you sure?</h3>
-                  <i className="bx bxs-help-circle text-55" style={{ color: '#FAC046' }}></i>
-                  <p style={{color: "#7A7A7A"}}>
-                  This action cannot be undone. This will permanently wipe all information and data under your account, including job postings, candidate information, notes, etc, and remove all collaborator associations.
-                  <br />
-                  <br />
-                  If this is the super admin account (primary subscriber for the company), a permanent deletion will also remove all your collaborator's accounts associated with your company. We will cancel all future billings but we do not refund past payments.
-                  <br />
-                  <br />
-                  Please type your account email below to confirm deleting this account.
-                  </p>
-                  <form onSubmit={this.confirmDelete}>
-                      <div className="row" style={{margin: "auto", width: "70%", paddingBottom: "10px"}}>
-                      <input
-                        type="email"
-                        className="form-control inputInModal"
-                        name="matchemail"
-                        value={this.state.matchemail}
-                        onChange = {this.handleInputChange}
-                        placeholder="type your account email here"
-                        required="required"
-                        style={{border: "1px solid #cecfdf", padding: "0 15px"}}
-                      />
-                      {this.state.emailerr ? 
-                      <div style={{colo: "#C9C9C9"}}>
-                        <div>
-                            <i className="bx-fw bx bxs-x-circle" style={{ color: '#FF4D4F' }}></i>
-                            <span>Email does not match your account.</span>
-                        </div>
-                        <div style={{textAlign: "left", paddingLeft: "1.6em"}}>Please try again.</div> 
-                      </div>: null}
-                  </div>
-                  <div style={{ margin: "auto", width: "70%", display: "flex", justifyContent: "space-between"}}>                    
-                      <button type="submit" className="default-btn" style={{ width: "45%", paddingLeft: "18px",paddingTop: "8px", paddingBottom: "8px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", whiteSpace: "nowrap"}}>Delete Forever</button>
-                      <button onClick={this.setHideConfirm} className="default-btn" style={{ width: "45%", paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px"}}>Cancel</button>
-                  </div>
-                  </form>
+                                        Apply
+                                    </button>
+                                </form>
+                            </div>
+                        </div>}
+                    {/* User Email Preference */}
+                    <EmailPreference userId={this.props.user.id} />
                 </div>
-            </MyModalUpgrade> }
-            {/* Delete Info */}
-            {<MyModalUpgrade
-                show={this.state.infoShow}
-                onHide={this.setHideInfo}
-              >
-                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center"}}>
-                  <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem"}}>We are sorry that you leave...</h3>
-                  <i className="bx bxs-check-circle text-55" style={{ color: '#01CFA6' }}></i>
-                  <p style={{color: "#7A7A7A"}}>
-                  You have requested a permanent deletion of your account. The data self-destruct is scheduled, and your data will be completely deleted within one business day.
-                  <br />
-                  <br />
-                  You will not have access to this account after the deletion process is complete.
-                  </p>
-                  <button onClick={this.setHideInfo} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px"}}>Got it</button>
-                </div>
-            </MyModalUpgrade> }
+                {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
+                    {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
+                        : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
+                </div> : null}
+                {/* confirm email modal */}
+                {<MyModalUpgrade
+                    show={this.state.confirmShow}
+                    onHide={this.setHideConfirm}
+                >
+                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center" }}>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Are you sure?</h3>
+                        <i className="bx bxs-help-circle text-55" style={{ color: '#FAC046' }}></i>
+                        <p style={{ color: "#7A7A7A" }}>
+                            This action cannot be undone. This will permanently wipe all information and data under your account, including job postings, candidate information, notes, etc, and remove all collaborator associations.
+                            <br />
+                            <br />
+                            If this is the super admin account (primary subscriber for the company), a permanent deletion will also remove all your collaborator's accounts associated with your company. We will cancel all future billings but we do not refund past payments.
+                            <br />
+                            <br />
+                            Please type your account email below to confirm deleting this account.
+                        </p>
+                        <form onSubmit={this.confirmDelete}>
+                            <div className="row" style={{ margin: "auto", width: "70%", paddingBottom: "10px" }}>
+                                <input
+                                    type="email"
+                                    className="form-control inputInModal"
+                                    name="matchemail"
+                                    value={this.state.matchemail}
+                                    onChange={this.handleInputChange}
+                                    placeholder="type your account email here"
+                                    required="required"
+                                    style={{ border: "1px solid #cecfdf", padding: "0 15px" }}
+                                />
+                                {this.state.emailerr ?
+                                    <div style={{ colo: "#C9C9C9" }}>
+                                        <div>
+                                            <i className="bx-fw bx bxs-x-circle" style={{ color: '#FF4D4F' }}></i>
+                                            <span>Email does not match your account.</span>
+                                        </div>
+                                        <div style={{ textAlign: "left", paddingLeft: "1.6em" }}>Please try again.</div>
+                                    </div> : null}
+                            </div>
+                            <div style={{ margin: "auto", width: "70%", display: "flex", justifyContent: "space-between" }}>
+                                <button type="submit" className="default-btn" style={{ width: "45%", paddingLeft: "18px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", whiteSpace: "nowrap" }}>Delete Forever</button>
+                                <button onClick={this.setHideConfirm} className="default-btn" style={{ width: "45%", paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </MyModalUpgrade>}
+                {/* Delete Info */}
+                {<MyModalUpgrade
+                    show={this.state.infoShow}
+                    onHide={this.setHideInfo}
+                >
+                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center" }}>
+                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>We are sorry that you leave...</h3>
+                        <i className="bx bxs-check-circle text-55" style={{ color: '#01CFA6' }}></i>
+                        <p style={{ color: "#7A7A7A" }}>
+                            You have requested a permanent deletion of your account. The data self-destruct is scheduled, and your data will be completely deleted within one business day.
+                            <br />
+                            <br />
+                            You will not have access to this account after the deletion process is complete.
+                        </p>
+                        <button onClick={this.setHideInfo} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Got it</button>
+                    </div>
+                </MyModalUpgrade>}
             </>
         )
     };
