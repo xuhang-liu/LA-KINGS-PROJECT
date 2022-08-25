@@ -225,47 +225,47 @@ def resend_activation_email(request):
     user = User.objects.get(pk=request.data["id"])
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
-    subject = 'Please Activate Your Hirebeat Account'
-    message = get_template("accounts/account_activation_email.html")
-    context = {
-        'user': user,
-        'domain': current_site.domain,
-        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-        'token': account_activation_token.make_token(user),
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # username = "User"
-    # if  user.first_name != '' and user.last_name != '':
-    #     username = user.first_name + ' ' + user.last_name
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name":  username,
-    #             "email": user.email
-    #         }
-    #     ],
-    #     "template": "HirebeatAccountActivation",
-    #     "body": {
-    #         "name": username,
-    #         "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user) + "/"
-    #     }
+    # subject = 'Please Activate Your Hirebeat Account'
+    # message = get_template("accounts/account_activation_email.html")
+    # context = {
+    #     'user': user,
+    #     'domain': current_site.domain,
+    #     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+    #     'token': account_activation_token.make_token(user),
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
+    username = "User"
+    if  user.first_name != '' and user.last_name != '':
+        username = user.first_name + ' ' + user.last_name
+
+    requestBody = {
+        "to": [
+            {
+                "name":  username,
+                "email": user.email
+            }
+        ],
+        "template": "HirebeatAccountActivation",
+        "body": {
+            "name": username,
+            "activate_url": current_site.domain + "/activate/" + urlsafe_base64_encode(force_bytes(user.pk)) + "/" + account_activation_token.make_token(user) + "/"
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
     return Response({
         "msg": "Email Sent Successfully"
     })
@@ -461,51 +461,51 @@ def employer_notification(request):
     can_name = invited_obj.name
     position = Positions.objects.get(id=positions)
     user = User.objects.get(pk=position.user_id)
-    # employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     print("===Employer Notify Email Called===")
-    subject = 'Interview Completed: ' + position.job_title + " from " + can_name
-    message = get_template("accounts/employer_notification_email.html")
-    context = {
-        'name': can_name,
-        'email': email,
-        'title': position.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [user.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # username = "User"
-    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name": username,
-    #             "email":user.email
-    #         }
-    #     ],
-    #     "template": "InterviewCompletedForJobTitle",
-
-    #     "body": {
-    #         "can_name": can_name,
-    #         "email": email,
-    #         "view_applicant_link": "app.hirebeat.co/employer_dashboard",
-    #         "job_title": position.job_title
-    #     }
+    # subject = 'Interview Completed: ' + position.job_title + " from " + can_name
+    # message = get_template("accounts/employer_notification_email.html")
+    # context = {
+    #     'name': can_name,
+    #     'email': email,
+    #     'title': position.job_title,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [user.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+    username = "User"
+    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+    requestBody = {
+        "to": [
+            {
+                "name": username,
+                "email":user.email
+            }
+        ],
+        "template": "InterviewCompletedForJobTitle",
+
+        "body": {
+            "can_name": can_name,
+            "email": email,
+            "view_applicant_link": "app.hirebeat.co/employer_dashboard",
+            "job_title": position.job_title
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
 
@@ -879,53 +879,53 @@ def subreviewer_update_comment(request):
     puser = User.objects.get(pk=position.user_id)
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
-    # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     print("===Reviewer Update Comment Notify Email Called===")
-    subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
-    message = get_template("accounts/reviewer_comment_notification_email.html")
-    context = {
-        'ruser': ruser.username,
-        'ruser_email': ruser.email,
-        'cuser': wpvideo.email,
-        'title': position.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [puser.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # username = "User"
-    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name": username,
-    #             "email": puser.email
-    #         }
-    #     ],
-    #     "template": "NewSubReviewerCommentsForPosition",
-    #     "body": {
-    #         "job_title": position.job_title,
-    #         "ruser": ruser.username,
-    #         "cuser": wpvideo.email,
-    #         "ruser_email": ruser.email,
-    #         "view_comment_link": "app.hirebeat.co/employer_dashboard"
-
-    #     }
+    # subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
+    # message = get_template("accounts/reviewer_comment_notification_email.html")
+    # context = {
+    #     'ruser': ruser.username,
+    #     'ruser_email': ruser.email,
+    #     'cuser': wpvideo.email,
+    #     'title': position.job_title,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [puser.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+    username = "User"
+    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+    requestBody = {
+        "to": [
+            {
+                "name": username,
+                "email": puser.email
+            }
+        ],
+        "template": "NewSubReviewerCommentsForPosition",
+        "body": {
+            "job_title": position.job_title,
+            "ruser": ruser.username,
+            "cuser": wpvideo.email,
+            "ruser_email": ruser.email,
+            "view_comment_link": "app.hirebeat.co/employer_dashboard"
+
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
 
     return Response("Send employer notification successfully", status=status.HTTP_200_OK)
