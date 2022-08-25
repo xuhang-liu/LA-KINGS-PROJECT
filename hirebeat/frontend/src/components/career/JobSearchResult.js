@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import SmallPageTitleArea from './../Common/SmallPageTitleArea';
 import Footer from "../layout/Footer";
 import moment from 'moment'
+import RichTextEditor from 'react-rte';
 
 export class JobSearchResult extends Component {
     // data passed from job search page
@@ -200,15 +201,15 @@ export class JobSearchResult extends Component {
                                 }
                                 let jobDesc = j.job_description;
                                 // exclude html tags in job description
-                                jobDesc = jobDesc.replace(/<.*?>/ig,"");
+                                //jobDesc = jobDesc.replace(/<.*?>/ig,"");
                                 // exclude space
-                                jobDesc = jobDesc.replace(/(&nbsp;)+/g, " ");
+                                //jobDesc = jobDesc.replace(/(&nbsp;)+/g, " ");
                                 // decode Html format
-                                jobDesc = decodeHtml(jobDesc);
+                                //jobDesc = decodeHtml(jobDesc);
                                 // the single quote
-                                jobDesc = jobDesc.replace(/&#x27;/, "'");
+                                jobDesc = jobDesc.replace(/(<p><br><\/p>)+/g, "");
 
-                                if (jobDesc.length > 525) jobDesc = jobDesc.substr(0, 525) + "...";
+                                //if (jobDesc.length > 525) jobDesc = jobDesc.substr(0, 525) + "...";
                                 
                                 let postedDate = j.first_publish_date;
                                 
@@ -317,7 +318,18 @@ const JobCard = (props) => {
                 <label className="career-txt5" style={{marginLeft: "15px", padding: "0.3rem"}}>{props.jobType}</label>
                 <label className="career-txt5" style={{marginLeft: "1.5rem", padding: "0.3rem"}}>{props.employeeNum} employees</label>
             </div>*/}
-            <p className="career-txt6">{props.jobDesc}</p>
+
+            <p className="career-txt6" style={{overflow: "hidden", maxHeight: "160px", marginTop:"-10px"}}>
+                           
+                <RichTextEditor
+                value={RichTextEditor.createValueFromString(props.jobDesc, 'html')}
+                onChange={() => { }}
+                readOnly={true}
+                className="text-editor"
+                />
+                
+            </p>
+
             <div className="row" style={{display: "flex", justifyContent: "center", paddingBottom: "1.5rem"}}>
                 <div className="col"><p>Post date: {props.postDate}</p></div>
                 <div className="col" style={{paddingRight: "2rem"}}>
