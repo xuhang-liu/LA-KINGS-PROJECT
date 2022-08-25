@@ -24,11 +24,14 @@ export class SourcingRequestList extends React.Component {
         };
     }
 
+    filteredSourcings = []
+
     componentDidMount() {
         axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
             setTimeout(() => {
+                this.filteredSourcings = res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                 this.setState({
-                    sourcings: res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                    sourcings: this.filteredSourcings,
                 });
             }, 100);
         })
@@ -111,7 +114,8 @@ export class SourcingRequestList extends React.Component {
                 this.setState({
                     sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     isAllChecked: false,
-                    countCheck: 0
+                    countCheck: 0,
+                    keyWords: ""
                 });
             })
                 .catch(error => {
@@ -198,17 +202,14 @@ export class SourcingRequestList extends React.Component {
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
         var keyWords = e.target.value.toLowerCase();
-        axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
-            var sourcing = res.data.data.filter(function (s) {
-                return (s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords);
-            });
-            this.setState({
-                sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
-            });
-        })
-            .catch(error => {
-                console.log(error)
-            });
+        var sourcing = this.filteredSourcings.filter(function (s) {
+            return (s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title?.toLowerCase().includes(keyWords) || s.current_company_name?.toLowerCase().includes(keyWords);
+        });
+        this.setState({
+            sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+        });
+
+            
     };
 
     setShowRequest = () => {
@@ -240,8 +241,10 @@ export class SourcingRequestList extends React.Component {
                             return s.approval === 0;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -261,8 +264,10 @@ export class SourcingRequestList extends React.Component {
                             return s.approval === 1;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -282,8 +287,10 @@ export class SourcingRequestList extends React.Component {
                             return s.approval === 2;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -303,8 +310,10 @@ export class SourcingRequestList extends React.Component {
                             return s;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -331,8 +340,10 @@ export class SourcingRequestList extends React.Component {
                             return s.status === 0;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -352,8 +363,10 @@ export class SourcingRequestList extends React.Component {
                             return s.status === 1;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -373,8 +386,10 @@ export class SourcingRequestList extends React.Component {
                             return s.status === 2;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -394,8 +409,10 @@ export class SourcingRequestList extends React.Component {
                             return s;
                         }
                     });
+                    this.filteredSourcings = sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
                     this.setState({
-                        sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
+                        sourcings: this.filteredSourcings,
+                        keyWords: ""
                     });
                 })
                     .catch(error => {
@@ -420,6 +437,8 @@ export class SourcingRequestList extends React.Component {
             });
         }
         setTimeout(() => {
+            this.refresh();
+            /*
             axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
                 this.setState({
                     sourcings: res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
@@ -428,6 +447,7 @@ export class SourcingRequestList extends React.Component {
                 .catch(error => {
                     console.log(error)
                 })
+            */
         }, 300);
     }
 
@@ -437,21 +457,23 @@ export class SourcingRequestList extends React.Component {
         var keyWords = this.state.keyWords.toLowerCase();
         setTimeout(() => {
             axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
+                var kwFilter = (s) => {
+                    return((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title?.toLowerCase().includes(keyWords) || s.current_company_name?.toLowerCase().includes(keyWords));
+                }
                 var sourcing = res.data.data.filter(function (s) {
-                    if (keyWords == ""){
-                        if (status != 3 && approval != 3) {
-                            return s.status === status && s.approval === approval;
-                        } else if (approval != 3) {
-                            return s.approval === approval;
-                        } else if (status != 3) {
-                            return s.status === status;
-                        } else {
-                            return s;
-                        }
-                    }else{
-                        return ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title.toLowerCase().includes(keyWords) || s.current_company_name.toLowerCase().includes(keyWords));
+                    if (status != 3 && approval != 3) {
+                        return s.status === status && s.approval === approval;
+                    } else if (approval != 3) {
+                        return s.approval === approval;
+                    } else if (status != 3) {
+                        return s.status === status;
+                    } else {
+                        return s;
                     }
+
                 });
+                this.filteredSourcings = sourcing;
+                sourcing = sourcing.filter(function (s) { return kwFilter(s); })
                 this.setState({
                     sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
                     isAllChecked: false,

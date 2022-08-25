@@ -1046,25 +1046,26 @@ const ApplyJob = (props) => {
                                     <div className='col' style={{background: "#F3F6F9" }}>
                                     <div className='col' style={{background: "#F3F6F9", paddingLeft: "7%", paddingRight: "7%" }}>
                                         <p className="mt-4 pt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Link to this job</p>
-                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "4px", border: "2px solid #006dff", width: "100%", height: "3.7rem", marginTop:"-7px" }}>
-                                            <div className="pt-1 pl-2 pr-2" style={{ color: "#090D3A", fontSize: "1rem", fontWeight: "500", alignItems: "center"}}>
-                                                <p style={{ fontSize: "0.8rem"}} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
-                                            </div>
-                                            <div className="mt-2">
+                                        {/*<div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "4px", border: "2px solid #006dff", width: "100%", height: "3.7rem", marginTop:"-7px" }}>*/}
+                                            <div className="pr-1" style={{ color: "#090D3A", fontSize: "1rem", fontWeight: "500", alignItems: "center", marginTop: "-14px"}}>
+                                                <p style={{ fontSize: "0.8rem"}} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}
                                                 <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
-                                                    className="default-btn pt-1" style={{ fontSize: "0.8rem", background: "#FF6B00", borderRadius: "4px", height: "1.8rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
-                                                    <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
+                                                    className="default-btn" style={{ fontSize: "0.8rem", background: "#FF6B00", borderRadius: "4px", height: "1.4rem", alignItems: "center", marginLeft: "10px", width:"4rem", paddingTop:"0px", paddingLeft:"25px", marginTop:"1px" }}>
+                                                    <i className='bx bx-share-alt' style={{ left: "0.2rem" }}></i>Copy
                                                 </button>
+                                                </p>
+
                                             </div>
-                                        </div>
+
+
 
                                         {props.job.company_website != null && props.job.company_website != "" &&
-                                            <div className="single-footer-widget1 mt-2">
+                                            <div className="single-footer-widget1 mt-3">
                                                 <p style={{ marginBottom: "0rem", fontWeight:"700", color:"#090D3A" , fontSize:"15px"}}>Website</p>
-                                                <a style={{ color:"#090D3A", fontWeight:"400"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <a style={{ color:"#090D3A", fontWeight:"400", marginTop:"-2px"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs' style={{ paddingTop:"2px"}}></i></a>
                                             </div>
                                         }
-                                        <p className="mt-2" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Share to</p>
+                                        <p className="mt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Share to</p>
                                         <div className="single-footer-widget1" style={{ paddingBottom:"24px", marginTop:"-18px"}}>
                                             <ul className="social">
                                                 <li>
