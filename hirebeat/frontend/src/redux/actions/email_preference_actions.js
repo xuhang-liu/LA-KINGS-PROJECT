@@ -7,7 +7,7 @@ import axios from "axios";
 import { tokenConfig } from "./auth_actions";
 import { returnErrors } from "./message_actions";
 
-const baseUrl = "http://localhost:3001/api/v1";
+const baseUrl = "https://backend.hirebeat.co/api/v1";
 
 export const getEmailTemplates = () => (dispatch) => {
     axios
