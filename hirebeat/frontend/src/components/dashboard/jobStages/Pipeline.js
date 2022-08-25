@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { confirmAlert } from 'react-confirm-alert';
+import Spinner from 'react-bootstrap/Spinner';
 
 export class Pipeline extends Component {
     constructor(props) {
@@ -28,19 +29,37 @@ export class Pipeline extends Component {
         showRequestForm: false,
         requestButton: 0,
         requestListShow: false,
+        showIframe: false,
+        marketplace_iframe: "",
+        loading: false,
+    }
+
+    setLoadingTrue = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
+    setHideRequest1 = () => {
+        this.setState({
+            showIframe: false
+        })
     }
 
     setrequestListHide = () => {
         this.setState({
             requestListShow: false
         })
-        sessionStorage.removeItem('requestListShow');
     }
 
     setShowRequest = () => {
         this.setState({
             showRequestForm: true
         })
+        //Segment info
+        window?.analytics?.track("Job - View Sourcing Request", {
+            viewSourcingTime: Date().toLocaleString(),
+        });
     }
 
     setHideRequest = () => {
@@ -54,6 +73,19 @@ export class Pipeline extends Component {
             "job_id": this.props.job.job_details.id
         }
         this.props.getPipelineAnalytics(data);
+
+        // Send Job target applicants data:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let data3 = { "jobid": this.props.job.job_details.id }
+        axios.post("jobs/job-target-push-candidates-back", data3, config).then((res3) => {
+            console.log(res3)
+        }).catch(error => {
+            console.log(error)
+        });
     }
 
     deleteReviever = (sub_id) => {
@@ -193,6 +225,10 @@ export class Pipeline extends Component {
             },
             overlayClassName: "overlay",
         });
+        //Segment info
+        window?.analytics?.track("View - Add Reviewer", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     submitSubReviewer = (e, stage) => {
@@ -249,6 +285,10 @@ export class Pipeline extends Component {
             .catch(error => {
                 console.log(error)
             });
+        //Segment info
+        window?.analytics?.track("Add - Add Reviewer", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     inviteExReviewer = () => {
@@ -307,6 +347,10 @@ export class Pipeline extends Component {
             },
             overlayClassName: "overlay",
         });
+        //Segment info
+        window?.analytics?.track("View - Add Hiring Manager", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     submitExReviewer = (e) => {
@@ -356,6 +400,10 @@ export class Pipeline extends Component {
             .catch(error => {
                 console.log(error)
             });
+        //Segment info
+        window?.analytics?.track("Add - Add Hiring Manager", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     deletSuccessAlert = () => {
@@ -406,6 +454,79 @@ export class Pipeline extends Component {
         });
     };
 
+    openJobTportal = () => {
+        this.setLoadingTrue();
+        // JobTarget steps:
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        let full_address = this.props.job.job_details.job_location?.split("|")[0];
+        let city = full_address.split(",")[0].trim()
+        let state = full_address.split(",")[1].trim()
+        let country = full_address.split(",")[2].trim()
+        let data1 = {
+            "token": this.props.jobt_token,
+            "job": {
+                "requisition_name": this.props.job.job_details.id,
+                "company_name": this.props.employerProfileDetail.name,
+                "title": this.props.job.job_details.job_title,
+                "description": this.props.job.job_details.job_description,
+                "job_view_url": this.props.job.job_details.job_url?.replaceAll(' ', '%20'),
+                "apply_url": this.props.job.job_details.job_url?.replaceAll(' ', '%20'),
+                "location": {
+                    "city": city,
+                    "state": state,
+                    "country": country
+                },
+                "job_type": this.props.job.job_details.job_type,
+                "entrylevel": (this.props.job.job_details.job_level == "Entry Level") ? 1 : 0,
+                "easy_apply": 1,
+                "easy_apply_type": "basic",
+                // "questionnaire_webhook": "https://" + window.location.hostname + "/jobs/get-questions-from-job?jobid=" + this.props.job.job_details.id,
+                "application_delivery_webhook": "https://" + window.location.hostname + "/jobs/add-new-apply-candidate-from-jobtarget"
+            }
+        }
+        axios.post("https://atsapi.jobtarget.com/api/employer/jobs/create", data1, config).then((res1) => {
+            console.log(res1);
+            if (res1.data.status == 0 || res1.data.status == "0") {
+                this.setState({ marketplace_iframe: res1.data.marketplace_iframe, showIframe: true, loading: false })
+                let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res1.data.job_id }
+                axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
+                    console.log(res3)
+                }).catch(error => {
+                    console.log(error)
+                });
+            } else {
+                let data2 = {
+                    "token": this.props.jobt_token,
+                    "requisition_name": this.props.job.job_details.id
+                }
+                axios.post("https://atsapi.jobtarget.com/api/employer/jobs/jobdetails", data2, config).then((res2) => {
+                    console.log(res2);
+                    if (res2.data.status == 0 || res2.data.status == "0") {
+                        this.setState({ marketplace_iframe: res2.data.marketplace_iframe, showIframe: true, loading: false })
+                        let data3 = { "job_id": this.props.job.job_details.id, "jobt_job_id": res2.data.job_id }
+                        axios.post("jobs/job-target-job-id-update", data3, config).then((res3) => {
+                            console.log(res3)
+                        }).catch(error => {
+                            console.log(error)
+                        });
+                    }
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
+        }).catch(error => {
+            console.log(error)
+        });
+        //Segment info
+        window?.analytics?.track("Job - View Job Target", {
+            viewJobtargetTime: Date()?.toLocaleString(),
+        });
+    }
+
     render() {
         let position_detail = this.props.postedJobs[this.props.job.job_details.positions_id];
         let subreviewers = position_detail?.subreviewers;
@@ -443,36 +564,45 @@ export class Pipeline extends Component {
                     </div> :
                     <div className="container-fluid py-5 px-5">
                         {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
-                        <div className="row">
-                            <div className="pr-5 pl-2 pb-5">
-                                {this.state.requestButton == 0 &&
+                            <div className="row">
+                                <div className="pr-5 pl-2 pb-5">
+                                    {this.state.requestButton == 0 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            onClick={this.setShowRequest}
+                                            style={{ paddingLeft: "25px", width: "12rem" }}
+                                        >
+                                            Request Sourcing
+                                            <span></span>
+                                        </button>}
+                                    {this.state.requestButton == 1 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
+                                        >
+                                            Sourcing List Pending
+                                            <span></span>
+                                        </button>}
+                                    {this.state.requestButton == 2 &&
+                                        <button
+                                            className="default-btn5 interview-txt6"
+                                            onClick={() => { this.setState({ requestListShow: true }) }}
+                                            style={{ paddingLeft: "25px", width: "12rem" }}
+                                        >
+                                            View Sourcing List
+                                            <span></span>
+                                        </button>}
+                                </div>
+                                <div className="pl-5 pb-5">
                                     <button
-                                        className="default-btn5 interview-txt6"
-                                        onClick={this.setShowRequest}
+                                        className="default-btn8 interview-txt6"
+                                        onClick={this.openJobTportal}
                                         style={{ paddingLeft: "25px", width: "12rem" }}
                                     >
-                                        Request Sourcing
-                                        <span></span>
-                                    </button>}
-                                {this.state.requestButton == 1 &&
-                                    <button
-                                        className="default-btn5 interview-txt6"
-                                        style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
-                                    >
-                                        Sourcing List Pending
-                                        <span></span>
-                                    </button>}
-                                {this.state.requestButton == 2 &&
-                                    <button
-                                        className="default-btn5 interview-txt6"
-                                        onClick={() => { this.setState({ requestListShow: true }) }}
-                                        style={{ paddingLeft: "25px", width: "12rem" }}
-                                    >
-                                        View Sourcing List
-                                        <span></span>
-                                    </button>}
-                            </div>
-                        </div>}
+                                        {this.state.loading ? <span><Spinner animation="border" size="sm"/> loading</span> : <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/JT_logo_light_white.png" alt="jt-icon" />}
+                                    </button>
+                                </div>
+                            </div>}
                         {/*All Candidates*/}
                         <div className="row">
                             <div onClick={this.props.renderAllCandidates} style={{ cursor: "pointer", backgroundImage: 'url("https://hirebeat-assets.s3.amazonaws.com/Employer/stage01.png")', width: "18.8rem", height: "7.8rem", boxSizing: "border-box", position: "relative", zIndex: 5 }}>
@@ -497,20 +627,21 @@ export class Pipeline extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
-                                <div>
-                                    {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
-                                        <button
-                                            className="default-btn1 interview-txt6 mt-4"
-                                            onClick={this.inviteExReviewer}
-                                            style={{ paddingLeft: "25px", width: "13.5rem" }}
-                                        >
-                                            + Add Hiring Manager
-                                            <span></span>
-                                        </button>}
-                                </div>
-                            </div>
-                            {exReviewers?.length > 0 &&
+                            {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
+                                <div style={{ marginLeft: "2rem", marginRight: "3.8rem" }}>
+                                    <div>
+                                        {(this.props.profile.membership == "Premium" || this.props.job.job_details.is_credited) &&
+                                            <button
+                                                className="default-btn1 interview-txt6 mt-4"
+                                                onClick={this.inviteExReviewer}
+                                                style={{ paddingLeft: "25px", width: "13.5rem" }}
+                                            >
+                                                + Add Hiring Manager
+                                                <span></span>
+                                            </button>}
+                                    </div>
+                                </div>}
+                            {(exReviewers?.length > 0 && (!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer))) &&
                                 <div style={{ border: "1px solid #E2EBF8", width: "12rem", height: "5.6rem", top: "0.3rem", position: "relative", textAlign: "center", paddingTop: "1.5rem", marginLeft: "0.5rem" }}>
                                     {(exReviewers.slice(0, 3).map((sub, i) => {
                                         return (
@@ -928,6 +1059,15 @@ export class Pipeline extends Component {
                                 user={this.props.user}
                                 profile={this.props.profile}
                             />
+                        </MyModal80>
+                        {/* Open Job Target Portal */}
+                        <MyModal80
+                            show={this.state.showIframe}
+                            onHide={this.setHideRequest1}
+                        >
+                            <div>
+                                <iframe src={this.state.marketplace_iframe} style={{ width: "100%", height: "50rem" }}></iframe>
+                            </div>
                         </MyModal80>
                     </div>}
             </React.Fragment>

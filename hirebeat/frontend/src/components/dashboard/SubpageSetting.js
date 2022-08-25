@@ -274,10 +274,34 @@ export class SubpageSetting extends Component {
         }).catch(error => {
             console.log(error)
         });
+
+        //Update jobtarget User's name
+        if (!(this.props.profile.jobt_user_id == "" || this.props.profile.jobt_user_id == null) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer)) {
+            let data2 = {
+                "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+                "user": {
+                  "user_id": this.props.profile.jobt_user_id,
+                  "first_name": firstName,
+                  "last_name": lastName,
+                  "email": this.props.user.email,
+                  "is_admin": 0,
+                  "is_active": 1
+                }
+              }
+            axios.post("https://atsapi.jobtarget.com/api/employer/user/edit", data2, config).then((res3) => {
+                console.log(res3)
+            }).catch(error => {
+                console.log(error)
+            });
+        }
     }
 
     handleConfirm = () => {
         this.setState({ confirmShow: true })
+        //Segment info
+        window?.analytics?.track("View - Delete Account", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     setHideConfirm = () => {
@@ -312,8 +336,12 @@ export class SubpageSetting extends Component {
                 }
             }).catch(err => console.log(err))
         }
-
-        setTimeout(() => this.setState({ emailerr: false }), 4000)
+        
+        setTimeout(() => this.setState({ emailerr: false }), 4000);
+        //Segment info
+        window?.analytics?.track("Delete Forever - Delete Account", {
+            eventTime: Date()?.toLocaleString()
+        });
     }
 
     render() {

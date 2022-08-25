@@ -103,6 +103,7 @@ urlpatterns = [
     path('hsbc', views.HSBCInfo),
     path('term', views.Term),
     path('job-seekers-career', views.SearchPanel),
+    path('career-details', views.SearchPanel),
     path('login', views.Login),
     path('resume', views.Resume),
     path('lazard', views.LazardInfo),

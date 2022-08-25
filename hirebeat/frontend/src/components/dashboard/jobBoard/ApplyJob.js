@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom';
 //import PageTitleArea from '../../Common/PageTitleArea';
@@ -15,6 +15,8 @@ import RichTextEditor from 'react-rte';
 // import Select from 'react-select';
 import Autocomplete from "react-google-autocomplete";
 import ApplyQuestion from "./ApplyQuestion";
+import {JSONLD, Generic} from "react-structured-data";
+import Header from "../../layout/Header";
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -385,57 +387,56 @@ const ApplyJob = (props) => {
     }
     return (
         <React.Fragment>
+            <Header/>
             <MediaQuery minDeviceWidth={1224}>
                 {(props?.job?.id == "" || props?.job?.id == null) ?
                     <div><h3>Please enter a valid job url!</h3></div> :
-                    <div className="py-5" style={{ background: "#E8EDFC", minWidth: "1290px", minHeight:"100vh" }}>
-                        <div style={{ marginLeft: "auto", marginRight: "auto", width: "70%", minHeight: "800px", borderRadius: "10px", background: "white", position: "relative" }}>
+                    <div className="py-5" style={{ background: "#F3F6F9", minWidth: "140px", minHeight:"100vh" }}>  
+                        <div style={{ marginLeft: "auto", marginRight: "auto", width: "84.5%", minHeight: "800px", borderRadius: "8px", background: "white", position: "relative", marginBottom: "45px" , marginTop: "30px"}}>
                             <img style={{ height: "12rem", width: "100%" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/Top-Section.png" alt="icon" />
                             {props.job?.company_logo?.length > 0 &&
-                            <img style={{ width: "7rem", marginLeft: "2rem", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />}
-                            <h1 className="ml-5 mt-5" style={{ fontWeight: "600", fontSize: "2.5rem", color: "#090D3A" }}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
-                            <h2 className="ml-5 mt-2" style={{ fontWeight: "600", fontSize: "1.5rem", color: "#67a3f3" }}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
-                                <a style={{ textDecoration: "none", color: "#5874b4", fontSize: "0.9rem", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                            </h2>
-                            <div className="row pl-3">
-                                <div className="col-8 pl-5 mt-2 pb-5" style={{ paddingRight: "3.7rem" }}>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
-                                    <p className="mt-5" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
-                                    <div>
-                                        <div>
-                                            <h2 className="mb-2 jd-title">Company Overview</h2>
-                                            <div className="mb-3">
-                                                {(job_id == null || job_id == "") ? null :
-                                                    <RichTextEditor
-                                                        value={RichTextEditor.createValueFromString(props.job.company_overview, 'html')}
-                                                        onChange={() => { }}
-                                                        readOnly={true}
-                                                        className="text-editor"
-                                                    />
-                                                }
-                                            </div>
-                                        </div>
-                                        <h2 className="mb-2 mt-3 jd-title">Job Description</h2>
-                                        <div className="mb-3">
-                                            {(job_id == null || job_id == "") ? null :
-                                                <RichTextEditor
-                                                    value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
-                                                    onChange={() => { }}
-                                                    readOnly={true}
-                                                    className="text-editor"
-                                                />
-                                            }
-                                        </div>
-                                        {props.job.eeo_req == "1" &&
-                                            <div>
-                                                <h2 className="mb-2 mt-3 jd-title">EEO Statement</h2>
-                                                <p className="mb-4 mt-1 pl-3 text-editor">{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
-                                            </div>}
+                            <img style={{ width: "7rem", marginLeft: "8%", marginTop: "-3.5rem" }} src={(job_id == null || job_id == "") ? "" : props.job.company_logo} alt="icon" />}
+                            <div className="row" style={{ paddingTop: "32px" }}>
+                                <div style={{ paddingLeft: "8%" , width: "58%", marginRight: "14%"}}>
+                                    <h1 style={{ fontWeight: "600", fontSize: "42px", color: "#090D3A"}}>{(job_id == null || job_id == "") ? "" : props.job.job_title}</h1>
+                                    <h2 style={{ fontWeight: "600", fontSize: "27px", color: "#67a3f3" , marginTop: "12px"}}>{(job_id == null || job_id == "") ? "" : props.job.company_name}
+                                        <a style={{ textDecoration: "none", color: "#5874b4", fontSize: "13px", marginLeft: "0.8rem" }} target="_blank" rel="noreferrer" href={"https://app.hirebeat.co/company-branding/" + ((job_id == null || job_id == "") ? "" : props.job.company_name)}>View all jobs posted <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                    </h2>
+                                    <p style={{ fontWeight: "600", fontSize: "13px", color: "#5874b4", lineHeight: "0.8rem", marginTop: "18px"}}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "13px", color: "#5874b4", lineHeight: "0.8rem", marginTop: "12px"}}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "13px", color: "#5874b4", lineHeight: "0.8rem", marginTop: "12px"}}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
+                                    <p style={{ fontWeight: "600", fontSize: "14px", color: "#5874b4", lineHeight: "0.8rem", marginTop: "12px", marginBottom: "60px"}}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
+
+                                    <h2 className="mb-2 jd-title" style={{fontSize:"21px"}}>Company Overview</h2>
+                                    <div style={{marginLeft : "-10px", background: "#F3F6F9",}}>
+                                        {(job_id == null || job_id == "") ? null :
+                                            <RichTextEditor
+                                                value={RichTextEditor.createValueFromString(props.job.company_overview, 'html')}
+                                                onChange={() => { }}
+                                                readOnly={true}
+                                                className="text-editor"
+                                            />
+                                        }
                                     </div>
-                                    {!Applied &&
+                                    <h2 className="mb-2 mt-4 jd-title" style={{fontSize:"21px"}}>Job Description</h2>
+                                    <div className="mb-3" style={{marginLeft : "-10px"}}>
+                                        {(job_id == null || job_id == "") ? null :
+                                            <RichTextEditor
+                                                value={RichTextEditor.createValueFromString(props.job.job_description, 'html')}
+                                                onChange={() => { }}
+                                                readOnly={true}
+                                                className="text-editor"
+                                            />
+                                        }
+                                    </div>
+                                    {props.job.eeo_req == "1" &&
                                         <div>
+                                            <h2 className="mb-2 jd-title" style={{marginTop:"45px", fontSize:"21px"}}>EEO Statement</h2>
+                                            <p className="mb-4 mt-1 pl-3 text-editor" style={{marginLeft : "-16px", paddingBottom : "60px"}}>{(job_id == null || job_id == "") ? "" : props.job.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</p>
+                                        </div>}
+
+                                    {!Applied &&
+                                        <div style={{paddingBottom : "80px"}}>
                                             {(props?.job?.id == "" || props?.job?.id == null) ?
                                                 <div>
                                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
@@ -704,9 +705,9 @@ const ApplyJob = (props) => {
                                                             style={{
                                                                 fontSize: "0.9rem",
                                                                 color: "#B0B0B0",
-                                                                fontWeight: "500"
+                                                                fontWeight: "500",
                                                             }}>
-                                                            <input type="checkbox" required name="terms" style={{ marginRight: '2%', display: 'inline', marginTop: "1%" }}></input>
+                                                            <input type="checkbox" required name="terms" style={{ marginTop: '1px', marginRight: '2%', display: 'inline' }}></input>
                                                             I have read and agree to the
                                                             <a
                                                                 target="_blank"
@@ -716,12 +717,15 @@ const ApplyJob = (props) => {
                                                                 style={{
                                                                     textDecoration: "underline",
                                                                     color: "#ff612f",
-                                                                    fontWeight: "500"
+                                                                    fontWeight: "500",
                                                                 }}>
                                                                 Terms & Conditions
                                                             </a>
                                                         </p>
                                                     </div>
+                                                    <button className="default-btn" style={{ marginTop: "10px", marginBottom: "50px", width:"40%" , paddingRight:"6%"}}>
+                                                    Submit Application
+                                                    </button>
                                                 </div>
                                                 {/* <div className="light-blue-border mt-4 px-5" style={{ marginBottom: "6rem" }}>
                                                     <h2 className="mt-4 mb-5" style={{ color: "#090D3A" }}>
@@ -740,9 +744,6 @@ const ApplyJob = (props) => {
                                                         <input type="password" class="form-control" id="inputAddress" placeholder="Enter your password again" onChange={onChange3} minLength="8" />
                                                     </div>
                                                 </div> */}
-                                                <button className="default-btn" style={{ position: "absolute", right: "3.7rem", bottom: "5rem", paddingLeft: "25px" }}>
-                                                    Submit Application
-                                                </button>
                                             </div>
                                         </form>
                                     }
@@ -1034,67 +1035,73 @@ const ApplyJob = (props) => {
                                         required
                                     />
                                 </div>
-                                <div className="col-4 mt-5">
+                                <div style={{paddingRight: "8%", width: "28%"}}>
                                     {((job_id == null || job_id == "") ? false : props.job.is_closed) ?
-                                        <button className="default-btn" style={{ paddingLeft: "5rem", paddingRight: "5rem", backgroundColor: "#7d7d7d" }}>
+                                        <button className="default-btn" style={{backgroundColor: "#7d7d7d" , width: "100%", textAlign: 'center', paddingRight:"18%", fontSize:"15px"}}>
                                             Job Closed
                                         </button> :
-                                        <a className="default-btn" href="#apply-now" style={{ paddingLeft: "5rem", paddingRight: "5rem", textDecoration: "none" }}>
-                                            Apply Now
+                                        <a className="default-btn" href="#apply-now" style={{textDecoration: "none" , width: "100%", textAlign: 'center', paddingRight:"18%", fontSize:"15px"}}>
+                                        Apply Now
                                         </a>}
-                                    <p className="mt-5" style={{color:"#5874b4", fontWeight:"600"}}>Link to this job</p>
-                                    <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "5px", border: "2px solid #006dff", width: "90%", height: "3.7rem" }}>
-                                        <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
-                                            <p style={{ fontSize: "0.8rem" }} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
+                                    <div className='col' style={{background: "#F3F6F9" }}>
+                                    <div className='col' style={{background: "#F3F6F9", paddingLeft: "7%", paddingRight: "7%" }}>
+                                        <p className="mt-4 pt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Link to this job</p>
+                                        <div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "4px", border: "2px solid #006dff", width: "100%", height: "3.7rem", marginTop:"-7px" }}>
+                                            <div className="pt-1 pl-2 pr-2" style={{ color: "#090D3A", fontSize: "1rem", fontWeight: "500", alignItems: "center"}}>
+                                                <p style={{ fontSize: "0.8rem"}} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}</p>
+                                            </div>
+                                            <div className="mt-2">
+                                                <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
+                                                    className="default-btn pt-1" style={{ fontSize: "0.8rem", background: "#FF6B00", borderRadius: "4px", height: "1.8rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
+                                                    <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="py-1">
-                                            <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
-                                                className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
-                                                <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
-                                            </button>
+
+                                        {props.job.company_website != null && props.job.company_website != "" &&
+                                            <div className="single-footer-widget1 mt-2">
+                                                <p style={{ marginBottom: "0rem", fontWeight:"700", color:"#090D3A" , fontSize:"15px"}}>Website</p>
+                                                <a style={{ color:"#090D3A", fontWeight:"400"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                            </div>
+                                        }
+                                        <p className="mt-2" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Share to</p>
+                                        <div className="single-footer-widget1" style={{ paddingBottom:"24px", marginTop:"-18px"}}>
+                                            <ul className="social">
+                                                <li>
+                                                    <FacebookShareButton
+                                                        url={url}
+                                                        quote={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
+                                                        hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
+                                                        <a target="_blank" rel="noreferrer" style={{borderRadius: 20, backgroundColor: '#3A5FC0',}}>
+                                                            <i className="bx bxl-facebook"></i>
+                                                        </a>
+                                                    </FacebookShareButton>
+                                                </li>
+                                                <li>
+                                                    <LinkedinShareButton
+                                                        url={url}
+                                                        title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
+                                                        source={(job_id == null || job_id == "") ? "" : props.job.company_name}>
+                                                        <a target="_blank" rel="noreferrer" style={{borderRadius: 20, backgroundColor: '#176CAA',}}>
+                                                            <i className="bx bxl-linkedin"></i>
+                                                        </a>
+                                                    </LinkedinShareButton>
+                                                </li>
+                                                <li>
+                                                    <TwitterShareButton
+                                                        url={url}
+                                                        title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
+                                                        via={(job_id == null || job_id == "") ? "" : props.job.company_name}
+                                                        hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
+                                                        <a target="_blank" rel="noreferrer" style={{borderRadius: 20, backgroundColor: '#5C9EF6',}}>
+                                                            <i className="bx bxl-twitter"></i>
+                                                        </a>
+                                                    </TwitterShareButton>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div className="single-footer-widget1">
-                                        <ul className="social">
-                                            <li>
-                                                <FacebookShareButton
-                                                    url={url}
-                                                    quote={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
-                                                    hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-facebook"></i>
-                                                    </a>
-                                                </FacebookShareButton>
-                                            </li>
-                                            <li>
-                                                <TwitterShareButton
-                                                    url={url}
-                                                    title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
-                                                    via={(job_id == null || job_id == "") ? "" : props.job.company_name}
-                                                    hashtag={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-twitter"></i>
-                                                    </a>
-                                                </TwitterShareButton>
-                                            </li>
-                                            <li>
-                                                <LinkedinShareButton
-                                                    url={url}
-                                                    title={(job_id == null || job_id == "") ? "" : props.job.job_title + " at " + (job_id == null || job_id == "") ? "" : props.job.company_name}
-                                                    source={(job_id == null || job_id == "") ? "" : props.job.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-linkedin"></i>
-                                                    </a>
-                                                </LinkedinShareButton>
-                                            </li>
-                                        </ul>
                                     </div>
-                                    {props.job.company_website != null && props.job.company_website != "" &&
-                                        <div className="single-footer-widget1 mt-2">
-                                            <p style={{ marginBottom: "0rem", fontWeight:"500" }}>Website</p>
-                                            <a style={{color:"#67a3f3"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                                        </div>
-                                    }
                                 </div>
                             </div>
                         </div>
@@ -1817,6 +1824,28 @@ const ApplyJob = (props) => {
                         </div>
                     </div>}
             </MediaQuery>
+            {(job_id == null || job_id == "" || props.job.is_closed || props.job.job_status != "Published") ? "" : 
+                <JSONLD>
+                    <Generic type="jobposting" jsonldtype="JobPosting" schema={{
+                        title: props.job.job_title, 
+                        description: props.job.job_description,
+                        datePosted: props.job.create_date,
+                        employmentType: props.job.job_type,
+                        identifier: window?.btoa(props.job.id),
+                        url: props.job.job_url,
+                        sameAs: props.job.job_url,
+                        }}>
+                        <Generic type="hiringOrganization" jsonldtype="Organization" schema={{
+                            name: props.job.company_name,
+                            logo: props.job.company_logo,
+                            sameAs: props.job.company_website,
+                            }} />
+                        <Generic type="jobLocation" jsonldtype="Place" schema={{
+                            address: props.job.job_location
+                            }}/>
+                    </Generic>
+                </JSONLD>
+            }
         </React.Fragment>
     )
 };

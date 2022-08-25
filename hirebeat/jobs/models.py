@@ -31,7 +31,7 @@ class Jobs(models.Model):
     gh_job_id = models.TextField(null=True, blank=True)
     first_publish_date = models.DateTimeField(null=True, blank=True)
     first_close_date = models.DateTimeField(null=True, blank=True)
-
+    jobt_job_id = models.CharField(max_length=30, null=True, blank=True)
 
 class ApplyCandidates(models.Model):
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
@@ -59,6 +59,8 @@ class ApplyCandidates(models.Model):
     is_viewed = models.BooleanField(default=False)
     linkedinurl = models.CharField(max_length=100, null=True, blank=True)
     apply_source = models.CharField(max_length=100, default="HireBeat")
+    apply_referer = models.CharField(max_length=300, null=True, blank=True)
+    applicant_guid = models.CharField(max_length=300, null=True, blank=True)
     gender = models.CharField(max_length=100, null=True)
     race = models.CharField(max_length=200, null=True)
     # new resume analysis fields

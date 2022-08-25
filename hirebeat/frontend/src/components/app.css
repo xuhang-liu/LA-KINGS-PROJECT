@@ -521,31 +521,31 @@ textarea:focus:-ms-input-placeholder {
 } /* IE 10+ */
 
 .form-control::placeholder {
-  color: #090d3a !important;
+  color: #c9c9c9 !important;
   font-size: 0.975rem !important;
   padding-left: 0.2rem !important;
   font-weight: normal !important;
 }
 .form-control::-webkit-input-placeholder {
-  color: #090d3a !important;
+  color: #c9c9c9 !important;
   font-size: 0.975rem !important;
   padding-left: 0.2rem !important;
   font-weight: normal !important;
 }
 .form-control:-moz-placeholder {
-  color: #090d3a !important;
+  color: #c9c9c9 !important;
   font-size: 0.975rem !important;
   padding-left: 0.2rem !important;
   font-weight: normal !important;
 } /* FF 4-18 */
 .form-control::-moz-placeholder {
-  color: #090d3a !important;
+  color: #c9c9c9 !important;
   font-size: 0.975rem !important;
   padding-left: 0.2rem !important;
   font-weight: normal !important;
 } /* FF 19+ */
 .form-control:-ms-input-placeholder {
-  color: #090d3a !important;
+  color: #c9c9c9 !important;
   font-size: 0.975rem !important;
   padding-left: 0.2rem !important;
   font-weight: normal !important;

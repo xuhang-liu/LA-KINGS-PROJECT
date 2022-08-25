@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'rest_framework',
+    'rest_framework.authtoken',
     'videos',
     'frontend',
     'knox',
@@ -56,7 +57,12 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     # , is required otherwise viewed as a string
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
 }
 
 MIDDLEWARE = [

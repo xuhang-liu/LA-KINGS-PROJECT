@@ -79,7 +79,8 @@ export class Dashboard extends Component {
     var user = { "id": this.props.user.id };
     this.props.loadUserFullname(user);
     this.props.getProfileDetail(this.props.user.id);
-    window.fcWidget.user.setProperties({
+    //Freshchat code
+    window?.fcWidget?.user.setProperties({
       firstName: this.props.userfullname,
       lastName: "",
       email: this.props.user.email,
@@ -88,6 +89,19 @@ export class Dashboard extends Component {
       "is_employer": this.props.profile.is_employer,
       "is_freetrial": this.props.profile.is_freetrial,
       "plan": this.props.profile.plan_interval
+    });
+    // Segment code
+    window?.analytics?.identify(this.props.user.id, {
+      name: this.props?.userfullname,
+      email: this.props.user.email,
+      company: {
+        name: this.props.profile?.company_name,
+        plan: this.props.profile?.plan_interval
+      },
+      phone: this.props.profile?.phone_number,
+      username: this.props.user.username,
+      description: this.props.profileDetail?.location,
+      createdAt: Date().toLocaleString()
     });
   }
 

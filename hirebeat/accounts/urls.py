@@ -4,7 +4,7 @@ from .api.api import ResgisterAPI, LoginAPI, UserAPI, RetrieveProfileAPI, Update
 from knox import views as knox_views
 from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     resend_activation_email, update_user_email, update_user_password, \
-    check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, \
+    check_password, get_user_fullname, get_ziprecruiter_jobs, check_user_registration, get_company_name, search_jobseekers_jobs, get_jobSearch_keywords,\
     update_record, get_record_status, get_received_interview, update_record_refresh, employer_notification, \
     get_profile_detail, create_or_update_personal_info, create_or_update_social_media, create_or_update_basic_info, \
     create_or_update_video, create_or_update_summary, create_or_update_resume, create_or_update_education, create_or_update_work_exp, \
@@ -15,7 +15,7 @@ from .views import sign_s3_upload, ActivateAccount, upgrade_accounts, \
     create_profile, create_or_update_job_type, create_or_update_skills, create_or_update_languages, create_or_update_profile_sharing, \
     check_freetrial_expire, get_sourcing_data, check_user_name, go_stripe_customer_portal, check_user_login, delete_profile_detail_education, delete_profile_detail_work_exp, \
     check_if_it_reviewer, create_or_update_employer_name, add_credit_to_user, check_code, create_request_email, delete_account, deactivate_fraud_user, update_employer_onboard, \
-    update_employer_onboard0, create_or_update_employer_tutorial_infos, stripe_create_subcription, stripe_apply_coupon_code, stripe_cancel_sub, stripe_delete_customer
+    update_employer_onboard0, create_or_update_employer_tutorial_infos, job_target_info_update, stripe_create_subcription, stripe_apply_coupon_code, stripe_cancel_sub, stripe_delete_customer
 from .api.social_login import exchange_token
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import views as auth_views
@@ -72,6 +72,12 @@ urlpatterns = [
 
     ### get ziprecruiter jobs
     path('get-ziprecruiter-jobs', get_ziprecruiter_jobs, name='get ziprecruiter jobs'),
+
+    ### search top 10 keywords
+    path('get-top-search-keywords', get_jobSearch_keywords, name='get top search keywords'),
+
+    ### search jobs from our platform
+    path('search-jobseekers-jobs', search_jobseekers_jobs, name='search jobseekers jobs'),
 
     ### check user registration
     path('check-user-registration', check_user_registration, name="check user registration"),
@@ -151,6 +157,7 @@ urlpatterns = [
     
     path('accounts/create-request-email', create_request_email, name="create request email"),
     path("accounts/deactivate-fraud-user", deactivate_fraud_user, name="deactivate fraud user"),
+    path('accounts/job-target-info-update', job_target_info_update, name="update job target info"),
     path("accounts/stripe-create-subcription", csrf_exempt(stripe_create_subcription), name="stripe create subscription"),
     path("accounts/stripe-apply-coupon-code", csrf_exempt(stripe_apply_coupon_code), name="stripe apply coupon code"),
     path("accounts/stripe-cancel-sub", csrf_exempt(stripe_cancel_sub), name="stripe cancel sub"),

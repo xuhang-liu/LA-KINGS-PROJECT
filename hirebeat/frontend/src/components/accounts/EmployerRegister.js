@@ -20,7 +20,7 @@ import TagManager from 'react-gtm-module';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window?.scrollTo(0, 0);
   }, []);
 
   return null;
@@ -89,7 +89,7 @@ export class EmployerRegister extends Component {
     TagManager.initialize({
       gtmId: 'GTM-MKHJ38Q'
     });
-    window.dataLayer.push({
+    window?.dataLayer.push({
       name: "",
       email: ""
     });
@@ -112,6 +112,15 @@ export class EmployerRegister extends Component {
       if (this.state.companyName.trim() == null || this.state.companyName.trim() == "") {
         return alert("Company Name Invalid Format!");
       }
+      //Segment info
+      window?.analytics?.track("User - Employer Register", {
+        registerTime: Date().toLocaleString(),
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        workEmail: this.state.email,
+        companyName: this.state.companyName,
+        companyWebsite: this.state.company_website
+      });
       axios
         .get(`accounts/check-company-name-existence?companyName=${this.state.companyName}`)
         .then((res) => {
@@ -137,7 +146,7 @@ export class EmployerRegister extends Component {
                 gtmId: 'GTM-MKHJ38Q',
                 dataLayerName: 'Form Submit'
               });
-              window.dataLayer.push({
+              window?.dataLayer.push({
                 name: this.state.firstName + " " + this.state.lastName,
                 email: this.state.email?.toLowerCase()
               });
@@ -244,7 +253,15 @@ export class EmployerRegister extends Component {
     if (this.state.companyName.trim() == null || this.state.companyName.trim() == "") {
       return this.setState({ validCompanyName: false });
     }
-
+    //Segment info
+    window?.analytics?.track("User - Employer Register", {
+      registerTime: Date().toLocaleString(),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      workEmail: this.state.email,
+      companyName: this.state.companyName,
+      companyWebsite: this.state.company_website
+    });
     // check company name exist or not
     axios
       .get(`accounts/check-company-name-existence?companyName=${this.state.companyName}`)
@@ -270,7 +287,7 @@ export class EmployerRegister extends Component {
             gtmId: 'GTM-MKHJ38Q',
             dataLayerName: 'Form Submit'
           });
-          window.dataLayer.push({
+          window?.dataLayer.push({
             name: this.state.firstName + " " + this.state.lastName,
             email: this.state.email?.toLowerCase()
           });

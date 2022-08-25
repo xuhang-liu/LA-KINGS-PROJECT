@@ -70,6 +70,13 @@ export class Register extends Component {
       // new user registration report
       this.gtag_report_conversion();
 //      this.redirectToEmailVerification();
+      //Segment info
+      window?.analytics?.track("User - Candidate Register", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email?.toLowerCase(),
+        location: this.state.location
+      });
     }
   };
 
@@ -101,11 +108,18 @@ export class Register extends Component {
       setTimeout(() => {this.props.createProfile(data)}, 300);
       // new user registration report
       this.gtag_report_conversion();
+      //Segment info
+      window?.analytics?.track("User - Candidate Register", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email?.toLowerCase(),
+        location: this.state.location
+      });
     }
   };
 
   gtag_report_conversion = () => {
-    window.gtag('event', 'conversion', {
+    window?.gtag('event', 'conversion', {
       'send_to': 'AW-443211953/vaMjCOOC7fABELHBq9MB',
       'event_callback': callback
     });

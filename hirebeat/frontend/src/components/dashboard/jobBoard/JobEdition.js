@@ -14,6 +14,7 @@ import { MyModalUpgrade } from "./../DashboardComponents";
 //import Switch from "react-switch";
 import ScreenQuestion from "./ScreenQuestion";
 import parse from 'html-react-parser';
+import axios from "axios";
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -38,7 +39,7 @@ const toolbarConfig = {
 };
 
 function getClientReferenceId() {
-    return window.Rewardful && window.Rewardful.referral || ('checkout_'+(new Date).getTime());
+    return window?.Rewardful && window?.Rewardful.referral || ('checkout_'+(new Date).getTime());
 }
 
 export class JobEdition extends Component {
@@ -173,55 +174,99 @@ export class JobEdition extends Component {
         this.setState({
             loc_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_require", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLocReq1 = () => {
         this.setState({
             loc_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_option", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLocReq2 = () => {
         this.setState({
             loc_req: 2
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setPhoReq0 = () => {
         this.setState({
             pho_req: 0
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_require", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setPhoReq1 = () => {
         this.setState({
             pho_req: 1
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_option", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setPhoReq2 = () => {
         this.setState({
             pho_req: 2
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_disable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLinReq0 = () => {
         this.setState({
             lin_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_require", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLinReq1 = () => {
         this.setState({
             lin_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_option", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLinReq2 = () => {
         this.setState({
             lin_req: 2
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoReq0 = () => {
         this.setState({
             eeo_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoReq1 = () => {
         this.setState({
             eeo_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Enable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
 
@@ -229,10 +274,18 @@ export class JobEdition extends Component {
         this.setState({
             eeo_ques_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoQuesReq1 = () => {
         this.setState({
             eeo_ques_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Enable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
 
@@ -421,6 +474,45 @@ export class JobEdition extends Component {
                 };
             }
             this.props.updateJob(data);
+            // Job Target Steps:
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+            if (!(this.props.jobInfo.jobt_job_id == "" || this.props.jobInfo.jobt_job_id == null)) {
+                let city = this.state.jobLocation.split(",")[0].trim()
+                let state = this.state.jobLocation.split(",")[1].trim()
+                let country = this.state.jobLocation.split(",")[2].trim()
+                let data1 = {
+                    "token": this.props.jobt_token,
+                    "job": {
+                        "job_id": this.props.jobInfo.jobt_job_id,
+                        "company_name": this.props.employerProfileDetail.name,
+                        "title": this.state.jobTitle,
+                        "description": this.state.jobDescription.toString('html'),
+                        "job_view_url": this.props.jobInfo.job_url?.replaceAll(' ', '%20'),
+                        "apply_url": this.props.jobInfo.job_url?.replaceAll(' ', '%20'),
+                        "location": {
+                            "city": city,
+                            "state": state,
+                            "country": country
+                        },
+                        "job_type": this.state.jobType["value"],
+                        "entrylevel": (this.state.jobLevel["value"] == "Entry Level") ? 1 : 0,
+                        "easy_apply": 1,
+                        "easy_apply_type": "basic",
+                        "questionnaire_webhook": "https://"+window.location.hostname+"/jobs/get-questions-from-job?jobid="+this.state.jobId,
+                        "application_delivery_webhook": "https://"+window.location.hostname+"/jobs/add-new-apply-candidate-from-jobtarget"
+                    }
+                }
+                axios.post("https://atsapi.jobtarget.com/api/employer/jobs/edit", data1, config).then((res1) => {
+                    console.log(res1)
+                }).catch(error => {
+                    console.log(error)
+                });
+            }
+            // End job target
             setTimeout(() => { this.props.loadProfile(); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.getPJobs(); this.props.getZRFeedXML(); this.props.getZRPremiumFeedXML() }, 300);
             this.props.renderJobs();
             if (this.props.jobInfo.job_post != 2 && this.state.job_post == 2) {
@@ -1016,17 +1108,17 @@ export class JobEdition extends Component {
                                         <span>
                                             {this.state.job_post == 0 ?
                                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Disabled</button> :
-                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(0)}>Disabled</button>
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", {eventTime: Date()?.toLocaleString()})}}>Disabled</button>
                                             }
                                             {this.state.job_post == 1 ?
                                                 <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Standard</button> :
-                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(1)}>Standard</button>
+                                                <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", {eventTime: Date()?.toLocaleString()})}}>Standard</button>
                                             }
                                         </span>
                                     }
                                     {this.state.job_post == 2 ?
                                         <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#e8edfc", color: "#090d3a", border: "2px solid #006dff" }}>Premium</button> :
-                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => this.setJobPost(2)}>Premium</button>
+                                        <button type="button" className="default-btn2" style={{ fontSize: "12px", backgroundColor: "#fff", color: "#090d3a", border: "2px solid #e8edfc" }} onClick={() => {this.setJobPost(2); window?.analytics?.track("Job_posting_broadcast_premium", {eventTime: Date()?.toLocaleString()})}}>Premium</button>
                                     }
                                 </div>
                                 <div className="form-group col-12">

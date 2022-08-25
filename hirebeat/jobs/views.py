@@ -1,6 +1,6 @@
 #from django.shortcuts import render
 from pickle import TRUE
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.contrib.auth.models import User
 from .models import Jobs, ApplyCandidates, JobQuestion, ReceivedEmail, PremiumJobList, SourcingRequest, SourcingCandidates
 from questions.models import Positions, InterviewQuestions, InterviewResumes, InvitedCandidates, SubReviewers, ExternalReviewers, ReviewerEvaluation
@@ -25,12 +25,13 @@ from MergeATSClient.model.attachment import Attachment
 from MergeATSClient.model.attachment_request import AttachmentRequest
 from MergeATSClient.model.available_actions import AvailableActions
 from MergeATSClient.model.job_interview_stage import JobInterviewStage
-from pprint import pprint
-import requests
 import json
 import math
 from django.forms.models import model_to_dict
 from django.db.models import Q
+from django.http import JsonResponse
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
 from django.db.models import Value as V
 from django.db.models.functions import Concat   
 
@@ -400,7 +401,7 @@ def add_new_apply_candidate(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     if not applied:
         questions = []
@@ -439,48 +440,47 @@ def add_new_apply_candidate(request):
                     profile_rate=50,
                 )
         print("===New Candidate Notify Email Called===")
-        # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-        # message = get_template("jobs/new_candidate_notification_email.html")
-        # context = {
-        #     'fullname': fullname,
-        #     'title': jobs.job_title,
-        # }
-        # from_email = 'HireBeat Team <tech@hirebeat.co>'
-        # to_list = [user.email]
-        # content = message.render(context)
-        # email = EmailMessage(
-        #     subject,
-        #     content,
-        #     from_email,
-        #     to_list,
-        # )
-        # email.content_subtype = "html"
-        # email.send()
-
-        if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-            username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-        else:
-            username = "User"
-
-        requestBody = {
-            "to": [
-                {
-                    "name":username,
-                    "email":user.email
-                }
-            ],
-            "template": "NewApplicantForJob",
-
-            "body": {
-                "job_title": jobs.job_title,
-                "username": fullname,
-                "view_applicant_link": "app.hirebeat.co/employer_dashboard"
-            }
+        subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+        message = get_template("jobs/new_candidate_notification_email.html")
+        context = {
+            'fullname': fullname,
+            'title': jobs.job_title,
         }
+        from_email = 'HireBeat Team <tech@hirebeat.co>'
+        to_list = [user.email]
+        content = message.render(context)
+        email = EmailMessage(
+            subject,
+            content,
+            from_email,
+            to_list,
+        )
+        email.content_subtype = "html"
+        email.send()
 
-        headers = {'Content-type': 'application/json'}
-        emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-        requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+        # username = "User"
+        # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+        #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+        # requestBody = {
+        #     "to": [
+        #         {
+        #             "name":username,
+        #             "email":user.email
+        #         }
+        #     ],
+        #     "template": "NewApplicantForJob",
+
+        #     "body": {
+        #         "job_title": jobs.job_title,
+        #         "username": fullname,
+        #         "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+        #     }
+        # }
+
+        # headers = {'Content-type': 'application/json'}
+        # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+        # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Add new apply candidate successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -510,6 +510,7 @@ def get_current_jobs(request, companyName):
         "emails": emails,
         "company_logo": jobs.company_logo,
         "is_closed": jobs.is_closed,
+        "job_status": jobs.job_status,
         "pho_req": jobs.pho_req,
         "loc_req":  jobs.loc_req,
         "job_post": jobs.job_post,
@@ -794,59 +795,13 @@ def add_new_apply_candidate_by_cv(request):
     cv_name = email.split("@")[0]
     resume_url = upload_cv_to_s3(resume, cv_name)
     linkedinurl = request.data['linkedinurl']
-    fullname = first_name + " " + last_name
     jobs = Jobs.objects.get(pk=job_id)
-    user = User.objects.get(pk=jobs.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=first_name, last_name=last_name, phone=phone, email=email,
                                        location=location, resume_url=resume_url, linkedinurl=linkedinurl)
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
-    # send email notification
-    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    # message = get_template("jobs/new_candidate_notification_email.html")
-    # context = {
-    #     'fullname': fullname,
-    #     'title': jobs.job_title,
-    # }
-    # from_email = 'HireBeat Team <tech@hirebeat.co>'
-    # to_list = [user.email]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
-
-    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-    else:
-        username = "User"
-
-    requestBody = {
-        "to": [
-            {
-                "name":username,
-                "email":user.email
-            }
-        ],
-        "template": "NewApplicantForJob",
-
-        "body": {
-            "job_title": jobs.job_title,
-            "username": fullname,
-            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
-        }
-    }
-
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Add new apply candidates successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -865,7 +820,7 @@ def add_new_apply_candidate_from_zr(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     jobQuestions = JobQuestion.objects.filter(jobs=jobs)
     if len(jobQuestions) > 0:
@@ -906,50 +861,121 @@ def add_new_apply_candidate_from_zr(request):
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
-    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    # message = get_template("jobs/new_candidate_notification_email.html")
-    # context = {
-    #     'fullname': fullname,
-    #     'title': jobs.job_title,
-    # }
-    # from_email = 'HireBeat Team <tech@hirebeat.co>'
-    # to_list = [user.email]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
-
-    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-    else:
-        username = "User"
-
-    requestBody = {
-        "to": [
-            {
-                "name":username,
-                "email":user.email
-            }
-        ],
-        "template": "NewApplicantForJob",
-
-        "body": {
-            "job_title": jobs.job_title,
-            "username": fullname,
-            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
-        }
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
     }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+    # username = "User"
+    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":username,
+    #             "email":user.email
+    #         }
+    #     ],
+    #     "template": "NewApplicantForJob",
+
+    #     "body": {
+    #         "job_title": jobs.job_title,
+    #         "username": fullname,
+    #         "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+    #     }
+    # }
+
+    # headers = {'Content-type': 'application/json'}
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
+
+# the webhook api designed for JobTarget to post candidates back to HireBeat platform
+@api_view(['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def add_new_apply_candidate_from_jobtarget(request):
+    job_id = request.data['jobId']
+    firstname = request.data['applicant']['firstName']
+    lastname = request.data['applicant']['lastName']
+    phone = request.data['applicant']['phoneNumber']
+    email = request.data['applicant']['email']
+    resume = request.data['applicant']['resume']['file']['data']
+    cv_name = email.split("@")[0]
+    cv_fileName = request.data['applicant']['resume']['file']['fileName']
+    resume_url = ""
+    if 'sample' not in cv_fileName:
+        resume_url = upload_cv_to_s3(resume, cv_name)
+    fullname = firstname+" "+lastname
+    apply_referer = "JobTarget"
+    if 'medium' in request.data:
+        apply_referer = request.data['medium']
+    jobs = Jobs.objects.get(pk=int(job_id))
+    user = User.objects.get(pk=jobs.user_id)
+    applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
+    questions_zip = []
+    answers_zip = []
+    if 'questions' in request.data and 'answers' in request.data:
+        questions_zip = request.data['questions']['questions']
+        answers_zip = request.data['questions']['answers']
+    questions = []
+    answers = []
+    qualifications = []
+    must_haves = []
+    cur_stage = "Resume Review"
+    applicant_guid = None
+    if 'applicant_guid' in request.data:
+        applicant_guid=request.data['applicant_guid']
+    if len(answers_zip) > 0 and len(questions_zip) > 0:
+        for i in range(len(questions_zip)):
+            for j in range(len(answers_zip)):
+                if questions_zip[i]['id'] == answers_zip[j]['id']:
+                    questions.append(questions_zip[i]['question'])
+                    answers.append(answers_zip[j]['value'])
+                    must_haves.append(questions_zip[i]['required'])
+                    qualifications.append(True)
+    if not applied:
+        ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
+                                       location="", resume_url=resume_url, linkedinurl="", apply_source="JobTarget", questions=questions, 
+                                       answers=answers, qualifications=qualifications, must_haves=must_haves,
+                                       current_stage=cur_stage, apply_referer=apply_referer, applicant_guid=applicant_guid)
+    else:
+        return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
+    # send email notification
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
+    }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
+
+    return Response("Add new apply candidate from JobTarget successfully", status=status.HTTP_200_OK)
 
 # the webhook api designed for DrJob to post candidates back to HireBeat platform
 @api_view(['POST'])
@@ -965,7 +991,7 @@ def add_new_apply_candidate_from_drjob(request):
     fullname = firstname + " " + lastname
     jobs = Jobs.objects.get(pk=job_id)
     user = User.objects.get(pk=jobs.user_id)
-    employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
+    # employerProfileDetail=EmployerProfileDetail.objects.get(user=user)
     applied = ApplyCandidates.objects.filter(email=email, jobs=jobs).exists()
     if not applied:
         ApplyCandidates.objects.create(jobs=jobs, first_name=firstname, last_name=lastname, phone=phone, email=email,
@@ -973,47 +999,47 @@ def add_new_apply_candidate_from_drjob(request):
     else:
         return Response("Duplicate applicants.", status=status.HTTP_202_ACCEPTED)
     # send email notification
-    # subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
-    # message = get_template("jobs/new_candidate_notification_email.html")
-    # context = {
-    #     'fullname': fullname,
-    #     'title': jobs.job_title,
-    # }
-    # from_email = 'HireBeat Team <tech@hirebeat.co>'
-    # to_list = [user.email]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
-    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-    else:
-        username = "User"
-
-    requestBody = {
-        "to": [
-            {
-                "name":username,
-                "email":user.email
-            }
-        ],
-        "template": "NewApplicantForJob",
-
-        "body": {
-            "job_title": jobs.job_title,
-            "username": fullname,
-            "view_applicant_link": "app.hirebeat.co/employer_dashboard"
-        }
+    subject = 'New Applicant: ' + jobs.job_title + " from " + fullname
+    message = get_template("jobs/new_candidate_notification_email.html")
+    context = {
+        'fullname': fullname,
+        'title': jobs.job_title,
     }
+    from_email = 'HireBeat Team <tech@hirebeat.co>'
+    to_list = [user.email]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+    # username = "User"
+    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
+
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name":username,
+    #             "email":user.email
+    #         }
+    #     ],
+    #     "template": "NewApplicantForJob",
+
+    #     "body": {
+    #         "job_title": jobs.job_title,
+    #         "username": fullname,
+    #         "view_applicant_link": "app.hirebeat.co/employer_dashboard"
+    #     }
+    # }
+
+    # headers = {'Content-type': 'application/json'}
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
     return Response("Add new apply candidate from ZipRecruiter successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -1745,69 +1771,69 @@ def sourcing_request_payment_suc(request):
     sourcingRequest.save()
     
     print("===Sourcing Request Notify===")
-    # subject = 'New Sourcing Request'
-    # message = get_template("jobs/sourcing_request_notification.html")
-    # context = {
-    #     'user_email': user.email,
-    #     'date': datetime.now(),
-    #     'job_url': job.job_url.replace(" ","%20"),
-    #     'title': sourcingRequest.title,
-    #     'location': sourcingRequest.location,
-    #     'additionalComment': sourcingRequest.additionalComment,
-    #     'year_of_exp': sourcingRequest.year_of_exp,
-    #     'sen_level': sourcingRequest.sen_level,
-    #     'req_skill_set': sourcingRequest.req_skill_set,
-    #     'pre_skill_set': sourcingRequest.pre_skill_set,
-    #     'industry_set': sourcingRequest.industry_set,
-    #     'education_level': sourcingRequest.education_level,
-    #     'job_id': job.id,
-    #     'request_id': sourcingRequest.id
-    # }
-    # from_email = 'HireBeat System <tech@hirebeat.co>'
-    # to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
-    # content = message.render(context)
-    # email = EmailMessage(
-    #     subject,
-    #     content,
-    #     from_email,
-    #     to_list,
-    # )
-    # email.content_subtype = "html"
-    # email.send()
-
-    requestBody = {
-        "to": [
-            {
-                "name": "Ning Wei",
-                "email": "ning.wei@hirebeat.co"
-            },
-            {
-                "name": "Xuhang Liu",
-                "email": "xuhang.liu@hirebeat.co"
-            }
-        ],
-        "template": "NewSourcingRequest",
-        "body": {
-            "username": user.email,
-            "date": str(datetime.now()),
-            "title": sourcingRequest.title,
-            "location": sourcingRequest.location,
-            "additional_comment": sourcingRequest.additionalComment,
-            "year_of_exp": sourcingRequest.year_of_exp,
-            "seniority_level": sourcingRequest.sen_level,
-            "required_skill_set": sourcingRequest.req_skill_set,
-            "preferred_skill_set": sourcingRequest.pre_skill_set,
-            "preferred_industry": sourcingRequest.industry_set,
-            "education_level": sourcingRequest.education_level,
-            "job_description": job.job_url.replace(" ","%20"),
-            "job_id": job.id,
-            "request_id": sourcingRequest.id            
-        }
+    subject = 'New Sourcing Request'
+    message = get_template("jobs/sourcing_request_notification.html")
+    context = {
+        'user_email': user.email,
+        'date': datetime.now(),
+        'job_url': job.job_url.replace(" ","%20"),
+        'title': sourcingRequest.title,
+        'location': sourcingRequest.location,
+        'additionalComment': sourcingRequest.additionalComment,
+        'year_of_exp': sourcingRequest.year_of_exp,
+        'sen_level': sourcingRequest.sen_level,
+        'req_skill_set': sourcingRequest.req_skill_set,
+        'pre_skill_set': sourcingRequest.pre_skill_set,
+        'industry_set': sourcingRequest.industry_set,
+        'education_level': sourcingRequest.education_level,
+        'job_id': job.id,
+        'request_id': sourcingRequest.id
     }
+    from_email = 'HireBeat System <tech@hirebeat.co>'
+    to_list = ["ning.wei@hirebeat.co", "xuhang.liu@hirebeat.co"]
+    content = message.render(context)
+    email = EmailMessage(
+        subject,
+        content,
+        from_email,
+        to_list,
+    )
+    email.content_subtype = "html"
+    email.send()
 
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
+    # requestBody = {
+    #     "to": [
+    #         {
+    #             "name": "Ning Wei",
+    #             "email": "ning.wei@hirebeat.co"
+    #         },
+    #         {
+    #             "name": "Xuhang Liu",
+    #             "email": "xuhang.liu@hirebeat.co"
+    #         }
+    #     ],
+    #     "template": "NewSourcingRequest",
+    #     "body": {
+    #         "username": user.email,
+    #         "date": str(datetime.now()),
+    #         "title": sourcingRequest.title,
+    #         "location": sourcingRequest.location,
+    #         "additional_comment": sourcingRequest.additionalComment,
+    #         "year_of_exp": sourcingRequest.year_of_exp,
+    #         "seniority_level": sourcingRequest.sen_level,
+    #         "required_skill_set": sourcingRequest.req_skill_set,
+    #         "preferred_skill_set": sourcingRequest.pre_skill_set,
+    #         "preferred_industry": sourcingRequest.industry_set,
+    #         "education_level": sourcingRequest.education_level,
+    #         "job_description": job.job_url.replace(" ","%20"),
+    #         "job_id": job.id,
+    #         "request_id": sourcingRequest.id            
+    #     }
+    # }
+
+    # headers = {'Content-type': 'application/json'}
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)    
     
     return Response("Requst sent successfully", status=status.HTTP_202_ACCEPTED)
 
@@ -1853,3 +1879,47 @@ def add_sourcing_candidate_notes(request):
 
 
     return Response("Add notes successfully", status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def get_questions_from_job(request):
+    jobid = request.query_params.get("jobid")
+    jobQuestion = JobQuestion.objects.filter(jobs_id=jobid)
+    data_dict = {}
+    data_array = []
+    for j in range(len(jobQuestion)):
+        data = {
+            "question": jobQuestion[j].question,
+            "question_type": jobQuestion[j].answer_type,
+            "must_have": jobQuestion[j].is_must,
+            "ideal_answer": jobQuestion[j].answer
+        }
+        data_array.append(data)
+    data_dict["questions"]=data_array
+    return JsonResponse(data_dict)
+
+@api_view((['POST']))
+def job_target_job_id_update(request):
+    jobt_job_id = request.data["jobt_job_id"]
+    job_id = request.data["job_id"]
+    job = Jobs.objects.get(pk=job_id)
+    job.jobt_job_id = jobt_job_id
+    job.save()
+    return Response("Job Target Iframe url update successfully", status=status.HTTP_201_CREATED)
+
+@api_view((['POST']))
+def job_target_push_candidates_back(request):
+    jobid = request.data["jobid"]
+    jobT_candidates = ApplyCandidates.objects.filter(jobs_id = jobid, apply_source = "JobTarget")
+    for j in range(len(jobT_candidates)):
+        jobT_candidate = jobT_candidates[j]
+        url = "https://atsapi.jobtarget.com/api/employer/jobs/applicantdataviaptoken"
+        data = {
+            "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
+            "applicant_guid": jobT_candidate.applicant_guid,
+            "stage": jobT_candidate.current_stage,
+            "event_timestamp": datetime.now().strftime("%Y:%m:%d %H:%M"),
+        }
+        headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+        res = requests.post(url, data=json.dumps(data), headers=headers)
+        print(res.json())
+    return Response("Job Target Push Candidates Back Successfully", status=status.HTTP_201_CREATED)
