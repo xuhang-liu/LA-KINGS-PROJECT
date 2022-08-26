@@ -209,7 +209,7 @@ export const getZRPremiumFeedXML = () => (dispatch, getState) => {
     .get(`jobs/get-zr-premium-xml`)
     .then((res) => {
       dispatch({
-        type: GET-GET_ZR_PREMIUM_FEED_XML,
+        type: GET_ZR_PREMIUM_FEED_XML,
         payload: res.data,
       });
     })
