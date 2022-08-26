@@ -469,7 +469,7 @@ def add_new_apply_candidate(request):
                     "email":user.email
                 }
             ],
-            "template": "NewApplicantForJob",
+            "template": "NewApplicationReceived",
 
             "body": {
                 "job_title": jobs.job_title,
@@ -890,7 +890,7 @@ def add_new_apply_candidate_from_zr(request):
                 "email":user.email
             }
         ],
-        "template": "NewApplicantForJob",
+        "template": "NewApplicationReceived",
 
         "body": {
             "job_title": jobs.job_title,
@@ -1028,7 +1028,7 @@ def add_new_apply_candidate_from_drjob(request):
                 "email":user.email
             }
         ],
-        "template": "NewApplicantForJob",
+        "template": "NewApplicationReceived",
 
         "body": {
             "job_title": jobs.job_title,

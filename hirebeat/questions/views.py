@@ -1459,7 +1459,7 @@ def add_review_note(request):
                 "email": puser.email
             }
         ],
-        "template": "NewSubReviewerCommentsForPosition",
+        "template": "NewReviewerComment",
         "body": {
             "job_title": position.job_title,
             "ruser": reviewer_email,

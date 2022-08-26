@@ -493,7 +493,7 @@ def employer_notification(request):
                 "email":user.email
             }
         ],
-        "template": "InterviewCompletedForJobTitle",
+        "template": "NewVideoInterviewSubmitted",
 
         "body": {
             "can_name": can_name,
@@ -912,7 +912,7 @@ def subreviewer_update_comment(request):
                 "email": puser.email
             }
         ],
-        "template": "NewSubReviewerCommentsForPosition",
+        "template": "NewReviewerComment",
         "body": {
             "job_title": position.job_title,
             "ruser": ruser.username,
