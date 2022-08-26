@@ -14,7 +14,7 @@ class Jobs(models.Model):
     job_level = models.CharField(max_length=100, null=True, blank=True)
     is_closed = models.IntegerField(default=0) # 0 means active, 1 means archived, 2 means closed, 3 means draft
     job_status = models.CharField(max_length=100, default="Published")
-    job_url = models.CharField(max_length=100, null=True, blank=True)
+    job_url = models.CharField(max_length=200, null=True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
     job_type = models.CharField(max_length=100, null=True, blank=True)
     company_overview = models.TextField(null=True, blank=True)
