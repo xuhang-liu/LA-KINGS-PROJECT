@@ -280,14 +280,14 @@ export class SubpageSetting extends Component {
             let data2 = {
                 "p_token": "9d1a6a6e-ea43-4ed4-9f8b-f4a0c0010ae8",
                 "user": {
-                  "user_id": this.props.profile.jobt_user_id,
-                  "first_name": firstName,
-                  "last_name": lastName,
-                  "email": this.props.user.email,
-                  "is_admin": 0,
-                  "is_active": 1
+                    "user_id": this.props.profile.jobt_user_id,
+                    "first_name": firstName,
+                    "last_name": lastName,
+                    "email": this.props.user.email,
+                    "is_admin": 0,
+                    "is_active": 1
                 }
-              }
+            }
             axios.post("https://atsapi.jobtarget.com/api/employer/user/edit", data2, config).then((res3) => {
                 console.log(res3)
             }).catch(error => {
@@ -336,7 +336,7 @@ export class SubpageSetting extends Component {
                 }
             }).catch(err => console.log(err))
         }
-        
+
         setTimeout(() => this.setState({ emailerr: false }), 4000);
         //Segment info
         window?.analytics?.track("Delete Forever - Delete Account", {
@@ -849,7 +849,7 @@ export class SubpageSetting extends Component {
                             </div>
                         </div>}
                     {/* User Email Preference */}
-                    <EmailPreference userId={this.props.user.id} />
+                    {this.props.profile.is_employer ? <EmailPreference userId={this.props.user.id} /> : null}
                 </div>
                 {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
                     {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
