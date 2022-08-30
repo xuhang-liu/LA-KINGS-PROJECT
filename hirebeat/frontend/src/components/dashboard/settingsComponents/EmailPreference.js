@@ -8,6 +8,7 @@ const EmailPreference = (props) => {
     const preferences = useSelector(state => state.email_preference_reducers.preferences);
 
     const [preferenceData, setPreferenceData] = useState([]);
+    const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -28,6 +29,14 @@ const EmailPreference = (props) => {
         }
         setPreferenceData(initialPreference);
     }, [preferences]);
+
+    const checkIfFormIsDirty = (request1, request2) => {
+        return request1.filter(object1 => {
+            return request2.some(object2 => {
+                return (object1.email_template_id === object2.email_template_id && object1.status !== object2.status);
+            });
+        });
+    }
 
     const setFormData = (event) => {
         const existingElement = preferenceData.findIndex((item) => item.email_template_id === +event.target.id);
@@ -51,6 +60,8 @@ const EmailPreference = (props) => {
                 }
             ];
         }
+        const result = checkIfFormIsDirty(preferences, updatedPreference);
+        setDisabled(result.length > 0 ? false : true);
         setPreferenceData(updatedPreference);
     }
 
@@ -80,6 +91,7 @@ const EmailPreference = (props) => {
                 {templates.length &&
                     <form style={{ marginBottom: "3%" }} onSubmit={savePreferences}>
                         {
+
                             templates.map((template) => {
                                 const selectedPreference = preferenceData.filter((item) => +item.email_template_id === +template.id);
                                 const templateNameIntermediate = template.template.replace(/([A-Z])/g, " $1");
@@ -95,14 +107,15 @@ const EmailPreference = (props) => {
                         }
                         <button
                             type="submit"
-                            className="default-btn"
+                            className={disabled ? "disabled-btn" : "default-btn"}
                             style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}
+                            disabled={disabled}
                         >
                             Save Preferences
                         </button>
                     </form>
                 }
-                {(!templates || templates.length === 0)  &&
+                {(!templates || templates.length === 0) &&
                     <h3>No Email Templates Found</h3>
                 }
             </div>

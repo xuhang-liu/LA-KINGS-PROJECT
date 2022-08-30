@@ -362,6 +362,26 @@ p:last-child {
   padding-bottom: 10px;
 }
 
+.disabled-btn {
+  border: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  color: #ffffff;
+  background-color: #5a5b5c;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 15px;
+  padding-left: 50px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .default-btn7 {
   border: 1px solid #808080;
   position: relative;
