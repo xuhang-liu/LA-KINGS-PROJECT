@@ -1411,6 +1411,10 @@ def add_review_note(request):
     current_stage = request.data["current_stage"]
     position = Positions.objects.get(id=request.data["position_id"])
     puser = User.objects.get(pk=position.user_id)
+    cuser = ApplyCandidates.objects.filter(email=applicant_email)
+    cuser_name = "User"
+    if len(cuser) > 0:
+        cuser_name = cuser[0].first_name + " " + cuser[0].last_name
     # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     reviewer = ""
     if reviewer_type == "sub_reviewer":
@@ -1463,7 +1467,7 @@ def add_review_note(request):
         "body": {
             "job_title": position.job_title,
             "ruser": reviewer_email,
-            "cuser": applicant_email,
+            "cuser": cuser_name,
             "ruser_email": reviewer_email,
             "view_comment_link": "app.hirebeat.co/employer_dashboard"
 

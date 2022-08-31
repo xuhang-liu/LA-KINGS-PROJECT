@@ -880,6 +880,11 @@ def subreviewer_update_comment(request):
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
     employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
+    cuser = User.objects.get(pk=wpvideo.owner_id)
+    cuser_profileDetail = ProfileDetail.objects.get(user=cuser)
+    cuser_name = "User"
+    if len(cuser_profileDetail.name) > 0:
+        cuser_name = cuser_profileDetail.name
     print("===Reviewer Update Comment Notify Email Called===")
     # subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
     # message = get_template("accounts/reviewer_comment_notification_email.html")
@@ -916,7 +921,7 @@ def subreviewer_update_comment(request):
         "body": {
             "job_title": position.job_title,
             "ruser": ruser.username,
-            "cuser": wpvideo.email,
+            "cuser": cuser_name,
             "ruser_email": ruser.email,
             "view_comment_link": "app.hirebeat.co/employer_dashboard"
 
