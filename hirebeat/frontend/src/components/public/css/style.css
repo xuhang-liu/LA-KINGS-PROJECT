@@ -46,7 +46,7 @@ Default CSS
 @import url("https://fonts.googleapis.com/css?family=Inter:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
 
 * {
-  font-family: 'Inter', 'Segoe UI', 'Helvetica', sans-serif;
+  font-family: "Inter", "Segoe UI", "Helvetica", sans-serif;
 }
 
 body {
@@ -71,11 +71,17 @@ a:hover {
   color: #13c4a1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
 }
 
-button, input {
+button,
+input {
   outline: 0 !important;
 }
 
@@ -94,11 +100,15 @@ img {
 }
 
 .bg-highback {
-  background-image: linear-gradient(101.6deg, rgba(103, 163, 243, 0.5) 10.77%, #E8EDFC 106.67%);
+  background-image: linear-gradient(
+    101.6deg,
+    rgba(103, 163, 243, 0.5) 10.77%,
+    #e8edfc 106.67%
+  );
 }
 
 .bg-leverageHirebeat {
-  background-image: linear-gradient(103.24deg, #E7ECF2 18.41%, #FFFFFF 107.46%);
+  background-image: linear-gradient(103.24deg, #e7ecf2 18.41%, #ffffff 107.46%);
 }
 
 .bg-e8edfc {
@@ -201,7 +211,7 @@ p:last-child {
 }
 
 .section-title h2 {
-  color: #090D3A;
+  color: #090d3a;
   margin-bottom: 0;
   font-size: 42px;
   font-weight: 600;
@@ -289,8 +299,8 @@ p:last-child {
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  color: #090D3A;
-  background-color: #E8EDFC;
+  color: #090d3a;
+  background-color: #e8edfc;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   border-radius: 3px;
@@ -303,13 +313,13 @@ p:last-child {
 }
 
 .default-btn4 {
-  border: 2px solid #E8EDFC;
+  border: 2px solid #e8edfc;
   position: relative;
   display: inline-block;
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  color: #090D3A;
+  color: #090d3a;
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -349,7 +359,7 @@ p:last-child {
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  color: #090D3A;
+  color: #090d3a;
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -389,7 +399,7 @@ p:last-child {
   text-align: center;
   overflow: hidden;
   z-index: 1;
-  color: #090D3A;
+  color: #090d3a;
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -427,7 +437,7 @@ p:last-child {
   left: 25px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   font-size: 20px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -444,113 +454,131 @@ p:last-child {
   -webkit-transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: -1;
   border-radius: 5px;
 }
 
-.default-btn:hover, .default-btn:focus {
+.default-btn:hover,
+.default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn:hover span, .default-btn:focus span {
+.default-btn:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn1:hover, .default-btn:focus {
+.default-btn1:hover,
+.default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn1:hover span, .default-btn:focus span {
+.default-btn1:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn2:hover, .default-btn2:focus {
+.default-btn2:hover,
+.default-btn2:focus {
   background-color: #ff612f;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn2:hover span, .default-btn2:focus span {
+.default-btn2:hover span,
+.default-btn2:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn3:hover, .default-btn:focus {
+.default-btn3:hover,
+.default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn3:hover span, .default-btn:focus span {
+.default-btn3:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn4:hover, .default-btn:focus {
+.default-btn4:hover,
+.default-btn:focus {
   background-color: #ff612f;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn4:hover span, .default-btn:focus span {
+.default-btn4:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn5:hover, .default-btn:focus {
+.default-btn5:hover,
+.default-btn:focus {
   background-color: #090d3a;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn5:hover span, .default-btn:focus span {
+.default-btn5:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn6:hover, .default-btn:focus {
-  border: 1px solid #01CFA6;
+.default-btn6:hover,
+.default-btn:focus {
+  border: 1px solid #01cfa6;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn6:hover span, .default-btn:focus span {
+.default-btn6:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn7:hover, .default-btn:focus {
-  border: 1px solid #FF4D4F;
+.default-btn7:hover,
+.default-btn:focus {
+  border: 1px solid #ff4d4f;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn7:hover span, .default-btn:focus span {
+.default-btn7:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
 
-.default-btn8:hover, .default-btn:focus {
+.default-btn8:hover,
+.default-btn:focus {
   background-color: #0f1660;
   color: #ffffff;
   -webkit-box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
-          box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.16) !important;
 }
 
-.default-btn8:hover span, .default-btn:focus span {
+.default-btn8:hover span,
+.default-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
@@ -580,7 +608,7 @@ p:last-child {
   left: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   font-size: 20px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -588,7 +616,7 @@ p:last-child {
 }
 
 .optional-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -610,20 +638,23 @@ p:last-child {
   -webkit-transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   transition: width 0.6s ease-in-out, height 0.5s ease-in-out;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: -1;
   border-radius: 5px;
 }
 
-.optional-btn:hover, .optional-btn:focus {
+.optional-btn:hover,
+.optional-btn:focus {
   color: #ffffff;
 }
 
-.optional-btn:hover::before, .optional-btn:focus::before {
+.optional-btn:hover::before,
+.optional-btn:focus::before {
   border-color: #ff612f;
 }
 
-.optional-btn:hover span, .optional-btn:focus span {
+.optional-btn:hover span,
+.optional-btn:focus span {
   width: 225%;
   height: 562.5px;
 }
@@ -645,16 +676,17 @@ Preloader Area CSS
 .preloader-area .spinner {
   width: 4em;
   height: 4em;
-  -webkit-transform: perspective(20em) rotateX(-24deg) rotateY(20deg) rotateZ(30deg);
-          transform: perspective(20em) rotateX(-24deg) rotateY(20deg) rotateZ(30deg);
+  -webkit-transform: perspective(20em) rotateX(-24deg) rotateY(20deg)
+    rotateZ(30deg);
+  transform: perspective(20em) rotateX(-24deg) rotateY(20deg) rotateZ(30deg);
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   position: absolute;
   left: 0;
   right: 0;
   top: 45%;
   -webkit-transform: translateY(-45%);
-          transform: translateY(-45%);
+  transform: translateY(-45%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -669,30 +701,30 @@ Preloader Area CSS
 
 .preloader-area .spinner .disc:nth-child(1) {
   -webkit-animation: rotate 12s linear infinite;
-          animation: rotate 12s linear infinite;
+  animation: rotate 12s linear infinite;
 }
 
 .preloader-area .spinner .disc:nth-child(2) {
   -webkit-animation: rotateDisc2 12s linear infinite;
-          animation: rotateDisc2 12s linear infinite;
+  animation: rotateDisc2 12s linear infinite;
 }
 
 .preloader-area .spinner .disc:nth-child(3) {
   -webkit-animation: rotateDisc3 12s linear infinite;
-          animation: rotateDisc3 12s linear infinite;
+  animation: rotateDisc3 12s linear infinite;
 }
 
 .preloader-area .spinner .inner {
   width: 100%;
   height: 100%;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-animation: sphereSpin 6s linear infinite;
-          animation: sphereSpin 6s linear infinite;
+  animation: sphereSpin 6s linear infinite;
 }
 
 .preloader-area .spinner::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -706,88 +738,88 @@ Preloader Area CSS
 @-webkit-keyframes sphereSpin {
   0% {
     -webkit-transform: rotateX(360deg) rotateY(0deg);
-            transform: rotateX(360deg) rotateY(0deg);
+    transform: rotateX(360deg) rotateY(0deg);
   }
   100% {
     -webkit-transform: rotateX(0deg) rotateY(360deg);
-            transform: rotateX(0deg) rotateY(360deg);
+    transform: rotateX(0deg) rotateY(360deg);
   }
 }
 
 @keyframes sphereSpin {
   0% {
     -webkit-transform: rotateX(360deg) rotateY(0deg);
-            transform: rotateX(360deg) rotateY(0deg);
+    transform: rotateX(360deg) rotateY(0deg);
   }
   100% {
     -webkit-transform: rotateX(0deg) rotateY(360deg);
-            transform: rotateX(0deg) rotateY(360deg);
+    transform: rotateX(0deg) rotateY(360deg);
   }
 }
 
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes rotate {
   from {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes rotateDisc2 {
   from {
     -webkit-transform: rotateX(90deg) rotateZ(0deg);
-            transform: rotateX(90deg) rotateZ(0deg);
+    transform: rotateX(90deg) rotateZ(0deg);
   }
   to {
     -webkit-transform: rotateX(90deg) rotateZ(360deg);
-            transform: rotateX(90deg) rotateZ(360deg);
+    transform: rotateX(90deg) rotateZ(360deg);
   }
 }
 
 @keyframes rotateDisc2 {
   from {
     -webkit-transform: rotateX(90deg) rotateZ(0deg);
-            transform: rotateX(90deg) rotateZ(0deg);
+    transform: rotateX(90deg) rotateZ(0deg);
   }
   to {
     -webkit-transform: rotateX(90deg) rotateZ(360deg);
-            transform: rotateX(90deg) rotateZ(360deg);
+    transform: rotateX(90deg) rotateZ(360deg);
   }
 }
 
 @-webkit-keyframes rotateDisc3 {
   from {
     -webkit-transform: rotateY(90deg) rotateZ(0deg);
-            transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(90deg) rotateZ(0deg);
   }
   to {
     -webkit-transform: rotateY(90deg) rotateZ(360deg);
-            transform: rotateY(90deg) rotateZ(360deg);
+    transform: rotateY(90deg) rotateZ(360deg);
   }
 }
 
 @keyframes rotateDisc3 {
   from {
     -webkit-transform: rotateY(90deg) rotateZ(0deg);
-            transform: rotateY(90deg) rotateZ(0deg);
+    transform: rotateY(90deg) rotateZ(0deg);
   }
   to {
     -webkit-transform: rotateY(90deg) rotateZ(360deg);
-            transform: rotateY(90deg) rotateZ(360deg);
+    transform: rotateY(90deg) rotateZ(360deg);
   }
 }
 
@@ -822,10 +854,10 @@ Navbar Area CSS
   width: 100%;
   z-index: 99;
   -webkit-box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
-          box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
   background-color: #ffffff !important;
   -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
-          animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -842,11 +874,13 @@ Navbar Area CSS
   border-color: #080a3c;
 }
 
-.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:hover, .navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:focus {
+.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:hover,
+.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:focus {
   color: #ffffff;
 }
 
-.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:hover i, .navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:focus i {
+.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:hover i,
+.navbar-area.is-sticky .main-nav .navbar .others-options .optional-btn:focus i {
   color: #ffffff;
 }
 
@@ -871,19 +905,48 @@ Navbar Area CSS
   color: #080a3c;
 }
 
-.navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn i {
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn
+  i {
   color: #ff612f;
 }
 
-.navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn::before {
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn::before {
   border-color: #080a3c;
 }
 
-.navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn:hover, .navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn:focus {
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn:hover,
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn:focus {
   color: #ffffff;
 }
 
-.navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn:hover i, .navbar-area.navbar-style-two .main-nav .navbar .others-options .optional-btn:focus i {
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn:hover
+  i,
+.navbar-area.navbar-style-two
+  .main-nav
+  .navbar
+  .others-options
+  .optional-btn:focus
+  i {
   color: #ffffff;
 }
 
@@ -937,7 +1000,9 @@ Navbar Area CSS
   margin-right: 13px;
 }
 
-.main-nav .navbar .navbar-nav .nav-item a:hover, .main-nav .navbar .navbar-nav .nav-item a:focus, .main-nav .navbar .navbar-nav .nav-item a.active {
+.main-nav .navbar .navbar-nav .nav-item a:hover,
+.main-nav .navbar .navbar-nav .nav-item a:focus,
+.main-nav .navbar .navbar-nav .nav-item a.active {
   color: #006dff;
 }
 
@@ -958,13 +1023,14 @@ Navbar Area CSS
   margin-left: 0;
 }
 
-.main-nav .navbar .navbar-nav .nav-item:hover a, .main-nav .navbar .navbar-nav .nav-item.active a {
+.main-nav .navbar .navbar-nav .nav-item:hover a,
+.main-nav .navbar .navbar-nav .nav-item.active a {
   color: #006dff;
 }
 
 .main-nav .navbar .navbar-nav .nav-item .dropdown-menu {
   -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   background: #ffffff;
   position: absolute;
   border: none;
@@ -997,7 +1063,9 @@ Navbar Area CSS
   font-weight: 500;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a.active {
+.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:hover,
+.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a:focus,
+.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li a.active {
   color: #006dff;
 }
 
@@ -1016,133 +1084,629 @@ Navbar Area CSS
   color: #4a6f8a;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu {
   left: 220px;
   top: 15px;
   opacity: 0;
   visibility: hidden;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a {
   color: #4a6f8a;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu {
   left: -250px;
   top: 15px;
   opacity: 0;
   visibility: hidden;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a {
   color: #4a6f8a;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu {
   left: -250px;
   top: 15px;
   opacity: 0;
   visibility: hidden;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a {
   color: #4a6f8a;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu {
   left: -250px;
   top: 15px;
   opacity: 0;
   visibility: hidden;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a {
   color: #080a3c;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #ffffff;
   background-color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu {
   left: -250px;
   top: 15px;
   opacity: 0;
   visibility: hidden;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a {
   color: #080a3c;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:hover, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a:focus, .main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li a.active {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:hover,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a:focus,
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  a.active {
   color: #ffffff;
   background-color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li.active
+  a {
   color: #ffffff;
   background-color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li:hover
+  .dropdown-menu {
   opacity: 1;
   visibility: visible;
   top: 0;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li.active
+  a {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li:hover
+  .dropdown-menu {
   opacity: 1;
   visibility: visible;
   top: 0;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li.active
+  a {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li:hover
+  .dropdown-menu {
   opacity: 1;
   visibility: visible;
   top: 0;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li.active a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li.active
+  a {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li:hover
+  .dropdown-menu {
   opacity: 1;
   visibility: visible;
   top: 0;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li.active a {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li.active
+  a {
   color: #006dff;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .dropdown-menu li .dropdown-menu li:hover .dropdown-menu {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .dropdown-menu
+  li
+  .dropdown-menu
+  li:hover
+  .dropdown-menu {
   opacity: 1;
   visibility: visible;
   top: 0;
@@ -1180,7 +1744,7 @@ Navbar Area CSS
 }
 
 .main-nav .navbar .navbar-nav .nav-item .mega-dropdown-menu h3::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -1201,7 +1765,13 @@ Navbar Area CSS
   border-bottom: 1px dashed #e5e5e5 !important;
 }
 
-.main-nav .navbar .navbar-nav .nav-item .mega-dropdown-menu .nav-item a:last-child {
+.main-nav
+  .navbar
+  .navbar-nav
+  .nav-item
+  .mega-dropdown-menu
+  .nav-item
+  a:last-child {
   border-bottom: none !important;
 }
 
@@ -1239,7 +1809,8 @@ Navbar Area CSS
   background-color: #080a3c;
 }
 
-.main-nav .navbar .others-options .optional-btn:hover::before, .main-nav .navbar .others-options .optional-btn:focus::before {
+.main-nav .navbar .others-options .optional-btn:hover::before,
+.main-nav .navbar .others-options .optional-btn:focus::before {
   border-color: #080a3c;
 }
 
@@ -1274,7 +1845,8 @@ Partner Area CSS
   margin-right: 0;
 }
 
-.main-banner .container-fluid .row .col-lg-5, .main-banner .container-fluid .row .col-lg-7 {
+.main-banner .container-fluid .row .col-lg-5,
+.main-banner .container-fluid .row .col-lg-7 {
   padding-left: 0;
   padding-right: 0;
 }
@@ -1294,7 +1866,8 @@ Partner Area CSS
   margin-right: 0;
 }
 
-.banner-section .container-fluid .row .col-lg-7, .banner-section .container-fluid .row .col-lg-5 {
+.banner-section .container-fluid .row .col-lg-7,
+.banner-section .container-fluid .row .col-lg-5 {
   padding-left: 0;
   padding-right: 0;
 }
@@ -1463,7 +2036,7 @@ Partner Area CSS
   margin-top: 50px;
 }
 
-.banner-content-slides.owl-theme .owl-nav [class*=owl-] {
+.banner-content-slides.owl-theme .owl-nav [class*="owl-"] {
   color: #080a3c;
   font-size: 25px;
   margin: 0 5px;
@@ -1477,17 +2050,17 @@ Partner Area CSS
   text-align: center;
 }
 
-.banner-content-slides.owl-theme .owl-nav [class*=owl-]:hover {
+.banner-content-slides.owl-theme .owl-nav [class*="owl-"]:hover {
   color: #ffffff;
   background-color: #13c4a1;
 }
 
-.banner-content-slides.owl-theme .owl-nav [class*=owl-].owl-prev {
+.banner-content-slides.owl-theme .owl-nav [class*="owl-"].owl-prev {
   border-radius: 0 0 0 10px;
   margin-left: 0;
 }
 
-.banner-content-slides.owl-theme .owl-nav [class*=owl-].owl-next {
+.banner-content-slides.owl-theme .owl-nav [class*="owl-"].owl-next {
   margin-right: 0;
   border-radius: 0 10px 0 0;
 }
@@ -1501,7 +2074,7 @@ Partner Area CSS
 
 .shape19 img {
   -webkit-animation: moveLeftBounce 3s linear infinite;
-          animation: moveLeftBounce 3s linear infinite;
+  animation: moveLeftBounce 3s linear infinite;
 }
 
 .shape20 {
@@ -1513,7 +2086,7 @@ Partner Area CSS
 
 .shape20 img {
   -webkit-animation: moveLeftBounce 3s linear infinite;
-          animation: moveLeftBounce 3s linear infinite;
+  animation: moveLeftBounce 3s linear infinite;
 }
 
 .shape21 {
@@ -1521,13 +2094,13 @@ Partner Area CSS
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   z-index: -1;
 }
 
 .shape21 img {
   -webkit-animation: moveBounce 5s linear infinite;
-          animation: moveBounce 5s linear infinite;
+  animation: moveBounce 5s linear infinite;
 }
 
 .shape22 {
@@ -1539,7 +2112,7 @@ Partner Area CSS
 
 .shape22 img {
   -webkit-animation: animationFramesOne 20s infinite linear;
-          animation: animationFramesOne 20s infinite linear;
+  animation: animationFramesOne 20s infinite linear;
 }
 
 .shape23 {
@@ -1551,13 +2124,13 @@ Partner Area CSS
 
 .shape23 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 10s;
-          animation-duration: 10s;
+  animation-duration: 10s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape24 {
@@ -1569,7 +2142,7 @@ Partner Area CSS
 
 .shape24 img {
   -webkit-animation: animationFramesOne 20s infinite linear;
-          animation: animationFramesOne 20s infinite linear;
+  animation: animationFramesOne 20s infinite linear;
 }
 
 .shape25 {
@@ -1581,13 +2154,13 @@ Partner Area CSS
 
 .shape25 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 10s;
-          animation-duration: 10s;
+  animation-duration: 10s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape26 {
@@ -1599,7 +2172,7 @@ Partner Area CSS
 
 .shape26 img {
   -webkit-animation: moveLeftBounce 3s linear infinite;
-          animation: moveLeftBounce 3s linear infinite;
+  animation: moveLeftBounce 3s linear infinite;
 }
 
 .chat-wrapper {
@@ -1607,7 +2180,7 @@ Partner Area CSS
   left: -20%;
   top: 50%;
   -webkit-transform: translateY(-44%);
-          transform: translateY(-44%);
+  transform: translateY(-44%);
   width: 510px;
   height: auto;
 }
@@ -1628,7 +2201,7 @@ Partner Area CSS
 
 .chat-wrapper .chat-container::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 5px grey;
-          box-shadow: inset 0 0 5px grey;
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
 
@@ -1684,18 +2257,18 @@ Partner Area CSS
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-          animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   background: #080a3c;
 }
 
 .chat-wrapper .spinner .bounce1 {
   -webkit-animation-delay: -0.32s;
-          animation-delay: -0.32s;
+  animation-delay: -0.32s;
 }
 
 .chat-wrapper .spinner .bounce2 {
   -webkit-animation-delay: -0.16s;
-          animation-delay: -0.16s;
+  animation-delay: -0.16s;
 }
 
 .message-left {
@@ -1739,7 +2312,7 @@ Partner Area CSS
 }
 
 .message-left .message-text::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 3.4px;
   bottom: -5px;
@@ -1747,7 +2320,7 @@ Partner Area CSS
   height: 10px;
   background: #f4f6fc;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .message-right {
@@ -1792,7 +2365,7 @@ Partner Area CSS
 }
 
 .message-right .message-text::before {
-  content: '';
+  content: "";
   position: absolute;
   right: 2px;
   bottom: -5px;
@@ -1800,7 +2373,7 @@ Partner Area CSS
   height: 10px;
   background: #2e5bff;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .message-right .spinner > div {
@@ -1808,51 +2381,55 @@ Partner Area CSS
 }
 
 @-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
   }
   40% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes sk-bouncedelay {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
   }
   40% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes animationFramesOne {
   0% {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
-            transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
   }
   20% {
     -webkit-transform: translate(73px, -1px) rotate(36deg);
-            transform: translate(73px, -1px) rotate(36deg);
+    transform: translate(73px, -1px) rotate(36deg);
   }
   40% {
     -webkit-transform: translate(141px, 72px) rotate(72deg);
-            transform: translate(141px, 72px) rotate(72deg);
+    transform: translate(141px, 72px) rotate(72deg);
   }
   60% {
     -webkit-transform: translate(83px, 122px) rotate(108deg);
-            transform: translate(83px, 122px) rotate(108deg);
+    transform: translate(83px, 122px) rotate(108deg);
   }
   80% {
     -webkit-transform: translate(-40px, 72px) rotate(144deg);
-            transform: translate(-40px, 72px) rotate(144deg);
+    transform: translate(-40px, 72px) rotate(144deg);
   }
   100% {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
-            transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
   }
 }
 
@@ -1867,7 +2444,8 @@ Partner Area CSS
   bottom: 15px;
 }
 
-.main-banner-two .banner-image-slider .owl-dots .owl-dot.active span, .main-banner-two .banner-image-slider .owl-dots .owl-dot:hover span {
+.main-banner-two .banner-image-slider .owl-dots .owl-dot.active span,
+.main-banner-two .banner-image-slider .owl-dots .owl-dot:hover span {
   background: #13c4a1;
 }
 
@@ -1881,15 +2459,20 @@ Partner Area CSS
   background-color: #13c4a1;
 }
 
-.banner-img.banner-video .video-box .video-btn::after, .banner-img.banner-video .video-box .video-btn::before {
+.banner-img.banner-video .video-box .video-btn::after,
+.banner-img.banner-video .video-box .video-btn::before {
   border: 1px solid #13c4a1;
 }
 
-.banner-img.banner-video .video-box .video-btn:hover, .banner-img.banner-video .video-box .video-btn:focus {
+.banner-img.banner-video .video-box .video-btn:hover,
+.banner-img.banner-video .video-box .video-btn:focus {
   background-color: #ff612f;
 }
 
-.banner-img.banner-video .video-box .video-btn:hover::after, .banner-img.banner-video .video-box .video-btn:hover::before, .banner-img.banner-video .video-box .video-btn:focus::after, .banner-img.banner-video .video-box .video-btn:focus::before {
+.banner-img.banner-video .video-box .video-btn:hover::after,
+.banner-img.banner-video .video-box .video-btn:hover::before,
+.banner-img.banner-video .video-box .video-btn:focus::after,
+.banner-img.banner-video .video-box .video-btn:focus::before {
   border-color: #ff612f;
 }
 
@@ -1906,7 +2489,8 @@ Partner Area CSS
 }
 
 @-webkit-keyframes border-transform {
-  0%, 100% {
+  0%,
+  100% {
     border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   }
   14% {
@@ -1930,7 +2514,8 @@ Partner Area CSS
 }
 
 @keyframes border-transform {
-  0%, 100% {
+  0%,
+  100% {
     border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   }
   14% {
@@ -1984,7 +2569,8 @@ Partner Area CSS
   margin-right: 0;
 }
 
-.partner-area .row .col-lg-3, .partner-area .row .col-lg-9 {
+.partner-area .row .col-lg-3,
+.partner-area .row .col-lg-9 {
   padding-left: 0;
   padding-right: 0;
 }
@@ -2013,7 +2599,7 @@ Partner Area CSS
 
 .single-partner-item a:hover img {
   -webkit-transform: scale(1.03);
-          transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 /*================================================
@@ -2028,40 +2614,40 @@ Services Area CSS
 .services-area.bg-right-color::before {
   position: absolute;
   right: 0;
-  content: '';
+  content: "";
   top: 0;
   width: 35%;
   height: 215%;
   z-index: -1;
   background-color: #13c4a1;
   -webkit-transform: skewY(-66deg);
-          transform: skewY(-66deg);
+  transform: skewY(-66deg);
 }
 
 .services-area.bg-left-color::before {
   position: absolute;
   left: 0;
-  content: '';
+  content: "";
   top: 0;
   width: 35%;
   height: 215%;
   z-index: -1;
   background-color: #13c4a1;
   -webkit-transform: skewY(66deg);
-          transform: skewY(66deg);
+  transform: skewY(66deg);
 }
 
 .services-area.bg-right-shape::before {
   position: absolute;
   right: 0;
-  content: '';
+  content: "";
   top: 0;
   width: 45%;
   height: 215%;
   z-index: -1;
   background-color: #fbfbfb;
   -webkit-transform: skewY(-66deg);
-          transform: skewY(-66deg);
+  transform: skewY(-66deg);
 }
 
 .services-area.bg-left-shape::before {
@@ -2071,7 +2657,7 @@ Services Area CSS
 .services-content {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   max-width: 50%;
   padding-left: 15px;
   padding-right: 15px;
@@ -2120,7 +2706,7 @@ Services Area CSS
 .services-image {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   max-width: 50%;
   padding-left: 15px;
   padding-right: 15px;
@@ -2140,7 +2726,7 @@ Services Area CSS
   background-color: #ffffff;
   border: 1px solid #f2effc;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
-          box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
+  box-shadow: 0px 2px 4px 0px rgba(12, 0, 46, 0.04);
   border-radius: 30px;
   font-size: 15px;
   padding: 12px 22px;
@@ -2194,7 +2780,7 @@ Video Presentation Area CSS
   display: inline-block;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 80px;
   height: 80px;
   background-color: #ff612f;
@@ -2206,8 +2792,9 @@ Video Presentation Area CSS
   margin-right: auto;
 }
 
-.video-box .video-btn::after, .video-box .video-btn::before {
-  content: '';
+.video-box .video-btn::after,
+.video-box .video-btn::before {
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -2228,27 +2815,31 @@ Video Presentation Area CSS
   top: 50%;
   z-index: 1;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   margin-left: auto;
   margin-right: auto;
 }
 
 .video-box .video-btn::before {
   -webkit-animation: ripple 2s linear infinite;
-          animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
 }
 
 .video-box .video-btn::after {
   -webkit-animation: ripple 2s linear 1s infinite;
-          animation: ripple 2s linear 1s infinite;
+  animation: ripple 2s linear 1s infinite;
 }
 
-.video-box .video-btn:hover, .video-box .video-btn:focus {
+.video-box .video-btn:hover,
+.video-box .video-btn:focus {
   background-color: #006dff;
   color: #ffffff;
 }
 
-.video-box .video-btn:hover::after, .video-box .video-btn:hover::before, .video-box .video-btn:focus::after, .video-box .video-btn:focus::before {
+.video-box .video-btn:hover::after,
+.video-box .video-btn:hover::before,
+.video-box .video-btn:focus::after,
+.video-box .video-btn:focus::before {
   border-color: #006dff;
 }
 
@@ -2258,7 +2849,7 @@ Video Presentation Area CSS
   right: 0;
   top: 90%;
   -webkit-transform: translateY(-90%);
-          transform: translateY(-90%);
+  transform: translateY(-90%);
   z-index: -1;
   text-align: center;
   margin-left: auto;
@@ -2274,13 +2865,13 @@ Video Presentation Area CSS
 
 .shape1 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 10s;
-          animation-duration: 10s;
+  animation-duration: 10s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape2 {
@@ -2292,7 +2883,7 @@ Video Presentation Area CSS
 
 .shape2 img {
   -webkit-animation: moveScale 3s linear infinite;
-          animation: moveScale 3s linear infinite;
+  animation: moveScale 3s linear infinite;
 }
 
 .shape3 {
@@ -2304,7 +2895,7 @@ Video Presentation Area CSS
 
 .shape3 img {
   -webkit-animation: moveScale 3s linear infinite;
-          animation: moveScale 3s linear infinite;
+  animation: moveScale 3s linear infinite;
 }
 
 .shape4 {
@@ -2330,21 +2921,21 @@ Video Presentation Area CSS
 
 .shape6 img {
   -webkit-animation: moveLeftBounce 5s linear infinite;
-          animation: moveLeftBounce 5s linear infinite;
+  animation: moveLeftBounce 5s linear infinite;
 }
 
 .shape7 {
   position: absolute;
   top: 40%;
   -webkit-transform: translateY(-40%);
-          transform: translateY(-40%);
+  transform: translateY(-40%);
   left: 10%;
   z-index: -1;
 }
 
 .shape7 img {
   -webkit-animation: moveBounce 5s linear infinite;
-          animation: moveBounce 5s linear infinite;
+  animation: moveBounce 5s linear infinite;
 }
 
 .shape8 {
@@ -2353,18 +2944,18 @@ Video Presentation Area CSS
   top: 60%;
   z-index: -1;
   -webkit-transform: translateY(-60%);
-          transform: translateY(-60%);
+  transform: translateY(-60%);
 }
 
 .shape8 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 10s;
-          animation-duration: 10s;
+  animation-duration: 10s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape9 {
@@ -2373,93 +2964,93 @@ Video Presentation Area CSS
   top: 40%;
   z-index: -1;
   -webkit-transform: translateY(-40%);
-          transform: translateY(-40%);
+  transform: translateY(-40%);
 }
 
 .shape9 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 20s;
-          animation-duration: 20s;
+  animation-duration: 20s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 @-webkit-keyframes moveBounce {
   0% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
   50% {
     -webkit-transform: translateY(20px);
-            transform: translateY(20px);
+    transform: translateY(20px);
   }
   100% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
 }
 
 @keyframes moveBounce {
   0% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
   50% {
     -webkit-transform: translateY(20px);
-            transform: translateY(20px);
+    transform: translateY(20px);
   }
   100% {
     -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+    transform: translateY(0px);
   }
 }
 
 @-webkit-keyframes moveLeftBounce {
   0% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
   50% {
     -webkit-transform: translateX(5px);
-            transform: translateX(5px);
+    transform: translateX(5px);
   }
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
 @keyframes moveLeftBounce {
   0% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
   50% {
     -webkit-transform: translateX(5px);
-            transform: translateX(5px);
+    transform: translateX(5px);
   }
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
 @-webkit-keyframes ripple {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   75% {
     -webkit-transform: scale(1.75);
-            transform: scale(1.75);
+    transform: scale(1.75);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
@@ -2467,16 +3058,16 @@ Video Presentation Area CSS
 @keyframes ripple {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   75% {
     -webkit-transform: scale(1.75);
-            transform: scale(1.75);
+    transform: scale(1.75);
     opacity: 1;
   }
   100% {
     -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
@@ -2484,52 +3075,52 @@ Video Presentation Area CSS
 @-webkit-keyframes rotateMe {
   from {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes rotateMe {
   from {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes moveScale {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.8);
-            transform: scale(0.8);
+    transform: scale(0.8);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes moveScale {
   0% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
   50% {
     -webkit-transform: scale(0.8);
-            transform: scale(0.8);
+    transform: scale(0.8);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -2581,7 +3172,7 @@ FunFacts Area CSS
   margin: auto;
   position: relative;
   margin-bottom: 15px;
-  background: #F6F4FD;
+  background: #f6f4fd;
   border-radius: 100%;
   text-align: center;
 }
@@ -2603,7 +3194,7 @@ FunFacts Area CSS
 }
 
 .contact-cta-box h3 {
-  color:#090D3A;
+  color: #090d3a;
   margin-bottom: 0;
   font-size: 22px;
   font-weight: 600;
@@ -2622,7 +3213,7 @@ FunFacts Area CSS
   right: 30px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .contact-cta-box .default-btn i {
@@ -2633,7 +3224,8 @@ FunFacts Area CSS
   background-color: #ff612f;
 }
 
-.contact-cta-box .default-btn:hover i, .contact-cta-box .default-btn:focus i {
+.contact-cta-box .default-btn:hover i,
+.contact-cta-box .default-btn:focus i {
   color: #ffffff;
 }
 
@@ -2672,7 +3264,7 @@ Features Area CSS
   right: -15px;
   bottom: -15px;
   border: 5px solid #006dff;
-  content: '';
+  content: "";
   position: absolute;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -2685,11 +3277,11 @@ Features Area CSS
   margin: 0 auto;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .single-features-box h3 {
-  color:#090D3A;
+  color: #090d3a;
   margin-bottom: 10px;
   font-size: 22px;
   font-weight: 600;
@@ -2697,7 +3289,7 @@ Features Area CSS
 
 .single-features-box:hover .icon {
   -webkit-animation: bounce 2s;
-          animation: bounce 2s;
+  animation: bounce 2s;
   bottom: 25px;
 }
 
@@ -2738,7 +3330,7 @@ Features Area CSS
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -2759,7 +3351,7 @@ Features Area CSS
   top: -52px;
   z-index: -1;
   color: #006dff;
-  opacity: .06;
+  opacity: 0.06;
   font-size: 190px;
   line-height: 190px;
   -webkit-transition: 0.5s;
@@ -2771,9 +3363,9 @@ Features Area CSS
   border-radius: 0;
   border-color: #ffffff;
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .features-box:hover .icon {
@@ -2814,7 +3406,7 @@ Features Area CSS
 }
 
 .read-more:hover {
-  color: #000000
+  color: #000000;
 }
 
 .col-lg-4:nth-child(1) .single-features-box .icon {
@@ -2935,7 +3527,7 @@ Features Area CSS
 .single-features-card {
   background-color: #ffffff;
   -webkit-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.03);
-          box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.03);
   border-radius: 35px;
   padding: 30px;
   -webkit-transition: 0.5s;
@@ -2946,7 +3538,7 @@ Features Area CSS
 
 .single-features-card:hover {
   -webkit-box-shadow: 0 5px 50px 0 rgba(0, 0, 0, 0.08);
-          box-shadow: 0 5px 50px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 50px 0 rgba(0, 0, 0, 0.08);
   margin-top: -5px;
 }
 
@@ -2959,7 +3551,7 @@ Features Area CSS
   margin: auto;
   position: relative;
   margin-bottom: 25px;
-  background: #F6F4FD;
+  background: #f6f4fd;
   border-radius: 100%;
   text-align: center;
 }
@@ -2994,7 +3586,7 @@ Features Area CSS
 
 .features-box-one:hover {
   -webkit-box-shadow: 0 5px 50px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 5px 50px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.08);
   margin-top: -5px;
 }
 
@@ -3114,7 +3706,7 @@ Team Area CSS
 .single-team-box .image .social li {
   display: inline-block;
   -webkit-transform: translateY(30px);
-          transform: translateY(30px);
+  transform: translateY(30px);
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
   opacity: 0;
@@ -3143,7 +3735,7 @@ Team Area CSS
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -3155,22 +3747,22 @@ Team Area CSS
 
 .single-team-box .image .social li:nth-child(1) {
   -webkit-transition-delay: 0.1s;
-          transition-delay: 0.1s;
+  transition-delay: 0.1s;
 }
 
 .single-team-box .image .social li:nth-child(2) {
   -webkit-transition-delay: 0.2s;
-          transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .single-team-box .image .social li:nth-child(3) {
   -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 .single-team-box .image .social li:nth-child(4) {
   -webkit-transition-delay: 0.4s;
-          transition-delay: 0.4s;
+  transition-delay: 0.4s;
 }
 
 .single-team-box .content {
@@ -3197,59 +3789,71 @@ Team Area CSS
 
 .single-team-box:hover .image .social li {
   -webkit-transform: translateY(0);
-          transform: translateY(0);
+  transform: translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
-.col-lg-3:nth-child(1) .single-team-box .image, .col-lg-3:nth-child(7) .single-team-box .image {
+.col-lg-3:nth-child(1) .single-team-box .image,
+.col-lg-3:nth-child(7) .single-team-box .image {
   border-color: #ffdacf;
 }
 
-.col-lg-3:nth-child(1) .single-team-box .image .social li a:hover, .col-lg-3:nth-child(7) .single-team-box .image .social li a:hover {
+.col-lg-3:nth-child(1) .single-team-box .image .social li a:hover,
+.col-lg-3:nth-child(7) .single-team-box .image .social li a:hover {
   color: #ffffff;
   background-color: #ff612f;
 }
 
-.col-lg-3:nth-child(1) .single-team-box .content span, .col-lg-3:nth-child(7) .single-team-box .content span {
+.col-lg-3:nth-child(1) .single-team-box .content span,
+.col-lg-3:nth-child(7) .single-team-box .content span {
   color: #ff612f;
 }
 
-.col-lg-3:nth-child(1) .single-team-box:hover .image, .col-lg-3:nth-child(7) .single-team-box:hover .image {
+.col-lg-3:nth-child(1) .single-team-box:hover .image,
+.col-lg-3:nth-child(7) .single-team-box:hover .image {
   border-color: #ff612f;
 }
 
-.col-lg-3:nth-child(3) .single-team-box .image, .col-lg-3:nth-child(5) .single-team-box .image {
+.col-lg-3:nth-child(3) .single-team-box .image,
+.col-lg-3:nth-child(5) .single-team-box .image {
   border-color: #b2b3c3;
 }
 
-.col-lg-3:nth-child(3) .single-team-box .image .social li a:hover, .col-lg-3:nth-child(5) .single-team-box .image .social li a:hover {
+.col-lg-3:nth-child(3) .single-team-box .image .social li a:hover,
+.col-lg-3:nth-child(5) .single-team-box .image .social li a:hover {
   color: #ffffff;
   background-color: #080a3c;
 }
 
-.col-lg-3:nth-child(3) .single-team-box .content span, .col-lg-3:nth-child(5) .single-team-box .content span {
+.col-lg-3:nth-child(3) .single-team-box .content span,
+.col-lg-3:nth-child(5) .single-team-box .content span {
   color: #080a3c;
 }
 
-.col-lg-3:nth-child(3) .single-team-box:hover .image, .col-lg-3:nth-child(5) .single-team-box:hover .image {
+.col-lg-3:nth-child(3) .single-team-box:hover .image,
+.col-lg-3:nth-child(5) .single-team-box:hover .image {
   border-color: #080a3c;
 }
 
-.col-lg-3:nth-child(4) .single-team-box .image, .col-lg-3:nth-child(6) .single-team-box .image {
+.col-lg-3:nth-child(4) .single-team-box .image,
+.col-lg-3:nth-child(6) .single-team-box .image {
   border-color: #fed2e1;
 }
 
-.col-lg-3:nth-child(4) .single-team-box .image .social li a:hover, .col-lg-3:nth-child(6) .single-team-box .image .social li a:hover {
+.col-lg-3:nth-child(4) .single-team-box .image .social li a:hover,
+.col-lg-3:nth-child(6) .single-team-box .image .social li a:hover {
   color: #ffffff;
   background-color: #fc4c86;
 }
 
-.col-lg-3:nth-child(4) .single-team-box .content span, .col-lg-3:nth-child(6) .single-team-box .content span {
+.col-lg-3:nth-child(4) .single-team-box .content span,
+.col-lg-3:nth-child(6) .single-team-box .content span {
   color: #fc4c86;
 }
 
-.col-lg-3:nth-child(4) .single-team-box:hover .image, .col-lg-3:nth-child(6) .single-team-box:hover .image {
+.col-lg-3:nth-child(4) .single-team-box:hover .image,
+.col-lg-3:nth-child(6) .single-team-box:hover .image {
   border-color: #fc4c86;
 }
 
@@ -3282,14 +3886,14 @@ Feedback Area CSS
   margin-left: 45px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
-          box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
+  box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
   padding: 30px 30px 30px 160px;
 }
 
 .single-feedback-item .feedback-desc p {
   font-size: 15px;
   line-height: 21px;
-  color: #4A6F8A;
+  color: #4a6f8a;
   margin-bottom: 0;
 }
 
@@ -3346,12 +3950,15 @@ Feedback Area CSS
 
 .feedback-slides.owl-theme .owl-item .single-feedback-item .feedback-desc {
   -webkit-box-shadow: unset;
-          box-shadow: unset;
+  box-shadow: unset;
 }
 
-.feedback-slides.owl-theme .owl-item.active .single-feedback-item .feedback-desc {
+.feedback-slides.owl-theme
+  .owl-item.active
+  .single-feedback-item
+  .feedback-desc {
   -webkit-box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
-          box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
+  box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
 }
 
 .feedback-slides.owl-theme .owl-nav.disabled + .owl-dots {
@@ -3371,7 +3978,7 @@ Feedback Area CSS
 }
 
 .feedback-slides.owl-theme .owl-dots .owl-dot span::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -3381,14 +3988,15 @@ Feedback Area CSS
   margin: 2px;
   background-color: #ff612f;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.feedback-slides.owl-theme .owl-dots .owl-dot.active span::before, .feedback-slides.owl-theme .owl-dots .owl-dot:hover span::before {
+.feedback-slides.owl-theme .owl-dots .owl-dot.active span::before,
+.feedback-slides.owl-theme .owl-dots .owl-dot:hover span::before {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 
 .testimonials-area {
@@ -3406,7 +4014,7 @@ Feedback Area CSS
   overflow: hidden;
   -ms-flex-align: center !important;
   -webkit-box-align: center !important;
-          align-items: center !important;
+  align-items: center !important;
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -3420,7 +4028,7 @@ Feedback Area CSS
 .single-testimonials-item .client-info {
   -ms-flex: 0 0 30%;
   -webkit-box-flex: 0;
-          flex: 0 0 30%;
+  flex: 0 0 30%;
   max-width: 30%;
   text-align: center;
 }
@@ -3450,7 +4058,7 @@ Feedback Area CSS
 .single-testimonials-item .testimonials-desc {
   -ms-flex: 0 0 70%;
   -webkit-box-flex: 0;
-          flex: 0 0 70%;
+  flex: 0 0 70%;
   padding-left: 15px;
   max-width: 70%;
 }
@@ -3504,7 +4112,7 @@ Feedback Area CSS
 }
 
 .testimonials-slides.owl-theme .owl-dots .owl-dot span::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -3514,14 +4122,15 @@ Feedback Area CSS
   margin: 2px;
   background-color: #ffffff;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.testimonials-slides.owl-theme .owl-dots .owl-dot.active span::before, .testimonials-slides.owl-theme .owl-dots .owl-dot:hover span::before {
+.testimonials-slides.owl-theme .owl-dots .owl-dot.active span::before,
+.testimonials-slides.owl-theme .owl-dots .owl-dot:hover span::before {
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 
 /*================================================
@@ -3544,14 +4153,14 @@ Pricing Area CSS
 }
 
 .single-pricing-table .pricing-header h3 {
-  color: #090D3A;
+  color: #090d3a;
   margin-bottom: 0;
   font-size: 22px;
   font-weight: 500;
 }
 
 .single-pricing-table .price {
-  color: #090D3A;
+  color: #090d3a;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   padding-top: 8px;
@@ -3563,7 +4172,7 @@ Pricing Area CSS
 }
 
 .single-pricing-table .price sup {
-  color: #090D3A;
+  color: #090d3a;
   top: -18px;
   left: -5px;
   font-size: 18px;
@@ -3624,7 +4233,8 @@ Pricing Area CSS
   text-align: left;
 }
 
-.single-pricing-table.left-align .pricing-header, .single-pricing-table.left-align .price {
+.single-pricing-table.left-align .pricing-header,
+.single-pricing-table.left-align .price {
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -3684,7 +4294,7 @@ Pricing Area CSS
   font-size: 18px;
   top: 48%;
   -webkit-transform: translateY(-48%);
-          transform: translateY(-48%);
+  transform: translateY(-48%);
   left: 30px;
 }
 
@@ -3737,7 +4347,8 @@ Pricing Area CSS
   background-color: #ff612f;
 }
 
-.col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:hover i, .col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:focus i {
+.col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:hover i,
+.col-lg-4:nth-child(3) .single-pricing-table .btn-box .default-btn:focus i {
   color: #ffff;
 }
 
@@ -3791,7 +4402,7 @@ FAQ Area CSS
   right: 20px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   color: #080a3c;
   font-size: 20px;
   -webkit-transition: 0.5s;
@@ -3822,7 +4433,8 @@ FAQ Area CSS
   background-color: #f4f5fe;
 }
 
-.bg-color-f4f5fe .faq-accordion .accordion .accordion__button, .bg-color-f4f5fe .faq-accordion .accordion .accordion__panel {
+.bg-color-f4f5fe .faq-accordion .accordion .accordion__button,
+.bg-color-f4f5fe .faq-accordion .accordion .accordion__panel {
   background: #ffffff;
 }
 
@@ -3866,7 +4478,7 @@ App Download Area CSS
   display: inline-block;
   background-color: #ffffff;
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   padding: 15px 25px 15px 74px;
   border-radius: 5px;
   position: relative;
@@ -3888,12 +4500,13 @@ App Download Area CSS
   left: 25px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-.app-download-content .btn-box .play-store-btn:hover, .app-download-content .btn-box .play-store-btn:focus {
+.app-download-content .btn-box .play-store-btn:hover,
+.app-download-content .btn-box .play-store-btn:focus {
   -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .app-download-content .btn-box .apple-store-btn {
@@ -3901,7 +4514,7 @@ App Download Area CSS
   display: inline-block;
   background-color: #ffffff;
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   padding: 15px 25px 15px 74px;
   border-radius: 5px;
   position: relative;
@@ -3923,12 +4536,13 @@ App Download Area CSS
   left: 25px;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-.app-download-content .btn-box .apple-store-btn:hover, .app-download-content .btn-box .apple-store-btn:focus {
+.app-download-content .btn-box .apple-store-btn:hover,
+.app-download-content .btn-box .apple-store-btn:focus {
   -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 /*================================================
@@ -3948,7 +4562,7 @@ Our Loving Clients Area CSS
 .single-clients-logo {
   -ms-flex: 0 0 20%;
   -webkit-box-flex: 0;
-          flex: 0 0 20%;
+  flex: 0 0 20%;
   max-width: 20%;
   padding-left: 5px;
   padding-right: 5px;
@@ -3971,14 +4585,14 @@ Our Loving Clients Area CSS
 
 .single-clients-logo a:hover {
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .single-clients-logo a:hover img {
   -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .single-clients-logo:nth-child(6) {
@@ -4000,7 +4614,7 @@ Blog Area CSS
   border-radius: 2px;
   margin-bottom: 30px;
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -4058,7 +4672,7 @@ Blog Area CSS
 .single-blog-post .post-content .post-info {
   -ms-flex-align: center !important;
   -webkit-box-align: center !important;
-          align-items: center !important;
+  align-items: center !important;
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -4070,7 +4684,7 @@ Blog Area CSS
 .single-blog-post .post-content .post-info .post-by {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   position: relative;
   max-width: 50%;
   padding-left: 52px;
@@ -4085,7 +4699,7 @@ Blog Area CSS
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .single-blog-post .post-content .post-info .post-by h6 {
@@ -4098,7 +4712,7 @@ Blog Area CSS
 .single-blog-post .post-content .post-info .details-btn {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   text-align: right;
   max-width: 50%;
 }
@@ -4121,7 +4735,7 @@ Blog Area CSS
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -4133,7 +4747,7 @@ Blog Area CSS
 
 .single-blog-post:hover .post-image a img {
   -webkit-transform: scale(1.2) rotate(5deg);
-          transform: scale(1.2) rotate(5deg);
+  transform: scale(1.2) rotate(5deg);
 }
 
 .blog-notes {
@@ -4195,7 +4809,7 @@ Blog Details Area CSS
 }
 
 .blog-details-desc .article-content .entry-meta ul li::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 12px;
   right: -16px;
@@ -4263,7 +4877,7 @@ Blog Details Area CSS
 .blog-details-desc .article-content .block-gallery.columns-3 li {
   -ms-flex: 0 0 33.3333%;
   -webkit-box-flex: 0;
-          flex: 0 0 33.3333%;
+  flex: 0 0 33.3333%;
   max-width: 33.3333%;
   padding-right: 10px;
   padding-left: 10px;
@@ -4329,7 +4943,8 @@ Blog Details Area CSS
   font-size: 22px;
 }
 
-.comments-area ol, .comments-area ul {
+.comments-area ol,
+.comments-area ul {
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -4404,7 +5019,7 @@ Blog Details Area CSS
 }
 
 .comments-area .comment-metadata {
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
   color: #4a6f8a;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -4424,7 +5039,10 @@ Blog Details Area CSS
   font-size: 22px;
 }
 
-.comments-area .comment-respond .comment-reply-title #cancel-comment-reply-link {
+.comments-area
+  .comment-respond
+  .comment-reply-title
+  #cancel-comment-reply-link {
   display: inline-block;
 }
 
@@ -4454,7 +5072,19 @@ Blog Details Area CSS
   margin-bottom: 5px;
 }
 
-.comments-area .comment-respond input[type="date"], .comments-area .comment-respond input[type="time"], .comments-area .comment-respond input[type="datetime-local"], .comments-area .comment-respond input[type="week"], .comments-area .comment-respond input[type="month"], .comments-area .comment-respond input[type="text"], .comments-area .comment-respond input[type="email"], .comments-area .comment-respond input[type="url"], .comments-area .comment-respond input[type="password"], .comments-area .comment-respond input[type="search"], .comments-area .comment-respond input[type="tel"], .comments-area .comment-respond input[type="number"], .comments-area .comment-respond textarea {
+.comments-area .comment-respond input[type="date"],
+.comments-area .comment-respond input[type="time"],
+.comments-area .comment-respond input[type="datetime-local"],
+.comments-area .comment-respond input[type="week"],
+.comments-area .comment-respond input[type="month"],
+.comments-area .comment-respond input[type="text"],
+.comments-area .comment-respond input[type="email"],
+.comments-area .comment-respond input[type="url"],
+.comments-area .comment-respond input[type="password"],
+.comments-area .comment-respond input[type="search"],
+.comments-area .comment-respond input[type="tel"],
+.comments-area .comment-respond input[type="number"],
+.comments-area .comment-respond textarea {
   display: block;
   width: 100%;
   background-color: #ffffff;
@@ -4465,7 +5095,19 @@ Blog Details Area CSS
   transition: 0.5s;
 }
 
-.comments-area .comment-respond input[type="date"]:focus, .comments-area .comment-respond input[type="time"]:focus, .comments-area .comment-respond input[type="datetime-local"]:focus, .comments-area .comment-respond input[type="week"]:focus, .comments-area .comment-respond input[type="month"]:focus, .comments-area .comment-respond input[type="text"]:focus, .comments-area .comment-respond input[type="email"]:focus, .comments-area .comment-respond input[type="url"]:focus, .comments-area .comment-respond input[type="password"]:focus, .comments-area .comment-respond input[type="search"]:focus, .comments-area .comment-respond input[type="tel"]:focus, .comments-area .comment-respond input[type="number"]:focus, .comments-area .comment-respond textarea:focus {
+.comments-area .comment-respond input[type="date"]:focus,
+.comments-area .comment-respond input[type="time"]:focus,
+.comments-area .comment-respond input[type="datetime-local"]:focus,
+.comments-area .comment-respond input[type="week"]:focus,
+.comments-area .comment-respond input[type="month"]:focus,
+.comments-area .comment-respond input[type="text"]:focus,
+.comments-area .comment-respond input[type="email"]:focus,
+.comments-area .comment-respond input[type="url"]:focus,
+.comments-area .comment-respond input[type="password"]:focus,
+.comments-area .comment-respond input[type="search"]:focus,
+.comments-area .comment-respond input[type="tel"]:focus,
+.comments-area .comment-respond input[type="number"]:focus,
+.comments-area .comment-respond textarea:focus {
   border-color: #13c4a1;
 }
 
@@ -4532,7 +5174,8 @@ Blog Details Area CSS
   font-size: 15px;
 }
 
-.comments-area .comment-respond .form-submit input:hover, .comments-area .comment-respond .form-submit input:focus {
+.comments-area .comment-respond .form-submit input:hover,
+.comments-area .comment-respond .form-submit input:focus {
   color: #ffffff;
   background-color: #ff612f;
 }
@@ -4553,7 +5196,7 @@ Blog Details Area CSS
 .prev-link-wrapper {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   max-width: 50%;
   padding-right: 15px;
 }
@@ -4600,7 +5243,7 @@ Blog Details Area CSS
 
 .prev-link-wrapper .image-prev::after {
   display: block;
-  content: '';
+  content: "";
   height: 100%;
   width: 100%;
   position: absolute;
@@ -4619,7 +5262,7 @@ Blog Details Area CSS
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 0;
   margin: 0 auto;
   text-align: center;
@@ -4658,7 +5301,7 @@ Blog Details Area CSS
 .next-link-wrapper {
   -ms-flex: 0 0 50%;
   -webkit-box-flex: 0;
-          flex: 0 0 50%;
+  flex: 0 0 50%;
   max-width: 50%;
   text-align: right;
   padding-left: 15px;
@@ -4706,7 +5349,7 @@ Blog Details Area CSS
 
 .next-link-wrapper .image-next::after {
   display: block;
-  content: '';
+  content: "";
   height: 100%;
   width: 100%;
   position: absolute;
@@ -4725,7 +5368,7 @@ Blog Details Area CSS
   left: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 0;
   margin: 0 auto;
   text-align: center;
@@ -4761,7 +5404,8 @@ Blog Details Area CSS
   font-size: 14px;
 }
 
-blockquote, .blockquote {
+blockquote,
+.blockquote {
   overflow: hidden;
   background-color: #fafafa;
   padding: 50px 75px !important;
@@ -4772,7 +5416,8 @@ blockquote, .blockquote {
   margin-top: 20px;
 }
 
-blockquote p, .blockquote p {
+blockquote p,
+.blockquote p {
   color: #080a3c;
   line-height: 1.6;
   margin-bottom: 0;
@@ -4781,11 +5426,13 @@ blockquote p, .blockquote p {
   font-size: 20px !important;
 }
 
-blockquote cite, .blockquote cite {
+blockquote cite,
+.blockquote cite {
   display: none;
 }
 
-blockquote::before, .blockquote::before {
+blockquote::before,
+.blockquote::before {
   color: #efefef;
   position: absolute;
   left: 50px;
@@ -4799,8 +5446,9 @@ blockquote::before, .blockquote::before {
   font-size: 135px;
 }
 
-blockquote::after, .blockquote::after {
-  content: '';
+blockquote::after,
+.blockquote::after {
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -4850,17 +5498,17 @@ Page Title Area CSS
 }
 
 .page-title-area::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: .6;
+  opacity: 0.6;
   height: 100%;
   z-index: -1;
   -webkit-animation: animatedBackground 15s linear infinite;
-          animation: animatedBackground 15s linear infinite;
+  animation: animatedBackground 15s linear infinite;
   background-image: url("../images/bg_lines.svg");
   background-repeat: repeat;
   background-position: center center;
@@ -4868,17 +5516,17 @@ Page Title Area CSS
 }
 
 .page-title-area-small::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: .6;
+  opacity: 0.6;
   height: 100%;
   z-index: -1;
   -webkit-animation: animatedBackground 15s linear infinite;
-          animation: animatedBackground 15s linear infinite;
+  animation: animatedBackground 15s linear infinite;
   background-image: url("../images/bg_lines.svg");
   background-repeat: repeat;
   background-position: center center;
@@ -4963,16 +5611,18 @@ Pagination Area CSS
   line-height: 48px;
   color: #080a3c;
   -webkit-box-shadow: 0 2px 10px 0 #d8dde6;
-          box-shadow: 0 2px 10px 0 #d8dde6;
+  box-shadow: 0 2px 10px 0 #d8dde6;
   font-size: 18px;
   font-weight: 500;
 }
 
-.pagination-area .page-numbers.current, .pagination-area .page-numbers:hover, .pagination-area .page-numbers:focus {
+.pagination-area .page-numbers.current,
+.pagination-area .page-numbers:hover,
+.pagination-area .page-numbers:focus {
   background: #006dff;
   color: #ffffff;
   -webkit-box-shadow: 0 2px 10px 0 #d8dde6;
-          box-shadow: 0 2px 10px 0 #d8dde6;
+  box-shadow: 0 2px 10px 0 #d8dde6;
 }
 
 /*================================================
@@ -4995,7 +5645,7 @@ Sidebar Widget Area CSS
 }
 
 .widget-area .widget .widget-title::before {
-  content: '';
+  content: "";
   position: absolute;
   background: #13c4a1;
   bottom: -1px;
@@ -5006,7 +5656,7 @@ Sidebar Widget Area CSS
 
 .widget-area .widget_search {
   -webkit-box-shadow: 0px 0px 29px 0px rgba(102, 102, 102, 0.1);
-          box-shadow: 0px 0px 29px 0px rgba(102, 102, 102, 0.1);
+  box-shadow: 0px 0px 29px 0px rgba(102, 102, 102, 0.1);
   background-color: #ffffff;
   padding: 15px;
 }
@@ -5060,7 +5710,7 @@ Sidebar Widget Area CSS
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 0;
   left: 0;
   margin-left: auto;
@@ -5165,7 +5815,7 @@ Sidebar Widget Area CSS
   position: absolute;
   height: 7px;
   width: 7px;
-  content: '';
+  content: "";
   left: 0;
   top: 8px;
 }
@@ -5211,7 +5861,7 @@ Sidebar Widget Area CSS
   position: absolute;
   height: 7px;
   width: 7px;
-  content: '';
+  content: "";
   left: 0;
   top: 8px;
 }
@@ -5248,7 +5898,7 @@ Sidebar Widget Area CSS
   background: #13c4a1;
   height: 7px;
   width: 7px;
-  content: '';
+  content: "";
   left: 0;
   top: 7px;
   position: absolute;
@@ -5286,7 +5936,7 @@ Sidebar Widget Area CSS
   background: #13c4a1;
   height: 7px;
   width: 7px;
-  content: '';
+  content: "";
   left: 0;
   top: 7px;
   position: absolute;
@@ -5329,7 +5979,7 @@ Sidebar Widget Area CSS
   background: #13c4a1;
   height: 7px;
   width: 7px;
-  content: '';
+  content: "";
   left: 0;
   top: 8px;
   position: absolute;
@@ -5359,7 +6009,8 @@ Sidebar Widget Area CSS
   margin-right: 4px;
 }
 
-.widget-area .tagcloud a:hover, .widget-area .tagcloud a:focus {
+.widget-area .tagcloud a:hover,
+.widget-area .tagcloud a:focus {
   color: #ffffff;
   background-color: #13c4a1;
   border-color: #13c4a1;
@@ -5426,7 +6077,7 @@ Login Area CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
+  box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
   height: 55px;
   font-size: 14px;
 }
@@ -5471,7 +6122,7 @@ Login Area CSS
   display: block;
   width: 100%;
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
-          box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
+  box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
   padding-left: 25px;
 }
 
@@ -5512,7 +6163,7 @@ Login Area CSS
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   left: 15px;
   font-size: 20px;
 }
@@ -5530,14 +6181,14 @@ Login Area CSS
 
 .login-content .login-form form .connect-with-social a.google {
   margin-top: 10px;
-  border-color: #EA4335;
-  color: #EA4335;
+  border-color: #ea4335;
+  color: #ea4335;
 }
 
 .login-content .login-form form .connect-with-social a.google:hover {
-  background-color: #EA4335;
+  background-color: #ea4335;
   color: #ffffff;
-  border-color: #EA4335;
+  border-color: #ea4335;
 }
 
 .login-content .login-form form .connect-with-social a:hover {
@@ -5610,7 +6261,7 @@ Signup Area CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
+  box-shadow: 0px 5px 28.5px 1.5px rgba(149, 152, 200, 0.2) !important;
   height: 55px;
   font-size: 14px;
 }
@@ -5635,7 +6286,10 @@ Signup Area CSS
   transition: 0.5s;
 }
 
-.signup-content .signup-form form .form-control:focus::-webkit-input-placeholder {
+.signup-content
+  .signup-form
+  form
+  .form-control:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
@@ -5655,7 +6309,7 @@ Signup Area CSS
   display: block;
   width: 100%;
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
-          box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
+  box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.2);
   padding-left: 25px;
 }
 
@@ -5688,7 +6342,7 @@ Signup Area CSS
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   left: 15px;
   font-size: 20px;
 }
@@ -5706,14 +6360,14 @@ Signup Area CSS
 
 .signup-content .signup-form form .connect-with-social a.google {
   margin-top: 10px;
-  border-color: #EA4335;
-  color: #EA4335;
+  border-color: #ea4335;
+  color: #ea4335;
 }
 
 .signup-content .signup-form form .connect-with-social a.google:hover {
-  background-color: #EA4335;
+  background-color: #ea4335;
   color: #ffffff;
-  border-color: #EA4335;
+  border-color: #ea4335;
 }
 
 .signup-content .signup-form form .connect-with-social a:hover {
@@ -5738,7 +6392,7 @@ Features Area CSS
   bottom: 0;
   left: 0;
   z-index: -1;
-  content: '';
+  content: "";
   position: absolute;
 }
 
@@ -5773,7 +6427,9 @@ Features Area CSS
   margin-right: -7px;
 }
 
-.subscribe-content form .row .col-lg-8, .subscribe-content form .row .col-lg-4, .subscribe-content form .row .col-lg-12 {
+.subscribe-content form .row .col-lg-8,
+.subscribe-content form .row .col-lg-4,
+.subscribe-content form .row .col-lg-12 {
   padding-left: 7px;
   padding-right: 7px;
 }
@@ -5849,11 +6505,13 @@ Features Area CSS
   top: 4px;
 }
 
-.subscribe-content form button:hover, .subscribe-content form button:focus {
+.subscribe-content form button:hover,
+.subscribe-content form button:focus {
   background-color: #ff612f;
 }
 
-.subscribe-content form button:hover i, .subscribe-content form button:focus i {
+.subscribe-content form button:hover i,
+.subscribe-content form button:focus i {
   color: #080a3c;
 }
 
@@ -5866,7 +6524,7 @@ Features Area CSS
 
 .shape14 img {
   -webkit-animation: moveLeftBounce 5s linear infinite;
-          animation: moveLeftBounce 5s linear infinite;
+  animation: moveLeftBounce 5s linear infinite;
 }
 
 .shape15 {
@@ -5913,7 +6571,7 @@ Free Trial Area CSS
 }
 
 .free-trial-content h2 {
-  color:'#090D3A';
+  color: "#090D3A";
   font-size: 40px;
   font-weight: 600;
   line-height: 46px;
@@ -5938,13 +6596,13 @@ Free Trial Area CSS
 
 .shape10 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 20s;
-          animation-duration: 20s;
+  animation-duration: 20s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape11 {
@@ -5956,7 +6614,7 @@ Free Trial Area CSS
 
 .shape11 img {
   -webkit-animation: moveBounce 5s linear infinite;
-          animation: moveBounce 5s linear infinite;
+  animation: moveBounce 5s linear infinite;
 }
 
 .shape12 {
@@ -5968,13 +6626,13 @@ Free Trial Area CSS
 
 .shape12 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 20s;
-          animation-duration: 20s;
+  animation-duration: 20s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 .shape13 {
@@ -5986,13 +6644,13 @@ Free Trial Area CSS
 
 .shape13 img {
   -webkit-animation-name: rotateMe;
-          animation-name: rotateMe;
+  animation-name: rotateMe;
   -webkit-animation-duration: 20s;
-          animation-duration: 20s;
+  animation-duration: 20s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 /*================================================
@@ -6001,7 +6659,7 @@ Contact Area CSS
 .contact-inner {
   background-color: #ffffff;
   -webkit-box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
-          box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
+  box-shadow: 0 10px 35px 5px rgba(137, 173, 255, 0.15);
   padding: 50px 30px;
 }
 
@@ -6058,7 +6716,8 @@ Contact Area CSS
   margin-right: -7px;
 }
 
-.contact-form form .row .col-lg-6, .contact-form form .row .col-lg-12 {
+.contact-form form .row .col-lg-6,
+.contact-form form .row .col-lg-12 {
   padding-left: 7px;
   padding-right: 7px;
 }
@@ -6078,7 +6737,7 @@ Contact Area CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-box-shadow: unset !important;
-          box-shadow: unset !important;
+  box-shadow: unset !important;
   font-size: 14px;
   font-weight: 400;
 }
@@ -6119,7 +6778,7 @@ form .form-group .form-control {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-box-shadow: unset !important;
-          box-shadow: unset !important;
+  box-shadow: unset !important;
   font-size: 14px;
   font-weight: 400;
 }
@@ -6144,12 +6803,13 @@ form .form-group .form-control::placeholder {
 
 .contact-form form .default-btn {
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.3) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.3) !important;
+  box-shadow: 0px 5px 28.5px 1.5px rgba(255, 97, 47, 0.3) !important;
 }
 
-.contact-form form .default-btn:hover, .contact-form form .default-btn:focus {
+.contact-form form .default-btn:hover,
+.contact-form form .default-btn:focus {
   -webkit-box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
-          box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
+  box-shadow: 0px 5px 28.5px 1.5px rgba(43, 160, 255, 0.678) !important;
 }
 
 .contact-form .with-errors ul {
@@ -6238,7 +6898,7 @@ form .form-group .form-control::placeholder {
   right: 0;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -6261,7 +6921,7 @@ Footer Area CSS
 }
 
 .footer-area::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -6269,7 +6929,7 @@ Footer Area CSS
   height: 100%;
   z-index: -1;
   -webkit-animation: imageChange 1s linear 1s infinite;
-          animation: imageChange 1s linear 1s infinite;
+  animation: imageChange 1s linear 1s infinite;
   background-image: url(../images/footer-shape1.png);
   background-position: center center;
   background-size: cover;
@@ -6277,7 +6937,7 @@ Footer Area CSS
 }
 
 .footer-area::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -6285,7 +6945,7 @@ Footer Area CSS
   height: 100%;
   z-index: -1;
   -webkit-animation: imageChangeTwo 1s linear 1s infinite;
-          animation: imageChangeTwo 1s linear 1s infinite;
+  animation: imageChangeTwo 1s linear 1s infinite;
   background-image: url(../images/footer-shape2.png);
   background-position: center center;
   background-size: cover;
@@ -6442,7 +7102,6 @@ Footer Area CSS
   text-align: center;
   font-size: 17px;
   border-radius: 30px;
-
 }
 
 .single-footer-widget .social li a:hover {
@@ -6565,11 +7224,11 @@ Go Top CSS
   height: 45px;
   border-radius: 50%;
   font-size: 40px;
-  -webkit-transition: .9s;
-  transition: .9s;
+  -webkit-transition: 0.9s;
+  transition: 0.9s;
   line-height: 55px;
   -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   display: none;
 }
 
@@ -6583,7 +7242,7 @@ Go Top CSS
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 /*================================================
@@ -6617,9 +7276,8 @@ SaaS Home Page CSS
 
 .saas-banner .saas-image.mt-70 {
   margin-top: 70px;
-}F
-
-.saas-banner .hero-content .number {
+}
+F .saas-banner .hero-content .number {
   background-color: #fff;
   width: 40px;
   height: 40px;
@@ -6678,8 +7336,8 @@ SaaS Home Page CSS
   position: relative;
   display: inline-block;
   margin-top: 6px;
-  -webkit-transform: .6s;
-          transform: .6s;
+  -webkit-transform: 0.6s;
+  transform: 0.6s;
   font-size: 15px;
   font-weight: 600;
 }
@@ -6802,28 +7460,28 @@ SaaS Home Page CSS
   left: 13%;
   top: 23%;
   z-index: -1;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .rotateme {
   -webkit-animation-name: rotateme;
-          animation-name: rotateme;
+  animation-name: rotateme;
   -webkit-animation-duration: 40s;
-          animation-duration: 40s;
+  animation-duration: 40s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
 }
 
 @keyframes rotateme {
   from {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
     -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -6861,27 +7519,27 @@ SaaS Home Page CSS
 @keyframes animationFramesOne {
   0% {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
-            transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
   }
   20% {
     -webkit-transform: translate(73px, -1px) rotate(36deg);
-            transform: translate(73px, -1px) rotate(36deg);
+    transform: translate(73px, -1px) rotate(36deg);
   }
   40% {
     -webkit-transform: translate(141px, 72px) rotate(72deg);
-            transform: translate(141px, 72px) rotate(72deg);
+    transform: translate(141px, 72px) rotate(72deg);
   }
   60% {
     -webkit-transform: translate(83px, 122px) rotate(108deg);
-            transform: translate(83px, 122px) rotate(108deg);
+    transform: translate(83px, 122px) rotate(108deg);
   }
   80% {
     -webkit-transform: translate(-40px, 72px) rotate(144deg);
-            transform: translate(-40px, 72px) rotate(144deg);
+    transform: translate(-40px, 72px) rotate(144deg);
   }
   100% {
     -webkit-transform: translate(0px, 0px) rotate(0deg);
-            transform: translate(0px, 0px) rotate(0deg);
+    transform: translate(0px, 0px) rotate(0deg);
   }
 }
 
@@ -6908,23 +7566,31 @@ SaaS Home Page CSS
 
 @-webkit-keyframes ripple-white {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2),
+      0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2),
+      0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
+    -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2),
+      0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2),
+      0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
   }
 }
 
 @keyframes ripple-white {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2), 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2),
+      0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2),
+      0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
+    -webkit-box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2),
+      0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2),
+      0 0 0 40px rgba(255, 255, 255, 0.2), 0 0 0 60px rgba(255, 255, 255, 0);
   }
 }
 
@@ -6952,8 +7618,8 @@ SaaS Home Page CSS
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transition: .6s;
-  transition: .6s;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
 }
 
 .features-inner-content .features-item:hover i {
@@ -7030,13 +7696,13 @@ SaaS Home Page CSS
 }
 
 .overview-content h3 {
-  color: #090D3A;
+  color: #090d3a;
   font-size: 25px;
   font-weight: 600;
 }
 
 .overview-content p {
-  color: #090D3A;
+  color: #090d3a;
   font-size: 16px;
   font-weight: 500;
   margin: 0;
@@ -7118,16 +7784,19 @@ SaaS Home Page CSS
   font-weight: 600;
 }
 
-.service-details-content ul, .service-details-content ol {
+.service-details-content ul,
+.service-details-content ol {
   padding-left: 17px;
 }
 
-.service-details-content ul li, .service-details-content ol li {
+.service-details-content ul li,
+.service-details-content ol li {
   line-height: 1.7;
   margin-bottom: 5px;
 }
 
-.service-details-content ul li:last-child, .service-details-content ol li:last-child {
+.service-details-content ul li:last-child,
+.service-details-content ol li:last-child {
   margin-bottom: 0;
 }
 
@@ -7146,7 +7815,7 @@ SaaS Home Page CSS
 .service-details-content .service-details-info .single-info-box {
   -ms-flex: 0 0 20%;
   -webkit-box-flex: 0;
-          flex: 0 0 20%;
+  flex: 0 0 20%;
   max-width: 20%;
   padding-left: 15px;
   padding-right: 15px;
@@ -7186,10 +7855,15 @@ SaaS Home Page CSS
   line-height: 32px;
 }
 
-.service-details-content .service-details-info .single-info-box .social li a:hover {
+.service-details-content
+  .service-details-info
+  .single-info-box
+  .social
+  li
+  a:hover {
   color: #13c4a1;
   -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .service-details-content .service-details-info .single-info-box .default-btn {
@@ -7206,7 +7880,10 @@ SaaS Home Page CSS
   font-weight: 500;
 }
 
-.service-details-content .service-details-info .single-info-box .default-btn:hover {
+.service-details-content
+  .service-details-info
+  .single-info-box
+  .default-btn:hover {
   background-color: #ffffff;
   color: #13c4a1;
 }
@@ -7217,23 +7894,26 @@ SaaS Home Page CSS
 
 /* End Service details  */
 /* Text container */
-.text-container ul, .text-container ol {
+.text-container ul,
+.text-container ol {
   padding-left: 17px;
 }
 
-.text-container ul li, .text-container ol li {
+.text-container ul li,
+.text-container ol li {
   margin-bottom: 5px;
   line-height: 1.8;
 }
 
-.text-container ul li:last-child, .text-container ol li:last-child {
+.text-container ul li:last-child,
+.text-container ol li:last-child {
   margin-bottom: p;
 }
 
-.text-container ul li ul, .text-container ol li ul {
+.text-container ul li ul,
+.text-container ol li ul {
   margin-top: 5px;
 }
-
 
 @media (min-width: 768px) {
   .dashboard-main-container {
@@ -7248,28 +7928,54 @@ SaaS Home Page CSS
     padding-right: 75px;
   }
 }
-.font-size-6{font-size:calc(1.25625rem + .075vw)}
-.font-size-8{font-size:calc(1.3375rem + 1.05vw)}
-.shadow-8{box-shadow:2px 2px 4px hsla(0,0%,51%,.16)}
-.rounded-4{border-radius:10px}
-.hirebeat-blue-bg {background-color: #006dff}
-.text-black-2{color:#2b3940!important}a.text-black-2:focus,a.text-black-2:hover{color:#0c1012!important}
-.text-gray{color:#6b6e6f!important}a.text-gray:focus,a.text-gray:hover{color:#454748!important}
-.font-size-4{font-size:1rem;line-height:1.625;letter-spacing:-.08px}
+.font-size-6 {
+  font-size: calc(1.25625rem + 0.075vw);
+}
+.font-size-8 {
+  font-size: calc(1.3375rem + 1.05vw);
+}
+.shadow-8 {
+  box-shadow: 2px 2px 4px hsla(0, 0%, 51%, 0.16);
+}
+.rounded-4 {
+  border-radius: 10px;
+}
+.hirebeat-blue-bg {
+  background-color: #006dff;
+}
+.text-black-2 {
+  color: #2b3940 !important;
+}
+a.text-black-2:focus,
+a.text-black-2:hover {
+  color: #0c1012 !important;
+}
+.text-gray {
+  color: #6b6e6f !important;
+}
+a.text-gray:focus,
+a.text-gray:hover {
+  color: #454748 !important;
+}
+.font-size-4 {
+  font-size: 1rem;
+  line-height: 1.625;
+  letter-spacing: -0.08px;
+}
 .fas {
-  font-family: 'Font Awesome 5 Free';
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
 }
-.font-weight-semibold{
+.font-weight-semibold {
   font-weight: 600;
 }
-.line-height-reset{
+.line-height-reset {
   line-height: 1;
 }
 .fa-briefcase:before {
   content: "\f0b1";
 }
-.line-height-reset{
+.line-height-reset {
   line-height: 1;
 }
 .font-weight-bold {
@@ -7278,11 +7984,11 @@ SaaS Home Page CSS
 .font-weight-normal {
   font-weight: 400 !important;
 }
-.circle-56{
-  max-width:56px;
-  min-width:56px;
-  max-height:56px;
-  min-height:56px;
+.circle-56 {
+  max-width: 56px;
+  min-width: 56px;
+  max-height: 56px;
+  min-height: 56px;
   border-radius: 500px;
   display: flex;
   align-items: center;
@@ -7295,6 +8001,14 @@ SaaS Home Page CSS
   box-shadow: 20px 20px 40px rgba(175, 175, 175, 0.16);
 }
 
+.unsubscribe-box {
+  border: 1.5px solid black;
+  width: 450px;
+  margin: 15% auto;
+  padding: 15px;
+  text-align: center;
+  color: #000;
+}
 
 /* End  Text container */
 /*# sourceMappingURL=style.css.map */
