@@ -879,6 +879,7 @@ def subreviewer_update_comment(request):
     puser = User.objects.get(pk=position.user_id)
     rprofile = Profile.objects.get(pk=profile_id)
     ruser = User.objects.get(pk=rprofile.user_id)
+    ruser_name = EmployerProfileDetail.objects.get(user=ruser).f_name + " " + EmployerProfileDetail.objects.get(user=ruser).l_name
     employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     cuser = User.objects.get(pk=wpvideo.owner_id)
     cuser_profileDetail = ProfileDetail.objects.get(user=cuser)
@@ -920,7 +921,7 @@ def subreviewer_update_comment(request):
         "template": "NewReviewerComment",
         "body": {
             "job_title": position.job_title,
-            "ruser": ruser.username,
+            "ruser": ruser_name,
             "cuser": cuser_name,
             "ruser_email": ruser.email,
             "view_comment_link": "app.hirebeat.co/employer_dashboard"

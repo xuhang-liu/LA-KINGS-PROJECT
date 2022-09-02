@@ -1466,7 +1466,7 @@ def add_review_note(request):
         "template": "NewReviewerComment",
         "body": {
             "job_title": position.job_title,
-            "ruser": reviewer_email,
+            "ruser": reviewer,
             "cuser": cuser_name,
             "ruser_email": reviewer_email,
             "view_comment_link": "app.hirebeat.co/employer_dashboard"
