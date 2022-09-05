@@ -99,8 +99,8 @@ export class EmployerLogin extends Component {
         }
       }
     };
-    if (this.props.isAuthenticated) {
-      if (this.props.user.groups[0] == "reviewers") {
+    if (this.props?.isAuthenticated) {
+      if (this.props?.user?.groups[0] == "reviewers") {
         return <Redirect to="/review" />;
       } else {
         return <Redirect to="/dashboard" />;

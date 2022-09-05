@@ -400,7 +400,6 @@ class App extends Component {
                       <Route exact path="/blog-10-impactful-ways-to-update-your-resume-for-2021" component={BlogDetail30} />
                       <Route exact path="/register" component={Register} />
                       <Route exact path="/login" component={Login} />
-                      <Route exact path="/employer-login" component={EmployerLogin} />
                       <Route exact path="/employer_register" component={EmployerRegister} />
                       <Route exact path="/upload" component={MyVideoUploader} />
                       <Route exact path="/" component={EmployerLogin} />
