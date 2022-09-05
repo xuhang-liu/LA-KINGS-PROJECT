@@ -287,7 +287,7 @@ export class Header extends Component {
         <MediaQuery minDeviceWidth={1224}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer-login">
+              <Link to="/">
                 <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
                   Log In
                 </a>
@@ -305,7 +305,7 @@ export class Header extends Component {
         <MediaQuery maxDeviceWidth={1223}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer-login">
+              <Link to="/">
                 <a className="default-btn mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
                   Log In
                 </a>
@@ -515,7 +515,7 @@ export class Header extends Component {
         <MediaQuery minDeviceWidth={1224}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer-login">
+              <Link to="/">
                 <a className="default-btn1 mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
                   Log In
                 </a>
@@ -533,7 +533,7 @@ export class Header extends Component {
         <MediaQuery maxDeviceWidth={1223}>
           <ul className="navbar-nav d-flex flex-row order-xl-1">
             <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer-login">
+              <Link to="/">
                 <a className="default-btn mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
                   Log In
                 </a>

@@ -506,7 +506,7 @@ export class EmployerRegister extends Component {
                               fontWeight: "500"
                             }}>
                             Have an account?
-                            <a href="/employer-login"
+                            <a href="/"
                               className="active d-flex ml-2"
                               style={{
                                 textDecoration: "underline",

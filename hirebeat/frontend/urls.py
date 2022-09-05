@@ -59,7 +59,6 @@ urlpatterns = [
     path('quiz', views.QuizHome),
     path('blog-4-common-interview-questions-and-how-to-answer-them', views.blog6),
     path('job-seekers-howitworks', views.HowItWorks),
-    path('employer-login', views.HowItWorks),
     path('employer-roi-calculator', views.ROICalculator),
     # path('employer_company', views.employerabout),
     path('citi', views.CityInfo),
