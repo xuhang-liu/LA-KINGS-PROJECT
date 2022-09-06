@@ -1046,7 +1046,8 @@ def send_sub_invitation(name, email, encoded_email, company_name, master_email, 
             "name": name,
             "position_name": position_name,
             "master_email": master_email,
-            "login_account_link": link
+            "login_account_link": link,
+            "ruser_email": email,
         }
     }
 

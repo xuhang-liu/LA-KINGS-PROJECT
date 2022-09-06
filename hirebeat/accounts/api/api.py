@@ -138,8 +138,8 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
         # email.send()
 
         username = "User"
-        if  user.first_name != '' and user.last_name != '':
-            username = user.first_name + ' ' + user.last_name
+        if  request.data["firstname"] != '':
+            username = request.data["firstname"]
 
         requestBody = {
             "to": [

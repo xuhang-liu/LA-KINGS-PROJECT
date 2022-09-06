@@ -223,6 +223,7 @@ def upgrade_accounts(request):
 def resend_activation_email(request):
     print("===Resend Email Called===")
     user = User.objects.get(pk=request.data["id"])
+    employerProfileDetail = EmployerProfileDetail.objects.get(user=user)
     account_activation_token = PasswordResetTokenGenerator()
     current_site = get_current_site(request)
     # subject = 'Please Activate Your Hirebeat Account'
@@ -246,8 +247,8 @@ def resend_activation_email(request):
     # email.send()
 
     username = "User"
-    if  user.first_name != '' and user.last_name != '':
-        username = user.first_name + ' ' + user.last_name
+    if  employerProfileDetail.f_name != '':
+        username = employerProfileDetail.f_name
 
     requestBody = {
         "to": [
