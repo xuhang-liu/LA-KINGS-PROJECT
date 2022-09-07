@@ -118,7 +118,7 @@ export class EmployerRegister extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         workEmail: this.state.email,
-        companyName: this.state.companyName,
+        companyName: this.state.companyName?.trim(),
         companyWebsite: this.state.company_website
       });
       axios
@@ -136,7 +136,7 @@ export class EmployerRegister extends Component {
                 this.state.email?.toLowerCase(),
                 this.state.email?.toLowerCase(),
                 this.state.password,
-                this.state.companyName,
+                this.state.companyName?.trim(),
                 "",
                 "",
                 this.state.company_website,
@@ -259,7 +259,7 @@ export class EmployerRegister extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       workEmail: this.state.email,
-      companyName: this.state.companyName,
+      companyName: this.state.companyName?.trim(),
       companyWebsite: this.state.company_website
     });
     // check company name exist or not
@@ -277,7 +277,7 @@ export class EmployerRegister extends Component {
             this.state.email?.toLowerCase(),
             this.state.email?.toLowerCase(),
             this.state.password,
-            this.state.companyName,
+            this.state.companyName?.trim(),
             this.state.companySize.value,
             this.state.companyType.value,
             this.state.company_website,
