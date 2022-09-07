@@ -607,53 +607,53 @@ def move_candidate_to_interview(request):
 
 # send interview email notice via smtp
 def send_interviews(name, email, url, job_title, company_name, expire, job_id):
-    subject = 'Follow up on your application of ' + job_title + " at " + company_name
-    message = get_template("questions/interview_email.html")
-    context = {
-        'name': name,
-        'url': url,
-        'job_title': job_title,
-        'company_name': company_name,
-        'expire': expire,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # username = "User"
-    # if  name != '':
-    #     username = name
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name":username,
-    #             "email":email
-    #         }
-    #     ],
-    #     "template": "VideoInterviewInvitation",
-    #     "body": {
-    #         "company_name": company_name,
-    #         "name": name,
-    #         "email": email,
-    #         "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
-    #         "start_interview_link": url.replace("https://",""),
-    #         "job_title": job_title,
-    #     },
-    #     "job_id": job_id
+    # subject = 'Follow up on your application of ' + job_title + " at " + company_name
+    # message = get_template("questions/interview_email.html")
+    # context = {
+    #     'name': name,
+    #     'url': url,
+    #     'job_title': job_title,
+    #     'company_name': company_name,
+    #     'expire': expire,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)  
+    username = "User"
+    if  name != '':
+        username = name
+
+    requestBody = {
+        "to": [
+            {
+                "name":username,
+                "email":email
+            }
+        ],
+        "template": "VideoInterviewInvitation",
+        "body": {
+            "company_name": company_name,
+            "name": name,
+            "email": email,
+            "interview_practice_link": "app.hirebeat.co/job-seekers-howitworks",
+            "start_interview_link": url.replace("https://",""),
+            "job_title": job_title,
+        },
+        "job_id": job_id
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)  
 
 # resend video interview for a single person
 @api_view(['POST'])
@@ -1002,57 +1002,58 @@ def add_sub_reviewer(request):
 
 
 def send_sub_invitation(name, email, encoded_email, company_name, master_email, position_name):
-    subject = 'Co-review Invitation to HireBeat for ' + company_name
-    user = User.objects.filter(email=email)
-    message = {}
-    if len(user) == 0:
-        message = get_template("questions/sub_reviewer_email.html")
-    else:
-        message = get_template("questions/external_reviewer_notice.html")
+    # subject = 'Co-review Invitation to HireBeat for ' + company_name
+    # user = User.objects.filter(email=email)
+    # message = {}
+    # if len(user) == 0:
+    #     message = get_template("questions/sub_reviewer_email.html")
+    # else:
+    #     message = get_template("questions/external_reviewer_notice.html")
     link = "app.hirebeat.co/employer_register?" + encoded_email
-    context = {
-        'link': link,
-        'name': name,
-        'company_name': company_name,
-        'master_email': master_email,
-        'position_name': position_name,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-
-    # username = "User"
-    # if  name != '':
-    #     username = name
-        
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name":username,
-    #             "email":email
-    #         }
-    #     ],
-    #     "template": "CoReviewInvitationToHirebeat",
-    #     "body": {
-    #         "company_name": company_name,
-    #         "name": name,
-    #         "position_name": position_name,
-    #         "master_email": master_email,
-    #         "login_account_link": link
-    #     }
+    # context = {
+    #     'link': link,
+    #     'name': name,
+    #     'company_name': company_name,
+    #     'master_email': master_email,
+    #     'position_name': position_name,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
+    username = "User"
+    if  name != '':
+        username = name
+        
+    requestBody = {
+        "to": [
+            {
+                "name":username,
+                "email":email
+            }
+        ],
+        "template": "CoReviewInvitationToHirebeat",
+        "body": {
+            "company_name": company_name,
+            "name": name,
+            "position_name": position_name,
+            "master_email": master_email,
+            "login_account_link": link,
+            "ruser_email": email,
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    requests.post(emailUrl, data=json.dumps(requestBody), headers=headers) 
 
 
 @api_view(['POST'])
@@ -1411,6 +1412,10 @@ def add_review_note(request):
     current_stage = request.data["current_stage"]
     position = Positions.objects.get(id=request.data["position_id"])
     puser = User.objects.get(pk=position.user_id)
+    cuser = ApplyCandidates.objects.filter(email=applicant_email)
+    cuser_name = "User"
+    if len(cuser) > 0:
+        cuser_name = cuser[0].first_name + " " + cuser[0].last_name
     # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     reviewer = ""
     if reviewer_type == "sub_reviewer":
@@ -1426,53 +1431,54 @@ def add_review_note(request):
     InterviewNote.objects.create(reviewer=reviewer, comment=comment, current_stage=current_stage, reviewer_email=reviewer_email,
                                  applicant_email=applicant_email, position_id=position_id)
 
-    # employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
+    employerProfileDetail=EmployerProfileDetail.objects.get(user=puser)
     print("===Reviewer Update Comment Notify Email Called===")
-    subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
-    message = get_template("accounts/reviewer_comment_notification_email.html")
-    context = {
-        'ruser': reviewer_email,
-        'ruser_email': reviewer_email,
-        'cuser': applicant_email,
-        'title': position.job_title,
-    }
-    from_email = 'HireBeat Team <tech@hirebeat.co>'
-    to_list = [puser.email]
-    content = message.render(context)
-    email = EmailMessage(
-        subject,
-        content,
-        from_email,
-        to_list,
-    )
-    email.content_subtype = "html"
-    email.send()
-    
-    # username = "User"
-    # if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
-    #     username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
-
-    # requestBody = {
-    #     "to": [
-    #         {
-    #             "name": username,
-    #             "email": puser.email
-    #         }
-    #     ],
-    #     "template": "NewSubReviewerCommentsForPosition",
-    #     "body": {
-    #         "job_title": position.job_title,
-    #         "ruser": reviewer_email,
-    #         "cuser": applicant_email,
-    #         "ruser_email": reviewer_email,
-    #         "view_comment_link": "app.hirebeat.co/employer_dashboard"
-
-    #     }
+    # subject = 'New Sub-Reviewer comments for ' + position.job_title + ' position'
+    # message = get_template("accounts/reviewer_comment_notification_email.html")
+    # context = {
+    #     'ruser': reviewer_email,
+    #     'ruser_email': reviewer_email,
+    #     'cuser': applicant_email,
+    #     'title': position.job_title,
     # }
+    # from_email = 'HireBeat Team <tech@hirebeat.co>'
+    # to_list = [puser.email]
+    # content = message.render(context)
+    # email = EmailMessage(
+    #     subject,
+    #     content,
+    #     from_email,
+    #     to_list,
+    # )
+    # email.content_subtype = "html"
+    # email.send()
+    
+    username = "User"
+    if  employerProfileDetail.f_name != '' and employerProfileDetail.l_name != '':
+        username = employerProfileDetail.f_name + " " + employerProfileDetail.l_name
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
-    # requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)
+    requestBody = {
+        "to": [
+            {
+                "name": username,
+                "email": puser.email
+            }
+        ],
+        "template": "NewReviewerComment",
+        "body": {
+            "job_title": position.job_title,
+            "ruser": reviewer,
+            "cuser": cuser_name,
+            "ruser_email": reviewer_email,
+            "view_comment_link": "app.hirebeat.co/employer_dashboard"
+
+        }
+    }
+
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/mail/send"
+    if reviewer_type == "sub_reviewer" or reviewer_type == "external_reviewer":
+        requests.post(emailUrl, data=json.dumps(requestBody), headers=headers)
 
     return Response("Added review successfully", status=status.HTTP_200_OK)
 
