@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React, { useEffect, Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login, exchangeToken } from "../../redux/actions/auth_actions";
-//import SocialButtons from "./SocialButtons";
 import MediaQuery from 'react-responsive';
-import { useEffect } from "react";
+import { login, exchangeToken } from "../../redux/actions/auth_actions";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
 import axios from "axios";
+import { Center, Heading, Box, Button, Container, FormControl, FormLabel, HStack, Input, Stack, Link } from '@chakra-ui/react';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -82,12 +81,6 @@ export class EmployerLogin extends Component {
     }
   };
 
-  handleSocialLogin = (user) => {
-    console.log(user);
-    var provider = this.decideProvider(user.provider);
-    this.props.exchangeToken(user.token.accessToken, provider);
-  };
-
   render() {
     const meta = {
       title: 'HireBeat – Employer Login',
@@ -106,152 +99,108 @@ export class EmployerLogin extends Component {
         return <Redirect to="/dashboard" />;
       }
     }
-    const { username, password } = this.state;
     return (
       <DocumentMeta {...meta}>
         <React.Fragment>
           <ScrollToTopOnMount />
-
-          <div
-            className="container-fluid bg-white p-0"
-          >
-            <MediaQuery minDeviceWidth={1224}>
-              <header
-                className="min-width-1290"
-                id="login-intro"
-                style={{
-                  background: "#006dff",
-                  minHeight: "14rem"
-                }}>
-
-                <div className="container"
-                  style={{ paddingTop: "5rem" }}>
-
-                  <h1 className="display-4 text-white text-center" style={{ fontSize: "3rem", fontWeight: "600" }}>
-                    Welcome back!
-                  </h1>
-
-                </div>
-              </header>
-            </MediaQuery>
-            <MediaQuery maxDeviceWidth={1223}>
-              <header id="login-intro"
-                style={{
-                  background: "#006dff",
-                  minHeight: "8rem"
-                }}>
-
-                <div className="container"
-                  style={{ paddingTop: "3rem" }}>
-
-                  <h1 className="display-8 text-white text-center" style={{ paddingBottom: "1rem" }}>
-                    Welcome back!
-                  </h1>
-
-                </div>
-              </header>
-            </MediaQuery>
-
-            <section className="card border-bottom-0 shadow-none bg-white">
-              <div className="card-body">
-                <div className="row">
-                  <div className="
-                  col-lg-4 offset-lg-4
-                  col-sm-6 offset-sm-3
-              ">
-
-
-                    <form id="Employer-LoginPage-Login" onSubmit={this.onSubmit}>
-
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="username"
-                          placeholder="Username"
-                          onChange={this.onChange}
-                          value={username}
-                          style={{
-                            fontFamily: "Inter, Segoe UI",
-                            background: "#FFFFFF",
-                            border: "0.5px solid #E5E5E5",
-                            borderRadius: "0.5rem",
-                            paddingLeft: "1rem",
-                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
-                          }}
-                          required />
-                      </div>
-
-                      <div className="form-group">
-                        <input
-                          type="password"
-                          placeholder="Password"
-                          className="form-control"
-                          name="password"
-                          onChange={this.onChange}
-                          value={password}
-                          style={{
-                            fontFamily: "Inter, Segoe UI",
-                            background: "#FFFFFF",
-                            border: "0.5px solid #E5E5E5",
-                            borderRadius: "0.5rem",
-                            paddingLeft: "1rem",
-                            boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
-                          }}
-                          required />
-                      </div>
-
-                      <div className="d-flex flex-wrap justify-content-between align-items-center" style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>
-                        {this.state.login_fail && <p className="share-p4" style={{ fontWeight: "600" }}>Incorrect username or password. Please try again.</p>}
-                      </div>
-
-                      <div className="d-flex flex-wrap justify-content-between align-items-center">
-                        <a
-                          href="/employer_register"
-                          className="navbar-font"
-                          style={{ textDecoration: "underline", color: "#FF6B00", fontWeight: "300", fontFamily: "Inter, Segoe UI", fontSize: "1rem" }}
-                        >
-                          Create account
-                        </a>
-
-                        <a
-                          href="/password_reset"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="navbar-font"
-                          style={{
-                            fontSize: "1rem",
-                            fontFamily: "Inter, Segoe UI",
-                            color: "#7D7D7D",
-                            fontWeight: "300"
-                          }}
-                        >
-                          Forget password?
-                        </a>
-
-                      </div>
-
-                      <div
-                        className="form-group"
-                        style={{ paddingTop: 30, paddingBottom: 20 }}
-                      >
-                        <button
-                          type="submit"
-                          className="default-btn"
-                          style={{ width: "100%", fontSize: '1rem', fontWeight: 'bold' }}
-                        >
-                          <i className="bx bxs-hot"></i>
-                          Log in
-                        </button>
-
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-
-            </section>
-          </div>
+          <MediaQuery minDeviceWidth={1224}>
+            <Center bg="brand.500" h='12rem' minW="1290px">
+              <Heading color="white">Welcome back!</Heading>
+            </Center>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+            <Center bg="brand.500" h='12rem'>
+              <Heading color="white">Welcome back!</Heading>
+            </Center>
+          </MediaQuery>
+          <MediaQuery minDeviceWidth={1224}>
+            <Box bg={{ base: 'transparent', sm: 'bg-surface' }} minW="1290px">
+              <Container maxW="lg" py={{ base: '6', md: '12' }} px={{ base: '0', sm: '8' }}>
+                <Stack spacing="8">
+                  <Box
+                    py={{ base: '0', sm: '8' }}
+                    px={{ base: '4', sm: '10' }}
+                    bg={{ base: 'transparent', sm: 'bg-surface' }}
+                    boxShadow='md'
+                    borderRadius='xl'
+                  >
+                    <Stack spacing="6">
+                      <Stack spacing="5">
+                        <FormControl>
+                          <FormLabel htmlFor="email">Email</FormLabel>
+                          <Input id="username" type="email" name="username" value={this.state.username} onChange={this.onChange} />
+                          <FormLabel htmlFor="password" pt="2">Password</FormLabel>
+                          <Input id="password" type="password" name="password" value={this.state.password} onChange={this.onChange} />
+                        </FormControl>
+                        <div style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>
+                          {this.state.login_fail && <p className="share-p4" style={{ fontWeight: "600" }}>Incorrect username or password. Please try again.</p>}
+                        </div>
+                      </Stack>
+                      <HStack justify="space-between">
+                        <Link href="/employer_register">
+                          <Button variant="link" colorScheme="blue">
+                            Create account
+                          </Button>
+                        </Link>
+                        <Link href="/password_reset" isExternal>
+                          <Button variant="link" colorScheme="blue" size="sm">
+                            Forgot password?
+                          </Button>
+                        </Link>
+                      </HStack>
+                      <Stack spacing="6">
+                        <Button variant="primary" onClick={this.onSubmit} type="submit">Sign in</Button>
+                      </Stack>
+                    </Stack>
+                  </Box>
+                </Stack>
+              </Container>
+            </Box>
+          </MediaQuery>
+          <MediaQuery maxDeviceWidth={1223}>
+            <Box bg={{ base: 'transparent', sm: 'bg-surface' }}>
+              <Container maxW="lg" py={{ base: '6', md: '12' }} px={{ base: '0', sm: '8' }}>
+                <Stack spacing="8">
+                  <Box
+                    py={{ base: '0', sm: '8' }}
+                    px={{ base: '4', sm: '10' }}
+                    bg={{ base: 'transparent', sm: 'bg-surface' }}
+                    boxShadow='md'
+                    borderRadius='xl'
+                  >
+                    <Stack spacing="6">
+                      <Stack spacing="5">
+                        <FormControl>
+                          <FormLabel htmlFor="email">Email</FormLabel>
+                          <Input id="username" type="email" name="username" value={this.state.username} onChange={this.onChange} />
+                          <FormLabel htmlFor="password" pt="2">Password</FormLabel>
+                          <Input id="password" type="password" name="password" value={this.state.password} onChange={this.onChange} />
+                        </FormControl>
+                        <div style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>
+                          {this.state.login_fail && <p className="share-p4" style={{ fontWeight: "600" }}>Incorrect username or password. Please try again.</p>}
+                        </div>
+                      </Stack>
+                      <HStack justify="space-between">
+                        <Link href="/employer_register">
+                          <Button variant="link" colorScheme="blue">
+                            Create account
+                          </Button>
+                        </Link>
+                        <Link href="/password_reset" isExternal>
+                          <Button variant="link" colorScheme="blue" size="sm">
+                            Forgot password?
+                          </Button>
+                        </Link>
+                      </HStack>
+                      <Stack spacing="6">
+                        <Button variant="primary" onClick={this.onSubmit} type="submit">Sign in</Button>
+                      </Stack>
+                    </Stack>
+                  </Box>
+                </Stack>
+              </Container>
+            </Box>
+          </MediaQuery>
           <Footer />
         </React.Fragment>
       </DocumentMeta>

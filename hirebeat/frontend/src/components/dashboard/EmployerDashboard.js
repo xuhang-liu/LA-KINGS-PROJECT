@@ -1073,7 +1073,7 @@ export class EmployerDashboard extends Component {
                 </div>
               </MyModalUpgrade>
               <ScrollToTopOnMount />
-              {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
+              
               <MediaQuery minDeviceWidth={900}>
                 <div className="row no-gutters min-width-1290">
                   <div className='col-1'>
