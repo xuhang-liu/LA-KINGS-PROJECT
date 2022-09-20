@@ -223,6 +223,22 @@ export const Header = (props) => {
                 </PopoverBody>
               </PopoverContent>
             </Popover>
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> About Us <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Link href="/company"><Text color={useColorModeValue("brand.500", "white")}>Company</Text></Link>
+                    <Link href="/contact"><Text color={useColorModeValue("brand.500", "white")}>Contact</Text></Link>
+                    <Link href="/jobs"><Text color={useColorModeValue("brand.500", "white")}>Join Us</Text></Link>
+                    <Link href="/bloghome"><Text color={useColorModeValue("brand.500", "white")}>Blog</Text></Link>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
             <a href="/login" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Log In</Button></a>
             <a href="/register" style={{ textDecoration: "none" }}><Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Start for Free</Button></a>
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
@@ -606,7 +622,9 @@ export const Header = (props) => {
                         : renderUserLinks(isAuthenticated)
                     : (uri.includes("talent-profile")) ?
                       renderGuestLinks(isAuthenticated) :
-                      (uri.includes("job-seekers")) ?
+                      (uri.includes("job-seekers") || uri == "practice" || uri == "resume" || uri == "register" || uri == "login"
+                      || uri == "career-details" || uri == "quiz" || uri == "pricing"
+                      || uri == "company" || uri == "contact" || uri == "bloghome") ?
                         renderGuestLinks(isAuthenticated)
                         : renderEmployerGuestLinks(isAuthenticated)
                   }

@@ -348,7 +348,7 @@ export class SubpageSetting extends Component {
         return (
             <>
                 <div className="container">
-                    <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
+                    <div style={{ marginBottom: "30px" }}><h3><b style={{color:"#090d3a", fontSize:"1.2rem"}}><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
                     <div className="row" >
                         <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
                             {!this.props.profile.is_employer &&

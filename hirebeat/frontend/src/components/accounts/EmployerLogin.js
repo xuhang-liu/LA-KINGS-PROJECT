@@ -109,8 +109,8 @@ export class EmployerLogin extends Component {
             </Center>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>
-            <Center bg="brand.500" h='12rem'>
-              <Heading color="white">Welcome back!</Heading>
+            <Center bg="brand.500" h='12rem' px="1rem">
+              <Heading color="white" fontSize="2.6rem">Welcome back!</Heading>
             </Center>
           </MediaQuery>
           <MediaQuery minDeviceWidth={1224}>
@@ -162,7 +162,7 @@ export class EmployerLogin extends Component {
               <Container maxW="lg" py={{ base: '6', md: '12' }} px={{ base: '0', sm: '8' }}>
                 <Stack spacing="8">
                   <Box
-                    py={{ base: '0', sm: '8' }}
+                    py={{ base: '0', sm: '0' }}
                     px={{ base: '4', sm: '10' }}
                     bg={{ base: 'transparent', sm: 'bg-surface' }}
                     boxShadow='md'
@@ -171,9 +171,9 @@ export class EmployerLogin extends Component {
                     <Stack spacing="6">
                       <Stack spacing="5">
                         <FormControl>
-                          <FormLabel htmlFor="email">Email</FormLabel>
+                          <FormLabel htmlFor="email" color='brand.800'>Email</FormLabel>
                           <Input id="username" type="email" name="username" value={this.state.username} onChange={this.onChange} />
-                          <FormLabel htmlFor="password" pt="2">Password</FormLabel>
+                          <FormLabel htmlFor="password" pt="2" color='brand.800'>Password</FormLabel>
                           <Input id="password" type="password" name="password" value={this.state.password} onChange={this.onChange} />
                         </FormControl>
                         <div style={{ marginTop: "0.6rem", marginBottom: "0.6rem" }}>

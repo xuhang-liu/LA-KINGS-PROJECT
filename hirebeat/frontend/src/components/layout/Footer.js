@@ -28,6 +28,7 @@ class Footer extends Component {
                                         style={{
                                         width: "14%",
                                         height:"14%",
+                                        display:"inline"
                                         }}
                                     />
                                     <img
@@ -37,6 +38,7 @@ class Footer extends Component {
                                         style={{
                                         width: "40%",
                                         height:"100%",
+                                        display:"inline"
                                         }}
                                     />
                                     </a>
@@ -194,6 +196,7 @@ class Footer extends Component {
                                         style={{
                                         width: "14%",
                                         height:"14%",
+                                        display:"inline"
                                         }}
                                     />
                                     <img
@@ -203,6 +206,7 @@ class Footer extends Component {
                                         style={{
                                         width: "40%",
                                         height:"100%",
+                                        display:"inline"
                                         }}
                                     />
                                     </a>
