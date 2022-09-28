@@ -74,6 +74,46 @@ export class MyJobFilter extends Component {
         this.setState({checked: checked});
         // get jobs from zipRecruiter API
         this.props.searchJobseekerJobs(search, location, postDate, 0, jobTypeSearch);
+        window.scrollTo({
+            top: 620,
+            behavior: 'smooth',
+        });
+    }
+
+    handleCheck = () => {
+        // collect checked boxes
+        let checked = [];
+        // collect filter metrics
+        // search and location
+
+        // job type
+        let jobTypes = document.getElementsByClassName("jobType");
+        let jobTypeSearch = ""
+        for (let i = 0; i < jobTypes?.length; i++) {
+            if (jobTypes[i].checked == true) {
+                jobTypeSearch += "|" + jobTypes[i].value;
+                checked.push(jobTypes[i].id);
+            }
+        }
+        // post date
+        let postDate = 180; // default post date is within last month
+        let postDates = document.getElementsByClassName("postDate");
+        for (let i = 0; i < postDates?.length; i++) {
+            if (postDates[i].checked == true) {
+                postDate = Number(postDates[i].value);
+                checked.push(postDates[i].id);
+                break;
+            }
+        }
+
+        let what = document.getElementById("what2");
+        let where = document.getElementById("where2")
+        let search = what.value;
+        let location = where.value;
+
+        this.props.handleSubFilterChange(search, location, checked)
+
+        this.setState({checked: checked});
     }
 
     redirectToResults = () => {
@@ -103,11 +143,15 @@ export class MyJobFilter extends Component {
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",
-                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)",
+                                color: "#000000",
+                                fontWeight: "1rem",
                               }}
                             id="what2"
                             type="text"
-                            placeholder={this.props.jobTitle}>
+                            placeholder={this.props.jobTitle}
+                            value={this.props.jobTitle}
+                            onChange={this.handleCheck}>
                         </input>
                     </div>
                     <div className="col-5 career-bg" style={{marginLeft: "2rem"}}>
@@ -120,11 +164,15 @@ export class MyJobFilter extends Component {
                                 background: "#FFFFFF",
                                 borderRadius: "0.5rem",
                                 paddingLeft: "1rem",
-                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                boxShadow:"0px 0px 50px rgba(70, 137, 250, 0.1)",
+                                color: "#000000",
+                                fontWeight: "1rem",
                               }}
                             id="where2"
                             type="text"
-                            placeholder={this.props.location}>
+                            placeholder={this.props.location}
+                            value={this.props.location}
+                            onChange={this.handleCheck}>
                         </input>
                     </div>
                 </div>
@@ -132,28 +180,28 @@ export class MyJobFilter extends Component {
                     <div className="col-5" style={{marginLeft: "5%"}} >
                         <h3 className="career-txt8">Job Types</h3>
                         <div className="career-txt2" style={{fontWeight: "normal"}}>
-                            <input className="jobType" type="checkbox" id="fullTime" value="Full-Time"></input>
+                            <input className="jobType" type="checkbox" id="fullTime" value="Full-Time" onChange={this.handleCheck} checked={this.props.checked.includes("fullTime")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Full-Time</label><br />
                             {/*<input className="jobType" type="checkbox" id="internship" value="Internship"></input>
                             <label style={{marginLeft: "0.5rem"}}>Internship</label><br />*/}
-                            <input className="jobType" type="checkbox" id="contract" value="Contract"></input>
+                            <input className="jobType" type="checkbox" id="contract" value="Contract" onChange={this.handleCheck} checked={this.props.checked.includes("contract")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Contract</label><br />
-                            <input className="jobType" type="checkbox" id="partTime" value="Part-Time"></input>
+                            <input className="jobType" type="checkbox" id="partTime" value="Part-Time" onChange={this.handleCheck} checked={this.props.checked.includes("partTime")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Part-Time</label><br />
-                            <input className="jobType" type="checkbox" id="temporary" value="Temporary"></input>
+                            <input className="jobType" type="checkbox" id="temporary" value="Temporary" onChange={this.handleCheck} checked={this.props.checked.includes("temporary")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Temporary</label><br />
                         </div>
                     </div>
                     <div className="col-5" style={{marginLeft: "2rem"}} >
                         <h3 className="career-txt8">Posted Time</h3>
                         <div className="career-txt2" style={{fontWeight: "normal"}}>
-                            <input className="postDate" name="postDate" type="radio" id="lastWeek" value="7"></input>
+                            <input className="postDate" name="postDate" type="radio" id="lastWeek" value="7" onChange={this.handleCheck} checked={this.props.checked.includes("lastWeek")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Last Week</label><br />
-                            <input className="postDate" name="postDate" type="radio" id="last2Weeks" value="14"></input>
+                            <input className="postDate" name="postDate" type="radio" id="last2Weeks" value="14" onChange={this.handleCheck} checked={this.props.checked.includes("last2Weeks")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Last 2 Weeks</label><br />
-                            <input className="postDate" name="postDate" type="radio" id="lastMonth" value="30"></input>
+                            <input className="postDate" name="postDate" type="radio" id="lastMonth" value="30" onChange={this.handleCheck} checked={this.props.checked.includes("lastMonth")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Last Month</label><br />
-                            <input className="postDate" name="postDate" type="radio" id="last3Months" value="90"></input>
+                            <input className="postDate" name="postDate" type="radio" id="last3Months" value="90" onChange={this.handleCheck} checked={this.props.checked.includes("last3Months")}></input>
                             <label style={{marginLeft: "0.5rem"}}>Last 3 Months</label><br />
                         </div>
                     </div>
