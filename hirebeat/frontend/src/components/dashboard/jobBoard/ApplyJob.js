@@ -1060,9 +1060,9 @@ const ApplyJob = (props) => {
 
 
                                         {props.job.company_website != null && props.job.company_website != "" &&
-                                            <div className="single-footer-widget1 mt-3">
+                                            <div className="single-footer-widget1 mt-3" style={{width:"100%"}}>
                                                 <p style={{ marginBottom: "0rem", fontWeight:"700", color:"#090D3A" , fontSize:"15px"}}>Website</p>
-                                                <a style={{ color:"#090D3A", fontWeight:"400", marginTop:"-2px"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs' style={{ paddingTop:"2px"}}></i></a>
+                                                <a className="website" style={{ color:"#090D3A", fontWeight:"400", marginTop:"-2px", width:"200px", overflow: "hidden" }}  target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website.length > 20 ? props.job.company_website.substr(0,20) + "..." : props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs' style={{ paddingTop:"2px"}}></i></a>
                                             </div>
                                         }
                                         <p className="mt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Share to</p>
