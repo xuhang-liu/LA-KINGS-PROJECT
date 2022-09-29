@@ -52,6 +52,7 @@ import { tourConfigEmployer } from "./DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 //import ReviewCandidate from "./applications/ReviewCandidate";
+import { Box } from '@chakra-ui/react';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -81,6 +82,7 @@ export class EmployerDashboard extends Component {
       isEndTour: false,
       jobt_company_id: "",
       jobt_token: "",
+      showSidebar: false,
     }
 
     // store user info to sessionStorage
@@ -99,6 +101,14 @@ export class EmployerDashboard extends Component {
     position_list: PropTypes.array.isRequired,
     user_existence: PropTypes.bool,
   };
+
+  setShowSidebarTrue = () => {
+    this.setState({ showSidebar: true })
+  }
+
+  setShowSidebarFalse = () => {
+    this.setState({ showSidebar: false })
+  }
 
   setCloseWelcome = () => {
     this.setState({ isOpenWelcome: false, isOpenDetail: true })
@@ -706,6 +716,8 @@ export class EmployerDashboard extends Component {
           job_back_home={this.state.job_back_home}
           setJob_back_home={this.setJob_back_home}
           jobt_company_id={(this.state.jobt_company_id == "") ? this.props.profile.jobt_company_id : this.state.jobt_company_id}
+          setShowSidebarTrue={this.setShowSidebarTrue}
+          setShowSidebarFalse={this.setShowSidebarFalse}
         />;
       case "jobCreation":
         return <JobCreation
@@ -1073,49 +1085,13 @@ export class EmployerDashboard extends Component {
                 </div>
               </MyModalUpgrade>
               <ScrollToTopOnMount />
-              {/* <div className="dashboard-container" style={{marginBottom:"10%", fontFamily:"Inter"}}> */}
+
               <MediaQuery minDeviceWidth={900}>
-                <div className="row no-gutters min-width-1290">
-                  <div className='col-1'>
-                    <div className='dashboard-sidebar'>
-                      <EssentialUserInfo
-                        userfullname={this.props.userfullname}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        updateProfile={this.props.updateProfile}
-                        renderSetting={this.renderSetting}
-                        renderApplications={this.renderApplications}
-                        renderPosition={this.renderPosition}
-                        renderShortlist={this.renderShortlist}
-                        renderAnalytics={this.renderAnalytics}
-                        renderEmployerProfile={this.renderEmployerProfile}
-                        renderJobs={this.renderJobs}
-                        renderEmployerSourcing={this.renderEmployerSourcing}
-                        subpage={this.state.subpage}
-                        job_dots={this.props.job_dots}
-                        createMergeLinkToken={this.props.createMergeLinkToken}
-                        renderMergeIntergration={this.renderMergeIntergration}
-                        renderHelp={this.renderHelp}
-                      />
-                    </div>
-                  </div>
-                  <div className='col-11' style={{ backgroundColor: "#f3f6f9" }}>
-                    <div className="dashboard-main" style={{ backgroundColor: "#f3f6f9" }}>
-                      {/* {((this.state.subpage === "settings") || (this.state.subpage === "shortlist") ||
-                        (this.props.profile.is_subreviwer) || (this.state.subpage === "analytics") ||
-                        (this.state.subpage === "applications") || (this.state.subpage === "jobs") ||
-                        (this.state.subpage === "jobCreation") || (this.state.subpage === "jobEdition") || (this.state.subpage === "mergeintergration") || (this.state.subpage === "employerSourcing")) || (this.state.subpage == "") ? null :
-                        <div className="container-fluid" style={{ height: "22rem" }} data-tut="reactour-rowbox">
-                          <RowBoxes userId={this.props.user.id} isEmployer={true} />
-                        </div>} */}
-                      <div className="container-fluid" style={{ marginBottom: "20vh" }}>
-                        <div style={{ marginBottom: "auto", height: "auto", paddingTop: '2%' }}>
-                          {this.renderSubpage()}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Box
+                  minH="90vh"
+                  bg="bg-canvas"
+                  overflowY="auto"
+                  minW="1290px">{this.renderSubpage()}</Box>
               </MediaQuery>
               <MediaQuery maxDeviceWidth={899}>
                 <PageTitleArea

@@ -4882,6 +4882,10 @@ max-width: 110px;
   margin-bottom: 1rem;
 }
 
+.job-title-hover-orange {
+  color: #090d3a;
+}
+
 .job-title-hover-orange:hover {
   color: #ff6b00;
 }

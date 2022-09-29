@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import {FacebookIcon, LinkedinIcon, TwitterIcon, EmailIcon} from "react-share";
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
 import MediaQuery from 'react-responsive';
+import {Link} from '@chakra-ui/react';
 
 
 class Footer extends Component {
@@ -28,6 +28,7 @@ class Footer extends Component {
                                         style={{
                                         width: "14%",
                                         height:"14%",
+                                        display:"inline"
                                         }}
                                     />
                                     <img
@@ -37,6 +38,7 @@ class Footer extends Component {
                                         style={{
                                         width: "40%",
                                         height:"100%",
+                                        display:"inline"
                                         }}
                                     />
                                     </a>
@@ -58,7 +60,7 @@ class Footer extends Component {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link to="/employer-pricing">
+                                        <Link href="/employer-pricing">
                                             <a>Our Pricing</a>
                                         </Link>
                                     </li>
@@ -70,17 +72,17 @@ class Footer extends Component {
                                 </ul> :
                                 <ul className="services-list">
                                 <li>
-                                    <Link to="/company">
+                                    <Link href="/company">
                                         <a>About Us</a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/pricing">
+                                    <Link href="/pricing">
                                         <a>Our Pricing</a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/bloghome">
+                                    <Link href="/bloghome">
                                         <a>Blog</a>
                                     </Link>
                                 </li>
@@ -126,7 +128,7 @@ class Footer extends Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <Link to="/contact">
+                                    <Link href="/contact">
                                         <a>Contact Us</a>
                                     </Link>
                                 </li>
@@ -194,6 +196,7 @@ class Footer extends Component {
                                         style={{
                                         width: "14%",
                                         height:"14%",
+                                        display:"inline"
                                         }}
                                     />
                                     <img
@@ -203,6 +206,7 @@ class Footer extends Component {
                                         style={{
                                         width: "40%",
                                         height:"100%",
+                                        display:"inline"
                                         }}
                                     />
                                     </a>
@@ -225,7 +229,7 @@ class Footer extends Component {
                                         </a>
                                     </li>
                                     <li>
-                                        <Link to="/employer-pricing">
+                                        <Link href="/employer-pricing">
                                             <a>Our Pricing</a>
                                         </Link>
                                     </li>
@@ -237,17 +241,17 @@ class Footer extends Component {
                                 </ul> :
                                 <ul className="services-list">
                                 <li>
-                                    <Link to="/company">
+                                    <Link href="/company">
                                         <a>About Us</a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/pricing">
+                                    <Link href="/pricing">
                                         <a>Our Pricing</a>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/bloghome">
+                                    <Link href="/bloghome">
                                         <a>Blog</a>
                                     </Link>
                                 </li>
@@ -267,7 +271,7 @@ class Footer extends Component {
                                 {(uri.includes("employer")  || uri=="")?
                                 <ul className="support-list">
                                     <li>
-                                        <Link to="/privacy">
+                                        <Link href="/privacy">
                                             <a>Privacy Policy</a>
                                         </Link>
                                     </li>
@@ -284,7 +288,7 @@ class Footer extends Component {
                                 </ul>:
                                 <ul className="support-list">
                                 <li>
-                                    <Link to="/privacy">
+                                    <Link href="/privacy">
                                         <a>Privacy Policy</a>
                                     </Link>
                                 </li>
@@ -294,7 +298,7 @@ class Footer extends Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <Link to="/contact">
+                                    <Link href="/contact">
                                         <a>Contact Us</a>
                                     </Link>
                                 </li>

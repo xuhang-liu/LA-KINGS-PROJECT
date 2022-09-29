@@ -10,6 +10,8 @@ import { MessageClient } from "cloudmailin";
 import { MyModalUpgrade } from "./DashboardComponents";
 import 'boxicons';
 import EmailPreference from './settingsComponents/EmailPreference';
+import { Text, Box, ButtonGroup, Button, Stack, IconButton, HStack, VStack, Input, Container, SimpleGrid, FormControl, Heading } from '@chakra-ui/react';
+import { FiEdit3 } from 'react-icons/fi';
 
 export class SubpageSetting extends Component {
     state = {
@@ -347,521 +349,451 @@ export class SubpageSetting extends Component {
     render() {
         return (
             <>
-                <div className="container">
-                    <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></b></h3></div>
-                    <div className="row" >
-                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                            {!this.props.profile.is_employer &&
-                                // (this.props.profile.is_external_reviewer || this.props.profile.is_subreviwer) ?
-                                //     <button
-                                //         type="button"
-                                //         className="panel-button"
-                                //         onClick={this.props.renderJobs}
-                                //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                                //     >
-                                //         <div className="center-items back-to-text">
-                                //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                //         </div>
-                                //     </button> :
-                                //     <button
-                                //         type="button"
-                                //         className="panel-button"
-                                //         onClick={this.props.renderEmployerProfile}
-                                //         style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                                //     >
-                                //         <div className="center-items back-to-text">
-                                //             <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                //         </div>
-                                //     </button> :
-                                <button
-                                    type="button"
-                                    className="panel-button"
-                                    onClick={this.props.renderVideos}
-                                    style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                                >
-                                    <div className="center-items back-to-text">
-                                        <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
-                                    </div>
-                                </button>}
-                        </div>
-                    </div>
-                    <div>
-                        <div className="row" >
-                            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                <IconText
-                                    textDisplayed={"Account Information"}
-                                    textSize={"24px"}
-                                    textColor={"#090D3A"}
-                                    iconMargin={"3px"}
-                                />
+                <Box
+                    bg="bg-canvas"
+                    borderTopLeftRadius={{
+                        base: 'none',
+                        lg: '2rem',
+                    }}
+                    height="full"
+                >
+                    <Container py="5" height="full">
+                        <Stack
+                            spacing={{
+                                base: '8',
+                                lg: '6',
+                            }}
+                            height="full"
+                        >
+                            <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></Heading>
+                            <div className="row" >
+                                <div className="col d-flex align-items-center">
+                                    {!this.props.profile.is_employer &&
+                                        <button
+                                            type="button"
+                                            className="panel-button"
+                                            onClick={this.props.renderVideos}
+                                            style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
+                                        >
+                                            <div className="center-items back-to-text">
+                                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back</p>
+                                            </div>
+                                        </button>}
+                                </div>
                             </div>
-                        </div>
+                            <div>
+                                <div className="row" >
+                                    <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                        <Text fontSize='xl' color="muted">Account Information</Text>
+                                    </div>
+                                </div>
 
-                        <div className="chart-bg1 container">
-                            <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                <div className="form-group col">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Email</p>
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group col">
-                                    <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.user.email}</p>
-                                </div>
-                            </div>
-                            {this.props.profile.is_employer &&
-                                <div>
-                                    <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                        <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Name <i className="bx bx-edit-alt" style={{ cursor: "pointer", color: "#006dff", marginLeft: "1rem" }} onClick={() => this.switch_name_change_on()}></i></p>
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col">
-                                            {!this.state.change_name_switch ?
-                                                <p style={{ display: 'inline-block', fontSize: "15px" }}>{this.props.employerProfileDetail?.f_name + " " + this.props.employerProfileDetail?.l_name}</p> :
-                                                <div>
-                                                    <p style={{ display: 'inline-block', fontSize: "15px" }}>First Name</p>
-                                                    <input id="firstName" defaultValue={this.props.employerProfileDetail?.f_name}></input>
-                                                    <p style={{ display: 'inline-block', fontSize: "15px", marginLeft: "1rem" }}>Last Name</p>
-                                                    <input id="lastName" defaultValue={this.props.employerProfileDetail?.l_name}></input>
-                                                    <div className="profile-edit">
-                                                        <span style={{ cursor: "pointer" }} onClick={() => this.save_name_change()}>Save</span>
-                                                        <span style={{ cursor: "pointer", color: "#979797", marginLeft: "1rem" }} onClick={() => this.switch_name_change_off()}>Cancel</span>
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                >
+                                    <Stack spacing="5">
+                                        <Stack spacing="1">
+                                            <Text fontSize="lg" fontWeight="medium">
+                                                Email
+                                            </Text>
+                                            <Text fontSize="sm" color="muted">
+                                                {this.props.user.email}
+                                            </Text>
+                                        </Stack>
+                                        {this.props.profile.is_employer &&
+                                            <Stack spacing="1">
+                                                <HStack spacing="3">
+                                                    <Text fontSize="lg" fontWeight="medium">
+                                                        Name
+                                                    </Text>
+                                                    <IconButton aria-label='Edit Name' icon={<FiEdit3 />} size='sm' onClick={() => this.switch_name_change_on()}></IconButton>
+                                                </HStack>
+                                                {!this.state.change_name_switch ?
+                                                    <Text fontSize="sm" color="muted">
+                                                        {this.props.employerProfileDetail?.f_name + " " + this.props.employerProfileDetail?.l_name}
+                                                    </Text> :
+                                                    <div>
+                                                        <HStack spacing='2' pt='3'>
+                                                            <VStack spacing='1' align='left'>
+                                                                <Text fontSize="md" fontWeight="medium">
+                                                                    First Name
+                                                                </Text>
+                                                                <Input id="firstName" defaultValue={this.props.employerProfileDetail?.f_name} />
+                                                            </VStack>
+                                                            <VStack spacing='1' align='left'>
+                                                                <Text fontSize="md" fontWeight="medium">
+                                                                    Last Name
+                                                                </Text>
+                                                                <Input id="lastName" defaultValue={this.props.employerProfileDetail?.l_name} />
+                                                            </VStack>
+                                                        </HStack>
+                                                        <ButtonGroup variant='outline' spacing='6' pt='3'>
+                                                            <Button borderColor='brand.500' onClick={() => this.save_name_change()}>Save</Button>
+                                                            <Button onClick={() => this.switch_name_change_off()}>Cancel</Button>
+                                                        </ButtonGroup>
                                                     </div>
-                                                </div>
-                                            }
+                                                }
+                                            </Stack>}
+                                    </Stack>
+                                </Box>
+                            </div>
+                            {(!this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer && this.props.profile.is_employer) &&
+                                <div>
+                                    <div className="row" >
+                                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                            <Text fontSize='xl' color="muted">Hiring Team</Text>
                                         </div>
                                     </div>
-                                    {/* <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Company Job Portal</p>
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="form-group col">
-                                        <a target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                                    </div>
-                                </div> */}
+
+                                    <Box
+                                        bg="bg-surface"
+                                        boxShadow='sm'
+                                        borderRadius="lg"
+                                        p={{
+                                            base: '4',
+                                            md: '6',
+                                        }}
+                                    >
+                                        <HStack spacing='5'>
+                                            <Container spacing='1'>
+                                                <Text fontSize='md' color="muted">Reviewers</Text>
+                                                {this.props.sub_r_list.map((s, i) => {
+                                                    return (
+                                                        <div className="row ml-1">
+                                                            <div className="col-1 pt-2">
+                                                                <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
+                                                            </div>
+                                                            <div className="col-8">
+                                                                <Stack spacing="1">
+                                                                    <Text fontSize="lg" fontWeight="medium">
+                                                                        {s?.split("&")[0]}
+                                                                    </Text>
+                                                                    <Text fontSize="sm" color="muted">
+                                                                        {s?.split("&")[1]?.toLowerCase()}
+                                                                    </Text>
+                                                                </Stack>
+                                                            </div>
+                                                            <div className="col-3 pt-3">
+                                                                <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "sub")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </Container>
+                                            <Container spacing='1'>
+                                                <Text fontSize='md' color="muted">Hiring Managers</Text>
+                                                {this.props.ext_r_list.map((s, i) => {
+                                                    return (
+                                                        <div className="row ml-1">
+                                                            <div className="col-1 pt-2">
+                                                                <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
+                                                            </div>
+                                                            <div className="col-8">
+                                                                <Stack spacing="1">
+                                                                    <Text fontSize="lg" fontWeight="medium">
+                                                                        {s?.split("&")[0]}
+                                                                    </Text>
+                                                                    <Text fontSize="sm" color="muted">
+                                                                        {s?.split("&")[1]?.toLowerCase()}
+                                                                    </Text>
+                                                                </Stack>
+                                                            </div>
+                                                            <div className="col-3 pt-3">
+                                                                <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "ext")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })}
+                                            </Container>
+                                        </HStack>
+                                        {(this.props.ext_r_list.length <= 0 && this.props.sub_r_list.length <= 0) &&
+                                            <div className="col-12 mt-4">
+                                                <Text fontSize="lg" fontWeight="medium">
+                                                    You haven't invited any reviewers yet.
+                                                </Text>
+                                            </div>}
+                                    </Box>
                                 </div>
                             }
-                            {/*<form style={{ marginBottom: "3%" }} onSubmit={this.saveChanges}>
-                                <div className="form-row" style={{ marginTop: "1%" }}>
-                                    {!this.props.profile.is_employer &&
-                                        <div className="form-group col-6">
-                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Phone Number</p>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                name={"phone_number"}
-                                                value={this.state.phone_number}
-                                                onChange={this.handleInputChange}
-                                                placeholder={"Phone Number"}
-                                                required="required"
-                                            />
-                                        </div>}
-//                                    {this.props.profile.is_employer &&
-//                                    <div className="form-group col-6">
-//                                        <label style={{ fontSize: "17px" }}>Company Name</label>
-//                                        <input
-//                                            type="text"
-//                                            className="form-control"
-//                                            name={"company_name"}
-//                                            value={this.state.company_name}
-//                                            onChange={this.handleInputChange}
-//                                            placeholder={"Company Name"}
-//                                            required="required"
-//                                        />
-//                                    </div>}
-                                    <div className="form-group col-6">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Location</p>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            name={"location"}
-                                            value={this.state.location}
-                                            onChange={this.handleInputChange}
-                                            placeholder={"Location"}
-                                            required="required"
-                                            pattern="[0-9 a-z A-Z ]+"
-                                            title="Alphabet letters only!"
-                                        />
-                                    </div>
-                                </div>
-                                <button
-                                    type="submit"
-                                    className="default-btn"
-                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                >
-                                    Update Profile
-                                </button>
-                            </form>*/}
-                        </div>
-                    </div>
-                    {(!this.props.profile.is_external_reviewer && !this.props.profile.is_subreviwer && this.props.profile.is_employer) &&
-                        <div>
                             <div className="row" >
                                 <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <IconText
-                                        textDisplayed={"Hiring Team"}
-                                        textSize={"24px"}
-                                        textColor={"#090D3A"}
-                                        iconMargin={"3px"}
-                                    />
+                                    <Text fontSize='xl' color="muted">Change Password</Text>
                                 </div>
                             </div>
-                            <div className="chart-bg1 container">
-                                <div className="row pb-4 pt-2" style={{ marginTop: "1%" }}>
-                                    <div className="col-6 h-100">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Reviewers</p>
-                                        {this.props.sub_r_list.map((s, i) => {
-                                            return (
-                                                <div className="row ml-1">
-                                                    <div className="col-1 pt-2">
-                                                        <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
-                                                    </div>
-                                                    <div className="col-8">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
-                                                        <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
-                                                    </div>
-                                                    <div className="col-3 pt-3">
-                                                        <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "sub")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                    <div className="col-6 h-100">
-                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Hiring Managers</p>
-                                        {this.props.ext_r_list.map((s, i) => {
-                                            return (
-                                                <div className="row ml-1">
-                                                    <div className="col-1 pt-2">
-                                                        <span className={`sub_number${i % 3}`} style={{ color: "white" }}>{s?.split("&")[0]?.substring(0, 2)?.toUpperCase()}</span>
-                                                    </div>
-                                                    <div className="col-8">
-                                                        <p style={{ fontSize: "1rem", fontWeight: "600", color: "#000", marginBottom: "0" }}>{s?.split("&")[0]}</p>
-                                                        <p style={{ fontSize: "0.95rem", fontWeight: "500", color: "#4a6f8a", marginTop: "0" }}>{s?.split("&")[1]?.toLowerCase()}</p>
-                                                    </div>
-                                                    <div className="col-3 pt-3">
-                                                        <a onClick={() => this.removeReviewerFromList((s?.split("&")[1]?.toLowerCase()), "ext")} style={{ fontSize: "0.9rem", fontWeight: "600", color: "#87a3f3", textDecoration: "none", cursor: "pointer" }}>Remove</a>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })}
-                                    </div>
-                                    {(this.props.ext_r_list.length <= 0 && this.props.sub_r_list.length <= 0) &&
-                                        <div className="col-12 mt-4">
-                                            <p style={{ marginLeft: "25%", fontSize: "1.1rem", fontWeight: "500", color: "#7a7a7a" }}>You haven't invited any reviewers yet.</p>
-                                        </div>}
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    <div className="row" >
-                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                            <IconText
-                                textDisplayed={"Change Password"}
-                                textSize={"24px"}
-                                textColor={"#090D3A"}
-                                iconMargin={"3px"}
-                            />
-                        </div>
-                    </div>
 
-                    <div className="chart-bg1 container">
-                        <form style={{ marginBottom: "3%" }} onSubmit={this.PasswordCheck}>
-                            <div className="form-row" style={{ marginTop: "1%" }}>
-                                <div className="form-group col">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Current Password</p>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        name={"oldPassword"}
-                                        value={this.state.oldPassword}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"current password"}
-                                        required="required"
-                                    />
-                                </div>
-                            </div>
-                            <div className="form-row" style={{ marginTop: "1%" }}>
-                                <div className="form-group col-6">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>New Password</p>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        name={"newPassword"}
-                                        value={this.state.newPassword}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"new password"}
-                                        required="required"
-                                    />
-                                </div>
-                                <div className="form-group col-6">
-                                    <p style={{ fontSize: "17px", color: "#090d3a" }}>Confirm Password</p>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        name={"confirmPassword"}
-                                        value={this.state.confirmPassword}
-                                        onChange={this.handleInputChange}
-                                        placeholder={"confirm new password"}
-                                        required="required"
-                                        pattern="[0-9 a-z A-Z ]+"
-                                        title="Alphabet letters only!"
-                                    />
-                                </div>
-                            </div>
-                            <button
-                                type="submit"
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", textDecoration: "none" }}
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
                             >
-                                Update Password
-                            </button>
-                        </form>
-                    </div>
-                    {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
-                        <div>
-                            <div className="row" >
-                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <IconText
-                                        textDisplayed={"Membership"}
-                                        textSize={"24px"}
-                                        textColor={"#090D3A"}
-                                        iconMargin={"3px"}
-                                    />
-                                </div>
-                            </div>
-                            <div className="chart-bg1 container">
-                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                        {this.props.profile.plan_interval == "Premium" &&
-                                            <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
-                                                </p>
-                                            </div>}
-                                        {this.props.profile.plan_interval == "Pro" &&
-                                            <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
-                                                </p>
-                                            </div>}
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="form-group col">
-                                        <a
-                                            href="/employer-pricing"
-                                            type="submit"
-                                            className="default-btn"
-                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                        >
-                                            Change Plan
-                                        </a>
-                                    </div>
-                                </div>
-                                {!this.props.profile.is_freetrial &&
-                                    <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
-                                        <div className="form-row" style={{ marginTop: "1%" }}>
-                                            <div className="form-group col">
-                                                <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
-                                                <input
-                                                    type="email"
-                                                    className="form-control"
-                                                    name={"useremail"}
-                                                    value={this.state.useremail}
-                                                    onChange={this.handleInputChange}
-                                                    placeholder={"email"}
-                                                    required="required"
-                                                />
-                                            </div>
-                                        </div>
-                                        <button
-                                            type="submit"
-                                            className="default-btn"
-                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                        >
-                                            Cancel Membership
-                                        </button>
-                                    </form>}
-                            </div>
-                        </div>}
-                    {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer) && (this.props.profile.is_employer)) &&
-                        <div>
-                            <div className="row" >
-                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <IconText
-                                        textDisplayed={"Subscription"}
-                                        textSize={"24px"}
-                                        textColor={"#090D3A"}
-                                        iconMargin={"3px"}
-                                    />
-                                </div>
-                            </div>
-                            <div className="chart-bg1 container">
-                                <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                    <div className="form-group col">
-                                        <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current Plan</p>
-                                        {this.props.profile.plan_interval == "Premium" &&
-                                            <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
-                                                </p>
-                                            </div>}
-                                        {this.props.profile.plan_interval == "Pro" &&
-                                            <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                    <i className="bx-fw bx bx-diamond bx-xs"></i>
-                                                    {this.props.profile.position_limit == 5 &&
-                                                        <span>Pro</span>}
-                                                    {this.props.profile.position_limit == 1 &&
-                                                        <span>Basic Plan</span>}
-                                                    {this.props.profile.position_limit == 10 &&
-                                                        <span>Pro Plus</span>}
-                                                    {this.props.profile.position_limit == 50 &&
-                                                        <span>Premium Lite</span>}
-                                                </p>
-                                            </div>}
-                                        {this.props.profile.is_freetrial &&
-                                            <p className="ml-2 mb-3">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</p>}
-                                    </div>
-                                </div>
-
-                                {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><i className="bx bxs-check-circle" style={{ color: "green" }}></i><span className="ml-2" style={{ color: "#000", fontWeight: "bolder" }}>{this.state.codeMsg}</span></div> : null}
-
-                                <div className="form-row">
-                                    <div className="form-group col">
-                                        {((this.props.profile.customer_id != "" && this.props.profile.customer_id != null)) &&
-                                            <div>
-                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.stripeCustomerPortal}>Manage Subscription</button>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                                <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
-                                    <div className="form-row" style={{ marginTop: "1%" }}>
-                                        <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                name="code"
-                                                value={this.state.code}
+                                <FormControl isRequired>
+                                    <VStack spacing='2' align='left'>
+                                        <Text fontSize='lg' color="muted">Current Password</Text>
+                                        <Input
+                                            type="password"
+                                            name={"oldPassword"}
+                                            value={this.state.oldPassword}
+                                            onChange={this.handleInputChange}
+                                            placeholder={"current password"}
+                                            isRequired={true}></Input>
+                                    </VStack>
+                                    <SimpleGrid spacing='2' mt='5' columns='2'>
+                                        <VStack spacing='1' align='left'>
+                                            <Text fontSize='lg' color="muted">New Password</Text>
+                                            <Input
+                                                type="password"
+                                                name={"newPassword"}
+                                                value={this.state.newPassword}
                                                 onChange={this.handleInputChange}
-                                                placeholder="Enter promo code"
-                                                required="required"
-                                            />
+                                                placeholder={"new password"}
+                                                isRequired={true}></Input>
+                                        </VStack>
+                                        <VStack spacing='1' align='left'>
+                                            <Text fontSize='lg' color="muted">Confirm Password</Text>
+                                            <Input
+                                                type="password"
+                                                name={"confirmPassword"}
+                                                value={this.state.confirmPassword}
+                                                onChange={this.handleInputChange}
+                                                placeholder={"confirm new password"}
+                                                isRequired={true}
+                                                pattern="[0-9 a-z A-Z ]+"
+                                                title="Alphabet letters only!"></Input>
+                                        </VStack>
+                                    </SimpleGrid>
+                                    <Button bg='brand.500' color='white' mt='5' type="submit" onClick={this.PasswordCheck}>Update Password</Button>
+                                </FormControl>
+                            </Box>
 
-                                            {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
+                            {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
+                                <div>
+                                    <div className="row" >
+                                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                            <IconText
+                                                textDisplayed={"Membership"}
+                                                textSize={"24px"}
+                                                textColor={"#090D3A"}
+                                                iconMargin={"3px"}
+                                            />
                                         </div>
                                     </div>
-                                    <button
-                                        type="submit"
-                                        className="default-btn"
-                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                    >
-                                        Apply
-                                    </button>
-                                </form>
-                            </div>
-                        </div>}
-                    {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
-                        <div>
-                            <div className="row" >
-                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <IconText
-                                        textDisplayed={"Membership"}
-                                        textSize={"24px"}
-                                        textColor={"#090D3A"}
-                                        iconMargin={"3px"}
-                                    />
-                                </div>
-                            </div>
-                            <div className="chart-bg1 container">
-                                <form style={{ marginBottom: "3%" }}>
-                                    <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
-                                        {(this.props.profile.is_employer) ?
+                                    <div className="chart-bg1 container">
+                                        <div className="form-row" style={{ marginTop: "1%", marginBottom: "-1.6%" }}>
                                             <div className="form-group col">
                                                 <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                        <span>Free</span>
-                                                    </p>
-                                                </div>
-                                            </div> :
-                                            <div className="form-group col">
-                                                <p style={{ fontSize: "17px", color: "#090d3a", display: "inline-block" }}>Current User Group</p>
-                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
-                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
-                                                        <span>Free</span>
-                                                    </p>
-                                                </div>
+                                                {this.props.profile.plan_interval == "Premium" &&
+                                                    <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                        <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                            <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                                        </p>
+                                                    </div>}
+                                                {this.props.profile.plan_interval == "Pro" &&
+                                                    <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                        <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                            <i className="bx-fw bx bx-diamond bx-xs"></i><span>Pro</span>
+                                                        </p>
+                                                    </div>}
                                             </div>
-                                        }
-                                    </div>
-                                    {this.props.profile.is_employer ?
-                                        <div>
-                                            {!this.props.profile.is_subreviwer &&
+                                        </div>
+                                        <div className="form-row">
+                                            <div className="form-group col">
                                                 <a
                                                     href="/employer-pricing"
+                                                    type="submit"
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                                >
+                                                    Change Plan
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {!this.props.profile.is_freetrial &&
+                                            <form style={{ marginBottom: "3%" }} onSubmit={this.cancelSub}>
+                                                <div className="form-row" style={{ marginTop: "1%" }}>
+                                                    <div className="form-group col">
+                                                        <p style={{ fontSize: "17px", color: "#090d3a" }}>Type your email to cancel the membership</p>
+                                                        <input
+                                                            type="email"
+                                                            className="form-control"
+                                                            name={"useremail"}
+                                                            value={this.state.useremail}
+                                                            onChange={this.handleInputChange}
+                                                            placeholder={"email"}
+                                                            required="required"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <button
+                                                    type="submit"
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                                >
+                                                    Cancel Membership
+                                                </button>
+                                            </form>}
+                                    </div>
+                                </div>}
+                            {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_subreviwer) && (!this.props.profile.is_external_reviewer) && (this.props.profile.is_employer)) &&
+                                <div>
+                                    <div className="row" >
+                                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                            <Text fontSize='xl' color="muted">Subscription</Text>
+                                        </div>
+                                    </div>
+
+                                    <Box
+                                        bg="bg-surface"
+                                        boxShadow='sm'
+                                        borderRadius="lg"
+                                        p={{
+                                            base: '4',
+                                            md: '6',
+                                        }}
+                                    >
+                                        <Stack spacing='2'>
+                                            <HStack spacing='3'>
+                                                <Text fontSize='lg' color="muted">Current Plan</Text>
+                                                {this.props.profile.plan_interval == "Premium" &&
+                                                    <div style={{ borderColor: "#FF6B00", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                        <p style={{ color: "#FF6B00", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                            <i className="bx-fw bx bx-diamond bx-xs"></i><span>Premium</span>
+                                                        </p>
+                                                    </div>}
+                                                {this.props.profile.plan_interval == "Pro" &&
+                                                    <div style={{ borderColor: "#fac046", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                        <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                            <i className="bx-fw bx bx-diamond bx-xs"></i>
+                                                            {this.props.profile.position_limit == 5 &&
+                                                                <span>Pro</span>}
+                                                            {this.props.profile.position_limit == 1 &&
+                                                                <span>Basic Plan</span>}
+                                                            {this.props.profile.position_limit == 10 &&
+                                                                <span>Pro Plus</span>}
+                                                            {this.props.profile.position_limit == 50 &&
+                                                                <span>Premium Lite</span>}
+                                                        </p>
+                                                    </div>}
+                                                {this.props.profile.is_freetrial &&
+                                                    <Text fontSize='md' color="muted">Free trial ends in {parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) >= 0 ? parseInt((new Date(this.props.profile.datejoined).getDate() + 14) - (new Date().getDate())) : "0"} days</Text>}
+                                            </HStack>
+                                            {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><HStack spacing='2'><i className="bx bxs-check-circle" style={{ color: "green" }}></i><Text ml='3' fontSize='md' color="muted">{this.state.codeMsg}</Text></HStack></div> : null}
+                                            <Box>
+                                                <Button bg='brand.500' color='white' mt='4' onClick={this.stripeCustomerPortal}>Manage Subscription</Button>
+                                            </Box>
+                                            <Stack spacing='3'>
+                                                <FormControl isRequired>
+                                                    <Text fontSize='lg' color="muted" mt='4'>Redeem a Promo Code</Text>
+                                                    <Input
+                                                        type="text"
+                                                        name="code"
+                                                        value={this.state.code}
+                                                        onChange={this.handleInputChange}
+                                                        placeholder="Enter promo code"
+                                                        isRequired={true}></Input>
+                                                    {this.state.codeErr.length != 0 ? <HStack><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><Text fontSize='md' color="muted">{this.state.codeErr}</Text></HStack> : null}
+                                                    <Button bg='brand.500' color='white' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
+                                                </FormControl>
+                                            </Stack>
+                                        </Stack>
+                                    </Box>
+                                </div>}
+                            {(this.props.profile.membership == "Regular" && (!this.props.profile.is_external_reviewer) && (!this.props.profile.is_subreviwer)) &&
+                                <div>
+                                    <div className="row" >
+                                        <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                            <Text fontSize='xl' color="muted">Membership</Text>
+                                        </div>
+                                    </div>
+
+                                    <Box
+                                        bg="bg-surface"
+                                        boxShadow='sm'
+                                        borderRadius="lg"
+                                        p={{
+                                            base: '4',
+                                            md: '6',
+                                        }}
+                                    >
+                                        <Stack spacing='2'>
+                                            <HStack spacing='3'>
+                                                <Text fontSize='lg' color="muted">Current User Group</Text>
+                                                <div style={{ borderColor: "#7D7D7D", borderWidth: "2px", borderRadius: "5px", borderStyle: "solid", display: "inline-block", marginLeft: "1rem" }}>
+                                                    <p style={{ color: "#7D7D7D", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
+                                                        <span>Free</span>
+                                                    </p>
+                                                </div>
+                                            </HStack>
+                                            {this.props.profile.is_employer ?
+                                                <div>
+                                                    {!this.props.profile.is_subreviwer &&
+                                                        <a
+                                                            href="/employer-pricing"
+                                                            className="default-btn"
+                                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
+                                                        >
+                                                            Upgrade Plan
+                                                        </a>}</div> :
+                                                <a
+                                                    href="/pricing"
                                                     className="default-btn"
                                                     style={{ paddingLeft: "25px", textDecoration: "none" }}
                                                 >
                                                     Upgrade Plan
-                                                </a>}</div> :
-                                        <a
-                                            href="/pricing"
-                                            className="default-btn"
-                                            style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                        >
-                                            Upgrade Plan
-                                        </a>}
-                                </form>
-
-                                <form style={{ marginBottom: "3%" }} onSubmit={this.codeCheck}>
-                                    <div className="form-row" style={{ marginTop: "1%" }}>
-                                        <div className="form-group col">
-                                            <p style={{ fontSize: "17px", color: "#090d3a" }}>Redeem a Promo Code</p>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                name="code"
-                                                value={this.state.code}
-                                                onChange={this.handleInputChange}
-                                                placeholder="Enter promo code"
-                                                required="required"
-                                            />
-
-                                            {this.state.codeErr.length != 0 ? <><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><span className="ml-2">{this.state.codeErr}</span></> : null}
-                                        </div>
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        className="default-btn"
-                                        style={{ paddingLeft: "25px", textDecoration: "none" }}
-                                    >
-                                        Apply
-                                    </button>
-                                </form>
-                            </div>
-                        </div>}
-                    {/* User Email Preference */}
-                    {this.props.profile.is_employer ? <EmailPreference userId={this.props.user.id} /> : null}
-                </div>
-                {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
-                    {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
-                        : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
-                </div> : null}
+                                                </a>}
+                                            {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><HStack spacing='2'><i className="bx bxs-check-circle" style={{ color: "green" }}></i><Text ml='3' fontSize='md' color="muted">{this.state.codeMsg}</Text></HStack></div> : null}
+                                            <Stack spacing='3'>
+                                                <FormControl isRequired>
+                                                    <Text fontSize='lg' color="muted" mt='4'>Redeem a Promo Code</Text>
+                                                    <Input
+                                                        type="text"
+                                                        name="code"
+                                                        value={this.state.code}
+                                                        onChange={this.handleInputChange}
+                                                        placeholder="Enter promo code"
+                                                        isRequired={true}></Input>
+                                                    {this.state.codeErr.length != 0 ? <HStack><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><Text fontSize='md' color="muted">{this.state.codeErr}</Text></HStack> : null}
+                                                    <Button bg='brand.500' color='white' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
+                                                </FormControl>
+                                            </Stack>
+                                        </Stack>
+                                    </Box>
+                                </div>}
+                            {/* User Email Preference */}
+                            {this.props.profile.is_employer ? <EmailPreference userId={this.props.user.id} /> : null}
+                            {/* User Deletion */}
+                            {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
+                                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
+                                    : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
+                            </div> : null}
+                        </Stack>
+                    </Container>
+                </Box>
                 {/* confirm email modal */}
                 {<MyModalUpgrade
                     show={this.state.confirmShow}
                     onHide={this.setHideConfirm}
                 >
-                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem", textAlign: "center" }}>
-                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Are you sure?</h3>
+                    <Container
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        p={{
+                            base: '4',
+                            md: '6',
+                        }}
+                        align='center'
+                    >
+                        <Heading as='h3' size='lg'>Are you sure?</Heading>
                         <i className="bx bxs-help-circle text-55" style={{ color: '#FAC046' }}></i>
                         <p style={{ color: "#7A7A7A" }}>
                             This action cannot be undone. This will permanently wipe all information and data under your account, including job postings, candidate information, notes, etc, and remove all collaborator associations.
@@ -898,7 +830,7 @@ export class SubpageSetting extends Component {
                                 <button onClick={this.setHideConfirm} className="default-btn" style={{ width: "45%", paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Cancel</button>
                             </div>
                         </form>
-                    </div>
+                    </Container>
                 </MyModalUpgrade>}
                 {/* Delete Info */}
                 {<MyModalUpgrade

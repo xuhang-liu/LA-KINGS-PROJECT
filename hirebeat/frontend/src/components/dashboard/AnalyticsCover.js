@@ -36,7 +36,7 @@ export class AnalyticsCover extends Component {
     render() {
         return (
             <div className="container-xl">
-                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-bar-chart-square"></i><span className="ml-2">Analytics</span></b></h3></div>
+                <div style={{ marginBottom: "30px" }}><h3><b style={{color:"#090d3a", fontSize:"1.2rem"}}><i className="bx-fw bx bx-bar-chart-square"></i><span className="ml-2">Analytics</span></b></h3></div>
                 <div className="tab pricing-list-tab">
                     {/* Pricing Tab List */}
                     <ul className="tabs">

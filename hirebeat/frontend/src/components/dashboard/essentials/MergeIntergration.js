@@ -209,12 +209,12 @@ const MergeIntergration = (props) => {
 
     return (
         <div className="container min-width-980" style={{ paddingBottom: "9rem" }}>
-            <div style={{ marginBottom: "30px" }}><h3><b><span style={{ marginRight: "0.6rem" }}><img src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-eos-icons_api-outlined.png" alt="icon"></img></span><span className="ml-2">Integration</span></b></h3></div>
+            <div style={{ marginBottom: "30px" }}><h3><b style={{color:"#090d3a", fontSize:"1.2rem"}}><img style={{ marginRight: "0.6rem", display:"inline" }} src="https://hirebeat-assets.s3.amazonaws.com/Employer/employer-eos-icons_api-outlined.png" alt="icon"></img><span style={{display:"inline"}} className="ml-2">Integration</span></b></h3></div>
             <div className="chart-bg1 container min-width-980">
                 <div className="form-row" style={{ marginTop: "1%" }}>
                     <div className="form-group col">
                         <p style={{ fontSize: "1.2rem", color: "#090d3a", fontWeight: "600" }}>Integrate with your ATS</p>
-                        <div style={{ marginTop: "-1rem" }}>
+                        <div>
                             <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>HireBeat seamlessly <span style={{ color: "#ff6b00" }}>integrates with many ATS platforms</span> in the market, including Greenhouse, Breezy, Lever, Workable, etc.</p>
                             <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>To do so, click on the "Integrate" button below, and select your current platform to log in.</p>
                             <p style={{ fontSize: "1rem", color: "#090d3a", fontWeight: "500" }}>Once integrated, follow the instructions below to conduct <span style={{ color: "#ff6b00" }}>one-way video interviews</span> through HireBeat.</p>

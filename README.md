@@ -6,7 +6,7 @@ This README is intended for programmers who already have experience with React o
 
 0. Make sure you have access to all the environmental credientials.
 
-1. Set up your environment. install python3, pip3, virtualenv. Then in your virtualenv, install django, node, postgresql.
+1. Set up your environment. install python3, pip3, virtualenv. Then in your virtualenv, install django, node(please use v16.14.0), postgresql.
 2. Git clone the repo in your virtualenv.
 3. Cd into the project(where there is a requirement.txt file) and run `pip3 install -r requirements.txt` to install all django related packages.
 4. Then in the same folder(where there is a package.json file), run `npm install` to install all react related packages.
@@ -33,4 +33,4 @@ console.warn = function () {};
 
 in hirebeat/frontend/src/index.js
 
-Copyright @2020 Hirebeat.
+Copyright @2022 Hirebeat.

@@ -1,30 +1,46 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import PropTypes from 'prop-types';
 import { logout, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
+import { FiMenu, FiSettings, FiSun, FiUser, FiAlertCircle } from 'react-icons/fi';
 import 'boxicons';
-//import Dropdown from 'react-bootstrap/Dropdown'
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  HStack,
+  Stack,
+  IconButton,
+  useColorModeValue,
+  useColorMode,
+  useBreakpointValue,
+  Image,
+  Link,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverBody,
+  PopoverArrow,
+  Text
+} from '@chakra-ui/react';
 
-export class Header extends Component {
+export const Header = (props) => {
 
-  // Navbar 
-  _isMounted = false;
-  state = {
-    display: false,
-    collapsed: true
-  };
-  toggleNavbar = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  }
-  componentDidMount() {
+  const isDesktop = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  useEffect(() => {
     if (localStorage.getItem("token")) {
-      this.props.loadProfile();
+      props.loadProfile();
     }
     let elementId = document.getElementById("navbar");
     document.addEventListener("scroll", () => {
@@ -35,718 +51,615 @@ export class Header extends Component {
       }
     });
     window.scrollTo(0, 0);
-  }
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
+  }, []);
 
-  static propTypes = {
+  Header.propTypes = {
     auth: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
   };
 
-  trackLogoutSeg = () => {
+  const trackLogoutSeg = () => {
     //Segment track
     window?.analytics?.track("User - Logout", {
       eventTime: Date()?.toLocaleString(),
     });
   }
 
-  renderUserLinks = () => {
-    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
+  const renderUserLinks = () => {
+    let user = JSON.parse(sessionStorage.getItem("user")) || props.auth.user;
     // for the purpose of routing to different links
     if (user == null) {
       user = { "groups": ["non-reviewer"] };
     }
     return (
       <React.Fragment>
-        <MediaQuery minDeviceWidth={1224}>
-          <div className="nav-item order-xl-1 align-self-center mr-3">
-            <div className="nav-link text-white navbar-font">
-              <Link to="/dashboard" id="id-dash-out" className="nav-link text-white navbar-font">
-                <span className="header-text">Dashboard</span>
+        {isDesktop ? (
+          <HStack spacing="1">
+            {!isAuthenticated ?
+              <Link href="https://hirebeat.co">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link> :
+              <Link href="/dashboard">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
               </Link>
-            </div>
-          </div>
-        </MediaQuery>
-        <div className="nav-item order-xl-1 align-self-center mr-5">
-          <div className="nav-link text-white navbar-font">
-            <div className="row">
-              <i className="bx bx-user-circle 1 bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
-              <span className="header-text" style={{ cursor: 'pointer' }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                <ul className="nav_submenu" style={{ width: "8rem", marginLeft: "-1rem" }}>
-                  <li>
-                    <Link id="id-logout" to="/job-seekers" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
-                      Log out
-                    </Link>
-                  </li>
-                </ul>
-              </span>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent">
-
-          <ul
-            className="navbar-nav
-                 text-left order-xl-0" style={{ marginLeft: "10px" }}>
-            <MediaQuery minDeviceWidth={1224}>
-              <li className="nav-item ">
-                <Link id="id-interviewpr1" to="/practice" className="nav-link text-white navbar-font">
-                  <span className="header-text">Interview</span>
-                </Link>
-              </li>
-              <li className="nav-item ">
-                <Link id="id-resumeop1" to="/resume" className="nav-link text-white navbar-font">
-                  <span className="header-text">Resume</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white navbar-font">
-                  <span className="header-text" style={{ cursor: 'pointer' }}>
-                    Resources <i className="bx-fw bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{ height: "7.6rem", width: "10rem" }}>
-                      <li>
-                        <Link id="id-findajob" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                          Find Jobs</Link>
-                      </li>
-                      <li>
-                        <Link id="id-topcompany" to="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                          Company Tips</Link>
-                      </li>
-                      <li>
-                        <Link id="id-blog" to="/bloghome" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                          Blog</Link>
-                      </li>
-                    </ul>
-                  </span>
-                </a>
-              </li>
-            </MediaQuery>
-          </ul>
-        </div>
-      </React.Fragment>
-    );
-  };
-
-  renderGuestLinks = () => {
-    return (
-      <React.Fragment>
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent">
-
-          <ul className="navbar-nav order-xl-0
-               text-left" style={{ marginLeft: "10px" }}>
-            <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "16.8rem", width: "18rem" }}>
-                    <li>
-                      <Link id="id-interviewpr" to="/practice" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img></span>Interview Practice</Link></li>
-                    <li>
-                      <Link id="id-resumeop" to="/resume" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img></span>Resume Optimization</Link></li>
-                    <li>
-                      <Link id="id-topcompany1" to="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        <span><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img></span>Top Companies Tips</Link></li>
-                    <li>
-                      <Link id="id-howitworks1" to="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        How it works</Link></li>
-                    <li>
-                      <Link id="id-findajob1" to="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Find a Job</Link></li>
-                    <li>
-                      <Link id="id-careerquiz1" to="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Career Quiz</Link></li>
-                    <li>
-                      <Link id="id-pricing1" to="/pricing" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Pricing</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  About Us <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "10rem" }}>
-                    <li><Link id="id-aboutus1" to="/company" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Company</Link></li>
-                    <li><Link id="id-contact1" to="/contact" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Contact</Link></li>
-                    <li><Link id="id-joinus1" to="/jobs" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Join Us</Link></li>
-                    <li><Link id="id-blog1" to="/bloghome" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Blog</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <MediaQuery minDeviceWidth={1224}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/login">
-                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
-                  Start for Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-        <MediaQuery maxDeviceWidth={1223}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/login">
-                <a className="default-btn mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
-                  Start for Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-      </React.Fragment>
-    );
-  };
-
-  renderUserProfileLinks = () => {
-    return (
-      <React.Fragment>
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent">
-
-          <ul className="navbar-nav order-xl-0
-               text-left" style={{ marginLeft: "10px" }}>
-            <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "21rem", width: "18rem" }}>
-                    <li>
-                      <a id="id-jobseeker3" href="/job-seekers" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Home Page</a></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li>
-                      <Link id="id-interviewpr3" to="/practice" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Interview Practice</Link></li>
-                    <li>
-                      <Link id="id-resumeop3" to="/resume" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Resume Optimization</Link></li>
-                    <li>
-                      <a id="id-topcompany3" href="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Top Companies Tips</a></li>
-                    <li>
-                      <a id="id-howitworks3" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        How it works</a></li>
-                    <li>
-                      <a id="id-findajob3" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Find a Job</a></li>
-                    <li>
-                      <a id="id-careerquiz3" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Career Quiz</a></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li>
-                      <Link id="id-careerquiz3" to="/register" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Create Free Account</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Employers <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "11rem" }}>
-                    <li><Link id="id-product-interview3" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Product Overview</Link></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-one-way-interview3" to="/employer-feature-video" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>One-Way Interview</Link></li>
-                    <li><Link id="id-resume-screning3" to="/employer-resume-screening" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Resume Screening</Link></li>
-                    <li><Link id="id-solution-page3" to="/employer-solution-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Campus Recruiting</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <MediaQuery minDeviceWidth={1224}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/">
-                <a className="default-btn1 mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
-                  Start for Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-        <MediaQuery maxDeviceWidth={1223}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/">
-                <a className="default-btn mr-3" id="id-login" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup" style={{ color: "white", paddingLeft: "25px" }}>
-                  Start for Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-      </React.Fragment>
-    );
-  };
-
-  renderEmployerLinks = () => {
-    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
-    // for the purpose of routing to different links
-    if (user == null) {
-      user = { "groups": ["non-reviewer"] };
-    }
-    return (
-      <React.Fragment>
-        <div className="nav-item order-xl-1 align-self-center mr-5">
-          <div className="nav-link text-white navbar-font">
-            {!this.props.profile.is_subreviwer ?
-              <div className="row">
-                <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
-                <span className="header-text" style={{ cursor: 'pointer', marginRight: "1rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                  <ul className="nav_submenu" style={{ width: "9rem" }}>
-                    {/* <li>
-                      <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
-                        Dashboard
-                      </Link>
-                    </li> */}
-                    <li>
-                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
-                        Log out
-                      </a>
-                    </li>
-                  </ul>
-                </span>
-              </div> :
-              <div className="row">
-                <i className="bx bx-user-circle bx-sm" style={{ color: "#FFFFFF", paddingRight: '2px', marginTop: "0.1rem" }}></i>
-                <span className="header-text" style={{ cursor: 'pointer', marginRight: "2.5rem" }}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}
-                  <ul className="nav_submenu" style={{ width: "10rem" }}>
-                    {/* <li>
-                      <Link id="id-dash" to="/employer_dashboard" className="header-dropdown-custom" style={{ textDecoration: "none", marginLeft: '1rem' }}>
-                        Dashboard
-                      </Link>
-                    </li> */}
-                    <li>
-                      <a id="id-logout" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} className="header-dropdown-custom" style={{ color: "#FF0000", textDecoration: "none", marginLeft: '1rem' }}>
-                        Log out
-                      </a>
-                    </li>
-                  </ul>
-                </span>
-              </div>
             }
-          </div>
-        </div>
-
-
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent">
-
-          <ul
-            className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">
-            {/* <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Company <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "8rem" }}>
-                    <li><Link id="id-aboutus2" to="/employer_company" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>About Us</Link></li>
-                    <li><Link id="id-contact2" to="/employer_contact" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Contact</Link></li>
-                    <li><Link id="id-blog2" to="/bloghome_employer" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Blog</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li> */}
-            {/* {!this.props.profile.is_subreviwer &&
-              <li className="nav-item ">
-                <Link className="nav-link text-white navbar-font" to="/employer-pricing">
-                  <span className="header-text" style={{ cursor: 'pointer' }}>
-                    Pricing
-                  </span>
+            <Link href="/practice"><Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}>Interview</Button></Link>
+            <Link href="/resume"><Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}>Resume</Button></Link>
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Resources <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Link href="/career-details"><Text color={useColorModeValue("brand.500", "white")}>Find Jobs</Text></Link>
+                    <Link href="/job-seekers-companydata"><Text color={useColorModeValue("brand.500", "white")}>Company Tips</Text></Link>
+                    <Link href="/bloghome"><Text color={useColorModeValue("brand.500", "white")}>Blog</Text></Link>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </HStack>) :
+          (
+            <HStack spacing="1">
+              {!isAuthenticated ?
+                <Link href="https://hirebeat.co">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link> :
+                <Link href="/dashboard">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
                 </Link>
-              </li>} */}
-            {/* {!this.props.profile.is_subreviwer &&
-              <li className="nav-item ">
-                <a className="nav-link text-white navbar-font">
-                  <span className="header-text" style={{ cursor: 'pointer' }}>
-                    Pricing <i className="bx-fw bx bx-chevron-down"></i>
-                    <ul className="nav_submenu" style={{ height: "6rem" }}>
-                      <li><Link id="id-pricing2" to="/employer-pricing" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Pricing & Plans</Link></li>
-                      <li><Link id="id-roi2" to="/employer-roi-calculator" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>ROI Calculator</Link></li>
-                    </ul>
-                  </span>
-                </a>
-              </li>} */}
-          </ul>
-        </div>
+              }
+            </HStack>
+          )}
+        {isDesktop ? (
+          <HStack spacing="4">
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
+            <a href="/dashboard" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' borderRadius='2px'>Dashboard</Button></a>
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px' onClick={() => { sessionStorage.clear(); setTimeout(() => { props.logout() }, 300); trackLogoutSeg }}>Log Out</Button>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              <Popover trigger="hover">
+                <PopoverTrigger>
+                  <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px' onClick={() => { sessionStorage.clear(); setTimeout(() => { props.logout() }, 300); trackLogoutSeg }}>Log Out</Button>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </HStack>
+          )}
       </React.Fragment>
     );
   };
 
-  renderEmployerGuestLinks = () => {
-    return (
-
-      <React.Fragment>
-        <div className="collapse navbar-collapse"
-          id="navbarSupportedContent">
-
-          <ul className="navbar-nav ml-auto mr-5
-                 text-left order-xl-0">
-            <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Job Seekers <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "21rem", width: "18rem" }}>
-                    <li>
-                      <a id="id-jobseeker2" href="/job-seekers" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Home Page</a></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li>
-                      <Link id="id-interviewpr2" to="/practice" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Interview Practice</Link></li>
-                    <li>
-                      <Link id="id-resumeop2" to="/resume" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Resume Optimization</Link></li>
-                    <li>
-                      <a id="id-topcompany2" href="/job-seekers-companydata" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Top Companies Tips</a></li>
-                    <li>
-                      <a id="id-howitworks2" href="/job-seekers-howitworks" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        How it works</a></li>
-                    <li>
-                      <a id="id-findajob2" href="/career-details" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Find a Job</a></li>
-                    <li>
-                      <a id="id-careerquiz2" href="/quiz" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Career Quiz</a></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li>
-                      <Link id="id-careerquiz2" to="/register" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>
-                        Create Free Account</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            {/* <li className="nav-item ">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Product <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "12rem" }}>
-                    <li><Link id="id-product-interview" to="/employer-product" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Overview</Link></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-one-way-interview" to="/employer-feature-video" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>One-Way Interview</Link></li>
-                    <li><Link id="id-resume-screning" to="/employer-resume-screening" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Resume Screening</Link></li>
-                    <li><hr style={{ marginBottom: "0.4rem", marginTop: "0.4rem" }} /></li>
-                    <li><Link id="id-intergration-page" to="/employer-intergration-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Integrations</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Solutions <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "3.2rem" }}>
-                    <li><Link id="id-solution-page" to="/employer-solution-page" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Campus Recruiting</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  About Us <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "8rem" }}>
-                    <li><Link id="id-aboutus3" to="/employer_company" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Company</Link></li>
-                    <li><Link id="id-contact3" to="/employer_contact" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Contact</Link></li>
-                    <li><Link id="id-blog3" to="/bloghome_employer" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Blog</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link text-white navbar-font">
-                <span className="header-text" style={{ cursor: 'pointer' }}>
-                  Pricing <i className="bx-fw bx bx-chevron-down"></i>
-                  <ul className="nav_submenu" style={{ height: "6rem" }}>
-                    <li><Link id="id-pricing2" to="/employer-pricing" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>Pricing & Plans</Link></li>
-                    <li><Link id="id-roi2" to="/employer-roi-calculator" className="header-dropdown-custom" style={{ textDecoration: 'none', marginLeft: '1rem' }}>ROI Calculator</Link></li>
-                  </ul>
-                </span>
-              </a>
-            </li> */}
-          </ul>
-        </div>
-        <MediaQuery minDeviceWidth={1224}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/">
-                <a className="default-btn1 mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", border: '2px solid #FFFFFF', paddingBottom: "12px", paddingTop: "11px" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup-employer" style={{ color: "white", paddingLeft: "25px", paddingBottom: "13px", paddingTop: "13px" }}>
-                  Start Hiring For Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-        <MediaQuery maxDeviceWidth={1223}>
-          <ul className="navbar-nav d-flex flex-row order-xl-1">
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/">
-                <a className="default-btn mr-3" id="id-login-employer" style={{ color: "white", paddingLeft: "25px", backgroundColor: "#ff6b00" }}>
-                  Log In
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item" style={{ paddingTop: "10px" }}>
-              <Link to="/employer_register">
-                <a className="default-btn mr-3" id="id-signup-employer" style={{ color: "white", paddingLeft: "25px" }}>
-                  Start Hiring For Free
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </MediaQuery>
-      </React.Fragment>
-    );
-  };
-
-  renderReviewerLinks = () => {
+  const renderGuestLinks = () => {
     return (
       <React.Fragment>
-        <ul className="navbar-nav d-flex mr-auto mt-2 mt-lg-0">
-          <li className="nav-item">
-            <Link to="/">
-              <a className="default-btn" onClick={() => { sessionStorage.clear(); setTimeout(() => {this.props.logout()}, 300); this.trackLogoutSeg }} style={{ color: "white" }}>
-                <i className="bx-fw bx bxs-hot"></i>Logout<span></span>
-              </a>
-            </Link>
-          </li>
-        </ul>
+        {isDesktop ? (
+          <HStack spacing="4">
+            {!isAuthenticated ?
+              <Link href="https://hirebeat.co">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link> :
+              <Link href="/dashboard">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link>
+            }
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              {!isAuthenticated ?
+                <Link href="https://hirebeat.co">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link> :
+                <Link href="/dashboard">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link>
+              }
+            </HStack>
+          )}
+        {isDesktop ? (
+          <HStack spacing="4">
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Link href="/practice"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Interview Practice</Text></HStack></Link>
+                    <Link href="/resume"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Resume Optimization</Text></HStack></Link>
+                    <Link href="/job-seekers-companydata"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Top Companies Tips</Text></HStack></Link>
+                    <Link href="/job-seekers-howitworks"><Text color={useColorModeValue("brand.500", "white")}>How it works</Text></Link>
+                    <Link href="/career-details"><Text color={useColorModeValue("brand.500", "white")}>Find a Job</Text></Link>
+                    <Link href="/quiz"><Text color={useColorModeValue("brand.500", "white")}>Career Quiz</Text></Link>
+                    <Link href="/pricing"><Text color={useColorModeValue("brand.500", "white")}>Pricing</Text></Link>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> About Us <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Link href="/company"><Text color={useColorModeValue("brand.500", "white")}>Company</Text></Link>
+                    <Link href="/contact"><Text color={useColorModeValue("brand.500", "white")}>Contact</Text></Link>
+                    <Link href="/jobs"><Text color={useColorModeValue("brand.500", "white")}>Join Us</Text></Link>
+                    <Link href="/bloghome"><Text color={useColorModeValue("brand.500", "white")}>Blog</Text></Link>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+            <a href="/login" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Log In</Button></a>
+            <a href="/register" style={{ textDecoration: "none" }}><Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Start for Free</Button></a>
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              <Popover trigger="hover">
+                <PopoverTrigger>
+                  <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <Link href="/practice"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd1.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Interview Practice</Text></HStack></Link>
+                      <Link href="/resume"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd2.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Resume Optimization</Text></HStack></Link>
+                      <Link href="/job-seekers-companydata"><HStack><img src="https://hirebeat-assets.s3.amazonaws.com/boxicons/hd3.png" alt="img"></img><Text color={useColorModeValue("brand.500", "white")}>Top Companies Tips</Text></HStack></Link>
+                      <Link href="/job-seekers-howitworks"><Text color={useColorModeValue("brand.500", "white")}>How it works</Text></Link>
+                      <Link href="/career-details"><Text color={useColorModeValue("brand.500", "white")}>Find a Job</Text></Link>
+                      <Link href="/quiz"><Text color={useColorModeValue("brand.500", "white")}>Career Quiz</Text></Link>
+                      <Link href="/pricing"><Text color={useColorModeValue("brand.500", "white")}>Pricing</Text></Link>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger>
+                  <IconButton bg={useColorModeValue("brand.800", "brand.500")} icon={<FiMenu fontSize="1rem" />} aria-label="Menu" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <a href="/login" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Log In</Button></a>
+                      <a href="/register" style={{ textDecoration: "none" }}><Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Start for Free</Button></a>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </HStack>
+          )}
       </React.Fragment>
     );
   };
 
-  render() {
-    let isAuthenticated = JSON.parse(sessionStorage.getItem("isAuthenticated")) || this.props.auth.isAuthenticated;
-    let user = JSON.parse(sessionStorage.getItem("user")) || this.props.auth.user;
+  const renderEmployerLinks = () => {
+    let user = JSON.parse(sessionStorage.getItem("user")) || props.auth.user;
     // for the purpose of routing to different links
     if (user == null) {
       user = { "groups": ["non-reviewer"] };
     }
-    var uri = window.location.pathname;
-    uri = uri.substring(1, uri.length);
-    if ((uri.includes("apply-job")) || (uri.includes("company-branding"))) {
-      return null;
-    } else {
-      return (
-        <React.Fragment>
+    const renderToAllJobs = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "jobs");
+      window.location.reload(false);
+    }
+    const renderToCreateJobs = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "jobCreation");
+      window.location.reload(false);
+    }
+    const renderToAnalytics = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "analytics");
+      window.location.reload(false);
+    }
+    const renderToCompany = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "employerProfile");
+      window.location.reload(false);
+    }
+    const renderToIntergration = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "mergeintergration");
+      window.location.reload(false);
+    }
+    const renderToHelp = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "help");
+      window.location.reload(false);
+    }
+    const renderToSettings = () => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "settings");
+      window.location.reload(false);
+    }
+    return (
+      <React.Fragment>
+        {isDesktop ? (
+          <HStack spacing="1">
+            {!isAuthenticated ?
+              <Link href="https://hirebeat.co">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link> :
+              <Link href="/dashboard">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link>
+            }
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2" py="1">
+                    <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToAllJobs}>All Jobs</Button>
+                    <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
+            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>
+            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Intergration</Button>
+          </HStack>) :
+          (
+            <HStack spacing="1">
+              {!isAuthenticated ?
+                <Link href="https://hirebeat.co">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link> :
+                <Link href="/dashboard">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link>
+              }
+            </HStack>
+          )}
+        {isDesktop ? (
+          <HStack spacing="2">
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiAlertCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px' onClick={() => { sessionStorage.clear(); setTimeout(() => { props.logout() }, 300); trackLogoutSeg }}>Log Out</Button>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+          </HStack>) :
+          (
+            <HStack spacing="1">
+              <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
+              <Popover trigger="hover">
+                <PopoverTrigger>
+                  <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px' onClick={() => { sessionStorage.clear(); setTimeout(() => { props.logout() }, 300); trackLogoutSeg }}>Log Out</Button>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger>
+                  <IconButton bg={useColorModeValue("brand.800", "brand.500")} icon={<FiMenu fontSize="1rem" />} aria-label="Menu" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}>Jobs</Button>
+                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
+                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>
+                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Intergration</Button>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </HStack>
+          )}
+      </React.Fragment>
+    );
+  };
+
+  const renderEmployerGuestLinks = (isAuthenticated) => {
+    return (
+      <React.Fragment>
+        {isDesktop ? (
+          <HStack spacing="4">
+            {!isAuthenticated ?
+              <Link href="https://hirebeat.co">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link> :
+              <Link href="/dashboard">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link>
+            }
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              {!isAuthenticated ?
+                <Link href="https://hirebeat.co">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link> :
+                <Link href="/dashboard">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link>
+              }
+            </HStack>
+          )}
+        {isDesktop ? (
+          <HStack spacing="4">
+            <Popover trigger="hover">
+              <PopoverTrigger>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                  <Stack spacing="2">
+                    <Link href="/job-seekers"><Text color={useColorModeValue("brand.500", "white")}>Home Page</Text></Link>
+                    <Divider />
+                    <Link href="/practice"><Text color={useColorModeValue("brand.500", "white")}>Interview Practice</Text></Link>
+                    <Link href="/resume"><Text color={useColorModeValue("brand.500", "white")}>Resume Optimization</Text></Link>
+                    <Link href="/job-seekers-companydata"><Text color={useColorModeValue("brand.500", "white")}>Top Companies Tips</Text></Link>
+                    <Link href="/job-seekers-howitworks"><Text color={useColorModeValue("brand.500", "white")}>How it works</Text></Link>
+                    <Link href="/career-details"><Text color={useColorModeValue("brand.500", "white")}>Find a Job</Text></Link>
+                    <Link href="/quiz"><Text color={useColorModeValue("brand.500", "white")}>Career Quiz</Text></Link>
+                    <Link href="/register"><Text color={useColorModeValue("brand.500", "white")}>Create Free Account</Text></Link>
+                  </Stack>
+                </PopoverBody>
+              </PopoverContent>
+            </Popover>
+            <a href="/" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Log In</Button></a>
+            <a href="/employer_register" style={{ textDecoration: "none" }}><Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Start Hiring For Free</Button></a>
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              <Popover trigger="hover">
+                <PopoverTrigger>
+                  <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <Link href="/job-seekers"><Text color={useColorModeValue("brand.500", "white")}>Home Page</Text></Link>
+                      <Divider />
+                      <Link href="/practice"><Text color={useColorModeValue("brand.500", "white")}>Interview Practice</Text></Link>
+                      <Link href="/resume"><Text color={useColorModeValue("brand.500", "white")}>Resume Optimization</Text></Link>
+                      <Link href="/job-seekers-companydata"><Text color={useColorModeValue("brand.500", "white")}>Top Companies Tips</Text></Link>
+                      <Link href="/job-seekers-howitworks"><Text color={useColorModeValue("brand.500", "white")}>How it works</Text></Link>
+                      <Link href="/career-details"><Text color={useColorModeValue("brand.500", "white")}>Find a Job</Text></Link>
+                      <Link href="/quiz"><Text color={useColorModeValue("brand.500", "white")}>Career Quiz</Text></Link>
+                      <Link href="/register"><Text color={useColorModeValue("brand.500", "white")}>Create Free Account</Text></Link>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger>
+                  <IconButton bg={useColorModeValue("brand.800", "brand.500")} icon={<FiMenu fontSize="1rem" />} aria-label="Menu" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
+                  <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                    <Stack spacing="2">
+                      <a href="/" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Log In</Button></a>
+                      <a href="/employer_register" style={{ textDecoration: "none" }}><Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px'>Start Hiring For Free</Button></a>
+                    </Stack>
+                  </PopoverBody>
+                </PopoverContent>
+              </Popover>
+            </HStack>
+          )}
+      </React.Fragment >
+    );
+  };
+
+  const renderReviewerLinks = () => {
+    return (
+      <React.Fragment>
+        {isDesktop ? (
+          <HStack spacing="4">
+            {!isAuthenticated ?
+              <Link href="https://hirebeat.co">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link> :
+              <Link href="/dashboard">
+                <Stack direction='row'>
+                  <Image src={hirebeatlogo} alt='logo' boxSize='16%' />
+                  <Image src={hirebeatlogotext} alt='logo' boxSize='50%' />
+                </Stack>
+              </Link>
+            }
+          </HStack>) :
+          (
+            <HStack spacing="4">
+              {!isAuthenticated ?
+                <Link href="https://hirebeat.co">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link> :
+                <Link href="/dashboard">
+                  <Stack direction='row'>
+                    <Image src={hirebeatlogo} alt='logo' boxSize='10%' />
+                    <Image src={hirebeatlogotext} alt='logo' boxSize='30%' />
+                  </Stack>
+                </Link>
+              }
+            </HStack>
+          )}
+        <HStack>
+          <Button bg="brand.500" color="white" variant='solid' _hover={{ bg: '#ff6d00' }} borderRadius='2px' onClick={() => { sessionStorage.clear(); setTimeout(() => { props.logout() }, 300); trackLogoutSeg }}>Logout</Button>
+        </HStack>
+      </React.Fragment>
+    );
+  };
+
+  let isAuthenticated = JSON.parse(sessionStorage.getItem("isAuthenticated")) || props.auth.isAuthenticated;
+  let user = JSON.parse(sessionStorage.getItem("user")) || props.auth.user;
+  // for the purpose of routing to different links
+  if (user == null) {
+    user = { "groups": ["non-reviewer"] };
+  }
+  var uri = window.location.pathname;
+  uri = uri.substring(1, uri.length);
+  if ((uri.includes("apply-job")) || (uri.includes("company-branding"))) {
+    return null;
+  } else {
+    return (
+      <React.Fragment>
+        <Box
+          as="section"
+        >
           <MediaQuery minDeviceWidth={1224}>
-            <div id="navbar" className="navbar-area bg-white">
-              <nav
-                className="navbar navbar-expand-xl
-            navbar-dark pb-1 pt-1"
-                style={{
-                  background: "#080a3c",
+            <Box as="nav" bg={useColorModeValue("white", "brand.800")} color="on-accent" id="navbar" minW="1290px">
+              <Container
+                py={{
+                  base: '3',
+                  lg: '4',
                 }}
               >
-                <div className="container-fluid pb-0">
-                  {/*<div className="align-self-start">*/}
-                  <button
-                    className="navbar-toggler mr-2 bg-dark"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    data-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                  </button>
-                  {!isAuthenticated ?
-                    <a href="https://hirebeat.co" className="navbar-brand mr-auto">
-                      <img
-                        src={hirebeatlogo}
-                        className="img-fluid mr-3"
-                        alt="logo"
-                        style={{
-                          width: "16%",
-                          height: "16%",
-                        }}
-                      />
-                      <img
-                        src={hirebeatlogotext}
-                        className="img-fluid mr-2"
-                        alt="logotext"
-                        style={{
-                          width: "50%",
-                          height: "100%",
-                        }}
-                      />
-                    </a> :
-                    <a href="/dashboard" className="navbar-brand mr-auto">
-                      <img
-                        src={hirebeatlogo}
-                        className="img-fluid mr-3"
-                        alt="logo"
-                        style={{
-                          width: "16%",
-                          height: "16%",
-                        }}
-                      />
-                      <img
-                        src={hirebeatlogotext}
-                        className="img-fluid mr-2"
-                        alt="logotext"
-                        style={{
-                          width: "50%",
-                          height: "100%",
-                        }}
-                      />
-                    </a>
-                  }
-                  {/*</div>*/}
+                <Flex justify="space-between">
                   {isAuthenticated
                     ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
-                      ? this.renderReviewerLinks()
-                      : this.props.profile.is_employer
-                        ? this.renderEmployerLinks()
-                        : this.renderUserLinks()
+                      ? renderReviewerLinks(isAuthenticated)
+                      : props.profile.is_employer
+                        ? renderEmployerLinks(isAuthenticated)
+                        : renderUserLinks(isAuthenticated)
                     : (uri.includes("talent-profile")) ?
-                      this.renderUserProfileLinks() :
-                      (uri.includes("job-seekers")) ?
-                        this.renderGuestLinks()
-                        : this.renderEmployerGuestLinks()
+                      renderGuestLinks(isAuthenticated) :
+                      (uri.includes("job-seekers") || uri == "practice" || uri == "resume" || uri == "register" || uri == "login"
+                      || uri == "career-details" || uri == "quiz" || uri == "pricing"
+                      || uri == "company" || uri == "contact" || uri == "bloghome") ?
+                        renderGuestLinks(isAuthenticated)
+                        : renderEmployerGuestLinks(isAuthenticated)
                   }
-
-                </div>
-              </nav>
-            </div>
+                </Flex>
+              </Container>
+            </Box>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>
-            <div id="navbar" className="navbar-area bg-white" style={{ minWidth: "0px" }}>
-              <nav
-                className="navbar navbar-expand-md
-            navbar-dark pb-2 pt-2"
-                style={{
-                  background: "#080a3c",
+            <Box as="nav" bg={useColorModeValue("white", "brand.800")} color="on-accent" id="navbar">
+              <Container
+                py={{
+                  base: '3',
+                  lg: '4',
                 }}
               >
-                <div className="container pb-0">
-                  {/*<div className="align-self-start">*/}
-                  <button
-                    className="navbar-toggler mr-2 bg-dark"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    data-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                  </button>
-                  {!isAuthenticated ?
-                    <a href="https://hirebeat.co" className="navbar-brand mr-auto">
-                      <img
-                        src={hirebeatlogo}
-                        className="img-fluid mr-3"
-                        alt="logo"
-                        style={{
-                          width: "16%",
-                          height: "16%",
-                        }}
-                      />
-                      <img
-                        src={hirebeatlogotext}
-                        className="img-fluid mr-2"
-                        alt="logotext"
-                        style={{
-                          width: "50%",
-                          height: "100%",
-                        }}
-                      />
-                    </a> :
-                    <a href="/dashboard" className="navbar-brand mr-auto">
-                      <img
-                        src={hirebeatlogo}
-                        className="img-fluid mr-3"
-                        alt="logo"
-                        style={{
-                          width: "16%",
-                          height: "16%",
-                        }}
-                      />
-                      <img
-                        src={hirebeatlogotext}
-                        className="img-fluid mr-2"
-                        alt="logotext"
-                        style={{
-                          width: "50%",
-                          height: "100%",
-                        }}
-                      />
-                    </a>
-                  }
-                  {/*</div>*/}
+                <Flex justify="space-between">
                   {isAuthenticated
                     ? typeof user.groups !== "undefined" && user.groups.length > 0 && user.groups[0] == "reviewers"
-                      ? this.renderReviewerLinks()
-                      : this.props.profile.is_employer
-                        ? this.renderEmployerLinks()
-                        : this.renderUserLinks()
+                      ? renderReviewerLinks(isAuthenticated)
+                      : props.profile.is_employer
+                        ? renderEmployerLinks(isAuthenticated)
+                        : renderUserLinks(isAuthenticated)
                     : (uri.includes("talent-profile")) ?
-                      this.renderUserProfileLinks() :
+                      renderGuestLinks(isAuthenticated) :
                       (uri.includes("job-seekers")) ?
-                        this.renderGuestLinks()
-                        : this.renderEmployerGuestLinks()
+                        renderGuestLinks(isAuthenticated)
+                        : renderEmployerGuestLinks(isAuthenticated)
                   }
-
-                </div>
-              </nav>
-            </div>
+                </Flex>
+              </Container>
+            </Box>
           </MediaQuery>
-        </React.Fragment>
-      );
-    }
+        </Box>
+      </React.Fragment>
+    );
   }
 }
 

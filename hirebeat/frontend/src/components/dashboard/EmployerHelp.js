@@ -13,7 +13,7 @@ export default class EmployerHelp extends React.Component {
       <div className="container">
         <div style={{ marginBottom: "30px" }}>
           <h3>
-            <b>
+            <b style={{color:"#090d3a", fontSize:"1.2rem"}}>
               <i className="bx-fw bx bx-help-circle"></i>
               <span className="ml-2">Help</span>
             </b>

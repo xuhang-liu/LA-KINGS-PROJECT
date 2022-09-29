@@ -371,17 +371,17 @@ export class EssentialUserInfo extends Component {
                       </div>
                     </div>
                   } */}
-                  <div className="row" style={{ marginTop: "0%", textAlign: "center", marginBottom: "0.5rem" }}>
+                  <div className="row" style={{ marginTop: "0%", marginBottom: "0.5rem" }}>
                     {(!this.props.profile.is_subreviwer && !this.props.profile.is_external_reviewer) &&
                       <div className="col d-flex align-items-center">
                         <button
                           type="button"
                           className="panel-button"
                           onClick={this.props.renderEmployerProfile}
-                          style={{ outline: "none", margin: "-5%", padding: "0px", background: "none" }}
+                          style={{ outline: "none", margin: "5%", padding: "0px", background: "none" }}
                           data-tut="reactour-company"
                         >
-                          <IconUserText
+                          <IconEmployerText
                             textSize={"12px"}
                             textDisplayed={"Company"}
                             backColor={this.props.subpage == "employerProfile" ? selectBack : defaultBack}
