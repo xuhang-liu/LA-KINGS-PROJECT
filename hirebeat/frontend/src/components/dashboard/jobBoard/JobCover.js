@@ -182,6 +182,8 @@ export const JobCover = (props) => {
           jobt_company_id={(jobt_company_id == "")?props.jobt_company_id:jobt_company_id}
           setShowSidebarTrue={props.setShowSidebarTrue}
           setShowSidebarFalse={props.setShowSidebarFalse}
+          renderJobEdition={props.renderJobEdition}
+          setJobInfo={props.setJobInfo}
         />
       }
     </div>

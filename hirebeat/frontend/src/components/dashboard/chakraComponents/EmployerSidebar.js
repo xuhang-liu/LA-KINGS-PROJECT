@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Stack, Text, useColorModeValue, Button, HStack, Heading, IconButton } from '@chakra-ui/react';
-import { FiMenu, FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart } from 'react-icons/fi';
+import { FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart, FiEdit } from 'react-icons/fi';
 
 export const EmployerSidebar = (props) => (
     <Flex
@@ -27,6 +27,7 @@ export const EmployerSidebar = (props) => (
                         <IconButton aria-label='Search database' icon={<FiChevronLeft />} onClick={() => { props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); props.getAllJobs(this.props.user.id, 1, "", "", ""); props.setShowSidebarFalse(); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} />
                         <i className='bx-fw bx bxs-circle' style={{ color: "#13c4a1" }}></i>
                         <Text fontSize="md" color="subtle" fontWeight="medium">Published</Text>
+                        <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }}/>
                     </HStack>
                     <Heading as='h6' size='xs' color="muted">{props?.curJob?.job_details?.job_title}</Heading>
                 </Stack>
@@ -58,41 +59,41 @@ export const EmployerSidebar = (props) => (
                         {(props.reviewerStage.includes("resumeScreen") || props.reviewerStage?.length == 0) ?
                             <Stack>
                                 {props.portalSubpage == "resumeScreen" ?
-                                    <Button variant='solid' leftIcon={<FiAlignCenter />} onClick={props.renderResumeScreen}>Resume Review</Button> :
-                                    <Button variant='outline' leftIcon={<FiAlignCenter />} onClick={props.renderResumeScreen}>Resume Review</Button>}
+                                    <Button variant='solid' leftIcon={<FiFileText />} onClick={props.renderResumeScreen}>Resume Review</Button> :
+                                    <Button variant='outline' leftIcon={<FiFileText />} onClick={props.renderResumeScreen}>Resume Review</Button>}
                             </Stack> :
                             <Stack>
-                                <Button variant='outline' leftIcon={<FiAlignCenter />}>Resume Review</Button>
+                                <Button variant='outline' leftIcon={<FiFileText />}>Resume Review</Button>
                             </Stack>
                         }
                         {(props.reviewerStage.includes("videoInterview") || props.reviewerStage?.length == 0) ?
                             <Stack>
                                 {props.portalSubpage == "videoInterview" ?
-                                    <Button variant='solid' leftIcon={<FiAlignCenter />} onClick={props.renderVideoInterview}>Video Screening</Button> :
-                                    <Button variant='outline' leftIcon={<FiAlignCenter />} onClick={props.renderVideoInterview}>Video Screening</Button>}
+                                    <Button variant='solid' leftIcon={<FiVideo />} onClick={props.renderVideoInterview}>Video Screening</Button> :
+                                    <Button variant='outline' leftIcon={<FiVideo />} onClick={props.renderVideoInterview}>Video Screening</Button>}
                             </Stack> :
                             <Stack>
-                                <Button variant='outline' leftIcon={<FiAlignCenter />}>Video Screening</Button>
+                                <Button variant='outline' leftIcon={<FiVideo />}>Video Screening</Button>
                             </Stack>
                         }
                         {(props.reviewerStage.includes("liveInterview") || props.reviewerStage?.length == 0) ?
                             <Stack>
                                 {props.portalSubpage == "liveInterview" ?
-                                    <Button variant='solid' leftIcon={<FiAlignCenter />} onClick={props.renderLiveInterview}>Live Interviews</Button> :
-                                    <Button variant='outline' leftIcon={<FiAlignCenter />} onClick={props.renderLiveInterview}>Live Interviews</Button>}
+                                    <Button variant='solid' leftIcon={<FiMessageCircle />} onClick={props.renderLiveInterview}>Live Interviews</Button> :
+                                    <Button variant='outline' leftIcon={<FiMessageCircle />} onClick={props.renderLiveInterview}>Live Interviews</Button>}
                             </Stack> :
                             <Stack>
-                                <Button variant='outline' leftIcon={<FiAlignCenter />}>Live Interviews</Button>
+                                <Button variant='outline' leftIcon={<FiMessageCircle />}>Live Interviews</Button>
                             </Stack>
                         }
                         {(props.reviewerStage.includes("shortList") || props.reviewerStage?.length == 0) ?
                             <Stack>
                                 {props.portalSubpage == "shortList" ?
-                                    <Button variant='solid' leftIcon={<FiAlignCenter />} onClick={props.renderShortList}>Short List</Button> :
-                                    <Button variant='outline' leftIcon={<FiAlignCenter />} onClick={props.renderShortList}>Short List</Button>}
+                                    <Button variant='solid' leftIcon={<FiHeart />} onClick={props.renderShortList}>Short List</Button> :
+                                    <Button variant='outline' leftIcon={<FiHeart />} onClick={props.renderShortList}>Short List</Button>}
                             </Stack> :
                             <Stack>
-                                <Button variant='outline' leftIcon={<FiAlignCenter />}>Short List</Button>
+                                <Button variant='outline' leftIcon={<FiHeart />}>Short List</Button>
                             </Stack>
                         }
                     </Stack>

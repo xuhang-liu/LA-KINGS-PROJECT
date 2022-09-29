@@ -475,6 +475,8 @@ export class JobPortalPage extends Component {
                     setShowSidebarFalse={this.props.setShowSidebarFalse}
                     setViewPortal={this.props.setViewPortal}
                     getAllJobs={this.props.getAllJobs}
+                    renderJobEdition={this.props.renderJobEdition}
+                    setJobInfo={this.props.setJobInfo}
                 />
                 <Box
                     bg="bg-surface"
