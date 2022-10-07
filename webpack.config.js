@@ -4,13 +4,10 @@ const basePath = path.resolve(__dirname);
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
-  context: path.join(basePath, "src"),
-  node: {
-    fs: "empty",
-  },
+  context: path.join(basePath),
   output: {
-    path: path.join(basePath, "dist"),
-    filename: "[name].bundle.js",
+    path: path.join(basePath),
+    filename: "main493.js",
     publicPath: "/dist",
   },
   devServer: {
@@ -23,6 +20,9 @@ module.exports = {
       WaveSurfer: "wavesurfer.js",
       RecordRTC: "recordrtc",
     },
+    fallback: {
+      fs: false
+    }
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -38,17 +38,16 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new webpack.DefinePlugin({ // <-- key to reducing React's size
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }), 
-    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks 
   ],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
+      },
+      {
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -56,7 +55,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader",
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,

@@ -12,6 +12,7 @@ import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
+import { MyModalShare } from "../DashboardComponents";
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -81,6 +82,8 @@ export class EmployerProfile extends Component {
         location: "",
         industry: { value: this.props.employerProfileDetail.company_type, label: this.props.employerProfileDetail.company_type },
         src: (this.props.employerProfileDetail.logo_url == null || this.props.employerProfileDetail.logo_url == "") ? "" : this.props.employerProfileDetail.logo_url,
+        method_pop1: false,
+        method_pop2: false,
     }
 
     customStyles = {
@@ -307,6 +310,22 @@ export class EmployerProfile extends Component {
         });
     }
 
+    openMethod1 = () => {
+        this.setState({ method_pop1: true });
+    }
+
+    openMethod2 = () => {
+        this.setState({ method_pop2: true });
+    }
+
+    hideMethod1 = () => {
+        this.setState({ method_pop1: false });
+    }
+
+    hideMethod2 = () => {
+        this.setState({ method_pop2: false });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -322,13 +341,13 @@ export class EmployerProfile extends Component {
                                                 <p style={{ color: "#fac046", fontSize: "14px", paddingLeft: "3px", paddingRight: "3px" }}>
                                                     <i className="bx-fw bx bx-diamond bx-xs"></i>
                                                     {this.props.profile.position_limit == 5 &&
-                                                    <span>Pro</span>}
+                                                        <span>Pro</span>}
                                                     {this.props.profile.position_limit == 1 &&
-                                                    <span>Basic Plan</span>}
+                                                        <span>Basic Plan</span>}
                                                     {this.props.profile.position_limit == 10 &&
-                                                    <span>Pro Plus</span>}
+                                                        <span>Pro Plus</span>}
                                                     {this.props.profile.position_limit == 50 &&
-                                                    <span>Premium Lite</span>}
+                                                        <span>Premium Lite</span>}
                                                 </p>
                                             </div>
                                         </div> :
@@ -406,7 +425,7 @@ export class EmployerProfile extends Component {
                                             </div>*/}
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p" style={{ margin: "0rem" }}>Company Website</p>
-                                                <textarea id="website" className="profile-input profile-p" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.website}></textarea>
+                                                <textarea id="website" className="profile-input profile-p" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.website}></textarea>
                                             </div>
                                             <div>
                                                 <p className="profile-p" style={{ margin: "0rem" }}>Company Logo</p>
@@ -448,52 +467,33 @@ export class EmployerProfile extends Component {
                                 </div>
                             </div>
 
-                            {/* Summary */}
-                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
-                                <div style={{ padding: "2rem" }}>
-                                    {!this.state.isEditSummary ?
-                                        <div>
+                            {/* Widget and URL */}
+                            <div className="row" style={{ marginTop: "2rem" }}>
+                                <div className="col-6">
+                                    <div className="profile-bg" style={{ textAlign: "center" }}>
+                                        <div style={{ padding: "2rem" }}>
                                             <div className="row">
-                                                <div className="col-8">
-                                                    <h3 className="profile-h3">Company Overview
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Company Overview will appear on the top section of your Job Posting.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </h3>
+                                                <div className="col">
+                                                    <h3 className="profile-h3" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</h3>
+                                                    <p className="profile-p" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</p>
+                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod1}>View Details</button>
                                                 </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p className="profile-p4 mt-3" style={{fontWeight:"400"}}>
-                                                {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
-                                                    parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
-                                            </p>
-                                        </div> :
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <h3 className="profile-h3">Company Overview</h3>
-                                                </div>
-                                            </div>
-                                            <RichTextEditor
-                                                value={this.state.overview}
-                                                onChange={this.onChange}
-                                                toolbarConfig={toolbarConfig}
-                                            />
-                                            <div className="d-flex justify-content-end mt-3">
-                                                <button className="default-btn" onClick={this.saveSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
-                                                <button className="default-btn" onClick={this.cancelEditSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
                                             </div>
                                         </div>
-                                    }
+                                    </div>
+                                </div>
+                                <div className="col-6">
+                                    <div className="profile-bg" style={{ textAlign: "center" }}>
+                                        <div style={{ padding: "2rem" }}>
+                                            <div className="row">
+                                                <div className="col">
+                                                    <h3 className="profile-h3" style={{ fontSize: "0.9rem" }}>Method 2 - Website Link</h3>
+                                                    <p className="profile-p" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</p>
+                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod2}>View Details</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -566,15 +566,15 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
+                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="facebook" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
+                                                <input id="facebook" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="twitter" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
+                                                <input id="twitter" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">
                                                 <button className="default-btn" onClick={this.saveSocialMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
@@ -644,7 +644,7 @@ export class EmployerProfile extends Component {
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
                                                 <Autocomplete
                                                     className="profile-input profile-p4"
-                                                    style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", height:'2.5rem', paddingLeft:"0.5rem" }}
+                                                    style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }}
                                                     language="en"
                                                     apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                                     onPlaceSelected={(place, inputRef, autocomplete) => {
@@ -663,7 +663,7 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div style={{ marginTop: "1rem" }}>
                                                 <p className="profile-p3" style={{ margin: "0rem" }}>Contact Email</p>
-                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%", border:"1px solid #7E8993", borderRadius:"3px", height:'2.5rem', paddingLeft:"0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></input>
+                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">
                                                 <button className="default-btn" onClick={this.saveCompanyInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
@@ -677,8 +677,58 @@ export class EmployerProfile extends Component {
 
                         {/* Right Part */}
                         <div className="col-6" style={{ marginLeft: "2rem" }}>
-                            {/* Video */}
+
+                            {/* Summary */}
                             <div className="profile-bg" style={{ textAlign: "left" }}>
+                                <div style={{ padding: "2rem" }}>
+                                    {!this.state.isEditSummary ?
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-8">
+                                                    <h3 className="profile-h3">Company Overview
+                                                        <span className="tool_tip ml-2">
+                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
+                                                                <div>
+                                                                    Company Overview will appear on the top section of your Job Posting.
+                                                                </div>
+                                                            </p>
+                                                        </span>
+                                                    </h3>
+                                                </div>
+                                                <div className="col-4 profile-edit">
+                                                    <div style={{ float: "right" }}>
+                                                        <i className="bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p className="profile-p4 mt-3" style={{ fontWeight: "400" }}>
+                                                {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
+                                                    parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
+                                            </p>
+                                        </div> :
+                                        <div>
+                                            <div className="row">
+                                                <div className="col-12">
+                                                    <h3 className="profile-h3">Company Overview</h3>
+                                                </div>
+                                            </div>
+                                            <RichTextEditor
+                                                value={this.state.overview}
+                                                onChange={this.onChange}
+                                                toolbarConfig={toolbarConfig}
+                                            />
+                                            <div className="d-flex justify-content-end mt-3">
+                                                <button className="default-btn" onClick={this.saveSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
+                                                <button className="default-btn" onClick={this.cancelEditSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            {/* Video */}
+                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
                                 <Video
                                     updateEmployerVideo={this.props.updateEmployerVideo}
                                     userId={this.props.userId}
@@ -705,6 +755,43 @@ export class EmployerProfile extends Component {
                         </div>
                     </div>
                 </div>
+                <MyModalShare
+                    show={this.state.method_pop1}
+                    onHide={() => { this.hideMethod1() }}
+                >
+                    <div class="container p-4" style={{ textAlign: 'left' }}>
+                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 1 - Careers Widget</h3>
+                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>The career widget is a simple list of your jobs embeded on a dedicated page on your website, such as your career page. All you’ll need is access to the content Management System (CMS) of your website, then follow these steps:</p>
+                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI" }}>
+                            <li className="pb-2">Access the HTML on the webpage where you want the jobs to display.</li>
+                            <li className="pb-2">Copy the code snippet from the box below and paste it within your HTML where you want the job list to display.</li>
+                            <li>Preview the page and publish.</li>
+                        </ol>
+                        <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</p>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://classy-starburst-42df27.netlify.app/index.js"</span>{'></script>'}</p>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://classy-starburst-42df27.netlify.app/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</p>
+                        </div>
+                    </div>
+                </MyModalShare>
+                <MyModalShare
+                    show={this.state.method_pop2}
+                    onHide={() => { this.hideMethod2() }}
+                >
+                    <div class="container p-4" style={{ textAlign: 'left' }}>
+                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 2 - Job Portal Website Link</h3>
+                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>Add a link to an existing page or website header/footer to directly link to your HireBeat Job Portal. This is a simple way of getting your jobs linked from your website, giving potential candidates a streamlined application process, and maximizing your reach to new applicants.</p>
+                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>First, you will need access to the Content Management System (CMS) of your website, then, follow these steps:</p>
+                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI" }}>
+                            <li className="pb-2">Type 'Careers', 'We are Hiring', or similar somewhere on the page, ideally the header or footer.</li>
+                            <li className="pb-2">Highlight the text and select the option to add a hyperlink</li>
+                            <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
+                        </ol>
+                        <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}/"</span>{'>Careers</a>'}</p>
+                        </div>
+                    </div>
+                </MyModalShare>
             </React.Fragment>
         )
     };
