@@ -4904,7 +4904,7 @@ max-width: 110px;
 
 .tab_employer_request_support.selected {
   border-bottom: 2px solid #4689FA;
-  color: #090D3A;
+  color: #4689FA;
 }
 .comment_employer_request_support:focus{
   outline: none !important;

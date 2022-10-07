@@ -521,59 +521,61 @@ export class SubpageSetting extends Component {
                                     </Box>
                                 </div>
                             }
-                            <div className="row" >
-                                <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                                    <Text fontSize='xl' color="muted">Change Password</Text>
+                            <div>
+                                <div className="row" >
+                                    <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                        <Text fontSize='xl' color="muted">Change Password</Text>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                            >
-                                <FormControl isRequired>
-                                    <VStack spacing='2' align='left'>
-                                        <Text fontSize='lg' color="muted">Current Password</Text>
-                                        <Input
-                                            type="password"
-                                            name={"oldPassword"}
-                                            value={this.state.oldPassword}
-                                            onChange={this.handleInputChange}
-                                            placeholder={"current password"}
-                                            isRequired={true}></Input>
-                                    </VStack>
-                                    <SimpleGrid spacing='2' mt='5' columns='2'>
-                                        <VStack spacing='1' align='left'>
-                                            <Text fontSize='lg' color="muted">New Password</Text>
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                >
+                                    <FormControl isRequired>
+                                        <VStack spacing='2' align='left'>
+                                            <Text fontSize='lg' color="muted">Current Password</Text>
                                             <Input
                                                 type="password"
-                                                name={"newPassword"}
-                                                value={this.state.newPassword}
+                                                name={"oldPassword"}
+                                                value={this.state.oldPassword}
                                                 onChange={this.handleInputChange}
-                                                placeholder={"new password"}
+                                                placeholder={"current password"}
                                                 isRequired={true}></Input>
                                         </VStack>
-                                        <VStack spacing='1' align='left'>
-                                            <Text fontSize='lg' color="muted">Confirm Password</Text>
-                                            <Input
-                                                type="password"
-                                                name={"confirmPassword"}
-                                                value={this.state.confirmPassword}
-                                                onChange={this.handleInputChange}
-                                                placeholder={"confirm new password"}
-                                                isRequired={true}
-                                                pattern="[0-9 a-z A-Z ]+"
-                                                title="Alphabet letters only!"></Input>
-                                        </VStack>
-                                    </SimpleGrid>
-                                    <Button bg='brand.500' color='white' mt='5' type="submit" onClick={this.PasswordCheck}>Update Password</Button>
-                                </FormControl>
-                            </Box>
+                                        <SimpleGrid spacing='2' mt='5' columns='2'>
+                                            <VStack spacing='1' align='left'>
+                                                <Text fontSize='lg' color="muted">New Password</Text>
+                                                <Input
+                                                    type="password"
+                                                    name={"newPassword"}
+                                                    value={this.state.newPassword}
+                                                    onChange={this.handleInputChange}
+                                                    placeholder={"new password"}
+                                                    isRequired={true}></Input>
+                                            </VStack>
+                                            <VStack spacing='1' align='left'>
+                                                <Text fontSize='lg' color="muted">Confirm Password</Text>
+                                                <Input
+                                                    type="password"
+                                                    name={"confirmPassword"}
+                                                    value={this.state.confirmPassword}
+                                                    onChange={this.handleInputChange}
+                                                    placeholder={"confirm new password"}
+                                                    isRequired={true}
+                                                    pattern="[0-9 a-z A-Z ]+"
+                                                    title="Alphabet letters only!"></Input>
+                                            </VStack>
+                                        </SimpleGrid>
+                                        <Button bg='brand.500' color='white' mt='5' type="submit" onClick={this.PasswordCheck}>Update Password</Button>
+                                    </FormControl>
+                                </Box>
+                            </div>
 
                             {(((this.props.profile.plan_interval == "Premium") || (this.props.profile.plan_interval == "Pro")) && (!this.props.profile.is_employer)) &&
                                 <div>

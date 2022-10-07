@@ -3,6 +3,7 @@ import Select from "react-select";
 import { connect } from "react-redux";
 import { createRequestEmail } from "../../redux/actions/auth_actions";
 import { AlertModal } from "./DashboardComponents";
+import { Text, Input, useColorModeValue, Textarea } from '@chakra-ui/react';
 
 export class RequestSupport extends React.Component {
   state = {
@@ -51,18 +52,20 @@ export class RequestSupport extends React.Component {
   customStyles = {
     control: (base, state) => ({
       ...base,
-      backgroundColor: "#ffffff",
-      height: "48px",
+      backgroundColor: useColorModeValue("white", "brand.800"),
+      height: "2.6rem",
       boxShadow: "none",
       borderColor: state.isFocused ? "#13c4a1" : "#cecfdf",
     }),
     singleValue: (styles) => ({
       ...styles,
-      color: "#4a6f8a",
+      color: useColorModeValue("brand.800", "white"),
       fontSize: "0.9375rem",
       fontFamily: "Inter,Segoe UI, sans-serif",
       fontWeight: "500",
     }),
+    menu: provided => ({ ...provided, zIndex: 99, backgroundColor: useColorModeValue("white", "brand.800") }),
+    menuPortal: provided => ({ ...provided, zIndex: 99, backgroundColor: useColorModeValue("white", "brand.800") }),
   };
 
   openModal = () => {
@@ -118,94 +121,68 @@ export class RequestSupport extends React.Component {
   render() {
     return (
       <div style={{ padding: "1rem" }}>
-        <h3 style={{ paddingLeft: "25px" }}>Submit a Support Request</h3>
+        <Text fontSize='xl' color="muted" style={{ paddingLeft: "25px" }}>Submit a Support Request</Text>
         <form onSubmit={this.requestSubmit} style={{ padding: "10px" }}>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                First Name<span className="job-apply-char2">*</span>
-              </label>
-              <input
+              <Text fontSize='lg' color="muted">First Name<span className="job-apply-char2">*</span></Text>
+              <Input
                 type="text"
-                className="form-control register-form"
                 name="firstName"
                 value={this.state.firstName}
                 onChange={this.onChange}
-                required
-              />
+                isRequired={true}></Input>
             </div>
 
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                Last Name<span className="job-apply-char2">*</span>
-              </label>
-              <input
+              <Text fontSize='lg' color="muted">Last Name<span className="job-apply-char2">*</span></Text>
+              <Input
                 type="text"
-                className="form-control register-form"
                 name="lastName"
                 value={this.state.lastName}
                 onChange={this.onChange}
-                required
-              />
+                isRequired={true}></Input>
             </div>
           </div>
           <div className="form-group col-5">
-            <label className="register-label register-text">Company Name</label>
-            <input
+            <Text fontSize='lg' color="muted">Company Name</Text>
+            <Input
               type="text"
-              className="form-control register-form"
               name="companyName"
               value={this.state.companyName}
-              onChange={this.onChange}
-            />
+              onChange={this.onChange}></Input>
           </div>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                Email<span className="job-apply-char2">*</span>
-              </label>
-              <input
+              <Text fontSize='lg' color="muted">Email<span className="job-apply-char2">*</span></Text>
+              <Input
                 type="email"
-                className="form-control register-form"
                 name="email"
                 onChange={this.onChange}
                 value={this.state.email}
-                required
-              />
+                isRequired={true}></Input>
             </div>
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                pattern="[0-9]{10}"
-                className="form-control register-form"
-                title="Ten digits code"
+              <Text fontSize='lg' color="muted">Phone Number</Text>
+              <Input
+                type="number"
                 name="phone"
                 value={this.state.phone}
-                onChange={this.onChange}
-              />
+                onChange={this.onChange}></Input>
             </div>
           </div>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                Ticket Name<span className="job-apply-char2">*</span>
-              </label>
-              <input
+              <Text fontSize='lg' color="muted">Ticket Name<span className="job-apply-char2">*</span></Text>
+              <Input
                 type="text"
                 value={this.state.ticket}
-                className="form-control register-form"
                 name="ticket"
                 onChange={this.onChange}
-                required
-              />
+                isRequired={true}></Input>
             </div>
             <div className="form-group col-5">
-              <label className="register-label register-text">
-                Category<span className="job-apply-char2">*</span>
-              </label>
+              <Text fontSize='lg' color="muted">Category<span className="job-apply-char2">*</span></Text>
               <Select
                 className="category_employer_request_support"
                 value={this.state.category}
@@ -217,11 +194,8 @@ export class RequestSupport extends React.Component {
             </div>
           </div>
           <div className="form-group col-10">
-            <label className="register-label register-text">
-              How can we help you?<span className="job-apply-char2">*</span>
-            </label>
-            <textarea
-              className="comment_employer_request_support"
+            <Text fontSize='lg' color="muted">How can we help you?<span className="job-apply-char2">*</span></Text>
+            <Textarea
               name="feedback"
               required="required"
               style={{
@@ -233,7 +207,8 @@ export class RequestSupport extends React.Component {
               }}
               value={this.state.feedback}
               onChange={this.setFeedback}
-            ></textarea>
+            >
+            </Textarea>
           </div>
           <div
             style={{
