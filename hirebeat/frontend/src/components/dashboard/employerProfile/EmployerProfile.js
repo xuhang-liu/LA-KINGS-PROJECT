@@ -769,8 +769,8 @@ export class EmployerProfile extends Component {
                         </ol>
                         <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
                             <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://classy-starburst-42df27.netlify.app/index.js"</span>{'></script>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://classy-starburst-42df27.netlify.app/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</p>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.js"</span>{'></script>'}</p>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</p>
                         </div>
                     </div>
                 </MyModalShare>
@@ -788,7 +788,7 @@ export class EmployerProfile extends Component {
                             <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
                         </ol>
                         <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}/"</span>{'>Careers</a>'}</p>
+                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}"</span>{'>Careers</a>'}</p>
                         </div>
                     </div>
                 </MyModalShare>
