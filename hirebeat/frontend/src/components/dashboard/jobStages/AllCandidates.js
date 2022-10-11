@@ -293,7 +293,7 @@ export class AllCandidates extends Component {
                             </div>
                             <div className="container-fluid chart-bg1" style={{ marginTop: "1rem", boxShadow:"none" }}>
                                 <div className="row interview-txt7 interview-center pl-4" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                                    <div className="col-4"><span>Name</span></div>
+                                    <div className="col-3"><span>Name</span></div>
                                     <div className="col-2">Applied On</div>
                                     <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
                                         <div className="row" style={{ padding: "0rem" }}>
@@ -307,6 +307,7 @@ export class AllCandidates extends Component {
                                             <Select isSearchable={false} value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
                                         </div>
                                     </div>
+                                    <div className="col-2"><span>Source</span></div>
                                 </div>
                                 {this.props.curJob.applicants.map((a, index) => {
                                     /*
@@ -544,7 +545,7 @@ const ApplicantRow = (props) => {
                 }}
             />
             <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
+                <div className="col-3 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
                     {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
                         <div>
                             <span className="dot"></span>
@@ -598,6 +599,10 @@ const ApplicantRow = (props) => {
                         </span>
                     </div>
                 </div>
+                <div className="col-2 interview-txt9 mb-2">
+                    <span style={{ marginLeft: "0.6rem" }}>
+                        {props.applicant.apply_source === 'JobTarget' ? props.applicant.apply_referer : props.applicant.apply_source}
+                </span></div>
             </div>
             <div style={{ background: "#E8EDFC" }}>
                 <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
