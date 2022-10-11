@@ -1,4 +1,5 @@
 #from django.shortcuts import render
+from email.policy import default
 from pickle import TRUE
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.contrib.auth.models import User
@@ -121,6 +122,9 @@ def add_new_job(request):
     headers = {'Content-type': 'application/json'}
     emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/job/" + str(job.id) + "/post-event"
     requests.post(emailUrl, headers=headers)  
+
+    # add job url to xml
+    store_sitemap_xml(job_url)
 
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
@@ -681,6 +685,24 @@ def create_zr_job_feed(job_detail):
                                         "required": jobQuestion.is_must})
     interview_json.text = json.dumps(interview_json_text)
     return job
+
+def store_sitemap_xml(job_url):
+    tree = ET.parse('sitemap.xml')
+    ET.register_namespace("", "http://www.google.com/schemas/sitemap/0.84")
+
+    root = tree.getroot()
+    
+    url = ET.Element('url')
+    loc = ET.SubElement(url, 'loc')
+    changefreq = ET.SubElement(url, 'changefreq')
+    # Add values to tag
+    print(job_url)
+    loc.text = job_url
+    changefreq.text = 'Always'
+    
+    root.append(url)
+    with open("sitemap.xml", "wb") as f:
+        f.write(ET.tostring(root, encoding='utf8', method='xml', default_namespace=None))
 
 
 @api_view(['GET'])
