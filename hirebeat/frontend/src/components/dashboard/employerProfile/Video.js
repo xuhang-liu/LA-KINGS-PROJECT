@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import ReactPlayer from 'react-player';
+import { Text } from '@chakra-ui/react';
 var ReactS3Uploader = require("react-s3-uploader");
 
 export class Video extends Component {
@@ -160,7 +161,7 @@ export class Video extends Component {
       <div>
         <div style={{ padding: "2rem" }}>
           <div className="row" style={{ marginBottom: "1rem" }}>
-            <h3 className="profile-h3 pl-3">Video Profile
+            <Text fontSize='xl' color="muted">Video Profile
               <span className="tool_tip ml-2">
                 <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
                 <p className="tool_submenu container" style={{ width: "14rem" }}>
@@ -169,7 +170,7 @@ export class Video extends Component {
                   </div>
                 </p>
               </span>
-            </h3>
+            </Text>
           </div>
           <ReactPlayer id="rw-video" url={this.props.videoURL} controls={true} width={"100%"} height={"100%"} />
           {(this.props.videoURL != "" && this.props.videoURL != null) ?
@@ -199,7 +200,7 @@ export class Video extends Component {
                 <img src="https://hirebeat-assets.s3.amazonaws.com/Employer/profile-video-upload-icon.png" alt="icon" />
               </div>
               <div className="row d-flex justify-content-center mt-3">
-                <p style={{ color: "#090d3a", fontWeight: '600' }}>Upload a Company Video Profile</p>
+                <Text fontSize='md' color="muted" style={{ fontWeight: '600' }}>Upload a Company Video Profile</Text>
               </div>
               <ReactS3Uploader
                 style={{ display: "none" }}

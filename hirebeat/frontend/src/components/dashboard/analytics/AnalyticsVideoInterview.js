@@ -6,6 +6,7 @@ import 'boxicons';
 import ReactApexChart from "react-apexcharts";
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Box, Text } from '@chakra-ui/react';
 
 export class AnalyticsVideoInterview extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ export class AnalyticsVideoInterview extends Component {
                 offsetY: -20,
                 style: {
                     fontSize: '12px',
-                    colors: ["#090d3a"]
+                    colors: ["#7e8993"]
                 }
             },
             xaxis: {
@@ -103,29 +104,37 @@ export class AnalyticsVideoInterview extends Component {
             browserName = "firefox";
         }
         return (
-            <div className="container-xl">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Interview Question Summary</h3>
+                                    <Text fontSize='md' color="muted">Interview Question Summary</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1.6rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A summary of interview question configuration and their effectiveness broken down by job.</p>
                                 </div>
-                                <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "#090d3a" }}>
+                                <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "muted" }}>
                                     <div className="col-3" style={{ borderRight: "1px solid #090d3a" }}>Job Title</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>No. Qs</div>
-                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem"}}>Prep Time</div>
-                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Re Length</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Video</div>
-                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize:"0.8rem" }}>Re Rate</div>
-                                    <div className="col-2" style={{ textAlign: 'center', fontSize:"0.8rem" }}>Avg Re Time</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize: "0.8rem" }}>No. Qs</div>
+                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize: "0.8rem" }}>Prep Time</div>
+                                    <div className="col-2" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize: "0.8rem" }}>Re Length</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize: "0.8rem" }}>Video</div>
+                                    <div className="col-1" style={{ textAlign: 'center', borderRight: "1px solid #090d3a", fontSize: "0.8rem" }}>Re Rate</div>
+                                    <div className="col-2" style={{ textAlign: 'center', fontSize: "0.8rem" }}>Avg Re Time</div>
                                 </div>
                                 <hr />
-                                <div className="row pl-2 pb-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "500", color: "#090d3a" }}>
+                                <div className="row pl-2 pb-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "500", color: "muted" }}>
                                     <div className="col-3" style={{ borderRight: "1px solid #090d3a " }}>
                                         {this.props.alljobAnaInfo?.job_titles?.map((t, index) => {
                                             return (
@@ -157,7 +166,7 @@ export class AnalyticsVideoInterview extends Component {
                                     <div className="col-1" style={{ borderRight: "1px solid #090d3a " }}>
                                         {this.props.alljobAnaInfo?.video_on?.map((t, index) => {
                                             return (
-                                                <div className="pt-2" style={{ textAlign: 'center' }}>{t?"On":"Off"}</div>
+                                                <div className="pt-2" style={{ textAlign: 'center' }}>{t ? "On" : "Off"}</div>
                                             )
                                         })}
                                     </div>
@@ -177,16 +186,24 @@ export class AnalyticsVideoInterview extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                     <div className="col-7">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Response Time</h3>
+                                    <Text fontSize='md' color="muted">Response Time</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>Response time is the number of days since the invitation was sent until the video is submitted. Here is a summary of response time from all jobs. Non-complete videos are not included.</p>
@@ -198,14 +215,22 @@ export class AnalyticsVideoInterview extends Component {
                                     }
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                     <div className="col-5">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Average Response Rate</h3>
+                                    <Text fontSize='md' color="muted">Average Response Rate</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A summary of total videos submitted out of total invitations sent.</p>
@@ -213,25 +238,33 @@ export class AnalyticsVideoInterview extends Component {
                                 <div className="row px-5">
                                     <div className="col-6">
                                         <p style={{ fontSize: "12px" }}>Interview sent</p>
-                                        <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "0.6rem" }}>{this.props.analyticsInfo?.invitation_total}</h3>
+                                        <Text fontSize='xl' color="muted" style={{ fontSize: "3rem", marginTop: "0.6rem" }}>{this.props.analyticsInfo?.invitation_total}</Text>
                                         <p style={{ fontSize: "12px" }}>Interview received</p>
-                                        <h3 className="chart-legend" style={{ fontSize: "3rem", marginTop: "0.6rem" }}>{this.props.analyticsInfo?.interview_received}</h3>
+                                        <Text fontSize='xl' color="muted" style={{ fontSize: "3rem", marginTop: "0.6rem" }}>{this.props.analyticsInfo?.interview_received}</Text>
                                     </div>
                                     <div className="col-6">
                                         <RateScore percent={Math.round(this.props.analyticsInfo?.interview_received_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={200} width={200} />
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem", paddingBottom: "0.1rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="user-pin" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Response Rate</h3>
+                                    <Text fontSize='md' color="muted">Response Rate</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A summary of response rate broken down by jobs.</p>
@@ -264,14 +297,22 @@ export class AnalyticsVideoInterview extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem", paddingBottom: "0.2rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="chart" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Video Interviews Over Time</h3>
+                                    <Text fontSize='md' color="muted">Video Interviews Over Time</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A trend of video interview invitations and submissions over the selected timespan.</p>
@@ -290,45 +331,61 @@ export class AnalyticsVideoInterview extends Component {
                                     <InterviewChart dates={this.props?.interview_session?.date} videos_comp={this.props?.position_list[this.state.jobId3]?.recorded} videos_sent={this.props?.position_list[this.state.jobId3]?.vidsent} height={250} />
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Current Pipeline Pass-Through Rate</h3>
+                                    <Text fontSize='md' color="muted">Current Pipeline Pass-Through Rate</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1.6rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>Percentage of applicants moved forward from Video Interview stage, for all active jobs.</p>
                                 </div>
                                 <div className="row px-5">
                                     <div className="col">
-                                        <RateScore percent={Math.round(this.props.alljobAnaInfo?.liv_active_pass_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={300} width={300} />
+                                        <RateScore percent={Math.round(this.props?.alljobAnaInfo?.liv_active_pass_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={300} width={300} />
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
                             <div style={{ padding: "0.6rem" }}>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Historical Pipeline Pass-Through Rate</h3>
+                                    <Text fontSize='md' color="muted">Historical Pipeline Pass-Through Rate</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1.6rem" }}>
                                     <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>Percentage of applicants moved forward from Video Interview stage, for all archived jobs.</p>
                                 </div>
                                 <div className="row px-5">
                                     <div className="col">
-                                        <RateScore percent={Math.round(this.props.alljobAnaInfo?.liv_pass_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={300} width={300} />
+                                        <RateScore percent={Math.round(this.props?.alljobAnaInfo?.liv_pass_rate)} bgColor={"#FFFFFF"} barColor={"#006dff"} label={"%"} ftSize={"20px"} ftColor={"#090D3A"} height={300} width={300} />
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
             </div>

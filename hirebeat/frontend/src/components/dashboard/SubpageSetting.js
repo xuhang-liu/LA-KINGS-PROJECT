@@ -774,8 +774,8 @@ export class SubpageSetting extends Component {
                             {this.props.profile.is_employer ? <EmailPreference userId={this.props.user.id} /> : null}
                             {/* User Deletion */}
                             {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
-                                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
-                                    : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "50px", "paddingRight": "50px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
+                                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "25px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
+                                    : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "25px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
                             </div> : null}
                         </Stack>
                     </Container>

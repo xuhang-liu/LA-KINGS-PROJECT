@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
-import { FiMenu, FiSettings, FiSun, FiUser, FiAlertCircle } from 'react-icons/fi';
+import { FiMenu, FiSettings, FiSun, FiUser, FiHelpCircle } from 'react-icons/fi';
 import 'boxicons';
 import {
   Box,
@@ -345,7 +345,7 @@ export const Header = (props) => {
             }
             <Popover trigger="hover">
               <PopoverTrigger>
-                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
+                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
               <PopoverContent>
                 <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
@@ -381,7 +381,7 @@ export const Header = (props) => {
           )}
         {isDesktop ? (
           <HStack spacing="2">
-            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiAlertCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
+            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiHelpCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
             <Popover trigger="hover">
@@ -623,8 +623,8 @@ export const Header = (props) => {
                     : (uri.includes("talent-profile")) ?
                       renderGuestLinks(isAuthenticated) :
                       (uri.includes("job-seekers") || uri == "practice" || uri == "resume" || uri == "register" || uri == "login"
-                      || uri == "career-details" || uri == "quiz" || uri == "pricing"
-                      || uri == "company" || uri == "contact" || uri == "bloghome") ?
+                        || uri == "career-details" || uri == "quiz" || uri == "pricing"
+                        || uri == "company" || uri == "contact" || uri == "bloghome") ?
                         renderGuestLinks(isAuthenticated)
                         : renderEmployerGuestLinks(isAuthenticated)
                   }

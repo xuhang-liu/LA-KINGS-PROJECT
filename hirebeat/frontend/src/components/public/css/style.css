@@ -4276,8 +4276,8 @@ Pricing Area CSS
 .pricing-list-tab .tabs li span {
   cursor: pointer;
   display: block;
-  background-color: #ffffff;
-  color: #8d8fb4;
+  background-color: #9ca0b5;
+  color: #ffffff;
   padding: 10px 30px 10px 53px;
   position: relative;
   border-radius: 5px;
@@ -4300,7 +4300,7 @@ Pricing Area CSS
 
 .pricing-list-tab .tabs li.current span {
   color: #ffffff;
-  background-color: #080a3c;
+  background-color: #090d3a;
 }
 
 .pricing-list-tab .tabs li:nth-child(1) span {
