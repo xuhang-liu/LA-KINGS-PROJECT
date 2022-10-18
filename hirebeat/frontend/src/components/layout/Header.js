@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { logout, loadProfile } from "../../redux/actions/auth_actions";
 import { connect } from "react-redux";
 import MediaQuery from 'react-responsive';
 import hirebeatlogo from "../../assets/HireBeatLogo.png";
 import hirebeatlogotext from "../../assets/HireBeatLogoText.png";
-import { FiMenu, FiSettings, FiSun, FiUser, FiHelpCircle } from 'react-icons/fi';
+import { FiMenu, FiSettings, FiSun, FiUser, FiHelpCircle, FiCircle } from 'react-icons/fi';
 import 'boxicons';
+import axios from "axios";
 import {
   Box,
   Button,
@@ -26,7 +27,10 @@ import {
   PopoverContent,
   PopoverBody,
   PopoverArrow,
-  Text
+  Text,
+  ListIcon,
+  ListItem,
+  List,
 } from '@chakra-ui/react';
 
 export const Header = (props) => {
@@ -38,7 +42,31 @@ export const Header = (props) => {
 
   const { colorMode, toggleColorMode } = useColorMode()
 
+  const [job_list, setjob_list] = useState([])
+
   useEffect(() => {
+    //Get most recent jobs
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let data = { "userid": props.profile.user };
+    axios.post("jobs/get-most-recent-jobs", data, config).then((res) => {
+      let jobs_list = [];
+      for (let i = 0; i < res.data.jobs_list?.length; i++) {
+        const newItem = {
+          job_id: res.data.jobs_list[i]?.id,
+          job_title: res.data.jobs_list[i]?.job_title,
+          is_closed: res.data.jobs_list[i]?.is_closed
+        };
+        jobs_list.push(newItem);
+      }
+      setjob_list(jobs_list);
+    }).catch(error => {
+      console.log(error)
+    });
+
     if (localStorage.getItem("token")) {
       props.loadProfile();
     }
@@ -349,10 +377,27 @@ export const Header = (props) => {
               </PopoverTrigger>
               <PopoverContent>
                 <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
-                <PopoverBody bg={useColorModeValue("white", "brand.800")}>
+                <PopoverBody bg={useColorModeValue("white", "brand.800")} alignItems='left'>
                   <Stack spacing="2" py="1">
-                    <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToAllJobs}>All Jobs</Button>
-                    <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button>
+                    <List spacing={3}>
+                      <Text color={useColorModeValue("brand.800", "white")}>Recent Jobs</Text>
+                      {Object.keys(job_list).map((key) => {
+                        return (
+                          <ListItem>
+                            <HStack spacing="2">
+                              {job_list[key]?.is_closed == 0 ?
+                                <ListIcon as={FiCircle} color="green" /> :
+                                <ListIcon as={FiCircle} color="red" />
+                              }
+                              <Text color={useColorModeValue("brand.500", "white")}>{job_list[key]?.job_title}</Text>
+                            </HStack>
+                          </ListItem>
+                        )
+                      })}
+                      <Divider />
+                      <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToAllJobs}>All Jobs</Button></ListItem>
+                      <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button></ListItem>
+                    </List>
                   </Stack>
                 </PopoverBody>
               </PopoverContent>

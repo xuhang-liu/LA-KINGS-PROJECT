@@ -1945,3 +1945,11 @@ def job_target_push_candidates_back(request):
         res = requests.post(url, data=json.dumps(data), headers=headers)
         print(res.json())
     return Response("Job Target Push Candidates Back Successfully", status=status.HTTP_201_CREATED)
+
+@api_view((['POST']))
+def get_most_recent_jobs(request):
+    userid = request.data["userid"]
+    jobs_list = Jobs.objects.filter(user_id = userid).order_by('-create_date')[:5].values()
+    return Response({
+        "jobs_list": jobs_list
+    })
