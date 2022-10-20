@@ -5,6 +5,7 @@ import { tourConfigEmployer } from "../DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import axios from "axios";
+import { useColorModeValue } from '@chakra-ui/react';
 
 const decideClassName = (filter, text) => {
   return filter == text ? "btn-selected2" : "btn-unselected2";
@@ -112,7 +113,7 @@ export const JobCover = (props) => {
             <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "inline-block", float: "left", marginTop: "0.5rem" }}>
               <div style={{ position: "absolute", left: "1.3rem", marginTop: "0.2rem" }}><i className="bx bx-search bx-sm"></i></div>
               <div>
-                <input placeholder="Search" className="search-candidate-input" style={{ height: "auto", border: "2px solid #006dff" }} value={keyWords} onChange={onChange}></input>
+                <input placeholder="Search" className="search-candidate-input" style={{ height: "auto", border: "2px solid #006dff", backgroundColor: useColorModeValue("#ffffff", "#090d3a") }} value={keyWords} onChange={onChange}></input>
               </div>
             </div>
             {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) &&

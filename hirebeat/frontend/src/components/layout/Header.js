@@ -353,6 +353,13 @@ export const Header = (props) => {
       sessionStorage.setItem('subpage', "settings");
       window.location.reload(false);
     }
+    const renderToSingleJob = (job_id) => {
+      sessionStorage.clear();
+      sessionStorage.setItem('subpage', "jobs");
+      sessionStorage.setItem('viewPortal', "true");
+      sessionStorage.setItem('jobKey', job_id);
+      window.location.reload(false);
+    }
     return (
       <React.Fragment>
         {isDesktop ? (
@@ -389,7 +396,7 @@ export const Header = (props) => {
                                 <ListIcon as={FiCircle} color="green" /> :
                                 <ListIcon as={FiCircle} color="red" />
                               }
-                              <Text color={useColorModeValue("brand.500", "white")}>{job_list[key]?.job_title}</Text>
+                              <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={() => renderToSingleJob(job_list[key]?.job_id)}>{job_list[key]?.job_title}</Button>
                             </HStack>
                           </ListItem>
                         )

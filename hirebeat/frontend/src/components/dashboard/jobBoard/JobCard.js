@@ -9,6 +9,20 @@ import Select from 'react-select';
 import { MyModalShare, MyModalUpgrade } from "../DashboardComponents";
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 import axios from "axios";
+import { useColorModeValue } from '@chakra-ui/react';
+
+const customStyles = {
+    control: styles => ({ ...styles, border: "none", marginTop: "-1rem", background: useColorModeValue("#ffffff", "#1a202c") }),
+    singleValue: styles => ({
+        ...styles,
+        color: useColorModeValue("#090d3a", "#ffffff"),
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '600',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+};
 
 export class JobCard extends Component {
 
@@ -51,18 +65,6 @@ export class JobCard extends Component {
     hideshowCloseCredit = () => {
         this.setState({ showCloseCredit: false });
     }
-
-    customStyles = {
-        control: styles => ({ ...styles, border: "none", marginTop: "-1rem" }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#090d3a',
-            fontSize: '0.9375rem',
-            fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '600'
-        }),
-        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
-    };
 
     onFilter = (draft_select) => {
         if (this.props.job.job_details.is_closed != draft_select.value) {
@@ -366,7 +368,7 @@ export class JobCard extends Component {
                 />
                 <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem", marginBottom: "0.5rem" }}>
                     <div className="col-2 interview-txt9 mt-2">
-                        <Select isSearchable={false} value={draft_select} onChange={this.onFilter} options={options} styles={this.customStyles} className="select-category-jobs-closed1" getOptionLabel={e => (
+                        <Select isSearchable={false} value={draft_select} onChange={this.onFilter} options={options} styles={customStyles} className="select-category-jobs-closed1" getOptionLabel={e => (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <i style={{ color: e.color }} class={e.icon}></i>
                                 <span style={{ marginLeft: "0.5rem" }}>{e.text}</span>
@@ -409,7 +411,7 @@ export class JobCard extends Component {
                 <div id="jobs-actions-hover" className="row interview-txt7 interview-center">
                     <div className="col-2 interview-txt9 mt-2">
                     </div>
-                    <div className="col-6 interview-txt9 mt-1">
+                    <div className="col-6 interview-txt9 my-2">
                         <div className="d-flex justify-content-start" style={{ display: "flex", alignItems: "center", paddingLeft: "1rem" }}>
                             {((this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 3) && (this.props.job?.reviewer_type != "subr")) &&
                                 <button className="title-button2 tool_tip" onClick={() => { this.props.setJobInfo(this.props.job.job_details); this.props.renderJobEdition() }} style={{ color: "#4a6f8a", fontWeight: "500", fontSize: "0.9rem", borderRight: "0.5px solid #4A6F8A", paddingRight: "1rem" }}>

@@ -14,7 +14,7 @@ import {
 } from "./../../../redux/actions/question_actions";
 import axios from "axios";
 // import { constants } from "fs";
-import { Container, Heading, Box, Flex } from '@chakra-ui/react';
+import { Container, Box, Flex } from '@chakra-ui/react';
 import { EmployerSidebar } from '../chakraComponents/EmployerSidebar';
 
 export class JobPortalPage extends Component {
@@ -495,82 +495,6 @@ export class JobPortalPage extends Component {
                         height="full"
                     >
                         <Container py="8" height="full" width='full'>
-                            {/* <div style={{ padding: "1rem", borderRadius: "3px" }}><Heading as='h3' size='lg' onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); this.props.setShowSidebarFalse(); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></Heading></div> */}
-                            {/* <div className="row" style={{ border: "2px solid #f3f6f9" }}>
-                                <div className="col-2">
-                                    {(this.state.reviewerStage.includes("pipeline") || this.state.reviewerStage?.length == 0) ?
-                                        <div>
-                                            {this.state.portalSubpage == "pipeline" ?
-                                                <p onClick={this.renderPipeline} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p> :
-                                                <p onClick={this.renderPipeline} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
-                                            }</div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
-                                    }
-                                </div>
-                                <div className="col-2">
-                                    {(this.state.reviewerStage.includes("allCandidates") || this.state.reviewerStage?.length == 0) ?
-                                        <div>
-                                            {this.state.portalSubpage == "allCandidates" ?
-                                                <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                                <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                            }
-                                        </div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>All Candidates</p>
-                                    }
-                                </div>
-                                <div className="col-2">
-                                    {((this.state.reviewerStage.includes("resumeScreen") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                        <div>
-                                            {this.state.portalSubpage == "resumeScreen" ?
-                                                <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                    {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                    Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                                <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                    {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                    Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                            }
-                                        </div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
-                                    }
-                                </div>
-                                <div className="col-2">
-                                    {(this.state.reviewerStage.includes("videoInterview") || this.state.reviewerStage?.length == 0) ?
-                                        <div>
-                                            {this.state.portalSubpage == "videoInterview" ?
-                                                <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                    {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                    Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                                <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                    {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                    Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                            }
-                                        </div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>
-                                    }
-                                </div>
-                                <div className="col-2">
-                                    {((this.state.reviewerStage.includes("liveInterview") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                        <div>
-                                            {this.state.portalSubpage == "liveInterview" ?
-                                                <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                                <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                            }
-                                        </div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Live Interview</p>
-                                    }
-                                </div>
-                                <div className="col-2">
-                                    {((this.state.reviewerStage.includes("shortList") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                        <div>
-                                            {this.state.portalSubpage == "shortList" ?
-                                                <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color: "#7C94B5" }}>{'>>'}</span></p> :
-                                                <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color: "#ffffff" }}>{'>>'}</span></p>
-                                            }
-                                        </div> :
-                                        <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Short List</p>
-                                    }
-                                </div>
-                            </div> */}
                             <div>
                                 {this.renderSubpage()}
                             </div>
