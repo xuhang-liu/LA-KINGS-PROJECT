@@ -9,7 +9,8 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { confirmAlert } from 'react-confirm-alert';
 import Spinner from 'react-bootstrap/Spinner';
-import { Box, Heading, HStack, Stack, Text, Flex, Spacer } from '@chakra-ui/react';
+import { Box, Heading, HStack, Stack, Text, Flex, Spacer, Button } from '@chakra-ui/react';
+import { FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart, FiEdit } from 'react-icons/fi';
 
 const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
@@ -630,7 +631,7 @@ export class Pipeline extends Component {
                             <Stack>
                                 <Flex>
                                     <Stack>
-                                        <Text fontSize='md' color="muted" pt="5"><i class='bx bx-fw bx-menu mr-2'></i>All Candidates ({this.props?.analytics?.all_can_num})</Text>
+                                        <Button pt='5' ml='-10' leftIcon={<FiAlignCenter />} variant="link" onClick={this.props.renderAllCandidates}>All Candidates ({this.props?.analytics?.all_can_num})</Button>
                                         <HStack>
                                             <Text fontSize='sm' color="muted" pl='8'><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active: {this.props?.analytics?.all_can_act_num}</Text>
                                             <Text fontSize='sm' color="muted" fontWeight='bold' px='2'> | </Text>
@@ -727,7 +728,7 @@ export class Pipeline extends Component {
                             <Stack>
                                 <Flex>
                                     <Stack>
-                                        <Text fontSize='md' color="muted" pt="5"><i class='bx bx-fw bx-file mr-2'></i>Resume Review ({this.props?.analytics?.resume_num})</Text>
+                                        <Button pt='5' ml='-8' leftIcon={<FiFileText />} variant="link" onClick={this.props.renderResumeScreen}>Resume Review ({this.props?.analytics?.resume_num})</Button>
                                         <HStack>
                                             <Text fontSize='sm' color="muted" pl='8'><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active: {this.props?.analytics?.resume_num_act_num}</Text>
                                             <Text fontSize='sm' color="muted" fontWeight='bold' px='2'> | </Text>
@@ -824,7 +825,7 @@ export class Pipeline extends Component {
                             <Stack>
                                 <Flex>
                                     <Stack>
-                                        <Text fontSize='md' color="muted" pt="5"><i class='bx bx-fw bx-video-recording mr-2'></i>Video Interview ({this.props?.analytics?.video_num})</Text>
+                                        <Button pt='5' ml='-8' leftIcon={<FiVideo />} variant="link" onClick={this.props.renderVideoInterview}>Video Interview ({this.props?.analytics?.video_num})</Button>
                                         <HStack>
                                             <Text fontSize='sm' color="muted" pl='8'><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active: {this.props?.analytics?.video_num_act_num}</Text>
                                             <Text fontSize='sm' color="muted" fontWeight='bold' px='2'> | </Text>
@@ -921,7 +922,7 @@ export class Pipeline extends Component {
                             <Stack>
                                 <Flex>
                                     <Stack>
-                                        <Text fontSize='md' color="muted" pt="5"><i class='bx bx-fw bx-conversation mr-2'></i>Live Interview ({this.props?.analytics?.live_num})</Text>
+                                        <Button pt='5' ml='-12' leftIcon={<FiMessageCircle />} variant="link" onClick={this.props.renderLiveInterview}>Live Interview ({this.props?.analytics?.live_num})</Button>
                                         <HStack>
                                             <Text fontSize='sm' color="muted" pl='8'><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active: {this.props?.analytics?.live_num_act_num}</Text>
                                             <Text fontSize='sm' color="muted" fontWeight='bold' px='2'> | </Text>
@@ -1018,7 +1019,7 @@ export class Pipeline extends Component {
                             <Stack>
                                 <Flex>
                                     <Stack>
-                                        <Text fontSize='md' color="muted" pt="5"><i class='bx bx-fw bx-heart mr-2'></i>Short List ({this.props?.analytics?.short_num})</Text>
+                                        <Button pt='5' ml='-20' leftIcon={<FiHeart />} variant="link" onClick={this.props.renderShortList}>Short List ({this.props?.analytics?.short_num})</Button>
                                         <HStack>
                                             <Text fontSize='sm' color="muted" pl='8'><span className="dot" style={{ backgroundColor: "#0DC68E" }}></span>Active: {this.props?.analytics?.short_num_act_num}</Text>
                                             <Text fontSize='sm' color="muted" fontWeight='bold' px='2'> | </Text>
