@@ -25,9 +25,16 @@ export const EmployerSidebar = (props) => (
                 <Stack>
                     <HStack>
                         <IconButton aria-label='Search database' icon={<FiChevronLeft />} onClick={() => { props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); props.getAllJobs(this.props.user.id, 1, "", "", ""); props.setShowSidebarFalse(); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} />
-                        <i className='bx-fw bx bxs-circle' style={{ color: "#13c4a1" }}></i>
-                        <Text fontSize="md" color="subtle" fontWeight="medium">Published</Text>
-                        <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }}/>
+                        {props?.curJob?.job_details?.is_closed == 0 ?
+                            <i className='bx-fw bx bxs-circle' style={{ color: "#13c4a1" }}></i>
+                            : <i className='bx-fw bx bxs-circle' style={{ color: "#090d3a" }}></i>}
+                        {props?.curJob?.job_details?.is_closed == 0 &&
+                            <Text fontSize="md" color="subtle" fontWeight="medium">Published</Text>}
+                        {props?.curJob?.job_details?.is_closed == 1 &&
+                            <Text fontSize="md" color="subtle" fontWeight="medium">Archived</Text>}
+                        {props?.curJob?.job_details?.is_closed == 2 &&
+                            <Text fontSize="md" color="subtle" fontWeight="medium">Closed</Text>}
+                        <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }} />
                     </HStack>
                     <Heading as='h6' size='xs' color="muted">{props?.curJob?.job_details?.job_title}</Heading>
                 </Stack>
@@ -36,7 +43,9 @@ export const EmployerSidebar = (props) => (
                         Sourcing
                     </Text>
                     <Stack spacing="1">
-                        <Button variant='outline'>AI Sourcing</Button>
+                        {props.portalSubpage == "aiSourcing" ?
+                            <Button variant='solid' onClick={props.renderAISourcing}>AI Sourcing</Button> :
+                            <Button variant='outline' onClick={props.renderAISourcing}>AI Sourcing</Button>}
                         <Button variant='outline'>Job Board</Button>
                         <Button variant='outline'>Social Media Share</Button>
                     </Stack>

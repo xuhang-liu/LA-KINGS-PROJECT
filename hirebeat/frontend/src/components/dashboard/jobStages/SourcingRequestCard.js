@@ -1,9 +1,10 @@
 import React from "react";
 import "boxicons";
-import { MyFullModal1, MyModal80 } from "../DashboardComponents";
+import { MyModal80 } from "../DashboardComponents";
 import { EmailSending } from "../applications/EmailSending";
 import SourcingRequestModal from "./SourcingRequestModal";
 import axios from "axios";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 export class SourcingRequestCard extends React.Component {
     constructor(props) {
@@ -147,7 +148,26 @@ export class SourcingRequestCard extends React.Component {
                         </a>
                     ) : null}
                 </div>
-                <div style={{ background: "#E8EDFC" }}>
+                <Modal onClose={() => { this.setState({ showModal: false }), this.props.refresh() }} size={"7xl"} isOpen={this.state.showModal}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <SourcingRequestModal
+                                onHide={() => { this.setState({ showModal: false }) }}
+                                handelApproval={this.handelApproval}
+                                openEmailSending={this.openEmailSending}
+                                job={this.props.job}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                sourcing={this.props.sourcing}
+                                refresh={this.props.refresh}
+                                approval_select={(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval)}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+                {/* <div style={{ background: "#E8EDFC" }}>
                     <MyFullModal1 className="light-blue-modal" show={this.state.showModal} onHide={() => { this.setState({ showModal: false }), this.props.refresh() }}>
                         <SourcingRequestModal
                             onHide={() => { this.setState({ showModal: false }) }}
@@ -161,7 +181,7 @@ export class SourcingRequestCard extends React.Component {
                             approval_select={(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval)}
                         />
                     </MyFullModal1>
-                </div>
+                </div> */}
                 <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
                     <EmailSending
                         hideEmailSending={this.hideEmailSending}

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Box, Text, Button, Textarea } from '@chakra-ui/react';
+import { FiChevronLeft } from 'react-icons/fi';
 
 export class SourcingRequestModal extends React.Component {
     constructor(props) {
@@ -31,24 +33,23 @@ export class SourcingRequestModal extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container-fluid pl-5 mb-4">
-                    <button
-                        type="button"
-                        className="panel-button"
-                        onClick={() => { this.props.onHide(), this.props.refresh() }}
-                        style={{ outline: "none", margin: "0%", padding: "0px", background: "#e8edfc" }}
-                    >
-                        <div className="center-items back-to-text1">
-                            <p className="back-to-text1"><i className="bx-fw bx bx-chevron-left"></i> Prospect List</p>
-                        </div>
-                    </button>
+                <div className="container-fluid mb-4">
+                    <Button type="button" leftIcon={<FiChevronLeft />} onClick={() => { this.props.onHide(), this.props.refresh() }}>Prospect List</Button>
                 </div>
-                <div className="chart-bg1 container-fluid px-5 py-4 mb-5" style={{ width: '95%' }}>
+                <Box
+                    bg="bg-surface"
+                    boxShadow='sm'
+                    borderRadius="lg"
+                    p={{
+                        base: '8',
+                        md: '10',
+                    }}
+                >
                     <div
                         className="row pb-4"
                         style={{ display: "flex", justifyContent: "space-between" }}
                     >
-                        <div style={{ color: "#7A7A7A" }}>{this.props.sourcing.current_location}</div>
+                        <div><Text fontSize='sm' color="muted">{this.props.sourcing.current_location}</Text></div>
                         <div style={{ display: "flex" }}>
                             {(this.props.sourcing.phone != null && this.props.sourcing.phone != "") &&
                                 <div>
@@ -80,29 +81,14 @@ export class SourcingRequestModal extends React.Component {
                         }}
                     >
                         <div>
-                            <h1
-                                style={{
-                                    fontFamily: "Inter",
-                                    fontWeight: "700",
-                                    color: "#090D3A",
-                                }}
-                            >
-                                {(this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.length > 29 ? (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.substring(0, 27) + "..." : (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)}
-                            </h1>
-                            <div
-                                style={{
-                                    color: "#090D3A",
-                                    fontWeight: "500",
-                                    fontSize: "1.1rem",
-                                }}
-                            >
-                                {this.props.sourcing.current_title} at <b>{this.props.sourcing.current_company_name}</b>
-                            </div>
+                            <Text fontSize='md' color="muted">{(this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.length > 29 ? (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)?.substring(0, 27) + "..." : (this.props.sourcing.first_name + " " + this.props.sourcing.last_name)}</Text>
+                            <Text fontSize='md' color="muted">{this.props.sourcing.current_title} at <b>{this.props.sourcing.current_company_name}</b></Text>
                             {(this.props.sourcing.current_company_size != null && this.props.sourcing.current_company_size != "") &&
                                 <div style={{ paddingBottom: "2rem" }}>
                                     <span
                                         style={{
                                             backgroundColor: "#F3F6F9",
+                                            color: "#090d3a",
                                             paddingLeft: "0.7rem",
                                             paddingRight: "0.7rem",
                                             paddingTop: "0.2rem",
@@ -114,6 +100,7 @@ export class SourcingRequestModal extends React.Component {
                                     </span>
                                     <span style={{
                                         backgroundColor: "#F3F6F9",
+                                        color: "#090d3a",
                                         paddingLeft: "0.7rem",
                                         paddingRight: "0.7rem",
                                         paddingTop: "0.2rem",
@@ -124,16 +111,7 @@ export class SourcingRequestModal extends React.Component {
                                     </span>
                                 </div>}
                             <div className={(this.props.sourcing.current_company_size != null && this.props.sourcing.current_company_size != "") ? "" : "mt-5"}>
-                                <h3
-                                    style={{
-                                        fontFamily: "Inter",
-                                        fontWeight: "700",
-                                        fontSize: "1.6rem",
-                                        color: "rgb(9, 13, 58)",
-                                    }}
-                                >
-                                    Previous Experience
-                                </h3>
+                                <Text fontSize='2xl' fontWeight='bold' color="muted">Previous Experience</Text>
                                 <ul
                                     style={{
                                         backgroundColor: "#F3F6F9",
@@ -146,7 +124,7 @@ export class SourcingRequestModal extends React.Component {
                                     {(this.props.sourcing.prev_title1 != null && this.props.sourcing.prev_title1 != "") &&
                                         <li style={{ padding: "0.5rem" }}>
                                             <div
-                                                style={{ fontWeight: "500", fontSize: "1.1rem" }}
+                                                style={{ color: "#090d3a", fontWeight: "500", fontSize: "1.1rem" }}
                                             >
                                                 {this.props.sourcing.prev_title1} at <b>{this.props.sourcing.prev_company_name1}</b>
                                             </div>
@@ -154,6 +132,7 @@ export class SourcingRequestModal extends React.Component {
                                                 <div>
                                                     <span style={{
                                                         backgroundColor: "#fff",
+                                                        color: "#090d3a",
                                                         paddingLeft: "0.7rem",
                                                         paddingRight: "0.7rem",
                                                         paddingTop: "0.2rem",
@@ -164,6 +143,7 @@ export class SourcingRequestModal extends React.Component {
                                                     </span>
                                                     <span style={{
                                                         backgroundColor: "#fff",
+                                                        color: "#090d3a",
                                                         paddingLeft: "0.7rem",
                                                         paddingRight: "0.7rem",
                                                         paddingTop: "0.2rem",
@@ -175,7 +155,7 @@ export class SourcingRequestModal extends React.Component {
                                     {(this.props.sourcing.prev_title2 != null && this.props.sourcing.prev_title2 != "") &&
                                         <li style={{ padding: "0.5rem" }}>
                                             <div
-                                                style={{ fontWeight: "500", fontSize: "1.1rem" }}
+                                                style={{ color: "#090d3a", fontWeight: "500", fontSize: "1.1rem" }}
                                             >
                                                 {this.props.sourcing.prev_title2} at <b>{this.props.sourcing.prev_company_name2}</b>
                                             </div>
@@ -183,6 +163,7 @@ export class SourcingRequestModal extends React.Component {
                                                 <div>
                                                     <span style={{
                                                         backgroundColor: "#fff",
+                                                        color: "#090d3a",
                                                         paddingLeft: "0.7rem",
                                                         paddingRight: "0.7rem",
                                                         paddingTop: "0.2rem",
@@ -193,6 +174,7 @@ export class SourcingRequestModal extends React.Component {
                                                     </span>
                                                     <span style={{
                                                         backgroundColor: "#fff",
+                                                        color: "#090d3a",
                                                         paddingLeft: "0.7rem",
                                                         paddingRight: "0.7rem",
                                                         paddingTop: "0.2rem",
@@ -205,16 +187,7 @@ export class SourcingRequestModal extends React.Component {
                             </div>
                         </div>
                         <div>
-                            <h3
-                                style={{
-                                    fontFamily: "Inter",
-                                    fontWeight: "700",
-                                    fontSize: "1.6rem",
-                                    color: "rgb(9, 13, 58)",
-                                }}
-                            >
-                                Skills
-                            </h3>
+                            <Text fontSize='2xl' fontWeight='bold' color="muted">Skills</Text>
                             <div
                                 style={{
                                     height: "25rem",
@@ -231,6 +204,7 @@ export class SourcingRequestModal extends React.Component {
                                         <div
                                             style={{
                                                 backgroundColor: "#F3F6F9",
+                                                color: "#090d3a",
                                                 paddingLeft: "0.7rem",
                                                 paddingRight: "0.7rem",
                                                 paddingTop: "0.2rem",
@@ -245,28 +219,8 @@ export class SourcingRequestModal extends React.Component {
                             </div>
                         </div>
                         <div>
-                            <h3
-                                style={{
-                                    fontFamily: "Inter",
-                                    fontWeight: "700",
-                                    fontSize: "1.6rem",
-                                    color: "rgb(9, 13, 58)",
-                                }}
-                            >
-                                Notes
-                            </h3>
-                            <textarea
-                                style={{
-                                    height: "25rem",
-                                    width: "100%",
-                                    border: "2px solid #F3F6F9",
-                                    overflowY: "auto",
-                                    padding: "2rem",
-                                }}
-                                value={this.state.notes}
-                                onChange={this.onChange}
-                                onBlur={this.addSourcingNotes}
-                            ></textarea>
+                            <Text fontSize='2xl' fontWeight='bold' color="muted">Notes</Text>
+                            <Textarea height='25rem' overflowY='auto' border='2px solid #F3F6F9' width='100%' value={this.state.notes} onChange={this.onChange} onBlur={this.addSourcingNotes}/>
                             <div
                                 style={{
                                     marginTop: "0.5rem",
@@ -321,7 +275,7 @@ export class SourcingRequestModal extends React.Component {
                             </button>
                         </div>
                     </div>
-                </div>
+                </Box>
             </React.Fragment>
         );
     }

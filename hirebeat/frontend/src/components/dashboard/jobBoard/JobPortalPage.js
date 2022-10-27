@@ -16,6 +16,7 @@ import axios from "axios";
 // import { constants } from "fs";
 import { Container, Box, Flex } from '@chakra-ui/react';
 import { EmployerSidebar } from '../chakraComponents/EmployerSidebar';
+import { AISourcing } from '../chakraComponents/AISourcing';
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -215,10 +216,25 @@ export class JobPortalPage extends Component {
             portalSubpage: "pipeline",
         });
     };
+    renderAISourcing = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "aiSourcing");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "aiSourcing",
+        });
+    };
 
     renderSubpage = () => {
         const p = this.props.postedJobs[this.props.job.job_details.positions_id];
         switch (this.state.portalSubpage) {
+            case "aiSourcing":
+                return <AISourcing
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                />;
             case "pipeline":
                 return <Pipeline
                     renderPipeline={this.renderPipeline}
@@ -471,6 +487,7 @@ export class JobPortalPage extends Component {
                     renderVideoInterview={this.renderVideoInterview}
                     renderLiveInterview={this.renderLiveInterview}
                     renderShortList={this.renderShortList}
+                    renderAISourcing={this.renderAISourcing}
                     curJob={this.props.job}
                     setShowSidebarFalse={this.props.setShowSidebarFalse}
                     setViewPortal={this.props.setViewPortal}

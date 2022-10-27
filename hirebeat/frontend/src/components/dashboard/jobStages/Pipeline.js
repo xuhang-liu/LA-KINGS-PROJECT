@@ -10,7 +10,7 @@ import axios from "axios";
 import { confirmAlert } from 'react-confirm-alert';
 import Spinner from 'react-bootstrap/Spinner';
 import { Box, Heading, HStack, Stack, Text, Flex, Spacer, Button } from '@chakra-ui/react';
-import { FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart, FiEdit } from 'react-icons/fi';
+import { FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart } from 'react-icons/fi';
 
 const isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
@@ -570,35 +570,7 @@ export class Pipeline extends Component {
                         <Heading as='h5' size='xs' color="muted" mb='3' pl='2'>Overview</Heading>
                         {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
                             <div className="row">
-                                <div className="pr-5 pl-4 pb-4">
-                                    {this.state.requestButton == 0 &&
-                                        <button
-                                            className="default-btn5 interview-txt6"
-                                            onClick={this.setShowRequest}
-                                            style={{ paddingLeft: "25px", width: "12rem" }}
-                                        >
-                                            Request Sourcing
-                                            <span></span>
-                                        </button>}
-                                    {this.state.requestButton == 1 &&
-                                        <button
-                                            className="default-btn5 interview-txt6"
-                                            style={{ paddingLeft: "25px", backgroundColor: "#ffffff", width: "12rem", color: "#ff6b00", border: "1px solid #FF6B00" }}
-                                        >
-                                            Sourcing List Pending
-                                            <span></span>
-                                        </button>}
-                                    {this.state.requestButton == 2 &&
-                                        <button
-                                            className="default-btn5 interview-txt6"
-                                            onClick={() => { this.setState({ requestListShow: true }) }}
-                                            style={{ paddingLeft: "25px", width: "12rem" }}
-                                        >
-                                            View Sourcing List
-                                            <span></span>
-                                        </button>}
-                                </div>
-                                <div className="pl-5 pb-4">
+                                <div className="pl-4 pb-4">
                                     <button
                                         className="default-btn8 interview-txt6"
                                         onClick={this.openJobTportal}

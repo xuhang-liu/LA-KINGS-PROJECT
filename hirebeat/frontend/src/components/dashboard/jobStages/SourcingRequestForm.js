@@ -4,6 +4,7 @@ import { IndustryOptions } from '../../accounts/Constants';
 import { SkillSet } from "../jobBoard/Constants";
 import axios from "axios";
 import { loadStripe } from '@stripe/stripe-js';
+import { useColorModeValue } from '@chakra-ui/react';
 
 const stripePromise = loadStripe('pk_live_51H4wpRKxU1MN2zWM7NHs8vqQsc7FQtnL2atz6OnBZKzBxJLvdHAivELe5MFetoqGOHw3SD5yrtanVVE0iOUQFSHj00NmcZWpPd');
 
@@ -11,26 +12,28 @@ function getClientReferenceId() {
     return window?.Rewardful && window?.Rewardful.referral || ('checkout_'+(new Date).getTime());
 }
 
+const customStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'bg-canvas', border: "2px solid #E8EDFC", borderRadius: "5px" }),
+    singleValue: styles => ({
+        ...styles,
+        color: '#090d3a',
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '400'
+    }),
+    menuList: styles => ({
+        ...styles,
+        maxHeight: '10rem',
+        backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+        color: useColorModeValue('#090d3a', '#ffffff')
+    }),
+};
+
 export class SourcingRequestForm extends Component {
 
     constructor(props) {
         super(props);
     }
-
-    customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "2px solid #E8EDFC", borderRadius: "5px" }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#090d3a',
-            fontSize: '0.9375rem',
-            fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '400'
-        }),
-        menuList: styles => ({
-            ...styles,
-            maxHeight: '10rem'
-        }),
-    };
 
     options = [
         { value: 'Less than 1 year', label: 'Less than 1 year' },
@@ -184,7 +187,7 @@ export class SourcingRequestForm extends Component {
                                     Years of Experience
                                 </label><span className="job-apply-char2">*</span>
                                 <div style={{ zIndex: "9999" }}>
-                                    <Select value={this.state.yearExp} onChange={this.onFilter} options={this.options} styles={this.customStyles} isMulti />
+                                    <Select value={this.state.yearExp} onChange={this.onFilter} options={this.options} styles={customStyles} isMulti />
                                 </div>
                             </div>
                             <div className="form-group col-6">
@@ -192,7 +195,7 @@ export class SourcingRequestForm extends Component {
                                     Seniority Level
                                 </label><span className="job-apply-char2">*</span>
                                 <div style={{ zIndex: "9999" }}>
-                                    <Select value={this.state.seniorLevel} onChange={this.onFilter1} options={this.options1} styles={this.customStyles} isMulti />
+                                    <Select value={this.state.seniorLevel} onChange={this.onFilter1} options={this.options1} styles={customStyles} isMulti />
                                 </div>
                             </div>
                         </div>
@@ -211,7 +214,7 @@ export class SourcingRequestForm extends Component {
                                             return 1;
                                         }
                                         return 0;
-                                    })} styles={this.customStyles} isMulti />
+                                    })} styles={customStyles} isMulti />
                                 </div>
                             </div>
                             <div className="form-group col-6">
@@ -228,7 +231,7 @@ export class SourcingRequestForm extends Component {
                                             return 1;
                                         }
                                         return 0;
-                                    })} styles={this.customStyles} isMulti />
+                                    })} styles={customStyles} isMulti />
                                 </div>
                             </div>
                         </div>
@@ -238,7 +241,7 @@ export class SourcingRequestForm extends Component {
                                     Industry
                                 </label><span className="job-apply-char2">*</span>
                                 <div style={{ zIndex: "9999" }}>
-                                    <Select value={this.state.industry} onChange={this.onFilter4} options={IndustryOptions} styles={this.customStyles} isMulti />
+                                    <Select value={this.state.industry} onChange={this.onFilter4} options={IndustryOptions} styles={customStyles} isMulti />
                                 </div>
                             </div>
                             <div className="form-group col-6">
@@ -246,7 +249,7 @@ export class SourcingRequestForm extends Component {
                                     Education Level
                                 </label>
                                 <div style={{ zIndex: "9999" }}>
-                                    <Select value={this.state.educationLevel} onChange={this.onFilter5} options={this.options2} styles={this.customStyles} isMulti />
+                                    <Select value={this.state.educationLevel} onChange={this.onFilter5} options={this.options2} styles={customStyles} isMulti />
                                 </div>
                             </div>
                         </div>
