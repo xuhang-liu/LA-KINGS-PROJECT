@@ -396,7 +396,7 @@ export const Header = (props) => {
                                 <ListIcon as={FiCircle} color="green" /> :
                                 <ListIcon as={FiCircle} color="red" />
                               }
-                              <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={() => renderToSingleJob(job_list[key]?.job_id)}>{job_list[key]?.job_title}</Button>
+                              <Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={() => renderToSingleJob(job_list[key]?.job_id)}>{(job_list[key]?.job_title?.length > 30) ? (job_list[key]?.job_title?.substring(0, 28) + "...") : (job_list[key]?.job_title)}</Button>
                             </HStack>
                           </ListItem>
                         )

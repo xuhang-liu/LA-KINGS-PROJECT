@@ -3,6 +3,39 @@ import Select from 'react-select';
 import parse from 'html-react-parser';
 import { MessageClient } from "cloudmailin";
 import axios from "axios";
+import { useColorModeValue, Heading, Input, Text, Textarea } from '@chakra-ui/react';
+
+const customStyles = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem' }),
+    singleValue: styles => ({
+        ...styles,
+        color: '#4a6f8a',
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuPortal: provided => ({ ...provided, zIndex: 2 }),
+    menu: provided => ({ ...provided, zIndex: 2, color: useColorModeValue("#1a202c", "#ffffff"), background: useColorModeValue("#ffffff", "#1a202c") }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+    dropdownIndicator: styles => ({ ...styles, color: "#67A3F3" }),
+};
+
+const customStyles1 = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), border: "none", float: "right", height: '2.4rem', width: "9rem", marginTop: "-2.3rem" }),
+    singleValue: styles => ({
+        ...styles,
+        color: '#4a6f8a',
+        fontSize: '0.7rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuPortal: provided => ({ ...provided, zIndex: 99 }),
+    menu: provided => ({ ...provided, zIndex: 99, color: useColorModeValue("#1a202c", "#ffffff"), background: useColorModeValue("#ffffff", "#1a202c") }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+    dropdownIndicator: styles => ({ ...styles, color: "#67A3F3" }),
+};
 
 export class EmailSending extends Component {
 
@@ -253,35 +286,6 @@ export class EmailSending extends Component {
     }
 
     render() {
-        var customStyles = {
-            control: styles => ({ ...styles, backgroundColor: '#ffffff', borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem' }),
-            singleValue: styles => ({
-                ...styles,
-                color: '#4a6f8a',
-                fontSize: '0.9375rem',
-                fontFamily: 'Inter,Segoe UI, sans-serif',
-                fontWeight: '500'
-            }),
-            menuPortal: provided => ({ ...provided, zIndex: 2 }),
-            menu: provided => ({ ...provided, zIndex: 2 }),
-            indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
-            dropdownIndicator: styles => ({ ...styles, color: "#67A3F3" }),
-        };
-
-        var customStyles1 = {
-            control: styles => ({ ...styles, backgroundColor: '#ffffff', border: "none", float: "right", height: '2.4rem', width: "9rem", marginTop: "-2.3rem" }),
-            singleValue: styles => ({
-                ...styles,
-                color: '#666666',
-                fontSize: '0.7rem',
-                fontFamily: 'Inter,Segoe UI, sans-serif',
-                fontWeight: '500',
-            }),
-            menuPortal: provided => ({ ...provided, zIndex: 99 }),
-            menu: provided => ({ ...provided, zIndex: 99 }),
-            indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
-            dropdownIndicator: styles => ({ ...styles, color: "#67A3F3" }),
-        };
 
         var options = [
             { value: 2, label: 'Interview Request with Calendly' },
@@ -354,45 +358,47 @@ export class EmailSending extends Component {
         return (
             <React.Fragment>
                 <div className="container-fluid px-5 py-5">
-                    <h3 className="profile-h3">Send Email</h3>
+                    <Heading as='h5' size='sm' color="muted">Send Email</Heading>
                     <div className="row mt-5">
                         {/*Left */}
                         <div className="col-5">
-                            <h3 className="profile-h3" style={{ fontSize: "1rem" }}>Template <span style={{ color: "#4a6f8a", fontSize: "0.8rem", fontWeight: "500" }}>(optional)</span></h3>
+                            <Text fontSize="lg" fontWeight="medium" color="muted">Template <span style={{ color: "#4a6f8a", fontSize: "0.8rem", fontWeight: "500" }}>(optional)</span></Text>
                             <Select value={this.state.emailTemp} onChange={this.onFilter} options={options} styles={customStyles} isSearchable={false} />
-                            <h3 className="profile-h3" style={{ fontSize: "1rem", marginTop: "1rem" }}>From</h3>
+                            <Text fontSize="lg" fontWeight="medium" color="muted" style={{ fontSize: "1rem", marginTop: "1rem" }}>From</Text>
                             <Select value={this.state.emailFrom} onChange={this.onFilter1} options={options1} styles={customStyles} isSearchable={false} />
                             {this.state.emailFrom.label == "no-reply@hirebeat.email" &&
                                 <p style={{ color: "#ff0000", fontSize: "0.8rem" }}>* Please note: your candidates will not be able to reply to this email.</p>}
+                            {this.state.emailFrom.label != "no-reply@hirebeat.email" &&
+                                <p style={{ color: "#7a7a7a", fontSize: "0.8rem" }}>* When you send from {this.props.employerProfileDetail?.name}, candidate replies will be shown inside HireBeat.</p>}
                             <hr style={{ border: "2px solid rgba(202, 217, 252, 0.5)", marginTop: "4rem", marginBottom: "2rem" }} />
-                            <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block" }}>Subject</h3>
+                            <Text fontSize="lg" fontWeight="medium" color="muted" style={{ fontSize: "1rem", display: "inline-block" }}>Subject</Text>
                             <Select value={this.state.emailVal} onChange={this.onFilter2} options={options2} styles={customStyles1} isSearchable={false} />
-                            <input type="text" style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSubject" value={this.state.emailSubject} onChange={this.onChange} onPointerMove={this.onKeydown}></input>
+                            <Input type="text" style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", height: '2.4rem', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSubject" value={this.state.emailSubject} onChange={this.onChange} onPointerMove={this.onKeydown} />
                             {(typeof this.props.email != "string") &&
-                                <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Salutation</h3>}
+                                <Text fontSize="lg" fontWeight="medium" color="muted" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Salutation</Text>}
                             {(typeof this.props.email != "string") &&
                                 <div>
-                                    <input type="text" style={{ marginTop: "0.5rem", width: "50%", borderRadius: "3px", border: "2px solid #67A3F3", height: '2.4rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSalute" value={this.state.emailSalute} onChange={this.onChange}></input>
-                                    <p style={{ display: "inline-block", color: "#090d3a", marginLeft: "0.5rem" }}>{"{{first_name}},"}</p>
+                                    <Input type="text" style={{ marginTop: "0.5rem", width: "50%", borderRadius: "3px", height: '2.4rem', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailSalute" value={this.state.emailSalute} onChange={this.onChange} />
+                                    <Text fontSize="md" color="muted" style={{ display: "inline-block", marginLeft: "0.5rem" }}>{"{{first_name}},"}</Text>
                                 </div>}
-                            <h3 className="profile-h3" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Body</h3>
+                            <Text fontSize="lg" fontWeight="medium" color="muted" style={{ fontSize: "1rem", display: "inline-block", marginTop: "1rem", marginBottom: "0.5rem" }}>Body</Text>
                             <Select value={this.state.emailVal1} onChange={this.onFilter3} options={options2} styles={customStyles1} isSearchable={false} />
-                            <textarea style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", border: "2px solid #67A3F3", height: '14rem', color: '#4a6f8a', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailBody" value={this.state.emailBody} onChange={this.onChange1} onPointerMove={this.onKeydown1}>{this.state.emailBody}</textarea>
+                            <Textarea style={{ marginTop: "0.5rem", width: "100%", borderRadius: "3px", height: '14rem', fontSize: '0.9375rem', fontFamily: 'Inter,Segoe UI, sans-serif', fontWeight: "500" }} name="emailBody" value={this.state.emailBody} onChange={this.onChange1} onPointerMove={this.onKeydown1}>{this.state.emailBody}</Textarea>
                         </div>
 
                         {/*Right */}
                         <div className="col-7" style={{ backgroundColor: "rgba(232, 237, 252, 0.2)", borderRadius: "4px" }}>
-                            <h3 className="profile-h3 pl-4" style={{ fontSize: "1rem", paddingTop: "3rem" }}>Email Preview</h3>
+                            <Text pl="4" fontSize="lg" fontWeight="medium" color="muted" style={{ fontSize: "1rem", paddingTop: "3rem" }}>Email Preview</Text>
                             {(typeof this.props.email != "string") &&
-                                <p className="profile-p pl-4" style={{ fontSize: "0.8rem" }}>The salutation placeholder is only for display purposes. When the email is sent to each candidate, it will be replaced by real information.</p>
+                                <Text pl="4" fontSize="md" color="muted" style={{ fontSize: "0.8rem" }}>The salutation placeholder is only for display purposes. When the email is sent to each candidate, it will be replaced by real information.</Text>
                             }
-                            <div style={{ backgroundColor: "#fff", border: "2px solid #E8EDFC", borderRadius: "4px", margin: "1.6rem" }}>
+                            <div style={{ backgroundColor: "bg-canvas", border: "2px solid #E8EDFC", borderRadius: "4px", margin: "1.6rem" }}>
                                 <div className="d-flex justify-content-center px-5 py-4" style={{ paddingTop: "2rem" }}>
                                     <h3 className="profile-h3" style={{ fontSize: "1.4rem", fontWeight: "600" }}>{this.state.emailSubject}</h3>
                                 </div>
                                 {(typeof this.props.email != "string") &&
                                     <div className="d-flex justify-content-start px-5 py-1">
-                                        <p style={{ color: "#444444", fontSize: "0.8rem" }}>{this.state.emailSalute + " {{first_name}},"}</p>
+                                        <Text fontSize="md" color="muted" style={{ fontSize: "0.8rem" }}>{this.state.emailSalute + " {{first_name}},"}</Text>
                                     </div>}
                                 <div className="d-flex justify-content-start px-5 py-4" style={{ minHeight: "20rem" }}>
                                     <div>

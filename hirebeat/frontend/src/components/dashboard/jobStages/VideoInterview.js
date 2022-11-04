@@ -11,6 +11,7 @@ import axios from "axios";
 import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 import { EmailSending } from '../applications/EmailSending';
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 export function VideoInterview(props) {
     //    useEffect(() => {
@@ -128,7 +129,7 @@ export function VideoInterview(props) {
         selectForceReset = false;
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value,"","", props.jobsId, keyWords);
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords);
         setSelectedPage(0);
     }
 
@@ -138,7 +139,7 @@ export function VideoInterview(props) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId, keyWords);
+        props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords);
         setSelectedPage(0);
     }
 
@@ -148,12 +149,12 @@ export function VideoInterview(props) {
     }
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setCategory3({ value: 'All', label: 'All' });
             setCategory({ value: 'All', label: 'Video Interview' });
             setkeyWords("");
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     const customStyles = {
         control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
@@ -184,13 +185,13 @@ export function VideoInterview(props) {
         setkeyWords(e.target.value);
         if (e.key === 'Enter') {
             let userId = props.user.id;
-            props.getPostedJobs(userId, 1, "Video Interview", category.value, category3.value, "","", props.jobsId, e.target.value);
+            props.getPostedJobs(userId, 1, "Video Interview", category.value, category3.value, "", "", props.jobsId, e.target.value);
         }
     };
 
     function onSearch(e) {
         let userId = props.user.id;
-        props.getPostedJobs(userId, 1, "Video Interview", category.value, category3.value, "","", props.jobsId, keyWords);
+        props.getPostedJobs(userId, 1, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords);
     };
 
     function onChange1(e) {
@@ -328,9 +329,9 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Video Interview"); 
-                    props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId, keyWords);
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Video Interview");
+                    props.getPostedJobs(userId, page, "Video Interview", "", "", "", "", props.jobsId, keyWords);
                 }, 300);
                 unSelectAllCandidates();
                 window.scrollTo(0, 0);
@@ -351,7 +352,7 @@ export function VideoInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value, "","", props.jobsId, keyWords);
+        props.getPostedJobs(props.user.id, page, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
@@ -413,9 +414,9 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Video Interview"); 
-                    props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId, keyWords);
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Video Interview");
+                    props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords);
                 }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -486,9 +487,9 @@ export function VideoInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { 
-                props.getAllJobs(userId, page, "Video Interview"); 
-                props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "","", props.jobsId, keyWords) 
+            setTimeout(() => {
+                props.getAllJobs(userId, page, "Video Interview");
+                props.getPostedJobs(userId, page, "Video Interview", category.value, category3.value, "", "", props.jobsId, keyWords)
             }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -576,9 +577,9 @@ export function VideoInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { 
-                props.getAllJobs(userId, page, "Video Interview"); 
-                props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId, keyWords);
+            setTimeout(() => {
+                props.getAllJobs(userId, page, "Video Interview");
+                props.getPostedJobs(userId, page, "Video Interview", "", "", "", "", props.jobsId, keyWords);
             }, 300);
             rejectSuccessAlert();
         } else {
@@ -694,9 +695,9 @@ export function VideoInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Video Interview"); 
-                    props.getPostedJobs(userId, page, "Video Interview", "","","","", props.jobsId, keyWords) 
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Video Interview");
+                    props.getPostedJobs(userId, page, "Video Interview", "", "", "", "", props.jobsId, keyWords)
                 }, 300);
                 sendSuccessAlert(category4['label']);
             }
@@ -1186,19 +1187,25 @@ export function VideoInterview(props) {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={hideEmailSending}
-                        employerProfileDetail={props.employerProfileDetail}
-                        user={props.user}
-                        profile={props.profile}
-                        email={email_list}
-                        jobid={props.jobsId}
-                        first_name={email_list}
-                        last_name={email_list}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={hideEmailSending}
+                                employerProfileDetail={props.employerProfileDetail}
+                                user={props.user}
+                                profile={props.profile}
+                                email={email_list}
+                                jobid={props.jobsId}
+                                first_name={email_list}
+                                last_name={email_list}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </div>
         </React.Fragment>
     )
@@ -1294,11 +1301,12 @@ function previewEmail(jobTitle, companyName, expire) {
         closeOnClickOutside: true,
         customUI: ({ onClose }) => {
             return (
-                <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "50%", overflow: "auto", height: "40rem", backgroundColor: "#ffffff", paddingTop: "1rem" }}>
+                <div className="container-fluid" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", width: "50%", overflow: "auto", height: "40rem", backgroundColor: "#e8edfc", paddingTop: "1rem" }}>
                     <div onClick={() => { onClose(); }} style={{ float: "right", cursor: "pointer" }}><i className="bx bx-x bx-md"></i></div>
                     <div style={{ marginBottom: "2rem", paddingTop: "2rem" }}>
                         <img src="https://hirebeat-assets.s3.amazonaws.com/HireBeatLogo2.png" alt="HireBeat Logo" style={{ display: "inline-block" }}></img>
-                        <h3 style={{ display: "inline-block", color: "#006dff", marginLeft: "0.5rem", fontWeight: "600" }}>HireBeat</h3>
+                        <h3 style={{ display: "inline-block", color: "#006dff", marginLeft: "0.5rem", fontWeight: "600", fontSize: "1.2rem" }}>HireBeat</h3>
+                        <p style={{ color: "#7a7a7a", paddingLeft: "3.5rem", fontSize: "0.8rem" }}>This email content <span style={{ color: "#ff4d4f" }}>cannot be edited</span> or <span style={{ color: "#ff4d4f" }}>customized</span></p>
                     </div>
                     <div style={{ backgroundColor: "#e8edfc", borderRadius: "5px", padding: "0.6rem" }}>
                         <h2 style={{ marginTop: "2rem", color: "#090d3a", fontWeight: "600" }}>Video Interview with <span style={{ color: "#006dff" }}>{companyName}</span> for <span style={{ color: "#006dff" }}>{jobTitle}</span></h2>

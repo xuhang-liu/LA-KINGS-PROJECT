@@ -18,6 +18,7 @@ export const JobList = (props) => {
             fontWeight: '500',
             background: useColorModeValue("#ffffff", "#1a202c")
         }),
+        menu: provided => ({ ...provided, color: useColorModeValue("#1a202c", "#ffffff"), background: useColorModeValue("#ffffff", "#1a202c") }),
         indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     };
 

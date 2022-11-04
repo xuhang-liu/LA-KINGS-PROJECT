@@ -10,12 +10,13 @@ import ReviewNote from "./ReviewNote";
 import MoveForm from "./MoveForm";
 import ReviewApplicationTab from "./ReviewApplicationTab";
 import ViewEmailMessage from "../../applications/ViewEmailMessage";
-import { MyModalShare2, MyModal80 } from "../../DashboardComponents";
+import { MyModalShare2 } from "../../DashboardComponents";
 import EmailSending from "../../applications/EmailSending";
 import axios from "axios";
 import Select from 'react-select';
 import BasicInfoEdition from "./BasicInfoEdition";
 import { withRouter } from "react-router-dom";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 export class ReviewApplication extends Component {
     constructor(props) {
@@ -138,24 +139,24 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         }
         let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -208,24 +209,24 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         }
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -295,10 +296,10 @@ export class ReviewApplication extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { 
-                this.props.getAllJobs(userId, page, this.state.currentStage); 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current); this.props.hide(); 
+            setTimeout(() => {
+                this.props.getAllJobs(userId, page, this.state.currentStage);
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", "", "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current); this.props.hide();
             }, 300);
             alert("Candidate Moved!");
         } else {
@@ -343,10 +344,10 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => { 
-            this.props.getAllJobs(userId, page, this.state.currentStage); 
-            this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId, props.keyWords); 
-            this.props.getNextResult(this.props.current); this.props.hide(); 
+        setTimeout(() => {
+            this.props.getAllJobs(userId, page, this.state.currentStage);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "", "", "", "", this.props.jobsId, props.keyWords);
+            this.props.getNextResult(this.props.current); this.props.hide();
         }, 300);
         this.setState({ showRejectNote: false });
         alert("Candidate Rejected!");
@@ -950,14 +951,14 @@ export class ReviewApplication extends Component {
                             <button
                                 className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
                                 disabled={this.props.current == this.props.start ? true : false}
-                                onClick={() => {this.props.viewPrevResult(this.props.current); window?.analytics?.track("Previous Candidate", {eventTime: Date()?.toLocaleString()});}}
+                                onClick={() => { this.props.viewPrevResult(this.props.current); window?.analytics?.track("Previous Candidate", { eventTime: Date()?.toLocaleString() }); }}
                             >
                                 &lt; Prev
                             </button>
                             <button
                                 className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
                                 disabled={this.props.current == this.props.end ? true : false}
-                                onClick={() => {this.props.viewNextResult(this.props.current); window?.analytics?.track("Next Candidate", {eventTime: Date()?.toLocaleString()});}}
+                                onClick={() => { this.props.viewNextResult(this.props.current); window?.analytics?.track("Next Candidate", { eventTime: Date()?.toLocaleString() }); }}
                                 style={{ marginLeft: "2vw" }}
                             >
                                 Next &gt;
@@ -993,19 +994,25 @@ export class ReviewApplication extends Component {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.props.applicants[this.props.current].email}
-                        jobid={this.props.jobsId}
-                        first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
-                        last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.props.applicants[this.props.current].email}
+                                jobid={this.props.jobsId}
+                                first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
+                                last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </div>
         )
     };

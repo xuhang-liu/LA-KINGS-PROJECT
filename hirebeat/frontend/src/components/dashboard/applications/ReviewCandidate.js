@@ -11,7 +11,8 @@ import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplica
 import BasicInfoEdition from "./BasicInfoEdition";
 import { connect } from "react-redux";
 import { addReviewNote, getReviewNote } from "../../../redux/actions/question_actions";
-import axios from "axios";
+// import axios from "axios";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 const ReviewCandidate = (props) => {
     const [showEva, setShowEva] = useState(false);
@@ -109,8 +110,8 @@ const ReviewCandidate = (props) => {
             // update
             let page = props.selectedPage + 1;
             let isSortByScore = props.isSortByScore || ""
-            setTimeout(() => { 
-                props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords); 
+            setTimeout(() => {
+                props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, isSortByScore, props.keyWords);
             }, 300);
             let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
             if (!noShowAgainMove) {
@@ -425,7 +426,7 @@ const ReviewCandidate = (props) => {
                                         }}
                                     >
                                         {props.first_name + " " + props.last_name}
-                                        <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={() => {setIsEdit(true); window?.analytics?.track("Edit Candidate Profile", {eventTime: Date()?.toLocaleString()});}}></i></span>
+                                        <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={() => { setIsEdit(true); window?.analytics?.track("Edit Candidate Profile", { eventTime: Date()?.toLocaleString() }); }}></i></span>
                                     </h2>
                                 </div>
                             </div>
@@ -758,14 +759,14 @@ const ReviewCandidate = (props) => {
                         <button
                             className={props.current == 0 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == 0 ? true : false}
-                            onClick={() => { setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); }, 200); window?.analytics?.track("Previous Candidate", {eventTime: Date()?.toLocaleString()}); }}
+                            onClick={() => { setViewResumes(); props.viewPrevResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current - 1); setTimeout(() => { props.setCurrent(props.current - 1); }, 200); window?.analytics?.track("Previous Candidate", { eventTime: Date()?.toLocaleString() }); }}
                         >
                             &lt; Prev
                         </button>
                         <button
                             className={props.current == props.applicants.length - 1 ? "disable-btn" : "enable-btn"}
                             disabled={props.current == props.applicants.length - 1 ? true : false}
-                            onClick={() => { setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); }, 200); window?.analytics?.track("Next Candidate", {eventTime: Date()?.toLocaleString()}); }}
+                            onClick={() => { setViewResumes(); props.viewNextResult(props.current); nextOrPreUpdate(); updateIsViewed(props.current + 1); setTimeout(() => { props.setCurrent(props.current + 1); }, 200); window?.analytics?.track("Next Candidate", { eventTime: Date()?.toLocaleString() }); }}
                             style={{ marginLeft: "2vw" }}
                         >
                             Next &gt;
@@ -878,19 +879,25 @@ const ReviewCandidate = (props) => {
                     </div>
                 </div>
             </AlertModal>
-            <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
-                <EmailSending
-                    hideEmailSending={hideEmailSending}
-                    employerProfileDetail={props.employerProfileDetail}
-                    user={props.user}
-                    profile={props.profile}
-                    email={props.email}
-                    jobid={props.curJob.job_details.id}
-                    first_name={props.first_name}
-                    last_name={props.last_name}
-                    handleStatusChange2={null}
-                />
-            </MyModal80>
+            <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <EmailSending
+                            hideEmailSending={hideEmailSending}
+                            employerProfileDetail={props.employerProfileDetail}
+                            user={props.user}
+                            profile={props.profile}
+                            email={props.email}
+                            jobid={props.curJob.job_details.id}
+                            first_name={props.first_name}
+                            last_name={props.last_name}
+                            handleStatusChange2={null}
+                        />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </div >
     )
 

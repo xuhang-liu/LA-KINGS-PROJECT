@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AlertModal, MyShareModal, MyModal80 } from "./../DashboardComponents";
+import { AlertModal, MyShareModal } from "./../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 //import { ResumeEva } from "./interviewComponents/ResumeEva";
 import { ApplicantList_Live } from "./interviewComponents/ApplicantList_Live";
@@ -9,11 +9,12 @@ import ReactPaginate from 'react-paginate';
 import MoveForm from "./interviewComponents/MoveForm";
 import { EmailSending } from '../applications/EmailSending';
 import axios from "axios";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 export function LiveInterview(props) {
 
     useEffect(() => {
-        props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId);
+        props.getPostedJobs(props.user.id, 1, "Live Interview", "", "", "", "", props.jobsId);
     }, [])
 
     //const [expire, setExpire] = useState({ value: 7, label: '7 days' });
@@ -63,22 +64,22 @@ export function LiveInterview(props) {
         let userId = props.user.id;
         props.getPostedJobs(userId, page, "Live Interview", "", category3.value, category4.value, "", props.jobsId, keyWords);
     }
-    
+
     const [category3, setCategory3] = useState({ value: 'All', label: 'All' });
     function onFilter3(category3) {
         setCategory3(category3);
         let page = 1;
         let userId = props.user.id;
-        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "","", props.jobsId, keyWords);
+        props.getPostedJobs(userId, page, "Live Interview", "", category3.value, "", "", props.jobsId, keyWords);
     }
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setCategory3({ value: 'All', label: 'All' });
             setCategory4({ value: 'All', label: 'All' });
             setkeyWords("");
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     // const [category2, setCategory2] = useState({ value: 'All', label: 'All' });
 
@@ -110,7 +111,7 @@ export function LiveInterview(props) {
     function selectAllCandidates() {
         let checkbox = document.getElementById("select-all");
         let candidates = document.getElementsByClassName("selected-candidate");
-        if (candidates.length <= 0){ return }
+        if (candidates.length <= 0) { return }
         if (checkbox.checked) {
             // select all candidates
             for (let i = 0; i < candidates.length; i++) {
@@ -154,7 +155,7 @@ export function LiveInterview(props) {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Live Interview", "","","","", props.jobsId, keyWords);
+        props.getPostedJobs(props.user.id, page, "Live Interview", "", "", "", "", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
@@ -216,9 +217,9 @@ export function LiveInterview(props) {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Live Interview"); 
-                    props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords) 
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Live Interview");
+                    props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords)
                 }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -294,9 +295,9 @@ export function LiveInterview(props) {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { 
-                props.getAllJobs(userId, page, "Live Interview"); 
-                props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords) 
+            setTimeout(() => {
+                props.getAllJobs(userId, page, "Live Interview");
+                props.getPostedJobs(userId, page, "Live Interview", "", "", category4.value, "", props.jobsId, keyWords)
             }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -413,9 +414,9 @@ export function LiveInterview(props) {
         };
         axios.post("questions/update-live-interview-categories", data, config).then((res) => {
             console.log(res.data);
-            setTimeout(() => { 
-                props.getAllJobs(props.user.id, 1, "Live Interview"); 
-                props.getPostedJobs(props.user.id, 1, "Live Interview", "","","","", props.jobsId, keyWords); 
+            setTimeout(() => {
+                props.getAllJobs(props.user.id, 1, "Live Interview");
+                props.getPostedJobs(props.user.id, 1, "Live Interview", "", "", "", "", props.jobsId, keyWords);
             }, 300);
             hideShowConfigInt();
         }).catch(error => {
@@ -484,7 +485,7 @@ export function LiveInterview(props) {
                                     type="button"
                                     className="read-more"
                                     style={{ border: "none", backgroundColor: "#ffffff", fontSize: "0.9rem", fontWeight: "500" }}
-                                    onClick={() => {setShowConfigInt(true); window?.analytics?.track("View_Config Interview_Live Interview", {eventTime: Date()?.toLocaleString()})}}
+                                    onClick={() => { setShowConfigInt(true); window?.analytics?.track("View_Config Interview_Live Interview", { eventTime: Date()?.toLocaleString() }) }}
                                 >
                                     <i className="bx bx-cog pr-1"></i> Config Interview
                                 </button>
@@ -865,19 +866,25 @@ export function LiveInterview(props) {
                         </form>
                     </div>
                 </MyShareModal>
-                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={hideEmailSending}
-                        employerProfileDetail={props.employerProfileDetail}
-                        user={props.user}
-                        profile={props.profile}
-                        email={email_list}
-                        jobid={props.jobsId}
-                        first_name={email_list}
-                        last_name={email_list}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={hideEmailSending}
+                                employerProfileDetail={props.employerProfileDetail}
+                                user={props.user}
+                                profile={props.profile}
+                                email={email_list}
+                                jobid={props.jobsId}
+                                first_name={email_list}
+                                last_name={email_list}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </div>
         </React.Fragment>
     )

@@ -12,6 +12,7 @@ import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import axios from "axios";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -25,10 +26,10 @@ const ShortList = (props) => {
 
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setkeyWords("");
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     function refreshPage() {
         props.loadStarList(curJobId);
@@ -44,7 +45,7 @@ const ShortList = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId, keyWords);
+        props.getPostedJobs(props.user.id, page, "Short List", "", "", "", "", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
@@ -128,11 +129,11 @@ const AcceptedCandidate = (props) => {
     const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setCategory3({ value: 'All', label: 'All' });
             setCategory5({ value: 'All', label: 'All' });
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     function onFilter3(category3) {
         setCategory3(category3)
@@ -321,9 +322,9 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Short List"); 
-                    props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Short List");
+                    props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords)
                 }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -398,9 +399,9 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { 
-                props.getAllJobs(userId, page, "Short List"); 
-                props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+            setTimeout(() => {
+                props.getAllJobs(userId, page, "Short List");
+                props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords)
             }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -752,19 +753,25 @@ const AcceptedCandidate = (props) => {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={hideEmailSending}
-                        employerProfileDetail={props.employerProfileDetail}
-                        user={props.user}
-                        profile={props.profile}
-                        email={email_list}
-                        jobid={props.jobsId}
-                        first_name={email_list}
-                        last_name={email_list}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={hideEmailSending}
+                                employerProfileDetail={props.employerProfileDetail}
+                                user={props.user}
+                                profile={props.profile}
+                                email={email_list}
+                                jobid={props.jobsId}
+                                first_name={email_list}
+                                last_name={email_list}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </div>
         </div>
     )

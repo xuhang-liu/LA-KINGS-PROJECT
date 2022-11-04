@@ -1,6 +1,5 @@
 import React from "react";
 import "boxicons";
-import { MyModal80 } from "../DashboardComponents";
 import { EmailSending } from "../applications/EmailSending";
 import SourcingRequestModal from "./SourcingRequestModal";
 import axios from "axios";
@@ -167,34 +166,25 @@ export class SourcingRequestCard extends React.Component {
                         </ModalBody>
                     </ModalContent>
                 </Modal>
-                {/* <div style={{ background: "#E8EDFC" }}>
-                    <MyFullModal1 className="light-blue-modal" show={this.state.showModal} onHide={() => { this.setState({ showModal: false }), this.props.refresh() }}>
-                        <SourcingRequestModal
-                            onHide={() => { this.setState({ showModal: false }) }}
-                            handelApproval={this.handelApproval}
-                            openEmailSending={this.openEmailSending}
-                            job={this.props.job}
-                            user={this.props.user}
-                            profile={this.props.profile}
-                            sourcing={this.props.sourcing}
-                            refresh={this.props.refresh}
-                            approval_select={(this.state.approval_select != null ? this.state.approval_select : this.props.sourcing.approval)}
-                        />
-                    </MyFullModal1>
-                </div> */}
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.props.sourcing.email}
-                        jobid={this.props.job.id}
-                        first_name={this.props.sourcing.first_name}
-                        last_name={this.props.sourcing.last_name}
-                        handleStatusChange2={() => this.handleStatusChange2(this.props.sourcing.id)}
-                    />
-                </MyModal80>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.props.sourcing.email}
+                                jobid={this.props.job.id}
+                                first_name={this.props.sourcing.first_name}
+                                last_name={this.props.sourcing.last_name}
+                                handleStatusChange2={() => this.handleStatusChange2(this.props.sourcing.id)}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </div>
         );
     }

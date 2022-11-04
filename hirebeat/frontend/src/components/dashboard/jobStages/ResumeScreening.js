@@ -14,6 +14,7 @@ import EditQuestion from "./../jobBoard/EditQuestion";
 import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 export class ResumeScreening extends Component {
     state = {
@@ -43,10 +44,10 @@ export class ResumeScreening extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.filterReset > 0){
-            return { 
-                     keyWords: "",
-                   };
+        if (props.filterReset > 0) {
+            return {
+                keyWords: "",
+            };
         }
     }
 
@@ -87,12 +88,12 @@ export class ResumeScreening extends Component {
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
         if (e.key === 'Enter') {
-            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, e.target.value); 
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, e.target.value);
         }
     };
 
     onSearch = () => {
-        this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
+        this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
     };
 
     setTempQuestion = (questions) => {
@@ -101,9 +102,9 @@ export class ResumeScreening extends Component {
 
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
-        setTimeout(() => { 
-            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-            this.props.getPJobs(); 
+        setTimeout(() => {
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+            this.props.getPJobs();
         }, 300);
         this.setState({ showQForm: false });
 
@@ -213,9 +214,9 @@ export class ResumeScreening extends Component {
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { 
-                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+                setTimeout(() => {
+                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id)
                 }, 300);
                 this.unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -292,9 +293,9 @@ export class ResumeScreening extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { 
-                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+            setTimeout(() => {
+                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id)
             }, 300);
             this.unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -906,19 +907,25 @@ export class ResumeScreening extends Component {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.state.email_list}
-                        jobid={this.props.curJob.job_details.id}
-                        first_name={this.state.email_list}
-                        last_name={this.state.email_list}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.state.email_list}
+                                jobid={this.props.curJob.job_details.id}
+                                first_name={this.state.email_list}
+                                last_name={this.state.email_list}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </React.Fragment>
         )
     }
