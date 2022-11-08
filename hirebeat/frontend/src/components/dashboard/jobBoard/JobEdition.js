@@ -616,12 +616,12 @@ export class JobEdition extends Component {
                                 <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#7C94B5", lineHeight: "0.6rem" }}>{this.state.jobId}</p>
                                 <div>
                                     <div>
-                                        <h3 className="mb-3 mt-3" style={{ color: "#090d3a", fontSize: "1rem" }}>Company Overview</h3>
+                                        <h3 className="mb-3 mt-3" style={{ color: "#090d3a", fontSize: "1rem" }}><b>Company Overview</b></h3>
                                         <div className="mb-3">
                                             {parse('' + this.props.employerProfileDetail.summary + '')}
                                         </div>
                                     </div>
-                                    <h3 className="mb-3 mt-5" style={{ color: "#090d3a", fontSize: "1rem" }}>Job Description</h3>
+                                    <h3 className="mb-3 mt-5" style={{ color: "#090d3a", fontSize: "1rem" }}><b>Job Description</b></h3>
                                     <div className="mb-3">
                                         {parse('' + (this.state.jobDescription.toString('html')) + '')}
                                     </div>
@@ -927,7 +927,7 @@ export class JobEdition extends Component {
                                     {this.state.eeo_req == 1 &&
                                         <div className="form-group col-12">
                                             <Text fontSize="md" mx="10">The following statement will be displayed at the bottom of your job description:</Text>
-                                            <Text fontSize="md" color="muted" mx="10">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</Text>
+                                            <Text fontSize="sm" color="muted" mx="10">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</Text>
                                         </div>}
                                 </div>
                                 <div className="form-row">
