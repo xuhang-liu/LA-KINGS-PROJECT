@@ -17,6 +17,7 @@ import axios from "axios";
 import { Container, Box, Flex } from '@chakra-ui/react';
 import { EmployerSidebar } from '../chakraComponents/EmployerSidebar';
 import { AISourcing } from '../chakraComponents/AISourcing';
+import { SocialMediaShare } from '../chakraComponents/SocialMediaShare';
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -224,10 +225,25 @@ export class JobPortalPage extends Component {
             portalSubpage: "aiSourcing",
         });
     };
+    renderSocialMediaShare = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "socialMediaShare");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "socialMediaShare",
+        });
+    };
 
     renderSubpage = () => {
         const p = this.props.postedJobs[this.props.job.job_details.positions_id];
         switch (this.state.portalSubpage) {
+            case "socialMediaShare":
+                return <SocialMediaShare
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                />;
             case "aiSourcing":
                 return <AISourcing
                     job={this.props.job}
@@ -488,6 +504,7 @@ export class JobPortalPage extends Component {
                     renderLiveInterview={this.renderLiveInterview}
                     renderShortList={this.renderShortList}
                     renderAISourcing={this.renderAISourcing}
+                    renderSocialMediaShare={this.renderSocialMediaShare}
                     curJob={this.props.job}
                     setShowSidebarFalse={this.props.setShowSidebarFalse}
                     setViewPortal={this.props.setViewPortal}

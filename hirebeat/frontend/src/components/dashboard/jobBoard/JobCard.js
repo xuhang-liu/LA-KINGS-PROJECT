@@ -6,10 +6,10 @@ import { updateJob, archiveJob, getAllJobs, deleteJob, getZRFeedXML, getZRPremiu
 import { loadProfile } from "../../../redux/actions/auth_actions";
 //import axios from "axios";
 import Select from 'react-select';
-import { MyModalShare, MyModalUpgrade } from "../DashboardComponents";
+import { MyModalUpgrade } from "../DashboardComponents";
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 import axios from "axios";
-import { useColorModeValue } from '@chakra-ui/react';
+import { useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 const customStyles = {
     control: styles => ({ ...styles, border: "none", marginTop: "-1rem", background: useColorModeValue("#ffffff", "#1a202c") }),
@@ -380,7 +380,7 @@ export class JobCard extends Component {
                         {(this.props.job.job_details.is_closed == 0 || this.props.job.job_details.is_closed == 2) ?
                             <button
                                 className="title-button2"
-                                onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)); window?.analytics?.track("Jobs_View job posting", {eventTime: Date()?.toLocaleString()}); }}
+                                onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)); window?.analytics?.track("Jobs_View job posting", { eventTime: Date()?.toLocaleString() }); }}
                             >
                                 {this.props.job.job_details.job_title?.length > 38 ? (this.props.job.job_details.job_title.substring(0, 36) + "...") : (this.props.job.job_details.job_title)}
                             </button> :
@@ -459,74 +459,77 @@ export class JobCard extends Component {
                                         </button>}
                                 </div>
                             }
-                            <MyModalShare
-                                show={this.state.showShare}
-                                onHide={() => { this.disableShowShare() }}
-                            >
-                                <div class="container py-4">
-                                    <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem" }}>Share this Job</h3>
-                                    <div className="row ml-0" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #006dff", width: "90%", height: "3rem", left: "2rem" }}>
-                                        <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
-                                            <p style={{ fontSize: "0.8rem" }} onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url?.replaceAll(' ', '%20')); this.disableShowShare() }}>{this.props.job.job_details.job_url}</p>
-                                        </div>
-                                        <div className="py-1">
-                                            <button onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url?.replaceAll(' ', '%20')); this.disableShowShare() }}
-                                                className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
-                                                <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div id="resume-hr"><hr /></div>
-                                    <p className="share-p">Share on other platforms</p>
-                                    <div className="single-footer-widget1" style={{ textAlign: 'center' }}>
-                                        <ul className="social">
-                                            <li>
-                                                <FacebookShareButton
-                                                    url={this.props.job.job_details.job_url}
-                                                    quote={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
-                                                    hashtag={this.props.profile.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-facebook"></i>
-                                                    </a>
-                                                </FacebookShareButton>
-                                            </li>
-                                            <li>
-                                                <TwitterShareButton
-                                                    url={this.props.job.job_details.job_url}
-                                                    title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
-                                                    via={this.props.profile.company_name}
-                                                    hashtag={this.props.profile.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-twitter"></i>
-                                                    </a>
-                                                </TwitterShareButton>
-                                            </li>
-                                            <li>
-                                                <LinkedinShareButton
-                                                    url={this.props.job.job_details.job_url}
-                                                    title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
-                                                    source={this.props.profile.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-linkedin"></i>
-                                                    </a>
-                                                </LinkedinShareButton>
-                                            </li>
-                                            <li>
-                                                <WhatsappShareButton
-                                                    url={this.props.job.job_details.job_url}
-                                                    title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}>
-                                                    <a target="_blank" rel="noreferrer">
-                                                        <i className="bx bxl-whatsapp"></i>
-                                                    </a>
-                                                </WhatsappShareButton>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </MyModalShare>
                         </div>
                     </div>
                 </div>
+                <Modal onClose={() => { this.disableShowShare() }} size={"xl"} isOpen={this.state.showShare} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <div class="container py-4">
+                                <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem" }}>Share this Job</h3>
+                                <div className="row ml-0" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #006dff", width: "90%", height: "3rem", left: "2rem" }}>
+                                    <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
+                                        <p style={{ fontSize: "0.8rem" }} onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url?.replaceAll(' ', '%20')); this.disableShowShare() }}>{this.props.job.job_details.job_url}</p>
+                                    </div>
+                                    <div className="py-1">
+                                        <button onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url?.replaceAll(' ', '%20')); this.disableShowShare() }}
+                                            className="default-btn pt-1" style={{ fontSize: "1.1rem", background: "#FF6B00", borderRadius: "5px", height: "2.2rem", alignItems: "center", paddingLeft: "2rem", paddingRight: "0.6rem", position: "absolute", right: "0.3rem" }}>
+                                            <i className='bx bx-share-alt' style={{ left: "0.5rem" }}></i>Copy
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="resume-hr"><hr /></div>
+                                <p className="share-p">Share on other platforms</p>
+                                <div className="single-footer-widget1" style={{ textAlign: 'center' }}>
+                                    <ul className="social">
+                                        <li>
+                                            <FacebookShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                quote={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
+                                                hashtag={this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-facebook"></i>
+                                                </a>
+                                            </FacebookShareButton>
+                                        </li>
+                                        <li>
+                                            <TwitterShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
+                                                via={this.props.profile.company_name}
+                                                hashtag={this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-twitter"></i>
+                                                </a>
+                                            </TwitterShareButton>
+                                        </li>
+                                        <li>
+                                            <LinkedinShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}
+                                                source={this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-linkedin"></i>
+                                                </a>
+                                            </LinkedinShareButton>
+                                        </li>
+                                        <li>
+                                            <WhatsappShareButton
+                                                url={this.props.job.job_details.job_url}
+                                                title={this.props.job.job_details.job_title + " at " + this.props.profile.company_name}>
+                                                <a target="_blank" rel="noreferrer">
+                                                    <i className="bx bxl-whatsapp"></i>
+                                                </a>
+                                            </WhatsappShareButton>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
                 <MyModalUpgrade
                     show={this.state.showModel1}
                     onHide={this.hideshowModel1}

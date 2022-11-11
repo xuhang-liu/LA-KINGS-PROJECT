@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Flex, Stack, Text, useColorModeValue, Button, HStack, Heading, IconButton } from '@chakra-ui/react';
 import { FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart, FiEdit } from 'react-icons/fi';
 
@@ -47,7 +47,9 @@ export const EmployerSidebar = (props) => (
                             <Button variant='solid' onClick={props.renderAISourcing}>AI Sourcing</Button> :
                             <Button variant='outline' onClick={props.renderAISourcing}>AI Sourcing</Button>}
                         <Button variant='outline'>Job Board</Button>
-                        <Button variant='outline'>Social Media Share</Button>
+                        {props.portalSubpage == "socialMediaShare" ?
+                            <Button variant='solid' onClick={props.renderSocialMediaShare}>Social Media Share</Button> :
+                            <Button variant='outline' onClick={props.renderSocialMediaShare}>Social Media Share</Button>}
                     </Stack>
                 </Stack>
                 <Stack>
