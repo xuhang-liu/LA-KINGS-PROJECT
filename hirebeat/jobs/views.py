@@ -119,9 +119,9 @@ def add_new_job(request):
         job.job_post = 1
         job.save()
 
-    headers = {'Content-type': 'application/json'}
-    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/job/" + str(job.id) + "/post-event"
-    requests.post(emailUrl, headers=headers)  
+    # headers = {'Content-type': 'application/json'}
+    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/job/" + str(job.id) + "/post-event"
+    # requests.post(emailUrl, headers=headers)  
 
     # add job url to xml
     store_sitemap_xml(job_url)

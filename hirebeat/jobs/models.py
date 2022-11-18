@@ -32,6 +32,7 @@ class Jobs(models.Model):
     first_publish_date = models.DateTimeField(null=True, blank=True)
     first_close_date = models.DateTimeField(null=True, blank=True)
     jobt_job_id = models.CharField(max_length=30, null=True, blank=True)
+    page_views = models.IntegerField(default=0)
 
 class ApplyCandidates(models.Model):
     jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE)
