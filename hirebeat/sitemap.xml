@@ -945,16 +945,6 @@
 			<changefreq>always</changefreq>
 		</url>
 
-		<!-- <url>
-			<loc>https://app.hirebeat.co/employer-intergration-page</loc>
-			<changefreq>always</changefreq>
-		</url> -->
-
-		<!-- <url>
-			<loc>https://app.hirebeat.co/employer-solution-page</loc>
-			<changefreq>always</changefreq>
-		</url> -->
-
 		<url>
 			<loc>https://app.hirebeat.co/talent-profile</loc>
 			<changefreq>always</changefreq>
