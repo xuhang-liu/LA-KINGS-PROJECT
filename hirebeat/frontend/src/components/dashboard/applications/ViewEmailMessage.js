@@ -28,7 +28,7 @@ export class ViewEmailMessage extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container-fluid" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "40rem", overflow: "auto" }}>
+                <div className="container-fluid" style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "32rem", overflow: "auto" }}>
                     <div className="py-5 px-4">
                         {this.state.emailList.sort((a, b) => (b?.create_date === null) - (a?.create_date === null) || (new Date(b?.create_date) - new Date(a?.create_date))).map((eml, index) => {
                             let new_date = new Date(eml?.create_date)

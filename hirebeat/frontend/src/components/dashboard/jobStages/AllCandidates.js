@@ -1,19 +1,41 @@
 import React, { Component, useState, useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert';
-import QuestionForm from "./../jobBoard/QuestionForm";
-import { MyModal80 } from "./../DashboardComponents";
+// import QuestionForm from "./../jobBoard/QuestionForm";
+// import { MyModal80 } from "./../DashboardComponents";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateReviewerEvaluation, getReviewerEvaluation, getCurrentReviewerEvaluation, updateViewStatus, updateCommentStatus } from "../../../redux/actions/question_actions";
 import { updateInviteStatus, updateCandidateViewedStatus, updateApplicantBasicInfo } from "../../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
 import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
-import { MyFullModal } from "../DashboardComponents";
+// import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import Select from 'react-select';
-import EditQuestion from "./../jobBoard/EditQuestion";
+// import EditQuestion from "./../jobBoard/EditQuestion";
 import ReactPaginate from 'react-paginate';
 import NewCandidateAdditionForm from "./interviewComponents/NewCandidateAdditionForm";
+import {
+    Box, Button, Container, HStack, Icon, Input, InputGroup, InputLeftElement, Stack, Text, Table, Tbody, Td, Th, Thead, Tr, useColorModeValue
+} from '@chakra-ui/react';
+import { FiSearch, FiPlus } from 'react-icons/fi';
+
+const customStyles = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
+    singleValue: styles => ({
+        ...styles,
+        color: useColorModeValue("#090d3a", "#ffffff"),
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuList: styles => ({
+        ...styles,
+        backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+        color: useColorModeValue('#090d3a', '#7a7a7a'),
+    }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+}
 
 export class AllCandidates extends Component {
     state = {
@@ -25,20 +47,22 @@ export class AllCandidates extends Component {
         selectedPage: 0,
         stage: { value: '', label: 'All' },
         isAddNewCandidate: false,
+        showDetails: false,
+        detailIndex: 0,
     }
 
     onFilter = (category) => {
         this.setState({ category: category });
         let page = this.state.selectedPage + 1;
         let stage = this.state.stage.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "", this.state.keyWords); this.setState({ selectedPage: 0 });}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage, category.value, "", this.state.keyWords); this.setState({ selectedPage: 0 }); }, 300);
     }
 
     filterStage = (stage) => {
         this.setState({ stage: stage });
         let page = this.state.selectedPage + 1;
         let status = this.state.category.value;
-        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "", this.state.keyWords); this.setState({ selectedPage: 0 });}, 300);
+        setTimeout(() => { this.props.getAllJobs(this.props.user.id, page, stage.value, status, "", this.state.keyWords); this.setState({ selectedPage: 0 }); }, 300);
     }
     // filter selections
     options = [
@@ -57,24 +81,13 @@ export class AllCandidates extends Component {
         { value: '', label: 'All' },
     ];
 
-    customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#090D3A',
-            fontSize: '0.9375rem',
-            fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
-        }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
-    }
-
     static getDerivedStateFromProps(props, state) {
-        if (props.filterReset > 0){
-            return { stage:    { value: '', label: 'All' },
-                     category: { value: '', label: 'All' },
-                     keyWords: "",
-                   };
+        if (props.filterReset > 0) {
+            return {
+                stage: { value: '', label: 'All' },
+                category: { value: '', label: 'All' },
+                keyWords: "",
+            };
         }
     }
 
@@ -85,7 +98,7 @@ export class AllCandidates extends Component {
         }
     };
 
-    onSearch = () =>{
+    onSearch = () => {
         this.props.getAllJobs(this.props.user.id, 1, this.state.stage.value, this.state.category.value, "", this.state.keyWords);
     }
 
@@ -96,8 +109,8 @@ export class AllCandidates extends Component {
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
         setTimeout(() => {
-             this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords); 
-             this.props.getPostedJobs(this.props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id); 
+            this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords);
+            this.props.getPostedJobs(this.props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id);
         }, 300);
         this.setState({ showQForm: false });
 
@@ -180,9 +193,9 @@ export class AllCandidates extends Component {
                 this.props.updateCandidateViewedStatus(viewedData);
                 // update
                 let page = this.state.selectedPage + 1;
-                setTimeout(() => { 
-                    this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords); 
-                    this.props.getPostedJobs(this.props.user.id, page, "", "", "", "","", this.props.curJob.job_details.id) 
+                setTimeout(() => {
+                    this.props.getAllJobs(this.props.user.id, page, "", "", "", this.state.keyWords);
+                    this.props.getPostedJobs(this.props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id)
                 }, 300);
                 this.sendSuccessAlert();
             }
@@ -214,14 +227,14 @@ export class AllCandidates extends Component {
         this.setState({ selectedPage: selectedPage });
         let page = selectedPage + 1;
         this.props.getAllJobs(this.props.user.id, page, this.state.stage.value, this.state.category.value, "", this.state.keyWords);
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     };
 
     addNewCandidates = () => {
         if ((this.props.curJob.applicant) >= (this.props.profile.candidate_limit)) {
             this.candidateLimitAlert();
         } else {
-            this.setState({isAddNewCandidate: true});
+            this.setState({ isAddNewCandidate: true });
             //Segment info
             window?.analytics?.track("View - Add Candidates", {
                 eventTime: Date()?.toLocaleString()
@@ -230,7 +243,7 @@ export class AllCandidates extends Component {
     }
 
     hideAdditionForm = () => {
-        this.setState({isAddNewCandidate: false});
+        this.setState({ isAddNewCandidate: false });
     }
 
     candidateLimitAlert = () => {
@@ -244,175 +257,259 @@ export class AllCandidates extends Component {
         });
     };
 
+    setshowDetailsTrue = () => {
+        this.setState({ showDetails: true });
+    }
+
+    setshowDetailsFalse = () => {
+        this.setState({ showDetails: false });
+    }
+
+    setdetailIndex = (detailIndex) => {
+        this.setState({ detailIndex: detailIndex })
+    }
+
     render() {
         return (
             <React.Fragment>
                 {!this.state.isAddNewCandidate ?
-                    <div>
-                        <div className="container-fluid mt-3 pt-2 pb-3">
-                            <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1rem" }}>
-                                <div>
-                                    <span style={{ display: "flex", alignItems: "center" }}>
-                                        <i onClick={this.onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
-                                        <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange}></input>
-                                    </span>
-                                </div>
-                                <div>
-                                    {(!this.props.profile.is_subreviwer && (this.props.curJob.job_details.gh_current_stage_id == "" || this.props.curJob.job_details.gh_current_stage_id == null)) &&
-                                        <div>
-                                            {!this.props.isClosed &&
-                                                <button
-                                                    className="default-btn1 interview-txt6"
-                                                    style={{ paddingLeft: "25px", marginLeft: "2rem" }}
-                                                    onClick={this.addNewCandidates}
-                                                >
-                                                    + Candidates
-                                                    <span></span>
-                                                </button>
-                                            }
-                                        </div>
-                                    }
-                                </div>
-                                {this.props.curJob.total_page > 1 &&
-                                    <div className="ml-auto">
-                                        <ReactPaginate
-                                            previousLabel={'< Prev'}
-                                            nextLabel={'Next >'}
-                                            breakLabel={'...'}
-                                            breakClassName={'break-me'}
-                                            pageCount={this.props.curJob.total_page}
-                                            marginPagesDisplayed={1}
-                                            pageRangeDisplayed={5}
-                                            onPageChange={this.handlePageClick}
-                                            containerClassName={'pagination3'}
-                                            activeClassName={'active'}
-                                            forcePage={this.props.curJob.current_page}
-                                        />
-                                    </div>
-                                }
-                            </div>
-                            <div className="container-fluid chart-bg1" style={{ marginTop: "1rem", boxShadow:"none" }}>
-                                <div className="row interview-txt7 interview-center pl-4" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "3rem" }}>
-                                    <div className="col-3"><span>Name</span></div>
-                                    <div className="col-2">Applied On</div>
-                                    <div className="col-3" style={{ padding: "0rem", zIndex: "9999" }}>
-                                        <div className="row" style={{ padding: "0rem" }}>
-                                            <span className="job-status">Current Stage</span>
-                                            <Select isSearchable={false} value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={this.customStyles} />
-                                        </div>
-                                    </div>
-                                    <div className="col-2" style={{ padding: "0rem", zIndex: "9999" }}>
-                                        <div className="row" style={{ padding: "0rem" }}>
-                                            <span className="job-status">Status</span>
-                                            <Select isSearchable={false} value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={this.customStyles} />
-                                        </div>
-                                    </div>
-                                    <div className="col-2"><span>Source</span></div>
-                                </div>
-                                {this.props.curJob.applicants.map((a, index) => {
-                                    /*
-                                    if (this.state.keyWords != "") {
-                                        let name = a.first_name + " " + a.last_name;
-                                        if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                                    }
-                                    */
-                                    return (
-                                        <ApplicantRow
-                                            filter={this.props.filter}
-                                            applicant={a}
-                                            index={index}
-                                            applicants={this.props.curJob.applicants}
-                                            curJob={this.props.curJob}
-                                            keyWords={this.state.keyWords}
-                                            tempQuestion={this.state.tempQuestion}
-                                            setTempQuestion={this.setTempQuestion}
-                                            profile={this.props.profile}
-                                            addInterviews={this.props.addInterviews}
-                                            updateInviteStatus={this.props.updateInviteStatus}
-                                            updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
-                                            getAllJobs={this.props.getAllJobs}
-                                            getPJobs={this.props.getPJobs}
-                                            user={this.props.user}
-                                            moveCandidateToInterview={this.props.moveCandidateToInterview}
-                                            selectedPage={this.state.selectedPage}
-                                            getReviewNote={this.props.getReviewNote}
-                                            addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
-                                            getReviewerEvaluation={this.props.getReviewerEvaluation}
-                                            getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                                            evaluations={this.props.evaluations}
-                                            curEvaluation={this.props.curEvaluation}
-                                            getApplicantsVideos={this.props.getApplicantsVideos}
-                                            getApplicantsInfo={this.props.getApplicantsInfo}
-                                            int_ques={this.props.int_ques}
-                                            quesiton_array={this.props.quesiton_array}
-                                            video_array={this.props.video_array}
-                                            stars={this.props.stars}
-                                            comments={this.props.comments}
-                                            pk={this.props.pk}
-                                            transcripts={this.props.transcripts}
-                                            updateViewStatus={this.props.updateViewStatus}
-                                            updateCommentStatus={this.props.updateCommentStatus}
-                                            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                            reviews={this.props.reviews}
-                                            positionId={this.props.curJob.job_details.positions_id}
-                                            selectedCurrentStage={this.state.stage.value}
-                                            selectedStatus={this.state.category.value}
-                                            updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
-                                            employerProfileDetail={this.props.employerProfileDetail}
-                                        />
-                                    )
-                                })}
-                            </div>
-                            {this.props.curJob.total_page > 1 &&
-                                <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                                    <ReactPaginate
-                                        previousLabel={'< Prev'}
-                                        nextLabel={'Next >'}
-                                        breakLabel={'...'}
-                                        breakClassName={'break-me'}
-                                        pageCount={this.props.curJob.total_page}
-                                        marginPagesDisplayed={1}
-                                        pageRangeDisplayed={5}
-                                        onPageChange={this.handlePageClick}
-                                        containerClassName={'pagination3'}
-                                        activeClassName={'active'}
-                                        forcePage={this.props.curJob.current_page}
-                                    />
-                                </div>
-                            }
-                        </div>
-                        {/* add new questions */}
-                        <MyModal80
-                            show={this.state.showQForm}
-                            onHide={() => { this.hideQForm() }}
-                        >
-                            <QuestionForm
-                                curJob={this.props.curJob}
-                                setCurJob={this.props.setCurJob}
-                                hideQForm={this.hideQForm}
-                                getAllJobs={this.props.getAllJobs}
-                                tempQuestion={this.state.tempQuestion}
-                                setTempQuestion={this.setTempQuestion}
-                                getPJobs={this.props.getPJobs}
-                                addInterviews={this.props.addInterviews}
-                                updateInviteStatus={this.props.updateInviteStatus}
-                            />
-                        </MyModal80>
-                        {/* Edit Questions */}
-                        <MyModal80
-                            show={this.state.editQuestion}
-                            onHide={() => { this.disableQuestionEdition() }}
-                        >
-                            <EditQuestion
-                                curJob={this.props.curJob}
-                                questions={this.props.curJob.questions}
-                                position={this.props.curJob.position}
-                                disableQuestionEdition={this.disableQuestionEdition}
-                                getAllJobs={this.props.getAllJobs}
-                                getPJobs={this.props.getPJobs}
-                            />
-                        </MyModal80>
-                    </div> :
+                    <span>
+                        {!this.state.showDetails ?
+                            <Container
+                                py={{
+                                    base: '4',
+                                    md: '8',
+                                }}
+                                px={{
+                                    base: '0',
+                                    md: 8,
+                                }}
+                            >
+                                <Box bg="bg-surface" borderRadius="lg" boxShadow="sm">
+                                    <Stack spacing="5">
+                                        <Box
+                                            px={{
+                                                base: '4',
+                                                md: '6',
+                                            }}
+                                            pt="5"
+                                        >
+                                            <Stack
+                                                direction={{
+                                                    base: 'column',
+                                                    md: 'row',
+                                                }}
+                                                justify="space-between"
+                                            >
+                                                <InputGroup maxW="xs" onKeyUp={this.onSearch}>
+                                                    <InputLeftElement pointerEvents="none">
+                                                        <Icon as={FiSearch} color="muted" boxSize="5" />
+                                                    </InputLeftElement>
+                                                    <Input placeholder="Search candidate" value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange} />
+                                                </InputGroup>
+                                                <Box>
+                                                    {(!this.props.profile.is_subreviwer && (this.props.curJob.job_details.gh_current_stage_id == "" || this.props.curJob.job_details.gh_current_stage_id == null)) &&
+                                                        <div>
+                                                            {!this.props.isClosed &&
+                                                                <Button colorScheme='blue' leftIcon={<FiPlus />} onClick={this.addNewCandidates}>Candidates</Button>
+                                                            }
+                                                        </div>
+                                                    }
+                                                </Box>
+                                            </Stack>
+                                        </Box>
+                                        <Box
+                                            px={{
+                                                base: '4',
+                                                md: '6',
+                                            }}
+                                        >
+                                            <HStack spacing="3" justify="space-between">
+                                                {this.props.curJob.total_page > 1 &&
+                                                    <div className="ml-auto">
+                                                        <ReactPaginate
+                                                            previousLabel={'< Prev'}
+                                                            nextLabel={'Next >'}
+                                                            breakLabel={'...'}
+                                                            breakClassName={'break-me'}
+                                                            pageCount={this.props.curJob.total_page}
+                                                            marginPagesDisplayed={1}
+                                                            pageRangeDisplayed={5}
+                                                            onPageChange={this.handlePageClick}
+                                                            containerClassName={'pagination3'}
+                                                            activeClassName={'active'}
+                                                            forcePage={this.props.curJob.current_page}
+                                                        />
+                                                    </div>
+                                                }
+                                            </HStack>
+                                        </Box>
+                                        <Box overflowX="auto">
+                                            <Table>
+                                                <Thead>
+                                                    <Tr>
+                                                        <Th pl="10"><Text color="muted">Name</Text></Th>
+                                                        <Th><Text color="muted">Applied On</Text></Th>
+                                                        <Th>
+                                                            <HStack>
+                                                                <Text color="muted">Current Stage</Text>
+                                                                <Select isSearchable={false} value={this.state.stage} onChange={this.filterStage} options={this.stageOptions} className="select-category" styles={customStyles} />
+                                                            </HStack>
+                                                        </Th>
+                                                        <Th>
+                                                            <HStack>
+                                                                <Text color="muted">Status</Text>
+                                                                <Select isSearchable={false} value={this.state.category} onChange={this.onFilter} options={this.options} className="select-category" styles={customStyles} />
+                                                            </HStack>
+                                                        </Th>
+                                                        <Th><Text color="muted">Source</Text></Th>
+                                                    </Tr>
+                                                </Thead>
+                                                <Tbody>
+                                                    {this.props.curJob.applicants.map((a, index) => {
+                                                        return (
+                                                            <ApplicantRow
+                                                                filter={this.props.filter}
+                                                                applicant={a}
+                                                                index={index}
+                                                                applicants={this.props.curJob.applicants}
+                                                                curJob={this.props.curJob}
+                                                                keyWords={this.state.keyWords}
+                                                                tempQuestion={this.state.tempQuestion}
+                                                                setTempQuestion={this.setTempQuestion}
+                                                                profile={this.props.profile}
+                                                                addInterviews={this.props.addInterviews}
+                                                                updateInviteStatus={this.props.updateInviteStatus}
+                                                                updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                                                                getAllJobs={this.props.getAllJobs}
+                                                                getPJobs={this.props.getPJobs}
+                                                                user={this.props.user}
+                                                                moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                                                selectedPage={this.state.selectedPage}
+                                                                getReviewNote={this.props.getReviewNote}
+                                                                addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                                                getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                                                getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                                                evaluations={this.props.evaluations}
+                                                                curEvaluation={this.props.curEvaluation}
+                                                                getApplicantsVideos={this.props.getApplicantsVideos}
+                                                                getApplicantsInfo={this.props.getApplicantsInfo}
+                                                                int_ques={this.props.int_ques}
+                                                                quesiton_array={this.props.quesiton_array}
+                                                                video_array={this.props.video_array}
+                                                                stars={this.props.stars}
+                                                                comments={this.props.comments}
+                                                                pk={this.props.pk}
+                                                                transcripts={this.props.transcripts}
+                                                                updateViewStatus={this.props.updateViewStatus}
+                                                                updateCommentStatus={this.props.updateCommentStatus}
+                                                                subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                                                reviews={this.props.reviews}
+                                                                positionId={this.props.curJob.job_details.positions_id}
+                                                                selectedCurrentStage={this.state.stage.value}
+                                                                selectedStatus={this.state.category.value}
+                                                                updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                                                                employerProfileDetail={this.props.employerProfileDetail}
+                                                                showDetails={this.state.showDetails}
+                                                                setshowDetailsTrue={this.setshowDetailsTrue}
+                                                                setshowDetailsFalse={this.setshowDetailsFalse}
+                                                                setdetailIndex={this.setdetailIndex}
+                                                            />
+                                                        )
+                                                    })}
+                                                </Tbody>
+                                            </Table>
+                                        </Box>
+                                        <Box
+                                            px={{
+                                                base: '4',
+                                                md: '6',
+                                            }}
+                                            pb="5"
+                                        >
+                                            <HStack spacing="3" justify="space-between">
+                                                {this.props.curJob.total_page > 1 &&
+                                                    <div className="ml-auto">
+                                                        <ReactPaginate
+                                                            previousLabel={'< Prev'}
+                                                            nextLabel={'Next >'}
+                                                            breakLabel={'...'}
+                                                            breakClassName={'break-me'}
+                                                            pageCount={this.props.curJob.total_page}
+                                                            marginPagesDisplayed={1}
+                                                            pageRangeDisplayed={5}
+                                                            onPageChange={this.handlePageClick}
+                                                            containerClassName={'pagination3'}
+                                                            activeClassName={'active'}
+                                                            forcePage={this.props.curJob.current_page}
+                                                        />
+                                                    </div>
+                                                }
+                                            </HStack>
+                                        </Box>
+                                    </Stack>
+                                </Box>
+                            </Container> :
+                            <Container
+                                py={{
+                                    base: '4',
+                                    md: '8',
+                                }}
+                                px={{
+                                    base: '0',
+                                    md: 8,
+                                }}
+                            >
+                                <ApplicantRow
+                                    filter={this.props.filter}
+                                    applicant={this.props.curJob.applicants[this.state.detailIndex]}
+                                    index={this.state.detailIndex}
+                                    applicants={this.props.curJob.applicants}
+                                    curJob={this.props.curJob}
+                                    keyWords={this.state.keyWords}
+                                    tempQuestion={this.state.tempQuestion}
+                                    setTempQuestion={this.setTempQuestion}
+                                    profile={this.props.profile}
+                                    addInterviews={this.props.addInterviews}
+                                    updateInviteStatus={this.props.updateInviteStatus}
+                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                                    getAllJobs={this.props.getAllJobs}
+                                    getPJobs={this.props.getPJobs}
+                                    user={this.props.user}
+                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                    selectedPage={this.state.selectedPage}
+                                    getReviewNote={this.props.getReviewNote}
+                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                    evaluations={this.props.evaluations}
+                                    curEvaluation={this.props.curEvaluation}
+                                    getApplicantsVideos={this.props.getApplicantsVideos}
+                                    getApplicantsInfo={this.props.getApplicantsInfo}
+                                    int_ques={this.props.int_ques}
+                                    quesiton_array={this.props.quesiton_array}
+                                    video_array={this.props.video_array}
+                                    stars={this.props.stars}
+                                    comments={this.props.comments}
+                                    pk={this.props.pk}
+                                    transcripts={this.props.transcripts}
+                                    updateViewStatus={this.props.updateViewStatus}
+                                    updateCommentStatus={this.props.updateCommentStatus}
+                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                    reviews={this.props.reviews}
+                                    positionId={this.props.curJob.job_details.positions_id}
+                                    selectedCurrentStage={this.state.stage.value}
+                                    selectedStatus={this.state.category.value}
+                                    updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                                    employerProfileDetail={this.props.employerProfileDetail}
+                                    showDetails={this.state.showDetails}
+                                    setshowDetailsTrue={this.setshowDetailsTrue}
+                                    setshowDetailsFalse={this.setshowDetailsFalse}
+                                    setdetailIndex={this.setdetailIndex}
+                                />
+                            </Container>
+                        }
+                    </span> :
                     <NewCandidateAdditionForm
                         hideAdditionForm={this.hideAdditionForm}
                         getAllJobs={this.props.getAllJobs}
@@ -435,12 +532,9 @@ const ApplicantRow = (props) => {
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
     let resumeScore = props.applicant.result_rate;
-    useEffect(() => {
-        // if (sessionStorage.getItem("showPreview" + props.index) === "true") {
-        //     setShowPreview(true);
-        // }
-        props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
-    }, []);
+    // useEffect(() => {
+    //     props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
+    // }, []);
     function onView() {
         let applyIds = [];
         applyIds.push(applicants[current].id);
@@ -457,12 +551,14 @@ const ApplicantRow = (props) => {
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email);
         //sessionStorage.setItem(("showPreview" + props.index), "true");
-        setShowPreview(true);
+        // setShowPreview(true);
+        props.setdetailIndex(current);
+        props.setshowDetailsTrue();
     }
 
     function hideModal() {
         let page = props.selectedPage + 1;
-        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "", props.keyWords);}, 300);
+        setTimeout(() => { props.getAllJobs(props.user.id, page, props.selectedCurrentStage, props.selectedStatus, "", props.keyWords); }, 300);
         //sessionStorage.removeItem("showPreview" + props.index);
         //sessionStorage.removeItem("showPreview" + current);
         //sessionStorage.removeItem("current");
@@ -513,6 +609,7 @@ const ApplicantRow = (props) => {
         let next = curIndex + 1;
         getReviewPageData(next);
         setCurrent(curIndex + 1);
+        props.setdetailIndex(curIndex + 1);
     };
 
     function viewPrevResult(curIndex) {
@@ -520,13 +617,14 @@ const ApplicantRow = (props) => {
         let prev = curIndex - 1;
         getReviewPageData(prev);
         setCurrent(curIndex - 1);
+        props.setdetailIndex(curIndex - 1);
     };
 
     const refresh = () => {
         let page = props.selectedPage + 1;
         setTimeout(() => {
-            props.getAllJobs(props.user.id, page, "", "", "", props.keyWords); 
-            props.getPostedJobs(props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id) 
+            props.getAllJobs(props.user.id, page, "", "", "", props.keyWords);
+            props.getPostedJobs(props.user.id, page, "", "", "", "", "", this.props.curJob.job_details.id)
         }, 300);
         props.updateViewStatus({ "candidate_id": applicants[current].id });
         props.getApplicantsVideos(applicants[current].email, props.curJob.job_details.positions_id);
@@ -537,75 +635,52 @@ const ApplicantRow = (props) => {
     }
 
     return (
-        <div className="container-fluid">
-            <hr
-                style={{
-                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
-                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
-                }}
-            />
-            <div className="row interview-txt7 interview-center" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="col-3 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
-                    {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
-                        <div>
-                            <span className="dot"></span>
-                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
-                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
-                            </span>
-                        </div> :
-                        <div>
-                            <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
-                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
-                            </span>
-                        </div>
-                    }
-                </div>
-                <div className="col-2 interview-txt9 mb-2"><span style={{ marginLeft: "0.6rem" }}>{props.applicant.apply_date.substring(0, 10)}</span></div>
-                <div className="col-3 interview-txt9 mb-2" style={{ padding: "0rem" }}>
-                    <div className="row" style={{ padding: "0rem" }}>
-                        {/* place holder */}
-                        <span className="job-status" style={{ marginLeft: "15px", visibility: "hidden" }}>Status</span>
+        <React.Fragment>
+            {!props.showDetails ?
+                <Tr>
+                    <Td className="interview-txt9" style={{ cursor: "pointer", color: "#006dff" }}>
+                        {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
+                            <div>
+                                <span className="dot"></span>
+                                <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                                    {name.length > 29 ? name.substring(0, 27) + "..." : name}
+                                </span>
+                            </div> :
+                            <div>
+                                <span className="dot" style={{ visibility: "hidden" }}></span>
+                                <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                                    {name.length > 29 ? name.substring(0, 27) + "..." : name}
+                                </span>
+                            </div>
+                        }
+                    </Td>
+                    <Td className="interview-txt9">
+                        {props.applicant.apply_date.substring(0, 10)}
+                    </Td>
+                    <Td className="interview-txt9">
                         <span>
                             {props.applicant.current_stage !== "" &&
-                                <button className="default-btn invite-btn"
-                                    style={{ backgroundColor: `${backgroundColor}`, padding: "5px", width: "8rem", textAlign: "center", cursor: "auto" }}
-                                >
-                                    {props.applicant.current_stage}
-                                </button>
+                                <Button style={{ color: "#ffffff", backgroundColor: `${backgroundColor}`, padding: "5px", width: "8rem", textAlign: "center", cursor: "auto" }} size="sm">{props.applicant.current_stage}</Button>
                             }
                         </span>
-                    </div>
-                </div>
-                <div className="col-2 interview-txt9 mb-2" style={{ padding: "0rem" }}>
-                    <div className="row" style={{ padding: "0rem" }}>
-                        {/* place holder */}
-                        <span className="job-status" style={{ marginLeft: "15px", visibility: "hidden" }}>Status</span>
+                    </Td>
+                    <Td className="interview-txt9">
                         <span>
                             {(props.applicant.is_active) &&
-                                <button className="default-btn invite-btn"
-                                    style={{ backgroundColor: "#0DC68E", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                                >
-                                    Active
-                                </button>
+                                <Button size="sm" style={{ color: "#ffffff", backgroundColor: "#0DC68E", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}>Active</Button>
                             }
                             {(!props.applicant.is_active) &&
-                                <button className="default-btn invite-btn"
-                                    style={{ backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}
-                                >
-                                    Rejected
-                                </button>
+                                <Button size="sm" style={{ color: "#ffffff", backgroundColor: "#FF0000", padding: "5px", width: "5rem", textAlign: "center", cursor: "auto" }}>Rejected</Button>
                             }
                         </span>
-                    </div>
-                </div>
-                <div className="col-2 interview-txt9 mb-2">
-                    <span style={{ marginLeft: "0.6rem" }}>
-                        {props.applicant.apply_source === 'JobTarget' ? props.applicant.apply_referer : props.applicant.apply_source}
-                </span></div>
-            </div>
-            <div style={{ background: "#E8EDFC" }}>
-                <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
+                    </Td>
+                    <Td className="interview-txt9">
+                        <span>
+                            {props.applicant.apply_source === 'JobTarget' ? props.applicant.apply_referer : props.applicant.apply_source}
+                        </span>
+                    </Td>
+                </Tr> :
+                <span style={{ background: "#E8EDFC" }}>
                     <ReviewCandidate
                         keyWords={props.keyWords}
                         phone={applicants[current].phone}
@@ -663,10 +738,11 @@ const ApplicantRow = (props) => {
                         selectedStatus={props.selectedStatus}
                         updateApplicantBasicInfo={props.updateApplicantBasicInfo}
                         employerProfileDetail={props.employerProfileDetail}
+                        setshowDetailsFalse={props.setshowDetailsFalse}
                     />
-                </MyFullModal>
-            </div>
-        </div>
+                </span>
+            }
+        </React.Fragment>
     );
 };
 
