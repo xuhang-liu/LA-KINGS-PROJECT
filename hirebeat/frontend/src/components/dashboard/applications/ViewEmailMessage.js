@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import parse from 'html-react-parser';
+import { Text, Box } from '@chakra-ui/react';
 
 export class ViewEmailMessage extends Component {
 
@@ -42,13 +43,13 @@ export class ViewEmailMessage extends Component {
                                             <div className="col-7">
                                                 <div className="d-flex justify-content-start">
                                                     <i className='bx-fw bx bxs-user-circle bx-md' style={{ color: "#006dff" }}></i>
-                                                    <h3 className="profile-h3" style={{ fontSize: "1rem" }}>{window?.atob(eml?.from_email?.split("@")[0]?.split("<")[1]?.split("-")[0])}</h3>
+                                                    <Text color='muted' style={{ fontSize: "1rem" }}>{window?.atob(eml?.from_email?.split("@")[0]?.split("<")[1]?.split("-")[0])}</Text>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
-                                                    <div className="p-3" style={{ borderRadius: "0px 21px 21px 21px", backgroundColor: "#F5F5F5", minWidth:"40rem", marginLeft:"2rem" }}>
-                                                        <h3 className="profile-h3" style={{ fontSize: "0.9rem", marginBottom: "1rem" }}>Subject: {eml?.subject}</h3>
-                                                        <h3 className="profile-p" style={{ fontSize: "0.9rem" }}>{parse(""+eml?.plain_text+"")}</h3>
-                                                    </div>
+                                                    <Box className="p-3" bg='bg-canvas' style={{ borderRadius: "0px 21px 21px 21px", minWidth:"40rem", marginLeft:"2rem" }}>
+                                                        <Text color='muted' style={{ fontSize: "0.9rem", marginBottom: "1rem" }}>Subject: {eml?.subject}</Text>
+                                                        <Text color='muted' style={{ fontSize: "0.9rem" }}>{parse(""+eml?.plain_text+"")}</Text>
+                                                    </Box>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
                                                     <p style={{ fontSize: "0.6rem", color: "#7E8993", paddingLeft: "3rem" }}>{time} on {date}(EST)</p>
@@ -65,14 +66,14 @@ export class ViewEmailMessage extends Component {
                                             <div className="col-5" />
                                             <div className="col-7">
                                                 <div className="d-flex justify-content-end">
-                                                    <h3 className="profile-h3" style={{ fontSize: "1rem" }}>{this.props.first_name+" "+this.props.last_name}</h3>
+                                                    <Text color='muted' style={{ fontSize: "1rem" }}>{this.props.first_name+" "+this.props.last_name}</Text>
                                                     <i className='bx-fw bx bxs-user-circle bx-md' style={{ color: "#ff6b00" }}></i>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
-                                                    <div className="p-3" style={{ borderRadius: "21px 0px 21px 21px", backgroundColor: "#F5F5F5", width:"41rem" }}>
-                                                        <h3 className="profile-h3" style={{ fontSize: "0.9rem", marginBottom: "1rem" }}>Subject: {eml?.subject}</h3>
-                                                        <h3 className="profile-p" style={{ fontSize: "0.9rem", whiteSpace:"pre-line" }}>{eml?.plain_text}</h3>
-                                                    </div>
+                                                    <Box className="p-3" bg='bg-canvas' style={{ borderRadius: "21px 0px 21px 21px", width:"41rem" }}>
+                                                        <Text color='muted' style={{ fontSize: "0.9rem", marginBottom: "1rem" }}>Subject: {eml?.subject}</Text>
+                                                        <Text color='muted' style={{ fontSize: "0.9rem", whiteSpace:"pre-line" }}>{eml?.plain_text}</Text>
+                                                    </Box>
                                                 </div>
                                                 <div className="d-flex justify-content-start">
                                                     <p style={{ fontSize: "0.6rem", color: "#7E8993", paddingLeft: "1rem" }}>{time} on {date}(EST)</p>

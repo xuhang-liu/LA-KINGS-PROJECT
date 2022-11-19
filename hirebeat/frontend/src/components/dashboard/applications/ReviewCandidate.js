@@ -11,7 +11,7 @@ import ReviewApplicationTab from "../jobStages/interviewComponents/ReviewApplica
 import BasicInfoEdition from "./BasicInfoEdition";
 import { connect } from "react-redux";
 import { addReviewNote, getReviewNote } from "../../../redux/actions/question_actions";
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Button, Box, Heading, Stack, IconButton, useColorModeValue, HStack } from '@chakra-ui/react';
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Button, Box, Heading, Stack, IconButton, useColorModeValue, Textarea } from '@chakra-ui/react';
 import { FiChevronLeft, FiEdit, FiArrowRight } from 'react-icons/fi';
 
 const ReviewCandidate = (props) => {
@@ -479,7 +479,7 @@ const ReviewCandidate = (props) => {
                             {(props.curJob?.reviewer_type != "subr") &&
                                 <div style={{ paddingBottom: "2vw" }}>
                                     <Box style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
-                                        <Heading as='h3' size='xs' fontSize='0.9vw'>Current Stage: {props.applicant.current_stage}</Heading>
+                                        <Heading as='h3' size='xs' fontSize='0.8vw'>Current Stage: {props.applicant.current_stage}</Heading>
                                     </Box>
                                     {props.applicant.is_active &&
                                         <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
@@ -582,20 +582,20 @@ const ReviewCandidate = (props) => {
                                 {props.currentStage != "All Candidates" &&
                                     <div>
                                         <div className="row mt-4 d-flex justify-content-end">
-                                            <textarea
-                                                className="note-border"
-                                                style={{ height: "10vw", width: "100%", marginLeft: "1rem", marginRight: "1rem", fontSize: "0.9vw" }}
+                                            <Textarea
+                                                style={{ height: "10vw", width: "100%", marginLeft: "0.5rem", marginRight: "0.6rem", fontSize: "0.9vw" }}
                                                 type="text"
                                                 value={comment}
                                                 placeholder="Write your comment here"
                                                 onChange={(e) => { setComment(e.target.value) }}
                                             />
-                                            <button
-                                                className="default-btn d-flex"
+                                            <Button
+                                                colorScheme='orange'
                                                 onClick={() => updateReview()}
-                                                style={{ fontSize: "1vw", marginTop: "0.5rem", marginRight: "1rem", paddingLeft: "25px", backgroundColor: "#ff6b00" }}
+                                                size='sm'
+                                                style={{ marginTop: "0.5rem", marginRight: "0.6rem" }}
                                             >Post
-                                            </button>
+                                            </Button>
                                         </div>
                                     </div>
                                 }
