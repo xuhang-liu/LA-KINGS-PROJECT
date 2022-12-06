@@ -411,7 +411,7 @@ export const Header = (props) => {
             </Popover>
             <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
             <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>
-            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Intergration</Button>
+            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Integration</Button>
           </HStack>) :
           (
             <HStack spacing="1">

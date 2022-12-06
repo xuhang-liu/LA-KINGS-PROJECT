@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Autocomplete from "react-google-autocomplete";
+import { Button, Box, Heading } from '@chakra-ui/react';
 
 export class BasicInfoEdition extends Component {
     state = {
         location: this.props.location,
     }
     handleLocation = (location) => {
-        this.setState({location: location});
+        this.setState({ location: location });
     }
 
     saveUpdate = () => {
@@ -23,7 +24,7 @@ export class BasicInfoEdition extends Component {
         this.props.updateApplicantBasicInfo(data);
         setTimeout(() => {
             let page = this.props.selectedPage + 1; // selectedPage is 0 indexed
-            this.props.getPostedJobs(this.props.user.id, page, this.props.selectedCurrentStage, "" ,"", "", "", this.props.jobId, this.props.keyWords);
+            this.props.getPostedJobs(this.props.user.id, page, this.props.selectedCurrentStage, "", "", "", "", this.props.jobId, this.props.keyWords);
             this.props.disableEdit();
         }, 300)
 
@@ -31,34 +32,20 @@ export class BasicInfoEdition extends Component {
 
     render() {
         return (
-            <div className="resume-box p-4" style={{ background: "white", borderRadius: "10px", width: "100%", height: "35%" }}>
-                <div className="row mb-3" style={{ marginBottom: "2%" }}>
-                    <div className="col d-flex align-items-center">
-                        <h2
-                            style={{
-                                fontWeight: "600",
-                                marginRight: "0.8rem",
-                                wordWrap: "break-word",
-                                wordBreak: "break-word",
-                                color: "#090D3A",
-                                width: "100%",
-                                fontSize: "1.5vw"
-                            }}
-                        >
-                            {this.props.name}
-                        </h2>
-                    </div>
-                </div>
+            <Box bg="bg-surface" borderRadius="md" boxShadow="sm" p='4'>
+                <Box mb='4'>
+                    <Heading as='h3' size='xs' wordWrap='break-word' wordBreak='break-word'>{this.props.name}</Heading>
+                </Box>
                 <div style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw" }}>
                     <i className="bx bx-phone bx-sm"></i>
-                    <input id="phone" className="basic-info-input" defaultValue={this.props.phone} style={{fontSize:"0.9vw"}}></input>
+                    <input id="phone" className="basic-info-input" defaultValue={this.props.phone} style={{ fontSize: "0.8vw" }}></input>
                 </div>
                 <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw" }}>
                     <i className="bx bx-location-plus bx-sm"></i>
                     <Autocomplete
                         id="location"
                         className="basic-info-input"
-                        style={{width: "100%", fontSize:"0.9vw"}}
+                        style={{ width: "100%", fontSize: "0.8vw" }}
                         language="en"
                         apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                         onPlaceSelected={(place, inputRef, autocomplete) => {
@@ -69,13 +56,13 @@ export class BasicInfoEdition extends Component {
                 </div>
                 <div className="mb-2" style={{ marginTop: "1%", display: "flex", alignItems: "center", marginBottom: "1vw" }}>
                     <i className="bx bxl-linkedin-square bx-sm"></i>
-                    <input id="linkedin" className="basic-info-input" defaultValue={this.props.linkedin} style={{fontSize:"0.9vw"}}></input>
+                    <input id="linkedin" className="basic-info-input" defaultValue={this.props.linkedin} style={{ fontSize: "0.8vw" }}></input>
                 </div>
-                <div className="d-flex justify-content-between" style={{marginTop: "1vw", paddingBottom:"1vw"}}>
-                    <button className="default-btn" style={{paddingLeft: "25px"}} onClick={this.saveUpdate}>Save</button>
-                    <button className="default-btn" style={{background: "#E5E5E5", color: "#090D3A", paddingLeft: "25px"}} onClick={this.props.disableEdit}>Cancel</button>
+                <div className="d-flex justify-content-between" style={{ marginTop: "1vw", paddingBottom: "1vw" }}>
+                    <Button borderRadius='sm' colorScheme='blue' size='sm' onClick={this.saveUpdate}>Save</Button>
+                    <Button borderRadius='sm' colorScheme='gray' size='sm' onClick={this.props.disableEdit}>Cancel</Button>
                 </div>
-            </div>
+            </Box>
         )
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IconText } from "../DashboardComponents";
 import { MyModal80, MyModalUpgrade, AlertModal } from "./../DashboardComponents";
 import { ResumeEvaJobs } from "./ResumeEvaJobs";
@@ -31,6 +31,10 @@ const ReviewCandidate = (props) => {
     const [isReject, setIsReject] = useState(true);
     const [isEdit, setIsEdit] = useState(false);
     const [comment, setComment] = useState("");
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     function setViewResumes() {
         setViewResume(true);
@@ -357,7 +361,7 @@ const ReviewCandidate = (props) => {
                 justify="space-between"
             >
                 <Button leftIcon={<FiChevronLeft />} colorScheme='blue' variant='ghost' size='md' onClick={props.setshowDetailsFalse} mb='5'>
-                    {props.currentStage} List
+                    {props.currentStage}
                 </Button>
                 <Box pr='3'>
                     <button

@@ -325,26 +325,24 @@ export class AllCandidates extends Component {
                                             }}
                                         >
                                             <HStack spacing="3" justify="space-between">
-                                                {this.props.curJob.total_page > 1 &&
-                                                    <div className="ml-auto">
-                                                        <ReactPaginate
-                                                            previousLabel={'< Prev'}
-                                                            nextLabel={'Next >'}
-                                                            breakLabel={'...'}
-                                                            breakClassName={'break-me'}
-                                                            pageCount={this.props.curJob.total_page}
-                                                            marginPagesDisplayed={1}
-                                                            pageRangeDisplayed={5}
-                                                            onPageChange={this.handlePageClick}
-                                                            containerClassName={'pagination3'}
-                                                            activeClassName={'active'}
-                                                            forcePage={this.props.curJob.current_page}
-                                                        />
-                                                    </div>
-                                                }
+                                                <div className="ml-auto">
+                                                    <ReactPaginate
+                                                        previousLabel={'< Prev'}
+                                                        nextLabel={'Next >'}
+                                                        breakLabel={'...'}
+                                                        breakClassName={'break-me'}
+                                                        pageCount={this.props.curJob.total_page}
+                                                        marginPagesDisplayed={1}
+                                                        pageRangeDisplayed={5}
+                                                        onPageChange={this.handlePageClick}
+                                                        containerClassName={'pagination3'}
+                                                        activeClassName={'active'}
+                                                        forcePage={this.props.curJob.current_page}
+                                                    />
+                                                </div>
                                             </HStack>
                                         </Box>
-                                        <Box overflowX="auto">
+                                        <Box overflowX="auto" minH='96'>
                                             <Table>
                                                 <Thead>
                                                     <Tr>
@@ -428,23 +426,21 @@ export class AllCandidates extends Component {
                                             pb="5"
                                         >
                                             <HStack spacing="3" justify="space-between">
-                                                {this.props.curJob.total_page > 1 &&
-                                                    <div className="ml-auto">
-                                                        <ReactPaginate
-                                                            previousLabel={'< Prev'}
-                                                            nextLabel={'Next >'}
-                                                            breakLabel={'...'}
-                                                            breakClassName={'break-me'}
-                                                            pageCount={this.props.curJob.total_page}
-                                                            marginPagesDisplayed={1}
-                                                            pageRangeDisplayed={5}
-                                                            onPageChange={this.handlePageClick}
-                                                            containerClassName={'pagination3'}
-                                                            activeClassName={'active'}
-                                                            forcePage={this.props.curJob.current_page}
-                                                        />
-                                                    </div>
-                                                }
+                                                <div className="ml-auto">
+                                                    <ReactPaginate
+                                                        previousLabel={'< Prev'}
+                                                        nextLabel={'Next >'}
+                                                        breakLabel={'...'}
+                                                        breakClassName={'break-me'}
+                                                        pageCount={this.props.curJob.total_page}
+                                                        marginPagesDisplayed={1}
+                                                        pageRangeDisplayed={5}
+                                                        onPageChange={this.handlePageClick}
+                                                        containerClassName={'pagination3'}
+                                                        activeClassName={'active'}
+                                                        forcePage={this.props.curJob.current_page}
+                                                    />
+                                                </div>
                                             </HStack>
                                         </Box>
                                     </Stack>
@@ -680,7 +676,7 @@ const ApplicantRow = (props) => {
                         </span>
                     </Td>
                 </Tr> :
-                <span style={{ background: "#E8EDFC" }}>
+                <span>
                     <ReviewCandidate
                         keyWords={props.keyWords}
                         phone={applicants[current].phone}

@@ -8,17 +8,17 @@ import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateRevi
 import { updateInviteStatus, updateCandidateViewedStatus, updateApplicantBasicInfo } from "../../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
 import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
-import { MyFullModal } from "../DashboardComponents";
+// import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import EditQuestion from "./../jobBoard/EditQuestion";
 import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import {
-    Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Box, Button, Container, HStack, Icon,
-    Input, InputGroup, InputLeftElement, Stack, Text, Table, Tbody, Td, Th, Thead, Tr, useColorModeValue, Checkbox, Tooltip
+    Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Box, Container, HStack, Icon,
+    Input, InputGroup, InputLeftElement, Stack, Text, Table, Tbody, Td, Th, Thead, Tr, useColorModeValue, Tooltip
 } from '@chakra-ui/react';
-import { FiSearch, FiPlus, FiInfo } from 'react-icons/fi';
+import { FiSearch, FiInfo } from 'react-icons/fi';
 
 const customStyles = {
     control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
@@ -435,6 +435,7 @@ export class ResumeScreening extends Component {
         for (let i = 0; i < candidates.length; i++) {
             candidates[i].checked = false;
         }
+        this.setState({ candidates_count: 0, select_all: false });
     }
 
     sortByScore = () => {
@@ -591,26 +592,24 @@ export class ResumeScreening extends Component {
                                     }}
                                 >
                                     <HStack spacing="3" justify="space-between">
-                                        {this.props.curJob.total_page > 1 &&
-                                            <div className="ml-auto">
-                                                <ReactPaginate
-                                                    previousLabel={'< Prev'}
-                                                    nextLabel={'Next >'}
-                                                    breakLabel={'...'}
-                                                    breakClassName={'break-me'}
-                                                    pageCount={this.props.curJob.total_page}
-                                                    marginPagesDisplayed={1}
-                                                    pageRangeDisplayed={5}
-                                                    onPageChange={this.handlePageClick}
-                                                    containerClassName={'pagination3'}
-                                                    activeClassName={'active'}
-                                                    forcePage={this.props.curJob.current_page}
-                                                />
-                                            </div>
-                                        }
+                                        <div className="ml-auto">
+                                            <ReactPaginate
+                                                previousLabel={'< Prev'}
+                                                nextLabel={'Next >'}
+                                                breakLabel={'...'}
+                                                breakClassName={'break-me'}
+                                                pageCount={this.props.curJob.total_page}
+                                                marginPagesDisplayed={1}
+                                                pageRangeDisplayed={5}
+                                                onPageChange={this.handlePageClick}
+                                                containerClassName={'pagination3'}
+                                                activeClassName={'active'}
+                                                forcePage={this.props.curJob.current_page}
+                                            />
+                                        </div>
                                     </HStack>
                                 </Box>
-                                <Box overflowX="auto">
+                                <Box overflowX="auto" minH='96'>
                                     <Table>
                                         <Thead>
                                             <Tr>
@@ -743,23 +742,21 @@ export class ResumeScreening extends Component {
                                     pb="5"
                                 >
                                     <HStack spacing="3" justify="space-between">
-                                        {this.props.curJob.total_page > 1 &&
-                                            <div className="ml-auto">
-                                                <ReactPaginate
-                                                    previousLabel={'< Prev'}
-                                                    nextLabel={'Next >'}
-                                                    breakLabel={'...'}
-                                                    breakClassName={'break-me'}
-                                                    pageCount={this.props.curJob.total_page}
-                                                    marginPagesDisplayed={1}
-                                                    pageRangeDisplayed={5}
-                                                    onPageChange={this.handlePageClick}
-                                                    containerClassName={'pagination3'}
-                                                    activeClassName={'active'}
-                                                    forcePage={this.props.curJob.current_page}
-                                                />
-                                            </div>
-                                        }
+                                        <div className="ml-auto">
+                                            <ReactPaginate
+                                                previousLabel={'< Prev'}
+                                                nextLabel={'Next >'}
+                                                breakLabel={'...'}
+                                                breakClassName={'break-me'}
+                                                pageCount={this.props.curJob.total_page}
+                                                marginPagesDisplayed={1}
+                                                pageRangeDisplayed={5}
+                                                onPageChange={this.handlePageClick}
+                                                containerClassName={'pagination3'}
+                                                activeClassName={'active'}
+                                                forcePage={this.props.curJob.current_page}
+                                            />
+                                        </div>
                                     </HStack>
                                 </Box>
                             </Stack>
@@ -1218,7 +1215,7 @@ const ApplicantRow = (props) => {
                         </Td>
                     }
                 </Tr> :
-                <span style={{ background: "#E8EDFC" }}>
+                <span>
                     <ReviewCandidate
                         phone={applicants[current].phone}
                         email={applicants[current].email}
