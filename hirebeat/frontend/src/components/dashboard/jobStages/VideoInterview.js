@@ -1334,20 +1334,23 @@ export function VideoInterview(props) {
                 </ModalContent>
             </Modal>
             {/* Edit Questions */}
-            <MyModal80
-                show={showQEditForm}
-                onHide={() => { setShowQEditForm(false) }}
-            >
-                <EditQuestion
-                    jobTitle={props.jobTitle}
-                    positionId={props.positionId}
-                    questions={props.questions}
-                    hideQEditForm={() => { setShowQEditForm(false) }}
-                    keyWords={keyWords}
-                    getPostedJobs={props.getPostedJobs}
-                    position={props.position}
-                />
-            </MyModal80>
+            <Modal onClose={() => { setShowQEditForm(false) }} size={"6xl"} isOpen={showQEditForm}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <EditQuestion
+                            jobTitle={props.jobTitle}
+                            positionId={props.positionId}
+                            questions={props.questions}
+                            hideQEditForm={() => { setShowQEditForm(false) }}
+                            keyWords={keyWords}
+                            getPostedJobs={props.getPostedJobs}
+                            position={props.position}
+                        />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </React.Fragment>
     )
 };

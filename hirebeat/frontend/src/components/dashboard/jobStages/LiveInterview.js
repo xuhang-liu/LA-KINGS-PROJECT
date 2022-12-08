@@ -926,97 +926,100 @@ export function LiveInterview(props) {
                     </div>
                 </div>
             </AlertModal>
-            <MyShareModal
-                show={showConfigInt}
-                onHide={hideShowConfigInt}
-            >
-                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
-                    <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.2rem", textAlign: "center" }}>Configure Interviews</h3>
-                    <p className="pt-1 interview-txt7" style={{ textAlign: "center" }}>Customize your interview names and label candidates for easier management.</p>
-                    <form>
-                        <div className="interview-txt7">
-                            <div className="row">
-                                <div className="col-6" style={{ textAlign: "center", color: "#090d3a" }}>
-                                    Interview 1:
-                                </div>
-                                {!live1Edit ?
-                                    <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                        <a onClick={() => setlive1Edit(true)}>{props.livcat1}</a>
-                                        <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive1Edit(true)}><i class="bx bx-edit-alt"></i></a>
-                                    </div> :
-                                    <div className="col-6" style={{ textAlign: "center" }}>
-                                        <input type="text" placeholder={props.livcat1} onChange={onConfigChange1}></input>
+            <Modal onClose={hideShowConfigInt} size={"5xl"} isOpen={showConfigInt} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Box style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                            <Text color='muted' style={{ fontWeight: "600", fontSize: "1.2rem", textAlign: "center" }}>Configure Interviews</Text>
+                            <p className="pt-1 interview-txt7" style={{ textAlign: "center" }}>Customize your interview names and label candidates for easier management.</p>
+                            <form>
+                                <div className="interview-txt7">
+                                    <div className="row">
+                                        <Text color='muted' className="col-6" style={{ textAlign: "center" }}>
+                                            Interview 1:
+                                        </Text>
+                                        {!live1Edit ?
+                                            <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
+                                                <a onClick={() => setlive1Edit(true)}>{props.livcat1}</a>
+                                                <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive1Edit(true)}><i class="bx bx-edit-alt"></i></a>
+                                            </div> :
+                                            <div className="col-6" style={{ textAlign: "center" }}>
+                                                <input type="text" placeholder={props.livcat1} onChange={onConfigChange1}></input>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
-                            <div className="row pt-1">
-                                <div className="col-6" style={{ textAlign: "center", color: "#090d3a" }}>
-                                    Interview 2:
-                                </div>
-                                {!live2Edit ?
-                                    <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                        <a onClick={() => setlive2Edit(true)}>{props.livcat2}</a>
-                                        <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive2Edit(true)}><i class="bx bx-edit-alt"></i></a>
-                                    </div> :
-                                    <div className="col-6" style={{ textAlign: "center" }}>
-                                        <input type="text" placeholder={props.livcat2} onChange={onConfigChange2}></input>
+                                    <div className="row pt-1">
+                                        <Text color='muted' className="col-6" style={{ textAlign: "center" }}>
+                                            Interview 2:
+                                        </Text>
+                                        {!live2Edit ?
+                                            <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
+                                                <a onClick={() => setlive2Edit(true)}>{props.livcat2}</a>
+                                                <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive2Edit(true)}><i class="bx bx-edit-alt"></i></a>
+                                            </div> :
+                                            <div className="col-6" style={{ textAlign: "center" }}>
+                                                <input type="text" placeholder={props.livcat2} onChange={onConfigChange2}></input>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
-                            <div className="row pt-1">
-                                <div className="col-6" style={{ textAlign: "center", color: "#090d3a" }}>
-                                    Interview 3:
-                                </div>
-                                {!live3Edit ?
-                                    <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                        <a onClick={() => setlive3Edit(true)}>{props.livcat3}</a>
-                                        <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive3Edit(true)}><i class="bx bx-edit-alt"></i></a>
-                                    </div> :
-                                    <div className="col-6" style={{ textAlign: "center" }}>
-                                        <input type="text" placeholder={props.livcat3} onChange={onConfigChange3}></input>
+                                    <div className="row pt-1">
+                                        <Text color='muted' className="col-6" style={{ textAlign: "center" }}>
+                                            Interview 3:
+                                        </Text>
+                                        {!live3Edit ?
+                                            <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
+                                                <a onClick={() => setlive3Edit(true)}>{props.livcat3}</a>
+                                                <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive3Edit(true)}><i class="bx bx-edit-alt"></i></a>
+                                            </div> :
+                                            <div className="col-6" style={{ textAlign: "center" }}>
+                                                <input type="text" placeholder={props.livcat3} onChange={onConfigChange3}></input>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
-                            <div className="row pt-1">
-                                <div className="col-6" style={{ textAlign: "center", color: "#090d3a" }}>
-                                    Interview 4:
-                                </div>
-                                {!live4Edit ?
-                                    <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                        <a onClick={() => setlive4Edit(true)}>{props.livcat4}</a>
-                                        <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive4Edit(true)}><i class="bx bx-edit-alt"></i></a>
-                                    </div> :
-                                    <div className="col-6" style={{ textAlign: "center" }}>
-                                        <input type="text" placeholder={props.livcat4} onChange={onConfigChange4}></input>
+                                    <div className="row pt-1">
+                                        <Text color='muted' className="col-6" style={{ textAlign: "center" }}>
+                                            Interview 4:
+                                        </Text>
+                                        {!live4Edit ?
+                                            <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
+                                                <a onClick={() => setlive4Edit(true)}>{props.livcat4}</a>
+                                                <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive4Edit(true)}><i class="bx bx-edit-alt"></i></a>
+                                            </div> :
+                                            <div className="col-6" style={{ textAlign: "center" }}>
+                                                <input type="text" placeholder={props.livcat4} onChange={onConfigChange4}></input>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
-                            <div className="row pt-1">
-                                <div className="col-6" style={{ textAlign: "center", color: "#090d3a" }}>
-                                    Interview 5:
-                                </div>
-                                {!live5Edit ?
-                                    <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
-                                        <a onClick={() => setlive5Edit(true)}>{props.livcat5}</a>
-                                        <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive5Edit(true)}><i class="bx bx-edit-alt"></i></a>
-                                    </div> :
-                                    <div className="col-6" style={{ textAlign: "center" }}>
-                                        <input type="text" placeholder={props.livcat5} onChange={onConfigChange5}></input>
+                                    <div className="row pt-1">
+                                        <Text color='muted' className="col-6" style={{ textAlign: "center" }}>
+                                            Interview 5:
+                                        </Text>
+                                        {!live5Edit ?
+                                            <div className="col-6" style={{ textAlign: "center", color: "#000" }}>
+                                                <a onClick={() => setlive5Edit(true)}>{props.livcat5}</a>
+                                                <a style={{ marginLeft: "2rem", color: "#7e8993" }} onClick={() => setlive5Edit(true)}><i class="bx bx-edit-alt"></i></a>
+                                            </div> :
+                                            <div className="col-6" style={{ textAlign: "center" }}>
+                                                <input type="text" placeholder={props.livcat5} onChange={onConfigChange5}></input>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                            </div>
-                        </div>
-                        <div className="row pt-4" style={{ margin: "auto", width: "50%" }}>
-                            <div className="col-6">
-                                <button type="submit" onClick={submitConfigInt} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Confirm</button>
-                            </div>
-                            <div className="col-6">
-                                <button type="button" onClick={hideShowConfigInt} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Cancel</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </MyShareModal>
+                                </div>
+                                <div className="row pt-4" style={{ margin: "auto", width: "50%" }}>
+                                    <div className="col-6">
+                                        <button type="submit" onClick={submitConfigInt} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px" }}>Confirm</button>
+                                    </div>
+                                    <div className="col-6">
+                                        <button type="button" onClick={hideShowConfigInt} className="default-btn1" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </Box>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
             <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
                 <ModalOverlay />
                 <ModalContent>

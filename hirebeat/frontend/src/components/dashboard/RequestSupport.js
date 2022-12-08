@@ -3,7 +3,7 @@ import Select from "react-select";
 import { connect } from "react-redux";
 import { createRequestEmail } from "../../redux/actions/auth_actions";
 import { AlertModal } from "./DashboardComponents";
-import { Text, Input, useColorModeValue, Textarea } from '@chakra-ui/react';
+import { Text, Input, useColorModeValue, Textarea, Button } from '@chakra-ui/react';
 
 export class RequestSupport extends React.Component {
   state = {
@@ -215,18 +215,12 @@ export class RequestSupport extends React.Component {
               paddingLeft: "15px",
             }}
           >
-            <button
+            <Button
               type="submit"
-              style={{
-                backgroundColor: "#FF6B00",
-                color: "#fff",
-                padding: "12px 24px",
-                borderStyle: "none",
-                borderRadius: "3px",
-              }}
+              colorScheme='blue'
             >
               Submit
-            </button>
+            </Button>
           </div>
         </form>
         <AlertModal show={this.state.isShow} onHide={this.closeModal}>

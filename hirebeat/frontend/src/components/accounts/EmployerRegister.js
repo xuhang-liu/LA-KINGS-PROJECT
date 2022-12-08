@@ -186,6 +186,24 @@ export class EmployerRegister extends Component {
     // reset error states
     this.setState({ validEmail: true, validPwd: true, unusedEmail: true });
     // check email format
+    
+    axios.get('https://api.emailable.com/v1/verify?email=' + this.state.email + '&api_key=live_6956a22d35f00081f361').then((res) => {
+      if (res.data.disposable == true || res.data.state == 'risky' || res.data.state == 'undeliverable') {
+        this.setState({ validEmail: false });
+        recaptchaRef.current.reset();
+        return;
+      }
+    });
+
+
+    axios.get('https://api.quickemailverification.com/v1/verify?email=' + this.state.email + '&apikey=81d32a54f3d3765a24d756743bcad12465147d3355cc3384d44a2ad30c0e').then((res) => {
+      if (res.data.disposable == true || res.data.safe_to_send == false) {
+        this.setState({ validEmail: false });
+        recaptchaRef.current.reset();
+        return;
+      }
+    });
+    
     if ((Email_Block_List.includes(this.state.email?.toLowerCase()?.split("@")[1])) && !this.state.isReviewer) {
       this.setState({ validEmail: false });
       recaptchaRef.current.reset();

@@ -3348,8 +3348,6 @@ h5 {
   font-family: Inter, Segoe UI;
   font-size: 1rem;
   font-weight: 500;
-  color: #090d3a;
-  background: #FFFFFF;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
   border-radius: 5px;
@@ -3373,7 +3371,6 @@ h5 {
 }
 
 .category-border {
-  background: #FFFFFF;
   border: 2px solid #E8EDFC;
   box-sizing: border-box;
   border-radius: 5px;
