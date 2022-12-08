@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 import { login, exchangeToken } from "../../redux/actions/auth_actions";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
-// import axios from "axios";
+import axios from "axios";
 import { Center, Heading, Box, Button, Container, FormControl, FormLabel, HStack, Input, Stack, Link } from '@chakra-ui/react';
 
 function ScrollToTopOnMount() {
@@ -39,25 +39,24 @@ export class EmployerLogin extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
 
-    // axios.post("api/check_user_login", user_pw, config).then((res) => {
-    //   if (res.data.data) {
-    //     this.setLoginFail1();
-    //     this.props.login(this.state.username?.toLowerCase(), this.state.password);
-    //   } else {
-    //     this.setLoginFail();
-    //   }
-    // }).catch(error => {
-    //   console.log(error)
-    // });
+    axios.post("api/check_user_login", user_pw, config).then((res) => {
+      if (res.data.data) {
+        this.setLoginFail1();
+        this.props.login(this.state.username?.toLowerCase(), this.state.password);
+      } else {
+        this.setLoginFail();
+      }
+    }).catch(error => {
+      console.log(error)
+    });
 
-    this.props.login(this.state.username?.toLowerCase(), this.state.password);
     //Segment info
     window?.analytics?.track("User - Login", {
       loginTime: Date().toLocaleString(),

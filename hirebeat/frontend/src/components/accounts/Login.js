@@ -8,7 +8,7 @@ import MediaQuery from 'react-responsive';
 import { useEffect } from "react";
 import Footer from "../layout/Footer";
 import DocumentMeta from 'react-document-meta';
-// import axios from "axios";
+import axios from "axios";
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -40,25 +40,24 @@ export class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    let user_pw = { "username": this.state.username?.toLowerCase(), "password": this.state.password };
 
-    // axios.post("api/check_user_login", user_pw, config).then((res) => {
-    //   if (res.data.data) {
-    //     this.setLoginFail1();
-    //     this.props.login(this.state.username?.toLowerCase(), this.state.password);
-    //   } else {
-    //     this.setLoginFail();
-    //   }
-    // }).catch(error => {
-    //   console.log(error)
-    // });
+    axios.post("api/check_user_login", user_pw, config).then((res) => {
+      if (res.data.data) {
+        this.setLoginFail1();
+        this.props.login(this.state.username?.toLowerCase(), this.state.password);
+      } else {
+        this.setLoginFail();
+      }
+    }).catch(error => {
+      console.log(error)
+    });
 
-    this.props.login(this.state.username?.toLowerCase(), this.state.password);
     //Segment info
     window?.analytics?.track("User - Login", {
       loginTime: Date().toLocaleString(),
