@@ -132,9 +132,11 @@ export const loadProfile = () => (dispatch, getState) => {
 
 // ********  LOGIN  ********
 export const login = (username, password) => (dispatch) => {
+  const token = '49d7176538f4e7d4d6799ff4c2cb31af850a77f1';
   const config = {
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Token ${token}`
     },
   };
   const body = JSON.stringify({ username: username, password: password });
@@ -269,9 +271,11 @@ export const tokenConfig = (getState) => {
 };
 
 export const updateProfile = (profile) => (dispatch) => {
+  const token = '49d7176538f4e7d4d6799ff4c2cb31af850a77f1';
   const config = {
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Token ${token}`
     },
   };
   const body = JSON.stringify(profile);

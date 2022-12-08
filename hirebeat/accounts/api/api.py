@@ -22,6 +22,9 @@ import datetime
 import requests
 import os
 import json
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import permission_classes, authentication_classes
 
 
 # Register API
@@ -214,7 +217,8 @@ class Employer_ResgisterAPI(generics.GenericAPIView):
 
 
 # Login API
-
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 class LoginAPI(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
@@ -266,7 +270,8 @@ class RetrieveProfileAPI(generics.RetrieveAPIView):
             profile_obj = profile[0]
         return profile_obj
 
-
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 class UpdateProfileAPI(APIView):
     def get_object(self, id):
         try:
