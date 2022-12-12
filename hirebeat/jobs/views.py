@@ -1953,3 +1953,12 @@ def get_most_recent_jobs(request):
     return Response({
         "jobs_list": jobs_list
     })
+
+@api_view((['POST']))
+def job_update_single_jobpost(request):
+    jobid = request.data["jobid"]
+    job_post = request.data["job_post"]
+    job = Jobs.objects.get(pk=jobid)
+    job.job_post = job_post
+    job.save()
+    return Response("Job Post updated Successfully", status=status.HTTP_201_CREATED)

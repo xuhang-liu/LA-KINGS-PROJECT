@@ -568,7 +568,7 @@ export class Pipeline extends Component {
                     </div> :
                     <div className="container-fluid py-5 px-3">
                         <Heading as='h5' size='xs' color="muted" mb='3' pl='2'>Overview</Heading>
-                        {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
+                        {/* {(!(this.props.profile.is_subreviwer || this.props.profile.is_external_reviewer)) &&
                             <div className="row">
                                 <div className="pl-4 pb-4">
                                     <button
@@ -588,7 +588,7 @@ export class Pipeline extends Component {
                                             </p>
                                         </span>}
                                 </div>
-                            </div>}
+                            </div>} */}
 
                         {/*All Candidates*/}
                         <Box

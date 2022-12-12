@@ -13,7 +13,7 @@ var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
 import { MyModalShare } from "../DashboardComponents";
-import { Box, Heading, Text, Textarea, Input } from '@chakra-ui/react';
+import { Box, Heading, Text, Textarea, Input, Stack, Spacer } from '@chakra-ui/react';
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -475,52 +475,49 @@ export class EmployerProfile extends Component {
                             </Box>
 
                             {/* Widget and URL */}
-                            <div className="row" style={{ marginTop: "2rem" }}>
-                                <div className="col-6">
-                                    <Box
-                                        bg="bg-surface"
-                                        boxShadow='sm'
-                                        borderRadius="lg"
-                                        p={{
-                                            base: '4',
-                                            md: '6',
-                                        }}
-                                        textAlign="center"
-                                    >
-                                        <div style={{ padding: "2rem" }}>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
-                                                    <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
-                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod1}>View Details</button>
-                                                </div>
+                            <Stack direction='row' style={{ marginTop: "2rem" }}>
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                >
+                                    <div style={{ padding: "2rem" }}>
+                                        <div className="row">
+                                            <div className="col">
+                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
+                                                <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
+                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod1}>View Details</button>
                                             </div>
                                         </div>
-                                    </Box>
-                                </div>
-                                <div className="col-6">
-                                    <Box
-                                        bg="bg-surface"
-                                        boxShadow='sm'
-                                        borderRadius="lg"
-                                        p={{
-                                            base: '4',
-                                            md: '6',
-                                        }}
-                                        textAlign="center"
-                                    >
-                                        <div style={{ padding: "2rem" }}>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
-                                                    <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
-                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod2}>View Details</button>
-                                                </div>
+                                    </div>
+                                </Box>
+                                <Spacer />
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                >
+                                    <div style={{ padding: "2rem" }}>
+                                        <div className="row">
+                                            <div className="col">
+                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
+                                                <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
+                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod2}>View Details</button>
                                             </div>
                                         </div>
-                                    </Box>
-                                </div>
-                            </div>
+                                    </div>
+                                </Box>
+                            </Stack>
 
                             {/* Social Media */}
                             <Box

@@ -34,7 +34,8 @@ export const EmployerSidebar = (props) => (
                             <Text fontSize="md" color="subtle" fontWeight="medium">Archived</Text>}
                         {props?.curJob?.job_details?.is_closed == 2 &&
                             <Text fontSize="md" color="subtle" fontWeight="medium">Closed</Text>}
-                        <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }} />
+                        {(props.reviewer_type != "subr") &&
+                            <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }} />}
                     </HStack>
                     <Heading as='h6' size='xs' color="muted">{props?.curJob?.job_details?.job_title}</Heading>
                 </Stack>
@@ -43,10 +44,18 @@ export const EmployerSidebar = (props) => (
                         Sourcing
                     </Text>
                     <Stack spacing="1">
-                        {props.portalSubpage == "aiSourcing" ?
-                            <Button variant='solid' onClick={props.renderAISourcing}>AI Sourcing</Button> :
-                            <Button variant='outline' onClick={props.renderAISourcing}>AI Sourcing</Button>}
-                        <Button variant='outline'>Job Board</Button>
+                        {(props.reviewer_type != "subr") &&
+                            <Stack>
+                                {props.portalSubpage == "aiSourcing" ?
+                                    <Button variant='solid' onClick={props.renderAISourcing}>AI Sourcing</Button> :
+                                    <Button variant='outline' onClick={props.renderAISourcing}>AI Sourcing</Button>}
+                            </Stack>}
+                        {(props.reviewer_type != "subr") &&
+                            <Stack>
+                                {props.portalSubpage == "jobboardshare" ?
+                                    <Button variant='solid' onClick={props.renderJobBoardShare}>Job Board</Button> :
+                                    <Button variant='outline' onClick={props.renderJobBoardShare}>Job Board</Button>}
+                            </Stack>}
                         {props.portalSubpage == "socialMediaShare" ?
                             <Button variant='solid' onClick={props.renderSocialMediaShare}>Social Media Share</Button> :
                             <Button variant='outline' onClick={props.renderSocialMediaShare}>Social Media Share</Button>}
@@ -109,9 +118,10 @@ export const EmployerSidebar = (props) => (
                         }
                     </Stack>
                 </Stack>
-                <Stack>
-                    <Button variant='solid' onClick={props.renderPipeline}>Overview and Team Setting</Button>
-                </Stack>
+                {(props.reviewer_type != "subr") &&
+                    <Stack>
+                        <Button variant='solid' onClick={props.renderPipeline}>Overview and Team Setting</Button>
+                    </Stack>}
             </Stack>
         </Stack>
     </Flex>

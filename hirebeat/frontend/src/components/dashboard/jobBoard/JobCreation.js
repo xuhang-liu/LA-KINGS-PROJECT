@@ -1042,10 +1042,10 @@ export class JobCreation extends Component {
                                                 <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Standard</Button> :
                                                 <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", { eventTime: Date()?.toLocaleString() }) }}>Standard</Button>
                                             }
-                                            {this.state.job_post == 2 ?
+                                            {/* {this.state.job_post == 2 ?
                                                 <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Premium</Button> :
                                                 <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(2); window?.analytics?.track("Job_posting_broadcast_premium", { eventTime: Date()?.toLocaleString() }) }}>Premium</Button>
-                                            }
+                                            } */}
                                         </div>
                                         <div className="form-group col-12">
                                             {this.state.job_post == 0 &&

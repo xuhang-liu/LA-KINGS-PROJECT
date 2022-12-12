@@ -18,6 +18,7 @@ import { Container, Box, Flex } from '@chakra-ui/react';
 import { EmployerSidebar } from '../chakraComponents/EmployerSidebar';
 import { AISourcing } from '../chakraComponents/AISourcing';
 import { SocialMediaShare } from '../chakraComponents/SocialMediaShare';
+import { JobBoard } from '../chakraComponents/JobBoard';
 
 export class JobPortalPage extends Component {
     constructor(props) {
@@ -233,10 +234,26 @@ export class JobPortalPage extends Component {
             portalSubpage: "socialMediaShare",
         });
     };
+    renderJobBoardShare = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "jobboardshare");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "jobboardshare",
+        });
+    };
 
     renderSubpage = () => {
         const p = this.props.postedJobs[this.props.job.job_details.positions_id];
         switch (this.state.portalSubpage) {
+            case "jobboardshare":
+                return <JobBoard
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    jobt_token={(this.state.jobt_token == "") ? this.props.profile.jobt_token : this.state.jobt_token}
+                />;
             case "socialMediaShare":
                 return <SocialMediaShare
                     job={this.props.job}
@@ -506,12 +523,14 @@ export class JobPortalPage extends Component {
                         renderShortList={this.renderShortList}
                         renderAISourcing={this.renderAISourcing}
                         renderSocialMediaShare={this.renderSocialMediaShare}
+                        renderJobBoardShare={this.renderJobBoardShare}
                         curJob={this.props.job}
                         setShowSidebarFalse={this.props.setShowSidebarFalse}
                         setViewPortal={this.props.setViewPortal}
                         getAllJobs={this.props.getAllJobs}
                         renderJobEdition={this.props.renderJobEdition}
                         setJobInfo={this.props.setJobInfo}
+                        reviewer_type={this.props.job?.reviewer_type}
                     />
                 </Box>
                 <Box
