@@ -900,11 +900,6 @@
 			<changefreq>always</changefreq>
 		</url>
 
-		<!-- <url>
-			<loc>https://app.hirebeat.co/employer-product</loc>
-			<changefreq>always</changefreq>
-		</url> -->
-
 		<url>
 			<loc>https://app.hirebeat.co/employer_blog-how-ATS-works-in-the-recruitment-process</loc>
 			<changefreq>always</changefreq>
