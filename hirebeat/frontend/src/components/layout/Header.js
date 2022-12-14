@@ -119,7 +119,7 @@ export const Header = (props) => {
             }
             <Link href="/practice"><Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}>Interview</Button></Link>
             <Link href="/resume"><Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}>Resume</Button></Link>
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Resources <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
@@ -157,7 +157,7 @@ export const Header = (props) => {
           <HStack spacing="4">
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
             <a href="/dashboard" style={{ textDecoration: "none" }}><Button colorScheme='blue' bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.500", "white")} variant='outline' borderRadius='2px'>Dashboard</Button></a>
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
               </PopoverTrigger>
@@ -173,7 +173,7 @@ export const Header = (props) => {
           </HStack>) :
           (
             <HStack spacing="4">
-              <Popover trigger="hover">
+              <Popover trigger="hover" zIndex='99'>
                 <PopoverTrigger>
                   <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
                 </PopoverTrigger>
@@ -232,7 +232,7 @@ export const Header = (props) => {
           )}
         {isDesktop ? (
           <HStack spacing="4">
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
@@ -251,7 +251,7 @@ export const Header = (props) => {
                 </PopoverBody>
               </PopoverContent>
             </Popover>
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> About Us <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
@@ -273,7 +273,7 @@ export const Header = (props) => {
           </HStack>) :
           (
             <HStack spacing="4">
-              <Popover trigger="hover">
+              <Popover trigger="hover" zIndex='99'>
                 <PopoverTrigger>
                   <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
                 </PopoverTrigger>
@@ -378,7 +378,7 @@ export const Header = (props) => {
                 </Stack>
               </Link>
             }
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
@@ -403,15 +403,18 @@ export const Header = (props) => {
                       })}
                       <Divider />
                       <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToAllJobs}>All Jobs</Button></ListItem>
-                      <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button></ListItem>
+                      {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
+                        <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button></ListItem>}
                     </List>
                   </Stack>
                 </PopoverBody>
               </PopoverContent>
             </Popover>
             <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
-            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>
-            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Integration</Button>
+            {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
+              <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>}
+            {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
+              <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Integration</Button>}
           </HStack>) :
           (
             <HStack spacing="1">
@@ -436,7 +439,7 @@ export const Header = (props) => {
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiHelpCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
               </PopoverTrigger>
@@ -453,7 +456,7 @@ export const Header = (props) => {
           (
             <HStack spacing="1">
               <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
-              <Popover trigger="hover">
+              <Popover trigger="hover" zIndex='99'>
                 <PopoverTrigger>
                   <Button variant="link" colorScheme="blue" leftIcon={<FiUser />}>{typeof user.username !== "undefined" ? `  ${user?.username.split("@")[0]}  ` : ""}</Button>
                 </PopoverTrigger>
@@ -476,8 +479,10 @@ export const Header = (props) => {
                     <Stack spacing="2">
                       <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}>Jobs</Button>
                       <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
-                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>
-                      <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Intergration</Button>
+                      {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
+                        <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>}
+                      {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
+                        <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Intergration</Button>}
                     </Stack>
                   </PopoverBody>
                 </PopoverContent>
@@ -528,7 +533,7 @@ export const Header = (props) => {
           )}
         {isDesktop ? (
           <HStack spacing="4">
-            <Popover trigger="hover">
+            <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
                 <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
@@ -555,7 +560,7 @@ export const Header = (props) => {
           </HStack>) :
           (
             <HStack spacing="4">
-              <Popover trigger="hover">
+              <Popover trigger="hover" zIndex='99'>
                 <PopoverTrigger>
                   <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")}> Job Seekers <i className="bx-fw bx bx-chevron-down"></i></Button>
                 </PopoverTrigger>
@@ -659,10 +664,14 @@ export const Header = (props) => {
         >
           <MediaQuery minDeviceWidth={1224}>
             <Box as="nav" bg={useColorModeValue("white", "brand.800")} color="on-accent" id="navbar" minW="1290px">
-              <Container
+              <Box
                 py={{
                   base: '3',
                   lg: '4',
+                }}
+                px={{
+                  base: '6',
+                  lg: '10',
                 }}
               >
                 <Flex justify="space-between">
@@ -681,7 +690,7 @@ export const Header = (props) => {
                         : renderEmployerGuestLinks(isAuthenticated)
                   }
                 </Flex>
-              </Container>
+              </Box>
             </Box>
           </MediaQuery>
           <MediaQuery maxDeviceWidth={1223}>

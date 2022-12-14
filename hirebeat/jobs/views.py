@@ -688,7 +688,7 @@ def create_zr_job_feed(job_detail):
 
 def store_sitemap_xml(job_url):
     tree = ET.parse('sitemap.xml')
-    # ET.register_namespace("", "http://www.google.com/schemas/sitemap/0.84")
+    ET.register_namespace("", "http://www.google.com/schemas/sitemap/0.84")
 
     root = tree.getroot()
     

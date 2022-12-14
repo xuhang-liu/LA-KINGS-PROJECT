@@ -510,7 +510,7 @@ export class JobPortalPage extends Component {
                     lg: 'row',
                 }}
             >
-                <Box position='fixed' width='80' overflowX='hidden' zIndex='99'>
+                <Box position='fixed' width='80' overflowX='hidden' zIndex='9'>
                     <EmployerSidebar
                         reviewerStage={this.state.reviewerStage}
                         portalSubpage={this.state.portalSubpage}

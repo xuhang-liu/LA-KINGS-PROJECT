@@ -19,6 +19,7 @@ export const EmployerSidebar = (props) => (
             base: '4',
             sm: '6',
         }}
+        style={{ height: "93vh" }}
     >
         <Stack justify="space-between" spacing="1" width="full">
             <Stack spacing="8" shouldWrapChildren>
