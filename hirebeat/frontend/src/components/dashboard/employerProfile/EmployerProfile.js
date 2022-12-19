@@ -13,7 +13,7 @@ var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
 import { MyModalShare } from "../DashboardComponents";
-import { Box, Heading, Text, Textarea, Input, Stack, Spacer } from '@chakra-ui/react';
+import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -60,6 +60,26 @@ const toolbarConfig = {
     ]
 };
 
+const customStyles = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
+    singleValue: styles => ({
+        ...styles,
+        color: useColorModeValue("#090d3a", "#ffffff"),
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuList: styles => ({
+        ...styles,
+        backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+        color: useColorModeValue('#090d3a', '#7a7a7a'),
+    }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+    menuPortal: provided => ({ ...provided, zIndex: 99 }),
+    menu: provided => ({ ...provided, zIndex: 99 })
+}
+
 export class EmployerProfile extends Component {
     constructor(props) {
         super(props);
@@ -86,19 +106,6 @@ export class EmployerProfile extends Component {
         method_pop1: false,
         method_pop2: false,
     }
-
-    customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#4a6f8a',
-            fontSize: '0.9375rem',
-            fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
-        }),
-        menuPortal: provided => ({ ...provided, zIndex: 99 }),
-        menu: provided => ({ ...provided, zIndex: 99 })
-    };
 
     options = [
         { value: '1-50 employees', label: '1-50 employees' },
@@ -703,15 +710,15 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
-                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={this.customStyles} placeholder={'Enter Company Size'} />
+                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={customStyles} placeholder={'Enter Company Size'} />
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
-                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Enter Company Industry'} />
+                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={customStyles} placeholder={'Enter Company Industry'} />
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
-                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></input>
+                                                <Input id="contactEmail" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></Input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">
                                                 <button className="default-btn" onClick={this.saveCompanyInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
@@ -822,63 +829,69 @@ export class EmployerProfile extends Component {
                         </div>
                     </div>
                 </div>
-                <MyModalShare
-                    show={this.state.method_pop1}
-                    onHide={() => { this.hideMethod1() }}
-                >
-                    <div class="container p-4" style={{ textAlign: 'left', background: "bg-surface" }}>
-                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 1 - Careers Widget</h3>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>The career widget is a simple list of your jobs embeded on a dedicated page on your website, such as your career page. All you’ll need is access to the content Management System (CMS) of your website, then follow these steps:</p>
-                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI", paddingLeft: "1rem" }}>
-                            <li className="pb-2">Access the HTML on the webpage where you want the jobs to display.</li>
-                            <li className="pb-2">Copy the code snippet from the box below and paste it within your HTML where you want the job list to display.</li>
-                            <li>Preview the page and publish.</li>
-                        </ol>
-                        <Box
-                            bg="bg-canvas"
-                            boxShadow='sm'
-                            borderRadius="lg"
-                            p={{
-                                base: '4',
-                                md: '6',
-                            }}
-                            textAlign="center"
-                            mt='3'
-                        >
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.js"</span>{'></script>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</p>
-                        </Box>
-                    </div>
-                </MyModalShare>
-                <MyModalShare
-                    show={this.state.method_pop2}
-                    onHide={() => { this.hideMethod2() }}
-                >
-                    <div class="container p-4" style={{ textAlign: 'left' }}>
-                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 2 - Job Portal Website Link</h3>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>Add a link to an existing page or website header/footer to directly link to your HireBeat Job Portal. This is a simple way of getting your jobs linked from your website, giving potential candidates a streamlined application process, and maximizing your reach to new applicants.</p>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>First, you will need access to the Content Management System (CMS) of your website, then, follow these steps:</p>
-                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI", paddingLeft: "1rem" }}>
-                            <li className="pb-2">Type 'Careers', 'We are Hiring', or similar somewhere on the page, ideally the header or footer.</li>
-                            <li className="pb-2">Highlight the text and select the option to add a hyperlink</li>
-                            <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
-                        </ol>
-                        <Box
-                            bg="bg-canvas"
-                            boxShadow='sm'
-                            borderRadius="lg"
-                            p={{
-                                base: '4',
-                                md: '6',
-                            }}
-                            textAlign="center"
-                            mt='3'
-                        >
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}"</span>{'>Careers</a>'}</p>
-                        </Box>
-                    </div>
-                </MyModalShare>
+                <Modal onClose={() => { this.hideMethod1() }} size={"5xl"} isOpen={this.state.method_pop1} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Box textAlign='left' p='6'>
+                                <Text color='muted' fontSize='lg' fontWeight='bold' style={{ marginBottom: "2rem" }}>Method 1 - Careers Widget</Text>
+                                <Text mb='2' style={{ fontSize: "0.8rem" }}>The career widget is a simple list of your jobs embeded on a dedicated page on your website, such as your career page. All you’ll need is access to the content Management System (CMS) of your website, then follow these steps:</Text>
+                                <ol className="profile-p5" style={{ fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                                    <li className="pb-2">Access the HTML on the webpage where you want the jobs to display.</li>
+                                    <li className="pb-2">Copy the code snippet from the box below and paste it within your HTML where you want the job list to display.</li>
+                                    <li>Preview the page and publish.</li>
+                                </ol>
+                                <Box
+                                    bg="bg-canvas"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                    mt='3'
+                                >
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</Text>
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.js"</span>{'></script>'}</Text>
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</Text>
+                                </Box>
+                            </Box>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+                <Modal onClose={() => { this.hideMethod2() }} size={"5xl"} isOpen={this.state.method_pop2} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Box textAlign='left' p='6'>
+                                <Text color='muted' fontSize='lg' fontWeight='bold' style={{ marginBottom: "2rem" }}>Method 2 - Job Portal Website Link</Text>
+                                <Text style={{ fontSize: "0.8rem" }}>Add a link to an existing page or website header/footer to directly link to your HireBeat Job Portal. This is a simple way of getting your jobs linked from your website, giving potential candidates a streamlined application process, and maximizing your reach to new applicants.</Text>
+                                <Text mb='2' style={{ fontSize: "0.8rem" }}>First, you will need access to the Content Management System (CMS) of your website, then, follow these steps:</Text>
+                                <ol className="profile-p5" style={{ fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                                    <li className="pb-2">Type 'Careers', 'We are Hiring', or similar somewhere on the page, ideally the header or footer.</li>
+                                    <li className="pb-2">Highlight the text and select the option to add a hyperlink</li>
+                                    <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
+                                </ol>
+                                <Box
+                                    bg="bg-canvas"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                    mt='3'
+                                >
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}"</span>{'>Careers</a>'}</Text>
+                                </Box>
+                            </Box>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </React.Fragment >
         )
     };
