@@ -42,7 +42,7 @@ export const AnalyticsCover = (props) => {
                 height="full"
                 mb="5"
             >
-                <Container py="5" height="full">
+                <Container height="full" mt='12' mb='14' alignItems='center'>
                     <Stack
                         spacing={{
                             base: '8',

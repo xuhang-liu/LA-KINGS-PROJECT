@@ -52,7 +52,7 @@ import { tourConfigEmployer } from "./DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 //import ReviewCandidate from "./applications/ReviewCandidate";
-import { Box } from '@chakra-ui/react';
+import { Box, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Text } from '@chakra-ui/react';
 
 function ScrollToTopOnMount() {
   useEffect(() => {
@@ -1004,17 +1004,20 @@ export class EmployerDashboard extends Component {
             lastStepNextButton={<i className="tour-next-btn" style={{ color: "#fff", background: "#006dff" }}>Congrats! You're ready now!</i>}
           />
           {isEndTour &&
-            <AlertModal
-              show={this.state.isEndTour}
-              onHide={this.closeTourOpenJob}
-              backdrop="static"
-            >
-              <h2 style={{ textAlign: "center", color: "#090d3a", fontFamily: "Inter, Segoe UI", paddingTop: "2rem" }}>Let's Create a Job!</h2>
-              <div style={{ display: "flex", justifyContent: "center", padding: "20px 0" }}>
-                <button onClick={this.closeTourOpenJob} className="default-btn4" style={{ paddingLeft: "25px", marginRight: "1rem" }}>Later</button>
-                <button onClick={this.renderJobCreation} className="default-btn5" style={{ paddingLeft: "25px" }}>Create a Job</button>
-              </div>
-            </AlertModal>}
+            <Modal onClose={this.closeTourOpenJob} size={"2xl"} isOpen={this.state.isEndTour} backdrop="static" isCentered>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Text color='muted' style={{ textAlign: "center", fontFamily: "Inter, Segoe UI", paddingTop: "2rem" }}>Let's Create a Job!</Text>
+                  <div style={{ display: "flex", justifyContent: "center", padding: "20px 0" }}>
+                    <button onClick={this.closeTourOpenJob} className="default-btn4" style={{ paddingLeft: "25px", marginRight: "1rem" }}>Later</button>
+                    <button onClick={this.renderJobCreation} className="default-btn5" style={{ paddingLeft: "25px" }}>Create a Job</button>
+                  </div>
+                </ModalBody>
+              </ModalContent>
+            </Modal>
+          }
 
           {this.props.employerDetailLoaded ?
             <div>

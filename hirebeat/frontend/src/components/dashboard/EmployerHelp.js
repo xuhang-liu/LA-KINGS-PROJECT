@@ -19,7 +19,7 @@ export default class EmployerHelp extends React.Component {
         }}
         height="full"
       >
-        <Container py="5" height="full">
+        <Container height="full" mt='12' mb='14' alignItems='center'>
           <Stack
             spacing={{
               base: '8',

@@ -546,7 +546,7 @@ export class JobPortalPage extends Component {
                         bg="bg-canvas"
                         borderTopLeftRadius={{
                             base: 'none',
-                            lg: '2rem',
+                            lg: '10',
                         }}
                         height="full"
                     >

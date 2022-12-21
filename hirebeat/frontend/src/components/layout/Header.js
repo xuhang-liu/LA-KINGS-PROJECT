@@ -380,7 +380,7 @@ export const Header = (props) => {
             }
             <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>
-                <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
+                <Button data-tut="reactour-jobs" bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAllJobs}> Jobs <i className="bx-fw bx bx-chevron-down"></i></Button>
               </PopoverTrigger>
               <PopoverContent>
                 <PopoverArrow bg={useColorModeValue("brand.800", "white")} />
@@ -410,9 +410,9 @@ export const Header = (props) => {
                 </PopoverBody>
               </PopoverContent>
             </Popover>
-            <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
+            <Button data-tut="reactour-analysis" bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToAnalytics}>Analytics</Button>
             {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
-              <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>}
+              <Button data-tut="reactour-company" bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToCompany}>Company</Button>}
             {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
               <Button bg={useColorModeValue("white", "brand.800")} color={useColorModeValue("brand.800", "white")} onClick={renderToIntergration}>Integration</Button>}
           </HStack>) :
@@ -436,8 +436,8 @@ export const Header = (props) => {
           )}
         {isDesktop ? (
           <HStack spacing="2">
-            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiHelpCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
-            <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
+            <IconButton data-tut="reactour-help" color={useColorModeValue("brand.800", "white")} icon={<FiHelpCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
+            <IconButton data-tut="reactour-accounts" color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />
             <Popover trigger="hover" zIndex='99'>
               <PopoverTrigger>

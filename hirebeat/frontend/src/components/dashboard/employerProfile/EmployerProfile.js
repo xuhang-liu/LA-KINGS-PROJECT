@@ -338,7 +338,7 @@ export class EmployerProfile extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="container-fluid mb-5 mt-4 px-5">
+                <Box px='24' mt='12' mb='14' alignItems='center'>
                     <div className="row">
                         <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bxs-dashboard pl-3"></i><span style={{ marginLeft: "1.2rem" }}>Company</span></Heading>
                         <div><h3 style={{ paddingTop: "0.4rem" }}><b>
@@ -823,7 +823,7 @@ export class EmployerProfile extends Component {
                             </div> */}
                         </div>
                     </div>
-                </div>
+                </Box>
                 <Modal onClose={() => { this.hideMethod1() }} size={"5xl"} isOpen={this.state.method_pop1} isCentered>
                     <ModalOverlay />
                     <ModalContent>

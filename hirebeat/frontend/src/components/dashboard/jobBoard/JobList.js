@@ -59,7 +59,7 @@ export const JobList = (props) => {
                                 base: '3',
                                 md: '4',
                             }}
-                            mt="10"
+                            mt="14"
                         >
                             {/* <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft:"1rem" }}>
                                     <div style={{ position: "absolute", left: "3.2rem", marginTop: "0.4rem" }}><i className="bx bx-search bx-sm"></i></div>
@@ -67,7 +67,7 @@ export const JobList = (props) => {
                                         <input placeholder="Search jobs" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange}></input>
                                     </div>
                                 </div> */}
-                            <div className="container-fluid" style={{ marginTop: "1rem" }}>
+                            <Box>
                                 <div className="row interview-txt7" style={{ color: "#7D7D7D", height: "2rem", marginTop: "0.5rem", paddingBottom: "0.5rem" }}>
                                     <div className="col-2"><Select onChange={onFilter} options={options} styles={customStyles} className="select-category-jobs-closed" placeholder={"Status"} isSearchable={false} /></div>
                                     <div className="col-4 d-flex justify-content-start" style={{ paddingLeft: '2.2rem' }}>Job Title</div>
@@ -143,7 +143,7 @@ export const JobList = (props) => {
                                         })
                                         }
                                     </span>}
-                            </div>
+                            </Box>
                         </Box> :
                         <div>
                             <div>

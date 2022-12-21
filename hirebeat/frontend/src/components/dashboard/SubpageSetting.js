@@ -357,7 +357,7 @@ export class SubpageSetting extends Component {
                     }}
                     height="full"
                 >
-                    <Container py="5" height="full">
+                    <Container height="full" mt='12' mb='14' alignItems='center'>
                         <Stack
                             spacing={{
                                 base: '8',
@@ -383,7 +383,7 @@ export class SubpageSetting extends Component {
                             </div>
                             <div>
                                 <div className="row" >
-                                    <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
+                                    <div className="col d-flex align-items-center">
                                         <Text fontSize='xl' color="muted">Account Information</Text>
                                     </div>
                                 </div>

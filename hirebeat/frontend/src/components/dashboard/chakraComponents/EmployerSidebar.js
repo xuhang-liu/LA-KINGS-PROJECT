@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Stack, Text, useColorModeValue, Button, HStack, Heading, IconButton } from '@chakra-ui/react';
+import { Flex, Stack, Text, useColorModeValue, Button, HStack } from '@chakra-ui/react';
 import { FiChevronLeft, FiAlignCenter, FiFileText, FiVideo, FiMessageCircle, FiHeart, FiEdit } from 'react-icons/fi';
 
 export const EmployerSidebar = (props) => (
@@ -26,6 +26,7 @@ export const EmployerSidebar = (props) => (
                 <Stack
                     bg='bg-canvas'
                     boxShadow={useColorModeValue('sm', 'sm-dark')}
+                    borderRadius='10'
                     py={{
                         base: '3',
                         sm: '4',
