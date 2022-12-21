@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { withRouter } from "react-router-dom";
 import { addInterviewQuestion, getAllJobs } from "./../../../../redux/actions/job_actions";
 import { deleteInterviewQuestions } from "./../../../../redux/actions/question_actions";
-import { Box, Text, useColorModeValue, Textarea } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue, Textarea, HStack, Image } from '@chakra-ui/react';
 
 const customStyles = {
     control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
@@ -149,7 +149,7 @@ export class EditQuestion extends Component {
                                     <div className="center-items db-txt3" style={{ marginRight: "1rem", marginLeft: "15px" }}>Category: </div>
                                     <Select value={this.state.categoryOfQuestion} onChange={this.handleChangeCategory} options={options} className="select-category3" styles={customStyles} />
                                 </div>
-                                <div className="category-border" style={{ overflow: "auto", height: "27rem", padding: "0.5rem", marginBottom: "1rem" }}>
+                                <Box className="category-border" style={{ overflow: "auto", height: "27rem", padding: "0.5rem", marginBottom: "1rem" }}>
                                     {this.props.bqList.map((q, index) => {
                                         if (q.category != this.state.categoryOfQuestion.value) {
                                             return null;
@@ -158,16 +158,14 @@ export class EditQuestion extends Component {
                                         let hideId = "hideBtn" + index;
                                         let showId = "showBtn" + index;
                                         return (
-                                            <div>
-                                                <p className="db-txt4">
-                                                    <span id={hideId} type="button" onClick={() => this.fillQuestion(question, hideId, showId)}><img src="https://hirebeat-assets.s3.amazonaws.com/add.png" /></span>
-                                                    <span id={showId} disabled={true} style={{ display: "none" }} type="button" ><img src="https://hirebeat-assets.s3.amazonaws.com/add-grey.png" /></span>
-                                                    &nbsp; {q.description}
-                                                </p>
-                                            </div>
+                                            <HStack p='1'>
+                                                <Image borderRadius='full' id={hideId} type="button" onClick={() => this.fillQuestion(question, hideId, showId)} src="https://hirebeat-assets.s3.amazonaws.com/add.png" alt="icon"></Image>
+                                                <Image borderRadius='full' id={showId} disabled={true} style={{ display: "none" }} type="button" src="https://hirebeat-assets.s3.amazonaws.com/add-grey.png" alt="icon"></Image>
+                                                <Text>{q.description}</Text>
+                                            </HStack>
                                         )
                                     })}
-                                </div>
+                                </Box>
                             </div>
                             <div className="form-group col-6">
                                 {this.props.profile.plan_interval != "Premium" ?

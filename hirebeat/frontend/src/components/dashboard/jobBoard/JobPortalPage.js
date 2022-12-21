@@ -510,29 +510,29 @@ export class JobPortalPage extends Component {
                     lg: 'row',
                 }}
             >
-                <Box position='fixed' width='80' overflowX='hidden' zIndex='9'>
-                    <EmployerSidebar
-                        reviewerStage={this.state.reviewerStage}
-                        portalSubpage={this.state.portalSubpage}
-                        renderPipeline={this.renderPipeline}
-                        renderAllCandidates={this.renderAllCandidates}
-                        renderResumeScreen={this.renderResumeScreen}
-                        getStageTabOrangeDot={this.getStageTabOrangeDot}
-                        renderVideoInterview={this.renderVideoInterview}
-                        renderLiveInterview={this.renderLiveInterview}
-                        renderShortList={this.renderShortList}
-                        renderAISourcing={this.renderAISourcing}
-                        renderSocialMediaShare={this.renderSocialMediaShare}
-                        renderJobBoardShare={this.renderJobBoardShare}
-                        curJob={this.props.job}
-                        setShowSidebarFalse={this.props.setShowSidebarFalse}
-                        setViewPortal={this.props.setViewPortal}
-                        getAllJobs={this.props.getAllJobs}
-                        renderJobEdition={this.props.renderJobEdition}
-                        setJobInfo={this.props.setJobInfo}
-                        reviewer_type={this.props.job?.reviewer_type}
-                    />
-                </Box>
+                {/* <Box position='fixed' width='80' overflowX='hidden' zIndex='9'> */}
+                <EmployerSidebar
+                    reviewerStage={this.state.reviewerStage}
+                    portalSubpage={this.state.portalSubpage}
+                    renderPipeline={this.renderPipeline}
+                    renderAllCandidates={this.renderAllCandidates}
+                    renderResumeScreen={this.renderResumeScreen}
+                    getStageTabOrangeDot={this.getStageTabOrangeDot}
+                    renderVideoInterview={this.renderVideoInterview}
+                    renderLiveInterview={this.renderLiveInterview}
+                    renderShortList={this.renderShortList}
+                    renderAISourcing={this.renderAISourcing}
+                    renderSocialMediaShare={this.renderSocialMediaShare}
+                    renderJobBoardShare={this.renderJobBoardShare}
+                    curJob={this.props.job}
+                    setShowSidebarFalse={this.props.setShowSidebarFalse}
+                    setViewPortal={this.props.setViewPortal}
+                    getAllJobs={this.props.getAllJobs}
+                    renderJobEdition={this.props.renderJobEdition}
+                    setJobInfo={this.props.setJobInfo}
+                    reviewer_type={this.props.job?.reviewer_type}
+                />
+                {/* </Box> */}
                 <Box
                     bg="bg-surface"
                     pt={{
@@ -540,7 +540,7 @@ export class JobPortalPage extends Component {
                         lg: '3',
                     }}
                     flex="1"
-                    ml='80'
+                    // ml='80'
                 >
                     <Box
                         bg="bg-canvas"

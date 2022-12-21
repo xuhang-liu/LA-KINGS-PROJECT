@@ -12,8 +12,9 @@ import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
-import { MyModalShare } from "../DashboardComponents";
-import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
+// import { MyModalShare } from "../DashboardComponents";
+import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack } from '@chakra-ui/react';
+import { FiInfo } from 'react-icons/fi';
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -543,16 +544,14 @@ export class EmployerProfile extends Component {
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <Text fontSize='xl' color="muted">Social Media
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Social Media links will appear on your company branding page.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </Text>
+                                                    <Tooltip label='Social Media links will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Team Review
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
@@ -647,16 +646,14 @@ export class EmployerProfile extends Component {
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <Text fontSize='xl' color="muted">Basic Info
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Company basic information will appear on your company branding page.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </Text>
+                                                    <Tooltip label='Company basic information will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Basic Info
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
@@ -749,16 +746,14 @@ export class EmployerProfile extends Component {
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <Text fontSize='xl' color="muted">Company Overview
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Company Overview will appear on the top section of your Job Posting.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </Text>
+                                                    <Tooltip label='Company Overview will appear on the top section of your Job Posting.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Company Overview
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>

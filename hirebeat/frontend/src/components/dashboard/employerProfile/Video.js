@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import ReactPlayer from 'react-player';
-import { Text } from '@chakra-ui/react';
+import { Text, Tooltip, HStack } from '@chakra-ui/react';
+import { FiInfo } from 'react-icons/fi';
 var ReactS3Uploader = require("react-s3-uploader");
 
 export class Video extends Component {
@@ -161,16 +162,14 @@ export class Video extends Component {
       <div>
         <div style={{ padding: "2rem" }}>
           <div className="row" style={{ marginBottom: "1rem" }}>
-            <Text fontSize='xl' color="muted">Video Profile
-              <span className="tool_tip ml-2">
-                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                <p className="tool_submenu container" style={{ width: "14rem" }}>
-                  <div>
-                    You can upload a short intro or welcome message of your company. This will appear on the company branding page.
-                  </div>
-                </p>
-              </span>
-            </Text>
+            <Tooltip label='You can upload a short intro or welcome message of your company. This will appear on the company branding page.' aria-label='A tooltip' fontSize='sm'>
+              <HStack>
+                <Text color="muted" fontSize='xl' fontWeight='bold'>
+                  Video Profile
+                </Text>
+                <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+              </HStack>
+            </Tooltip>
           </div>
           <ReactPlayer id="rw-video" url={this.props.videoURL} controls={true} width={"100%"} height={"100%"} />
           {(this.props.videoURL != "" && this.props.videoURL != null) ?

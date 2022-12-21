@@ -19,13 +19,27 @@ export const EmployerSidebar = (props) => (
             base: '4',
             sm: '6',
         }}
-        style={{ height: "93vh" }}
+        style={{ height: "auto", minHeight: "100vh" }}
     >
         <Stack justify="space-between" spacing="1" width="full">
             <Stack spacing="8" shouldWrapChildren>
-                <Stack>
-                    <HStack>
-                        <IconButton aria-label='Search database' icon={<FiChevronLeft />} onClick={() => { props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); props.getAllJobs(this.props.user.id, 1, "", "", ""); props.setShowSidebarFalse(); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} />
+                <Stack
+                    bg='bg-canvas'
+                    boxShadow={useColorModeValue('sm', 'sm-dark')}
+                    py={{
+                        base: '3',
+                        sm: '4',
+                    }}
+                    px={{
+                        base: '2',
+                        sm: '3',
+                    }}
+                >
+                    <HStack spacing='2'>
+                        <FiChevronLeft size='20' style={{ cursor: "pointer" }} onClick={() => { props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); props.getAllJobs(this.props.user.id, 1, "", "", ""); props.setShowSidebarFalse(); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} />
+                        <Text fontWeight="bold" fontSize="lg" color="muted">{props?.curJob?.job_details?.job_title}</Text>
+                    </HStack>
+                    <HStack spacing='2' pl='6'>
                         {props?.curJob?.job_details?.is_closed == 0 ?
                             <i className='bx-fw bx bxs-circle' style={{ color: "#13c4a1" }}></i>
                             : <i className='bx-fw bx bxs-circle' style={{ color: "#090d3a" }}></i>}
@@ -36,9 +50,8 @@ export const EmployerSidebar = (props) => (
                         {props?.curJob?.job_details?.is_closed == 2 &&
                             <Text fontSize="md" color="subtle" fontWeight="medium">Closed</Text>}
                         {(props.reviewer_type != "subr") &&
-                            <IconButton aria-label='Search database' icon={<FiEdit />} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }} />}
+                            <FiEdit size='16' style={{ cursor: "pointer" }} onClick={() => { props.setJobInfo(props.curJob.job_details); props.renderJobEdition() }} />}
                     </HStack>
-                    <Heading as='h6' size='xs' color="muted">{props?.curJob?.job_details?.job_title}</Heading>
                 </Stack>
                 <Stack>
                     <Text fontSize="sm" color="subtle" fontWeight="medium">
