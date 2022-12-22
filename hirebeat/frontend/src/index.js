@@ -19,7 +19,8 @@ const config = {
 const myTheme = extendTheme(
      {
           colors: {
-               ...theme.colors, brand: {
+               ...theme.colors, 
+               brand: {
                     100: "#afd3ff",
                     200: "#7db6ff",
                     300: "#4b99ff",
@@ -28,6 +29,16 @@ const myTheme = extendTheme(
                     600: "#004cb4",
                     700: "#003682",
                     800: "#090d3a",
+               },
+               blue: {
+                    100: "#BEE3F8",
+                    200: "#90CDF4",
+                    300: "#63B3ED",
+                    400: "#4299E1",
+                    500: "#006dff",
+                    600: "#2B6CB0",
+                    700: "#2C5282",
+                    800: "#2A4365",
                }
           },
           styles: {
@@ -37,6 +48,13 @@ const myTheme = extendTheme(
                          fontFamily: 'Inter, Segoe UI',
                     },
                },
+          },
+          components: {
+               Button: {
+                    baseStyle: {
+                         borderRadius: '8px',
+                       },
+               }
           },
      },
      config,

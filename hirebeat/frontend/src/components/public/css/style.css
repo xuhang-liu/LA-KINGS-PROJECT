@@ -243,7 +243,7 @@ p:last-child {
   background-color: #006dff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -263,7 +263,7 @@ p:last-child {
   background-color: #080a3c;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -283,7 +283,7 @@ p:last-child {
   background-color: #006dff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 20px;
   padding-left: 25px;
@@ -303,7 +303,7 @@ p:last-child {
   background-color: #e8edfc;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -323,7 +323,7 @@ p:last-child {
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -343,7 +343,7 @@ p:last-child {
   background-color: #ff6b00;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -363,7 +363,7 @@ p:last-child {
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 25px;
@@ -383,7 +383,7 @@ p:last-child {
   background-color: #5a5b5c;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;
@@ -403,7 +403,7 @@ p:last-child {
   background-color: #ffffff;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 25px;
@@ -423,7 +423,7 @@ p:last-child {
   background-color: #080a3c;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 3px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   padding-left: 50px;

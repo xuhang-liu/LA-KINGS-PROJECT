@@ -13,7 +13,7 @@ var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
 // import { MyModalShare } from "../DashboardComponents";
-import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack } from '@chakra-ui/react';
+import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack, Button } from '@chakra-ui/react';
 import { FiInfo } from 'react-icons/fi';
 
 function dataURItoBlob(dataURI) {
@@ -498,8 +498,8 @@ export class EmployerProfile extends Component {
                                         <div className="row">
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
-                                                <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
-                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod1}>View Details</button>
+                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
+                                                <Button colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -519,8 +519,8 @@ export class EmployerProfile extends Component {
                                         <div className="row">
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
-                                                <Text fontSize='md' color="muted" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
-                                                <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod2}>View Details</button>
+                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
+                                                <Button colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -566,9 +566,9 @@ export class EmployerProfile extends Component {
                                                     </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.linkedin !== null && this.props.employerProfileDetail.linkedin !== "") ? this.props.employerProfileDetail.linkedin : "Link to your LinkedIn"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
                                             <div className="row px-2">
@@ -578,9 +578,9 @@ export class EmployerProfile extends Component {
                                                     </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.facebook !== null && this.props.employerProfileDetail.facebook !== "") ? this.props.employerProfileDetail.facebook : "Link to your facebook"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
                                             <div className="row px-2">
@@ -590,9 +590,9 @@ export class EmployerProfile extends Component {
                                                     </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.twitter !== null && this.props.employerProfileDetail.twitter !== "") ? this.props.employerProfileDetail.twitter : "Link to your Twitter"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
                                         </div> :
@@ -663,27 +663,27 @@ export class EmployerProfile extends Component {
                                             </div>
                                             <div className="mt-2 px-2">
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Location</Text>
-                                                <p className="profile-p4">
+                                                <Text>
                                                     {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
-                                                </p>
+                                                </Text>
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
-                                                <p className="profile-p4">
+                                                <Text>
                                                     {(this.props.employerProfileDetail.company_size !== null && this.props.employerProfileDetail.company_size !== "") ? this.props.employerProfileDetail.company_size : "Employees"}
-                                                </p>
+                                                </Text>
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
-                                                <p className="profile-p4">
+                                                <Text>
                                                     {(this.props.employerProfileDetail.company_type !== null && this.props.employerProfileDetail.company_type !== "") ? this.props.employerProfileDetail.company_type : "Company Field"}
-                                                </p>
+                                                </Text>
                                             </div>
                                             <div className="px-2" style={{ marginTop: "1rem" }}>
                                                 <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
-                                                <p className="profile-p4">
+                                                <Text>
                                                     {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
-                                                </p>
+                                                </Text>
                                             </div>
                                         </div> :
                                         <div>
@@ -761,10 +761,10 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="profile-p4 mt-3 px-2" style={{ fontWeight: "400" }}>
+                                            <Text mt='5' px='3' style={{ fontWeight: "500" }}>
                                                 {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
                                                     parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
-                                            </p>
+                                            </Text>
                                         </div> :
                                         <div>
                                             <div className="row mb-3">

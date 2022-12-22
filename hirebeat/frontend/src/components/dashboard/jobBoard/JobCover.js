@@ -6,7 +6,7 @@ import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import axios from "axios";
 import {
-  Box, Button, Icon, Input, InputGroup, InputLeftElement, Stack
+  Box, Button, Icon, Input, InputGroup, InputLeftElement, Stack, HStack, Heading
 } from '@chakra-ui/react';
 import { FiSearch, FiPlus } from 'react-icons/fi';
 
@@ -112,7 +112,11 @@ export const JobCover = (props) => {
 
       {((!viewPortal) || (props.job_back_home)) ?
         <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980 pt-5">
-          <div ><h3><b style={{ fontSize: "1.2rem" }}><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b>{props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) && <span onClick={openTour}><i className="bx-fw bx bxs-error-circle bx-xs" style={{ paddingLeft: "0.4rem", color: "#ff6b00", cursor: "pointer" }}></i><span style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight: "600", fontFamily: "Inter, Segoe UI", cursor: "pointer" }}>Getting Started!</span></span>}</h3>
+          <div>
+            <HStack>
+              <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-briefcase"></i><span style={{ marginLeft: "0.6rem" }}>Jobs</span></Heading>
+              {props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) && <span onClick={openTour}><i className="bx bxs-error-circle bx-xs" style={{ paddingLeft: "0.4rem", color: "#ff6b00", cursor: "pointer" }}></i><span style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight: "600", fontFamily: "Inter, Segoe UI", cursor: "pointer" }}>Getting Started!</span></span>}
+            </HStack>
             <Stack
               direction={{
                 base: 'column',
