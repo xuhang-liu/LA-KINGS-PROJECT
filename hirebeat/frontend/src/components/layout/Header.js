@@ -435,7 +435,7 @@ export const Header = (props) => {
             </HStack>
           )}
         {isDesktop ? (
-          <HStack spacing="2">
+          <HStack spacing="3">
             <IconButton data-tut="reactour-help" color={useColorModeValue("brand.800", "white")} icon={<FiHelpCircle fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToHelp} />
             <IconButton data-tut="reactour-accounts" color={useColorModeValue("brand.800", "white")} icon={<FiSettings fontSize="1rem" />} aria-label="Dark Mode" onClick={renderToSettings} />
             <IconButton color={useColorModeValue("brand.800", "white")} icon={<FiSun fontSize="1rem" />} aria-label="Dark Mode" onClick={toggleColorMode} />

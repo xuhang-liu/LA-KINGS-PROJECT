@@ -247,7 +247,7 @@ const MergeIntergration = (props) => {
                                     <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Once integrated, follow the instructions below to conduct <span style={{ color: "#ff6b00" }}>one-way video interviews</span> through HireBeat.</Text>
                                 </div>
                                 <HStack spacing='5' mt='6'>
-                                    <Button onClick={open} colorScheme='blue'>
+                                    <Button _hover={{ bg: "orange.500" }} onClick={open} colorScheme='blue'>
                                         Integrate
                                     </Button>
                                     <Text className="pt-4" style={{ fontSize: "0.8rem", fontWeight: "500" }}>Powered by Merge</Text>
@@ -270,7 +270,7 @@ const MergeIntergration = (props) => {
                                     <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Import job, job stage, and candidates</Text>
                                     <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Initiate the import process by clicking <span style={{ color: "#ff6b00" }}>Synchronize</span>. Then select the job from the dropdown menu and then specify the job stage.</Text>
                                     <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Click <span style={{ color: "#ff6b00" }}>Confirm</span> and we will import all the candidates that are currently under your specified job stage.</Text>
-                                    <Button onClick={getMergeData} colorScheme='blue' style={{ marginTop: "1rem" }}>
+                                    <Button _hover={{ bg: "orange.500" }} onClick={getMergeData} colorScheme='blue' style={{ marginTop: "1rem" }}>
                                         Synchronize
                                     </Button>
                                     <div className="col-4" style={{ zIndex: "9999", marginTop: "1.5rem" }}>
@@ -297,7 +297,7 @@ const MergeIntergration = (props) => {
                                                 }}
                                                 required />
                                         </div>}
-                                    <Button onClick={createCanFromMerge} colorScheme='blue' style={{ marginTop: "2rem" }}>
+                                    <Button _hover={{ bg: "orange.500" }} onClick={createCanFromMerge} colorScheme='blue' style={{ marginTop: "2rem" }}>
                                         Confirm
                                     </Button>
                                 </div>

@@ -110,7 +110,7 @@ const EmailPreference = (props) => {
                         <button
                             type="submit"
                             className={disabled ? "disabled-btn" : "default-btn"}
-                            style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}
+                            style={{ paddingLeft: "25px", marginTop: "2rem", textDecoration: "none" }}
                             disabled={disabled}
                         >
                             Save Preferences

@@ -499,7 +499,7 @@ export class EmployerProfile extends Component {
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
                                                 <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
-                                                <Button colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
+                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -520,7 +520,7 @@ export class EmployerProfile extends Component {
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
                                                 <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
-                                                <Button colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
+                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>

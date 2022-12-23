@@ -19,7 +19,7 @@ const config = {
 const myTheme = extendTheme(
      {
           colors: {
-               ...theme.colors, 
+               ...theme.colors,
                brand: {
                     100: "#afd3ff",
                     200: "#7db6ff",
@@ -39,6 +39,10 @@ const myTheme = extendTheme(
                     600: "#2B6CB0",
                     700: "#2C5282",
                     800: "#2A4365",
+               },
+               orange: {
+                    500: "#ff612f",
+
                }
           },
           styles: {
@@ -53,7 +57,7 @@ const myTheme = extendTheme(
                Button: {
                     baseStyle: {
                          borderRadius: '8px',
-                       },
+                    },
                }
           },
      },

@@ -311,7 +311,7 @@ export class AllCandidates extends Component {
                                                     {(!this.props.profile.is_subreviwer && (this.props.curJob.job_details.gh_current_stage_id == "" || this.props.curJob.job_details.gh_current_stage_id == null)) &&
                                                         <div>
                                                             {!this.props.isClosed &&
-                                                                <Button colorScheme='blue' leftIcon={<FiPlus />} onClick={this.addNewCandidates}>Candidates</Button>
+                                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' leftIcon={<FiPlus />} onClick={this.addNewCandidates}>Candidates</Button>
                                                             }
                                                         </div>
                                                     }

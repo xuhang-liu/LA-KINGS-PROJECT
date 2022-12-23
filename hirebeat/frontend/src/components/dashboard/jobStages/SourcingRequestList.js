@@ -514,7 +514,7 @@ export class SourcingRequestList extends React.Component {
                             />
                             <Input placeholder='Search candidate' value={this.state.keyWords} onChange={this.onChange} />
                         </InputGroup>
-                        <Stack><Button leftIcon={<FiPlus />} colorScheme='blue' onClick={this.setShowRequest}>Sourcing Candidates</Button></Stack>
+                        <Stack><Button _hover={{ bg: "orange.500" }} leftIcon={<FiPlus />} colorScheme='blue' onClick={this.setShowRequest}>Sourcing Candidates</Button></Stack>
                     </HStack>
                     <Box
                         bg="bg-surface"

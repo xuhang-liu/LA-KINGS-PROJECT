@@ -193,6 +193,7 @@ export const Applicant = (props) => {
                                         onClick={() => inviteAgain()}
                                         size='sm'
                                         colorScheme='blue'
+                                        _hover={{ bg: "orange.500" }}
                                     >
                                         Resend
                                     </Button>)
@@ -201,6 +202,7 @@ export const Applicant = (props) => {
                                     onClick={() => inviteAgain()}
                                     size='sm'
                                     colorScheme='blue'
+                                    _hover={{ bg: "orange.500" }}
                                 >
                                     Invite
                                 </Button>

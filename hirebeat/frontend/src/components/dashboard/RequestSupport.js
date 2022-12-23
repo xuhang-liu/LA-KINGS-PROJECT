@@ -218,6 +218,7 @@ export class RequestSupport extends React.Component {
             <Button
               type="submit"
               colorScheme='blue'
+              _hover={{ bg: "orange.500" }}
             >
               Submit
             </Button>

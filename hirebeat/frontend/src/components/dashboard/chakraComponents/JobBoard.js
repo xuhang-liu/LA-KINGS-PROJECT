@@ -192,7 +192,7 @@ export const JobBoard = (props) => {
                         <Text color='muted' fontSize='sm'>Appcast uses programmatic distribution across a global and diversified set of job sites that allows the use of data and algorithms to determine where your job ads will reach the best candidates..</Text>
                         <HStack mt='5'>
                             <Spacer />
-                            <Button type='button' colorScheme='orange' onClick={handlePremiumJobUpgrade}>Add</Button>
+                            <Button _hover={{ bg: "blue.400" }} type='button' colorScheme='orange' onClick={handlePremiumJobUpgrade}>Add</Button>
                         </HStack>
                     </Box>
                     <Box
@@ -212,7 +212,7 @@ export const JobBoard = (props) => {
                         <Text color='muted' fontSize='sm'>JobTarget connects to 25,000+ job boards and also offers automatic programmatic advertising. All orders are made directly with JobTarget.</Text>
                         <HStack mt='5'>
                             <Spacer />
-                            <Button type='button' colorScheme='blue' onClick={openJobTportal}>
+                            <Button _hover={{ bg: "orange.500" }} type='button' colorScheme='blue' onClick={openJobTportal}>
                                 {loading ? <span><Spinner animation="border" size="sm" /> loading</span> : <span>Manage</span>}
                             </Button>
                             {isSafari &&

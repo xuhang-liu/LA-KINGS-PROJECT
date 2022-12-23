@@ -572,7 +572,7 @@ export class SubpageSetting extends Component {
                                                     title="Alphabet letters only!"></Input>
                                             </VStack>
                                         </SimpleGrid>
-                                        <Button bg='brand.500' color='white' mt='5' type="submit" onClick={this.PasswordCheck}>Update Password</Button>
+                                        <Button _hover={{ bg: "orange.500" }} colorScheme='blue' mt='5' type="submit" onClick={this.PasswordCheck}>Update Password</Button>
                                     </FormControl>
                                 </Box>
                             </div>
@@ -690,7 +690,7 @@ export class SubpageSetting extends Component {
                                             </HStack>
                                             {this.state.codeMsg.length != 0 ? <div style={{ border: "1px solid #B7EB8F", backgroundColor: "#F6FFED", padding: "10px", verticalAlign: "middle" }}><HStack spacing='2'><i className="bx bxs-check-circle" style={{ color: "green" }}></i><Text ml='3' fontSize='md' color="muted">{this.state.codeMsg}</Text></HStack></div> : null}
                                             <Box>
-                                                <Button bg='brand.500' color='white' mt='4' onClick={this.stripeCustomerPortal}>Manage Subscription</Button>
+                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' mt='4' onClick={this.stripeCustomerPortal}>Manage Subscription</Button>
                                             </Box>
                                             <Stack spacing='3'>
                                                 <FormControl isRequired>
@@ -703,7 +703,7 @@ export class SubpageSetting extends Component {
                                                         placeholder="Enter promo code"
                                                         isRequired={true}></Input>
                                                     {this.state.codeErr.length != 0 ? <HStack><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><Text fontSize='md' color="muted">{this.state.codeErr}</Text></HStack> : null}
-                                                    <Button bg='brand.500' color='white' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
+                                                    <Button _hover={{ bg: "orange.500" }} colorScheme='blue' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
                                                 </FormControl>
                                             </Stack>
                                         </Stack>
@@ -764,7 +764,7 @@ export class SubpageSetting extends Component {
                                                         placeholder="Enter promo code"
                                                         isRequired={true}></Input>
                                                     {this.state.codeErr.length != 0 ? <HStack><i className="bx bxs-x-circle" style={{ color: '#FB0000' }}></i><Text fontSize='md' color="muted">{this.state.codeErr}</Text></HStack> : null}
-                                                    <Button bg='brand.500' color='white' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
+                                                    <Button _hover={{ bg: "orange.500" }} colorScheme='blue' mt='4' type="submit" onClick={this.codeCheck}>Apply</Button>
                                                 </FormControl>
                                             </Stack>
                                         </Stack>
@@ -773,8 +773,8 @@ export class SubpageSetting extends Component {
                             {/* User Email Preference */}
                             {this.props.profile.is_employer ? <EmailPreference userId={this.props.user.id} /> : null}
                             {/* User Deletion */}
-                            {this.props.profile.is_employer ? <div className="container" style={{ marginTop: " 30px" }}>
-                                {this.state.deleteEnable ? <button type="submit" onClick={this.handleConfirm} className="default-btn" style={{ paddingLeft: "25px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Delete Account</button>
+                            {this.props.profile.is_employer ? <div className="container-fluid" style={{ marginTop: " 30px" }}>
+                                {this.state.deleteEnable ? <Button _hover={{ bg: "orange.500" }} colorScheme='gray' type="submit" onClick={this.handleConfirm} style={{ float: "right" }}>Delete Account</Button>
                                     : <button disabled className="default-btn" style={{ cursor: "not-allowed", paddingLeft: "25px", textDecoration: "none", color: "#7A7A7A", backgroundColor: "rgb(243, 246, 249)", border: "1px solid #7A7A7A", float: "right" }}>Deletion Scheduled</button>}
                             </div> : null}
                         </Stack>
