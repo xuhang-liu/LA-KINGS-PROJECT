@@ -401,7 +401,7 @@ export class EmployerProfile extends Component {
                                 }}
                                 textAlign="left"
                             >
-                                <div style={{ padding: "2rem" }}>
+                                <div>
                                     {!this.state.isEditInfo ?
                                         <div className="row">
                                             <div className="col-3">
@@ -494,7 +494,7 @@ export class EmployerProfile extends Component {
                                     }}
                                     textAlign="center"
                                 >
-                                    <div style={{ padding: "2rem" }}>
+                                    <div>
                                         <div className="row">
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
@@ -515,7 +515,7 @@ export class EmployerProfile extends Component {
                                     }}
                                     textAlign="center"
                                 >
-                                    <div style={{ padding: "2rem" }}>
+                                    <div>
                                         <div className="row">
                                             <div className="col">
                                                 <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
@@ -539,7 +539,7 @@ export class EmployerProfile extends Component {
                                 textAlign="left"
                                 mt='8'
                             >
-                                <div style={{ padding: "2rem" }}>
+                                <div>
                                     {!this.state.isEditMedia ?
                                         <div>
                                             <div className="row">
@@ -641,7 +641,7 @@ export class EmployerProfile extends Component {
                                 textAlign="left"
                                 mt='8'
                             >
-                                <div style={{ padding: "2rem" }}>
+                                <div>
                                     {!this.state.isEditBasicInfo ?
                                         <div>
                                             <div className="row">
@@ -741,7 +741,7 @@ export class EmployerProfile extends Component {
                                 }}
                                 textAlign="left"
                             >
-                                <div style={{ padding: "2rem" }}>
+                                <div>
                                     {!this.state.isEditSummary ?
                                         <div>
                                             <div className="row">

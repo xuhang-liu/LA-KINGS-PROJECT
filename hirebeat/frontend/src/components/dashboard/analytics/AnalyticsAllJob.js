@@ -111,7 +111,7 @@ export class AnalyticsAllJob extends Component {
                                 md: '6',
                             }}
                         >
-                            <div style={{ padding: "0.6rem" }}>
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <Text fontSize='md' color="muted">Jobs by status</Text>
@@ -135,7 +135,7 @@ export class AnalyticsAllJob extends Component {
                                 md: '6',
                             }}
                         >
-                            <div style={{ padding: "0.6rem" }}>
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <Text fontSize='md' color="muted">Active Pipeline</Text>
@@ -161,7 +161,7 @@ export class AnalyticsAllJob extends Component {
                                 md: '6',
                             }}
                         >
-                            <div style={{ padding: "0.6rem" }}>
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="user-pin" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <Text fontSize='md' color="muted">Historical Pass-Through Rate</Text>
@@ -185,7 +185,7 @@ export class AnalyticsAllJob extends Component {
                                 md: '6',
                             }}
                         >
-                            <div style={{ padding: "0.6rem" }}>
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
                                     <Text fontSize='md' color="muted">Active Job Duration</Text>

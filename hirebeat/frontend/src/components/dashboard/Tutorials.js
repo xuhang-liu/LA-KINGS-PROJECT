@@ -5,7 +5,7 @@ import { Text } from '@chakra-ui/react';
 export default class Tutorials extends React.Component {
   render() {
     return (
-      <div style={{ padding: "1rem" }}>
+      <div>
         <Text fontSize='xl' color="muted" style={{ paddingLeft: "1.6rem" }}>Tutorial Videos</Text>
         <section className="grid_tutorialvideo">
           <div className="item1_tutorialvideo">

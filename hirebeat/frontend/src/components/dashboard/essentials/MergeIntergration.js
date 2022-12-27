@@ -238,7 +238,7 @@ const MergeIntergration = (props) => {
                             md: '6',
                         }}
                     >
-                        <div className="form-row" style={{ marginTop: "1%" }}>
+                        <div className="form-row">
                             <div className="form-group col">
                                 <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Integrate with your ATS</Text>
                                 <div>

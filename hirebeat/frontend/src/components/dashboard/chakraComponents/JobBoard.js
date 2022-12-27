@@ -153,7 +153,7 @@ export const JobBoard = (props) => {
                 >
                     <Image
                         objectFit='cover'
-                        src='https://hirebeat-assets.s3.amazonaws.com/Employer/ziprecruiter_logo.png'
+                        src='https://hirebeat-assets.s3.amazonaws.com/Employer/ziprecruiter_logo1.png'
                         alt='Dan Abramov'
                     />
                     <Flex mb='5' mt='5'>
@@ -179,7 +179,7 @@ export const JobBoard = (props) => {
                     >
                         <Image
                             objectFit='cover'
-                            src='https://hirebeat-assets.s3.amazonaws.com/Employer/appcast_logo.png'
+                            src='https://hirebeat-assets.s3.amazonaws.com/Employer/appcast_logo1.png'
                             alt='Dan Abramov'
                         />
                         <Text mt='5' color='muted' fontWeight='bold' fontSize='md'>Appcast</Text>
@@ -204,7 +204,7 @@ export const JobBoard = (props) => {
                     >
                         <Image
                             objectFit='cover'
-                            src='https://hirebeat-assets.s3.amazonaws.com/Employer/jobtarget_logo.png'
+                            src='https://hirebeat-assets.s3.amazonaws.com/Employer/jobtarget_logo1.png'
                             alt='Dan Abramov'
                         />
                         <Text mt='5' mb='5' color='muted' fontWeight='bold' fontSize='md'>Job Target</Text>

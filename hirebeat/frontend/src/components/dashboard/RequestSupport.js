@@ -120,7 +120,7 @@ export class RequestSupport extends React.Component {
 
   render() {
     return (
-      <div style={{ padding: "1rem" }}>
+      <div>
         <Text fontSize='xl' color="muted" style={{ paddingLeft: "25px" }}>Submit a Support Request</Text>
         <form onSubmit={this.requestSubmit} style={{ padding: "10px" }}>
           <div style={{ display: "flex" }}>
