@@ -9,7 +9,7 @@ import Select from 'react-select';
 import { MyModalUpgrade } from "../DashboardComponents";
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton, WhatsappShareButton } from "react-share";
 import axios from "axios";
-import { useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react';
+import { useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Text } from '@chakra-ui/react';
 
 const customStyles = {
     control: styles => ({ ...styles, border: "none", marginTop: "-1rem", background: useColorModeValue("#ffffff", "#1a202c") }),
@@ -468,7 +468,7 @@ export class JobCard extends Component {
                         <ModalCloseButton />
                         <ModalBody>
                             <div class="container py-4">
-                                <h3 className="profile-h3" style={{ textAlign: "center", marginBottom: "2rem" }}>Share this Job</h3>
+                                <Text color='muted' style={{ textAlign: "center", marginBottom: "2rem", fontSize: "1.25rem", fontWeight: "600" }}>Share this Job</Text>
                                 <div className="row ml-0" style={{ position: "relative", background: "#F4F5FD", borderRadius: "5px", border: "1px solid #006dff", width: "90%", height: "3rem", left: "2rem" }}>
                                     <div className="pt-2 pl-2" style={{ color: "#090D3A", fontSize: "1.4rem", fontWeight: "500", alignItems: "center" }}>
                                         <p style={{ fontSize: "0.8rem" }} onClick={() => { this.copyAlert(); navigator.clipboard.writeText(this.props.job.job_details.job_url?.replaceAll(' ', '%20')); this.disableShowShare() }}>{this.props.job.job_details.job_url}</p>
@@ -481,7 +481,7 @@ export class JobCard extends Component {
                                     </div>
                                 </div>
                                 <div id="resume-hr"><hr /></div>
-                                <p className="share-p">Share on other platforms</p>
+                                <Text className="share-p">Share on other platforms</Text>
                                 <div className="single-footer-widget1" style={{ textAlign: 'center' }}>
                                     <ul className="social">
                                         <li>
