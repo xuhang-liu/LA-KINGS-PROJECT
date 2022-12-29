@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import ReactPlayer from 'react-player';
-import { Text, Tooltip, HStack } from '@chakra-ui/react';
+import { Text, Tooltip, HStack, Button } from '@chakra-ui/react';
 import { FiInfo } from 'react-icons/fi';
 var ReactS3Uploader = require("react-s3-uploader");
 
@@ -174,9 +174,9 @@ export class Video extends Component {
           <ReactPlayer id="rw-video" url={this.props.videoURL} controls={true} width={"100%"} height={"100%"} />
           {(this.props.videoURL != "" && this.props.videoURL != null) ?
             <div className="row d-flex justify-content-start mt-3" style={{ paddingLeft: "0.5rem" }}>
-              <button onClick={this.selectFile} className="profile-btn" style={{ color: "#006dff" }}>Upload New</button>
+              <Button onClick={this.selectFile} colorScheme='blue'>Upload New</Button>
               {/*https://hirebeat-employer-profile-video.s3.amazonaws.com/1617996634000.mp4*/}
-              <button onClick={this.deleteAlert} className="profile-btn" style={{ color: "#7e8993", marginLeft: "0.5rem" }}>Remove</button>
+              <Button onClick={this.deleteAlert} colorScheme='gray' style={{ marginLeft: "0.5rem" }}>Remove</Button>
               <ReactS3Uploader
                 style={{ display: "none" }}
                 id="uploadFile"
