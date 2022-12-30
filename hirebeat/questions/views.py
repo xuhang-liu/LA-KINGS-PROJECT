@@ -254,6 +254,7 @@ def get_posted_jobs(request):
                 # get vote rate
                 applicant["num_vote_yes"] = 0
                 applicant["num_votes"] = 0
+                applicant["emailStatus"] = ""
                 if stage != "":
                     applicant["num_vote_yes"] = ReviewerEvaluation.objects.filter(
                         applicant_email=applicant["email"], position_id=positions_id, evaluation=1, current_stage=stage).count()
@@ -271,7 +272,14 @@ def get_posted_jobs(request):
                         applicant["answers"] = candidate[0].answers
                         applicant["qualifications"] = candidate[0].qualifications
                         applicant["must_haves"] = candidate[0].must_haves
-
+                # get applicant email status
+                email_jobs = Jobs.objects.filter(positions_id=position)[0]
+                emailLogs = Email_Logs.objects.filter(email=applicant["email"], jobs=email_jobs)
+                if len(emailLogs)>0:
+                    if emailLogs[0].status == 'opened':
+                        applicant["emailStatus"] = "Email Opened"
+                    elif emailLogs[0].status == 'clicked':
+                        applicant["emailStatus"] = "Email Clicked"
 
             # get each applicant user_id, if not registered, the user_id will be -1
             if stage == "Short List":

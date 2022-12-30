@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import 'boxicons';
 import ReactApexChart from "react-apexcharts";
+import { Box, Text } from '@chakra-ui/react';
 
 export class AnalyticsAllJob extends Component {
     constructor(props) {
@@ -98,78 +99,110 @@ export class AnalyticsAllJob extends Component {
 
     render() {
         return (
-            <div className="container-xl">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
-                            <div style={{ padding: "0.6rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Jobs by status</h3>
+                                    <Text fontSize='md' color="muted">Jobs by status</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
-                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A summary of all jobs broken down by status.</p>
+                                    <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A summary of all jobs broken down by status.</p>
                                 </div>
                                 <div className="row pl-2">
                                     <ReactApexChart options={this.state.options1} series={this.state.series1} type="bar" height={250} width={500} />
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
-                            <div style={{ padding: "0.6rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="shopping-bags" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Active Pipeline</h3>
+                                    <Text fontSize='md' color="muted">Active Pipeline</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
-                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A summary of all active applications broken down by stage.</p>
+                                    <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A summary of all active applications broken down by stage.</p>
                                 </div>
                                 <div className="row pl-2">
                                     <ReactApexChart options={this.state.options2} series={this.state.series2} type="bar" height={250} width={500} />
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
-                <div className="row pb-3">
+                <div className="row pb-3 mt-5">
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
-                            <div style={{ padding: "0.6rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="user-pin" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Historical Pass-Through Rate</h3>
+                                    <Text fontSize='md' color="muted">Historical Pass-Through Rate</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
-                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>Pass-through rate is the percentage of applicants moved forward from the current stage to the next. Here is a summary of the pass-through rates of all archived jobs.</p>
+                                    <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>Pass-through rate is the percentage of applicants moved forward from the current stage to the next. Here is a summary of the pass-through rates of all archived jobs.</p>
                                 </div>
                                 <div className="row d-flex justify-content-center">
                                     <ReactApexChart options={this.state.options3} series={this.state.series3} type="radialBar" height={350} />
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                     <div className="col-6">
-                        <div className="chart-bg" style={{ marginTop: "2rem" }}>
-                            <div style={{ padding: "0.6rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                        >
+                            <div>
                                 <div className="row" style={{ alignItems: "center", marginBottom: "0.6rem" }}>
                                     <box-icon type="solid" name="category-alt" size="sm" color="#006dff" style={{ marginLeft: "1rem" }}></box-icon>
-                                    <h3 className="chart-legend">Active Job Duration</h3>
+                                    <Text fontSize='md' color="muted">Active Job Duration</Text>
                                 </div>
                                 <div className="row px-4" style={{ alignItems: "center", marginBottom: "1.6rem" }}>
-                                    <p style={{color:"#7e8993", fontSize:"0.8rem"}}>A list of all active jobs that haven't been filled. The number of days is from when the job was first published until now.</p>
+                                    <p style={{ color: "#7e8993", fontSize: "0.8rem" }}>A list of all active jobs that haven't been filled. The number of days is from when the job was first published until now.</p>
                                 </div>
-                                <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "#090d3a" }}>
+                                <div className="row pl-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600", color: "muted" }}>
                                     <div className="col-9" style={{ borderRight: "1px solid #090d3a " }}>Job Title</div>
                                     <div className="col-3" style={{ textAlign: 'center' }}>Days Open</div>
                                 </div>
                                 <hr />
-                                <div className="row pl-2 pb-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "500", color: "#090d3a" }}>
+                                <div className="row pl-2 pb-2" style={{ fontFamily: "Inter, Segoe UI", fontWeight: "500", color: "muted" }}>
                                     <div className="col-9" style={{ borderRight: "1px solid #090d3a " }}>
                                         {this.props.alljobAnaInfo?.job_titles.map((t, index) => {
                                             return (
-                                                <div className="pt-2">{(t?.length>46)?(t?.substring(0,44)+"..."):t}</div>
+                                                <div className="pt-2">{(t?.length > 46) ? (t?.substring(0, 44) + "...") : t}</div>
                                             )
                                         })}
                                     </div>
@@ -182,7 +215,7 @@ export class AnalyticsAllJob extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
                 </div>
             </div>

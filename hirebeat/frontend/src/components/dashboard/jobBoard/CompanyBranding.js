@@ -100,7 +100,7 @@ const CompanyBranding = (props) => {
                                         {props.website != "" &&
                                             <div>
                                                 <p style={{ color: "#090D3A", fontWeight: "600", fontSize: "15px", marginBottom: "0rem" }}>Website</p>
-                                                <a className="website" target="_blank" rel="noreferrer" style={{ color: "##090d3a", fontWeight: "500", fontSize: "12px" }} href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <a className="website" target="_blank" rel="noreferrer" style={{ color: "##090d3a", fontWeight: "500", fontSize: "12px" }} href={props.website?.startsWith("https://")?props.website:"https://"+props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         }
                                         {props.location != "" &&
@@ -165,7 +165,7 @@ const CompanyBranding = (props) => {
                                     <div>
                                         <br />
                                         <p style={{ color: "##4A6F8A", fontWeight: "600", fontSize: "1.1rem", marginBottom: "0rem" }}>Website</p>
-                                        <a className="website" target="_blank" rel="noreferrer" href={props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                        <a className="website" target="_blank" rel="noreferrer" href={props.website?.startsWith("https://")?props.website:"https://"+props.website}>{props.website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                     </div>
                                 }
                                 {props.location != "" &&

@@ -4,9 +4,11 @@ import "boxicons";
 import { SourcingRequestCard } from "./SourcingRequestCard";
 import { SourcingRequestForm } from "./SourcingRequestForm";
 import axios from "axios";
-import { MyModal80 } from "../DashboardComponents";
+// import { MyModal80 } from "../DashboardComponents";
 import { confirmAlert } from 'react-confirm-alert';
 import { EmailSending } from '../applications/EmailSending';
+import { Box, Stack, Text, Button, HStack, InputGroup, InputLeftElement, Input, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, ModalFooter } from '@chakra-ui/react';
+import { FiSearch, FiPlus } from 'react-icons/fi';
 
 export class SourcingRequestList extends React.Component {
     constructor(props) {
@@ -21,12 +23,25 @@ export class SourcingRequestList extends React.Component {
             keyWords: "",
             showEmailSending: false,
             email_list: null,
+            requestStatus: 0,
         };
+        //Get sourcing request status
+        axios.get(`jobs/get-sourcing-request-status?jobid=${this.props.job.id}`).then((res) => {
+            if (res?.data?.data == 1) {
+                this.setState({ requestStatus: 1 })
+            } else if (res?.data?.data == 2) {
+                this.setState({ requestStatus: 2 })
+            }
+        })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     filteredSourcings = []
 
     componentDidMount() {
+        //Get sourcing list
         axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
             setTimeout(() => {
                 this.filteredSourcings = res.data.data.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false }))
@@ -41,7 +56,7 @@ export class SourcingRequestList extends React.Component {
     }
 
     hideEmailSending = () => {
-        this.setState({showEmailSending: false})
+        this.setState({ showEmailSending: false })
     }
 
     handleAllChecked = () => {
@@ -128,10 +143,10 @@ export class SourcingRequestList extends React.Component {
         var email_list = []
         this.state.sourcings.map((sourcing) => {
             if (sourcing.isChecked) {
-                email_list.push({"email":sourcing.email, "id":sourcing.id, "first_name":sourcing.first_name, "last_name":sourcing.last_name});
+                email_list.push({ "email": sourcing.email, "id": sourcing.id, "first_name": sourcing.first_name, "last_name": sourcing.last_name });
             }
         });
-        this.setState({email_list: email_list, showEmailSending: true})
+        this.setState({ email_list: email_list, showEmailSending: true })
     }
 
     // filter approval selections
@@ -153,7 +168,7 @@ export class SourcingRequestList extends React.Component {
     customStyles = {
         option: (provided, state) => ({
             ...provided,
-            color: state.isSelected ?"#fff":"#090D3A",
+            color: state.isSelected ? "#fff" : "#090D3A",
         }),
         control: (styles) => ({
             ...styles,
@@ -177,7 +192,7 @@ export class SourcingRequestList extends React.Component {
     customStyles2 = {
         option: (provided, state) => ({
             ...provided,
-            color: state.isSelected ?"#fff":"#090D3A",
+            color: state.isSelected ? "#fff" : "#090D3A",
         }),
         control: (styles) => ({
             ...styles,
@@ -209,7 +224,7 @@ export class SourcingRequestList extends React.Component {
             sourcings: sourcing.sort((a, b) => a.status - b.status).map((post) => ({ ...post, isChecked: false })),
         });
 
-            
+
     };
 
     setShowRequest = () => {
@@ -428,8 +443,8 @@ export class SourcingRequestList extends React.Component {
                 "Content-Type": "application/json",
             },
         };
-        for(let i = 0; i < this.state.email_list.length; i++){
-            let data = { "is_approval": false, "cid": this.state.email_list[i].id,  "c_status": 2 };
+        for (let i = 0; i < this.state.email_list.length; i++) {
+            let data = { "is_approval": false, "cid": this.state.email_list[i].id, "c_status": 2 };
             axios.post("jobs/switch-sourcing-candidate-status", data, config).then((res) => {
                 console.log(res)
             }).catch(error => {
@@ -458,7 +473,7 @@ export class SourcingRequestList extends React.Component {
         setTimeout(() => {
             axios.get(`jobs/get-sourcing-request-list-from-jobid?jobid=${this.props.job.id}`).then((res) => {
                 var kwFilter = (s) => {
-                    return((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title?.toLowerCase().includes(keyWords) || s.current_company_name?.toLowerCase().includes(keyWords));
+                    return ((s.first_name.toLowerCase() + s.last_name.toLowerCase()).includes(keyWords) || s.current_title?.toLowerCase().includes(keyWords) || s.current_company_name?.toLowerCase().includes(keyWords));
                 }
                 var sourcing = res.data.data.filter(function (s) {
                     if (status != 3 && approval != 3) {
@@ -487,86 +502,34 @@ export class SourcingRequestList extends React.Component {
     }
 
     render() {
-        const { sourcings, isAllChecked, countCheck } = this.state;
+        const { sourcings, isAllChecked, countCheck, requestStatus } = this.state;
         return (
             <React.Fragment>
                 <div className="container-fluid pb-5">
-                    <div
-                        style={{
-                            fontSize: "1rem",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                    <HStack spacing='6' float='right'>
+                        <InputGroup>
+                            <InputLeftElement
+                                pointerEvents='none'
+                                children={<FiSearch />}
+                            />
+                            <Input placeholder='Search candidate' value={this.state.keyWords} onChange={this.onChange} />
+                        </InputGroup>
+                        <Stack><Button _hover={{ bg: "orange.500" }} leftIcon={<FiPlus />} colorScheme='blue' onClick={this.setShowRequest}>Sourcing Candidates</Button></Stack>
+                    </HStack>
+                    <Box
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        py={{
+                            base: '2',
+                            md: '3',
                         }}
-                    >
-                        <div
-                            className="sourcingtitle-hover-orange"
-                            style={{ cursor: "pointer", display: "flex", color: "#444" }}
-                        >
-                            <b>
-                                <i
-                                    className="bx-fw bx bx-chevron-left bx-sm"
-                                    style={{ paddingTop: "2px" }}
-                                ></i>
-                                <span
-                                    className="ml-2"
-                                    style={{
-                                        verticalAlign: "middle",
-                                        fontSize: "20px",
-                                    }}
-                                    onClick={() => this.props.setrequestListHide()}
-                                >
-                                    Back to Pipeline
-                                </span>
-                            </b>
-                        </div>
-                        <div style={{ display: "flex" }}>
-                            <span style={{ paddingTop: "5px" }}>
-                                <i
-                                    style={{
-                                        position: "absolute",
-                                        marginLeft: "0.5rem",
-                                        marginTop: "0.5rem",
-                                        color: "#7A7A7A",
-                                    }}
-                                    className="bx bx-search bx-sm"
-                                ></i>
-                                <input
-                                    placeholder="Search candidate"
-                                    className="search-candidate-input"
-                                    style={{
-                                        height: "auto",
-                                        paddingTop: "5px",
-                                        paddingBottom: "5px",
-                                    }}
-                                    value={this.state.keyWords}
-                                    onChange={this.onChange}
-                                ></input>
-                            </span>
-
-                            <div>
-                                <button
-                                    className="default-btn1 interview-txt6 sourcingRequest"
-                                    style={{
-                                        paddingLeft: "50px",
-                                        paddingRight: "50px",
-                                        marginLeft: "2rem",
-                                        backgroundColor: "#FF6B00",
-                                        color: "#fff",
-                                    }}
-                                    onClick={this.setShowRequest}
-                                >
-                                    Request Again
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        className="chart-bg1 container-fluid py-2"
-                        style={{
-                            marginTop: "1rem",
-                            backgroundColor: "#090D3A",
+                        px={{
+                            base: '4',
+                            md: '6',
                         }}
+                        mt='20'
+                        backgroundColor='#090d3a'
                     >
                         <div
                             className="row interview-txt7"
@@ -618,94 +581,126 @@ export class SourcingRequestList extends React.Component {
                                     isSearchable={false}
                                 />
                             </div>
-                            <div className="col-1 d-flex justify-content-center">
+                            <div className="col-1 d-flex justify-content-end">
                                 Contact
                             </div>
                         </div>
-                    </div>
-                    <div
-                        className="chart-bg1 container-fluid"
-                        style={{ border: "none", height: "24rem", overflowY: "auto" }}
-                    >
-                        {sourcings.sort((a, b) => a.status - b.status).map((sourcing) => {
-                            return (
-                                <SourcingRequestCard
-                                    handleCheck={() => this.handleCheck(sourcing.id)}
-                                    handleApprovalChange={this.handleApprovalChange}
-                                    sourcing={sourcing}
-                                    job={this.props.job}
-                                    user={this.props.user}
-                                    profile={this.props.profile}
-                                    employerProfileDetail={this.props.employerProfileDetail}
-                                    refresh={this.refresh}
-                                />
-                            );
-                        })}
-                    </div>
+                    </Box>
+                    {sourcings?.length > 0 ?
+                        <div>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                height='30rem'
+                                overflowY='auto'
+                            >
+                                {sourcings.sort((a, b) => a.status - b.status).map((sourcing) => {
+                                    return (
+                                        <SourcingRequestCard
+                                            handleCheck={() => this.handleCheck(sourcing.id)}
+                                            handleApprovalChange={this.handleApprovalChange}
+                                            sourcing={sourcing}
+                                            job={this.props.job}
+                                            user={this.props.user}
+                                            profile={this.props.profile}
+                                            employerProfileDetail={this.props.employerProfileDetail}
+                                            refresh={this.refresh}
+                                        />
+                                    );
+                                })}
+                            </Box>
+                            {countCheck == 0 ? (
+                                <button
+                                    className="default-btn"
+                                    style={{
+                                        paddingLeft: "25px",
+                                        border: "1px solid #006DFF",
+                                        backgroundColor: "#fff",
+                                        color: "#006DFF",
+                                        marginLeft: "1rem",
+                                        marginTop: "1.5rem"
+                                    }}
+                                >
+                                    Email
+                                </button>
+                            ) : countCheck == 1 ? (
+                                <button
+                                    className="default-btn"
+                                    style={{
+                                        paddingLeft: "25px",
+                                        marginLeft: "1rem",
+                                        marginTop: "1.5rem"
+                                    }}
+                                    onClick={this.handleEmailSend}
+                                >
+                                    Email
+                                </button>
+                            ) : (
+                                <button
+                                    className="default-btn"
+                                    style={{
+                                        paddingLeft: "25px",
+                                        marginLeft: "1rem",
+                                        marginTop: "1.5rem"
+                                    }}
+                                    onClick={this.handleEmailSend}
+                                >
+                                    Email All
+                                </button>
+                            )}
+                        </div> :
+                        <div style={{ marginTop: "6rem", paddingLeft: "1rem", paddingRight: "1rem" }}>
+                            {requestStatus == 1 ?
+                                <Text fontSize='md' color="muted">Your sourcing list will be ready within 1-2 business days.</Text> :
+                                <Text fontSize='md' color="muted">There is no sourced prospect for this job yet. Use AI sourcing now to receive 50 pre-screened prospects matching your ideal candidate profile.</Text>
+                            }
+                        </div>
+                    }
                 </div>
-                {countCheck == 0 ? (
-                    <button
-                        className="default-btn"
-                        style={{
-                            paddingLeft: "25px",
-                            border: "1px solid #006DFF",
-                            backgroundColor: "#fff",
-                            color: "#006DFF",
-                            marginLeft: "1rem"
-                        }}
-                    >
-                        Email
-                    </button>
-                ) : countCheck == 1 ? (
-                    <button
-                        className="default-btn"
-                        style={{
-                            paddingLeft: "25px",
-                            marginLeft: "1rem"
-                        }}
-                        onClick={this.handleEmailSend}
-                    >
-                        Email
-                    </button>
-                ) : (
-                    <button
-                        className="default-btn"
-                        style={{
-                            paddingLeft: "25px",
-                            marginLeft: "1rem"
-                        }}
-                        onClick={this.handleEmailSend}
-                    >
-                        Email All
-                    </button>
-                )}
                 {/* Open Sourcing Form */}
-                <MyModal80
-                    show={this.state.showRequestForm}
-                    onHide={this.setHideRequest}
-                >
-                    <SourcingRequestForm
-                        setHideRequest={this.setHideRequest}
-                        job={this.props.job}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                    />
-                </MyModal80>
+                <Modal onClose={this.setHideRequest} size={"6xl"} isOpen={this.state.showRequestForm}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <SourcingRequestForm
+                                setHideRequest={this.setHideRequest}
+                                job={this.props.job}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                            />
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button onClick={this.setHideRequest}>Close</Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
                 {/* Open Email Sending */}
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.state.email_list}
-                        jobid={this.props.job.id}
-                        first_name={this.state.email_list}
-                        last_name={this.state.email_list}
-                        handleStatusChange2={this.handleStatusChange2}
-                    />
-                </MyModal80>
-            </React.Fragment>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.state.email_list}
+                                jobid={this.props.job.id}
+                                first_name={this.state.email_list}
+                                last_name={this.state.email_list}
+                                handleStatusChange2={this.handleStatusChange2}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </React.Fragment >
         );
     }
 }

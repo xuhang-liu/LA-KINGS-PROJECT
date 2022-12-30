@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Video from "./Video";
-import Post from "./Post";
+// import Post from "./Post";
 import RichTextEditor from 'react-rte';
 //import PropTypes from "prop-types";
 import parse from 'html-react-parser';
@@ -12,7 +12,9 @@ import Select from 'react-select';
 var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
-import { MyModalShare } from "../DashboardComponents";
+// import { MyModalShare } from "../DashboardComponents";
+import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack, Button } from '@chakra-ui/react';
+import { FiInfo } from 'react-icons/fi';
 
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
@@ -59,6 +61,26 @@ const toolbarConfig = {
     ]
 };
 
+const customStyles = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
+    singleValue: styles => ({
+        ...styles,
+        color: useColorModeValue("#090d3a", "#ffffff"),
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuList: styles => ({
+        ...styles,
+        backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+        color: useColorModeValue('#090d3a', '#7a7a7a'),
+    }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+    menuPortal: provided => ({ ...provided, zIndex: 99 }),
+    menu: provided => ({ ...provided, zIndex: 99 })
+}
+
 export class EmployerProfile extends Component {
     constructor(props) {
         super(props);
@@ -85,19 +107,6 @@ export class EmployerProfile extends Component {
         method_pop1: false,
         method_pop2: false,
     }
-
-    customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#ffffff' }),
-        singleValue: styles => ({
-            ...styles,
-            color: '#4a6f8a',
-            fontSize: '0.9375rem',
-            fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
-        }),
-        menuPortal: provided => ({ ...provided, zIndex: 99 }),
-        menu: provided => ({ ...provided, zIndex: 99 })
-    };
 
     options = [
         { value: '1-50 employees', label: '1-50 employees' },
@@ -329,10 +338,10 @@ export class EmployerProfile extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="profile-container">
-                    <div className="row" style={{ marginBottom: "30px" }}>
-                        <div className="ml-2"><h3><b><i className="bx-fw bx bxs-dashboard ard"></i><span className="ml-2">Company</span></b></h3></div>
-                        <div><h3><b>
+                <Box px='24' mt='12' mb='14' alignItems='center'>
+                    <div className="row">
+                        <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bxs-dashboard pl-3"></i><span style={{ marginLeft: "1.2rem" }}>Company</span></Heading>
+                        <div><h3 style={{ paddingTop: "0.4rem" }}><b>
                             {this.props.profile.membership == "Premium" ?
                                 <div style={{ marginLeft: "1.4rem", marginRight: "1.4rem" }}>
                                     {this.props.profile.plan_interval == "Pro" ?
@@ -379,11 +388,20 @@ export class EmployerProfile extends Component {
                                 </div>}
                         </b></h3></div>
                     </div>
-                    <div className="row">
+                    <div className="row mt-5">
                         <div className="col-5">
                             {/* Personal Information */}
-                            <div className="profile-bg" style={{ textAlign: "left" }}>
-                                <div style={{ padding: "2rem" }}>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                textAlign="left"
+                            >
+                                <div>
                                     {!this.state.isEditInfo ?
                                         <div className="row">
                                             <div className="col-3">
@@ -395,10 +413,7 @@ export class EmployerProfile extends Component {
                                             <div className="col-9">
                                                 <div className="row">
                                                     <div className="col-8">
-                                                        <h3 className="profile-h3" style={{ fontSize: '1.5rem' }}>
-                                                            {this.props.companyName}
-                                                            {/* (this.props.employerProfileDetail.name !== null && this.props.employerProfileDetail.name !== "") ? this.props.employerProfileDetail.name : "Company Name Here" */}
-                                                        </h3>
+                                                        <Text fontSize='xl' color="muted">{this.props.companyName}</Text>
                                                     </div>
                                                     <div className="col-4 profile-edit">
                                                         <div style={{ float: "right" }}>
@@ -406,17 +421,17 @@ export class EmployerProfile extends Component {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p className="profile-p" style={{ marginTop: "-0.8rem", color: "#7e8993" }}>
+                                                <p className="profile-p pt-2" style={{ marginTop: "-0.8rem", color: "#7e8993" }}>
                                                     {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
                                                 </p>
-                                                <h3 className="profile-h3" style={{ fontSize: "1rem", marginBottom: "-0.1rem" }}>Job Portal</h3>
-                                                <a className="profile-p" style={{ color: "#006dff" }} target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <Text fontSize='md' color="muted">Job Portal</Text>
+                                                <a className="profile-p pt-2 px-2" style={{ color: "#006dff" }} target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         </div> :
                                         <div>
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h3 className="profile-h3">Information</h3>
+                                                    <Text fontSize='xl' color="muted">Information</Text>
                                                 </div>
                                             </div>
                                             {/*<div>
@@ -424,11 +439,11 @@ export class EmployerProfile extends Component {
                                                 <input id="name" className="profile-input profile-p" defaultValue={this.props.employerProfileDetail.name} style={{width: "100%"}}></input>
                                             </div>*/}
                                             <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p" style={{ margin: "0rem" }}>Company Website</p>
-                                                <textarea id="website" className="profile-input profile-p" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.website}></textarea>
+                                                <Text fontSize='md' color="muted">Company Website</Text>
+                                                <Textarea id="website" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.website} />
                                             </div>
                                             <div>
-                                                <p className="profile-p" style={{ margin: "0rem" }}>Company Logo</p>
+                                                <Text fontSize='md' color="muted">Company Logo</Text>
                                                 <Avatar
                                                     imageWidth={205}
                                                     width={285}
@@ -465,55 +480,78 @@ export class EmployerProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                            </div>
+                            </Box>
 
                             {/* Widget and URL */}
-                            <div className="row" style={{ marginTop: "2rem" }}>
-                                <div className="col-6">
-                                    <div className="profile-bg" style={{ textAlign: "center" }}>
-                                        <div style={{ padding: "2rem" }}>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h3 className="profile-h3" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</h3>
-                                                    <p className="profile-p" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</p>
-                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod1}>View Details</button>
-                                                </div>
+                            <Stack direction='row' style={{ marginTop: "2rem" }}>
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                >
+                                    <div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
+                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
+                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-6">
-                                    <div className="profile-bg" style={{ textAlign: "center" }}>
-                                        <div style={{ padding: "2rem" }}>
-                                            <div className="row">
-                                                <div className="col">
-                                                    <h3 className="profile-h3" style={{ fontSize: "0.9rem" }}>Method 2 - Website Link</h3>
-                                                    <p className="profile-p" style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</p>
-                                                    <button className="default-btn" style={{ paddingLeft: "25px" }} onClick={this.openMethod2}>View Details</button>
-                                                </div>
+                                </Box>
+                                <Spacer />
+                                <Box
+                                    bg="bg-surface"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                >
+                                    <div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
+                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
+                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                </Box>
+                            </Stack>
 
                             {/* Social Media */}
-                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
-                                <div style={{ padding: "2rem" }}>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                textAlign="left"
+                                mt='8'
+                            >
+                                <div>
                                     {!this.state.isEditMedia ?
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <h3 className="profile-h3">Social Media
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Social Media links will appear on your company branding page.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </h3>
+                                                    <Tooltip label='Social Media links will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Social Media
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
@@ -521,60 +559,66 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row mt-2">
+                                            <div className="row mt-2 px-2">
                                                 <div className="col-4">
-                                                    <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
+                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
                                                         LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.linkedin !== null && this.props.employerProfileDetail.linkedin !== "") ? this.props.employerProfileDetail.linkedin : "Link to your LinkedIn"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
-                                            <div className="row">
+                                            <div className="row px-2">
                                                 <div className="col-4">
-                                                    <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
+                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
                                                         Facebook <i class='bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.facebook !== null && this.props.employerProfileDetail.facebook !== "") ? this.props.employerProfileDetail.facebook : "Link to your facebook"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
-                                            <div className="row">
+                                            <div className="row px-2">
                                                 <div className="col-4">
-                                                    <p className="profile-p3" style={{ display: "flex", alignItems: "center" }}>
+                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
                                                         Twitter <i class='bx bxl-twitter' style={{ color: "#006dff" }}></i>
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                                 <div className="col-8">
-                                                    <p className="profile-p4" style={{ wordBreak: "break-word" }}>
+                                                    <Text style={{ wordBreak: "break-word" }}>
                                                         {(this.props.employerProfileDetail.twitter !== null && this.props.employerProfileDetail.twitter !== "") ? this.props.employerProfileDetail.twitter : "Link to your Twitter"}
-                                                    </p>
+                                                    </Text>
                                                 </div>
                                             </div>
                                         </div> :
                                         <div>
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h3 className="profile-h3">Social Media</h3>
+                                                    <Text fontSize='xl' color="muted">Social Media</Text>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="linkedin" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></input>
+                                            <div className="px-2">
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
+                                                    LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
+                                                </Text>
+                                                <Input id="linkedin" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></Input>
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="facebook" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></input>
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
+                                                    Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
+                                                </Text>
+                                                <Input id="facebook" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></Input>
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#090D3A" }}></i></p>
-                                                <input id="twitter" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></input>
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
+                                                    Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#006dff" }}></i>
+                                                </Text>
+                                                <Input id="twitter" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></Input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">
                                                 <button className="default-btn" onClick={this.saveSocialMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
@@ -583,25 +627,33 @@ export class EmployerProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                            </div>
+                            </Box>
 
                             {/* Basic info */}
-                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
-                                <div style={{ padding: "2rem" }}>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                textAlign="left"
+                                mt='8'
+                            >
+                                <div>
                                     {!this.state.isEditBasicInfo ?
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <h3 className="profile-h3">Basic Info
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Company basic information will appear on your company branding page.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </h3>
+                                                    <Tooltip label='Company basic information will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Basic Info
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
@@ -609,39 +661,39 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="mt-2">
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
-                                                <p className="profile-p4">
+                                            <div className="mt-2 px-2">
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Location</Text>
+                                                <Text>
                                                     {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
-                                                </p>
+                                                </Text>
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Company Size</p>
-                                                <p className="profile-p4">
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
+                                                <Text>
                                                     {(this.props.employerProfileDetail.company_size !== null && this.props.employerProfileDetail.company_size !== "") ? this.props.employerProfileDetail.company_size : "Employees"}
-                                                </p>
+                                                </Text>
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Industry</p>
-                                                <p className="profile-p4">
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
+                                                <Text>
                                                     {(this.props.employerProfileDetail.company_type !== null && this.props.employerProfileDetail.company_type !== "") ? this.props.employerProfileDetail.company_type : "Company Field"}
-                                                </p>
+                                                </Text>
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Contact Email</p>
-                                                <p className="profile-p4">
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
+                                                <Text>
                                                     {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
-                                                </p>
+                                                </Text>
                                             </div>
                                         </div> :
                                         <div>
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h3 className="profile-h3">Basic Info</h3>
+                                                    <Text fontSize='xl' color="muted">Basic Info</Text>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Location</p>
+                                            <div className="px-2">
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Location</Text>
                                                 <Autocomplete
                                                     className="profile-input profile-p4"
                                                     style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }}
@@ -653,17 +705,17 @@ export class EmployerProfile extends Component {
                                                     defaultValue={this.props.employerProfileDetail.location}
                                                 />
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Company Size</p>
-                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={this.customStyles} placeholder={'Enter Company Size'} />
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
+                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={customStyles} placeholder={'Enter Company Size'} />
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Industry</p>
-                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={this.customStyles} placeholder={'Enter Company Industry'} />
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
+                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={customStyles} placeholder={'Enter Company Industry'} />
                                             </div>
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <p className="profile-p3" style={{ margin: "0rem" }}>Contact Email</p>
-                                                <input id="contactEmail" className="profile-input profile-p4" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></input>
+                                            <div className="px-2" style={{ marginTop: "1rem" }}>
+                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
+                                                <Input id="contactEmail" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></Input>
                                             </div>
                                             <div className="d-flex justify-content-end mt-3">
                                                 <button className="default-btn" onClick={this.saveCompanyInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
@@ -672,29 +724,36 @@ export class EmployerProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                            </div>
+                            </Box>
                         </div>
 
                         {/* Right Part */}
                         <div className="col-6" style={{ marginLeft: "2rem" }}>
 
                             {/* Summary */}
-                            <div className="profile-bg" style={{ textAlign: "left" }}>
-                                <div style={{ padding: "2rem" }}>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                textAlign="left"
+                            >
+                                <div>
                                     {!this.state.isEditSummary ?
                                         <div>
                                             <div className="row">
                                                 <div className="col-8">
-                                                    <h3 className="profile-h3">Company Overview
-                                                        <span className="tool_tip ml-2">
-                                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                            <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                                                <div>
-                                                                    Company Overview will appear on the top section of your Job Posting.
-                                                                </div>
-                                                            </p>
-                                                        </span>
-                                                    </h3>
+                                                    <Tooltip label='Company Overview will appear on the top section of your Job Posting.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                                Company Overview
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                                        </HStack>
+                                                    </Tooltip>
                                                 </div>
                                                 <div className="col-4 profile-edit">
                                                     <div style={{ float: "right" }}>
@@ -702,15 +761,15 @@ export class EmployerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="profile-p4 mt-3" style={{ fontWeight: "400" }}>
+                                            <Text mt='5' px='3' style={{ fontWeight: "500" }}>
                                                 {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
                                                     parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
-                                            </p>
+                                            </Text>
                                         </div> :
                                         <div>
-                                            <div className="row">
+                                            <div className="row mb-3">
                                                 <div className="col-12">
-                                                    <h3 className="profile-h3">Company Overview</h3>
+                                                    <Text fontSize='xl' color="muted">Company Overview</Text>
                                                 </div>
                                             </div>
                                             <RichTextEditor
@@ -725,10 +784,20 @@ export class EmployerProfile extends Component {
                                         </div>
                                     }
                                 </div>
-                            </div>
+                            </Box>
 
                             {/* Video */}
-                            <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
+                            <Box
+                                bg="bg-surface"
+                                boxShadow='sm'
+                                borderRadius="lg"
+                                p={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                textAlign="left"
+                                mt='8'
+                            >
                                 <Video
                                     updateEmployerVideo={this.props.updateEmployerVideo}
                                     userId={this.props.userId}
@@ -736,7 +805,7 @@ export class EmployerProfile extends Component {
                                     setVideo={this.setVideo}
                                     getUpdatedData={this.getUpdatedData}
                                 />
-                            </div>
+                            </Box>
 
                             {/* Post */}
                             {/* <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
@@ -754,45 +823,71 @@ export class EmployerProfile extends Component {
                             </div> */}
                         </div>
                     </div>
-                </div>
-                <MyModalShare
-                    show={this.state.method_pop1}
-                    onHide={() => { this.hideMethod1() }}
-                >
-                    <div class="container p-4" style={{ textAlign: 'left' }}>
-                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 1 - Careers Widget</h3>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>The career widget is a simple list of your jobs embeded on a dedicated page on your website, such as your career page. All you’ll need is access to the content Management System (CMS) of your website, then follow these steps:</p>
-                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI" }}>
-                            <li className="pb-2">Access the HTML on the webpage where you want the jobs to display.</li>
-                            <li className="pb-2">Copy the code snippet from the box below and paste it within your HTML where you want the job list to display.</li>
-                            <li>Preview the page and publish.</li>
-                        </ol>
-                        <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.js"</span>{'></script>'}</p>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</p>
-                        </div>
-                    </div>
-                </MyModalShare>
-                <MyModalShare
-                    show={this.state.method_pop2}
-                    onHide={() => { this.hideMethod2() }}
-                >
-                    <div class="container p-4" style={{ textAlign: 'left' }}>
-                        <h3 className="profile-h3" style={{ marginBottom: "2rem" }}>Method 2 - Job Portal Website Link</h3>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>Add a link to an existing page or website header/footer to directly link to your HireBeat Job Portal. This is a simple way of getting your jobs linked from your website, giving potential candidates a streamlined application process, and maximizing your reach to new applicants.</p>
-                        <p className="profile-p5" style={{ fontSize: "0.8rem" }}>First, you will need access to the Content Management System (CMS) of your website, then, follow these steps:</p>
-                        <ol style={{ color: "#090d3a", fontSize: "0.9rem", fontWeight: 'normal', fontFamily: "Inter, Segoe UI" }}>
-                            <li className="pb-2">Type 'Careers', 'We are Hiring', or similar somewhere on the page, ideally the header or footer.</li>
-                            <li className="pb-2">Highlight the text and select the option to add a hyperlink</li>
-                            <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
-                        </ol>
-                        <div className="profile-bg p-3" style={{ textAlign: "center", backgroundColor: "#F3F6F9" }}>
-                            <p style={{ fontSize: "0.8rem", color: "#4f5e74" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}"</span>{'>Careers</a>'}</p>
-                        </div>
-                    </div>
-                </MyModalShare>
-            </React.Fragment>
+                </Box>
+                <Modal onClose={() => { this.hideMethod1() }} size={"5xl"} isOpen={this.state.method_pop1} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Box textAlign='left' p='6'>
+                                <Text color='muted' fontSize='lg' fontWeight='bold' style={{ marginBottom: "2rem" }}>Method 1 - Careers Widget</Text>
+                                <Text mb='2' style={{ fontSize: "0.8rem" }}>The career widget is a simple list of your jobs embeded on a dedicated page on your website, such as your career page. All you’ll need is access to the content Management System (CMS) of your website, then follow these steps:</Text>
+                                <ol className="profile-p5" style={{ fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                                    <li className="pb-2">Access the HTML on the webpage where you want the jobs to display.</li>
+                                    <li className="pb-2">Copy the code snippet from the box below and paste it within your HTML where you want the job list to display.</li>
+                                    <li>Preview the page and publish.</li>
+                                </ol>
+                                <Box
+                                    bg="bg-canvas"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                    mt='3'
+                                >
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<div '}<span style={{ color: "#009E7F" }}>class</span>=<span style={{ color: "#FF6B00" }}>"hirebeat-widget-job"</span><span style={{ color: "#009E7F" }}> data-company</span>=<span style={{ color: "#FF6B00" }}>"{(window?.btoa(this.props.companyName))}"</span>{'></div>'}</Text>
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<script '}<span style={{ color: "#009E7F" }}>src</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.js"</span>{'></script>'}</Text>
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<link '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://widget.hirebeat.co/widget/index.css"</span><span style={{ color: "#009E7F" }}> rel</span>=<span style={{ color: "#FF6B00" }}>"stylesheet"</span>{'/>'}</Text>
+                                </Box>
+                            </Box>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+                <Modal onClose={() => { this.hideMethod2() }} size={"5xl"} isOpen={this.state.method_pop2} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Box textAlign='left' p='6'>
+                                <Text color='muted' fontSize='lg' fontWeight='bold' style={{ marginBottom: "2rem" }}>Method 2 - Job Portal Website Link</Text>
+                                <Text style={{ fontSize: "0.8rem" }}>Add a link to an existing page or website header/footer to directly link to your HireBeat Job Portal. This is a simple way of getting your jobs linked from your website, giving potential candidates a streamlined application process, and maximizing your reach to new applicants.</Text>
+                                <Text mb='2' style={{ fontSize: "0.8rem" }}>First, you will need access to the Content Management System (CMS) of your website, then, follow these steps:</Text>
+                                <ol className="profile-p5" style={{ fontSize: "0.9rem", paddingLeft: "1rem" }}>
+                                    <li className="pb-2">Type 'Careers', 'We are Hiring', or similar somewhere on the page, ideally the header or footer.</li>
+                                    <li className="pb-2">Highlight the text and select the option to add a hyperlink</li>
+                                    <li>Copy the link to your HireBeat Job Portal below and insert this as the hyperlink.</li>
+                                </ol>
+                                <Box
+                                    bg="bg-canvas"
+                                    boxShadow='sm'
+                                    borderRadius="lg"
+                                    p={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    textAlign="center"
+                                    mt='3'
+                                >
+                                    <Text style={{ fontSize: "0.8rem" }}>{'<a '}<span style={{ color: "#009E7F" }}>href</span>=<span style={{ color: "#FF6B00" }}>"https://app.hirebeat.co/company-branding/{this.props.companyName}"</span>{'>Careers</a>'}</Text>
+                                </Box>
+                            </Box>
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </React.Fragment >
         )
     };
 }

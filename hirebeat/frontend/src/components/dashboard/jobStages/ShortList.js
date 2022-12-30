@@ -12,6 +12,10 @@ import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
 import axios from "axios";
+import {
+    Box, Container, HStack, Icon, Input, InputGroup, InputLeftElement, Stack, Text, Table, Tbody, Th, Thead, Td, Tr, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip
+} from '@chakra-ui/react';
+import { FiSearch, FiInfo } from 'react-icons/fi';
 
 const ShortList = (props) => {
     const [curJobId, setCurJobId] = useState(Object.keys(props.postedJobs)[0]);
@@ -25,10 +29,10 @@ const ShortList = (props) => {
 
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setkeyWords("");
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     function refreshPage() {
         props.loadStarList(curJobId);
@@ -44,58 +48,54 @@ const ShortList = (props) => {
         let selectedPage = data.selected; // 0 index based
         setSelectedPage(selectedPage);
         let page = selectedPage + 1;
-        props.getPostedJobs(props.user.id, page, "Short List", "","","","", props.jobsId, keyWords);
+        props.getPostedJobs(props.user.id, page, "Short List", "", "", "", "", props.jobsId, keyWords);
         window.scrollTo(0, 0);
     };
 
     return (
-        <div>
-            <div className="container-fluid min-width-980">
-                <AcceptedCandidate
-                    filter={props.filter}
-                    getPJobs={props.getPJobs}
-                    refreshPage={refreshPage}
-                    id_candidate={props.id_candidate}
-                    username_candidate={props.username_candidate}
-                    email_candidate={props.email_candidate}
-                    phone_candidate={props.phone_candidate}
-                    location_candidate={props.location_candidate}
-                    theJob={theJob}
-                    getApplicantsVideos={props.getApplicantsVideos}
-                    getApplicantsInfo={props.getApplicantsInfo}
-                    int_ques={props.int_ques}
-                    stars={props.star_list}
-                    resume_list={props.resume_list}
-                    resumeURL={props.resumeURL}
-                    recordTime={props.recordTime}
-                    interviewResume={props.interviewResume}
-                    getResumeURL={props.getResumeURL}
-                    updateCommentStatus={props.updateCommentStatus}
-                    profile={props.profile}
-                    subreviewerUpdateComment={props.subreviewerUpdateComment}
-                    getReviewNote={props.getReviewNote}
-                    getReviewerEvaluation={props.getReviewerEvaluation}
-                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
-                    user={props.user}
-                    getPostedJobs={props.getPostedJobs}
-                    getAllJobs={props.getAllJobs}
-                    keyWords={keyWords}
-                    onChange={onChange}
-                    handlePageClick={handlePageClick}
-                    currentPage={props.currentPage}
-                    totalPage={props.totalPage}
-                    selectedPage={selectedPage}
-                    reviewer_type={props.reviewer_type}
-                    jobsId={props.jobsId}
-                    employerProfileDetail={props.employerProfileDetail}
-                    reviewerStageLength={props.reviewerStageLength}
-                    updateInviteStatus={props.updateInviteStatus}
-                    moveCandidateToInterview={props.moveCandidateToInterview}
-                    positionId={props.positionId}
-                    filterReset={props.filterReset}
-                />
-            </div>
-        </div>
+        <AcceptedCandidate
+            filter={props.filter}
+            getPJobs={props.getPJobs}
+            refreshPage={refreshPage}
+            id_candidate={props.id_candidate}
+            username_candidate={props.username_candidate}
+            email_candidate={props.email_candidate}
+            phone_candidate={props.phone_candidate}
+            location_candidate={props.location_candidate}
+            theJob={theJob}
+            getApplicantsVideos={props.getApplicantsVideos}
+            getApplicantsInfo={props.getApplicantsInfo}
+            int_ques={props.int_ques}
+            stars={props.star_list}
+            resume_list={props.resume_list}
+            resumeURL={props.resumeURL}
+            recordTime={props.recordTime}
+            interviewResume={props.interviewResume}
+            getResumeURL={props.getResumeURL}
+            updateCommentStatus={props.updateCommentStatus}
+            profile={props.profile}
+            subreviewerUpdateComment={props.subreviewerUpdateComment}
+            getReviewNote={props.getReviewNote}
+            getReviewerEvaluation={props.getReviewerEvaluation}
+            getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+            user={props.user}
+            getPostedJobs={props.getPostedJobs}
+            getAllJobs={props.getAllJobs}
+            keyWords={keyWords}
+            onChange={onChange}
+            handlePageClick={handlePageClick}
+            currentPage={props.currentPage}
+            totalPage={props.totalPage}
+            selectedPage={selectedPage}
+            reviewer_type={props.reviewer_type}
+            jobsId={props.jobsId}
+            employerProfileDetail={props.employerProfileDetail}
+            reviewerStageLength={props.reviewerStageLength}
+            updateInviteStatus={props.updateInviteStatus}
+            moveCandidateToInterview={props.moveCandidateToInterview}
+            positionId={props.positionId}
+            filterReset={props.filterReset}
+        />
     )
 }
 
@@ -126,13 +126,15 @@ const AcceptedCandidate = (props) => {
     const jobTitle = props.theJob.job_title;
     const jobId = props.theJob.job_id;
     const [selectedAllCandidates, setSelectedAllCandidates] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
+    const [detailIndex, setDetailIndex] = useState(0);
 
     useEffect(() => {
-        if (props.filterReset > 0){
+        if (props.filterReset > 0) {
             setCategory3({ value: 'All', label: 'All' });
             setCategory5({ value: 'All', label: 'All' });
         }
-    }, [props.filterReset]); 
+    }, [props.filterReset]);
 
     function onFilter3(category3) {
         setCategory3(category3)
@@ -174,13 +176,19 @@ const AcceptedCandidate = (props) => {
     ]
 
     const customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#E8EDFC' }),
+        control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
-            color: '#090D3A',
+            color: useColorModeValue("#090d3a", "#ffffff"),
             fontSize: '0.9375rem',
             fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
+            fontWeight: '500',
+            background: useColorModeValue("#ffffff", "#1a202c")
+        }),
+        menuList: styles => ({
+            ...styles,
+            backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+            color: useColorModeValue('#090d3a', '#7a7a7a'),
         }),
         indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
@@ -213,6 +221,8 @@ const AcceptedCandidate = (props) => {
         for (let i = 0; i < candidates.length; i++) {
             candidates[i].checked = false;
         }
+        setCandidates_count(0);
+        setSelect_all(false);
     }
 
     const openMoveForm = () => {
@@ -321,9 +331,9 @@ const AcceptedCandidate = (props) => {
                 // update
                 let page = 1;
                 let userId = props.user.id;
-                setTimeout(() => { 
-                    props.getAllJobs(userId, page, "Short List"); 
-                    props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+                setTimeout(() => {
+                    props.getAllJobs(userId, page, "Short List");
+                    props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords)
                 }, 300);
                 unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -398,9 +408,9 @@ const AcceptedCandidate = (props) => {
             // update
             let page = 1;
             let userId = props.user.id;
-            setTimeout(() => { 
-                props.getAllJobs(userId, page, "Short List"); 
-                props.getPostedJobs(userId, page, "Short List", "", category3.value, "",category5.value, props.jobsId, props.keyWords) 
+            setTimeout(() => {
+                props.getAllJobs(userId, page, "Short List");
+                props.getPostedJobs(userId, page, "Short List", "", category3.value, "", category5.value, props.jobsId, props.keyWords)
             }, 300);
             unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -461,312 +471,413 @@ const AcceptedCandidate = (props) => {
     }
 
     return (
-        <div>
-            <div style={{ marginBottom: "0.6rem", backgroundColor: "white", borderRadius: "0.5rem", paddingTop: '1.4rem' }} className="mt-4 pb-3">
-                <div className="row" style={{ paddingLeft: "15px", paddingRight: "15px" }}>
-                    <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem" }}>
-                        <label onClick={onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.25rem" }}><i className="bx bx-search bx-sm"></i></label>
-                        <input placeholder={"Search candidate"} className="search-candidate-input" value={props.keyWords} onChange={props.onChange} onKeyPress={onKeyPress} style={{ height: "auto" }}></input>
-                    </div>
-                    {props.totalPage > 1 &&
-                        <div className="ml-auto">
-                            <ReactPaginate
-                                previousLabel={'< Prev'}
-                                nextLabel={'Next >'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={props.totalPage}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={5}
-                                onPageChange={props.handlePageClick}
-                                containerClassName={'pagination3'}
-                                activeClassName={'active'}
-                                forcePage={props.currentPage}
-                            />
-                        </div>
-                    }
-                </div>
-                <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", boxShadow: "none" }}>
-                    <div style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }} className="d-flex justify-content-start row interview-txt7 interview-center">
-                        {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                            <div className='mr-3' style={{ marginLeft: "1rem", display: "flex" }}>
-                                <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
-                            </div>
-                        }
-                        <div className="col-2">Name</div>
-                        {/* <div className="col-3">Video Average Score</div> */}
-                        <div className="col-2">Resume Score</div>
-                        {(props.reviewerStageLength > 0) &&
-                            <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
-                                <div style={{ display: "inline-block" }}>
-                                    <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
-                                </div>
-                            </div>
-                        }
-                        {(props.reviewerStageLength == 0) &&
-                            <div className="col-2">
-                                Team Review
-                                <span className="tool_tip ml-2">
-                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                    <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                        <div>
-                                            Affirmative Votes over Total Votes. Pending votes are not included.
-                                        </div>
-                                    </p>
+        <React.Fragment>
+            {!showDetails ?
+                <Container
+                    py={{
+                        base: '4',
+                        md: '8',
+                    }}
+                    px={{
+                        base: '0',
+                        md: 8,
+                    }}
+                >
+                    <Box bg="bg-surface" borderRadius="lg" boxShadow="sm">
+                        <Stack spacing="5">
+                            <Box
+                                px={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                pt="5"
+                            >
+                                <HStack spacing='3'>
+                                    <InputGroup maxW="xs" onKeyUp={onSearch}>
+                                        <InputLeftElement pointerEvents="none">
+                                            <Icon as={FiSearch} color="muted" boxSize="5" />
+                                        </InputLeftElement>
+                                        <Input placeholder="Search candidate" value={props.keyWords} onChange={props.onChange} onKeyPress={onKeyPress} />
+                                    </InputGroup>
+                                </HStack>
+                            </Box>
+                            <Box
+                                px={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                            >
+                                <HStack spacing="3" justify="space-between">
+                                    <div className="ml-auto">
+                                        <ReactPaginate
+                                            previousLabel={'< Prev'}
+                                            nextLabel={'Next >'}
+                                            breakLabel={'...'}
+                                            breakClassName={'break-me'}
+                                            pageCount={props.totalPage}
+                                            marginPagesDisplayed={1}
+                                            pageRangeDisplayed={5}
+                                            onPageChange={props.handlePageClick}
+                                            containerClassName={'pagination3'}
+                                            activeClassName={'active'}
+                                            forcePage={props.currentPage}
+                                        />
+                                    </div>
+                                </HStack>
+                            </Box>
+                            <Box overflowX="auto" minH='96'>
+                                <Table>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>
+                                                <HStack spacing='6'>
+                                                    {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                                                        <input id="select-all" type="checkbox" checked={selectedAllCandidates} onClick={selectAllCandidates} style={{ display: (props.allInvited ? "none" : "inline") }} />
+                                                    }
+                                                    <HStack spacing='1'><Text color="muted">Name</Text></HStack>
+                                                </HStack>
+                                            </Th>
+                                            <Th><Text color="muted">Resume Score</Text></Th>
+                                            {(props.reviewerStageLength > 0) &&
+                                                <Th>
+                                                    <HStack>
+                                                        <Text color="muted">Status</Text>
+                                                        <Select isSearchable={false} value={category3} onChange={onFilter3} options={options3} className="select-category" styles={customStyles} />
+                                                    </HStack>
+                                                </Th>
+                                            }
+                                            {(props.reviewerStageLength == 0) &&
+                                                <Th>
+                                                    <Tooltip label='Affirmative Votes over Total Votes. Pending votes are not included.' aria-label='A tooltip' fontSize='sm'>
+                                                        <HStack>
+                                                            <Text color="muted">
+                                                                Team Review
+                                                            </Text>
+                                                            <FiInfo style={{ color: "#dfdfdf" }} />
+                                                        </HStack>
+                                                    </Tooltip>
+                                                </Th>
+                                            }
+                                            {(props.reviewerStageLength == 0) &&
+                                                <Th>
+                                                    <HStack>
+                                                        <Text color="muted">Offer Status</Text>
+                                                        <Select isSearchable={false} value={category5} onChange={onFilter5} options={options5} className="select-category" styles={customStyles} />
+                                                    </HStack>
+                                                </Th>
+                                            }
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        {props.theJob.applicants.map((applicant, index) => {
+                                            return (
+                                                <CandidateCard
+                                                    getPJobs={props.getPJobs}
+                                                    refreshPage={props.refreshPage}
+                                                    stars={props.stars[applicant.email]}
+                                                    resume_list={Math.max(props.resume_list[applicant.email] ? props.resume_list[applicant.email] : 0, applicant.result_rate ? applicant.result_rate : 0)} // get max resume score
+                                                    applicant={applicant}
+                                                    getApplicantsVideos={props.getApplicantsVideos}
+                                                    getApplicantsInfo={props.getApplicantsInfo}
+                                                    int_ques={props.int_ques}
+                                                    id_candidate={props.id_candidate}
+                                                    username_candidate={props.username_candidate}
+                                                    email_candidate={props.email_candidate}
+                                                    phone_candidate={props.phone_candidate}
+                                                    location_candidate={props.location_candidate}
+                                                    resumeURL={props.resumeURL}
+                                                    recordTime={props.recordTime}
+                                                    interviewResume={props.interviewResume}
+                                                    getResumeURL={props.getResumeURL}
+                                                    updateCommentStatus={props.updateCommentStatus}
+                                                    profile={props.profile}
+                                                    subreviewerUpdateComment={props.subreviewerUpdateComment}
+                                                    applicants={props.theJob.applicants}
+                                                    current={index}
+                                                    getReviewNote={props.getReviewNote}
+                                                    getReviewerEvaluation={props.getReviewerEvaluation}
+                                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                                                    user={props.user}
+                                                    getPostedJobs={props.getPostedJobs}
+                                                    keyWords={props.keyWords}
+                                                    getAllJobs={props.getAllJobs}
+                                                    reviewer_type={props.reviewer_type}
+                                                    selectedPage={props.selectedPage}
+                                                    jobsId={props.jobsId}
+                                                    employerProfileDetail={props.employerProfileDetail}
+                                                    reviewerStageLength={props.reviewerStageLength}
+                                                    category3={category3}
+                                                    category5={category5}
+                                                    CheckListCheckbox={CheckListCheckbox}
+                                                    showDetails={showDetails}
+                                                    setShowDetails={setShowDetails}
+                                                    setDetailIndex={setDetailIndex}
+                                                />
+                                            )
+                                        })}
+                                    </Tbody>
+                                </Table>
+                            </Box>
+                            <Box
+                                px={{
+                                    base: '4',
+                                    md: '6',
+                                }}
+                                pb="5"
+                            >
+                                <HStack spacing="3" justify="space-between">
+                                    <div className="ml-auto">
+                                        <ReactPaginate
+                                            previousLabel={'< Prev'}
+                                            nextLabel={'Next >'}
+                                            breakLabel={'...'}
+                                            breakClassName={'break-me'}
+                                            pageCount={props.totalPage}
+                                            marginPagesDisplayed={1}
+                                            pageRangeDisplayed={5}
+                                            onPageChange={props.handlePageClick}
+                                            containerClassName={'pagination3'}
+                                            activeClassName={'active'}
+                                            forcePage={props.currentPage}
+                                        />
+                                    </div>
+                                </HStack>
+                            </Box>
+                        </Stack>
+                    </Box>
+                    {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
+                        <Box pt='3'>
+                            {select_all ?
+                                <button
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                    onClick={openMoveForm}
+                                >
+                                    Move All
+                                    <span></span>
+                                </button> :
+                                <span>
+                                    {candidates_count > 0 ?
+                                        <span>
+                                            {candidates_count > 1 ?
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={openMoveForm}
+                                                >
+                                                    Move ({candidates_count})
+                                                    <span></span>
+                                                </button> :
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={openMoveForm}
+                                                >
+                                                    Move
+                                                    <span></span>
+                                                </button>}
+                                        </span> :
+                                        <button
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
+                                        >
+                                            Move
+                                            <span></span>
+                                        </button>}
                                 </span>
-                            </div>
-                        }
-                        {(props.reviewerStageLength == 0) &&
-                            <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Offer Status</div>
-                                <div style={{ display: "inline-block" }}>
-                                    <Select isSearchable={false} value={category5} onChange={onFilter5} options={options5} className="select-category" styles={customStyles} />
-                                </div>
-                            </div>
-                        }
-                        {/*(!props.profile.is_external_reviewer && !props.profile.is_subreviwer) && <div className="col-2">Contact</div>*/}
-                    </div>
-                    {props.theJob.applicants.map((applicant, index) => {
-                        /*
-                        if (props.keyWords != "") {
-                            let name = applicant.name;
-                            if (!name.toLowerCase().includes(props.keyWords.toLowerCase())) return null;
-                        }
-                        */
-                        return (
-                            <div>
-                                <CandidateCard
-                                    getPJobs={props.getPJobs}
-                                    refreshPage={props.refreshPage}
-                                    stars={props.stars[applicant.email]}
-                                    resume_list={Math.max(props.resume_list[applicant.email] ? props.resume_list[applicant.email] : 0, applicant.result_rate ? applicant.result_rate : 0)} // get max resume score
-                                    applicant={applicant}
-                                    getApplicantsVideos={props.getApplicantsVideos}
-                                    getApplicantsInfo={props.getApplicantsInfo}
-                                    int_ques={props.int_ques}
-                                    id_candidate={props.id_candidate}
-                                    username_candidate={props.username_candidate}
-                                    email_candidate={props.email_candidate}
-                                    phone_candidate={props.phone_candidate}
-                                    location_candidate={props.location_candidate}
-                                    resumeURL={props.resumeURL}
-                                    recordTime={props.recordTime}
-                                    interviewResume={props.interviewResume}
-                                    getResumeURL={props.getResumeURL}
-                                    updateCommentStatus={props.updateCommentStatus}
-                                    profile={props.profile}
-                                    subreviewerUpdateComment={props.subreviewerUpdateComment}
-                                    applicants={props.theJob.applicants}
-                                    current={index}
-                                    getReviewNote={props.getReviewNote}
-                                    getReviewerEvaluation={props.getReviewerEvaluation}
-                                    getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
-                                    user={props.user}
-                                    getPostedJobs={props.getPostedJobs}
-                                    keyWords={props.keyWords}
-                                    getAllJobs={props.getAllJobs}
-                                    reviewer_type={props.reviewer_type}
-                                    selectedPage={props.selectedPage}
-                                    jobsId={props.jobsId}
-                                    employerProfileDetail={props.employerProfileDetail}
-                                    reviewerStageLength={props.reviewerStageLength}
-                                    category3={category3}
-                                    category5={category5}
-                                    CheckListCheckbox={CheckListCheckbox}
-                                />
-                            </div>
-                        )
-                    })}
-                </div>
-                {props.totalPage > 1 &&
-                    <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                        <ReactPaginate
-                            previousLabel={'< Prev'}
-                            nextLabel={'Next >'}
-                            breakLabel={'...'}
-                            breakClassName={'break-me'}
-                            pageCount={props.totalPage}
-                            marginPagesDisplayed={1}
-                            pageRangeDisplayed={5}
-                            onPageChange={props.handlePageClick}
-                            containerClassName={'pagination3'}
-                            activeClassName={'active'}
-                            forcePage={props.currentPage}
-                        />
-                    </div>
-                }
-                {(!props.profile.is_subreviwer && !props.profile.is_external_reviewer && props.filter == "active") &&
-                    <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                        {select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={openMoveForm}
-                            >
-                                Move All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {candidates_count > 0 ?
-                                    <span>
-                                        {candidates_count > 1 ?
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={openMoveForm}
-                                            >
-                                                Move ({candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={openMoveForm}
-                                            >
-                                                Move
-                                                <span></span>
-                                            </button>}
-                                    </span> :
-                                    <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
-                                    >
-                                        Move
-                                        <span></span>
-                                    </button>}
-                            </span>
-                        }
-                        {select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={rejectCandidates}
-                            >
-                                Reject All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {candidates_count > 0 ?
-                                    <span>
-                                        {candidates_count > 1 ?
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={rejectCandidates}
-                                            >
-                                                Reject ({candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={rejectCandidates}
-                                            >
-                                                Reject
-                                                <span></span>
-                                            </button>}
-                                    </span> :
-                                    <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
-                                    >
-                                        Reject
-                                        <span></span>
-                                    </button>}
-                            </span>
-                        }
-                        {select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={openEmailForm}
-                            >
-                                Email All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {candidates_count > 0 ?
-                                    <span>
-                                        {candidates_count > 1 ?
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={openEmailForm}
-                                            >
-                                                Email ({candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={openEmailForm}
-                                            >
-                                                Email
-                                                <span></span>
-                                            </button>}
-                                    </span> :
-                                    <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
-                                    >
-                                        Email
-                                        <span></span>
-                                    </button>}
-                            </span>
-                        }
-                    </div>
-                }
-                <MoveForm
-                    showMoveForm={showMoveForm}
-                    hideMoveForm={hideMoveForm}
-                    currentStage={currentStage}
-                    setCurrentStage={setCurrentStage}
-                    nextStage={nextStage}
-                    setNextStage={setNextStage}
-                    moveCandidates={moveCandidates}
-                />
-                {/*  move success alert prompt */}
-                <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
-                        <h3 className="interview-h3">Move to next stage Success</h3>
-                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have moved the candidates to selected stage successfully.</p>
-                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
-                            <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
-                            Don't show again
-                        </div>
-                        <div className="row d-flex justify-content-center">
-                            <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
-                        </div>
-                    </div>
-                </AlertModal>
-                {/*  reject success alert prompt */}
-                <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
-                    <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
-                        <h3 className="interview-h3">Candidate Rejected!</h3>
-                        <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have rejected the candidates successfully.</p>
-                        <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
-                            <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
-                            Don't show again
-                        </div>
-                        <div className="row d-flex justify-content-center">
-                            <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
-                        </div>
-                    </div>
-                </AlertModal>
-                <MyModal80 show={showEmailSending} onHide={hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={hideEmailSending}
-                        employerProfileDetail={props.employerProfileDetail}
-                        user={props.user}
+                            }
+                            {select_all ?
+                                <button
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                    onClick={rejectCandidates}
+                                >
+                                    Reject All
+                                    <span></span>
+                                </button> :
+                                <span>
+                                    {candidates_count > 0 ?
+                                        <span>
+                                            {candidates_count > 1 ?
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={rejectCandidates}
+                                                >
+                                                    Reject ({candidates_count})
+                                                    <span></span>
+                                                </button> :
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={rejectCandidates}
+                                                >
+                                                    Reject
+                                                    <span></span>
+                                                </button>}
+                                        </span> :
+                                        <button
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
+                                        >
+                                            Reject
+                                            <span></span>
+                                        </button>}
+                                </span>
+                            }
+                            {select_all ?
+                                <button
+                                    className="default-btn"
+                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                    onClick={openEmailForm}
+                                >
+                                    Email All
+                                    <span></span>
+                                </button> :
+                                <span>
+                                    {candidates_count > 0 ?
+                                        <span>
+                                            {candidates_count > 1 ?
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={openEmailForm}
+                                                >
+                                                    Email ({candidates_count})
+                                                    <span></span>
+                                                </button> :
+                                                <button
+                                                    className="default-btn"
+                                                    style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                    onClick={openEmailForm}
+                                                >
+                                                    Email
+                                                    <span></span>
+                                                </button>}
+                                        </span> :
+                                        <button
+                                            className="default-btn1"
+                                            style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
+                                        >
+                                            Email
+                                            <span></span>
+                                        </button>}
+                                </span>
+                            }
+                        </Box>
+                    }
+                </Container> :
+                <Container
+                    py={{
+                        base: '4',
+                        md: '8',
+                    }}
+                    px={{
+                        base: '0',
+                        md: 8,
+                    }}
+                >
+                    <CandidateCard
+                        getPJobs={props.getPJobs}
+                        refreshPage={props.refreshPage}
+                        stars={props.stars[props.theJob.applicants[detailIndex]?.email]}
+                        resume_list={Math.max(props.resume_list[props.theJob.applicants[detailIndex]?.email] ? props.resume_list[props.theJob.applicants[detailIndex]?.email] : 0, props.theJob.applicants[detailIndex]?.result_rate ? props.theJob.applicants[detailIndex]?.result_rate : 0)} // get max resume score
+                        applicant={props.theJob.applicants[detailIndex]}
+                        getApplicantsVideos={props.getApplicantsVideos}
+                        getApplicantsInfo={props.getApplicantsInfo}
+                        int_ques={props.int_ques}
+                        id_candidate={props.id_candidate}
+                        username_candidate={props.username_candidate}
+                        email_candidate={props.email_candidate}
+                        phone_candidate={props.phone_candidate}
+                        location_candidate={props.location_candidate}
+                        resumeURL={props.resumeURL}
+                        recordTime={props.recordTime}
+                        interviewResume={props.interviewResume}
+                        getResumeURL={props.getResumeURL}
+                        updateCommentStatus={props.updateCommentStatus}
                         profile={props.profile}
-                        email={email_list}
-                        jobid={props.jobsId}
-                        first_name={email_list}
-                        last_name={email_list}
-                        handleStatusChange2={null}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        applicants={props.theJob.applicants}
+                        current={detailIndex}
+                        getReviewNote={props.getReviewNote}
+                        getReviewerEvaluation={props.getReviewerEvaluation}
+                        getCurrentReviewerEvaluation={props.getCurrentReviewerEvaluation}
+                        user={props.user}
+                        getPostedJobs={props.getPostedJobs}
+                        keyWords={props.keyWords}
+                        getAllJobs={props.getAllJobs}
+                        reviewer_type={props.reviewer_type}
+                        selectedPage={props.selectedPage}
+                        jobsId={props.jobsId}
+                        employerProfileDetail={props.employerProfileDetail}
+                        reviewerStageLength={props.reviewerStageLength}
+                        category3={category3}
+                        category5={category5}
+                        CheckListCheckbox={CheckListCheckbox}
+                        showDetails={showDetails}
+                        setShowDetails={setShowDetails}
+                        setDetailIndex={setDetailIndex}
                     />
-                </MyModal80>
-            </div>
-        </div>
+                </Container>
+            }
+            <MoveForm
+                showMoveForm={showMoveForm}
+                hideMoveForm={hideMoveForm}
+                currentStage={currentStage}
+                setCurrentStage={setCurrentStage}
+                nextStage={nextStage}
+                setNextStage={setNextStage}
+                moveCandidates={moveCandidates}
+            />
+            {/*  move success alert prompt */}
+            <AlertModal show={showMoveSuccessAlert} onHide={hideSuccessAlert}>
+                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                    <h3 className="interview-h3">Move to next stage Success</h3>
+                    <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have moved the candidates to selected stage successfully.</p>
+                    <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                        <input id="alertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
+                        Don't show again
+                    </div>
+                    <div className="row d-flex justify-content-center">
+                        <button onClick={hideSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
+                    </div>
+                </div>
+            </AlertModal>
+            {/*  reject success alert prompt */}
+            <AlertModal show={showRejectSuccessAlert} onHide={hideRejectSuccessAlert}>
+                <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2rem" }}>
+                    <h3 className="interview-h3">Candidate Rejected!</h3>
+                    <p className="interview-p" style={{ marginBottom: "0.5rem" }}>You have rejected the candidates successfully.</p>
+                    <div className="interview-p align-center" style={{ marginBottom: "1rem" }}>
+                        <input id="rejectAlertCheckbox" type="checkbox" style={{ marginRight: "1rem" }} />
+                        Don't show again
+                    </div>
+                    <div className="row d-flex justify-content-center">
+                        <button onClick={hideRejectSuccessAlert} className="default-btn1" style={{ paddingLeft: "25px", float: "right" }}>Ok</button>
+                    </div>
+                </div>
+            </AlertModal>
+            <Modal onClose={hideEmailSending} size={"7xl"} isOpen={showEmailSending}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <EmailSending
+                            hideEmailSending={hideEmailSending}
+                            employerProfileDetail={props.employerProfileDetail}
+                            user={props.user}
+                            profile={props.profile}
+                            email={email_list}
+                            jobid={props.jobsId}
+                            first_name={email_list}
+                            last_name={email_list}
+                            handleStatusChange2={null}
+                        />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+        </React.Fragment>
     )
 }
 
@@ -780,13 +891,19 @@ const CandidateCard = (props) => {
     const end = props.applicants.length - 1;
 
     const customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#fff', border: "none" }),
+        control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
-            color: '#979797',
-            fontSize: '0.8rem',
+            color: useColorModeValue("#090d3a", "#ffffff"),
+            fontSize: '0.9375rem',
             fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
+            fontWeight: '500',
+            background: useColorModeValue("#ffffff", "#1a202c")
+        }),
+        menuList: styles => ({
+            ...styles,
+            backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+            color: useColorModeValue('#090d3a', '#7a7a7a'),
         }),
         indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
@@ -820,12 +937,6 @@ const CandidateCard = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     if (sessionStorage.getItem("showShortListModal" + props.current) === "true") {
-    //         setShow(true);
-    //     }
-    // }, [setShow]);
-
     function viewResult() {
         // get videos and info
         props.getApplicantsVideos(props.applicant.email, props.applicant.positions_id);
@@ -835,7 +946,9 @@ const CandidateCard = (props) => {
         props.getReviewerEvaluation(props.applicant.positions_id, props.applicant.email);
         props.getCurrentReviewerEvaluation(props.applicant.positions_id, props.applicant.email, props.user.email, "Short List");
         //sessionStorage.setItem(("showShortListModal" + props.current), "true");
-        setShow(true);
+        // setShow(true);
+        props.setShowDetails(true);
+        props.setDetailIndex(current);
     };
 
     function getReviewPageData(index) {
@@ -859,14 +972,17 @@ const CandidateCard = (props) => {
 
     function getNextResult(curIndex) {
         getReviewPageData1(curIndex + 1);
+        props.setDetailIndex(curIndex + 1);
     };
 
     function viewNextResult(curIndex) {
         getReviewPageData(curIndex + 1);
+        props.setDetailIndex(curIndex + 1);
     };
 
     function viewPrevResult(curIndex) {
         getReviewPageData(curIndex - 1);
+        props.setDetailIndex(curIndex - 1);
     };
 
 
@@ -930,111 +1046,97 @@ const CandidateCard = (props) => {
 
     const mailTo = "mailto:" + props.applicant.email;
     function hideModal() {
-        //sessionStorage.removeItem("showShortListModal" + props.current);
         setShow(false);
         setCurrent(props.current);
         props.getPostedJobs(props.user.id, props.currentPage, "Short List", "", props.category3.value, "", props.category5.value, props.jobsId, props.keyWords);
     }
     return (
         <React.Fragment>
-            <div>
-                <hr
-                    style={{
-                        border: props.current == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
-                        boxShadow: props.current == 0 ? "0px 1px 2px #E8EDFC" : "",
-                    }}
-                />
-            </div>
-            <div style={{ fontFamily: "Inter, Segoe UI", fontWeight: "600" }} className="container-fluid row h-100">
-                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                    <div className="interview-txt9 mr-3">
-                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={props.CheckListCheckbox} />
-                    </div>
-                }
-                <div className="col-2 title-button2" onClick={() => { viewResult(); }} style={{ cursor: "pointer" }}>
-                    {props.applicant.name.length > 18 ? props.applicant.name.substring(0, 15) + "..." : props.applicant.name}
-                </div>
-
-                {/* <div className="col-3">
-                    {renderStars(props.stars)}
-                </div> */}
-                <div className="col-2">
-                    {renderResume(props.resume_list)}
-                </div>
-                {(props.reviewerStageLength > 0) &&
-                    <div className="col-3">
-                        {props.applicant?.reviewer_review_status ?
-                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
-                        }
-                    </div>
-                }
-                {(props.reviewerStageLength == 0) &&
-                    <div className="col-2">
-                        {props.applicant?.num_votes > 0 &&
-                            <p style={{ fontWeight: "600", color: "#090D3A", paddingLeft: "1.4rem" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
-                        }
-                    </div>
-                }
-                {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{ marginLeft: "1.5rem" }}>
-                        <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
-                    </div>}
-                {/*!props.profile.is_external_reviewer && !props.profile.is_subreviwer &&
-                    <div className="col-2">
-                        <a
-                            target="_blank"
-                            href={mailTo}
-                            className="interview-txt9"
-                            style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
-                        >
-                            <i className="bx-fw bx bx-mail-send"></i> Send Email
-                        </a>
-                    </div>
-                */}
-            </div>
-            <MyVerticallyCenteredModal
-                refresh={refresh}
-                getPJobs={props.getPJobs}
-                applicant={props.applicant}
-                id_candidate={props.id_candidate}
-                username_candidate={props.username_candidate}
-                email_candidate={props.email_candidate}
-                phone_candidate={props.phone_candidate}
-                location_candidate={props.location_candidate}
-                int_ques={props.int_ques}
-                secondround_status={props.applicant.secondround_status}
-                show={show}
-                setShowResume={setShowResume}
-                setShowEva={setShowEva}
-                onHide={hideModal}
-                positionId={props.applicant.positions_id}
-                resumeURL={props.resumeURL}
-                recordTime={props.recordTime}
-                interviewResume={props.interviewResume}
-                updateCommentStatus={props.updateCommentStatus}
-                profile={props.profile}
-                subreviewerUpdateComment={props.subreviewerUpdateComment}
-                applicants={props.applicants}
-                current={current}
-                setCurrent={setCurrent}
-                start={start}
-                end={end}
-                filter={"active"}
-                getPostedJobs={props.getPostedJobs}
-                getAllJobs={props.getAllJobs}
-                keyWords={props.keyWords}
-                currentStage={"Short List"}
-                reviewer_type={props.reviewer_type}
-                jobsId={props.jobsId}
-                selectedPage={props.selectedPage}
-                viewPrevResult={viewPrevResult}
-                viewNextResult={viewNextResult}
-                getNextResult={getNextResult}
-                employerProfileDetail={props.employerProfileDetail}
-                category3={props.category3}
-                category5={props.category5}
-            />
+            {!props.showDetails ?
+                <Tr>
+                    <Td className="interview-txt9" style={{ cursor: "pointer", color: "#006dff" }}>
+                        <HStack spacing='3'>
+                            <Stack>
+                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                                    <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={props.CheckListCheckbox} />
+                                }
+                            </Stack>
+                            <Stack>
+                                <button className="title-button2" style={{ wordBreak: "break-all" }} onClick={() => { viewResult(); }}>
+                                    {props.applicant.name.length > 30 ? props.applicant.name.substring(0, 28) + "..." : props.applicant.name}
+                                </button>
+                            </Stack>
+                        </HStack>
+                    </Td>
+                    <Td>
+                        {renderResume(props.resume_list)}
+                    </Td>
+                    {(props.reviewerStageLength > 0) &&
+                        <Td className="interview-txt9">
+                            {props.applicant?.reviewer_review_status ?
+                                <Text style={{ fontWeight: "600" }}>Reviewed</Text> :
+                                <Text color='muted' style={{ fontWeight: "600" }}>Pending</Text>
+                            }
+                        </Td>}
+                    {(props.reviewerStageLength == 0) &&
+                        <Td className="interview-txt9">
+                            {props.applicant?.num_votes > 0 &&
+                                <Text color='muted' style={{ fontWeight: "600" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</Text>
+                            }
+                        </Td>
+                    }
+                    {(props.reviewerStageLength == 0) &&
+                        <Td className="interview-txt9">
+                            <Select value={category1.value != null ? category1 : { value: props.applicant.shortcat, label: props.applicant.shortcat }} onChange={onFilter1} options={options1} className="select-category5" styles={customStyles} isSearchable={false} />
+                        </Td>}
+                </Tr> :
+                <span>
+                    {/* Shortlist Result */}
+                    <MyVerticallyCenteredModal
+                        refresh={refresh}
+                        getPJobs={props.getPJobs}
+                        applicant={props.applicant}
+                        id_candidate={props.id_candidate}
+                        username_candidate={props.username_candidate}
+                        email_candidate={props.email_candidate}
+                        phone_candidate={props.phone_candidate}
+                        location_candidate={props.location_candidate}
+                        int_ques={props.int_ques}
+                        secondround_status={props.applicant.secondround_status}
+                        show={show}
+                        setShowResume={setShowResume}
+                        setShowEva={setShowEva}
+                        onHide={hideModal}
+                        positionId={props.applicant.positions_id}
+                        resumeURL={props.resumeURL}
+                        recordTime={props.recordTime}
+                        interviewResume={props.interviewResume}
+                        updateCommentStatus={props.updateCommentStatus}
+                        profile={props.profile}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        applicants={props.applicants}
+                        current={current}
+                        setCurrent={setCurrent}
+                        start={start}
+                        end={end}
+                        filter={"active"}
+                        getPostedJobs={props.getPostedJobs}
+                        getAllJobs={props.getAllJobs}
+                        keyWords={props.keyWords}
+                        currentStage={"Short List"}
+                        reviewer_type={props.reviewer_type}
+                        jobsId={props.jobsId}
+                        selectedPage={props.selectedPage}
+                        viewPrevResult={viewPrevResult}
+                        viewNextResult={viewNextResult}
+                        getNextResult={getNextResult}
+                        employerProfileDetail={props.employerProfileDetail}
+                        category3={props.category3}
+                        category5={props.category5}
+                        setShowDetails={props.setShowDetails}
+                    />
+                </span>
+            }
             <MyModal80
                 show={showResume}
                 onHide={() => { setShowResume(false); }}

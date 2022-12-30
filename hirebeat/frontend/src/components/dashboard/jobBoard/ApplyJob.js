@@ -17,6 +17,7 @@ import Autocomplete from "react-google-autocomplete";
 import ApplyQuestion from "./ApplyQuestion";
 import {JSONLD, Generic} from "react-structured-data";
 import Header from "../../layout/Header";
+import { Text, HStack, Button } from '@chakra-ui/react';
 
 const ApplyJob = (props) => {
     var uri = window.location.search;
@@ -1026,7 +1027,7 @@ const ApplyJob = (props) => {
                                         onError={onUploadError}
                                         onFinish={onUploadFinish}
                                         uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                                        scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
+                                        scrubFilename={(filename) => filename?.replace(/[^\w\d_\-.]+/ig, '')}
                                         inputRef={(cmp) => (props.uploadInput = cmp)}
                                         ref={(uploader) => {
                                             props.uploader = uploader;
@@ -1045,24 +1046,20 @@ const ApplyJob = (props) => {
                                         </a>}
                                     <div className='col' style={{background: "#F3F6F9" }}>
                                     <div className='col' style={{background: "#F3F6F9", paddingLeft: "7%", paddingRight: "7%" }}>
-                                        <p className="mt-4 pt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Link to this job</p>
+                                        <Text mt='5' pt='4' fontSize='sm' fontWeight='700'>Link to this job</Text>
                                         {/*<div className="row ml-0" style={{ position: "relative", background: "#E8EDFC", borderRadius: "4px", border: "2px solid #006dff", width: "100%", height: "3.7rem", marginTop:"-7px" }}>*/}
-                                            <div className="pr-1" style={{ color: "#090D3A", fontSize: "1rem", fontWeight: "500", alignItems: "center", marginTop: "-14px"}}>
-                                                <p style={{ fontSize: "0.8rem"}} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}
-                                                <button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
-                                                    className="default-btn" style={{ fontSize: "0.8rem", background: "#FF6B00", borderRadius: "4px", height: "1.4rem", alignItems: "center", marginLeft: "10px", width:"4rem", paddingTop:"0px", paddingLeft:"25px", marginTop:"1px" }}>
-                                                    <i className='bx bx-share-alt' style={{ left: "0.2rem" }}></i>Copy
-                                                </button>
-                                                </p>
-
-                                            </div>
-
-
-
+                                            <HStack>
+                                                <Text style={{ fontSize: "0.8rem"}} onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}>{(job_id == null || job_id == "") ? "" : props.job.job_url}
+                                                </Text>
+                                                <Button onClick={() => { copyAlert(); navigator.clipboard.writeText(((job_id == null || job_id == "") ? "" : props.job.job_url?.replaceAll(' ', '%20'))) }}
+                                                    colorScheme='orange' size='sm'>
+                                                    <i className='bx bx-share-alt'></i>Copy
+                                                </Button>
+                                            </HStack>
                                         {props.job.company_website != null && props.job.company_website != "" &&
                                             <div className="single-footer-widget1 mt-3" style={{width:"100%"}}>
                                                 <p style={{ marginBottom: "0rem", fontWeight:"700", color:"#090D3A" , fontSize:"15px"}}>Website</p>
-                                                <a className="website" style={{ color:"#090D3A", fontWeight:"400", marginTop:"-2px", width:"200px", overflow: "hidden" }}  target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website.length > 20 ? props.job.company_website.substr(0,20) + "..." : props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs' style={{ paddingTop:"2px"}}></i></a>
+                                                <a className="website" style={{ color:"#090D3A", fontWeight:"400", marginTop:"-2px", width:"200px", overflow: "hidden" }}  target="_blank" rel="noreferrer" href={(props.job.company_website?.startsWith('https://')?props.job.company_website:"https://"+props.job.company_website)}>{props.job.company_website.length > 20 ? props.job.company_website.substr(0,20) + "..." : props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs' style={{ paddingTop:"2px"}}></i></a>
                                             </div>
                                         }
                                         <p className="mt-3" style={{color:"#090D3A", fontWeight:"700" , fontSize:"15px"}}>Share to</p>
@@ -1122,7 +1119,7 @@ const ApplyJob = (props) => {
                             <div className="row pl-3">
                                 <div className="pl-5 mt-3 pb-5" style={{ paddingRight: "3.7rem" }}>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_level} • {(job_id == null || job_id == "") ? "" : props.job.job_type}</p>
-                                    <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
+                                    <p className="my-2" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(job_id == null || job_id == "") ? "" : props.job.job_location}</p>
                                     <p style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4", lineHeight: "0.6rem" }}>{(props.job.job_id?.length) > 0 ? ("Job ID:" + ((job_id == null || job_id == "") ? "" : props.job.job_id)) : ""}</p>
                                     <p className="mt-4" style={{ fontWeight: "600", fontSize: "0.9rem", color: "#5874b4" }}>Posted on {(job_id == null || job_id == "") ? "" : (props.job.create_date?.split('T')[0])}</p>
                                     <div className="mt-2">
@@ -1183,7 +1180,7 @@ const ApplyJob = (props) => {
                                         {props.job.company_website != null && props.job.company_website != "" &&
                                             <div className="single-footer-widget1 mt-2">
                                                 <p style={{ marginBottom: "0.1rem", fontWeight:"500" }}>Website</p>
-                                                <a style={{color:"#67a3f3"}} className="website" target="_blank" rel="noreferrer" href={props.job.company_website}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                                <a style={{color:"#67a3f3"}} className="website" target="_blank" rel="noreferrer" href={(props.job.company_website?.startsWith('https://')?props.job.company_website:"https://"+props.job.company_website)}>{props.job.company_website} <i class='bx-fw bx bx-link-external bx-xs'></i></a>
                                             </div>
                                         }
                                     </div>
@@ -1812,7 +1809,7 @@ const ApplyJob = (props) => {
                                         onError={onUploadError}
                                         onFinish={onUploadFinish}
                                         uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                                        scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/ig, '')}
+                                        scrubFilename={(filename) => filename?.replace(/[^\w\d_\-.]+/ig, '')}
                                         inputRef={(cmp) => (props.uploadInput = cmp)}
                                         ref={(uploader) => {
                                             props.uploader = uploader;

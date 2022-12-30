@@ -2,6 +2,7 @@ import React, { Component, useEffect } from "react";
 import ApplicationVideoPanel from "./ApplicationVideoPanel";
 import { connect } from "react-redux";
 import 'boxicons';
+import { Text } from '@chakra-ui/react';
 
 function ScrollToTopOnMount() {
     useEffect(() => {
@@ -108,10 +109,11 @@ const Pagination = (props) => {
     return (
         <nav>
             <ul className="pagination">
-                <h4
-                    style={{ fontWeight: "500", color: "#090D3A", marginLeft: "-15px", display: "flex", alignItems: "center", paddingTop: "0.5rem", marginRight: "3rem" }}>
+                <Text
+                    color='muted'
+                    style={{ fontWeight: "600", marginLeft: "-15px", display: "flex", alignItems: "center", paddingTop: "0.5rem", marginRight: "3rem" }}>
                     Question
-                </h4>
+                </Text>
                 {pageNumbers.map((number) => {
                     if (number == props.page + 1) {
                         return <li className="page-item">

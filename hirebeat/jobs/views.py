@@ -119,12 +119,12 @@ def add_new_job(request):
         job.job_post = 1
         job.save()
 
-    # headers = {'Content-type': 'application/json'}
-    # emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/job/" + str(job.id) + "/post-event"
-    # requests.post(emailUrl, headers=headers)  
+    headers = {'Content-type': 'application/json'}
+    emailUrl = os.getenv('CUSTOMER_IO_WEBHOOK') + "/job/" + str(job.id) + "/post-event"
+    requests.post(emailUrl, headers=headers)  
 
     # add job url to xml
-    store_sitemap_xml(job_url)
+    # store_sitemap_xml(job_url)
 
     return Response("Create new job successfully", status=status.HTTP_201_CREATED)
 
@@ -1945,3 +1945,20 @@ def job_target_push_candidates_back(request):
         res = requests.post(url, data=json.dumps(data), headers=headers)
         print(res.json())
     return Response("Job Target Push Candidates Back Successfully", status=status.HTTP_201_CREATED)
+
+@api_view((['POST']))
+def get_most_recent_jobs(request):
+    userid = request.data["userid"]
+    jobs_list = Jobs.objects.filter(user_id = userid, is_closed = 0).order_by('-create_date')[:5].values()
+    return Response({
+        "jobs_list": jobs_list
+    })
+
+@api_view((['POST']))
+def job_update_single_jobpost(request):
+    jobid = request.data["jobid"]
+    job_post = request.data["job_post"]
+    job = Jobs.objects.get(pk=jobid)
+    job.job_post = job_post
+    job.save()
+    return Response("Job Post updated Successfully", status=status.HTTP_201_CREATED)

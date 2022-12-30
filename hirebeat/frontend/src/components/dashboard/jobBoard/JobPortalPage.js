@@ -13,12 +13,18 @@ import {
     addSubReviewer, removeSubReviewer, moveCandidateToInterview, sendInterviews
 } from "./../../../redux/actions/question_actions";
 import axios from "axios";
-import { constants } from "fs";
+// import { constants } from "fs";
+import { Container, Box, Flex } from '@chakra-ui/react';
+import { EmployerSidebar } from '../chakraComponents/EmployerSidebar';
+import { AISourcing } from '../chakraComponents/AISourcing';
+import { SocialMediaShare } from '../chakraComponents/SocialMediaShare';
+import { JobBoard } from '../chakraComponents/JobBoard';
 
 export class JobPortalPage extends Component {
     constructor(props) {
         super(props);
         window.scrollTo(0, 0);
+        this.props.setShowSidebarTrue();
         this.state = {
             portalSubpage: sessionStorage.getItem(this.props.job.job_details.job_title + 'portalSubpage') || "pipeline",
             reviewerStage: [],
@@ -35,23 +41,23 @@ export class JobPortalPage extends Component {
             axios.post("jobs/check_subreviewer_currentstage", data, config).then((res) => {
                 let stage_array = res?.data?.current_stage;
                 if (stage_array.includes("Short List")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Short List", "","","","", this.props.job.job_details.id);
-                    this.setState({portalSubpage: "shortList"});
+                    this.props.getPostedJobs(this.props.user.id, 1, "Short List", "", "", "", "", this.props.job.job_details.id);
+                    this.setState({ portalSubpage: "shortList" });
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'shortList'] });
                 }
                 if (stage_array.includes("Live Interview")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview", "","","","", this.props.job.job_details.id);
-                    this.setState({portalSubpage: "liveInterview"});
+                    this.props.getPostedJobs(this.props.user.id, 1, "Live Interview", "", "", "", "", this.props.job.job_details.id);
+                    this.setState({ portalSubpage: "liveInterview" });
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'liveInterview'] });
                 }
                 if (stage_array.includes("Video Interview")) {
-                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview", "","","","", this.props.job.job_details.id);
-                    this.setState({portalSubpage: "videoInterview"});
+                    this.props.getPostedJobs(this.props.user.id, 1, "Video Interview", "", "", "", "", this.props.job.job_details.id);
+                    this.setState({ portalSubpage: "videoInterview" });
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'videoInterview'] });
                 }
                 if (stage_array.includes("Resume Review")) {
                     this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", "True");
-                    this.setState({portalSubpage: "resumeScreen"});
+                    this.setState({ portalSubpage: "resumeScreen" });
                     this.setState({ reviewerStage: [...this.state.reviewerStage, 'resumeScreen'] });
                 }
             }).catch(error => {
@@ -124,7 +130,7 @@ export class JobPortalPage extends Component {
                     // update info
                     let jobt_data = { "profile_id": this.props.profile.id, "jobt_company_id": "", "jobt_user_id": "", "jobt_token": res3.data.token }
                     axios.post("accounts/job-target-info-update", jobt_data, config).then((res) => {
-                        this.setState({jobt_token: res3.data.token});
+                        this.setState({ jobt_token: res3.data.token });
                     }).catch(error => {
                         console.log(error)
                     });
@@ -170,7 +176,7 @@ export class JobPortalPage extends Component {
         sessionStorage.setItem('selectedSubpage', "Video Interview");
         sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "videoInterview");
         let page = 1;
-        this.props.getPostedJobs(this.props.user.id, page, "Video Interview", "","","","", this.props.job.job_details.id);
+        this.props.getPostedJobs(this.props.user.id, page, "Video Interview", "", "", "", "", this.props.job.job_details.id);
         this.setState({
             portalSubpage: "videoInterview",
             subComponentFilterReset: 1,
@@ -183,7 +189,7 @@ export class JobPortalPage extends Component {
             sessionStorage.setItem('selectedSubpage', "Live Interview");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "liveInterview");
             let page = 1;
-            this.props.getPostedJobs(this.props.user.id, page, "Live Interview", "","","","", this.props.job.job_details.id);
+            this.props.getPostedJobs(this.props.user.id, page, "Live Interview", "", "", "", "", this.props.job.job_details.id);
             this.setState({
                 portalSubpage: "liveInterview",
                 subComponentFilterReset: 1,
@@ -197,7 +203,7 @@ export class JobPortalPage extends Component {
             sessionStorage.setItem('selectedSubpage', "Short List");
             sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "shortList");
             let page = 1;
-            this.props.getPostedJobs(this.props.user.id, page, "Short List", "","","","", this.props.job.job_details.id);
+            this.props.getPostedJobs(this.props.user.id, page, "Short List", "", "", "", "", this.props.job.job_details.id);
             this.setState({
                 portalSubpage: "shortList",
                 subComponentFilterReset: 1,
@@ -212,10 +218,56 @@ export class JobPortalPage extends Component {
             portalSubpage: "pipeline",
         });
     };
+    renderAISourcing = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "aiSourcing");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "aiSourcing",
+        });
+    };
+    renderSocialMediaShare = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "socialMediaShare");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "socialMediaShare",
+        });
+    };
+    renderJobBoardShare = () => {
+        sessionStorage.setItem(this.props.job.job_details.job_title + 'portalSubpage', "jobboardshare");
+        let page = sessionStorage.getItem("jobAppPage") ? parseInt(sessionStorage.getItem("jobAppPage")) + 1 : 1;
+        this.props.getAllJobs(this.props.user.id, page, "", "", "");
+        this.setState({
+            portalSubpage: "jobboardshare",
+        });
+    };
 
     renderSubpage = () => {
         const p = this.props.postedJobs[this.props.job.job_details.positions_id];
         switch (this.state.portalSubpage) {
+            case "jobboardshare":
+                return <JobBoard
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                    jobt_token={(this.state.jobt_token == "") ? this.props.profile.jobt_token : this.state.jobt_token}
+                />;
+            case "socialMediaShare":
+                return <SocialMediaShare
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                />;
+            case "aiSourcing":
+                return <AISourcing
+                    job={this.props.job}
+                    user={this.props.user}
+                    profile={this.props.profile}
+                    employerProfileDetail={this.props.employerProfileDetail}
+                />;
             case "pipeline":
                 return <Pipeline
                     renderPipeline={this.renderPipeline}
@@ -232,7 +284,7 @@ export class JobPortalPage extends Component {
                     profile={this.props.profile}
                     user={this.props.user}
                     employerProfileDetail={this.props.employerProfileDetail}
-                    jobt_token={(this.state.jobt_token == "")?this.props.profile.jobt_token:this.state.jobt_token}
+                    jobt_token={(this.state.jobt_token == "") ? this.props.profile.jobt_token : this.state.jobt_token}
                 />;
             case "allCandidates":
                 return <AllCandidates
@@ -451,91 +503,61 @@ export class JobPortalPage extends Component {
     }
     render() {
         return (
-            <React.Fragment>
-                <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
-                    <div className="chart-bg1" style={{ paddingTop: "0px", paddingBottom: "5rem" }}>
-                        <div style={{ padding: "1rem", backgroundColor: "#f4f7ff", borderRadius: "3px" }}><h3 className="job-title-hover-orange" onClick={() => { this.props.setViewPortal(false); sessionStorage.setItem("viewPortal", "false"); this.props.getAllJobs(this.props.user.id, 1, "", "", ""); sessionStorage.removeItem("selectedSubpage"); sessionStorage.removeItem("selectedSubpageForJob") }} style={{ fontSize: "1.25rem", marginBottom: "0rem", cursor: "pointer" }}><b><i class='bx-fw bx bx-chevron-left' style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.job.job_details.job_title}</span></b></h3></div>
-                        <div className="row" style={{ border: "2px solid #f3f6f9" }}>
-                            <div className="col-2">
-                                {(this.state.reviewerStage.includes("pipeline") ||  this.state.reviewerStage?.length == 0) ?
-                                    <div>
-                                        {this.state.portalSubpage == "pipeline" ?
-                                            <p onClick={this.renderPipeline} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p> :
-                                            <p onClick={this.renderPipeline} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
-                                        }</div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Pipeline</p>
-                                }
+            <Flex
+                as="section"
+                direction={{
+                    base: 'column',
+                    lg: 'row',
+                }}
+            >
+                {/* <Box position='fixed' width='80' overflowX='hidden' zIndex='9'> */}
+                <EmployerSidebar
+                    reviewerStage={this.state.reviewerStage}
+                    portalSubpage={this.state.portalSubpage}
+                    renderPipeline={this.renderPipeline}
+                    renderAllCandidates={this.renderAllCandidates}
+                    renderResumeScreen={this.renderResumeScreen}
+                    getStageTabOrangeDot={this.getStageTabOrangeDot}
+                    renderVideoInterview={this.renderVideoInterview}
+                    renderLiveInterview={this.renderLiveInterview}
+                    renderShortList={this.renderShortList}
+                    renderAISourcing={this.renderAISourcing}
+                    renderSocialMediaShare={this.renderSocialMediaShare}
+                    renderJobBoardShare={this.renderJobBoardShare}
+                    curJob={this.props.job}
+                    setShowSidebarFalse={this.props.setShowSidebarFalse}
+                    setViewPortal={this.props.setViewPortal}
+                    getAllJobs={this.props.getAllJobs}
+                    renderJobEdition={this.props.renderJobEdition}
+                    setJobInfo={this.props.setJobInfo}
+                    reviewer_type={this.props.job?.reviewer_type}
+                />
+                {/* </Box> */}
+                <Box
+                    bg="bg-surface"
+                    pt={{
+                        base: '0',
+                        lg: '3',
+                    }}
+                    flex="1"
+                    // ml='80'
+                >
+                    <Box
+                        bg="bg-canvas"
+                        borderTopLeftRadius={{
+                            base: 'none',
+                            lg: '10',
+                        }}
+                        height="full"
+                    >
+                        <Container py="8" height="full" width='full'>
+                            <div>
+                                {this.renderSubpage()}
                             </div>
-                            <div className="col-2">
-                                {(this.state.reviewerStage.includes("allCandidates") || this.state.reviewerStage?.length == 0)?
-                                    <div>
-                                        {this.state.portalSubpage == "allCandidates" ?
-                                            <p onClick={this.renderAllCandidates} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                            <p onClick={this.renderAllCandidates} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>All Candidates <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                        }
-                                    </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>All Candidates</p>
-                                }
-                            </div>
-                            <div className="col-2">
-                                {((this.state.reviewerStage.includes("resumeScreen") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                    <div>
-                                        {this.state.portalSubpage == "resumeScreen" ?
-                                            <p onClick={this.renderResumeScreen} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                            <p onClick={this.renderResumeScreen} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot()?.resume_review) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Resume Review <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                        }
-                                    </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Resume Review</p>
-                                }
-                            </div>
-                            <div className="col-2">
-                                {(this.state.reviewerStage.includes("videoInterview") || this.state.reviewerStage?.length == 0) ?
-                                    <div>
-                                        {this.state.portalSubpage == "videoInterview" ?
-                                            <p onClick={this.renderVideoInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                            <p onClick={this.renderVideoInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>
-                                                {(this.getStageTabOrangeDot()?.video_interview) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                                                Video Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                        }
-                                    </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Video Interview</p>
-                                }
-                            </div>
-                            <div className="col-2">
-                                {((this.state.reviewerStage.includes("liveInterview") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                    <div>
-                                        {this.state.portalSubpage == "liveInterview" ?
-                                            <p onClick={this.renderLiveInterview} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p> :
-                                            <p onClick={this.renderLiveInterview} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Live Interview <span style={{ marginLeft: "1rem" }}>{'>>'}</span></p>
-                                        }
-                                    </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default" }}><i class='bx-fw bx bx-filter-alt'></i>Live Interview</p>
-                                }
-                            </div>
-                            <div className="col-2">
-                                {((this.state.reviewerStage.includes("shortList") || this.state.reviewerStage?.length == 0)) && (this.props.job.job_details.gh_current_stage_id == "" || this.props.job.job_details.gh_current_stage_id == null) ?
-                                    <div>
-                                        {this.state.portalSubpage == "shortList" ?
-                                            <p onClick={this.renderShortList} style={{ backgroundColor: "#7C94B5", textAlign: "center", color: "#ffffff", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#7C94B5" }}>{'>>'}</span></p> :
-                                            <p onClick={this.renderShortList} style={{ textAlign: "center", color: "#7C94B5", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "pointer" }}>Short List <span style={{ marginLeft: "1rem", color:"#ffffff" }}>{'>>'}</span></p>
-                                        }
-                                    </div> :
-                                    <p style={{ textAlign: "center", color: "#e1e9f4", paddingTop: "0.5rem", paddingBottom: "0.5rem", fontWeight: "600", fontSize: "0.95rem", cursor: "default"}}><i class='bx-fw bx bx-filter-alt'></i>Short List</p>
-                                }
-                            </div>
-                        </div>
-                        <div>
-                            {this.renderSubpage()}
-                        </div>
-                    </div>
-                </div>
-            </React.Fragment>
+                        </Container>
+                    </Box>
+                </Box>
+            </Flex>
         )
     }
 }

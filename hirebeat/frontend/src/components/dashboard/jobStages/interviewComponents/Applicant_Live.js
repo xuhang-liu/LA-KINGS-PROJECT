@@ -5,6 +5,9 @@ import { MyVerticallyCenteredModal } from "./MyVerticallyCenteredModal";
 import { confirmAlert } from 'react-confirm-alert';
 import Select from 'react-select';
 import axios from "axios";
+import {
+    HStack, Stack, Text, Td, Tr, useColorModeValue
+} from '@chakra-ui/react';
 
 export const Applicant_Live = (props) => {
     const [current, setCurrent] = useState(props.index);
@@ -28,15 +31,21 @@ export const Applicant_Live = (props) => {
     const end = applicants.length - 1;
 
     const customStyles = {
-        control: styles => ({ ...styles, backgroundColor: '#fff', border: "none" }),
+        control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
         singleValue: styles => ({
             ...styles,
-            color: '#979797',
-            fontSize: '0.8rem',
+            color: useColorModeValue("#090d3a", "#ffffff"),
+            fontSize: '0.9375rem',
             fontFamily: 'Inter,Segoe UI, sans-serif',
-            fontWeight: '500'
+            fontWeight: '500',
+            background: useColorModeValue("#ffffff", "#1a202c")
         }),
-        indicatorSeparator: styles => ({ ...styles, visibility:"hidden"}),
+        menuList: styles => ({
+            ...styles,
+            backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+            color: useColorModeValue('#090d3a', '#7a7a7a'),
+        }),
+        indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
     }
 
     const options1 = [
@@ -69,12 +78,6 @@ export const Applicant_Live = (props) => {
         }
     }
 
-    // useEffect(() => {
-    //     if (sessionStorage.getItem("showCandidateModal" + props.index) === "true") {
-    //         setShow(true);
-    //     }
-    // }, [setShow]);
-
     function viewResult() {
         if (!isViewed) {
             props.updateViewStatus({ "candidate_id": applicants[props.index].id });
@@ -87,8 +90,9 @@ export const Applicant_Live = (props) => {
         props.getReviewNote(positionId, applicants[props.index].email);
         props.getReviewerEvaluation(positionId, applicants[props.index].email);
         props.getCurrentReviewerEvaluation(positionId, applicants[props.index].email, props.user.email, props.currentStage);
-        //sessionStorage.setItem(("showCandidateModal" + props.index), "true");
-        setShow(true);
+
+        props.setShowDetails(true);
+        props.setDetailIndex(current);
     };
 
     function getReviewPageData(index) {
@@ -113,51 +117,19 @@ export const Applicant_Live = (props) => {
     }
 
     function getNextResult(curIndex) {
-        //sessionStorage.removeItem("showCandidateModal" + curIndex);
-        //setNext(curIndex + 1);
-        //sessionStorage.setItem(("showCandidateModal" + next), "true");
         getReviewPageData1(curIndex + 1);
+        props.setDetailIndex(curIndex + 1);
     };
 
     function viewNextResult(curIndex) {
-        //sessionStorage.removeItem("showCandidateModal" + curIndex);
-        //setNext(curIndex + 1);
-        //sessionStorage.setItem(("showCandidateModal" + next), "true");
         getReviewPageData(curIndex + 1);
+        props.setDetailIndex(curIndex + 1);
     };
 
     function viewPrevResult(curIndex) {
-        //sessionStorage.removeItem("showCandidateModal" + curIndex);
-        //setPrev(curIndex - 1);
-        //sessionStorage.setItem(("showCandidateModal" + prev), "true");
         getReviewPageData(curIndex - 1);
+        props.setDetailIndex(curIndex - 1);
     };
-
-    {/* Below functions are designed for switching video recorded candidate */ }
-    {/*function viewNextResult(curIndex) {
-        let right = applicants.length;
-        let next = curIndex + 1;
-        while (next < right) {
-            if (applicants[next].is_recorded && applicants[next].video_count > 0) {
-                break;
-            }
-            next++;
-        }
-        // get the next candidate info
-        getReviewPageData(next);
-    };
-
-    function viewPrevResult(curIndex) {
-        let left = 0;
-        let prev = curIndex - 1;
-        while (prev >= left) {
-            if (applicants[prev].is_recorded && applicants[prev].video_count > 0) {
-                break;
-            }
-            prev--;
-        }
-        getReviewPageData(prev);
-    };*/}
 
     const refresh = () => {
         props.getResumeURL(positionId, applicants[props.index]?.apply_candidate_id);
@@ -189,113 +161,98 @@ export const Applicant_Live = (props) => {
     }
 
     function hideModal() {
-        // if (next != null){
-        //     sessionStorage.removeItem("showCandidateModal" + next);
-        // }else if (prev != null){
-        //     sessionStorage.removeItem("showCandidateModal" + prev);
-        // }
-        // sessionStorage.removeItem("showCandidateModal" + props.index);
         setCurrent(props.index);
-        setTimeout(() => { 
-            props.getAllJobs(props.user.id, 1, props.currentStage); 
-            props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, "", "", props.category4.value,"", props.jobsId, props.keyWords) 
+        setTimeout(() => {
+            props.getAllJobs(props.user.id, 1, props.currentStage);
+            props.getPostedJobs(props.user.id, (props.selectedPage + 1), props.currentStage, "", "", props.category4.value, "", props.jobsId, props.keyWords)
         }, 300);
         setShow(false);
     }
 
     return (
-        <div>
-            <hr
-                style={{
-                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
-                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
-                }}
-            />
-            <div className="row interview-center" style={{ color: "#7D7D7D", height: "2.5rem" }}>
-                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
-                    <div className="interview-txt9" style={{ marginLeft: "1rem" }}>
-                        <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" onClick={props.CheckListCheckbox}/>
-                    </div>
-                }
-                <div className="col-3 mb-1">
-                    <button className="title-button2" style={{ wordBreak: "break-all" }} onClick={(() => viewResult())}>
-                        {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
-                        {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
-                    </button>
-                </div>
-                {(props.reviewerStageLength > 0) &&
-                    <div className="col-3">
-                        {applicants[current]?.reviewer_review_status ?
-                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
-                        }
-                    </div>}
-                {(props.reviewerStageLength == 0) &&
-                    <div className="col-2" style={{ marginLeft: "1.4rem" }}>
-                        {applicants[current]?.num_votes > 0 &&
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</p>
-                        }
-                    </div>
-                }
-                {(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{ marginLeft: "-1.5rem" }}>
-                        <Select value={category1.value != null ? category1 : { value: props.livcat, label: props.livcat }} onChange={onFilter1} options={options1} className="select-category2" styles={customStyles} isSearchable={false} />
-                    </div>}
-                
-                {/*(props.reviewerStageLength == 0) &&
-                    <div className="col-3" style={{ marginLeft: "-2rem" }}>
-                        <a
-                            target="_blank"
-                            href={"mailto:" + applicants[current].email}
-                            className="interview-txt9"
-                            style={{ color: "#006dff", border: "none", background: "white", display: "inline-block", fontSize: "0.9375rem" }}
-                        >
-                            <i className="bx-fw bx bx-mail-send"></i> Send Email
-                        </a>
-                </div>*/}
-            </div>
-            {/* Interview Result */}
-            <MyVerticallyCenteredModal
-                refresh={refresh}
-                getPJobs={props.getPJobs}
-                recordTime={props.recordTime}
-                interviewResume={props.interviewResume}
-                commentStatus={commentStatus}
-                show={show}
-                setShowResume={setShowResume}
-                setShowEva={setShowEva}
-                onHide={hideModal}
-                int_ques={props.int_ques}
-                id_candidate={props.id_candidate}
-                username_candidate={props.username_candidate}
-                email_candidate={props.email_candidate}
-                phone_candidate={props.phone_candidate}
-                location_candidate={props.location_candidate}
-                positionId={props.positionId}
-                updateCommentStatus={props.updateCommentStatus}
-                profile={props.profile}
-                subreviewerUpdateComment={props.subreviewerUpdateComment}
-                current={current}
-                setCurrent={setCurrent}
-                start={start}
-                end={end}
-                viewPrevResult={viewPrevResult}
-                viewNextResult={viewNextResult}
-                getNextResult={getNextResult}
-                applicants={applicants}
-                filter={props.filter}
-                currentStage={props.currentStage}
-                getPostedJobs={props.getPostedJobs}
-                keyWords={props.keyWords}
-                getAllJobs={props.getAllJobs}
-                reviewer_type={props.reviewer_type}
-                gh_current_stage_id={props.gh_current_stage_id}
-                jobsId={props.jobsId}
-                selectedPage={props.selectedPage}
-                employerProfileDetail={props.employerProfileDetail}
-                category3={props.category3}
-                category4={props.category4}
-            />
+        <React.Fragment>
+            {!props.showDetails ?
+                <Tr>
+                    <Td className="interview-txt9" style={{ cursor: "pointer", color: "#006dff" }}>
+                        <HStack spacing='3'>
+                            <Stack>
+                                {!props.profile.is_subreviwer && !props.profile.is_external_reviewer &&
+                                    <input className="selected-candidate" value={JSON.stringify(applicants[current])} type="checkbox" onClick={props.CheckListCheckbox} />
+                                }
+                            </Stack>
+                            <Stack>
+                                <button className="title-button2" style={{ wordBreak: "break-all" }} onClick={(() => viewResult())}>
+                                    {(!isViewed && commentStatus == 0) ? <span class="dot"></span> : <span class="dot" style={{ background: "none" }}></span>}
+                                    {props.name.split("(")[0].length > 30 ? props.name.split("(")[0].substring(0, 28) + "..." : props.name.split("(")[0]}
+                                </button>
+                            </Stack>
+                        </HStack>
+                    </Td>
+                    {(props.reviewerStageLength > 0) &&
+                        <Td className="interview-txt9">
+                            {applicants[current]?.reviewer_review_status ?
+                                <Text style={{ fontWeight: "600" }}>Reviewed</Text> :
+                                <Text color='muted' style={{ fontWeight: "600" }}>Pending</Text>
+                            }
+                        </Td>}
+                    {(props.reviewerStageLength == 0) &&
+                        <Td className="interview-txt9">
+                            {applicants[current]?.num_votes > 0 &&
+                                <Text color='muted' style={{ fontWeight: "600" }}>{applicants[current]?.num_vote_yes + "/" + applicants[current]?.num_votes}</Text>
+                            }
+                        </Td>
+                    }
+                    {(props.reviewerStageLength == 0) &&
+                        <Td className="interview-txt9">
+                            <Select value={category1.value != null ? category1 : { value: props.livcat, label: props.livcat }} onChange={onFilter1} options={options1} className="select-category2" styles={customStyles} isSearchable={false} />
+                        </Td>}
+                </Tr> :
+                <span>
+                    {/* Interview Result */}
+                    <MyVerticallyCenteredModal
+                        refresh={refresh}
+                        getPJobs={props.getPJobs}
+                        recordTime={props.recordTime}
+                        interviewResume={props.interviewResume}
+                        commentStatus={commentStatus}
+                        show={show}
+                        setShowResume={setShowResume}
+                        setShowEva={setShowEva}
+                        onHide={hideModal}
+                        int_ques={props.int_ques}
+                        id_candidate={props.id_candidate}
+                        username_candidate={props.username_candidate}
+                        email_candidate={props.email_candidate}
+                        phone_candidate={props.phone_candidate}
+                        location_candidate={props.location_candidate}
+                        positionId={props.positionId}
+                        updateCommentStatus={props.updateCommentStatus}
+                        profile={props.profile}
+                        subreviewerUpdateComment={props.subreviewerUpdateComment}
+                        current={current}
+                        setCurrent={setCurrent}
+                        start={start}
+                        end={end}
+                        viewPrevResult={viewPrevResult}
+                        viewNextResult={viewNextResult}
+                        getNextResult={getNextResult}
+                        applicants={applicants}
+                        filter={props.filter}
+                        currentStage={props.currentStage}
+                        getPostedJobs={props.getPostedJobs}
+                        keyWords={props.keyWords}
+                        getAllJobs={props.getAllJobs}
+                        reviewer_type={props.reviewer_type}
+                        gh_current_stage_id={props.gh_current_stage_id}
+                        jobsId={props.jobsId}
+                        selectedPage={props.selectedPage}
+                        employerProfileDetail={props.employerProfileDetail}
+                        category3={props.category3}
+                        category4={props.category4}
+                        setShowDetails={props.setShowDetails}
+                    />
+                </span>
+            }
             <MyModal80
                 show={showResume}
                 onHide={() => { setShowResume(false); }}
@@ -311,7 +268,7 @@ export const Applicant_Live = (props) => {
                 <ResumeEva
                     interviewResume={(props.interviewResume.result_rate != "-1") ? props.interviewResume : applicants[current]} />
             </MyModal80>
-        </div>
+        </React.Fragment>
     )
 };
 

@@ -4,6 +4,9 @@ import { confirmAlert } from 'react-confirm-alert';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addNewApplyCandidateByCv } from "./../../../../redux/actions/job_actions";
+import {
+    Box, Input, Text
+} from '@chakra-ui/react';
 var ReactS3Uploader = require("react-s3-uploader");
 
 
@@ -30,7 +33,7 @@ export class NewCandidateAdditionForm extends Component {
         // console.log(text);
 
         // clear previous resumes first
-        this.setState({candidates: []});
+        this.setState({ candidates: [] });
 
         let input = document.getElementById("resume");
         input.click();
@@ -53,11 +56,11 @@ export class NewCandidateAdditionForm extends Component {
                 let timestamp = Date.parse(new Date());
                 candidateInfo.fakeResumeName = timestamp + pdf.name.split('.')[1];
                 this.getTextByPdf(pdf, candidateInfo);
-                setTimeout(() => {this.setState({candidates: [...this.state.candidates, candidateInfo]})}, 500);
+                setTimeout(() => { this.setState({ candidates: [...this.state.candidates, candidateInfo] }) }, 500);
             }
             // reset input value
             input.value = null;
-            this.setState({resumeSelected: true});
+            this.setState({ resumeSelected: true });
 
         }
     }
@@ -66,8 +69,8 @@ export class NewCandidateAdditionForm extends Component {
         return new Promise(resolve => {
             let fileReader = new FileReader();
             // Onload of file read the file content
-            fileReader.onload = function(fileLoadedEvent) {
-                 resolve(fileLoadedEvent.target.result);
+            fileReader.onload = function (fileLoadedEvent) {
+                resolve(fileLoadedEvent.target.result);
             };
             // Convert data to base64
             fileReader.readAsDataURL(fileToLoad);
@@ -117,8 +120,8 @@ export class NewCandidateAdditionForm extends Component {
         }
         setTimeout(() => {
             this.props.getAllJobs(this.props.user.id, 1, "", "", "", this.props.keyWords);;
-            this.setState({candidates: []}); 
-            this.uploadSuccess(); 
+            this.setState({ candidates: [] });
+            this.uploadSuccess();
             this.props.hideAdditionForm();
         }, 500);
     };
@@ -280,7 +283,7 @@ export class NewCandidateAdditionForm extends Component {
     deleteResume = (index) => {
         let cache = [...this.state.candidates];
         cache.splice(index, 1);
-        this.setState({candidates: cache});
+        this.setState({ candidates: cache });
     }
 
     deleteAlert = (index) => {
@@ -305,56 +308,32 @@ export class NewCandidateAdditionForm extends Component {
                 <div>
                     {this.state.resumeSelected ?
                         <div style={{ marginTop: "2rem", marginLeft: "8%", marginRight: "8%" }}>
-                            {/*<div className="row">
-                                <div className="mt-3 mb-3">
-                                    <button type="button" className="default-btn resume-upload" onClick={this.uploadResume}>
-                                        <i className="bx bx-cloud-upload bx-sm"></i>
-                                        Upload Resume
-                                    </button>
-                                </div>
-                                <div style={{ marginLeft: "1rem", marginTop: "2rem" }}>
-                                    <input id="resume" type="file" multiple style={{ display: "none" }} accept=".pdf" />
-                                    <div>
-                                        <span className="upload-txt">
-                                            Bulk Upload (.pdf only; max:10)
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>*/}
                             <form id="Employer-Dashboard-Events" onSubmit={this.handleUpload}>
                                 <div className="form-row">
                                     <div className="form-group col-2">
-                                        <label className="candidate-txt1">
-                                            Resume
-                                        </label>
+                                        <Text size="sm">Resume</Text>
                                     </div>
                                     <div className="form-group col-3">
-                                        <label className="candidate-txt1">
-                                            Candidate Name
-                                        </label>
+                                        <Text size="sm">Candidate Name</Text>
                                     </div>
                                     <div className="form-group col-3">
-                                        <label className="candidate-txt1">
-                                            Candidate Email
-                                        </label>
+                                        <Text size="sm">Candidate Email</Text>
                                     </div>
                                 </div>
                                 {this.state.candidates.map((c, index) => {
-                                    return(
+                                    return (
                                         <div className="form-row">
                                             <div className="form-group col-2 align-center">
-                                                <label className="candidate-txt2">
-                                                    {c.resumeName.length > 15 ? c.resumeName.substring(0, 15) + "..." : c.resumeName}
-                                                </label>
+                                                <Text color="muted" size="md">{c.resumeName.length > 15 ? c.resumeName.substring(0, 15) + "..." : c.resumeName}</Text>
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="text" name="name2" key={c.name} defaultValue={c.name} className="form-control candidate-name candidate-txt2" />
+                                                <Input type="text" name="name2" key={c.name} defaultValue={c.name} />
                                             </div>
                                             <div className="form-group col-3">
-                                                <input type="email" name="email2" key={c.email} defaultValue={c.email} className="form-control candidate-email candidate-txt2" />
+                                                <Input type="email" name="email2" key={c.email} defaultValue={c.email} />
                                             </div>
                                             <div className="form-group col-1 align-center">
-                                                <i className="bx bx-trash bx-sm" style={{color: "#F36F67"}}></i>
+                                                <i className="bx bx-trash bx-sm" style={{ color: "#F36F67" }}></i>
                                                 <span className="candidate-txt2" style={{ cursor: "pointer", color: "#F36F67" }} onClick={() => this.deleteAlert(index)}>Delete</span>
                                             </div>
                                         </div>
@@ -371,7 +350,7 @@ export class NewCandidateAdditionForm extends Component {
                                             Confirm
                                         </button>
                                     </div>
-                                    <div className="d-flex justify-items" style={{marginLeft: "2rem"}}>
+                                    <div className="d-flex justify-items" style={{ marginLeft: "2rem" }}>
                                         <button
                                             type="button"
                                             className="default-btn1"
@@ -403,23 +382,21 @@ export class NewCandidateAdditionForm extends Component {
                             />
                         </div> :
                         <div style={{ marginTop: "2rem", paddingLeft: "2rem", paddingRight: "2rem" }}>
-                            <div className="resume-bg center-items">
+                            <Box className="resume-bg center-items" bg='bg-surface'>
                                 <div>
                                     <div className="row justify-content-center">
-                                        <button type="button" className="default-btn resume-upload" onClick={this.uploadResume} style={{marginBottom: "1rem"}}>
+                                        <button type="button" className="default-btn resume-upload" onClick={this.uploadResume} style={{ marginBottom: "1rem" }}>
                                             <i className="bx bx-cloud-upload bx-sm"></i>
                                             Upload Resume
                                         </button>
                                         <input id="resume" type="file" multiple style={{ display: "none" }} accept=".pdf" />
                                     </div>
                                     <div className="row">
-                                        <label className="upload-txt">
-                                            Upload (.pdf only; max:1)
-                                        </label>
+                                        <Text size="sm">Upload (.pdf only; max:1)</Text>
                                     </div>
                                 </div>
-                            </div>
-                            <div style={{marginTop: "2rem"}} className="d-flex justify-content-center">
+                            </Box>
+                            <div style={{ marginTop: "2rem" }} className="d-flex justify-content-center">
                                 <button
                                     type="button"
                                     className="default-btn1"
@@ -459,6 +436,6 @@ function extractName(text) {
     return name;
 }
 
-export default withRouter(connect(null, {addNewApplyCandidateByCv})(
+export default withRouter(connect(null, { addNewApplyCandidateByCv })(
     NewCandidateAdditionForm
 ));

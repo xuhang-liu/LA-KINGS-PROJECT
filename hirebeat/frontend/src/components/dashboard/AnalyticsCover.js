@@ -1,13 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import AnalyticsVideoInterview from "./analytics/AnalyticsVideoInterview";
 import AnalyticsAllJob from "./analytics/AnalyticsAllJob";
+import { Box, Stack, Container, Heading } from '@chakra-ui/react';
 
-export class AnalyticsCover extends Component {
-    constructor(props) {
-        super(props);
-    }
+export const AnalyticsCover = (props) => {
 
-    openTabSection = (evt, tabNmae) => {
+    const openTabSection = (evt, tabNmae) => {
         let i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabs_item");
         for (i = 0; i < tabcontent.length; i++) {
@@ -22,69 +20,86 @@ export class AnalyticsCover extends Component {
         document.getElementById(tabNmae).style.display = "block";
         evt.currentTarget.className += "current";
         //Segment info
-        if (tabNmae == 'tab1'){
+        if (tabNmae == 'tab1') {
             window?.analytics?.track("Analytics_View All Jobs", {
                 eventTime: Date()?.toLocaleString()
             });
-        }else{
+        } else {
             window?.analytics?.track("Analytics_View Video Interview", {
                 eventTime: Date()?.toLocaleString()
             });
         }
     }
 
-    render() {
-        return (
-            <div className="container-xl">
-                <div style={{ marginBottom: "30px" }}><h3><b><i className="bx-fw bx bx-bar-chart-square"></i><span className="ml-2">Analytics</span></b></h3></div>
-                <div className="tab pricing-list-tab">
-                    {/* Pricing Tab List */}
-                    <ul className="tabs">
-                        <li
-                            className="current"
-                            onClick={(e) => this.openTabSection(e, 'tab1')}
-                        >
-                            <span style={{ border: "1px solid #090D3A" }}>
-                                <i className="bx bx-tab"></i> &nbsp;&nbsp;All Jobs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
-                        </li>
+    return (
+        <React.Fragment>
+            <Box
+                bg="bg-canvas"
+                borderTopLeftRadius={{
+                    base: 'none',
+                    lg: '2rem',
+                }}
+                height="full"
+                mb="5"
+            >
+                <Container height="full" mt='12' mb='14' alignItems='center'>
+                    <Stack
+                        spacing={{
+                            base: '8',
+                            lg: '6',
+                        }}
+                        height="full"
+                    >
+                        <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-bar-chart-square pl-3"></i><span style={{ marginLeft: "1.2rem" }}>Analytics</span></Heading>
+                        <div className="tab pricing-list-tab">
+                            {/* Pricing Tab List */}
+                            <ul className="tabs">
+                                <li
+                                    className="current"
+                                    onClick={(e) => openTabSection(e, 'tab1')}
+                                >
+                                    <span style={{ border: "1px solid #090D3A" }}>
+                                        <i className="bx bx-tab"></i> &nbsp;&nbsp;All Jobs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </span>
+                                </li>
 
-                        <li
-                            onClick={(e) => this.openTabSection(e, 'tab2')}
-                        >
-                            <span style={{ border: "1px solid #090D3A" }}>
-                                <i className="bx bx-tab"></i> Video Inteview
-                            </span>
-                        </li>
-                    </ul>
-                    <div className="tab_content">
-                        {/*all jobs*/}
-                        <div id="tab1" className="tabs_item">
-                            <AnalyticsAllJob
-                                user={this.props.user}
-                                profile={this.props.profile}
-                                getAnalyticsInfo={this.props.getAnalyticsInfo}
-                                alljobAnaInfo={this.props.alljobAnaInfo}
-                            />
+                                <li
+                                    onClick={(e) => openTabSection(e, 'tab2')}
+                                >
+                                    <span style={{ border: "1px solid #090D3A" }}>
+                                        <i className="bx bx-tab"></i> Video Inteview
+                                    </span>
+                                </li>
+                            </ul>
+                            <div className="tab_content">
+                                {/*all jobs*/}
+                                <div id="tab1" className="tabs_item">
+                                    <AnalyticsAllJob
+                                        user={props.user}
+                                        profile={props.profile}
+                                        getAnalyticsInfo={props.getAnalyticsInfo}
+                                        alljobAnaInfo={props.alljobAnaInfo}
+                                    />
+                                </div>
+                                {/*video interview*/}
+                                <div id="tab2" className="tabs_item">
+                                    <AnalyticsVideoInterview
+                                        user={props.user}
+                                        profile={props.profile}
+                                        analyticsInfo={props.analyticsInfo}
+                                        getAnalyticsInfo={props.getAnalyticsInfo}
+                                        position_list={props.position_list}
+                                        interview_session={props.interview_session}
+                                        alljobAnaInfo={props.alljobAnaInfo}
+                                    />
+                                </div>
+                            </div>
                         </div>
-                        {/*video interview*/}
-                        <div id="tab2" className="tabs_item">
-                            <AnalyticsVideoInterview
-                                user={this.props.user}
-                                profile={this.props.profile}
-                                analyticsInfo={this.props.analyticsInfo}
-                                getAnalyticsInfo={this.props.getAnalyticsInfo}
-                                position_list={this.props.position_list}
-                                interview_session={this.props.interview_session}
-                                alljobAnaInfo={this.props.alljobAnaInfo}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
+                    </Stack>
+                </Container>
+            </Box>
+        </React.Fragment>
+    )
 }
 
 export default AnalyticsCover;

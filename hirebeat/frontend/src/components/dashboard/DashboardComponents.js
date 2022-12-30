@@ -80,9 +80,9 @@ export const IconEmployerText = (props) => {
     return (
         <div>
             {((props.textDisplayed == "Jobs" && props.job_dots > 0)) &&
-                <span className="dot" style={{ marginLeft: "1.7rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
+                <span className="dot" style={{ marginLeft: "1.6rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
             <div className="icon-employer-text align-items-center" style={{ background: props.backColor }}>
-                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px" }}></img>}
+                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px", marginLeft:"1.3rem" }}></img>}
                 <p
                     style={{
                         fontWeight: props.textWeight,
@@ -102,9 +102,9 @@ export const IconUserText = (props) => {
     return (
         <div>
             {(props.textDisplayed == "My Profile" && props.profileRate < 100) &&
-                <span className="dot" style={{ marginLeft: "1.7rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
+                <span className="dot" style={{ marginLeft: "1rem", marginBottom: "-1.7rem", position: "absolute" }}></span>}
             <div className="icon-user-text align-items-center" style={{ background: props.backColor, paddingRight: props?.paddingRight }}>
-                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: props.width ?? "36px", height: props.height ?? "36px", marginLeft: props.marginL ?? "" }}></img>}
+                {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: props.width ?? "36px", height: props.height ?? "36px", marginLeft: props.marginL ?? "1.6rem" }}></img>}
                 <p
                     className="pt-2"
                     style={{
@@ -124,7 +124,7 @@ export const IconUserText1 = (props) => {
     //textSize, textDisplayed, iconName, textColor?
     return (
         <div className="icon-user-text1 align-items-center" style={{ background: props.backColor }}>
-            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px" }}></img>}
+            {props.hasIcon != "hasIcon" && <img src={props.iconSrc} style={{ width: "36px", height: "36px", marginLeft:"1.6rem" }}></img>}
             <p
                 className="pt-2"
                 style={{

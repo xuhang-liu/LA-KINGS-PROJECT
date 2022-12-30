@@ -5,6 +5,10 @@ import { tourConfigEmployer } from "../DashboardComponents";
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import axios from "axios";
+import {
+  Box, Button, Icon, Input, InputGroup, InputLeftElement, Stack, HStack, Heading
+} from '@chakra-ui/react';
+import { FiSearch, FiPlus } from 'react-icons/fi';
 
 const decideClassName = (filter, text) => {
   return filter == text ? "btn-selected2" : "btn-unselected2";
@@ -107,21 +111,32 @@ export const JobCover = (props) => {
       />
 
       {((!viewPortal) || (props.job_back_home)) ?
-        <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980">
-          <div style={{ paddingBottom: "1rem" }}><h3><b><i className="bx-fw bx bx-briefcase"></i><span className="ml-2">Jobs</span></b>{props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) && <span onClick={openTour}><i className="bx-fw bx bxs-error-circle bx-xs" style={{ paddingLeft: "0.4rem", color: "#ff6b00", cursor: "pointer" }}></i><span style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight: "600", fontFamily: "Inter, Segoe UI", cursor: "pointer" }}>Getting Started!</span></span>}</h3>
-            <div className="interview-txt7 interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "inline-block", float: "left", marginTop: "0.5rem" }}>
-              <div style={{ position: "absolute", left: "1.3rem", marginTop: "0.2rem" }}><i className="bx bx-search bx-sm"></i></div>
-              <div>
-                <input placeholder="Search" className="search-candidate-input" style={{ height: "auto", border: "2px solid #006dff" }} value={keyWords} onChange={onChange}></input>
-              </div>
-            </div>
-            {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) &&
-            <button className="default-btn" onClick={props.renderJobCreation} data-tut="reactour-createjob"
-              style={{ color: "white", float: "right", marginBottom: "2rem" }}>
-              <i className="bx bx-plus"></i>
-              Create New Position
-              <span></span>
-            </button>}
+        <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980 pt-5">
+          <div>
+            <HStack>
+              <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-briefcase"></i><span style={{ marginLeft: "0.6rem" }}>Jobs</span></Heading>
+              {props.profile.viewed_employer_tutorial && (parseInt((new Date(props.profile.datejoined).getDate() + 30) - (new Date().getDate())) >= 0)} {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) && <span onClick={openTour}><i className="bx bxs-error-circle bx-xs" style={{ paddingLeft: "0.4rem", color: "#ff6b00", cursor: "pointer" }}></i><span style={{ paddingLeft: "0.4rem", color: "#ff6b00", fontSize: "1rem", fontWeight: "600", fontFamily: "Inter, Segoe UI", cursor: "pointer" }}>Getting Started!</span></span>}
+            </HStack>
+            <Stack
+              direction={{
+                base: 'column',
+                md: 'row',
+              }}
+              justify="space-between"
+              mt='3'
+            >
+              <InputGroup maxW="xs">
+                <InputLeftElement pointerEvents="none">
+                  <Icon as={FiSearch} color="muted" boxSize="5" />
+                </InputLeftElement>
+                <Input placeholder="Search" value={keyWords} onChange={onChange} />
+              </InputGroup>
+              <Box>
+                {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) &&
+                  <Button _hover={{ bg: "orange.500" }} colorScheme='blue' leftIcon={<FiPlus />} onClick={props.renderJobCreation} data-tut="reactour-createjob">Create New Position</Button>
+                }
+              </Box>
+            </Stack>
           </div>
           <JobList
             jobs={props.jobs}
@@ -179,7 +194,11 @@ export const JobCover = (props) => {
           user_existence={props.user_existence}
           getPostedJobs={props.getPostedJobs}
           employerProfileDetail={props.employerProfileDetail}
-          jobt_company_id={(jobt_company_id == "")?props.jobt_company_id:jobt_company_id}
+          jobt_company_id={(jobt_company_id == "") ? props.jobt_company_id : jobt_company_id}
+          setShowSidebarTrue={props.setShowSidebarTrue}
+          setShowSidebarFalse={props.setShowSidebarFalse}
+          renderJobEdition={props.renderJobEdition}
+          setJobInfo={props.setJobInfo}
         />
       }
     </div>

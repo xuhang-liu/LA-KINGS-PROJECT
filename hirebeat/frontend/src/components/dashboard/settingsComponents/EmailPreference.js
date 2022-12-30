@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IconText } from "./../DashboardComponents";
 import { useSelector, useDispatch } from "react-redux";
 import { getEmailPreferences, getEmailTemplates, updateEmailPreferences } from './../../../redux/actions/email_preference_actions';
+import { Text, Box, Stack } from '@chakra-ui/react';
 
 const EmailPreference = (props) => {
     const templates = useSelector(state => state.email_preference_reducers.templates);
@@ -77,17 +78,18 @@ const EmailPreference = (props) => {
         alert('Preferences updated successfully');
     }
 
-    return <div class="container">
-        <div className="row" >
-            <div className="col d-flex align-items-center" style={{ marginTop: "1%" }}>
-                <IconText
-                    textDisplayed={"Email Preference"}
-                    textSize={"24px"}
-                    textColor={"#090D3A"}
-                    iconMargin={"3px"}
-                />
-            </div>
-            <div className="chart-bg1 container">
+    return (
+        <Box
+            bg="bg-surface"
+            boxShadow='sm'
+            borderRadius="lg"
+            p={{
+                base: '4',
+                md: '6',
+            }}
+        >
+            <Text fontSize='xl' color="muted" fontWeight='bold'>Email Preference</Text>
+            <Stack spacing='2'>
                 {templates.length &&
                     <form style={{ marginBottom: "3%" }} onSubmit={savePreferences}>
                         {
@@ -97,7 +99,7 @@ const EmailPreference = (props) => {
                                 const templateNameIntermediate = template.template.replace(/([A-Z])/g, " $1");
                                 const templateName = templateNameIntermediate.charAt(0).toUpperCase() + templateNameIntermediate.slice(1);
                                 return <div class="form-group row" style={{ marginBottom: "-1rem" }}>
-                                    <label for={template.id} className="col-sm-3 col-form-label">{templateName}</label>
+                                    <Text for={template.id} fontSize='md' color="muted" mt='4' pl='4' fontWeight='bold'>{templateName}</Text>
                                     <div class="col-sm-6">
                                         <input type="checkbox" id={template.id} className="form-control" style={{ width: "20px", height: "20px", marginTop: "1.1rem" }} checked={selectedPreference.length > 0 ? selectedPreference[0].status : template.status} onChange={setFormData} />
                                     </div>
@@ -108,7 +110,7 @@ const EmailPreference = (props) => {
                         <button
                             type="submit"
                             className={disabled ? "disabled-btn" : "default-btn"}
-                            style={{ paddingLeft: "25px", marginTop: "1rem", textDecoration: "none" }}
+                            style={{ paddingLeft: "25px", marginTop: "2rem", textDecoration: "none" }}
                             disabled={disabled}
                         >
                             Save Preferences
@@ -118,9 +120,9 @@ const EmailPreference = (props) => {
                 {(!templates || templates.length === 0) &&
                     <h3>No Email Templates Found</h3>
                 }
-            </div>
-        </div>
-    </div>;
+            </Stack>
+        </Box>
+    )
 }
 
 export default EmailPreference;

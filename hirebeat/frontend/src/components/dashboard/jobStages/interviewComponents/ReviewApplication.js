@@ -10,16 +10,21 @@ import ReviewNote from "./ReviewNote";
 import MoveForm from "./MoveForm";
 import ReviewApplicationTab from "./ReviewApplicationTab";
 import ViewEmailMessage from "../../applications/ViewEmailMessage";
-import { MyModalShare2, MyModal80 } from "../../DashboardComponents";
+import { MyModalShare2 } from "../../DashboardComponents";
 import EmailSending from "../../applications/EmailSending";
 import axios from "axios";
 import Select from 'react-select';
 import BasicInfoEdition from "./BasicInfoEdition";
 import { withRouter } from "react-router-dom";
+import {
+    Box, Button, Stack, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Heading, IconButton, Textarea
+} from '@chakra-ui/react';
+import { FiChevronLeft, FiEdit, FiArrowRight } from 'react-icons/fi';
 
 export class ReviewApplication extends Component {
     constructor(props) {
         super(props);
+        window.scrollTo(0, 0);
         const hasExtraQuestions = this.props.applicants[this.props.current]?.questions?.length > 0 ? true : false;
         this.state = {
             viewResume: hasExtraQuestions ? false : true,
@@ -138,25 +143,17 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
-            }, 300);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, this.props.keyWords);
+            this.props.viewNextResult(this.props.current);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
-            }, 300);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, this.props.keyWords);
+            this.props.viewNextResult(this.props.current);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
-            }, 300);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, this.props.keyWords);
+            this.props.viewNextResult(this.props.current);
         } else {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
-            }, 300);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", "", this.props.jobsId, this.props.keyWords);
+            this.props.viewNextResult(this.props.current);
         }
         let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
         if (!noShowAgainMove) {
@@ -208,24 +205,24 @@ export class ReviewApplication extends Component {
         let page = 1;
         let userId = this.props.user.id;
         if (this.state.currentStage == "Video Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, this.props?.category.value, this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Live Interview") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, this.props?.category4.value, "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else if (this.state.currentStage == "Short List") {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", this.props?.category5.value, this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         } else {
-            setTimeout(() => { 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value,"", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current) 
+            setTimeout(() => {
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", this.props?.category3.value, "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current)
             }, 300);
         }
         let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -295,10 +292,10 @@ export class ReviewApplication extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { 
-                this.props.getAllJobs(userId, page, this.state.currentStage); 
-                this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId, props.keyWords); 
-                this.props.getNextResult(this.props.current); this.props.hide(); 
+            setTimeout(() => {
+                this.props.getAllJobs(userId, page, this.state.currentStage);
+                this.props.getPostedJobs(userId, page, this.state.currentStage, "", "", "", "", this.props.jobsId, props.keyWords);
+                this.props.getNextResult(this.props.current); this.props.hide();
             }, 300);
             alert("Candidate Moved!");
         } else {
@@ -343,10 +340,10 @@ export class ReviewApplication extends Component {
         // update
         let page = 1;
         let userId = this.props.user.id;
-        setTimeout(() => { 
-            this.props.getAllJobs(userId, page, this.state.currentStage); 
-            this.props.getPostedJobs(userId, page, this.state.currentStage, "" ,"", "", "", this.props.jobsId, props.keyWords); 
-            this.props.getNextResult(this.props.current); this.props.hide(); 
+        setTimeout(() => {
+            this.props.getAllJobs(userId, page, this.state.currentStage);
+            this.props.getPostedJobs(userId, page, this.state.currentStage, "", "", "", "", this.props.jobsId, props.keyWords);
+            this.props.getNextResult(this.props.current); this.props.hide();
         }, 300);
         this.setState({ showRejectNote: false });
         alert("Candidate Rejected!");
@@ -535,36 +532,68 @@ export class ReviewApplication extends Component {
             }),
         }
         return (
-            <div className="container-fluid ml-5 mb-5" style={{ width: '95%' }}>
-                <div style={{ marginBottom: "30px" }}><h3 className="job-title-hover-orange" onClick={this.props.hide} style={{ cursor: "pointer" }}><b><i className="bx-fw bx bx-chevron-left" style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.currentStage}</span></b></h3></div>
+            <Box>
+                <Stack
+                    direction={{
+                        base: 'column',
+                        md: 'row',
+                    }}
+                    justify="space-between"
+                >
+                    <Button leftIcon={<FiChevronLeft />} colorScheme='blue' variant='ghost' size='md' onClick={() => this.props.setShowDetails(false)} mb='5'>
+                        {this.props.currentStage}
+                    </Button>
+                    {this.props.hasSwitch &&
+                        <Box pr='3'>
+                            <button
+                                className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
+                                disabled={this.props.current == this.props.start ? true : false}
+                                onClick={() => { this.props.viewPrevResult(this.props.current); window?.analytics?.track("Previous Candidate", { eventTime: Date()?.toLocaleString() }); }}
+                            >
+                                &lt; Prev
+                            </button>
+                            <button
+                                className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
+                                disabled={this.props.current == this.props.end ? true : false}
+                                onClick={() => { this.props.viewNextResult(this.props.current); window?.analytics?.track("Next Candidate", { eventTime: Date()?.toLocaleString() }); }}
+                                style={{ marginLeft: "2vw" }}
+                            >
+                                Next &gt;
+                            </button>
+                        </Box>
+                    }
+                </Stack>
+                {/* <div style={{ marginBottom: "30px" }}><h3 className="job-title-hover-orange" onClick={() => this.props.setShowDetails(false)} style={{ cursor: "pointer" }}><b><i className="bx-fw bx bx-chevron-left" style={{ display: "inherit" }}></i><span className="ml-2" style={{ verticalAlign: "middle" }}>{this.props.currentStage}</span></b></h3></div> */}
                 <div className="row" style={{ display: "flex" }}>
                     <div className="col-3 pl-3 mt-3 pr-2">
                         {!this.state.isEdit ?
-                            <div className="resume-box p-4" style={{ background: "white", borderRadius: "3px", width: "100%", minHeight: "20vh" }}>
-                                <div className="row mb-3" style={{ marginBottom: "2%" }}>
-                                    <div className="col d-flex align-items-center">
-                                        <h4
-                                            style={{
-                                                fontWeight: "bold",
-                                                marginRight: "0.8vw",
-                                                wordWrap: "break-word",
-                                                wordBreak: "break-word",
-                                                width: "100%",
-                                                fontSize: "1.5vw"
-                                            }}
-                                        >
-                                            {this.props.applicants[this.props.current].name}
-                                            <span style={{ float: "right" }}><i className="bx bx-edit-alt" style={{ cursor: "pointer" }} onClick={this.enableEdit}></i></span>
-                                        </h4>
-                                    </div>
-                                </div>
+                            <Box bg="bg-surface" borderRadius="md" boxShadow="sm" p='4' minHeight='20vh'>
+                                <Box mb='4'>
+                                    <Stack
+                                        direction={{
+                                            base: 'column',
+                                            md: 'row',
+                                        }}
+                                        justify="space-between"
+                                    >
+                                        <Heading as='h3' size='xs' wordWrap='break-word' wordBreak='break-word'>{this.props.applicants[this.props.current].name}</Heading>
+                                        <IconButton
+                                            variant='outline'
+                                            colorScheme='blue'
+                                            aria-label='Edit'
+                                            icon={<FiEdit />}
+                                            size='sm'
+                                            onClick={this.enableEdit}
+                                        />
+                                    </Stack>
+                                </Box>
                                 <div className="row mb-2" style={{ marginTop: "1%" }}>
                                     <div className="col d-flex align-items-center">
                                         <IconText
                                             iconName={"bx bx-phone bx-sm"}
                                             textDisplayed={this.props.applicants[this.props.current].phone}
-                                            textSize={"0.9vw"}
-                                            textColor={"#0B3861"}
+                                            textSize={"0.8vw"}
+                                            textColor={"#7a7a7a"}
                                             iconMargin={"3px"}
                                         />
                                     </div>
@@ -574,8 +603,8 @@ export class ReviewApplication extends Component {
                                         <IconText
                                             iconName={"bx bx-envelope bx-sm"}
                                             textDisplayed={this.props.applicants[this.props.current].email}
-                                            textSize={"0.9vw"}
-                                            textColor={"#0B3861"}
+                                            textSize={"0.8vw"}
+                                            textColor={"#7a7a7a"}
                                             iconMargin={"5px"}
                                         />
                                     </div>
@@ -585,8 +614,8 @@ export class ReviewApplication extends Component {
                                         <IconText
                                             iconName={"bx bx-location-plus bx-sm"}
                                             textDisplayed={this.props.applicants[this.props.current].location}
-                                            textSize={"0.9vw"}
-                                            textColor={"#0B3861"}
+                                            textSize={"0.8vw"}
+                                            textColor={"#7a7a7a"}
                                             iconMargin={"3px"}
                                         />
                                     </div>
@@ -594,14 +623,14 @@ export class ReviewApplication extends Component {
                                 {this.props.applicants[this.props.current].linkedinurl != null && this.props.applicants[this.props.current].linkedinurl != "" ?
                                     <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
                                         <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#006dff", marginRight: "3px" }}></i>
-                                        <a style={{ fontSize: "0.9vw", color: "#006dff", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
+                                        <a style={{ fontSize: "0.8vw", color: "#006dff", fontWeight: "500" }} href={this.props.applicants[this.props.current].linkedinurl} target="_blank" rel="noreferrer">Go To LinkedIn Page</a>
                                     </div> :
                                     <div style={{ display: "flex", alignItems: "center", marginTop: "1%", paddingBottom: "1%" }}>
                                         <i class='bx bxl-linkedin-square bx-sm' style={{ color: "#979797", marginRight: "3px" }}></i>
-                                        <p style={{ fontSize: "0.9vw", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
+                                        <p style={{ fontSize: "0.8vw", color: "#979797", fontWeight: "500" }}>LinkedIn not available</p>
                                     </div>
                                 }
-                            </div> :
+                            </Box> :
                             <BasicInfoEdition
                                 name={this.props.applicants[this.props.current].name}
                                 phone={this.props.applicants[this.props.current].phone}
@@ -619,50 +648,24 @@ export class ReviewApplication extends Component {
                                 updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
                             />
                         }
-                        <div className="resume-box mt-4 p-4" style={{ background: "white", borderRadius: "3px", width: "100%", position: "relative", minHeight: "36vh" }}>
-                            {/* <h2
-                                style={{
-                                    fontWeight: "600",
-                                    marginRight: "0.8vw",
-                                    wordWrap: "break-word",
-                                    wordBreak: "break-all",
-                                    color: "#090D3A",
-                                    fontSize: "1.5vw",
-                                }}
-                            >
-                                Evaluation Scale
-                            </h2> */}
+                        <Box bg="bg-surface" borderRadius="md" boxShadow="sm" p='4' mt='4' minHeight='36vh'>
                             <div>
-                                {/*(this.props.recordTime != "" && this.props.recordTime != null) &&
-                                    <div className="row mt-5 pl-3">
-                                        Recorded on: {this.props.recordTime.substring(0, 10)}
-                                    </div>
-                                */}
                                 <div className="mt-3 px-4" style={{ width: "75%", marginLeft: "auto", marginRight: "auto" }}>
                                     {this.renderResume(resumeScore)}
                                 </div>
-                                <div className="row" style={{ justifyContent: "center" }}>
-                                    {((this.props.interviewResume.result_rate != "-1") || (candidateInfo.result_rate != "-1")) &&
-                                        <button
-                                            onClick={() => { setTimeout(() => { this.showResumeEva() }, 200) }}
-                                            className="interview-txt9 mt-3 ml-3"
-                                            style={{ color: "#006dff", border: "none", background: "white" }}
-                                        >
-                                            <i className="bx bx-arrow-to-right interview-txt9" style={{ color: "#006dff" }}></i> Resume Evaluation
-                                        </button>}
-                                </div>
-                                {/*<div className="row">
-                                    {((this.props.resumeURL != "")&&(this.props.resumeURL != null)) &&
-                                    <button className="default-btn mt-3 ml-3" onClick={() => {setTimeout(()=>{this.props.setShowResume(true);}, 200)}} >
-                                        <i className="bx bx-file"></i>View Resume
-                                    </button>}
-                                </div>*/}
-                            </div>
-                            <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
-                                <p style={{ color: "#090d3a", fontSize: "1vw" }}>Current Stage: {this.props.applicants[this.props.current].current_stage}</p>
+                                {((this.props.interviewResume.result_rate != "-1") || (candidateInfo.result_rate != "-1")) &&
+                                    <div className="row" style={{ display: "flex", justifyContent: "center" }}>
+                                        <Button style={{ color: "#56a3fa" }} variant='ghost' leftIcon={<FiArrowRight />} onClick={() => { setTimeout(() => { this.showResumeEva() }, 200) }}>
+                                            Resume Evaluation
+                                        </Button>
+                                    </div>
+                                }
                             </div>
                             {this.props.reviewer_type != "subr" &&
-                                <div>
+                                <div style={{ paddingBottom: "2vw" }}>
+                                    <Box style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
+                                        <Heading as='h3' size='xs' fontSize='0.8vw'>Current Stage: {this.props.applicants[this.props.current].current_stage}</Heading>
+                                    </Box>
                                     <div className="row" style={{ marginTop: "1vw", display: "flex", justifyContent: "center" }}>
                                         {(this.props.gh_current_stage_id == "" || this.props.gh_current_stage_id == null) ?
                                             <button
@@ -810,161 +813,137 @@ export class ReviewApplication extends Component {
                             }
                             <div>
                                 <div className="row mt-4 d-flex justify-content-end">
-                                    <textarea
-                                        className="note-border"
-                                        style={{ height: "10vw", width: "100%", marginLeft: "1rem", marginRight: "1rem", fontSize: "0.9vw" }}
+                                    <Textarea
+                                        style={{ height: "10vw", width: "100%", marginLeft: "0.5rem", marginRight: "0.6rem", fontSize: "0.9vw" }}
                                         type="text"
                                         value={this.state.comment}
                                         placeholder="Write your comment here"
                                         onChange={(e) => { this.setState({ comment: e.target.value }) }}
                                     />
-                                    <button
-                                        className="default-btn"
+                                    <Button
+                                        colorScheme='orange'
                                         onClick={this.updateReview}
-                                        style={{ fontSize: "1vw", marginTop: "0.5rem", marginRight: "1rem", paddingLeft: "25px", backgroundColor: "#ff6b00" }}
+                                        size='sm'
+                                        style={{ marginTop: "0.5rem", marginRight: "0.6rem" }}
                                     >Post
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
-                        </div>
+                        </Box>
                     </div>
-                    <div className="col-9 mt-3 pl-3 pr-2" >
-                        <div className="resume-box p-4" style={{ background: "white", borderRadius: "3px" }}>
-                            <div>
-                                {this.props.applicants[this.props.current]?.questions?.length > 0 &&
-                                    <h2
-                                        className={this.state.viewApplication ? "head-btn-selected" : "head-btn-unselected"}
-                                        onClick={() => { this.setViewApplications() }}
-                                    >
-                                        Application
-                                    </h2>
-                                }
+                    <Box bg="bg-surface" borderRadius="md" boxShadow="sm" p='4' mt='4' width='73%'>
+                        <div>
+                            {this.props.applicants[this.props.current]?.questions?.length > 0 &&
                                 <h2
-                                    className={this.state.viewResume ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewResume() }}
+                                    className={this.state.viewApplication ? "head-btn-selected" : "head-btn-unselected"}
+                                    onClick={() => { this.setViewApplications() }}
                                 >
-                                    Resume
+                                    Application
                                 </h2>
-                                {(this.props.video_array?.length > 0) &&
-                                    <h2
-                                        className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
-                                        onClick={() => { this.setViewVideo() }}
-                                    >
-                                        Video Interview
-                                    </h2>
-                                }
-                                <h2
-                                    className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewNotes() }}
-                                >
-                                    Evaluation Notes
-                                </h2>
-                                <h2
-                                    className={this.state.viewEmail ? "head-btn-selected" : "head-btn-unselected"}
-                                    onClick={() => { this.setViewEmails() }}
-                                >
-                                    Message
-                                </h2>
-                            </div>
-                            {this.state.viewApplication &&
-                                <ReviewApplicationTab
-                                    questions={this.props.applicants[this.props.current].questions}
-                                    answers={this.props.applicants[this.props.current].answers}
-                                    qualifications={this.props.applicants[this.props.current].qualifications}
-                                    mustHaves={this.props.applicants[this.props.current].must_haves}
-                                />
                             }
-                            {this.state.viewResume && (
-                                ((this.props.resumeURL != "") && (this.props.resumeURL != null)) ?
+                            <h2
+                                className={this.state.viewResume ? "head-btn-selected" : "head-btn-unselected"}
+                                onClick={() => { this.setViewResume() }}
+                            >
+                                Resume
+                            </h2>
+                            {(this.props.video_array?.length > 0) &&
+                                <h2
+                                    className={this.state.viewVideo ? "head-btn-selected" : "head-btn-unselected"}
+                                    onClick={() => { this.setViewVideo() }}
+                                >
+                                    Video Interview
+                                </h2>
+                            }
+                            <h2
+                                className={this.state.viewNotes ? "head-btn-selected" : "head-btn-unselected"}
+                                onClick={() => { this.setViewNotes() }}
+                            >
+                                Evaluation Notes
+                            </h2>
+                            <h2
+                                className={this.state.viewEmail ? "head-btn-selected" : "head-btn-unselected"}
+                                onClick={() => { this.setViewEmails() }}
+                            >
+                                Message
+                            </h2>
+                        </div>
+                        {this.state.viewApplication &&
+                            <ReviewApplicationTab
+                                questions={this.props.applicants[this.props.current].questions}
+                                answers={this.props.applicants[this.props.current].answers}
+                                qualifications={this.props.applicants[this.props.current].qualifications}
+                                mustHaves={this.props.applicants[this.props.current].must_haves}
+                            />
+                        }
+                        {this.state.viewResume && (
+                            ((this.props.resumeURL != "") && (this.props.resumeURL != null)) ?
+                                <div class="iframe-container">
+                                    <iframe className="responsive-iframe" src={this.props.resumeURL} />
+                                </div> :
+                                (this.props.applicants[this.props.current].resume_url != "" && this.props.applicants[this.props.current].resume_url != null) ?
                                     <div class="iframe-container">
-                                        <iframe className="responsive-iframe" src={this.props.resumeURL} />
+                                        <iframe className="responsive-iframe" src={this.props.applicants[this.props.current].resume_url} />
                                     </div> :
-                                    (this.props.applicants[this.props.current].resume_url != "" && this.props.applicants[this.props.current].resume_url != null) ?
-                                        <div class="iframe-container">
-                                            <iframe className="responsive-iframe" src={this.props.applicants[this.props.current].resume_url} />
-                                        </div> :
-                                        <div>
-                                            <h3 style={{ marginTop: "10%", textAlign: "center", height: "42rem" }}>Candidate does not upload resume.</h3>
-                                        </div>
-                            )}
-                            {this.state.viewVideo &&
-                                <ApplicationVideo
-                                    int_ques={this.props.int_ques}
-                                    positionId={this.props.positionId}
-                                    quesiton_array={this.props.quesiton_array}
-                                    video_array={this.props.video_array}
-                                    stars={this.props.stars}
-                                    comments={this.props.comments}
-                                    pk={this.props.pk}
-                                    refresh={this.props.refresh}
-                                    commentStatus={this.props.commentStatus}
-                                    profile={this.props.profile}
-                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                    current={this.props.current}
-                                    setCurrent={this.props.setCurrent}
-                                    start={this.props.start}
-                                    end={this.props.end}
-                                    viewPrevResult={this.props.viewPrevResult}
-                                    viewNextResult={this.props.viewNextResult}
-                                    hasSwitch={this.props.hasSwitch}
-                                    recordedVideoCount={this.props.applicants[this.props.current].video_count}
-                                    transcripts={this.props.transcripts}
-                                    filter={this.props.filter}
-                                />
-                            }
-                            {this.state.viewNotes &&
-                                <ReviewNote
-                                    reviews={this.props.reviews}
-                                    positionId={this.props.positionId}
-                                    applicantEmail={this.props.applicants[this.props.current].email}
-                                    reviewer={
-                                        ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0) ?
-                                            (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
-                                            (this.props.user.username)
-                                    }
-                                    profile={this.props.profile}
-                                    reviewerEmail={this.props.user.email}
-                                    evaluations={this.props.evaluations}
-                                    filter={this.props.filter}
-                                    currentStage={this.props.currentStage}
-                                    reviewerType={this.props?.reviewer_type}
-                                    user={this.props.user}
-                                />
-                            }
-                            {this.state.viewEmail &&
-                                <ViewEmailMessage
-                                    applicantEmail={this.props.applicants[this.props.current].email}
-                                    employerProfileDetail={this.props.employerProfileDetail}
-                                    jobid={this.props.jobsId}
-                                    first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
-                                    last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
-                                />
-                            }
-                        </div>
-                    </div>
+                                    <div>
+                                        <h3 style={{ marginTop: "10%", textAlign: "center", height: "42rem" }}>Candidate does not upload resume.</h3>
+                                    </div>
+                        )}
+                        {this.state.viewVideo &&
+                            <ApplicationVideo
+                                int_ques={this.props.int_ques}
+                                positionId={this.props.positionId}
+                                quesiton_array={this.props.quesiton_array}
+                                video_array={this.props.video_array}
+                                stars={this.props.stars}
+                                comments={this.props.comments}
+                                pk={this.props.pk}
+                                refresh={this.props.refresh}
+                                commentStatus={this.props.commentStatus}
+                                profile={this.props.profile}
+                                subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                current={this.props.current}
+                                setCurrent={this.props.setCurrent}
+                                start={this.props.start}
+                                end={this.props.end}
+                                viewPrevResult={this.props.viewPrevResult}
+                                viewNextResult={this.props.viewNextResult}
+                                hasSwitch={this.props.hasSwitch}
+                                recordedVideoCount={this.props.applicants[this.props.current].video_count}
+                                transcripts={this.props.transcripts}
+                                filter={this.props.filter}
+                            />
+                        }
+                        {this.state.viewNotes &&
+                            <ReviewNote
+                                reviews={this.props.reviews}
+                                positionId={this.props.positionId}
+                                applicantEmail={this.props.applicants[this.props.current].email}
+                                reviewer={
+                                    ((this.props.employerProfileDetail.f_name + this.props.employerProfileDetail.l_name)?.length > 0) ?
+                                        (this.props.employerProfileDetail.f_name + " " + this.props.employerProfileDetail.l_name) :
+                                        (this.props.user.username)
+                                }
+                                profile={this.props.profile}
+                                reviewerEmail={this.props.user.email}
+                                evaluations={this.props.evaluations}
+                                filter={this.props.filter}
+                                currentStage={this.props.currentStage}
+                                reviewerType={this.props?.reviewer_type}
+                                user={this.props.user}
+                            />
+                        }
+                        {this.state.viewEmail &&
+                            <ViewEmailMessage
+                                applicantEmail={this.props.applicants[this.props.current].email}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                jobid={this.props.jobsId}
+                                first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
+                                last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
+                            />
+                        }
+                    </Box>
                 </div>
-                {this.props.hasSwitch &&
-                    <div className="row" style={{ marginTop: "1.5vw", marginBottom: "1vw" }}>
-                        <div className="col-3" />
-                        <div className="col-9" style={{ textAlign: "center" }}>
-                            <button
-                                className={this.props.current == this.props.start ? "disable-btn" : "enable-btn"}
-                                disabled={this.props.current == this.props.start ? true : false}
-                                onClick={() => {this.props.viewPrevResult(this.props.current); window?.analytics?.track("Previous Candidate", {eventTime: Date()?.toLocaleString()});}}
-                            >
-                                &lt; Prev
-                            </button>
-                            <button
-                                className={this.props.current == this.props.end ? "disable-btn" : "enable-btn"}
-                                disabled={this.props.current == this.props.end ? true : false}
-                                onClick={() => {this.props.viewNextResult(this.props.current); window?.analytics?.track("Next Candidate", {eventTime: Date()?.toLocaleString()});}}
-                                style={{ marginLeft: "2vw" }}
-                            >
-                                Next &gt;
-                            </button>
-                        </div>
-                    </div>
-                }
                 {/*  move success alert prompt */}
                 <AlertModal show={this.state.showMoveSuccessAlert} onHide={this.hideSuccessAlert}>
                     <div className="container" style={{ fontFamily: "Arial, Helvetica, sans-serif", margin: "auto", backgroundColor: "#ffffff", overflow: "auto", padding: "2vw" }}>
@@ -993,20 +972,26 @@ export class ReviewApplication extends Component {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.props.applicants[this.props.current].email}
-                        jobid={this.props.jobsId}
-                        first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
-                        last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
-            </div>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.props.applicants[this.props.current].email}
+                                jobid={this.props.jobsId}
+                                first_name={this.props.applicants[this.props.current].name?.split(" ")[0]}
+                                last_name={this.props.applicants[this.props.current].name?.split(" ")[1]}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
+            </Box>
         )
     };
 };

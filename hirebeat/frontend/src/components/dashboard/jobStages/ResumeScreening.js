@@ -8,12 +8,35 @@ import { addInterviews, moveCandidateToInterview, getReviewNote, addOrUpdateRevi
 import { updateInviteStatus, updateCandidateViewedStatus, updateApplicantBasicInfo } from "../../../redux/actions/job_actions";
 import { getApplicantsVideos, getApplicantsInfo } from "../../../redux/actions/video_actions";
 import { subreviewerUpdateComment } from "../../../redux/actions/auth_actions";
-import { MyFullModal } from "../DashboardComponents";
+// import { MyFullModal } from "../DashboardComponents";
 import ReviewCandidate from "../applications/ReviewCandidate";
 import EditQuestion from "./../jobBoard/EditQuestion";
 import { EmailSending } from '../applications/EmailSending';
 import ReactPaginate from 'react-paginate';
 import Select from 'react-select';
+import {
+    Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Box, Container, HStack, Icon,
+    Input, InputGroup, InputLeftElement, Stack, Text, Table, Tbody, Td, Th, Thead, Tr, useColorModeValue, Tooltip
+} from '@chakra-ui/react';
+import { FiSearch, FiInfo } from 'react-icons/fi';
+
+const customStyles = {
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
+    singleValue: styles => ({
+        ...styles,
+        color: useColorModeValue("#090d3a", "#ffffff"),
+        fontSize: '0.9375rem',
+        fontFamily: 'Inter,Segoe UI, sans-serif',
+        fontWeight: '500',
+        background: useColorModeValue("#ffffff", "#1a202c")
+    }),
+    menuList: styles => ({
+        ...styles,
+        backgroundColor: useColorModeValue('#ffffff', '#090d3a'),
+        color: useColorModeValue('#090d3a', '#7a7a7a'),
+    }),
+    indicatorSeparator: styles => ({ ...styles, visibility: "hidden" }),
+}
 
 export class ResumeScreening extends Component {
     state = {
@@ -35,6 +58,8 @@ export class ResumeScreening extends Component {
         select_all: false,
         candidates_count: 0,
         selectAllCandidates: false,
+        showDetails: false,
+        detailIndex: 0,
     }
 
     componentDidMount() {
@@ -43,10 +68,10 @@ export class ResumeScreening extends Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.filterReset > 0){
-            return { 
-                     keyWords: "",
-                   };
+        if (props.filterReset > 0) {
+            return {
+                keyWords: "",
+            };
         }
     }
 
@@ -87,12 +112,12 @@ export class ResumeScreening extends Component {
     onChange = (e) => {
         this.setState({ keyWords: e.target.value });
         if (e.key === 'Enter') {
-            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, e.target.value); 
+            this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, e.target.value);
         }
     };
 
     onSearch = () => {
-        this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
+        this.props.getAllJobs(this.props.user.id, 1, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
     };
 
     setTempQuestion = (questions) => {
@@ -101,9 +126,9 @@ export class ResumeScreening extends Component {
 
     hideQForm = () => {
         let page = this.state.selectedPage + 1;
-        setTimeout(() => { 
-            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-            this.props.getPJobs(); 
+        setTimeout(() => {
+            this.props.getAllJobs(this.props.user.id, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+            this.props.getPJobs();
         }, 300);
         this.setState({ showQForm: false });
 
@@ -213,9 +238,9 @@ export class ResumeScreening extends Component {
                 // update
                 let page = 1;
                 let userId = this.props.user.id;
-                setTimeout(() => { 
-                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+                setTimeout(() => {
+                    this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+                    this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id)
                 }, 300);
                 this.unSelectAllCandidates();
                 let noShowAgainMove = localStorage.getItem("noShowAgainMove") == "true";
@@ -292,9 +317,9 @@ export class ResumeScreening extends Component {
             // update
             let page = 1;
             let userId = this.props.user.id;
-            setTimeout(() => { 
-                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords); 
-                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id) 
+            setTimeout(() => {
+                this.props.getAllJobs(userId, page, "Resume Review", "True", this.state.isSortByScore, this.state.keyWords);
+                this.props.getPostedJobs(userId, page, "Resume Review", "", "", "", "", this.props.curJob.job_details.id)
             }, 300);
             this.unSelectAllCandidates();
             let noShowAgainReject = localStorage.getItem("noShowAgainReject") == "true";
@@ -410,6 +435,7 @@ export class ResumeScreening extends Component {
         for (let i = 0; i < candidates.length; i++) {
             candidates[i].checked = false;
         }
+        this.setState({ candidates_count: 0, select_all: false });
     }
 
     sortByScore = () => {
@@ -517,287 +543,407 @@ export class ResumeScreening extends Component {
         }
     }
 
+    setshowDetailsTrue = () => {
+        this.setState({ showDetails: true });
+    }
+
+    setshowDetailsFalse = () => {
+        this.setState({ showDetails: false });
+    }
+
+    setdetailIndex = (detailIndex) => {
+        this.setState({ detailIndex: detailIndex })
+    }
+
     render() {
         return (
             <React.Fragment>
-                <div className="container-fluid mt-3 pt-2 pb-3">
-                    <div className="row interview-center" style={{ color: "#006dff", fontSize: "1rem", display: "flex", paddingLeft: "15px", paddingRight: "15px", marginTop: "1.4rem" }}>
-                        <div>
-                            <span style={{ display: "flex", alignItems: "center" }}>
-                                <i onClick={this.onSearch} style={{ position: "absolute", marginLeft: "0.5rem", marginTop: "0.2rem" }} className="bx bx-search bx-sm"></i>
-                                <input placeholder="Search candidate" className="search-candidate-input" style={{ height: "auto" }} value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange}></input>
-                            </span>
-                        </div>
-                        {this.props.curJob.total_page > 1 &&
-                            <div className="ml-auto">
-                                <ReactPaginate
-                                    previousLabel={'< Prev'}
-                                    nextLabel={'Next >'}
-                                    breakLabel={'...'}
-                                    breakClassName={'break-me'}
-                                    pageCount={this.props.curJob.total_page}
-                                    marginPagesDisplayed={1}
-                                    pageRangeDisplayed={5}
-                                    onPageChange={this.handlePageClick}
-                                    containerClassName={'pagination3'}
-                                    activeClassName={'active'}
-                                    forcePage={this.props.curJob.current_page}
-                                />
-                            </div>
-                        }
-                    </div>
-                    <div className="container-fluid chart-bg1" style={{ marginTop: "1.3rem", paddingLeft: "0px", boxShadow: "none" }}>
-                        <div className="row interview-txt7 interview-center " style={{ color: "#7D7D7D", height: "2rem", marginTop: "1rem", paddingBottom: "2.5rem" }}>
-                            <div style={{ marginLeft: "2rem", marginRight: "1rem" }}>
-                                {!this.props.profile.is_subreviwer &&
-                                    <input id="select-all" type="checkbox" checked={this.state.selectAllCandidates} onClick={this.selectAllCandidates} style={{ display: "inline" }} />
-                                }
-                            </div>
-                            <div className="col-4"><span>Name</span></div>
-                            <div className="col-2">Applied On</div>
-                            <div className="col-2 pl-4">Resume Score <span onClick={this.sortByScore} style={{ color: "#006dff", cursor: "pointer" }}><i class='bx bx-sort'></i></span></div>
-                            {(this.props.reviewerStageLength > 0) &&
-                                <div className="col-3"> <div style={{ display: "inline-block", marginRight: "0.2rem" }}>Status</div>
-                                    <div style={{ display: "inline-block" }}>
-                                        <Select value={this.state.category3} onChange={this.onFilter3} options={this.options3} className="select-category" styles={this.customStyles} />
-                                    </div>
-                                </div>
-                            }
-                            {(this.props.reviewerStageLength == 0) &&
-                                <div className="col-2">
-                                    Team Review
-                                    <span className="tool_tip ml-2">
-                                        <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                        <p className="tool_submenu container" style={{ width: "14rem" }}>
-                                            <div>
-                                                Affirmative Votes over Total Votes. Pending votes are not included.
-                                            </div>
-                                        </p>
-                                    </span>
-                                </div>
-                            }
-                        </div>
-                        {this.props.curJob.applicants.map((a, index) => {
-                            /*
-                            if (this.state.keyWords != "") {
-                                let name = a.first_name + " " + a.last_name;
-                                if (!name.toLowerCase().includes(this.state.keyWords.toLowerCase())) return null;
-                            }
-                            */
-                            if (this.state.category.value != "All") {
-                                switch (this.state.category.value) {
-                                    case "Invited":
-                                        if (a.is_invited != 1) return null;
-                                        break;
-                                    case "Hold":
-                                        if (a.is_invited != 2) return null;
-                                        break;
-                                    case "Rejected":
-                                        if (a.is_invited != 3) return null;
-                                        break;
-                                    case "Unreviewed":
-                                        if (a.is_invited != 0) return null;
-                                        break;
-                                }
-                            }
-                            else if (this.state.category3.value != "All") {
-                                switch (this.state.category3.value) {
-                                    case "Pending":
-                                        if (a.reviewer_review_status) return null;
-                                        break;
-                                    case "Reviewed":
-                                        if (!a.reviewer_review_status) return null;
-                                        break;
-                                }
-                            }
-                            return (
-                                <ApplicantRow
-                                    filter={this.props.filter}
-                                    applicant={a}
-                                    index={index}
-                                    applicants={this.props.curJob.applicants}
-                                    curJob={this.props.curJob}
-                                    keyWords={this.state.keyWords}
-                                    tempQuestion={this.state.tempQuestion}
-                                    setTempQuestion={this.setTempQuestion}
-                                    profile={this.props.profile}
-                                    addInterviews={this.props.addInterviews}
-                                    updateInviteStatus={this.props.updateInviteStatus}
-                                    updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
-                                    getAllJobs={this.props.getAllJobs}
-                                    getPJobs={this.props.getPJobs}
-                                    user={this.props.user}
-                                    moveCandidateToInterview={this.props.moveCandidateToInterview}
-                                    selectedPage={this.state.selectedPage}
-                                    getReviewNote={this.props.getReviewNote}
-                                    addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
-                                    getReviewerEvaluation={this.props.getReviewerEvaluation}
-                                    getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
-                                    evaluations={this.props.evaluations}
-                                    curEvaluation={this.props.curEvaluation}
-                                    getApplicantsVideos={this.props.getApplicantsVideos}
-                                    getApplicantsInfo={this.props.getApplicantsInfo}
-                                    int_ques={this.props.int_ques}
-                                    quesiton_array={this.props.quesiton_array}
-                                    video_array={this.props.video_array}
-                                    stars={this.props.stars}
-                                    comments={this.props.comments}
-                                    pk={this.props.pk}
-                                    transcripts={this.props.transcripts}
-                                    updateViewStatus={this.props.updateViewStatus}
-                                    updateCommentStatus={this.props.updateCommentStatus}
-                                    subreviewerUpdateComment={this.props.subreviewerUpdateComment}
-                                    reviews={this.props.reviews}
-                                    positionId={this.props.curJob.job_details.positions_id}
-                                    isSortByScore={this.state.isSortByScore}
-                                    selectedCurrentStage="Resume Review"
-                                    selectedStatus={this.state.isSortByScore ? "True" : "False"}
-                                    updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
-                                    employerProfileDetail={this.props.employerProfileDetail}
-                                    reviewerStageLength={this.props.reviewerStageLength}
-                                    CheckListCheckbox={this.CheckListCheckbox}
-                                />
-                            )
-                        })}
-                    </div>
-                    {this.props.curJob.total_page > 1 &&
-                        <div className="d-flex justify-content-end" style={{ marginTop: "1rem" }}>
-                            <ReactPaginate
-                                previousLabel={'< Prev'}
-                                nextLabel={'Next >'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={this.props.curJob.total_page}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlePageClick}
-                                containerClassName={'pagination3'}
-                                activeClassName={'active'}
-                                forcePage={this.props.curJob.current_page}
-                            />
-                        </div>
-                    }
-                </div>
-                {(this.props.filter == "active" && !this.props.profile.is_subreviwer) &&
-                    <div style={{ marginTop: "2rem", marginLeft: "2rem" }}>
-                        {this.state.select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={this.openMoveForm}
-                            >
-                                Move All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {this.state.candidates_count > 0 ?
+                {!this.state.showDetails ?
+                    <Container
+                        py={{
+                            base: '4',
+                            md: '8',
+                        }}
+                        px={{
+                            base: '0',
+                            md: 8,
+                        }}
+                    >
+                        <Box bg="bg-surface" borderRadius="lg" boxShadow="sm">
+                            <Stack spacing="5">
+                                <Box
+                                    px={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    pt="5"
+                                >
+                                    <InputGroup maxW="xs" onKeyUp={this.onSearch}>
+                                        <InputLeftElement pointerEvents="none">
+                                            <Icon as={FiSearch} color="muted" boxSize="5" />
+                                        </InputLeftElement>
+                                        <Input placeholder="Search candidate" value={this.state.keyWords} onChange={this.onChange} onKeyPress={this.onChange} />
+                                    </InputGroup>
+                                </Box>
+                                <Box
+                                    px={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                >
+                                    <HStack spacing="3" justify="space-between">
+                                        <div className="ml-auto">
+                                            <ReactPaginate
+                                                previousLabel={'< Prev'}
+                                                nextLabel={'Next >'}
+                                                breakLabel={'...'}
+                                                breakClassName={'break-me'}
+                                                pageCount={this.props.curJob.total_page}
+                                                marginPagesDisplayed={1}
+                                                pageRangeDisplayed={5}
+                                                onPageChange={this.handlePageClick}
+                                                containerClassName={'pagination3'}
+                                                activeClassName={'active'}
+                                                forcePage={this.props.curJob.current_page}
+                                            />
+                                        </div>
+                                    </HStack>
+                                </Box>
+                                <Box overflowX="auto" minH='96'>
+                                    <Table>
+                                        <Thead>
+                                            <Tr>
+                                                <Th>
+                                                    <HStack spacing='6'>
+                                                        {!this.props.profile.is_subreviwer &&
+                                                            <input id="select-all" type="checkbox" checked={this.state.selectAllCandidates} onClick={this.selectAllCandidates} />
+                                                        }
+                                                        <HStack spacing='1'><Text color="muted">Name</Text></HStack>
+                                                    </HStack>
+                                                </Th>
+                                                <Th><Text color="muted">Applied On</Text></Th>
+                                                <Th>
+                                                    <HStack>
+                                                        <Text color="muted">Resume Score</Text>
+                                                        <span onClick={this.sortByScore} style={{ color: "#006dff", cursor: "pointer" }}><i class='bx-fw bx bx-sort'></i></span>
+                                                    </HStack>
+                                                </Th>
+                                                {(this.props.reviewerStageLength > 0) &&
+                                                    <Th>
+                                                        <HStack>
+                                                            <Text color="muted">Status</Text>
+                                                            <Select isSearchable={false} value={this.state.category3} onChange={this.onFilter3} options={this.options3} className="select-category" styles={customStyles} />
+                                                        </HStack>
+                                                    </Th>
+                                                }
+                                                {(this.props.reviewerStageLength == 0) &&
+                                                    <Th>
+                                                        <Tooltip label='Affirmative Votes over Total Votes. Pending votes are not included.' aria-label='A tooltip' fontSize='sm'>
+                                                            <HStack>
+                                                                <Text color="muted">
+                                                                    Team Review
+                                                                </Text>
+                                                                <FiInfo style={{ color: "#dfdfdf" }} />
+                                                            </HStack>
+                                                        </Tooltip>
+                                                    </Th>
+                                                }
+                                            </Tr>
+                                        </Thead>
+                                        <Tbody>
+                                            {this.props.curJob.applicants.map((a, index) => {
+                                                if (this.state.category.value != "All") {
+                                                    switch (this.state.category.value) {
+                                                        case "Invited":
+                                                            if (a.is_invited != 1) return null;
+                                                            break;
+                                                        case "Hold":
+                                                            if (a.is_invited != 2) return null;
+                                                            break;
+                                                        case "Rejected":
+                                                            if (a.is_invited != 3) return null;
+                                                            break;
+                                                        case "Unreviewed":
+                                                            if (a.is_invited != 0) return null;
+                                                            break;
+                                                    }
+                                                }
+                                                else if (this.state.category3.value != "All") {
+                                                    switch (this.state.category3.value) {
+                                                        case "Pending":
+                                                            if (a.reviewer_review_status) return null;
+                                                            break;
+                                                        case "Reviewed":
+                                                            if (!a.reviewer_review_status) return null;
+                                                            break;
+                                                    }
+                                                }
+                                                return (
+                                                    <ApplicantRow
+                                                        filter={this.props.filter}
+                                                        applicant={a}
+                                                        index={index}
+                                                        applicants={this.props.curJob.applicants}
+                                                        curJob={this.props.curJob}
+                                                        keyWords={this.state.keyWords}
+                                                        tempQuestion={this.state.tempQuestion}
+                                                        setTempQuestion={this.setTempQuestion}
+                                                        profile={this.props.profile}
+                                                        addInterviews={this.props.addInterviews}
+                                                        updateInviteStatus={this.props.updateInviteStatus}
+                                                        updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                                                        getAllJobs={this.props.getAllJobs}
+                                                        getPJobs={this.props.getPJobs}
+                                                        user={this.props.user}
+                                                        moveCandidateToInterview={this.props.moveCandidateToInterview}
+                                                        selectedPage={this.state.selectedPage}
+                                                        getReviewNote={this.props.getReviewNote}
+                                                        addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                                                        getReviewerEvaluation={this.props.getReviewerEvaluation}
+                                                        getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                                                        evaluations={this.props.evaluations}
+                                                        curEvaluation={this.props.curEvaluation}
+                                                        getApplicantsVideos={this.props.getApplicantsVideos}
+                                                        getApplicantsInfo={this.props.getApplicantsInfo}
+                                                        int_ques={this.props.int_ques}
+                                                        quesiton_array={this.props.quesiton_array}
+                                                        video_array={this.props.video_array}
+                                                        stars={this.props.stars}
+                                                        comments={this.props.comments}
+                                                        pk={this.props.pk}
+                                                        transcripts={this.props.transcripts}
+                                                        updateViewStatus={this.props.updateViewStatus}
+                                                        updateCommentStatus={this.props.updateCommentStatus}
+                                                        subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                                                        reviews={this.props.reviews}
+                                                        positionId={this.props.curJob.job_details.positions_id}
+                                                        isSortByScore={this.state.isSortByScore}
+                                                        selectedCurrentStage="Resume Review"
+                                                        selectedStatus={this.state.isSortByScore ? "True" : "False"}
+                                                        updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                                                        employerProfileDetail={this.props.employerProfileDetail}
+                                                        reviewerStageLength={this.props.reviewerStageLength}
+                                                        CheckListCheckbox={this.CheckListCheckbox}
+                                                        showDetails={this.state.showDetails}
+                                                        setshowDetailsTrue={this.setshowDetailsTrue}
+                                                        setshowDetailsFalse={this.setshowDetailsFalse}
+                                                        setdetailIndex={this.setdetailIndex}
+                                                    />
+                                                )
+                                            })}
+                                        </Tbody>
+                                    </Table>
+                                </Box>
+                                <Box
+                                    px={{
+                                        base: '4',
+                                        md: '6',
+                                    }}
+                                    pb="5"
+                                >
+                                    <HStack spacing="3" justify="space-between">
+                                        <div className="ml-auto">
+                                            <ReactPaginate
+                                                previousLabel={'< Prev'}
+                                                nextLabel={'Next >'}
+                                                breakLabel={'...'}
+                                                breakClassName={'break-me'}
+                                                pageCount={this.props.curJob.total_page}
+                                                marginPagesDisplayed={1}
+                                                pageRangeDisplayed={5}
+                                                onPageChange={this.handlePageClick}
+                                                containerClassName={'pagination3'}
+                                                activeClassName={'active'}
+                                                forcePage={this.props.curJob.current_page}
+                                            />
+                                        </div>
+                                    </HStack>
+                                </Box>
+                            </Stack>
+                        </Box>
+                        {(this.props.filter == "active" && !this.props.profile.is_subreviwer) &&
+                            <Box pt='3'>
+                                {this.state.select_all ?
+                                    <button
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                        onClick={this.openMoveForm}
+                                    >
+                                        Move All
+                                        <span></span>
+                                    </button> :
                                     <span>
-                                        {this.state.candidates_count > 1 ?
+                                        {this.state.candidates_count > 0 ?
+                                            <span>
+                                                {this.state.candidates_count > 1 ?
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.openMoveForm}
+                                                    >
+                                                        Move ({this.state.candidates_count})
+                                                        <span></span>
+                                                    </button> :
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.openMoveForm}
+                                                    >
+                                                        Move
+                                                        <span></span>
+                                                    </button>}
+                                            </span> :
                                             <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.openMoveForm}
-                                            >
-                                                Move ({this.state.candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", backgroundColor: "#090d3a", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.openMoveForm}
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
                                             >
                                                 Move
                                                 <span></span>
                                             </button>}
-                                    </span> :
+                                    </span>
+                                }
+                                {this.state.select_all ?
                                     <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", color: "#090d3a", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #090d3a" }}
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                        onClick={this.rejectCandidates}
                                     >
-                                        Move
+                                        Reject All
                                         <span></span>
-                                    </button>}
-                            </span>
-                        }
-                        {this.state.select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={this.rejectCandidates}
-                            >
-                                Reject All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {this.state.candidates_count > 0 ?
+                                    </button> :
                                     <span>
-                                        {this.state.candidates_count > 1 ?
+                                        {this.state.candidates_count > 0 ?
+                                            <span>
+                                                {this.state.candidates_count > 1 ?
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.rejectCandidates}
+                                                    >
+                                                        Reject ({this.state.candidates_count})
+                                                        <span></span>
+                                                    </button> :
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.rejectCandidates}
+                                                    >
+                                                        Reject
+                                                        <span></span>
+                                                    </button>}
+                                            </span> :
                                             <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.rejectCandidates}
-                                            >
-                                                Reject ({this.state.candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#ff0000", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.rejectCandidates}
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
                                             >
                                                 Reject
                                                 <span></span>
                                             </button>}
-                                    </span> :
+                                    </span>
+                                }
+                                {this.state.select_all ?
                                     <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#ff0000", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #ff0000" }}
+                                        className="default-btn"
+                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                        onClick={this.openEmailForm}
                                     >
-                                        Reject
+                                        Email All
                                         <span></span>
-                                    </button>}
-                            </span>
-                        }
-                        {this.state.select_all ?
-                            <button
-                                className="default-btn"
-                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                onClick={this.openEmailForm}
-                            >
-                                Email All
-                                <span></span>
-                            </button> :
-                            <span>
-                                {this.state.candidates_count > 0 ?
+                                    </button> :
                                     <span>
-                                        {this.state.candidates_count > 1 ?
+                                        {this.state.candidates_count > 0 ?
+                                            <span>
+                                                {this.state.candidates_count > 1 ?
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.openEmailForm}
+                                                    >
+                                                        Email ({this.state.candidates_count})
+                                                        <span></span>
+                                                    </button> :
+                                                    <button
+                                                        className="default-btn"
+                                                        style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
+                                                        onClick={this.openEmailForm}
+                                                    >
+                                                        Email
+                                                        <span></span>
+                                                    </button>}
+                                            </span> :
                                             <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.openEmailForm}
-                                            >
-                                                Email ({this.state.candidates_count})
-                                                <span></span>
-                                            </button> :
-                                            <button
-                                                className="default-btn"
-                                                style={{ paddingLeft: "25px", marginLeft: "1rem", backgroundColor: "#006dff", paddingTop: "8px", paddingBottom: "8px" }}
-                                                onClick={this.openEmailForm}
+                                                className="default-btn1"
+                                                style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
                                             >
                                                 Email
                                                 <span></span>
                                             </button>}
-                                    </span> :
-                                    <button
-                                        className="default-btn1"
-                                        style={{ paddingLeft: "25px", marginLeft: "1rem", color: "#006dff", backgroundColor: "#ffffff", paddingTop: "8px", paddingBottom: "8px", border: "1px solid #006dff" }}
-                                    >
-                                        Email
-                                        <span></span>
-                                    </button>}
-                            </span>
+                                    </span>
+                                }
+                            </Box>
                         }
-                    </div>
+                    </Container> :
+                    <Container
+                        py={{
+                            base: '4',
+                            md: '8',
+                        }}
+                        px={{
+                            base: '0',
+                            md: 8,
+                        }}
+                    >
+                        <ApplicantRow
+                            filter={this.props.filter}
+                            applicant={this.props.curJob.applicants[this.state.detailIndex]}
+                            index={this.state.detailIndex}
+                            applicants={this.props.curJob.applicants}
+                            curJob={this.props.curJob}
+                            keyWords={this.state.keyWords}
+                            tempQuestion={this.state.tempQuestion}
+                            setTempQuestion={this.setTempQuestion}
+                            profile={this.props.profile}
+                            addInterviews={this.props.addInterviews}
+                            updateInviteStatus={this.props.updateInviteStatus}
+                            updateCandidateViewedStatus={this.props.updateCandidateViewedStatus}
+                            getAllJobs={this.props.getAllJobs}
+                            getPJobs={this.props.getPJobs}
+                            user={this.props.user}
+                            moveCandidateToInterview={this.props.moveCandidateToInterview}
+                            selectedPage={this.state.selectedPage}
+                            getReviewNote={this.props.getReviewNote}
+                            addOrUpdateReviewerEvaluation={this.props.addOrUpdateReviewerEvaluation}
+                            getReviewerEvaluation={this.props.getReviewerEvaluation}
+                            getCurrentReviewerEvaluation={this.props.getCurrentReviewerEvaluation}
+                            evaluations={this.props.evaluations}
+                            curEvaluation={this.props.curEvaluation}
+                            getApplicantsVideos={this.props.getApplicantsVideos}
+                            getApplicantsInfo={this.props.getApplicantsInfo}
+                            int_ques={this.props.int_ques}
+                            quesiton_array={this.props.quesiton_array}
+                            video_array={this.props.video_array}
+                            stars={this.props.stars}
+                            comments={this.props.comments}
+                            pk={this.props.pk}
+                            transcripts={this.props.transcripts}
+                            updateViewStatus={this.props.updateViewStatus}
+                            updateCommentStatus={this.props.updateCommentStatus}
+                            subreviewerUpdateComment={this.props.subreviewerUpdateComment}
+                            reviews={this.props.reviews}
+                            positionId={this.props.curJob.job_details.positions_id}
+                            isSortByScore={this.state.isSortByScore}
+                            selectedCurrentStage="Resume Review"
+                            selectedStatus={this.state.isSortByScore ? "True" : "False"}
+                            updateApplicantBasicInfo={this.props.updateApplicantBasicInfo}
+                            employerProfileDetail={this.props.employerProfileDetail}
+                            reviewerStageLength={this.props.reviewerStageLength}
+                            CheckListCheckbox={this.CheckListCheckbox}
+                            showDetails={this.state.showDetails}
+                            setshowDetailsTrue={this.setshowDetailsTrue}
+                            setshowDetailsFalse={this.setshowDetailsFalse}
+                            setdetailIndex={this.setdetailIndex}
+                        />
+                    </Container>
                 }
                 <MyModalUpgrade
                     show={this.state.showMoveForm}
@@ -906,19 +1052,25 @@ export class ResumeScreening extends Component {
                         </div>
                     </div>
                 </AlertModal>
-                <MyModal80 show={this.state.showEmailSending} onHide={this.hideEmailSending}>
-                    <EmailSending
-                        hideEmailSending={this.hideEmailSending}
-                        employerProfileDetail={this.props.employerProfileDetail}
-                        user={this.props.user}
-                        profile={this.props.profile}
-                        email={this.state.email_list}
-                        jobid={this.props.curJob.job_details.id}
-                        first_name={this.state.email_list}
-                        last_name={this.state.email_list}
-                        handleStatusChange2={null}
-                    />
-                </MyModal80>
+                <Modal onClose={this.hideEmailSending} size={"7xl"} isOpen={this.state.showEmailSending}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <EmailSending
+                                hideEmailSending={this.hideEmailSending}
+                                employerProfileDetail={this.props.employerProfileDetail}
+                                user={this.props.user}
+                                profile={this.props.profile}
+                                email={this.state.email_list}
+                                jobid={this.props.curJob.job_details.id}
+                                first_name={this.state.email_list}
+                                last_name={this.state.email_list}
+                                handleStatusChange2={null}
+                            />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </React.Fragment>
         )
     }
@@ -932,12 +1084,9 @@ const ApplicantRow = (props) => {
     let applicants = props.applicants;
     let name = props.applicant.first_name + " " + props.applicant.last_name;
     let resumeScore = props.applicant.result_rate;
-    useEffect(() => {
-        // if (sessionStorage.getItem("showPreview" + props.index) === "true") {
-        //     setShowPreview(true);
-        // }
-        props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
-    }, []);
+    // useEffect(() => {
+    //     props.getApplicantsVideos(props.applicant.email, props.curJob.job_details.positions_id);
+    // }, []);
     function onView() {
         let applyIds = [];
         applyIds.push(applicants[current].id);
@@ -954,7 +1103,9 @@ const ApplicantRow = (props) => {
         props.getReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email);
         props.getCurrentReviewerEvaluation(props.curJob.job_details.positions_id, applicants[current].email, props.user.email, "Resume Review");
         //sessionStorage.setItem(("showPreview" + props.index), "true");
-        setShowPreview(true);
+        // setShowPreview(true);
+        props.setdetailIndex(current);
+        props.setshowDetailsTrue();
     }
 
     function hideModal() {
@@ -988,6 +1139,7 @@ const ApplicantRow = (props) => {
         //sessionStorage.removeItem("show" + curIndex);
         let next = curIndex + 1;
         getReviewPageData(next);
+        props.setdetailIndex(curIndex + 1);
     };
 
     function viewPrevResult(curIndex) {
@@ -995,6 +1147,7 @@ const ApplicantRow = (props) => {
         //sessionStorage.removeItem("show" + curIndex);
         let prev = curIndex - 1;
         getReviewPageData(prev);
+        props.setdetailIndex(curIndex - 1);
     };
 
     const refresh = () => {
@@ -1009,66 +1162,60 @@ const ApplicantRow = (props) => {
     }
 
     return (
-        <div className="container-fluid">
-            <hr
-                style={{
-                    border: props.index == 0 ? "1px solid #E8EDFC" : "1px solid #E5E5E5",
-                    boxShadow: props.index == 0 ? "0px 1px 2px #E8EDFC" : "",
-                }}
-            />
-            <div className="row interview-txt7 interview-center candidate-row" style={{ color: "#7D7D7D", height: "2rem" }}>
-                <div className="interview-txt9 mb-2" style={{ marginLeft: "1rem", marginRight: "1rem" }}>
-                    {!props.profile.is_subreviwer &&
-                        <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={() => props.CheckListCheckbox()} />
+        <React.Fragment>
+            {!props.showDetails ?
+                <Tr>
+                    <Td className="interview-txt9" style={{ cursor: "pointer", color: "#006dff" }}>
+                        <HStack spacing='3'>
+                            <Stack>
+                                {!props.profile.is_subreviwer &&
+                                    <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" onClick={() => props.CheckListCheckbox()} />
+                                }
+                            </Stack>
+                            <Stack>
+                                {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
+                                    <div>
+                                        <span className="dot"></span>
+                                        <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                                            {name.length > 29 ? name.substring(0, 27) + "..." : name}
+                                        </span>
+                                    </div> :
+                                    <div>
+                                        <span className="dot" style={{ visibility: "hidden" }}></span>
+                                        <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
+                                            {name.length > 29 ? name.substring(0, 27) + "..." : name}
+                                        </span>
+                                    </div>
+                                }
+                            </Stack>
+                        </HStack>
+                    </Td>
+                    <Td className="interview-txt9">
+                        {props.applicant.apply_date.substring(0, 10)}
+                    </Td>
+                    <Td className="interview-txt9">
+                        {resumeScore >= 76 && <img style={{ width: "50%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
+                        {resumeScore >= 51 && resumeScore < 76 && <img style={{ width: "50%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
+                        {resumeScore >= 26 && resumeScore < 51 && <img style={{ width: "50%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
+                        {resumeScore >= 0 && resumeScore < 26 && <img style={{ width: "50%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
+                    </Td>
+                    {(props.reviewerStageLength > 0) &&
+                        <Td className="interview-txt9">
+                            {props.applicant?.reviewer_review_status ?
+                                <Text style={{ fontWeight: "600" }}>Reviewed</Text> :
+                                <Text color="muted" style={{ fontWeight: "600" }}>Pending</Text>
+                            }
+                        </Td>
                     }
-                    {/*(props.applicant.is_invited != 1) ?
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" />
-                        </div> :
-                        <div>
-                            <input className="selected-candidate" value={JSON.stringify(props.applicant)} type="checkbox" style={{ visibility: "hidden" }} />
-                        </div>
-                    */}
-                </div>
-                <div className="col-4 interview-txt9 mb-2" style={{ cursor: "pointer", color: "#006dff", paddingLeft: "0.3rem" }}>
-                    {(!props.applicant.is_viewed && props.applicant.is_invited != 1) ?
-                        <div>
-                            <span className="dot"></span>
-                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
-                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
-                            </span>
-                        </div> :
-                        <div>
-                            <span className="dot" style={{ visibility: "hidden" }}></span>
-                            <span className="title-button2" style={{ cursor: "pointer" }} onClick={() => { setCurrent(props.index); onView() }}>
-                                {name.length > 29 ? name.substring(0, 27) + "..." : name}
-                            </span>
-                        </div>
+                    {(props.reviewerStageLength == 0) &&
+                        <Td className="interview-txt9">
+                            {props.applicant?.num_votes > 0 &&
+                                <Text color="muted" style={{ fontWeight: "600" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</Text>
+                            }
+                        </Td>
                     }
-                </div>
-                <div className="col-2 interview-txt9 mb-2"><span style={{ marginLeft: "0.6rem" }}>{props.applicant.apply_date.substring(0, 10)}</span></div>
-                <div className="col-2 interview-txt9 mb-2" style={{ marginLeft: "30px" }}>
-                    {resumeScore >= 76 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-great.png" />}
-                    {resumeScore >= 51 && resumeScore < 76 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-good.png" />}
-                    {resumeScore >= 26 && resumeScore < 51 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-avg.png" />}
-                    {resumeScore >= 0 && resumeScore < 26 && <img style={{ width: "55%" }} src="https://hirebeat-assets.s3.amazonaws.com/cv-score-bad.png" />}
-                </div>
-                {(props.reviewerStageLength > 0) &&
-                    <div className="col-3">
-                        {props.applicant?.reviewer_review_status ?
-                            <p style={{ fontWeight: "600", color: "#4A6F8A" }}>Reviewed</p> :
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>Pending</p>
-                        }
-                    </div>}
-                {(props.reviewerStageLength == 0) &&
-                    <div className="col-2" style={{ marginLeft: "1.4rem" }}>
-                        {props.applicant?.num_votes > 0 &&
-                            <p style={{ fontWeight: "600", color: "#090D3A" }}>{props.applicant?.num_vote_yes + "/" + props.applicant?.num_votes}</p>
-                        }
-                    </div>}
-            </div>
-            <div style={{ background: "#E8EDFC" }}>
-                <MyFullModal className="light-blue-modal" show={showPreview} onHide={hideModal}>
+                </Tr> :
+                <span>
                     <ReviewCandidate
                         phone={applicants[current].phone}
                         email={applicants[current].email}
@@ -1127,10 +1274,11 @@ const ApplicantRow = (props) => {
                         isSortByScore={props.isSortByScore}
                         updateApplicantBasicInfo={props.updateApplicantBasicInfo}
                         employerProfileDetail={props.employerProfileDetail}
+                        setshowDetailsFalse={props.setshowDetailsFalse}
                     />
-                </MyFullModal>
-            </div>
-        </div>
+                </span>
+            }
+        </React.Fragment>
     );
 };
 

@@ -177,7 +177,7 @@ export class EmployerRegister extends Component {
     this.setState({ recap_value: value });
   }
 
-  checkAccountData = (e) => {
+  checkAccountData = async (e) => {
     e.preventDefault();
     // check Capcha value:
     if (this.state.recap_value == "") {
@@ -186,6 +186,15 @@ export class EmployerRegister extends Component {
     // reset error states
     this.setState({ validEmail: true, validPwd: true, unusedEmail: true });
     // check email format
+    
+    await axios.get('https://backend.hirebeat.co/api/v1/user/verify-email?email=' + this.state.email).then((res) => {
+      if (res.data.data.is_email_ok === false) {
+        this.setState({ validEmail: false });
+        recaptchaRef.current.reset();
+        return;
+      }
+    });
+    
     if ((Email_Block_List.includes(this.state.email?.toLowerCase()?.split("@")[1])) && !this.state.isReviewer) {
       this.setState({ validEmail: false });
       recaptchaRef.current.reset();

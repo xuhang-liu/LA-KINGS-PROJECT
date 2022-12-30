@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addReviewNote, getReviewNote } from "../../../../redux/actions/question_actions";
 import ReviewStage from "./ReviewStage";
+import { Textarea, Button } from '@chakra-ui/react';
 
 export class ReviewNote extends Component {
 
@@ -57,20 +58,19 @@ export class ReviewNote extends Component {
                 </div>
                 <div>
                     <div className="row mt-4 d-flex justify-content-end">
-                        <textarea
-                            className="note-border"
+                        <Textarea
                             style={{ height: "10rem", width: "100%", marginLeft: "1rem", marginRight: "1rem" }}
                             type="text"
                             value={this.state.comment}
                             placeholder="Write your comment here"
                             onChange={(e) => { this.setState({ comment: e.target.value }) }}
                         />
-                        <button
-                            className="default-btn d-flex"
+                        <Button
+                            colorScheme='orange'
                             onClick={this.updateReview}
-                            style={{marginTop:"0.5rem", marginRight:"1rem", paddingLeft:"25px", backgroundColor:"#ff6b00"}}
+                            style={{ marginTop: "0.5rem", marginRight: "1rem" }}
                         >Post
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </React.Fragment>

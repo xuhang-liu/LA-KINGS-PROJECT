@@ -57,6 +57,7 @@ export class Login extends Component {
     }).catch(error => {
       console.log(error)
     });
+
     //Segment info
     window?.analytics?.track("User - Login", {
       loginTime: Date().toLocaleString(),
