@@ -78,8 +78,7 @@ const EmailPreference = (props) => {
         alert('Preferences updated successfully');
     }
 
-    return <div>
-        <Text fontSize='xl' color="muted" mt='5'>Email Preference</Text>
+    return (
         <Box
             bg="bg-surface"
             boxShadow='sm'
@@ -89,6 +88,7 @@ const EmailPreference = (props) => {
                 md: '6',
             }}
         >
+            <Text fontSize='xl' color="muted" fontWeight='bold'>Email Preference</Text>
             <Stack spacing='2'>
                 {templates.length &&
                     <form style={{ marginBottom: "3%" }} onSubmit={savePreferences}>
@@ -99,7 +99,7 @@ const EmailPreference = (props) => {
                                 const templateNameIntermediate = template.template.replace(/([A-Z])/g, " $1");
                                 const templateName = templateNameIntermediate.charAt(0).toUpperCase() + templateNameIntermediate.slice(1);
                                 return <div class="form-group row" style={{ marginBottom: "-1rem" }}>
-                                    <Text for={template.id} fontSize='md' color="muted" mt='4' pl='4'>{templateName}</Text>
+                                    <Text for={template.id} fontSize='md' color="muted" mt='4' pl='4' fontWeight='bold'>{templateName}</Text>
                                     <div class="col-sm-6">
                                         <input type="checkbox" id={template.id} className="form-control" style={{ width: "20px", height: "20px", marginTop: "1.1rem" }} checked={selectedPreference.length > 0 ? selectedPreference[0].status : template.status} onChange={setFormData} />
                                     </div>
@@ -122,7 +122,7 @@ const EmailPreference = (props) => {
                 }
             </Stack>
         </Box>
-    </div>;
+    )
 }
 
 export default EmailPreference;

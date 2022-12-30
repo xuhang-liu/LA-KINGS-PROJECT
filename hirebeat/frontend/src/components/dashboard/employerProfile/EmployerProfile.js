@@ -547,7 +547,7 @@ export class EmployerProfile extends Component {
                                                     <Tooltip label='Social Media links will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
                                                         <HStack>
                                                             <Text color="muted" fontSize='xl' fontWeight='bold'>
-                                                                Team Review
+                                                                Social Media
                                                             </Text>
                                                             <FiInfo style={{ color: "#dfdfdf" }} size='20' />
                                                         </HStack>

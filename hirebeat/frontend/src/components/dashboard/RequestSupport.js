@@ -3,7 +3,7 @@ import Select from "react-select";
 import { connect } from "react-redux";
 import { createRequestEmail } from "../../redux/actions/auth_actions";
 import { AlertModal } from "./DashboardComponents";
-import { Text, Input, useColorModeValue, Textarea, Button } from '@chakra-ui/react';
+import { Text, Input, useColorModeValue, Textarea, Button, Box } from '@chakra-ui/react';
 
 export class RequestSupport extends React.Component {
   state = {
@@ -120,12 +120,12 @@ export class RequestSupport extends React.Component {
 
   render() {
     return (
-      <div>
-        <Text fontSize='xl' color="muted" style={{ paddingLeft: "25px" }}>Submit a Support Request</Text>
-        <form onSubmit={this.requestSubmit} style={{ padding: "10px" }}>
+      <Box>
+        <Text fontSize='lg' fontWeight='bold' color="muted" mb='3'>Submit a Support Request</Text>
+        <form onSubmit={this.requestSubmit} style={{marginLeft:"-0.8rem"}}>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">First Name<span className="job-apply-char2">*</span></Text>
+              <Text fontSize='md' color="muted">First Name<span className="job-apply-char2">*</span></Text>
               <Input
                 type="text"
                 name="firstName"
@@ -133,9 +133,9 @@ export class RequestSupport extends React.Component {
                 onChange={this.onChange}
                 isRequired={true}></Input>
             </div>
-
+            <div className="form-group col-1"></div>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">Last Name<span className="job-apply-char2">*</span></Text>
+              <Text fontSize='md' color="muted">Last Name<span className="job-apply-char2">*</span></Text>
               <Input
                 type="text"
                 name="lastName"
@@ -145,7 +145,7 @@ export class RequestSupport extends React.Component {
             </div>
           </div>
           <div className="form-group col-5">
-            <Text fontSize='lg' color="muted">Company Name</Text>
+            <Text fontSize='md' color="muted">Company Name</Text>
             <Input
               type="text"
               name="companyName"
@@ -154,7 +154,7 @@ export class RequestSupport extends React.Component {
           </div>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">Email<span className="job-apply-char2">*</span></Text>
+              <Text fontSize='md' color="muted">Email<span className="job-apply-char2">*</span></Text>
               <Input
                 type="email"
                 name="email"
@@ -162,8 +162,9 @@ export class RequestSupport extends React.Component {
                 value={this.state.email}
                 isRequired={true}></Input>
             </div>
+            <div className="form-group col-1"></div>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">Phone Number</Text>
+              <Text fontSize='md' color="muted">Phone Number</Text>
               <Input
                 type="number"
                 name="phone"
@@ -173,7 +174,7 @@ export class RequestSupport extends React.Component {
           </div>
           <div style={{ display: "flex" }}>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">Ticket Name<span className="job-apply-char2">*</span></Text>
+              <Text fontSize='md' color="muted">Ticket Name<span className="job-apply-char2">*</span></Text>
               <Input
                 type="text"
                 value={this.state.ticket}
@@ -181,8 +182,9 @@ export class RequestSupport extends React.Component {
                 onChange={this.onChange}
                 isRequired={true}></Input>
             </div>
+            <div className="form-group col-1"></div>
             <div className="form-group col-5">
-              <Text fontSize='lg' color="muted">Category<span className="job-apply-char2">*</span></Text>
+              <Text fontSize='md' color="muted">Category<span className="job-apply-char2">*</span></Text>
               <Select
                 className="category_employer_request_support"
                 value={this.state.category}
@@ -193,8 +195,8 @@ export class RequestSupport extends React.Component {
               />
             </div>
           </div>
-          <div className="form-group col-10">
-            <Text fontSize='lg' color="muted">How can we help you?<span className="job-apply-char2">*</span></Text>
+          <div className="form-group col-11">
+            <Text fontSize='md' color="muted">How can we help you?<span className="job-apply-char2">*</span></Text>
             <Textarea
               name="feedback"
               required="required"
@@ -210,19 +212,14 @@ export class RequestSupport extends React.Component {
             >
             </Textarea>
           </div>
-          <div
-            style={{
-              paddingLeft: "15px",
-            }}
+          <Button
+            type="submit"
+            colorScheme='blue'
+            _hover={{ bg: "orange.500" }}
+            ml='4'
           >
-            <Button
-              type="submit"
-              colorScheme='blue'
-              _hover={{ bg: "orange.500" }}
-            >
-              Submit
-            </Button>
-          </div>
+            Submit
+          </Button>
         </form>
         <AlertModal show={this.state.isShow} onHide={this.closeModal}>
           <div
@@ -259,7 +256,7 @@ export class RequestSupport extends React.Component {
             </div>
           </div>
         </AlertModal>
-      </div>
+      </Box>
     );
   }
 }
