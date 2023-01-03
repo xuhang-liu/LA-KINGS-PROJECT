@@ -58,7 +58,7 @@ export const AnalyticsCover = (props) => {
                                     className="current"
                                     onClick={(e) => openTabSection(e, 'tab1')}
                                 >
-                                    <span style={{ border: "1px solid #090D3A" }}>
+                                    <span>
                                         <i className="bx bx-tab"></i> &nbsp;&nbsp;All Jobs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </span>
                                 </li>
@@ -66,7 +66,7 @@ export const AnalyticsCover = (props) => {
                                 <li
                                     onClick={(e) => openTabSection(e, 'tab2')}
                                 >
-                                    <span style={{ border: "1px solid #090D3A" }}>
+                                    <span>
                                         <i className="bx bx-tab"></i> Video Inteview
                                     </span>
                                 </li>
