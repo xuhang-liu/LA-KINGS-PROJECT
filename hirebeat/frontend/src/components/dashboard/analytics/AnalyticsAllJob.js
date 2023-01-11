@@ -99,7 +99,7 @@ export class AnalyticsAllJob extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <Box>
                 <div className="row">
                     <div className="col-6">
                         <Box
@@ -218,7 +218,7 @@ export class AnalyticsAllJob extends Component {
                         </Box>
                     </div>
                 </div>
-            </div>
+            </Box>
         )
     }
 

@@ -757,430 +757,421 @@ export class JobEdition extends Component {
 
     render() {
         return (
-            <Box
-                bg="bg-canvas"
-                borderTopLeftRadius={{
-                    base: 'none',
-                    lg: '2rem',
-                }}
-                height="full"
-            >
-                <Container py="5" height="full">
-                    <Stack
-                        spacing={{
-                            base: '8',
-                            lg: '6',
+            <Box px='24' mt='12' mb='14' alignItems='center'>
+                <Stack
+                    spacing={{
+                        base: '8',
+                        lg: '6',
+                    }}
+                    height="full"
+                >
+                    <Heading as='h5' size='xs' color="muted" mb="5"><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Edit</span></b></Heading>
+                    <div className="row">
+                        <Button colorScheme='brand.500' variant='ghost' type="button" onClick={this.props.renderJobs}>
+                            <div className="back-to-text">
+                                <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
+                            </div>
+                        </Button>
+                    </div>
+                    <Box
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        p={{
+                            base: '4',
+                            md: '6',
                         }}
-                        height="full"
                     >
-                        <Heading as='h5' size='xs' color="muted" mb="5"><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Edit</span></b></Heading>
-                        <div className="row">
-                            <Button colorScheme='brand.500' variant='ghost' type="button" onClick={this.props.renderJobs}>
-                                <div className="back-to-text">
-                                    <p className="back-to-text"><i className="bx-fw bx bx-arrow-back"></i> Back to Jobs</p>
+                        <form onSubmit={this.savePosition}>
+                            <div className="form-row mt-4">
+                                <div className="col-12">
+                                    <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Position Details</b></Text>
                                 </div>
-                            </Button>
-                        </div>
-                        <Box
-                            bg="bg-surface"
-                            boxShadow='sm'
-                            borderRadius="lg"
-                            p={{
-                                base: '4',
-                                md: '6',
-                            }}
-                        >
-                            <form onSubmit={this.savePosition}>
-                                <div className="form-row mt-4">
-                                    <div className="col-12">
-                                        <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Position Details</b></Text>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    <Text fontSize="sm" color="muted">Job Title <span className="job-apply-char2">*</span></Text>
+                                    <Input type="text" name="jobTitle" value={this.state.jobTitle}
+                                        onChange={this.handleInputChange} required="required" style={{ borderRadius: "5px", height: "2.5rem" }} />
+                                </div>
+                                <div className="form-group col-3">
+                                    <Text fontSize="sm" color="muted">Job ID <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span></Text>
+                                    <Input type="text" name="jobId" value={this.state.jobId}
+                                        onChange={this.handleInputChange} style={{ borderRadius: "5px", height: "2.5rem" }} />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    <Text fontSize="sm" color="muted">Employment Type <span className="job-apply-char2">*</span></Text>
+                                    <div style={{ zIndex: "9999" }}>
+                                        <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={customStyles} />
                                     </div>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-6">
-                                        <Text fontSize="sm" color="muted">Job Title <span className="job-apply-char2">*</span></Text>
-                                        <Input type="text" name="jobTitle" value={this.state.jobTitle}
-                                            onChange={this.handleInputChange} required="required" style={{ borderRadius: "5px", height: "2.5rem" }} />
-                                    </div>
-                                    <div className="form-group col-3">
-                                        <Text fontSize="sm" color="muted">Job ID <span className="job-apply-char2" style={{ visibility: "hidden" }}>*</span></Text>
-                                        <Input type="text" name="jobId" value={this.state.jobId}
-                                            onChange={this.handleInputChange} style={{ borderRadius: "5px", height: "2.5rem" }} />
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    <Text fontSize="sm" color="muted">Experience Level <span className="job-apply-char2">*</span></Text>
+                                    <div style={{ zIndex: "9999" }}>
+                                        <Select value={this.state.jobLevel} onChange={this.onFilter1} options={this.options1} styles={customStyles} />
                                     </div>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-6">
-                                        <Text fontSize="sm" color="muted">Employment Type <span className="job-apply-char2">*</span></Text>
-                                        <div style={{ zIndex: "9999" }}>
-                                            <Select value={this.state.jobType} onChange={this.onFilter} options={this.options} styles={customStyles} />
-                                        </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    <Text fontSize="sm" color="muted">Workplace Policy <span className="job-apply-char2">*</span></Text>
+                                    <div style={{ zIndex: "9999" }}>
+                                        <Select value={this.state.remote} onChange={this.onFilter3} options={this.options2} styles={customStyles} />
                                     </div>
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-6">
-                                        <Text fontSize="sm" color="muted">Experience Level <span className="job-apply-char2">*</span></Text>
-                                        <div style={{ zIndex: "9999" }}>
-                                            <Select value={this.state.jobLevel} onChange={this.onFilter1} options={this.options1} styles={customStyles} />
-                                        </div>
-                                    </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-6">
+                                    {this.state.remote.value == 2 ?
+                                        <Text fontSize="sm" color="muted">Preferred Location <span className="job-apply-char2">*</span>
+                                            <span className="tool_tip ml-2">
+                                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                                <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
+                                                    <div>
+                                                        We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
+                                                    </div>
+                                                </p>
+                                            </span>
+                                        </Text> :
+                                        <Text fontSize="sm" color="muted">Job Location <span className="job-apply-char2">*</span></Text>}
+                                    <Autocomplete
+                                        className="form-control"
+                                        language="en"
+                                        style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem", color: "#7a7a7a" }}
+                                        apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                        onPlaceSelected={(place, inputRef, autocomplete) => {
+                                            this.handleLocation(place);
+                                        }}
+                                        required="required"
+                                        defaultValue={this.state.jobLocation}
+                                    />
                                 </div>
-                                <div className="form-row">
-                                    <div className="form-group col-6">
-                                        <Text fontSize="sm" color="muted">Workplace Policy <span className="job-apply-char2">*</span></Text>
-                                        <div style={{ zIndex: "9999" }}>
-                                            <Select value={this.state.remote} onChange={this.onFilter3} options={this.options2} styles={customStyles} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="form-group col-6">
-                                        {this.state.remote.value == 2 ?
-                                            <Text fontSize="sm" color="muted">Preferred Location <span className="job-apply-char2">*</span>
-                                                <span className="tool_tip ml-2">
-                                                    <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                    <p className="tool_submenu container" style={{ width: "18rem", zIndex: "99999" }}>
-                                                        <div>
-                                                            We need a location to help promote your opening to other job boards. We suggest inputting either the company's registered location or preferred candidate location.
-                                                        </div>
-                                                    </p>
-                                                </span>
-                                            </Text> :
-                                            <Text fontSize="sm" color="muted">Job Location <span className="job-apply-char2">*</span></Text>}
-                                        <Autocomplete
-                                            className="form-control"
-                                            language="en"
-                                            style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem", color: "#7a7a7a" }}
-                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                            onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                this.handleLocation(place);
-                                            }}
-                                            required="required"
-                                            defaultValue={this.state.jobLocation}
-                                        />
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div className="form-row">
-                                    <div className="col-6">
-                                        <Text fontSize="sm" color="muted">Job Description <span className="job-apply-char2">*</span></Text>
-                                    </div>
+                            <div className="form-row">
+                                <div className="col-6">
+                                    <Text fontSize="sm" color="muted">Job Description <span className="job-apply-char2">*</span></Text>
+                                </div>
+                                <div className="form-group col-12">
+                                    <RichTextEditor
+                                        value={this.state.jobDescription}
+                                        onChange={this.onChange}
+                                        toolbarConfig={toolbarConfig}
+                                        className="text-editor2"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        Preferred Skills
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                                <div>
+                                                    These skills will be part of the resume evaluation and are not visible to applicants.
+                                                </div>
+                                            </p>
+                                        </span>
+                                    </Text>
+                                </div>
+                                <div className="form-group col-6" style={{ zIndex: "9999" }}>
+                                    <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet.sort((a, b) => {
+                                        let fa = a.value.toLowerCase(), fb = b.value.toLowerCase();
+                                        if (fa < fb) {
+                                            return -1;
+                                        }
+                                        if (fa > fb) {
+                                            return 1;
+                                        }
+                                        return 0;
+                                    })} styles={customStyles} defaultValue={this.state.skills} />
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        EEO Statement
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                                <div>
+                                                    Use our standard statement by enabling, or put your own in the Job Description above and leave this disabled.
+                                                </div>
+                                            </p>
+                                        </span>
+                                    </Text>
+                                </div>
+                                <div className="form-group col-12">
+                                    {this.state.eeo_req == 1 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Enabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoReq1}>Enabled</Button>
+                                    }
+                                    {this.state.eeo_req == 0 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoReq0}>Disabled</Button>
+                                    }
+                                </div>
+                                {this.state.eeo_req == 1 &&
                                     <div className="form-group col-12">
-                                        <RichTextEditor
-                                            value={this.state.jobDescription}
-                                            onChange={this.onChange}
-                                            toolbarConfig={toolbarConfig}
-                                            className="text-editor2"
-                                        />
-                                    </div>
+                                        <Text fontSize="md" mx="10">The following statement will be displayed at the bottom of your job description:</Text>
+                                        <Text fontSize="sm" color="muted" mx="10">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</Text>
+                                    </div>}
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        EEO Question
+                                    </Text>
                                 </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            Preferred Skills
-                                            <span className="tool_tip ml-2">
-                                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
-                                                    <div>
-                                                        These skills will be part of the resume evaluation and are not visible to applicants.
-                                                    </div>
-                                                </p>
-                                            </span>
-                                        </Text>
-                                    </div>
-                                    <div className="form-group col-6" style={{ zIndex: "9999" }}>
-                                        <Select isMulti value={this.state.skills} onChange={this.onFilter2} options={SkillSet.sort((a, b) => {
-                                            let fa = a.value.toLowerCase(), fb = b.value.toLowerCase();
-                                            if (fa < fb) {
-                                                return -1;
-                                            }
-                                            if (fa > fb) {
-                                                return 1;
-                                            }
-                                            return 0;
-                                        })} styles={customStyles} defaultValue={this.state.skills} />
-                                    </div>
+                                <div className="form-group col-12">
+                                    {this.state.eeo_ques_req == 1 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Enabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoQuesReq1}>Enabled</Button>
+                                    }
+                                    {this.state.eeo_ques_req == 0 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoQuesReq0}>Disabled</Button>
+                                    }
                                 </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            EEO Statement
-                                            <span className="tool_tip ml-2">
-                                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
-                                                    <div>
-                                                        Use our standard statement by enabling, or put your own in the Job Description above and leave this disabled.
-                                                    </div>
-                                                </p>
-                                            </span>
-                                        </Text>
-                                    </div>
+                                {this.state.eeo_ques_req == 1 &&
                                     <div className="form-group col-12">
-                                        {this.state.eeo_req == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Enabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoReq1}>Enabled</Button>
-                                        }
-                                        {this.state.eeo_req == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoReq0}>Disabled</Button>
-                                        }
-                                    </div>
-                                    {this.state.eeo_req == 1 &&
-                                        <div className="form-group col-12">
-                                            <Text fontSize="md" mx="10">The following statement will be displayed at the bottom of your job description:</Text>
-                                            <Text fontSize="sm" color="muted" mx="10">{this.props.profile.company_name} is an Equal Opportunity employer. We celebrate diversity and do not discriminate based on race, religion, color, national origin, sex, sexual orientation, age, veteran status, disability status, or any other applicable characteristics protected by law.</Text>
-                                        </div>}
+                                        <Text fontSize="md" mx="10">Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts.</Text>
+                                    </div>}
+                            </div>
+                            <hr style={{ border: "1.5px solid #E8EDFC" }} />
+                            <div className="form-row">
+                                <div className="col-12 mt-3">
+                                    <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Application Form</b>
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                                This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
+                                            </p>
+                                        </span>
+                                    </Text>
                                 </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            EEO Question
-                                        </Text>
-                                    </div>
-                                    <div className="form-group col-12">
-                                        {this.state.eeo_ques_req == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Enabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoQuesReq1}>Enabled</Button>
-                                        }
-                                        {this.state.eeo_ques_req == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setEeoQuesReq0}>Disabled</Button>
-                                        }
-                                    </div>
-                                    {this.state.eeo_ques_req == 1 &&
-                                        <div className="form-group col-12">
-                                            <Text fontSize="md" mx="10">Enabling EEO questions will allow you to collect EEO data from your candidates for use in compliance and diversity and inclusion efforts.</Text>
-                                        </div>}
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        Location
+                                    </Text>
                                 </div>
+                            </div>
+                            <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                <div className="col-12">
+                                    {this.state.loc_req == 0 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq0}>Required</Button>
+                                    }
+                                    {this.state.loc_req == 1 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq1}>Optional</Button>
+                                    }
+                                    {this.state.loc_req == 2 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq2}>Disabled</Button>
+                                    }
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        Phone Number
+                                    </Text>
+                                </div>
+                            </div>
+                            <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                <div className="col-12">
+                                    {this.state.pho_req == 0 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq0}>Required</Button>
+                                    }
+                                    {this.state.pho_req == 1 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq1}>Optional</Button>
+                                    }
+                                    {this.state.pho_req == 2 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq2}>Disabled</Button>
+                                    }
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        LinkedIn URL
+                                    </Text>
+                                </div>
+                            </div>
+                            <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                <div className="col-12">
+                                    {this.state.lin_req == 0 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq0}>Required</Button>
+                                    }
+                                    {this.state.lin_req == 1 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq1}>Optional</Button>
+                                    }
+                                    {this.state.lin_req == 2 ?
+                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq2}>Disabled</Button>
+                                    }
+                                </div>
+                            </div>
+                            <div className="form-row">
+                                <div className="col-12">
+                                    <Text fontSize="sm" color="muted">
+                                        Screening Questions
+                                        <span className="tool_tip ml-2">
+                                            <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
+                                            <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
+                                                <div>
+                                                    Add up to three questions to determine whether an applicant meets your minimum requirements.
+                                                </div>
+                                            </p>
+                                        </span>
+                                    </Text>
+                                </div>
+                            </div>
+                            {this.state.questions.map((q, index) => {
+                                let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
+                                let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
+                                return (
+                                    <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
+                                        <div className="col-12">
+                                            <ScreenQuestion
+                                                questionObj={q}
+                                                handleQFormChange={this.handleQFormChange}
+                                                handleQFormChange2={this.handleQFormChange2}
+                                                index={index}
+                                                removeQuestion={this.removeQuestion}
+                                                responseType={responseType}
+                                                ans={ans}
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                            {this.state.questionCount < 3 &&
+                                <div className="form-row" style={{ marginBottom: "1rem" }}>
+                                    <span style={{ cursor: "pointer" }} className="profile-edit" onClick={this.addQuestion}>
+                                        + Add Screening Questions
+                                    </span>
+                                </div>
+                            }
+                            <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">
                                     <div className="col-12 mt-3">
-                                        <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Application Form</b>
-                                            <span className="tool_tip ml-2">
-                                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
-                                                    This will be filled out by applicants. Name, Email, and Resume are mandatory by default.
-                                                </p>
+                                        <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></Text>
+                                    </div>
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group col-4">
+                                        {this.props.jobInfo.job_post != 2 &&
+                                            <span>
+                                                {this.state.job_post == 0 ?
+                                                    <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                                    <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", { eventTime: Date()?.toLocaleString() }) }}>Disabled</Button>
+                                                }
+                                                {this.state.job_post == 1 ?
+                                                    <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Standard</Button> :
+                                                    <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", { eventTime: Date()?.toLocaleString() }) }}>Standard</Button>
+                                                }
                                             </span>
-                                        </Text>
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            Location
-                                        </Text>
-                                    </div>
-                                </div>
-                                <div className="form-row" style={{ marginBottom: "1rem" }}>
-                                    <div className="col-12">
-                                        {this.state.loc_req == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq0}>Required</Button>
                                         }
-                                        {this.state.loc_req == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq1}>Optional</Button>
-                                        }
-                                        {this.state.loc_req == 2 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLocReq2}>Disabled</Button>
-                                        }
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            Phone Number
-                                        </Text>
-                                    </div>
-                                </div>
-                                <div className="form-row" style={{ marginBottom: "1rem" }}>
-                                    <div className="col-12">
-                                        {this.state.pho_req == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq0}>Required</Button>
-                                        }
-                                        {this.state.pho_req == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq1}>Optional</Button>
-                                        }
-                                        {this.state.pho_req == 2 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setPhoReq2}>Disabled</Button>
-                                        }
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            LinkedIn URL
-                                        </Text>
-                                    </div>
-                                </div>
-                                <div className="form-row" style={{ marginBottom: "1rem" }}>
-                                    <div className="col-12">
-                                        {this.state.lin_req == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Required</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq0}>Required</Button>
-                                        }
-                                        {this.state.lin_req == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Optional</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq1}>Optional</Button>
-                                        }
-                                        {this.state.lin_req == 2 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={this.setLinReq2}>Disabled</Button>
-                                        }
-                                    </div>
-                                </div>
-                                <div className="form-row">
-                                    <div className="col-12">
-                                        <Text fontSize="sm" color="muted">
-                                            Screening Questions
-                                            <span className="tool_tip ml-2">
-                                                <i class='bx-fw bx bxs-info-circle' style={{ color: "#dfdfdf" }}></i>
-                                                <p className="tool_submenu container" style={{ width: "14rem", zIndex: "99999" }}>
-                                                    <div>
-                                                        Add up to three questions to determine whether an applicant meets your minimum requirements.
-                                                    </div>
-                                                </p>
-                                            </span>
-                                        </Text>
-                                    </div>
-                                </div>
-                                {this.state.questions.map((q, index) => {
-                                    let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
-                                    let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
-                                    return (
-                                        <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
-                                            <div className="col-12">
-                                                <ScreenQuestion
-                                                    questionObj={q}
-                                                    handleQFormChange={this.handleQFormChange}
-                                                    handleQFormChange2={this.handleQFormChange2}
-                                                    index={index}
-                                                    removeQuestion={this.removeQuestion}
-                                                    responseType={responseType}
-                                                    ans={ans}
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                                {this.state.questionCount < 3 &&
-                                    <div className="form-row" style={{ marginBottom: "1rem" }}>
-                                        <span style={{ cursor: "pointer" }} className="profile-edit" onClick={this.addQuestion}>
-                                            + Add Screening Questions
-                                        </span>
-                                    </div>
-                                }
-                                <div>
-                                    <hr style={{ border: "1.5px solid #E8EDFC" }} />
-                                    <div className="form-row">
-                                        <div className="col-12 mt-3">
-                                            <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></Text>
-                                        </div>
-                                    </div>
-                                    <div className="form-row">
-                                        <div className="form-group col-4">
-                                            {this.props.jobInfo.job_post != 2 &&
-                                                <span>
-                                                    {this.state.job_post == 0 ?
-                                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", { eventTime: Date()?.toLocaleString() }) }}>Disabled</Button>
-                                                    }
-                                                    {this.state.job_post == 1 ?
-                                                        <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Standard</Button> :
-                                                        <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", { eventTime: Date()?.toLocaleString() }) }}>Standard</Button>
-                                                    }
-                                                </span>
-                                            }
-                                            {/* {this.state.job_post == 2 ?
+                                        {/* {this.state.job_post == 2 ?
                                                 <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Premium</Button> :
                                                 <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(2); window?.analytics?.track("Job_posting_broadcast_premium", { eventTime: Date()?.toLocaleString() }) }}>Premium</Button>
                                             } */}
+                                    </div>
+                                    <div className="form-group col-12">
+                                        {this.state.job_post == 0 &&
+                                            <Text fontSize="sm" color="muted">
+                                                Your position will be posted on HireBeat job board and your company career page.
+                                            </Text>
+                                        }
+                                        {this.state.job_post == 1 &&
+                                            <Text fontSize="sm" color="muted">
+                                                Standard advertising: your position will appear on ZipRecruiter and other 200+ job boards within 24 hours.
+                                            </Text>
+                                        }
+                                        {this.state.job_post == 2 &&
+                                            <div>
+                                                {this.props.jobInfo.job_post == 2 ?
+                                                    <Text fontSize="sm" color="muted">
+                                                        Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                        <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                            Your 30-Day Premium Promotion is ACTIVE.
+                                                        </div>
+                                                    </Text> :
+                                                    <Text fontSize="sm" color="muted">
+                                                        Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                        <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                            30-Day Promotion - $200
+                                                        </div>
+                                                        <div>
+                                                            You will be redirected to the payment page once you click Save to publish.
+                                                        </div>
+                                                    </Text>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            {this.props.jobInfo.is_closed != 3 ?
+                                <div style={{ float: "left", marginBottom: "1rem", marginTop: "1rem" }}>
+                                    <Button type="submit" backgroundColor="brand.500" color="white" variant='solid' borderRadius="2" size="lg" marginRight="1rem">
+                                        Save
+                                    </Button>
+                                    <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="grey" type="button" onClick={this.props.renderJobs}>
+                                        Cancel
+                                    </Button>
+                                </div> :
+                                <div style={{ float: "left", marginBottom: "1rem", display: "inline-block", marginTop: "1rem" }}>
+                                    <Button type="submit" backgroundColor="brand.500" color="white" variant='solid' borderRadius="2" size="lg" marginRight="1rem">
+                                        Save & Publish
+                                    </Button>
+                                    <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="brand.500" marginRight="1rem" type="button" onClick={() => { this.saveDraft() }}>
+                                        Save Draft
+                                    </Button>
+                                    <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="brand.500" marginRight="1rem" type="button" onClick={() => { this.previewJob() }}>
+                                        <i className="bx bx-show" style={{ color: "#006dff" }}></i>Preview
+                                    </Button>
+                                    <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="grey" type="button" onClick={this.props.renderJobs}>
+                                        Cancel
+                                    </Button>
+                                </div>
+                            }
+                            <MyModalUpgrade
+                                show={this.state.showUpgradeM}
+                                onHide={this.setHideUpgradeM}
+                            >
+                                <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
+                                    <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
+                                    <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
+                                    <div className="row" style={{ margin: "auto", width: "80%" }}>
+                                        <div className="col-6">
+                                            <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
                                         </div>
-                                        <div className="form-group col-12">
-                                            {this.state.job_post == 0 &&
-                                                <Text fontSize="sm" color="muted">
-                                                    Your position will be posted on HireBeat job board and your company career page.
-                                                </Text>
-                                            }
-                                            {this.state.job_post == 1 &&
-                                                <Text fontSize="sm" color="muted">
-                                                    Standard advertising: your position will appear on ZipRecruiter and other 200+ job boards within 24 hours.
-                                                </Text>
-                                            }
-                                            {this.state.job_post == 2 &&
-                                                <div>
-                                                    {this.props.jobInfo.job_post == 2 ?
-                                                        <Text fontSize="sm" color="muted">
-                                                            Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
-                                                            <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
-                                                                Your 30-Day Premium Promotion is ACTIVE.
-                                                            </div>
-                                                        </Text> :
-                                                        <Text fontSize="sm" color="muted">
-                                                            Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
-                                                            <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
-                                                                30-Day Promotion - $200
-                                                            </div>
-                                                            <div>
-                                                                You will be redirected to the payment page once you click Save to publish.
-                                                            </div>
-                                                        </Text>
-                                                    }
-                                                </div>
-                                            }
+                                        <div className="col-6">
+                                            <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
                                         </div>
                                     </div>
                                 </div>
-                                {this.props.jobInfo.is_closed != 3 ?
-                                    <div style={{ float: "left", marginBottom: "1rem", marginTop: "1rem" }}>
-                                        <Button type="submit" backgroundColor="brand.500" color="white" variant='solid' borderRadius="2" size="lg" marginRight="1rem">
-                                            Save
-                                        </Button>
-                                        <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="grey" type="button" onClick={this.props.renderJobs}>
-                                            Cancel
-                                        </Button>
-                                    </div> :
-                                    <div style={{ float: "left", marginBottom: "1rem", display: "inline-block", marginTop: "1rem" }}>
-                                        <Button type="submit" backgroundColor="brand.500" color="white" variant='solid' borderRadius="2" size="lg" marginRight="1rem">
-                                            Save & Publish
-                                        </Button>
-                                        <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="brand.500" marginRight="1rem" type="button" onClick={() => { this.saveDraft() }}>
-                                            Save Draft
-                                        </Button>
-                                        <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="brand.500" marginRight="1rem" type="button" onClick={() => { this.previewJob() }}>
-                                            <i className="bx bx-show" style={{ color: "#006dff" }}></i>Preview
-                                        </Button>
-                                        <Button variant='outline' borderRadius="2" border="2px" size="lg" borderColor="grey" type="button" onClick={this.props.renderJobs}>
-                                            Cancel
-                                        </Button>
-                                    </div>
-                                }
-                                <MyModalUpgrade
-                                    show={this.state.showUpgradeM}
-                                    onHide={this.setHideUpgradeM}
-                                >
-                                    <div className="container" style={{ borderRadius: "10px", boxShadow: "2px 2px 4px rgba(128, 128, 128, 0.16)", padding: "2rem" }}>
-                                        <h3 style={{ color: "#090d3a", fontWeight: "600", fontSize: "1.6rem" }}>Your Free Trial Has Expired</h3>
-                                        <p className="pt-3">Please upgrade or purchase a plan to publish your job.</p>
-                                        <div className="row" style={{ margin: "auto", width: "80%" }}>
-                                            <div className="col-6">
-                                                <Link to="/employer-pricing" className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", textDecoration: "none" }}>Select Plan</Link>
-                                            </div>
-                                            <div className="col-6">
-                                                <button onClick={this.setHideUpgradeM} className="default-btn" style={{ paddingLeft: "25px", paddingTop: "8px", paddingBottom: "8px", backgroundColor: "#979797" }}>Maybe Later</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </MyModalUpgrade>
-                            </form>
-                        </Box >
-                    </Stack>
-                </Container>
-            </Box >
+                            </MyModalUpgrade>
+                        </form>
+                    </Box >
+                </Stack>
+            </Box>
         )
     };
 };

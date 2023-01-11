@@ -111,7 +111,7 @@ export const JobCover = (props) => {
       />
 
       {((!viewPortal) || (props.job_back_home)) ?
-        <div style={{ marginBottom: "5%" }} className="container-fluid min-width-980 pt-5">
+        <Box px='24' mt='12' mb='14' alignItems='center'>
           <div>
             <HStack>
               <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-briefcase"></i><span style={{ marginLeft: "0.6rem" }}>Jobs</span></Heading>
@@ -160,7 +160,7 @@ export const JobCover = (props) => {
             keyWords={keyWords}
             renderJobCreation={props.renderJobCreation}
           />
-        </div> :
+        </Box> :
         <JobPortalPage
           setViewPortal={setViewPortal}
           job={props.jobs[parseInt(sessionStorage.getItem("jobKey")) || jobKey]}

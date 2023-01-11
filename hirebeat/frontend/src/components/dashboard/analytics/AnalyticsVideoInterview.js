@@ -104,7 +104,7 @@ export class AnalyticsVideoInterview extends Component {
             browserName = "firefox";
         }
         return (
-            <div className="container-fluid">
+            <Box>
                 <div className="row">
                     <div className="col-12">
                         <Box
@@ -388,7 +388,7 @@ export class AnalyticsVideoInterview extends Component {
                         </Box>
                     </div>
                 </div>
-            </div>
+            </Box>
         );
 
     };

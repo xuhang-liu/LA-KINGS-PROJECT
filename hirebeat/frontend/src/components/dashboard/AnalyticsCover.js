@@ -33,70 +33,60 @@ export const AnalyticsCover = (props) => {
 
     return (
         <React.Fragment>
-            <Box
-                bg="bg-canvas"
-                borderTopLeftRadius={{
-                    base: 'none',
-                    lg: '2rem',
-                }}
-                height="full"
-                mb="5"
-            >
-                <Container height="full" mt='12' mb='14' alignItems='center'>
-                    <Stack
-                        spacing={{
-                            base: '8',
-                            lg: '6',
-                        }}
-                        height="full"
-                    >
-                        <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-bar-chart-square pl-3"></i><span style={{ marginLeft: "1.2rem" }}>Analytics</span></Heading>
-                        <div className="tab pricing-list-tab">
-                            {/* Pricing Tab List */}
-                            <ul className="tabs">
-                                <li
-                                    className="current"
-                                    onClick={(e) => openTabSection(e, 'tab1')}
-                                >
-                                    <span>
-                                        <i className="bx bx-tab"></i> &nbsp;&nbsp;All Jobs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </span>
-                                </li>
+            <Box px='24' mt='12' mb='14' alignItems='center'>
+                <Stack
+                    spacing={{
+                        base: '8',
+                        lg: '6',
+                    }}
+                    height="full"
+                >
+                    <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-bar-chart-square"></i><span style={{ marginLeft: "1.2rem" }}>Analytics</span></Heading>
+                    <div className="tab pricing-list-tab">
+                        {/* Pricing Tab List */}
+                        <ul className="tabs">
+                            <li
+                                className="current"
+                                onClick={(e) => openTabSection(e, 'tab1')}
+                            >
+                                <span>
+                                    <i className="bx bx-tab"></i> &nbsp;&nbsp;All Jobs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </span>
+                            </li>
 
-                                <li
-                                    onClick={(e) => openTabSection(e, 'tab2')}
-                                >
-                                    <span>
-                                        <i className="bx bx-tab"></i> Video Inteview
-                                    </span>
-                                </li>
-                            </ul>
-                            <div className="tab_content">
-                                {/*all jobs*/}
-                                <div id="tab1" className="tabs_item">
-                                    <AnalyticsAllJob
-                                        user={props.user}
-                                        profile={props.profile}
-                                        getAnalyticsInfo={props.getAnalyticsInfo}
-                                        alljobAnaInfo={props.alljobAnaInfo}
-                                    />
-                                </div>
-                                {/*video interview*/}
-                                <div id="tab2" className="tabs_item">
-                                    <AnalyticsVideoInterview
-                                        user={props.user}
-                                        profile={props.profile}
-                                        analyticsInfo={props.analyticsInfo}
-                                        getAnalyticsInfo={props.getAnalyticsInfo}
-                                        position_list={props.position_list}
-                                        interview_session={props.interview_session}
-                                        alljobAnaInfo={props.alljobAnaInfo}
-                                    />
-                                </div>
+                            <li
+                                onClick={(e) => openTabSection(e, 'tab2')}
+                            >
+                                <span>
+                                    <i className="bx bx-tab"></i> Video Inteview
+                                </span>
+                            </li>
+                        </ul>
+                        <div className="tab_content">
+                            {/*all jobs*/}
+                            <div id="tab1" className="tabs_item">
+                                <AnalyticsAllJob
+                                    user={props.user}
+                                    profile={props.profile}
+                                    getAnalyticsInfo={props.getAnalyticsInfo}
+                                    alljobAnaInfo={props.alljobAnaInfo}
+                                />
+                            </div>
+                            {/*video interview*/}
+                            <div id="tab2" className="tabs_item">
+                                <AnalyticsVideoInterview
+                                    user={props.user}
+                                    profile={props.profile}
+                                    analyticsInfo={props.analyticsInfo}
+                                    getAnalyticsInfo={props.getAnalyticsInfo}
+                                    position_list={props.position_list}
+                                    interview_session={props.interview_session}
+                                    alljobAnaInfo={props.alljobAnaInfo}
+                                />
                             </div>
                         </div>
-                    </Stack>
-                </Container>
+                    </div>
+                </Stack>
             </Box>
         </React.Fragment>
     )

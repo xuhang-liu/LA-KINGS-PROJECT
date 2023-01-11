@@ -212,23 +212,42 @@ const MergeIntergration = (props) => {
     }
 
     return (
-        <Box
-            bg="bg-canvas"
-            borderTopLeftRadius={{
-                base: 'none',
-                lg: '2rem',
-            }}
-            height="full"
-        >
-            <Container height="full" mt='12' mb='14' alignItems='center'>
-                <Stack
-                    spacing={{
-                        base: '8',
-                        lg: '6',
+        <Box px='24' mt='12' mb='14' alignItems='center'>
+            <Stack
+                spacing={{
+                    base: '8',
+                    lg: '6',
+                }}
+                height="full"
+            >
+                <Heading as='h5' size='sm' color="muted"><HStack spacing='3'><FiLink2 /><span>Integration</span></HStack></Heading>
+                <Box
+                    bg="bg-surface"
+                    boxShadow='sm'
+                    borderRadius="md"
+                    p={{
+                        base: '4',
+                        md: '6',
                     }}
-                    height="full"
                 >
-                    <Heading as='h5' size='sm' color="muted"><HStack spacing='3'><FiLink2 /><span>Integration</span></HStack></Heading>
+                    <div className="form-row">
+                        <div className="form-group col">
+                            <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Integrate with your ATS</Text>
+                            <div>
+                                <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>HireBeat seamlessly <span style={{ color: "#ff6b00" }}>integrates with many ATS platforms</span> in the market, including Greenhouse, Breezy, Lever, Workable, etc.</Text>
+                                <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>To do so, click on the "Integrate" button below, and select your current platform to log in.</Text>
+                                <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Once integrated, follow the instructions below to conduct <span style={{ color: "#ff6b00" }}>one-way video interviews</span> through HireBeat.</Text>
+                            </div>
+                            <HStack spacing='5' mt='6'>
+                                <Button _hover={{ bg: "orange.500" }} onClick={open} colorScheme='blue'>
+                                    Integrate
+                                </Button>
+                                <Text className="pt-4" style={{ fontSize: "0.8rem", fontWeight: "500" }}>Powered by Merge</Text>
+                            </HStack>
+                        </div>
+                    </div>
+                </Box>
+                {inted &&
                     <Box
                         bg="bg-surface"
                         boxShadow='sm'
@@ -238,74 +257,46 @@ const MergeIntergration = (props) => {
                             md: '6',
                         }}
                     >
-                        <div className="form-row">
+                        <div className="form-row" style={{ marginTop: "1%" }}>
                             <div className="form-group col">
-                                <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Integrate with your ATS</Text>
-                                <div>
-                                    <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>HireBeat seamlessly <span style={{ color: "#ff6b00" }}>integrates with many ATS platforms</span> in the market, including Greenhouse, Breezy, Lever, Workable, etc.</Text>
-                                    <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>To do so, click on the "Integrate" button below, and select your current platform to log in.</Text>
-                                    <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Once integrated, follow the instructions below to conduct <span style={{ color: "#ff6b00" }}>one-way video interviews</span> through HireBeat.</Text>
+                                <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Import job, job stage, and candidates</Text>
+                                <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Initiate the import process by clicking <span style={{ color: "#ff6b00" }}>Synchronize</span>. Then select the job from the dropdown menu and then specify the job stage.</Text>
+                                <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Click <span style={{ color: "#ff6b00" }}>Confirm</span> and we will import all the candidates that are currently under your specified job stage.</Text>
+                                <Button _hover={{ bg: "orange.500" }} onClick={getMergeData} colorScheme='blue' style={{ marginTop: "1rem" }}>
+                                    Synchronize
+                                </Button>
+                                <div className="col-4" style={{ zIndex: "9999", marginTop: "1.5rem" }}>
+                                    <Select value={job} onChange={onFilter1} options={options1} styles={customStyles} placeholder="Job" />
                                 </div>
-                                <HStack spacing='5' mt='6'>
-                                    <Button _hover={{ bg: "orange.500" }} onClick={open} colorScheme='blue'>
-                                        Integrate
-                                    </Button>
-                                    <Text className="pt-4" style={{ fontSize: "0.8rem", fontWeight: "500" }}>Powered by Merge</Text>
-                                </HStack>
+                                <div className="col-4" style={{ zIndex: "9998", marginTop: "1.5rem" }}>
+                                    <Select value={stage} onChange={onFilter2} options={options2} styles={customStyles} placeholder="Stage" />
+                                </div>
+                                {(int_type == "Greenhouse" && (props.profile.ats_api_token == "" || props.profile.ats_api_token == null)) &&
+                                    <div className="row ml-3" style={{ marginTop: "2rem" }}>
+                                        <Input
+                                            type="text"
+                                            name="greenhouse"
+                                            placeholder="Enter Greenhouse API Key"
+                                            onChange={onChange}
+                                            value={greenhouse_api}
+                                            style={{
+                                                width: "20rem",
+                                                fontFamily: "Inter, Segoe UI",
+                                                border: "0.5px solid #E5E5E5",
+                                                borderRadius: "0.2rem",
+                                                paddingLeft: "1rem",
+                                                boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
+                                            }}
+                                            required />
+                                    </div>}
+                                <Button _hover={{ bg: "orange.500" }} onClick={createCanFromMerge} colorScheme='blue' style={{ marginTop: "2rem" }}>
+                                    Confirm
+                                </Button>
                             </div>
                         </div>
                     </Box>
-                    {inted &&
-                        <Box
-                            bg="bg-surface"
-                            boxShadow='sm'
-                            borderRadius="md"
-                            p={{
-                                base: '4',
-                                md: '6',
-                            }}
-                        >
-                            <div className="form-row" style={{ marginTop: "1%" }}>
-                                <div className="form-group col">
-                                    <Text color='muted' style={{ fontSize: "1.2rem", fontWeight: "600" }}>Import job, job stage, and candidates</Text>
-                                    <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Initiate the import process by clicking <span style={{ color: "#ff6b00" }}>Synchronize</span>. Then select the job from the dropdown menu and then specify the job stage.</Text>
-                                    <Text color='muted' style={{ fontSize: "1rem", fontWeight: "500" }}>Click <span style={{ color: "#ff6b00" }}>Confirm</span> and we will import all the candidates that are currently under your specified job stage.</Text>
-                                    <Button _hover={{ bg: "orange.500" }} onClick={getMergeData} colorScheme='blue' style={{ marginTop: "1rem" }}>
-                                        Synchronize
-                                    </Button>
-                                    <div className="col-4" style={{ zIndex: "9999", marginTop: "1.5rem" }}>
-                                        <Select value={job} onChange={onFilter1} options={options1} styles={customStyles} placeholder="Job" />
-                                    </div>
-                                    <div className="col-4" style={{ zIndex: "9998", marginTop: "1.5rem" }}>
-                                        <Select value={stage} onChange={onFilter2} options={options2} styles={customStyles} placeholder="Stage" />
-                                    </div>
-                                    {(int_type == "Greenhouse" && (props.profile.ats_api_token == "" || props.profile.ats_api_token == null)) &&
-                                        <div className="row ml-3" style={{ marginTop: "2rem" }}>
-                                            <Input
-                                                type="text"
-                                                name="greenhouse"
-                                                placeholder="Enter Greenhouse API Key"
-                                                onChange={onChange}
-                                                value={greenhouse_api}
-                                                style={{
-                                                    width: "20rem",
-                                                    fontFamily: "Inter, Segoe UI",
-                                                    border: "0.5px solid #E5E5E5",
-                                                    borderRadius: "0.2rem",
-                                                    paddingLeft: "1rem",
-                                                    boxShadow: "0px 0px 50px rgba(70, 137, 250, 0.1)"
-                                                }}
-                                                required />
-                                        </div>}
-                                    <Button _hover={{ bg: "orange.500" }} onClick={createCanFromMerge} colorScheme='blue' style={{ marginTop: "2rem" }}>
-                                        Confirm
-                                    </Button>
-                                </div>
-                            </div>
-                        </Box>
-                    }
-                </Stack>
-            </Container>
+                }
+            </Stack>
         </Box>
     );
 };

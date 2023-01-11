@@ -164,7 +164,7 @@ export class Video extends Component {
           <Tooltip label='You can upload a short intro or welcome message of your company. This will appear on the company branding page.' aria-label='A tooltip' fontSize='sm'>
             <HStack>
               <Text color="muted" fontSize='xl' fontWeight='bold'>
-                Video Profile
+                Company Video
               </Text>
               <FiInfo style={{ color: "#dfdfdf" }} size='20' />
             </HStack>
