@@ -52,20 +52,22 @@ export const Header = (props) => {
       },
     };
     let data = { "userid": props.profile.user };
-    axios.post("jobs/get-most-recent-jobs", data, config).then((res) => {
-      let jobs_list = [];
-      for (let i = 0; i < res.data.jobs_list?.length; i++) {
-        const newItem = {
-          job_id: res.data.jobs_list[i]?.id,
-          job_title: res.data.jobs_list[i]?.job_title,
-          is_closed: res.data.jobs_list[i]?.is_closed
-        };
-        jobs_list.push(newItem);
-      }
-      setjob_list(jobs_list);
-    }).catch(error => {
-      console.log(error)
-    });
+    if (sessionStorage.getItem("user") != null) {
+      axios.post("jobs/get-most-recent-jobs", data, config).then((res) => {
+        let jobs_list = [];
+        for (let i = 0; i < res.data.jobs_list?.length; i++) {
+          const newItem = {
+            job_id: res.data.jobs_list[i]?.id,
+            job_title: res.data.jobs_list[i]?.job_title,
+            is_closed: res.data.jobs_list[i]?.is_closed
+          };
+          jobs_list.push(newItem);
+        }
+        setjob_list(jobs_list);
+      }).catch(error => {
+        console.log(error)
+      });
+    }
 
     if (localStorage.getItem("token")) {
       props.loadProfile();

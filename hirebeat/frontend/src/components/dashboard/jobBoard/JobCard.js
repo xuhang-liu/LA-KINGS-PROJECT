@@ -398,11 +398,11 @@ export class JobCard extends Component {
                                 className="title-button2"
                                 onClick={() => { this.props.setJobKey(this.props.curJobKey); this.props.setViewPortal(true); this.props.setJob_back_home(); sessionStorage.setItem("viewPortal", "true"); sessionStorage.setItem("jobKey", String(this.props.curJobKey)) }}
                             >
-                                {this.props.job.total_records}
+                                {this.props.job?.total_records_exclude_subpage}
                             </button> :
                             <button
                                 className="title-button2-nohover">
-                                {this.props.job.total_records}
+                                {this.props.job?.total_records_exclude_subpage}
                             </button>
                         }
                     </div>
@@ -445,7 +445,7 @@ export class JobCard extends Component {
                             }
                             {(this.props.job?.reviewer_type != "subr") &&
                                 <div>
-                                    {(this.props.job.total_records <= 0) ?
+                                    {(this.props.job?.total_records_exclude_subpage <= 0) ?
                                         <button className="title-button2 tool_tip" onClick={this.deleteAlert} style={{ color: "#F36F67", fontWeight: "500", fontSize: "0.9rem" }}>
                                             <i className="bx-fw bx bx-trash"></i>Delete
                                             <p className="tool_submenu container" style={{ width: "10rem", left: (this.props.job.job_details.is_closed != 3) ? "15rem" : "6rem" }}>

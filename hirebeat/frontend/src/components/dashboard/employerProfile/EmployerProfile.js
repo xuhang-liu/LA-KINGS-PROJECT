@@ -13,7 +13,7 @@ var ReactS3Uploader = require("react-s3-uploader");
 import Autocomplete from "react-google-autocomplete";
 import { IndustryOptions } from "./../../accounts/Constants";
 // import { MyModalShare } from "../DashboardComponents";
-import { Box, Heading, Text, Textarea, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack, Button } from '@chakra-ui/react';
+import { Box, Heading, Text, Input, Stack, Spacer, useColorModeValue, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Tooltip, HStack, Button } from '@chakra-ui/react';
 import { FiInfo } from 'react-icons/fi';
 
 function dataURItoBlob(dataURI) {
@@ -388,427 +388,312 @@ export class EmployerProfile extends Component {
                                 </div>}
                         </b></h3></div>
                     </div>
-                    <div className="row mt-5">
-                        <div className="col-5">
-                            {/* Personal Information */}
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                                textAlign="left"
-                            >
-                                <div>
-                                    {!this.state.isEditInfo ?
-                                        <div className="row">
-                                            <div className="col-3">
-                                                {(this.props.employerProfileDetail.logo_url !== null && this.props.employerProfileDetail.logo_url !== "") ?
-                                                    <img src={this.props.employerProfileDetail.logo_url} /> :
-                                                    <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-2.png" />
-                                                }
-                                            </div>
-                                            <div className="col-9">
-                                                <div className="row">
-                                                    <div className="col-8">
-                                                        <Text fontSize='xl' color="muted">{this.props.companyName}</Text>
-                                                    </div>
-                                                    <div className="col-4 profile-edit">
-                                                        <div style={{ float: "right" }}>
-                                                            <i onClick={this.editInfo} style={{ cursor: "pointer", color: "#7e8993" }} className="bx bx-edit-alt"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <p className="profile-p pt-2" style={{ marginTop: "-0.8rem", color: "#7e8993" }}>
-                                                    {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
-                                                </p>
-                                                <Text fontSize='md' color="muted">Job Portal</Text>
-                                                <a className="profile-p pt-2 px-2" style={{ color: "#006dff" }} target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
-                                            </div>
-                                        </div> :
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <Text fontSize='xl' color="muted">Information</Text>
-                                                </div>
-                                            </div>
-                                            {/*<div>
-                                                <p className="profile-p" style={{margin: "0rem"}}>Company Name</p>
-                                                <input id="name" className="profile-input profile-p" defaultValue={this.props.employerProfileDetail.name} style={{width: "100%"}}></input>
-                                            </div>*/}
-                                            <div style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted">Company Website</Text>
-                                                <Textarea id="website" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.website} />
-                                            </div>
-                                            <div>
-                                                <Text fontSize='md' color="muted">Company Logo</Text>
-                                                <Avatar
-                                                    imageWidth={205}
-                                                    width={285}
-                                                    height={200}
-                                                    onCrop={this.onCrop}
-                                                    onClose={this.onClose}
-                                                    onBeforeFileLoad={this.onBeforeFileLoad}
-                                                    mimeTypes={"image/jpeg,image/png,image/jpg"}
-                                                    src={this.state.src}
-                                                />
-                                                {/*<img src={this.state.preview} alt="Preview" />*/}
-                                            </div>
-                                            <div className="d-flex justify-content-end mt-3">
-                                                <button className="default-btn" onClick={this.saveEmployerInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
-                                                <button className="default-btn" onClick={this.cancelEditInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
-                                            </div>
-                                            <ReactS3Uploader
-                                                style={{ display: "none" }}
-                                                id="uploadFile"
-                                                accept="image/jpeg,image/png,image/jpg"
-                                                signingUrl="/upload-employer-logo"
-                                                signingUrlMethod="GET"
-                                                onError={this.onUploadError}
-                                                onFinish={this.onUploadFinish}
-                                                contentDisposition="auto"
-                                                uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
-                                                scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
-                                                inputRef={(cmp) => (this.uploadInput = cmp)}
-                                                ref={(uploader) => {
-                                                    this.uploader = uploader;
-                                                }}
-                                                autoUpload={true}
-                                            />
-                                        </div>
-                                    }
-                                </div>
-                            </Box>
 
-                            {/* Widget and URL */}
-                            <Stack direction='row' style={{ marginTop: "2rem" }}>
-                                <Box
-                                    bg="bg-surface"
-                                    boxShadow='sm'
-                                    borderRadius="lg"
-                                    p={{
-                                        base: '4',
-                                        md: '6',
-                                    }}
-                                    textAlign="center"
-                                >
-                                    <div>
-                                        <div className="row">
-                                            <div className="col">
-                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
-                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
-                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
-                                            </div>
-                                        </div>
-                                    </div>
+                    {/* Basic Information */}
+                    <Box
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        p={{
+                            base: '4',
+                            md: '6',
+                        }}
+                        textAlign="left"
+                        mt='8'
+                    >
+                        <HStack spacing='4' pb='6'>
+                            <Tooltip label='Company basic information will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                <HStack>
+                                    <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                        Basic Information
+                                    </Text>
+                                    <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                </HStack>
+                            </Tooltip>
+                            <Spacer />
+                            <i onClick={this.editInfo} style={{ cursor: "pointer", color: "#7e8993" }} className="bx-fw bx bx-edit-alt"></i>
+                        </HStack>
+                        {!this.state.isEditInfo ?
+                            <Stack spacing='24' direction='row' p={{ base: '4', md: '6' }}>
+                                <Box w='20%'>
+                                    {(this.props.employerProfileDetail.logo_url !== null && this.props.employerProfileDetail.logo_url !== "") ?
+                                        <img src={this.props.employerProfileDetail.logo_url} /> :
+                                        <img src="https://hirebeat-assets.s3.amazonaws.com/User-dash/bxs-user-circle-2.png" />
+                                    }
                                 </Box>
+                                <Box w='38%'>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Company Name</Text>
+                                    <Text pb='2'>{this.props.companyName}</Text>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Company Website <i class='bx-fw bx bx-link-external bx-xs'></i></Text>
+                                    <Text pb='2'>
+                                        {(this.props.employerProfileDetail.website !== null && this.props.employerProfileDetail.website !== "") ? this.props.employerProfileDetail.website : "Company Website"}
+                                    </Text>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Job Portal <i class='bx-fw bx bx-link-external bx-xs'></i></Text>
+                                    <a className="profile-p pt-4" style={{ color: "#006dff" }} target="_blank" href={"https://app.hirebeat.co/company-branding/" + this.props.profile.company_name}>https://app.hirebeat.co/company-branding/{this.props.profile.company_name}<i class='bx-fw bx bx-link-external bx-xs'></i></a>
+                                </Box>
+                                <Box w='38%'>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Company Location</Text>
+                                    <Text pb='2'>
+                                        {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
+                                    </Text>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Company Size</Text>
+                                    <Text pb='2'>
+                                        {(this.props.employerProfileDetail.company_size !== null && this.props.employerProfileDetail.company_size !== "") ? this.props.employerProfileDetail.company_size : "Employees"}
+                                    </Text>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Industry</Text>
+                                    <Text pb='2'>
+                                        {(this.props.employerProfileDetail.company_type !== null && this.props.employerProfileDetail.company_type !== "") ? this.props.employerProfileDetail.company_type : "Company Field"}
+                                    </Text>
+                                    <Text fontSize='md' color="muted" fontWeight='bold'>Contact Email</Text>
+                                    <Text>
+                                        {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
+                                    </Text>
+                                </Box>
+                            </Stack> :
+                            <Box>
+                                <Stack spacing='24' direction='row' p={{ base: '4', md: '6' }}>
+                                    <Box w='20%'>
+                                        <Avatar
+                                            imageWidth={205}
+                                            width={285}
+                                            height={200}
+                                            onCrop={this.onCrop}
+                                            onClose={this.onClose}
+                                            onBeforeFileLoad={this.onBeforeFileLoad}
+                                            mimeTypes={"image/jpeg,image/png,image/jpg"}
+                                            src={this.state.src}
+                                        />
+                                    </Box>
+                                    <Box w='38%'>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'>Company Website</Text>
+                                        <Input id="website" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.website} />
+                                    </Box>
+                                    <Box w='38%'>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'>Location</Text>
+                                        <Autocomplete
+                                            className="profile-input profile-p4"
+                                            style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }}
+                                            language="en"
+                                            apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
+                                            onPlaceSelected={(place, inputRef, autocomplete) => {
+                                                this.handleLocation(place.formatted_address);
+                                            }}
+                                            defaultValue={this.props.employerProfileDetail.location}
+                                        />
+                                        <Text pt='2' fontSize='md' color="muted" fontWeight='bold'>Company Size</Text>
+                                        <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={customStyles} placeholder={'Enter Company Size'} />
+                                        <Text pt='2' fontSize='md' color="muted" fontWeight='bold'>Industry</Text>
+                                        <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={customStyles} placeholder={'Enter Company Industry'} />
+                                        <Text pt='2' fontSize='md' color="muted" fontWeight='bold'>Contact Email</Text>
+                                        <Input id="contactEmail" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></Input>
+                                    </Box>
+                                    <ReactS3Uploader
+                                        style={{ display: "none" }}
+                                        id="uploadFile"
+                                        accept="image/jpeg,image/png,image/jpg"
+                                        signingUrl="/upload-employer-logo"
+                                        signingUrlMethod="GET"
+                                        onError={this.onUploadError}
+                                        onFinish={this.onUploadFinish}
+                                        contentDisposition="auto"
+                                        uploadRequestHeaders={{ "x-amz-acl": "public-read" }} // this is the default
+                                        scrubFilename={(filename) => filename.replace(/[^\w\d_\-.]+/gi, "")}
+                                        inputRef={(cmp) => (this.uploadInput = cmp)}
+                                        ref={(uploader) => {
+                                            this.uploader = uploader;
+                                        }}
+                                        autoUpload={true}
+                                    />
+                                </Stack>
+                                <HStack pt='6' justify='end'>
+                                    <Button type="button" colorScheme='blue' onClick={() => { this.saveEmployerInfo(), this.saveCompanyInfo() }}>Save</Button>
+                                    <Button type="button" colorScheme='gray' onClick={this.cancelEditInfo}>Cancel</Button>
+                                </HStack>
+                            </Box>
+                        }
+                    </Box>
+
+                    {/* Widget and URL */}
+                    <Stack direction='row' style={{ marginTop: "2rem" }}>
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                            textAlign="center"
+                            w='22%'
+                        >
+                            <Box>
+                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 1 - Careers Widget</Text>
+                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Auto updating job list added to a dedicated page on your website, such as your careers page.</Text>
+                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod1}>View Details</Button>
+                            </Box>
+                        </Box>
+                        <Spacer />
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                            textAlign="center"
+                            w='22%'
+                        >
+                            <Box>
+                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
+                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
+                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
+                            </Box>
+                        </Box>
+                        <Spacer />
+                        {/* Social Media */}
+                        <Box
+                            bg="bg-surface"
+                            boxShadow='sm'
+                            borderRadius="lg"
+                            p={{
+                                base: '4',
+                                md: '6',
+                            }}
+                            textAlign="left"
+                            mt='8'
+                            w='52%'
+                        >
+                            <HStack spacing='4' pb='6'>
+                                <Tooltip label='Social Media links will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
+                                    <HStack>
+                                        <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                            Social Media
+                                        </Text>
+                                        <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                    </HStack>
+                                </Tooltip>
                                 <Spacer />
-                                <Box
-                                    bg="bg-surface"
-                                    boxShadow='sm'
-                                    borderRadius="lg"
-                                    p={{
-                                        base: '4',
-                                        md: '6',
-                                    }}
-                                    textAlign="center"
-                                >
-                                    <div>
-                                        <div className="row">
-                                            <div className="col">
-                                                <Text fontSize='lg' color="muted" style={{ fontSize: "0.9rem", fontWeight: "bold" }}>Method 2 - Website Link</Text>
-                                                <Text fontSize='md' style={{ fontSize: "0.8rem", fontWeight: "normal", marginTop: "0.6rem", marginBottom: "0.6rem" }}>Add a simple link to your HireBeat Job Portal from your website, such as in the header or footer.</Text>
-                                                <Button _hover={{ bg: "orange.500" }} colorScheme='blue' onClick={this.openMethod2}>View Details</Button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <i className="bx bx-edit-alt" onClick={this.editMedia} style={{ cursor: "pointer", color: "#7e8993" }}></i>
+                            </HStack>
+                            {!this.state.isEditMedia ?
+                                <Box>
+                                    <HStack>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'>
+                                            LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
+                                        </Text>
+                                        <Text style={{ wordBreak: "break-word" }}>
+                                            {(this.props.employerProfileDetail.linkedin !== null && this.props.employerProfileDetail.linkedin !== "") ? this.props.employerProfileDetail.linkedin : "Link to your LinkedIn"}
+                                        </Text>
+                                    </HStack>
+                                    <HStack>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'>
+                                            Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
+                                        </Text>
+                                        <Text style={{ wordBreak: "break-word" }}>
+                                            {(this.props.employerProfileDetail.facebook !== null && this.props.employerProfileDetail.facebook !== "") ? this.props.employerProfileDetail.facebook : "Link to your facebook"}
+                                        </Text>
+                                    </HStack>
+                                    <HStack>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'>
+                                            Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#006dff" }}></i>
+                                        </Text>
+                                        <Text style={{ wordBreak: "break-word" }}>
+                                            {(this.props.employerProfileDetail.twitter !== null && this.props.employerProfileDetail.twitter !== "") ? this.props.employerProfileDetail.twitter : "Link to your Twitter"}
+                                        </Text>
+                                    </HStack>
+                                </Box> :
+                                <Box>
+                                    <HStack pb='2'>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'><i class='bx-fw bx bxl-linkedin-square' style={{ color: "#006dff" }}></i></Text>
+                                        <Input id="linkedin" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></Input>
+                                    </HStack>
+                                    <HStack pb='2'>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'><i class='bx-fw bx bxl-facebook-square' style={{ color: "#006dff" }}></i></Text>
+                                        <Input id="facebook" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></Input>
+                                    </HStack>
+                                    <HStack>
+                                        <Text fontSize='md' color="muted" fontWeight='bold'><i class='bx-fw bx bxl-twitter' style={{ color: "#006dff" }}></i></Text>
+                                        <Input id="twitter" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></Input>
+                                    </HStack>
+                                    <HStack pt='6' justify='end'>
+                                        <Button type="button" colorScheme='blue' onClick={this.saveSocialMedia}>Save</Button>
+                                        <Button type="button" colorScheme='gray' onClick={this.cancelEditMedia}>Cancel</Button>
+                                    </HStack>
                                 </Box>
-                            </Stack>
+                            }
+                        </Box>
+                    </Stack>
 
-                            {/* Social Media */}
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                                textAlign="left"
-                                mt='8'
-                            >
-                                <div>
-                                    {!this.state.isEditMedia ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <Tooltip label='Social Media links will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
-                                                        <HStack>
-                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
-                                                                Social Media
-                                                            </Text>
-                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
-                                                        </HStack>
-                                                    </Tooltip>
-                                                </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt" onClick={this.editMedia} style={{ cursor: "pointer", color: "#7e8993" }}></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="row mt-2 px-2">
-                                                <div className="col-4">
-                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
-                                                        LinkedIn <i class='bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
-                                                    </Text>
-                                                </div>
-                                                <div className="col-8">
-                                                    <Text style={{ wordBreak: "break-word" }}>
-                                                        {(this.props.employerProfileDetail.linkedin !== null && this.props.employerProfileDetail.linkedin !== "") ? this.props.employerProfileDetail.linkedin : "Link to your LinkedIn"}
-                                                    </Text>
-                                                </div>
-                                            </div>
-                                            <div className="row px-2">
-                                                <div className="col-4">
-                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
-                                                        Facebook <i class='bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
-                                                    </Text>
-                                                </div>
-                                                <div className="col-8">
-                                                    <Text style={{ wordBreak: "break-word" }}>
-                                                        {(this.props.employerProfileDetail.facebook !== null && this.props.employerProfileDetail.facebook !== "") ? this.props.employerProfileDetail.facebook : "Link to your facebook"}
-                                                    </Text>
-                                                </div>
-                                            </div>
-                                            <div className="row px-2">
-                                                <div className="col-4">
-                                                    <Text fontSize='md' color="muted" style={{ display: "flex", alignItems: "center" }}>
-                                                        Twitter <i class='bx bxl-twitter' style={{ color: "#006dff" }}></i>
-                                                    </Text>
-                                                </div>
-                                                <div className="col-8">
-                                                    <Text style={{ wordBreak: "break-word" }}>
-                                                        {(this.props.employerProfileDetail.twitter !== null && this.props.employerProfileDetail.twitter !== "") ? this.props.employerProfileDetail.twitter : "Link to your Twitter"}
-                                                    </Text>
-                                                </div>
-                                            </div>
-                                        </div> :
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <Text fontSize='xl' color="muted">Social Media</Text>
-                                                </div>
-                                            </div>
-                                            <div className="px-2">
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
-                                                    LinkedIn <i class='bx-fw bx bxl-linkedin-square' style={{ color: "#006dff" }}></i>
-                                                </Text>
-                                                <Input id="linkedin" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.linkedin}></Input>
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
-                                                    Facebook <i class='bx-fw bx bxl-facebook-square' style={{ color: "#006dff" }}></i>
-                                                </Text>
-                                                <Input id="facebook" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.facebook}></Input>
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>
-                                                    Twitter <i class='bx-fw bx bxl-twitter' style={{ color: "#006dff" }}></i>
-                                                </Text>
-                                                <Input id="twitter" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.twitter}></Input>
-                                            </div>
-                                            <div className="d-flex justify-content-end mt-3">
-                                                <button className="default-btn" onClick={this.saveSocialMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
-                                                <button className="default-btn" onClick={this.cancelEditMedia} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </Box>
-
-                            {/* Basic info */}
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                                textAlign="left"
-                                mt='8'
-                            >
-                                <div>
-                                    {!this.state.isEditBasicInfo ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <Tooltip label='Company basic information will appear on your company branding page.' aria-label='A tooltip' fontSize='sm'>
-                                                        <HStack>
-                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
-                                                                Basic Info
-                                                            </Text>
-                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
-                                                        </HStack>
-                                                    </Tooltip>
-                                                </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt" onClick={this.editBasicInfo} style={{ cursor: "pointer", color: "#7e8993" }}></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="mt-2 px-2">
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Location</Text>
-                                                <Text>
-                                                    {(this.props.employerProfileDetail.location !== null && this.props.employerProfileDetail.location !== "") ? this.props.employerProfileDetail.location : "Company Location"}
-                                                </Text>
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
-                                                <Text>
-                                                    {(this.props.employerProfileDetail.company_size !== null && this.props.employerProfileDetail.company_size !== "") ? this.props.employerProfileDetail.company_size : "Employees"}
-                                                </Text>
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
-                                                <Text>
-                                                    {(this.props.employerProfileDetail.company_type !== null && this.props.employerProfileDetail.company_type !== "") ? this.props.employerProfileDetail.company_type : "Company Field"}
-                                                </Text>
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
-                                                <Text>
-                                                    {(this.props.employerProfileDetail.email !== null && this.props.employerProfileDetail.email !== "") ? this.props.employerProfileDetail.email : "Company Email"}
-                                                </Text>
-                                            </div>
-                                        </div> :
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-12">
-                                                    <Text fontSize='xl' color="muted">Basic Info</Text>
-                                                </div>
-                                            </div>
-                                            <div className="px-2">
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Location</Text>
-                                                <Autocomplete
-                                                    className="profile-input profile-p4"
-                                                    style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }}
-                                                    language="en"
-                                                    apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
-                                                    onPlaceSelected={(place, inputRef, autocomplete) => {
-                                                        this.handleLocation(place.formatted_address);
-                                                    }}
-                                                    defaultValue={this.props.employerProfileDetail.location}
-                                                />
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Company Size</Text>
-                                                <Select value={this.state.companySize} onChange={this.onFilter} options={this.options} styles={customStyles} placeholder={'Enter Company Size'} />
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Industry</Text>
-                                                <Select value={this.state.industry} onChange={this.selectIndustry} options={IndustryOptions} styles={customStyles} placeholder={'Enter Company Industry'} />
-                                            </div>
-                                            <div className="px-2" style={{ marginTop: "1rem" }}>
-                                                <Text fontSize='md' color="muted" style={{ margin: "0rem" }}>Contact Email</Text>
-                                                <Input id="contactEmail" style={{ width: "100%", border: "1px solid #7E8993", borderRadius: "3px", height: '2.5rem', paddingLeft: "0.5rem" }} defaultValue={this.props.employerProfileDetail.email}></Input>
-                                            </div>
-                                            <div className="d-flex justify-content-end mt-3">
-                                                <button className="default-btn" onClick={this.saveCompanyInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
-                                                <button className="default-btn" onClick={this.cancelEditBasicInfo} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </Box>
-                        </div>
-
-                        {/* Right Part */}
-                        <div className="col-6" style={{ marginLeft: "2rem" }}>
-
-                            {/* Summary */}
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                                textAlign="left"
-                            >
-                                <div>
-                                    {!this.state.isEditSummary ?
-                                        <div>
-                                            <div className="row">
-                                                <div className="col-8">
-                                                    <Tooltip label='Company Overview will appear on the top section of your Job Posting.' aria-label='A tooltip' fontSize='sm'>
-                                                        <HStack>
-                                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
-                                                                Company Overview
-                                                            </Text>
-                                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
-                                                        </HStack>
-                                                    </Tooltip>
-                                                </div>
-                                                <div className="col-4 profile-edit">
-                                                    <div style={{ float: "right" }}>
-                                                        <i className="bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <Text mt='5' px='3' style={{ fontWeight: "500" }}>
-                                                {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
-                                                    parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
+                    {/* Summary */}
+                    <Box
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        p={{
+                            base: '4',
+                            md: '6',
+                        }}
+                        textAlign="left"
+                        mt='8'
+                    >
+                        {!this.state.isEditSummary ?
+                            <Box>
+                                <HStack spacing='4' pb='6'>
+                                    <Tooltip label='Company Overview will appear on the top section of your Job Posting.' aria-label='A tooltip' fontSize='sm'>
+                                        <HStack>
+                                            <Text color="muted" fontSize='xl' fontWeight='bold'>
+                                                Company Overview
                                             </Text>
-                                        </div> :
-                                        <div>
-                                            <div className="row mb-3">
-                                                <div className="col-12">
-                                                    <Text fontSize='xl' color="muted">Company Overview</Text>
-                                                </div>
-                                            </div>
-                                            <RichTextEditor
-                                                value={this.state.overview}
-                                                onChange={this.onChange}
-                                                toolbarConfig={toolbarConfig}
-                                            />
-                                            <div className="d-flex justify-content-end mt-3">
-                                                <button className="default-btn" onClick={this.saveSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px" }}>Save</button>
-                                                <button className="default-btn" onClick={this.cancelEditSummary} style={{ paddingLeft: "10px", paddingRight: "10px", paddingTop: "5px", paddingBottom: "5px", backgroundColor: "#c4c4c4", marginLeft: "0.5rem" }}>Cancel</button>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </Box>
-
-                            {/* Video */}
-                            <Box
-                                bg="bg-surface"
-                                boxShadow='sm'
-                                borderRadius="lg"
-                                p={{
-                                    base: '4',
-                                    md: '6',
-                                }}
-                                textAlign="left"
-                                mt='8'
-                            >
-                                <Video
-                                    updateEmployerVideo={this.props.updateEmployerVideo}
-                                    userId={this.props.userId}
-                                    videoURL={this.props.employerProfileDetail.video_url}
-                                    setVideo={this.setVideo}
-                                    getUpdatedData={this.getUpdatedData}
+                                            <FiInfo style={{ color: "#dfdfdf" }} size='20' />
+                                        </HStack>
+                                    </Tooltip>
+                                    <Spacer />
+                                    <i className="bx-fw bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
+                                </HStack>
+                                <Text mt='5' px='3' style={{ fontWeight: "500" }}>
+                                    {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
+                                        parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
+                                </Text>
+                            </Box> :
+                            <Box>
+                                <Text fontSize='md' color="muted" fontWeight='bold'>Company Overview</Text>
+                                <RichTextEditor
+                                    value={this.state.overview}
+                                    onChange={this.onChange}
+                                    toolbarConfig={toolbarConfig}
                                 />
+                                <HStack pt='6' justify='end'>
+                                    <Button type="button" colorScheme='blue' onClick={this.saveSummary}>Save</Button>
+                                    <Button type="button" colorScheme='gray' onClick={this.cancelEditSummary}>Cancel</Button>
+                                </HStack>
                             </Box>
+                        }
+                    </Box>
 
-                            {/* Post */}
-                            {/* <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
+                    {/* Video */}
+                    <Box
+                        bg="bg-surface"
+                        boxShadow='sm'
+                        borderRadius="lg"
+                        p={{
+                            base: '4',
+                            md: '6',
+                        }}
+                        textAlign="left"
+                        mt='8'
+                    >
+                        <Video
+                            updateEmployerVideo={this.props.updateEmployerVideo}
+                            userId={this.props.userId}
+                            videoURL={this.props.employerProfileDetail.video_url}
+                            setVideo={this.setVideo}
+                            getUpdatedData={this.getUpdatedData}
+                        />
+                    </Box>
+
+                    {/* Post */}
+                    {/* <div className="profile-bg" style={{ textAlign: "left", marginTop: "2rem" }}>
                                 <Post
                                     userId={this.props.userId}
                                     editPost={this.editPost}
@@ -821,8 +706,6 @@ export class EmployerProfile extends Component {
                                     employerPost={this.props.employerPost}
                                 />
                             </div> */}
-                        </div>
-                    </div>
                 </Box>
                 <Modal onClose={() => { this.hideMethod1() }} size={"5xl"} isOpen={this.state.method_pop1} isCentered>
                     <ModalOverlay />

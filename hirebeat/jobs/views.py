@@ -231,6 +231,7 @@ def get_all_jobs(request):
         else:
             applicants.sort(key=lambda a: -a["id"])
         # begin pagination, each single page should have at most 15 applicants
+        total_records_exclude_subpage = len(ApplyCandidates.objects.filter(jobs_id=job_id))
         total_records = len(applicants)
         total_page = math.ceil(len(applicants) / 15)
         if total_records > 15:
@@ -282,6 +283,7 @@ def get_all_jobs(request):
             "questions": questions,
             "un_view": un_view,
             "position": position,
+            "total_records_exclude_subpage": total_records_exclude_subpage,
             "total_records": total_records,
             "current_page": page - 1,
             "total_page": total_page,

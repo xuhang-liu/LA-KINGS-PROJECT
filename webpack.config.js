@@ -7,7 +7,7 @@ module.exports = {
   context: path.join(basePath),
   output: {
     path: path.join(basePath),
-    filename: "main497.js",
+    filename: "main498.js",
     publicPath: "/dist",
   },
   devServer: {
