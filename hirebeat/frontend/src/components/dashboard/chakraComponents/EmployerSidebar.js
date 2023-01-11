@@ -56,7 +56,7 @@ export const EmployerSidebar = (props) => (
                 </Stack>
                 <Stack>
                     <Text fontSize="sm" color="subtle" fontWeight="medium">
-                        Sourcing
+                        Source and Attract Candidate
                     </Text>
                     <Stack spacing="1">
                         {(props.reviewer_type != "subr") &&
@@ -78,7 +78,7 @@ export const EmployerSidebar = (props) => (
                 </Stack>
                 <Stack>
                     <Text fontSize="sm" color="subtle" fontWeight="medium">
-                        Manage Applicants
+                        Manage Candidate and Stage
                     </Text>
                     <Stack spacing="1">
                         {(props.reviewerStage.includes("allCandidates") || props.reviewerStage?.length == 0) ?

@@ -406,7 +406,7 @@ export const Header = (props) => {
                       <Divider />
                       <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToAllJobs}>All Jobs</Button></ListItem>
                       {!(props.profile.is_external_reviewer || props.profile.is_subreviwer) &&
-                        <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Create Jobs</Button></ListItem>}
+                        <ListItem><Button variant="link" color={useColorModeValue("brand.500", "white")} onClick={renderToCreateJobs}>Add New Job</Button></ListItem>}
                     </List>
                   </Stack>
                 </PopoverBody>

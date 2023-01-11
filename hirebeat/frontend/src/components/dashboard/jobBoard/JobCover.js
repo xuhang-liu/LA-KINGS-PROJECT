@@ -133,7 +133,7 @@ export const JobCover = (props) => {
               </InputGroup>
               <Box>
                 {(!(props.profile.is_subreviwer || props.profile.is_external_reviewer)) &&
-                  <Button _hover={{ bg: "orange.500" }} colorScheme='blue' leftIcon={<FiPlus />} onClick={props.renderJobCreation} data-tut="reactour-createjob">Create New Position</Button>
+                  <Button _hover={{ bg: "orange.500" }} colorScheme='blue' leftIcon={<FiPlus />} onClick={props.renderJobCreation} data-tut="reactour-createjob">Add New Job</Button>
                 }
               </Box>
             </Stack>

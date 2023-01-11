@@ -357,7 +357,7 @@ export class SubpageSetting extends Component {
                         }}
                         height="full"
                     >
-                        <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-cog"></i><span className="ml-2">Setting</span></Heading>
+                        <Heading as='h5' size='sm' color="muted"><i className="bx-fw bx bx-cog"></i><span className="ml-2">Settings</span></Heading>
                         {!this.props.profile.is_employer &&
                             <div className="row" >
                                 <div className="col d-flex align-items-center">
