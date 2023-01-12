@@ -718,7 +718,7 @@ export class JobCreation extends Component {
                     }}
                     height="full"
                 >
-                    <Heading as='h5' size='xs' color="muted" mb="5"><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Create New Position</span></b></Heading>
+                    <Heading as='h5' size='xs' color="muted" mb="5"><b><i className="bx bx-briefcase"></i><span className="ml-2">Jobs / Add New Job</span></b></Heading>
                     <div className="row">
                         <Button colorScheme='brand.500' variant='ghost' type="button" onClick={this.props.renderJobs}>
                             <div className="back-to-text">

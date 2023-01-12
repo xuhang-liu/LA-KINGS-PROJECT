@@ -62,7 +62,7 @@ const toolbarConfig = {
 };
 
 const customStyles = {
-    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "5px" }),
+    control: styles => ({ ...styles, background: useColorModeValue("#ffffff", "#1a202c"), borderRadius: "3px" }),
     singleValue: styles => ({
         ...styles,
         color: useColorModeValue("#090d3a", "#ffffff"),
