@@ -651,13 +651,13 @@ export class EmployerProfile extends Component {
                                     <Spacer />
                                     <i className="bx-fw bx bx-edit-alt" onClick={this.editSummary} style={{ cursor: "pointer", color: "#7e8993" }}></i>
                                 </HStack>
-                                <Text mt='5' px='3' style={{ fontWeight: "500" }}>
+                                <Text px='3' style={{ fontWeight: "500" }}>
                                     {(this.props.employerProfileDetail.summary !== null && this.props.employerProfileDetail.summary !== "") ?
                                         parse("" + this.props.employerProfileDetail.summary + "") : "Company Overview Here"}
                                 </Text>
                             </Box> :
                             <Box>
-                                <Text fontSize='md' color="muted" fontWeight='bold'>Company Overview</Text>
+                                <Text pb='2' fontSize='md' color="muted" fontWeight='bold'>Company Overview</Text>
                                 <RichTextEditor
                                     value={this.state.overview}
                                     onChange={this.onChange}
