@@ -144,5 +144,5 @@ psd
 thumb
 sketch
 
-!*/hirebeat/react-s3-uploader/node_modules
+!*/lakings/react-s3-uploader/node_modules
 # End of https://www.gitignore.io/api/react,django

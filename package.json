@@ -1,11 +1,11 @@
 {
-  "name": "hire_beat_react_django",
+  "name": "la_kings_django_project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./hirebeat/frontend/src/index.js --output-path ./hirebeat/frontend/static/frontend",
-    "build": "webpack --mode production ./hirebeat/frontend/src/index.js --output-path ./hirebeat/frontend/static/frontend",
+    "dev": "webpack --mode development --watch ./lakings/frontend/src/index.js --output-path ./lakings/frontend/static/frontend",
+    "build": "webpack --mode production ./lakings/frontend/src/index.js --output-path ./lakings/frontend/static/frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },

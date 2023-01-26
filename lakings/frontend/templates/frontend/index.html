@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load django_seo_js %}  
+  <head>
+    {% seo_js_head %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://video-react.js.org/assets/video-react.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <link rel="canonical" href="http://127.0.0.1:8000/"/>
+    <title>LAKings</title>
+    <meta name="Description" CONTENT="LAKings System">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'/>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
+    <link rel="icon" 
+     type="image/png" 
+     href="https://upload.wikimedia.org/wikipedia/en/thumb/6/63/Los_Angeles_Kings_logo.svg/220px-Los_Angeles_Kings_logo.svg.png" />
+
+    {% load static %}
+    <script src="{% static "frontend/main001.js" %}" async defer></script>
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous" async defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous" async defer></script>
+    <script src="https://smtpjs.com/v3/smtp.js" async defer>
+    </script>
+    
+  </head>
+  <body class="container-fluid bg-white p-0 m-0">
+    <div id="app"></div>
+  </body>
+</html>
