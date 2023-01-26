@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 //import ButtonPanel from "./panel/ButtonPanel";
 import { Link } from "react-router-dom";
-import EssentialUserInfo from "./essentials/EssentialUserInfo";
+// import EssentialUserInfo from "./essentials/EssentialUserInfo";
 import MergeIntergration from "./essentials/MergeIntergration";
 //import { JobApplication } from "./applications/JobApplication";
 import { CreatePosition } from "./position/CreatePosition";
 import { ApplicationCover } from "./applications/ApplicationCover";
 import ShortList from "./ShortList";
-import { MyModalUpgrade, AlertModal, MyModalTut } from "./DashboardComponents";
+import { MyModalUpgrade, MyModalTut } from "./DashboardComponents";
 //import ReviewApplication from "./ReviewApplication";
 import PageTitleArea from '../Common/PageTitleArea';
 import {
@@ -41,6 +41,7 @@ import DocumentMeta from 'react-document-meta';
 import { EmployerProfile } from "./employerProfile/EmployerProfile";
 import { JobCover } from "./jobBoard/JobCover";
 import { JobCreation } from "./jobBoard/JobCreation";
+import { AddNewJobCover } from "./chakraComponents/AddNewJobCover";
 import { Sourcing } from "./jobBoard/Sourcing";
 import JobEdition from "./jobBoard/JobEdition";
 import EmployerHelp from "./EmployerHelp";
@@ -720,7 +721,7 @@ export class EmployerDashboard extends Component {
           setShowSidebarFalse={this.setShowSidebarFalse}
         />;
       case "jobCreation":
-        return <JobCreation
+        return <AddNewJobCover
           user={this.props.user}
           profile={this.props.profile}
           renderJobs={this.renderJobs}

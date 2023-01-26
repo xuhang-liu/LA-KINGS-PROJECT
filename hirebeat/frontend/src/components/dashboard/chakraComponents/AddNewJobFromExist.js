@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import 'boxicons';
+import { confirmAlert } from 'react-confirm-alert';
 import RichTextEditor from 'react-rte';
 import PropTypes from "prop-types";
 import Select from 'react-select';
 import { Link } from "react-router-dom";
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-//import Switch from "react-switch";
 import { loadStripe } from '@stripe/stripe-js';
-import parse from 'html-react-parser';
-import { SkillSet } from "./Constants";
-import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
-import ShareJob from "./ShareJob";
+import { SkillSet } from "../jobBoard/Constants";
 import Autocomplete from "react-google-autocomplete";
-import ScreenQuestion from "./ScreenQuestion";
+import { MyShareModal, MyModalUpgrade } from "./../DashboardComponents";
+//import Switch from "react-switch";
+import ScreenQuestion from "../jobBoard/ScreenQuestion";
+import parse from 'html-react-parser';
 import axios from "axios";
+import ShareJob from "../jobBoard/ShareJob";
 import { Text, Box, Button, Stack, Input, useColorModeValue, Circle, Divider } from '@chakra-ui/react';
 import { HiCheck } from 'react-icons/hi';
 
@@ -57,33 +56,46 @@ const customStyles = {
     menu: provided => ({ ...provided, color: useColorModeValue("#1a202c", "#ffffff"), background: useColorModeValue("#ffffff", "#1a202c") }),
 };
 
-export class JobCreation extends Component {
-
+export class AddNewJobFromExist extends Component {
     constructor(props) {
         super(props);
+        let questions = this.formatQuestions();
         this.state = {
-            jobTitle: "",
-            jobId: "",
-            jobLocation: "",
-            jobDescription: RichTextEditor.createEmptyValue(),
-            loc_req: 1,
-            pho_req: 1,
-            lin_req: 1,
-            eeo_req: 0,
-            eeo_ques_req: 0,
-            job_post: 1,
-            jobType: { value: 'Full-Time', label: 'Full-Time' },
-            jobLevel: { value: 'Entry Level', label: 'Entry Level' },
-            remote: { value: 0, label: 'On Site' }, //0 means onsite, 1 means hybrid, 2 means remote
-            skills: null,
-            showShare: false,
-            questionCount: 0,
-            questions: [],
+            jobTitle: "Copy of " + this.props.jobInfo.job_title,
+            jobId: this.props.jobInfo.job_id,
+            jobLocation: this.props.jobInfo.job_location?.split("|")[0],
+            jobDescription: RichTextEditor.createValueFromString(this.props.jobInfo.job_description, 'html'),
+            loc_req: this.props.jobInfo.loc_req,
+            pho_req: this.props.jobInfo.pho_req,
+            lin_req: this.props.jobInfo.lin_req,
+            eeo_req: this.props.jobInfo.eeo_req,
+            eeo_ques_req: this.props.jobInfo.eeo_ques_req,
+            job_post: this.props.jobInfo.job_post,
+            jobType: { value: this.props.jobInfo.job_type, label: this.props.jobInfo.job_type },
+            jobLevel: { value: this.props.jobInfo.job_level, label: this.props.jobInfo.job_level },
+            skills: [],
+            remote: this.props.jobInfo.job_location.includes("Remote") ? { value: 2, label: 'Remote' } : this.props.jobInfo.job_location.includes("Hybrid") ? { value: 1, label: 'Hybrid' } : { value: 0, label: 'On Site' },
+            questionCount: this.props.jobInfo.screen_questions.length,
+            questions: questions,
             showUpgradeM: false,
             showUpgradeM1: false,
         }
-        this.props.getjobidlist(this.props.user.id);
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    formatQuestions = () => {
+        let questions = [];
+        for (let i = 0; i < this.props.jobInfo.screen_questions.length; i++) {
+            let screen_question = this.props.jobInfo.screen_questions[i];
+            questions.push(new Object({
+                question: screen_question.question,
+                responseType: screen_question.answer_type == "boolean" ? "Yes/No" : "Numeric",
+                ans: screen_question.answer_type == "boolean" ? screen_question.answer : "Yes",
+                numAns: screen_question.answer_type == "Numeric" ? screen_question.answer : "0",
+                isMustHave: screen_question.is_must ? "true" : "false",
+            }))
+        }
+        return questions;
     }
 
     static propTypes = {
@@ -91,6 +103,15 @@ export class JobCreation extends Component {
     };
 
     componentDidMount() {
+        if (this.props.jobInfo.skills != null) {
+            this.props.jobInfo.skills.map((s) => {
+                var skill = JSON.stringify(s);
+                this.setState(previousState => ({
+                    skills: [...previousState.skills, { value: (skill?.split(":")[1]?.split(",")[0]?.split("'")[1]), label: (skill?.split(":")[1]?.split(",")[0]?.split("'")[1]) }]
+                }));
+            });
+        }
+
         // JobTarget steps:
         const config = {
             headers: {
@@ -187,111 +208,126 @@ export class JobCreation extends Component {
     ];
 
     setJobPost(type) {
-        // if ((this.props.profile.is_freetrial || this.props.profile.plan_interval == "Pro") && type == 2) {
-        //     confirmAlert({
-        //         title: 'Upgrade Now!',
-        //         message: "Please upgrade your account to use the Premium advertising service, or you may select the Standard service to broadcast this job posting.",
-        //         buttons: [
-        //             { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-        //             { label: 'OK' },
-        //         ]
-        //     });
-        // }
-        // else {
-        //     this.setState({ job_post: type });
-        // }
         this.setState({ job_post: type });
     }
 
-    //    setJobPostTure = () => {
-    //        if (this.props.profile.membership == "Regular") {
-    //            confirmAlert({
-    //                title: 'Upgrade Now!',
-    //                message: 'Upgrade now to broadcast your job posting!',
-    //                buttons: [
-    //                    { label: 'Upgrade Now', onClick: () => window.location.href = "/employer-pricing" },
-    //                    { label: 'OK' },
-    //                ]
-    //            });
-    //        } else {
-    //            this.setState({
-    //                job_post: true
-    //            });
-    //        }
-    //    };
-    //    setJobPostFalse = () => {
-    //        this.setState({
-    //            job_post: false
-    //        });
-    //    };
     setLocReq0 = () => {
         this.setState({
             loc_req: 0
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_require", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLocReq1 = () => {
         this.setState({
             loc_req: 1
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_option", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLocReq2 = () => {
         this.setState({
             loc_req: 2
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_location_disable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setPhoReq0 = () => {
         this.setState({
             pho_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_require", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setPhoReq1 = () => {
         this.setState({
             pho_req: 1
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_option", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setPhoReq2 = () => {
         this.setState({
             pho_req: 2
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_phonenumber_disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLinReq0 = () => {
         this.setState({
             lin_req: 0
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_require", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setLinReq1 = () => {
         this.setState({
             lin_req: 1
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_option", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setLinReq2 = () => {
         this.setState({
             lin_req: 2
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_application_linkedin_disable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setEeoReq0 = () => {
         this.setState({
             eeo_req: 0
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Disable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
     setEeoReq1 = () => {
         this.setState({
             eeo_req: 1
         });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Statement_Enable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
+
     setEeoQuesReq0 = () => {
         this.setState({
             eeo_ques_req: 0
+        });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Disable", {
+            eventTime: Date()?.toLocaleString()
         });
     };
     setEeoQuesReq1 = () => {
         this.setState({
             eeo_ques_req: 1
         });
-    };
-
-    onChange = (jobDescription) => {
-        this.setState({ jobDescription });
+        //Segment info
+        window?.analytics?.track("Jobs_edit_EEO_Question_Enable", {
+            eventTime: Date()?.toLocaleString()
+        });
     };
 
     handleLocation = (location) => {
@@ -303,19 +339,19 @@ export class JobCreation extends Component {
         }
     }
 
+    handleChange() {
+        this.setState({ remote: !this.state.remote });
+    }
+
+    onChange = (jobDescription) => {
+        this.setState({ jobDescription });
+    };
+
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
         });
     };
-
-    handleChange(remote) {
-        this.setState({ remote });
-    }
-
-    //    handleChangeJobType = (jobType) => {
-    //        this.setState({ jobType });
-    //    }
 
     handlePremiumJobUpgrade = async (event) => {
         // When the customer clicks on the button, redirect them to Checkout.
@@ -388,26 +424,28 @@ export class JobCreation extends Component {
                 })
             )
         }
-        if (this.props.profile.payg_credit <= 0) {
-            if (this.props.profile.membership == "Regular") {
-                return this.setState({
-                    showUpgradeM: true
-                });
-            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
-                if (this.props.profile.position_count >= this.props.profile.position_limit) {
+        if (!this.props.jobInfo.is_credited) {
+            if (this.props.profile.payg_credit <= 0) {
+                if (this.props.profile.membership == "Regular") {
                     return this.setState({
-                        showUpgradeM1: true
+                        showUpgradeM: true
                     });
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed == 1 || this.props.jobInfo.is_closed == 3)) {
+                        return this.setState({
+                            showUpgradeM: true
+                        });
+                    }
                 }
-            }
-        } else if (this.props.profile.payg_credit > 0) {
-            if (this.props.profile.membership == "Regular") {
-                using_credit = true;
-                r = confirm("You now have " + this.props.profile.payg_credit + " credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
-            } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
-                if (this.props.profile.position_count >= this.props.profile.position_limit) {
+            } else if (this.props.profile.payg_credit > 0) {
+                if (this.props.profile.membership == "Regular") {
                     using_credit = true;
                     r = confirm("You now have " + this.props.profile.payg_credit + " credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+                } else if (this.props.profile.membership == "Premium" && this.props.profile.plan_interval == "Pro") {
+                    if ((this.props.profile.position_count >= this.props.profile.position_limit) && (this.props.jobInfo.is_closed == 1 || this.props.jobInfo.is_closed == 3)) {
+                        using_credit = true;
+                        r = confirm("You now have " + this.props.profile.payg_credit + " credits available. Please confirm you want to apply ONE credit on this specific job. This action is non-revertible. \n\n Once published, the unique job URL will be available on the internet and can be shared immediately. \n\n The job will also appear on other applicable job boards within 24 hours.");
+                    }
                 }
             }
         }
@@ -418,7 +456,6 @@ export class JobCreation extends Component {
                 jobDescription: this.state.jobDescription.toString('html'),
                 jobLevel: this.state.jobLevel["value"],
                 jobLocation: this.state.jobLocation,
-                userId: this.props.user.id,
                 jobType: this.state.jobType["value"],
                 loc_req: this.state.loc_req,
                 pho_req: this.state.pho_req,
@@ -429,7 +466,8 @@ export class JobCreation extends Component {
                 skills: this.state.skills,
                 questions: this.state.questions,
                 is_closed: 0,
-                using_credit: using_credit
+                using_credit: using_credit,
+                userId: this.props.user.id,
             };
             if (this.state.remote.value == 2) {
                 data = {
@@ -438,7 +476,6 @@ export class JobCreation extends Component {
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
                     jobLocation: this.state.jobLocation + "| Remote",
-                    userId: this.props.user.id,
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
@@ -449,7 +486,8 @@ export class JobCreation extends Component {
                     skills: this.state.skills,
                     questions: this.state.questions,
                     is_closed: 0,
-                    using_credit: using_credit
+                    using_credit: using_credit,
+                    userId: this.props.user.id,
                 };
             }
             else if (this.state.remote.value == 1) {
@@ -459,7 +497,6 @@ export class JobCreation extends Component {
                     jobDescription: this.state.jobDescription.toString('html'),
                     jobLevel: this.state.jobLevel["value"],
                     jobLocation: this.state.jobLocation + "| Hybrid",
-                    userId: this.props.user.id,
                     jobType: this.state.jobType["value"],
                     loc_req: this.state.loc_req,
                     pho_req: this.state.pho_req,
@@ -470,7 +507,8 @@ export class JobCreation extends Component {
                     skills: this.state.skills,
                     questions: this.state.questions,
                     is_closed: 0,
-                    using_credit: using_credit
+                    using_credit: using_credit,
+                    userId: this.props.user.id,
                 };
             }
             if (this.props.jobid_list.includes(this.state.jobId) && this.state.jobId != "" && this.state.jobId != null) {
@@ -514,7 +552,7 @@ export class JobCreation extends Component {
             skills: this.state.skills,
             questions: this.state.questions,
             is_closed: 3,
-            using_credit: false
+            using_credit: false,
         };
         if (this.state.remote.value == 2) {
             data = {
@@ -814,12 +852,12 @@ export class JobCreation extends Component {
                                     }}
                                 >
                                     <Text color="muted" fontWeight="medium">
-                                        Fill Information
+                                        Review Information
                                     </Text>
                                 </Stack>
                             </Stack>
                         </Stack>
-                        <Divider borderWidth="1px" borderColor="lightgray" my="8"/>
+                        <Divider borderWidth="1px" borderColor="lightgray" my="8" />
                         <form onSubmit={this.savePosition}>
                             <div className="form-row mt-4">
                                 <div className="col-12">
@@ -878,16 +916,18 @@ export class JobCreation extends Component {
                                         <Text fontSize="sm" color="muted">Job Location <span className="job-apply-char2">*</span></Text>}
                                     <Autocomplete
                                         className="form-control"
-                                        style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem", color: "#7a7a7a" }}
                                         language="en"
+                                        style={{ border: "2px solid #E8EDFC", borderRadius: "5px", height: "2.5rem", color: "#7a7a7a" }}
                                         apiKey={"AIzaSyDEplgwaPXJn38qEEnE5ENlytHezUfq56U"}
                                         onPlaceSelected={(place, inputRef, autocomplete) => {
                                             this.handleLocation(place);
                                         }}
                                         required="required"
+                                        defaultValue={this.state.jobLocation}
                                     />
                                 </div>
                             </div>
+
                             <div className="form-row">
                                 <div className="col-6">
                                     <Text fontSize="sm" color="muted">Job Description <span className="job-apply-char2">*</span></Text>
@@ -925,7 +965,7 @@ export class JobCreation extends Component {
                                             return 1;
                                         }
                                         return 0;
-                                    })} styles={customStyles} />
+                                    })} styles={customStyles} defaultValue={this.state.skills} />
                                 </div>
                             </div>
                             <div className="form-row">
@@ -1080,7 +1120,7 @@ export class JobCreation extends Component {
                                 let responseType = { value: q?.responseType, label: q?.responseType } || { value: "Yes/No", label: "Yes/No" };
                                 let ans = { value: q?.ans, label: q?.ans } || { value: "Yes/No", label: "Yes/No" };
                                 return (
-                                    <div key={index} className="form-row" style={{ marginBottom: "1rem" }} required>
+                                    <div key={index} className="form-row" style={{ marginBottom: "1rem" }}>
                                         <div className="col-12">
                                             <ScreenQuestion
                                                 questionObj={q}
@@ -1105,19 +1145,23 @@ export class JobCreation extends Component {
                             <div>
                                 <hr style={{ border: "1.5px solid #E8EDFC" }} />
                                 <div className="form-row">
-                                    <div className="col-12">
+                                    <div className="col-12 mt-3">
                                         <Text fontSize="md" color="muted" style={{ fontSize: "1rem" }}><b>Broadcast Your Job Posting</b></Text>
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-4">
-                                        {this.state.job_post == 0 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", { eventTime: Date()?.toLocaleString() }) }}>Disabled</Button>
-                                        }
-                                        {this.state.job_post == 1 ?
-                                            <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Standard</Button> :
-                                            <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", { eventTime: Date()?.toLocaleString() }) }}>Standard</Button>
+                                        {this.props.jobInfo.job_post != 2 &&
+                                            <span>
+                                                {this.state.job_post == 0 ?
+                                                    <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Disabled</Button> :
+                                                    <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(0); window?.analytics?.track("Job_posting_broadcast_disbale", { eventTime: Date()?.toLocaleString() }) }}>Disabled</Button>
+                                                }
+                                                {this.state.job_post == 1 ?
+                                                    <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Standard</Button> :
+                                                    <Button colorScheme='blue' variant='outline' borderRadius="2" border="2px" borderColor="brand.200" style={{ fontSize: "1rem" }} onClick={() => { this.setJobPost(1); window?.analytics?.track("Job_posting_broadcast_standard", { eventTime: Date()?.toLocaleString() }) }}>Standard</Button>
+                                                }
+                                            </span>
                                         }
                                         {/* {this.state.job_post == 2 ?
                                                 <Button colorScheme='blue' variant='solid' borderRadius="2" style={{ fontSize: "1rem" }}>Premium</Button> :
@@ -1136,15 +1180,25 @@ export class JobCreation extends Component {
                                             </Text>
                                         }
                                         {this.state.job_post == 2 &&
-                                            <Text fontSize="sm" color="muted">
-                                                Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
-                                                <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
-                                                    30-Day Promotion - $200
-                                                </div>
-                                                <div>
-                                                    You will be redirected to the payment page once you click Save to publish.
-                                                </div>
-                                            </Text>
+                                            <div>
+                                                {this.props.jobInfo.job_post == 2 ?
+                                                    <Text fontSize="sm" color="muted">
+                                                        Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                        <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                            Your 30-Day Premium Promotion is ACTIVE.
+                                                        </div>
+                                                    </Text> :
+                                                    <Text fontSize="sm" color="muted">
+                                                        Premium advertising: your position will be posted on 200+ job boards within 24 hours and will be actively promoted for 30 days.
+                                                        <div style={{ fontWeight: "600", marginTop: "0.8rem" }}>
+                                                            30-Day Promotion - $200
+                                                        </div>
+                                                        <div>
+                                                            You will be redirected to the payment page once you click Save to publish.
+                                                        </div>
+                                                    </Text>
+                                                }
+                                            </div>
                                         }
                                     </div>
                                 </div>
@@ -1213,11 +1267,11 @@ export class JobCreation extends Component {
                                 </Button>
                             </div>
                         </form>
-                    </Box>
+                    </Box >
                 </Stack>
             </Box>
         )
     };
 };
 
-export default JobCreation;
+export default AddNewJobFromExist;

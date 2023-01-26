@@ -6,7 +6,7 @@ export default class Tutorials extends React.Component {
   render() {
     return (
       <div>
-        <Text fontSize='xl' color="muted">Tutorial Videos</Text>
+        <Text fontSize='lg' fontWeight='bold' color="muted" mb='3'>Tutorial Videos</Text>
         <HStack spacing='5' py='4'>
           <Box>
             <ReactPlayer
