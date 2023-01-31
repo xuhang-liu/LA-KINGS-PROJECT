@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from 'react-select';
-import { Text, Box, Button, Stack, Input, Heading, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Table, Tbody, Th, Thead, Td, Tr, HStack, Switch } from '@chakra-ui/react';
+import { Text, Box, Button, Stack, Input, Heading, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody, Table, Tbody, Th, Thead, Td, Tr, HStack, Switch, Spacer } from '@chakra-ui/react';
 import { FiPlus } from 'react-icons/fi';
+import ReactApexChart from "react-apexcharts";
 
 export const EditShoppingList = (props) => {
 
@@ -179,6 +180,74 @@ export const EditShoppingList = (props) => {
             });
     }
 
+    let total = 0;
+    let bought = 0;
+    let i = 0;
+    while (i < is_done_array.length) {
+
+        if (is_done_array[i] == "True"){
+            bought++;
+        }
+        total++;
+        i++;
+    }
+
+    const serieschart = [Math.round(bought/total * 100)];
+    const optionschart = {
+        chart: {
+            type: 'radialBar',
+            offsetY: -20,
+            sparkline: {
+                enabled: true
+            }
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -90,
+                endAngle: 90,
+                track: {
+                    background: "#e7e7e7",
+                    strokeWidth: '97%',
+                    margin: 5, // margin is in pixels
+                    dropShadow: {
+                        enabled: true,
+                        top: 2,
+                        left: 0,
+                        color: '#999',
+                        opacity: 1,
+                        blur: 2
+                    }
+                },
+                dataLabels: {
+                    name: {
+                        show: false
+                    },
+                    value: {
+                        offsetY: -2,
+                        fontSize: '22px'
+                    }
+                }
+            }
+        },
+        grid: {
+            padding: {
+                top: -10
+            }
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shade: 'light',
+                shadeIntensity: 0.4,
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 50, 53, 91]
+            },
+        },
+        labels: ['Average Results'],
+    };
+
     return (
         <React.Fragment>
             <Box px='24' mt='12' mb='14' alignItems='center'>
@@ -199,6 +268,10 @@ export const EditShoppingList = (props) => {
                             md: '6',
                         }}
                     >
+                        <Box mb='4'>
+                            <Text fontSize="sm" color="muted" fontWeight="bold" mb='2'>Complete rate</Text>
+                            <ReactApexChart options={optionschart} series={serieschart} type="radialBar" height={300} width={300}/>
+                        </Box>
                         <form onSubmit={saveList}>
                             <Box mb='4'>
                                 <Text fontSize="sm" color="muted" fontWeight="bold" mb='2'>List Title</Text>
