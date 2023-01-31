@@ -1,4 +1,4 @@
-# la_kings_django_project
+# LAKings sample project
 
 This README is intended for programmers who already have experience with React or Django.
 
