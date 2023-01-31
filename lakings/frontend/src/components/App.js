@@ -5,8 +5,10 @@ import { Provider as AlertProvider } from "react-alert";
 import store, { persistor } from "../store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import HomePage from "./accounts/HomePage";
-import { loadUser } from "../redux/actions/auth_actions";
+import { HomePage } from "./accounts/HomePage";
+import { Register } from "./accounts/Register";
+import { TodoListPortal } from "./Dashboard/TodoListPortal";
+import { ManagerPortal } from "./Dashboard/ManagerPortal";
 
 const alertOptions = {
   timeout: 3000,
@@ -14,15 +16,8 @@ const alertOptions = {
 };
 
 class App extends Component {
-  componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.loadData();
-    }
-  }
-
-  async loadData() {
-    console.log("loading user");
-    await store.dispatch(loadUser());
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -35,6 +30,9 @@ class App extends Component {
                 <Fragment>
                   <Switch>
                     <Route exact path="/" component={HomePage} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/dashboard" component={TodoListPortal} />
+                    <Route exact path="/manager_dashboard" component={ManagerPortal} />
                   </Switch>
                 </Fragment>
               </Router>
