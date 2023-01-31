@@ -182,7 +182,7 @@ export const TodoListPortal = (props) => {
                                         <Table>
                                             <Thead>
                                                 <Tr>
-                                                    <Th><Text color="muted" fontWeight='bold' fontSize='md'>Bag Title</Text></Th>
+                                                    <Th><Text color="muted" fontWeight='bold' fontSize='md'>List Title</Text></Th>
                                                     <Th><Text color="muted" fontWeight='bold' fontSize='md'>Number of Items</Text></Th>
                                                     <Th><Text color="muted" fontWeight='bold' fontSize='md'>Action</Text></Th>
                                                 </Tr>
